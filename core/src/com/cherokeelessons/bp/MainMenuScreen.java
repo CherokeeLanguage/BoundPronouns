@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 public class MainMenuScreen implements Screen {
 
 	private final BoundPronouns game;
-//	private final PerspectiveCamera camera;
 	private final FitViewport viewport;
 	private final Stage stage;
 	
