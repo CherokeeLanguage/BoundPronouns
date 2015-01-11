@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -33,7 +32,6 @@ public class ShowList implements Screen {
 	private final FitViewport viewport;
 	private final Stage stage;
 
-	private List<CSVRecord> records;
 	private ClickListener die = new ClickListener() {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
@@ -43,19 +41,32 @@ public class ShowList implements Screen {
 		};
 	};
 	private final Screen caller;
-	private final Array<DisplayRecord> drecs = new Array(); 
+	private final Array<DisplayRecord> drecs = new Array();
+
 	private static class DisplayRecord implements Comparable<DisplayRecord> {
 		public static enum SortBy {
 			Syllabary, Latin, Definition;
 		}
 
+		public static enum SortOrder {
+			Ascending, Descending, SplitAscending, SplitDescending;
+		}
+
 		private static SortBy by = SortBy.Syllabary;
+		private static SortOrder order = SortOrder.Ascending;
 
 		public static void setSortBy(SortBy by) {
-			if (by==null) {
+			if (by == null) {
 				return;
 			}
-			DisplayRecord.by = by;
+			if (DisplayRecord.by.equals(by)) {
+				int nextOrdinal = DisplayRecord.order.ordinal() + 1;
+				nextOrdinal %= DisplayRecord.SortOrder.values().length;
+				DisplayRecord.order = DisplayRecord.SortOrder.values()[nextOrdinal];
+			} else {
+				DisplayRecord.by = by;
+				DisplayRecord.order = DisplayRecord.SortOrder.values()[0];
+			}
 		}
 
 		public Label syllabary;
@@ -65,26 +76,47 @@ public class ShowList implements Screen {
 		private String sortKey() {
 			switch (by) {
 			case Definition:
-				return definition.getText().toString()+syllabary.getText().toString()+latin.getText().toString();
+				return definition.getText().toString() + "|"
+						+ syllabary.getText().toString() + "|"
+						+ latin.getText().toString();
 			case Latin:
-				return latin.getText().toString()+definition.getText().toString()+syllabary.getText().toString();
+				return latin.getText().toString() + "|"
+						+ definition.getText().toString() + "|"
+						+ syllabary.getText().toString();
 			case Syllabary:
-				return syllabary.getText().toString()+latin.getText().toString()+definition.getText().toString();
+				return syllabary.getText().toString() + "|"
+						+ latin.getText().toString() + "|"
+						+ definition.getText().toString();
 			}
 			return "";
 		}
 
 		@Override
 		public int compareTo(DisplayRecord o) {
-			if (o==null) {
-				return 1;
+			switch (DisplayRecord.order) {
+			case Ascending:
+				if (o == null) {
+					return 1;
+				}
+			case Descending:
+				if (o == null) {
+					return -1;
+				}
+			case SplitAscending:
+				if (o == null) {
+					return 1;
+				}
+			case SplitDescending:
+				if (o == null) {
+					return -1;
+				}
 			}
 			return sortKey().compareTo(o.sortKey());
 		}
 	}
 
 	private final Table table;
-	private ClickListener list_sortByD=new ClickListener(){
+	private ClickListener list_sortByD = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
@@ -94,23 +126,25 @@ public class ShowList implements Screen {
 			return true;
 		}
 	};
-	private ClickListener list_sortByL=new ClickListener(){
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	private ClickListener list_sortByL = new ClickListener() {
+		public boolean touchDown(InputEvent event, float x, float y,
+				int pointer, int button) {
 			DisplayRecord.setSortBy(DisplayRecord.SortBy.Latin);
 			drecs.sort();
 			populateList();
 			return true;
 		};
 	};
-	private ClickListener list_sortByS=new ClickListener(){
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+	private ClickListener list_sortByS = new ClickListener() {
+		public boolean touchDown(InputEvent event, float x, float y,
+				int pointer, int button) {
 			DisplayRecord.setSortBy(DisplayRecord.SortBy.Syllabary);
 			drecs.sort();
 			populateList();
 			return true;
 		};
 	};
-	
+
 	public ShowList(BoundPronouns game, Screen callingScreen,
 			List<CSVRecord> records) {
 		this.caller = callingScreen;
@@ -119,7 +153,6 @@ public class ShowList implements Screen {
 		viewport = new FitViewport(1280, 720, stage.getCamera());
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
-		this.records = records;
 
 		LabelStyle ls = new LabelStyle(game.manager.get("font36.ttf",
 				BitmapFont.class), Color.BLUE);
@@ -144,7 +177,8 @@ public class ShowList implements Screen {
 		int c = container.add(sortByD).getColumn();
 
 		table = new Table();
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1, Texture.class);
+		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+				Texture.class);
 		Drawable d = new TextureRegionDrawable(new TextureRegion(texture));
 		table.setBackground(d);
 		ScrollPane scroll = new ScrollPane(table);
@@ -159,6 +193,9 @@ public class ShowList implements Screen {
 		String prevChr = "";
 		for (CSVRecord record : records) {
 			String chr = record.get(0);
+			if (chr.startsWith("#")) {
+				continue;
+			}
 			String latin = record.get(1);
 			String defin = record.get(2);
 			if (StringUtils.isBlank(latin)) {
@@ -169,21 +206,21 @@ public class ShowList implements Screen {
 			}
 			DisplayRecord dr = new DisplayRecord();
 			Label actor;
-			
+
 			ls.fontColor = Color.DARK_GRAY;
-			actor = new Label(chr, new LabelStyle(ls));			
-			dr.syllabary=actor;
-			
+			actor = new Label(chr, new LabelStyle(ls));
+			dr.syllabary = actor;
+
 			ls.fontColor = Color.DARK_GRAY;
 			actor = new Label(latin, new LabelStyle(ls));
-			dr.latin=actor;
-			
+			dr.latin = actor;
+
 			ls.fontColor = Color.DARK_GRAY;
 			actor = new Label(defin, new LabelStyle(ls));
-			dr.definition=actor;
-			
+			dr.definition = actor;
+
 			drecs.add(dr);
-			
+
 			prevLatin = latin;
 			prevChr = chr;
 		}
@@ -193,11 +230,11 @@ public class ShowList implements Screen {
 	}
 
 	private void populateList() {
-		int ix=0;
+		int ix = 0;
 		table.clear();
-		for (DisplayRecord rec: drecs) {
+		for (DisplayRecord rec : drecs) {
 			ix++;
-			boolean greenbar = ((ix%3)==0);
+			boolean greenbar = ((ix % 3) == 0);
 			table.row();
 			Cell<Label> cell_syll = table.add(rec.syllabary);
 			cell_syll.align(Align.left).padLeft(30).padRight(15).expandX();
@@ -205,12 +242,13 @@ public class ShowList implements Screen {
 			cell_latin.align(Align.left).padRight(15).expandX();
 			Cell<Label> cell_def = table.add(rec.definition);
 			cell_def.align(Align.left).padRight(30).padBottom(5).expandX();
-			int span=cell_def.getColumn()+1;
+			int span = cell_def.getColumn() + 1;
 			if (greenbar) {
 				table.row();
-				table.add(new Label(" ", rec.syllabary.getStyle())).colspan(span);
+				table.add(new Label(" ", rec.syllabary.getStyle())).colspan(
+						span);
 			}
-		}	
+		}
 	}
 
 	@Override
@@ -251,7 +289,7 @@ public class ShowList implements Screen {
 	@Override
 	public void dispose() {
 		stage.dispose();
-		records.clear();
+		drecs.clear();
 	}
 
 }

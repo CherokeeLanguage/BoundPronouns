@@ -14,8 +14,8 @@
 "Ꭿ-, ᎯᏯ͓-","Hi-, Hiy-",You one + another (a) [a],,Higotiha.,You see him.
 Ꭿ̣-,"Hị-",You one + another (i) [a],,Hịgotiha.,You see it.
 Ꮳ̣-,"Jạ-",You one + another (i) [b],,Jaduliha.,You want it.
-"ᏍᎩ̣Ꮒ-","Sgịni-",You one + another and me,,Sginigotiha.,You see me and another.
-"ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You one + them and me,Isgi- becomes Isgiy- before a vowel.,,You see them and me.
+"ᏍᎩ̣Ꮒ-","Sgịni-",You one + me and another,,Sginigotiha.,You see me and another.
+"ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You one + me and them,Isgi- becomes Isgiy- before a vowel.,,You see them and me.
 ᎦᎯ-,"Gahiy-, Gahi-",You one + them (a),,Gahigotiha.,You see them.
 Ꮥ̣Ꭿ̣-,"Dẹhị-",You one + them (i) [a],,Dehigotiha.,You see them.
 Ꮥ̣Ꮳ̣-,"Dẹja-",You one + them (i) [b],,Dejaduliha.,You see them.
@@ -25,10 +25,10 @@
 "Ꭰ̣-, Ꭶ̣-","Ạ-, Gạ-, G-",Another + another (a) [a],,,He sees another.
 "Ꭰ̣-, Ꭶ̣-","Ạ-, Gạ-, G-",Another + another (i) [a],,Ạgotiha.,He sees it.
 "Ꭴ-, Ꭴ̣Ꮹ-","U-, Ụw-",Another + another (i) [b],,Uduliha.,He wants it.
-Ꭹ̣Ꮒ-,"Gịni-",Another + you and me,,,He wants you and me.
-ᎣᎩ̣Ꮒ-,"Ogịni-",Another + another and me,,,He wants him and me.
-ᎢᎩ-,"Igi-",Another + you all and me,,Igaduliha.,He wants you all and me.
-ᎣᎩ-,Ogi-,Another + them and me.,,Ogaduliha.,He wants them and me.
+Ꭹ̣Ꮒ-,"Gịni-",Another + me and you,,,He wants you and me.
+ᎣᎩ̣Ꮒ-,"Ogịni-",Another + me and another,,,He wants him and me.
+ᎢᎩ-,"Igi-",Another + me and you all,,Igaduliha.,He wants you all and me.
+ᎣᎩ-,Ogi-,Another + me and them,,Ogaduliha.,He wants them and me.
 ᏍᏗ̣-,"Sdi-",He + you two,,Sdigotiha.,He sees you two.
 ᎢᏥ-,"Iji-",Another + you all [a],,Ijaduliha.,He wants you all.
 ᏕᎦ̣-,"Degạ-, Deg-, Dạ-",Another + them (a),,Degaduliha.,He wants them.
@@ -70,15 +70,15 @@
 "ᏍᎩ̣Ꮒ-","Sgịni-",You two + me,,Sginigotiha.,You two see me.
 ᎡᏍᏗ-,"Esdi-",You two + another (a),,Esdigotiha.,You two see him.
 ᏍᏗ-,"Sdi-",You two + another (i),,Sdigotiha.,You two see it.
-"ᏍᎩ̣Ꮒ-","Sgịni-",You two + another and me,,Sginigotiha.,You two see me and another.
-"ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You two + them and me,Isgi- becomes Isgiy- before a vowel.,,You two see them and me.
+"ᏍᎩ̣Ꮒ-","Sgịni-",You two + me and another,,Sginigotiha.,You two see me and another.
+"ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You two + me and them,Isgi- becomes Isgiy- before a vowel.,,You two see them and me.
 ᎨᏍᏗ-,Gesdi-,You two + them (a),,Gesdigotiha.,You two see them.
 ᏕᏍᏗ-,"Desdi-",You two + them (i),,Desdigotiha.,You two see them.
 #R9
 "ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You all + me,,Isgigotiha.,Isgi- becomes Isgiy- before a vowel.,,You all see me.
 ᎡᏥ-,"Eji-",You all + another (a),,Ejigotiha.,You all see him.
 ᎢᏥ-,"Iji-",You all + another (i),,Ijigotiha.,You all see it.
-"ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You all + another and me,Isgi- becomes Isgiy- before a vowel.,,You all see him and me.
+"ᎢᏍᎩ-, ᎢᏍᎩᏱ͓-","Isgi-, Isgiy-",You all + me and another,Isgi- becomes Isgiy- before a vowel.,,You all see him and me.
 ᎨᏥ-,"Geji-",You all + them (a),,Gejigotiha.,You all see them.
 Ꮥ³Ꮵ̣-,De³ji-,You all + them (i),,,You all see them.
 #R10
@@ -87,10 +87,10 @@
 Ꭰ̣Ꮒ̣-,"Ạni-",They + another (a),,Anigotiha.,They see him.
 Ꭰ̣Ꮒ-,"Ạni-",They + another (i) [a],,Anigotiha.,They see it.
 ᎤᏂ-,"Uni-",They + another (i) [b],,Uniduliha.,They want it.
-ᎨᎩ̣Ꮒ-,"Gegịni-",They + you one and me.,,Geginigotiha.,They see you and me.
-ᎪᎩ̣Ꮒ-,"Gogịni-",They + another and me.,,Goginigotiha.,They see him and me.
-ᎨᎩ-,"Gegi-",They + you all and me.,,Gegigotiha.,They see you all and me.
-ᎪᎩ-,"Gogi-",They + them and me.,,Gogigotiha.,They see them and me.
+ᎨᎩ̣Ꮒ-,"Gegịni-",They + me and you one,,Geginigotiha.,They see you and me.
+ᎪᎩ̣Ꮒ-,"Gogịni-",They + me and another,,Goginigotiha.,They see him and me.
+ᎨᎩ-,"Gegi-",They + me and you all,,Gegigotiha.,They see you all and me.
+ᎪᎩ-,"Gogi-",They + me and them,,Gogigotiha.,They see them and me.
 ᎨᏍᏗ-,Gesdi-,They + you two,,Gesdigotiha.,They see you two.
 ᎨᏥ-,"Geji-",They + you all,,Gejigotiha.,They see you all
 Ꮣ̣Ꮒ̣-,"Dạni-",They + another (a),,Anigotiha.,They see him.
@@ -100,12 +100,12 @@
 "ᎥᎩ̣-, ᎥᏆ͓-","Vgị-, Vgw-",+ me,Vgi- becomes Vgw- before a vowel.,Vgigotiha,I am being seen.
 ᎡᏣ̣-,"Ejạ-, Ej-",+ you one,,Ejagotiha,You are being seen.
 "Ꭰ̣Ꮵ̣-, Ꭰ̣Ꭶ͓-","Ạjị-, ạg-",+ another,,Ajigotiha,He is being seen.
-ᎣᎩ̣Ꮒ-,Ogịni-,+ another and me,,Oginigotiha,He and I are being seen.
+ᎣᎩ̣Ꮒ-,Ogịni-,+ me and another,,Oginigotiha,He and I are being seen.
 ᎡᏍᏗ-,Esdi-,+ you two,,Esdigotiha,You two are being seen.
-ᎡᎩ̣Ꮒ-,Egịni-,+ you and me,,Eginigotiha,You and I are being seen.
-ᎣᎩ-,Ogi-,+ them and me,,Ogigotiha,They and I are being seen.
+ᎡᎩ̣Ꮒ-,Egịni-,+ me and you,,Eginigotiha,You and I are being seen.
+ᎣᎩ-,Ogi-,+ me and them,,Ogigotiha,They and I are being seen.
 ᎡᏥ-,Eji-,+ you all,,Ejigotiha,You all are being seen.
-ᎡᎩ-,Egi-,+ you all and me,,Egigotiha,You all and I are being seen.
+ᎡᎩ-,Egi-,+ me and you all,,Egigotiha,You all and I are being seen.
 "ᎨᏥ-, ᎨᎦ͓-","Geji-, Geg-",+ them,,Gejigotiha,They are being seen.
 #Reflexive
 ᎦᏓ-,Gada[d]-,I + me,,Gadagotiha,I see myself.
