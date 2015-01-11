@@ -219,7 +219,7 @@ public class ShowList implements Screen {
 		stage.addActor(container);
 		container.setBackground(d);
 		container.setFillParent(true);
-		container.setDebug(true, true);
+//		container.setDebug(true, true);
 
 		container.row();
 		Label back = new Label(BoundPronouns.BACK_ARROW, new LabelStyle(ls));
@@ -343,7 +343,7 @@ public class ShowList implements Screen {
 	@Override
 	public void render(float delta) {
 		stage.act();
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 	}

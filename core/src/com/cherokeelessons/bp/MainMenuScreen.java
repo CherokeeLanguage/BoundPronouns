@@ -12,16 +12,20 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class MainMenuScreen implements Screen {
@@ -87,24 +91,30 @@ public class MainMenuScreen implements Screen {
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
 
-		VerticalGroup vg = new VerticalGroup();
-		stage.addActor(vg);
-		vg.setFillParent(true);
-		vg.setDebug(true, true);
+		Table container = new Table();
+		container.setFillParent(true);		
+		stage.addActor(container);
+		
+		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+				Texture.class);
+		Drawable d = new TextureRegionDrawable(new TextureRegion(texture));
+		container.setBackground(d);
 
 		Label label;
 
-		LabelStyle lstyle24 = new LabelStyle(null, Color.RED);
+		LabelStyle lstyle24 = new LabelStyle(null, Color.BLUE);
 		lstyle24.font = game.manager.get("font24.ttf", BitmapFont.class);
 
-		LabelStyle lstyle54 = new LabelStyle(null, Color.RED);
+		LabelStyle lstyle54 = new LabelStyle(null, Color.BLUE);
 		lstyle54.font = game.manager.get("font54.ttf", BitmapFont.class);
-		LabelStyle lstyle72 = new LabelStyle(null, Color.RED);
+		LabelStyle lstyle72 = new LabelStyle(null, Color.BLUE);
 		lstyle72.font = game.manager.get("font72.ttf", BitmapFont.class);
 
 		label = new Label("Cherokee Language Bound Pronouns Practice", lstyle54);
-		vg.addActor(new Label(" ", lstyle24));
-		vg.addActor(label);
+		container.row();
+		container.add(new Label(" ", lstyle24));
+		container.row();
+		container.add(label);
 
 		TextButtonStyle tbstyle = new TextButtonStyle();
 		tbstyle.fontColor = Color.BLUE;
@@ -113,32 +123,44 @@ public class MainMenuScreen implements Screen {
 		TextButton button = new TextButton("Do A Practice", tbstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
-		vg.addActor(new Label(" ", lstyle24));
-		vg.addActor(button);
+		container.row();
+		container.add(new Label(" ", lstyle24));
+		container.row();
+		container.add(button);
 
 		button = new TextButton("View Pronouns List", tbstyle);
 		button.addListener(viewPronounsList);
 		button.setTouchable(Touchable.enabled);
-		vg.addActor(new Label(" ", lstyle24));
-		vg.addActor(button);
+		container.row();
+		container.add(new Label(" ", lstyle24));
+		container.row();
+		container.add(button);
 
 		button = new TextButton("Settings", tbstyle);
 		button.addListener(viewSettings);
 		button.setTouchable(Touchable.enabled);
-		vg.addActor(new Label(" ", lstyle24));
-		vg.addActor(button);
+		container.row();
+		container.add(new Label(" ", lstyle24));
+		container.row();
+		container.add(button);
 
 		button = new TextButton("About", tbstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
-		vg.addActor(new Label(" ", lstyle24));
-		vg.addActor(button);
+		container.row();
+		container.add(new Label(" ", lstyle24));
+		container.row();
+		container.add(button);
 
 		button = new TextButton("Quit", tbstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
-		vg.addActor(new Label(" ", lstyle24));
-		vg.addActor(button);
+		container.row();
+		container.add(new Label(" ", lstyle24));
+		container.row();
+		container.add(button);
+		
+		container.pack();
 	}
 
 	@Override
