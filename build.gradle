@@ -71,6 +71,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile 'org.apache.commons:commons-csv:1.1'
+        compile 'org.apache.commons:commons-lang3:3.3.2'
     }
 }
 
