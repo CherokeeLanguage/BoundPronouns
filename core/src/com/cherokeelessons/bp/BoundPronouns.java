@@ -24,21 +24,26 @@ public class BoundPronouns extends Game {
 	public static final String IMG_LOADINGBAR = "images/coyote.png";
 	public static final String IMG_PAPER1 = "images/parchment.png";
 
-	private static final String OVERLINE = "\u0305";
-	private static final String UNDERDOT = "\u0323";
-	private static final String DUNDERDOT = "\u0324";
-	private static final String UNDERCIRCLE = "\u0325";
-	private static final String UNDERLINE = "\u0332";
-	private static final String DUNDERLINE = "\u0333";
-	private static final String STHRU = "\u0336";
-	private static final String UNDERX = "\u0353";
-	private static final String UNDERCUBE = "\u033B";
-	private static final String DSUNDERLINE = "\u0347";
+	public static final String DIAMOND = "\u25c8";
+	public static final String TRIANGLE_ASC = "\u25bc";
+	public static final String TRIANGLE_DESC = "\u25b2";
+	public static final String BACK_ARROW = "\u21a9";
+	public static final String OVERLINE = "\u0305";
+	public static final String UNDERDOT = "\u0323";
+	public static final String DUNDERDOT = "\u0324";
+	public static final String UNDERCIRCLE = "\u0325";
+	public static final String UNDERLINE = "\u0332";
+	public static final String DUNDERLINE = "\u0333";
+	public static final String STHRU = "\u0336";
+	public static final String UNDERX = "\u0353";
+	public static final String UNDERCUBE = "\u033B";
+	public static final String DSUNDERLINE = "\u0347";
 
 	private static final String specials;
 	static {
 		specials = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
-				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX;
+				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
+				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC;
 	}
 
 	public SpriteBatch batch;
@@ -52,12 +57,12 @@ public class BoundPronouns extends Game {
 		initManager();
 		this.setScreen(new LoadingScreen(this));
 	}
-	
+
 	@Override
 	public void setScreen(Screen screen) {
 		super.setScreen(screen);
 	}
-	
+
 	private void initManager() {
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.setLoader(FreeTypeFontGenerator.class,
@@ -70,7 +75,7 @@ public class BoundPronouns extends Game {
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Linear;
 		param.minFilter = TextureFilter.Linear;
-		
+
 		manager.load(IMG_LOADINGBAR, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
 

@@ -28,6 +28,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class ShowList implements Screen {
 
+	private static final String SORT_BY_ENGLISH = "Sort by English";
+	private static final String SORT_BY_LATIN = "Sort by Latin";
+	private static final String SORT_BY_SYLLABARY = "Sort by Syllabary";
 	private final BoundPronouns game;
 	private final FitViewport viewport;
 	private final Stage stage;
@@ -41,7 +44,7 @@ public class ShowList implements Screen {
 		};
 	};
 	private final Screen caller;
-	private final Array<DisplayRecord> drecs = new Array();
+	private final Array<DisplayRecord> drecs = new Array<>();
 
 	private static class DisplayRecord implements Comparable<DisplayRecord> {
 		public static enum SortBy {
@@ -69,6 +72,13 @@ public class ShowList implements Screen {
 			}
 		}
 
+		public static void setSortSubOrder(SortOrder order) {
+			if (order == null) {
+				return;
+			}
+			DisplayRecord.order = order;
+		}
+
 		public Label syllabary;
 		public Label latin;
 		public Label definition;
@@ -76,19 +86,36 @@ public class ShowList implements Screen {
 		private String sortKey() {
 			switch (by) {
 			case Definition:
-				return definition.getText().toString() + "|"
+				String string = definition.getText().toString() + "|"
 						+ syllabary.getText().toString() + "|"
 						+ latin.getText().toString();
+				string = cleanup(string);
+				return string.toLowerCase();
 			case Latin:
-				return latin.getText().toString() + "|"
+				String string2 = latin.getText().toString() + "|"
 						+ definition.getText().toString() + "|"
 						+ syllabary.getText().toString();
+				string2 = cleanup(string2);
+				return string2.toLowerCase();
 			case Syllabary:
-				return syllabary.getText().toString() + "|"
+				String string3 = syllabary.getText().toString() + "|"
 						+ latin.getText().toString() + "|"
 						+ definition.getText().toString();
+				string3 = cleanup(string3);
+				return string3.toLowerCase();
 			}
 			return "";
+		}
+
+		private String cleanup(String string) {
+			string = string.replace(BoundPronouns.UNDERDOT, "");
+			string = string.replace(BoundPronouns.UNDERX, "");
+			string = StringUtils.replaceChars(string, "ạẹịọụṿẠẸỊỌỤṾ",
+					"aeiouvAEIOUV");
+			string = string.replaceAll("[¹²³⁴]", "");
+			string = StringUtils.normalizeSpace(string);
+			string = StringUtils.strip(string);
+			return string;
 		}
 
 		@Override
@@ -98,20 +125,44 @@ public class ShowList implements Screen {
 				if (o == null) {
 					return 1;
 				}
+				return sortKey().compareTo(o.sortKey());
 			case Descending:
 				if (o == null) {
 					return -1;
 				}
+				return -sortKey().compareTo(o.sortKey());
 			case SplitAscending:
 				if (o == null) {
 					return 1;
 				}
+				return splitCompare(o);
 			case SplitDescending:
 				if (o == null) {
 					return -1;
 				}
+				return -splitCompare(o);
 			}
 			return sortKey().compareTo(o.sortKey());
+		}
+
+		public int splitCompare(DisplayRecord o) {
+			String[] x1 = sortKey().split("\\|");
+			String[] x2 = o.sortKey().split("\\|");
+			StringBuilder sb1 = new StringBuilder();
+			StringBuilder sb2 = new StringBuilder();
+			for (String x : x1) {
+				sb1.append(StringUtils.substringAfter(x, "+"));
+				sb1.append("+");
+				sb1.append(StringUtils.substringBefore(x, "+"));
+				sb1.append("|");
+			}
+			for (String x : x2) {
+				sb2.append(StringUtils.substringAfter(x, "+"));
+				sb2.append("+");
+				sb2.append(StringUtils.substringBefore(x, "+"));
+				sb2.append("|");
+			}
+			return sb1.toString().compareTo(sb2.toString());
 		}
 	}
 
@@ -144,9 +195,16 @@ public class ShowList implements Screen {
 			return true;
 		};
 	};
+	private Label sortByS;
+	private Label sortByL;
+	private Label sortByD;
 
 	public ShowList(BoundPronouns game, Screen callingScreen,
 			List<CSVRecord> records) {
+		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+				Texture.class);
+		Drawable d = new TextureRegionDrawable(new TextureRegion(texture));
+		
 		this.caller = callingScreen;
 		this.game = game;
 		stage = new Stage();
@@ -159,27 +217,26 @@ public class ShowList implements Screen {
 
 		Table container = new Table();
 		stage.addActor(container);
+		container.setBackground(d);
 		container.setFillParent(true);
 		container.setDebug(true, true);
 
 		container.row();
-		Label back = new Label("<- BACK", new LabelStyle(ls));
+		Label back = new Label(BoundPronouns.BACK_ARROW, new LabelStyle(ls));
 		container.add(back);
 		back.addListener(die);
-		Label sortByS = new Label("Sort by Syllabary", new LabelStyle(ls));
+		sortByS = new Label(SORT_BY_SYLLABARY, new LabelStyle(ls));
 		sortByS.addListener(list_sortByS);
 		container.add(sortByS);
-		Label sortByL = new Label("Sort by Latin", new LabelStyle(ls));
+		sortByL = new Label(SORT_BY_LATIN, new LabelStyle(ls));
 		sortByL.addListener(list_sortByL);
 		container.add(sortByL);
-		Label sortByD = new Label("Sort by English", new LabelStyle(ls));
+		sortByD = new Label(SORT_BY_ENGLISH, new LabelStyle(ls));
 		sortByD.addListener(list_sortByD);
 		int c = container.add(sortByD).getColumn();
 
 		table = new Table();
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
-				Texture.class);
-		Drawable d = new TextureRegionDrawable(new TextureRegion(texture));
+		
 		table.setBackground(d);
 		ScrollPane scroll = new ScrollPane(table);
 		scroll.setFadeScrollBars(false);
@@ -225,6 +282,7 @@ public class ShowList implements Screen {
 			prevChr = chr;
 		}
 		DisplayRecord.setSortBy(DisplayRecord.SortBy.Syllabary);
+		DisplayRecord.setSortSubOrder(DisplayRecord.SortOrder.Ascending);
 		drecs.sort();
 		populateList();
 	}
@@ -249,6 +307,32 @@ public class ShowList implements Screen {
 						span);
 			}
 		}
+		updateLabels();
+	}
+
+	private void updateLabels() {		
+		String tmp;
+		
+		sortByS.setText(SORT_BY_SYLLABARY+getIndicator(DisplayRecord.SortBy.Syllabary));
+		sortByL.setText(SORT_BY_LATIN+getIndicator(DisplayRecord.SortBy.Latin));
+		sortByD.setText(SORT_BY_ENGLISH+getIndicator(DisplayRecord.SortBy.Definition));
+	}
+
+	private String getIndicator(com.cherokeelessons.bp.ShowList.DisplayRecord.SortBy by) {
+		if (!DisplayRecord.by.equals(by)){
+			return "";
+		}
+		switch (DisplayRecord.order) {
+		case Ascending:
+			return " "+BoundPronouns.TRIANGLE_ASC;
+		case Descending:
+			return " "+BoundPronouns.TRIANGLE_DESC;
+		case SplitAscending:
+			return " "+BoundPronouns.TRIANGLE_ASC+BoundPronouns.DIAMOND;
+		case SplitDescending:
+			return " "+BoundPronouns.TRIANGLE_DESC+BoundPronouns.DIAMOND;
+		}
+		return "";
 	}
 
 	@Override
