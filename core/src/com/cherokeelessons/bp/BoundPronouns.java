@@ -21,8 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 
 public class BoundPronouns extends Game {
-	public static final String IMG_LOADINGBAR = "images/coyote.png";
-	public static final String IMG_PAPER1 = "images/parchment.png";
 
 	public static final String DIAMOND = "\u25c8";
 	public static final String TRIANGLE_ASC = "\u25bc";
@@ -40,6 +38,9 @@ public class BoundPronouns extends Game {
 	public static final String DSUNDERLINE = "\u0347";
 
 	private static final String specials;
+	public static final String IMG_LOADINGBAR = "images/coyote.png";
+	public static final String IMG_PAPER1 = "images/parchment.png";
+	public static final String IMG_MAYAN = "images/MayanStone.png";
 	static {
 		specials = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
@@ -78,6 +79,7 @@ public class BoundPronouns extends Game {
 
 		manager.load(IMG_LOADINGBAR, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
+		manager.load(IMG_MAYAN, Texture.class, param);
 
 		addFreeSansFor(24);
 		addFreeSansFor(28);

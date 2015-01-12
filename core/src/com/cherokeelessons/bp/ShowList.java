@@ -21,8 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -203,7 +202,7 @@ public class ShowList implements Screen {
 			List<CSVRecord> records) {
 		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
 				Texture.class);
-		Drawable d = new TextureRegionDrawable(new TextureRegion(texture));
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		
 		this.caller = callingScreen;
 		this.game = game;

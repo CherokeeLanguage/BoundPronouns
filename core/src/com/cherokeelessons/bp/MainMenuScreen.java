@@ -24,8 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class MainMenuScreen implements Screen {
@@ -95,9 +94,9 @@ public class MainMenuScreen implements Screen {
 		container.setFillParent(true);		
 		stage.addActor(container);
 		
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
-		Drawable d = new TextureRegionDrawable(new TextureRegion(texture));
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		container.setBackground(d);
 
 		Label label;
