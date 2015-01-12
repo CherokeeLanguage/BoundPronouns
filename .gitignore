@@ -45,3 +45,4 @@ build/
 
 ## OS Specific
 .DS_Store
+/assets/
