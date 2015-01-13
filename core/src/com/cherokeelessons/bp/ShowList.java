@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.Glyph;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -18,9 +19,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -197,6 +200,7 @@ public class ShowList implements Screen {
 	private Label sortByS;
 	private Label sortByL;
 	private Label sortByD;
+	private ScrollPane scroll;
 
 	public ShowList(BoundPronouns game, Screen callingScreen,
 			List<CSVRecord> records) {
@@ -234,16 +238,31 @@ public class ShowList implements Screen {
 		sortByD.addListener(list_sortByD);
 		int c = container.add(sortByD).getColumn();
 
-		table = new Table();
-		
+		table = new Table();		
 		table.setBackground(d);
-		ScrollPane scroll = new ScrollPane(table);
+		ScrollPaneStyle sps=new ScrollPaneStyle();
+		
+		texture = game.manager.get(BoundPronouns.IMG_SCROLLBUTTON, Texture.class);
+		TextureRegionDrawable sbutton = new TextureRegionDrawable(new TextureRegion(texture));
+		sps.vScrollKnob=sbutton;
+		sps.vScrollKnob.setMinWidth(32);
+		
+		texture = game.manager.get(BoundPronouns.IMG_SCROLLBAR, Texture.class);
+		TiledDrawable sbar = new TiledDrawable(new TextureRegion(texture));
+		sps.vScroll=sbar;
+		sps.vScroll.setMinWidth(32);
+		sps.vScroll.setMinHeight(32);
+		
+		scroll = new ScrollPane(table, sps);
+		scroll.setColor(Color.BLUE);
 		scroll.setFadeScrollBars(false);
+		scroll.setDebug(true);
+		scroll.getScrollBarWidth();
+		
 		scroll.setSmoothScrolling(true);
-		scroll.setScrollBarPositions(true, true);
 
 		container.row().getColumn();
-		container.add(scroll).expand().fill().colspan(c + 1);
+		container.add(scroll).padRight(10).padLeft(10).expand().fill().colspan(c + 1);
 
 		String prevLatin = "";
 		String prevChr = "";
@@ -294,11 +313,11 @@ public class ShowList implements Screen {
 			boolean greenbar = ((ix % 3) == 0);
 			table.row();
 			Cell<Label> cell_syll = table.add(rec.syllabary);
-			cell_syll.align(Align.left).padLeft(30).padRight(15).expandX();
+			cell_syll.align(Align.left).padLeft(10).padRight(10).expandX();
 			Cell<Label> cell_latin = table.add(rec.latin);
-			cell_latin.align(Align.left).padRight(15).expandX();
+			cell_latin.align(Align.left).padRight(10).expandX();
 			Cell<Label> cell_def = table.add(rec.definition);
-			cell_def.align(Align.left).padRight(30).padBottom(5).expandX();
+			cell_def.align(Align.left).padRight(10).padBottom(5).expandX();
 			int span = cell_def.getColumn() + 1;
 			if (greenbar) {
 				table.row();
