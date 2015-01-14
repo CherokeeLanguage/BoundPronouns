@@ -201,29 +201,40 @@ public class ShowList implements Screen {
 	private Label sortByD;
 	private ScrollPane scroll;
 	private final Skin skin;
+	private final Table container;
 	
-	public ShowList(BoundPronouns game, Screen callingScreen,
-			List<CSVRecord> records) {
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
-				Texture.class);
-		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-
+	public ShowList(final BoundPronouns game, Screen callingScreen,
+			final List<CSVRecord> records) {		
 		this.caller = callingScreen;
 		this.game = game;
 		stage = new Stage();
 		viewport = new FitViewport(1280, 720, stage.getCamera());
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
-
-		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
 		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
-		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
-
-		Table container = new Table(skin);
+		table = new Table();
+		container = new Table(skin);
 		stage.addActor(container);
+		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+				Texture.class);
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		container.setBackground(d);
 		container.setFillParent(true);
-		// container.setDebug(true, true);
+		Gdx.app.postRunnable(new Runnable() {
+			@Override
+			public void run() {
+				initialPopulate(game, records);
+			}
+		});
+	}
+
+	public void initialPopulate(BoundPronouns game, List<CSVRecord> records) {
+		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+				Texture.class);
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
+		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
+		
+		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
 
 		container.row();
 		LabelStyle bls=new LabelStyle(ls);
@@ -245,7 +256,6 @@ public class ShowList implements Screen {
 
 		int c = container.add(sortByD).getColumn();
 
-		table = new Table();
 		table.setBackground(d);
 
 		scroll = new ScrollPane(table, skin);
