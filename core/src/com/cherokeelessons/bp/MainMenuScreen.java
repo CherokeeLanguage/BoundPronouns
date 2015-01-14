@@ -61,7 +61,7 @@ public class MainMenuScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
-			game.setScreen(new ShowAbout(game, MainMenuScreen.this));
+			game.setScreen(new ShowAbout(game, MainMenuScreen.this));			
 			return true;
 		}
 	};
@@ -182,14 +182,10 @@ public class MainMenuScreen implements Screen {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

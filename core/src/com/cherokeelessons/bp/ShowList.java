@@ -225,8 +225,10 @@ public class ShowList implements Screen {
 		// container.setDebug(true, true);
 
 		container.row();
-		Label back = new Label(BoundPronouns.BACK_ARROW, ls);
-		container.add(back);
+		LabelStyle bls=new LabelStyle(ls);
+		bls.fontColor=Color.BLUE;
+		Label back = new Label(BoundPronouns.BACK_ARROW, bls);
+		container.add(back).left().top().padLeft(30);
 		back.addListener(die);
 
 		sortByS = new Label(SORT_BY_SYLLABARY, ls);
@@ -251,8 +253,7 @@ public class ShowList implements Screen {
 		scroll.setSmoothScrolling(true);
 
 		container.row();
-		container.add(scroll).expand().fill().colspan(c + 1);// .padRight(10).padLeft(10).expand().fill().colspan(c
-																// + 1);
+		container.add(scroll).expand().fill().colspan(c + 1);
 
 		String prevLatin = "";
 		String prevChr = "";

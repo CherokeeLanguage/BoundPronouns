@@ -7,9 +7,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
-import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
+import com.badlogic.gdx.assets.loaders.MusicLoader.MusicParameter;
+import com.badlogic.gdx.assets.loaders.SoundLoader.SoundParameter;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,7 +21,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class BoundPronouns extends Game {
 
@@ -45,6 +47,8 @@ public class BoundPronouns extends Game {
 	public static final String IMG_LOADINGBAR = "images/coyote.png";
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
+	public static final String SND_MENU = "audio/click.wav";
+	public static final String SND_HOWL = "audio/wolfhowls.ogg";
 	static {
 		specials = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
@@ -71,6 +75,7 @@ public class BoundPronouns extends Game {
 
 	private void initManager() {
 		
+		
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.setLoader(FreeTypeFontGenerator.class,
 				new FreeTypeFontGeneratorLoader(resolver));
@@ -79,6 +84,12 @@ public class BoundPronouns extends Game {
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(
 				resolver));
 
+		MusicParameter mus_param=new MusicParameter();
+		manager.load(SND_HOWL, Music.class, mus_param);
+		
+		SoundParameter snd_param=new SoundParameter();
+		manager.load(SND_MENU, Sound.class, snd_param);		
+		
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Linear;
 		param.minFilter = TextureFilter.Linear;
@@ -88,6 +99,8 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_MAYAN, Texture.class, param);
 		manager.load(IMG_SCROLLBAR, Texture.class, param);
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
+		
+		
 
 		addFreeSansFor(24);
 		addFreeSansFor(28);

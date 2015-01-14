@@ -6,6 +6,8 @@ Uses CC0 artwork from http://opengameart.org/
 Uses CC0 artwork from https://openclipart.org/
 
 Uses CC0 audio from http://opengameart.org/
+Uses CC0 audio from http://archive.org/
+Uses CC0 audio from U.S. Fish and Wildlife Service
 
 Uses "Holo" theme from posting on LibGDX forums.
 

@@ -10,12 +10,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
@@ -62,10 +60,15 @@ public class ShowAbout implements Screen {
 		container.setFillParent(true);
 		
 		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
-		Label back = new Label(BoundPronouns.BACK_ARROW, ls);
+		
+		LabelStyle bls=new LabelStyle(ls);
+		bls.fontColor=Color.BLUE;
+		Label back = new Label(BoundPronouns.BACK_ARROW, bls);
+		back.setAlignment(Align.topLeft);
+		ls.fontColor=Color.DARK_GRAY;
 		
 		container.row();		
-		container.add(back);
+		container.add(back).left().top().padLeft(30);
 		back.addListener(die);
 		
 		table = new Table(skin);
@@ -80,11 +83,6 @@ public class ShowAbout implements Screen {
 		
 		Label label = new Label(text, ls);
 		label.setWrap(true);
-//		TextArea ta = new TextArea(text, skin);
-//		TextFieldStyle tastyle = ta.getStyle();
-//		tastyle.font=f36;
-//		ta.setStyle(tastyle);
-//		ta.setDisabled(true);
 		
 		table.row();
 		table.add(label).expand().fill().left().padLeft(20).padRight(20);
@@ -113,14 +111,10 @@ public class ShowAbout implements Screen {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
