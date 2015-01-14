@@ -39,6 +39,9 @@ public class LoadingScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
+		stage.act();
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.draw();
 		if (game.manager.update()) {
 			if (!Gdx.input.isTouched() && howl!=null && howl.isPlaying()) {
 				return;
@@ -69,10 +72,7 @@ public class LoadingScreen implements Screen {
 			loadingBar.invalidateHierarchy();
 			loadingBar.setColor(Color.RED);			
 			vg.pack();
-		}
-		stage.act();
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.draw(); 
+		}		 
 	}
 
 	@Override
