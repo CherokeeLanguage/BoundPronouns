@@ -36,6 +36,7 @@ public class MainMenuScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
+			game.click();
 			FileHandle list = Gdx.files.internal("csv/pronouns-list.csv");
 			List<CSVRecord> records;
 			try (CSVParser parse = CSVParser.parse(list.readString(), CSVFormat.RFC4180)){
@@ -53,6 +54,7 @@ public class MainMenuScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
+			game.click();
 			game.log(this, "Event: " + event.getClass().getName());
 			return false;
 		}
@@ -61,6 +63,7 @@ public class MainMenuScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
+			game.click();
 			game.setScreen(new ShowAbout(game, MainMenuScreen.this));			
 			return true;
 		}
@@ -69,6 +72,7 @@ public class MainMenuScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
+			game.click();
 			game.log(this, "Event: " + event.getClass().getName());
 			return false;
 		}
@@ -76,7 +80,8 @@ public class MainMenuScreen implements Screen {
 	private ClickListener viewQuit = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {			 
+				int pointer, int button) {
+			game.click();
 			game.setScreen(new GoodByeScreen());
 			dispose();
 			return true;

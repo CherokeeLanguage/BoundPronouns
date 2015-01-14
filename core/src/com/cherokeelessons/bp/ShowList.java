@@ -38,6 +38,7 @@ public class ShowList implements Screen {
 	private ClickListener die = new ClickListener() {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
+			game.click();
 			game.setScreen(caller);
 			dispose();
 			return true;

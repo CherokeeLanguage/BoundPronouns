@@ -56,14 +56,11 @@ public class BoundPronouns extends Game {
 	}
 
 	public SpriteBatch batch;
-	public BitmapFont font;
 	public AssetManager manager;
-//	public Skin skin;
 
 	@Override
 	public void create() {
 		manager = new AssetManager();
-		font = new BitmapFont();
 		initManager();
 		this.setScreen(new LoadingScreen(this));
 	}
@@ -153,7 +150,7 @@ public class BoundPronouns extends Game {
 	@Override
 	public void dispose() {
 		super.dispose();
-		font.dispose();
+		manager.dispose();
 	}
 
 	public void log(Object parent, String... message) {
@@ -167,5 +164,13 @@ public class BoundPronouns extends Game {
 
 	public void err(Object parent, String message, Exception exception) {
 		Gdx.app.log(parent.getClass().getName(), message, exception);
+	}
+
+	private Sound click = null;
+	public void click() {
+		if (click==null) {
+			click=manager.get(SND_MENU);
+		}
+		click.play(1f);
 	}
 }
