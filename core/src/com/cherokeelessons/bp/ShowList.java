@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.Glyph;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,11 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -201,13 +199,14 @@ public class ShowList implements Screen {
 	private Label sortByL;
 	private Label sortByD;
 	private ScrollPane scroll;
-
+	private final Skin skin;
+	
 	public ShowList(BoundPronouns game, Screen callingScreen,
 			List<CSVRecord> records) {
 		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		
+
 		this.caller = callingScreen;
 		this.game = game;
 		stage = new Stage();
@@ -215,54 +214,45 @@ public class ShowList implements Screen {
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
 
-		LabelStyle ls = new LabelStyle(game.manager.get("font36.ttf",
-				BitmapFont.class), Color.BLUE);
+		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
+		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
+		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
 
-		Table container = new Table();
+		Table container = new Table(skin);
 		stage.addActor(container);
 		container.setBackground(d);
 		container.setFillParent(true);
-//		container.setDebug(true, true);
+		// container.setDebug(true, true);
 
 		container.row();
-		Label back = new Label(BoundPronouns.BACK_ARROW, new LabelStyle(ls));
+		Label back = new Label(BoundPronouns.BACK_ARROW, ls);
 		container.add(back);
 		back.addListener(die);
-		sortByS = new Label(SORT_BY_SYLLABARY, new LabelStyle(ls));
+
+		sortByS = new Label(SORT_BY_SYLLABARY, ls);
 		sortByS.addListener(list_sortByS);
+
 		container.add(sortByS);
-		sortByL = new Label(SORT_BY_LATIN, new LabelStyle(ls));
+		sortByL = new Label(SORT_BY_LATIN, ls);
 		sortByL.addListener(list_sortByL);
+
 		container.add(sortByL);
-		sortByD = new Label(SORT_BY_ENGLISH, new LabelStyle(ls));
+		sortByD = new Label(SORT_BY_ENGLISH, ls);
 		sortByD.addListener(list_sortByD);
+
 		int c = container.add(sortByD).getColumn();
 
-		table = new Table();		
+		table = new Table();
 		table.setBackground(d);
-		ScrollPaneStyle sps=new ScrollPaneStyle();
-		
-		texture = game.manager.get(BoundPronouns.IMG_SCROLLBUTTON, Texture.class);
-		TextureRegionDrawable sbutton = new TextureRegionDrawable(new TextureRegion(texture));
-		sps.vScrollKnob=sbutton;
-		sps.vScrollKnob.setMinWidth(32);
-		
-		texture = game.manager.get(BoundPronouns.IMG_SCROLLBAR, Texture.class);
-		TiledDrawable sbar = new TiledDrawable(new TextureRegion(texture));
-		sps.vScroll=sbar;
-		sps.vScroll.setMinWidth(32);
-		sps.vScroll.setMinHeight(32);
-		
-		scroll = new ScrollPane(table, sps);
-		scroll.setColor(Color.BLUE);
+
+		scroll = new ScrollPane(table, skin);
+		scroll.setColor(Color.DARK_GRAY);
 		scroll.setFadeScrollBars(false);
-		scroll.setDebug(true);
-		scroll.getScrollBarWidth();
-		
 		scroll.setSmoothScrolling(true);
 
-		container.row().getColumn();
-		container.add(scroll).padRight(10).padLeft(10).expand().fill().colspan(c + 1);
+		container.row();
+		container.add(scroll).expand().fill().colspan(c + 1);// .padRight(10).padLeft(10).expand().fill().colspan(c
+																// + 1);
 
 		String prevLatin = "";
 		String prevChr = "";
@@ -282,16 +272,13 @@ public class ShowList implements Screen {
 			DisplayRecord dr = new DisplayRecord();
 			Label actor;
 
-			ls.fontColor = Color.DARK_GRAY;
-			actor = new Label(chr, new LabelStyle(ls));
+			actor = new Label(chr, ls);
 			dr.syllabary = actor;
 
-			ls.fontColor = Color.DARK_GRAY;
-			actor = new Label(latin, new LabelStyle(ls));
+			actor = new Label(latin, ls);
 			dr.latin = actor;
 
-			ls.fontColor = Color.DARK_GRAY;
-			actor = new Label(defin, new LabelStyle(ls));
+			actor = new Label(defin, ls);
 			dr.definition = actor;
 
 			drecs.add(dr);
@@ -313,42 +300,45 @@ public class ShowList implements Screen {
 			boolean greenbar = ((ix % 3) == 0);
 			table.row();
 			Cell<Label> cell_syll = table.add(rec.syllabary);
-			cell_syll.align(Align.left).padLeft(10).padRight(10).expandX();
+			cell_syll.align(Align.left).padLeft(12).padRight(6).padBottom(5).expandX();
 			Cell<Label> cell_latin = table.add(rec.latin);
-			cell_latin.align(Align.left).padRight(10).expandX();
+			cell_latin.align(Align.left).padRight(6).padBottom(5).expandX();
 			Cell<Label> cell_def = table.add(rec.definition);
-			cell_def.align(Align.left).padRight(10).padBottom(5).expandX();
-			int span = cell_def.getColumn() + 1;
+			cell_def.align(Align.left).padBottom(5).expandX();
 			if (greenbar) {
-				table.row();
-				table.add(new Label(" ", rec.syllabary.getStyle())).colspan(
-						span);
+				cell_syll.padBottom(40);
+				cell_latin.padBottom(40);
+				cell_def.padBottom(40);
 			}
+			// int span = cell_def.getColumn() + 1;
 		}
 		updateLabels();
 	}
 
-	private void updateLabels() {		
-		String tmp;
-		
-		sortByS.setText(SORT_BY_SYLLABARY+getIndicator(DisplayRecord.SortBy.Syllabary));
-		sortByL.setText(SORT_BY_LATIN+getIndicator(DisplayRecord.SortBy.Latin));
-		sortByD.setText(SORT_BY_ENGLISH+getIndicator(DisplayRecord.SortBy.Definition));
+	private void updateLabels() {
+		// String tmp;
+		sortByS.setText(SORT_BY_SYLLABARY
+				+ getIndicator(DisplayRecord.SortBy.Syllabary));
+		sortByL.setText(SORT_BY_LATIN
+				+ getIndicator(DisplayRecord.SortBy.Latin));
+		sortByD.setText(SORT_BY_ENGLISH
+				+ getIndicator(DisplayRecord.SortBy.Definition));
 	}
 
-	private String getIndicator(com.cherokeelessons.bp.ShowList.DisplayRecord.SortBy by) {
-		if (!DisplayRecord.by.equals(by)){
+	private String getIndicator(
+			com.cherokeelessons.bp.ShowList.DisplayRecord.SortBy by) {
+		if (!DisplayRecord.by.equals(by)) {
 			return "";
 		}
 		switch (DisplayRecord.order) {
 		case Ascending:
-			return " "+BoundPronouns.TRIANGLE_ASC;
+			return " " + BoundPronouns.TRIANGLE_ASC;
 		case Descending:
-			return " "+BoundPronouns.TRIANGLE_DESC;
+			return " " + BoundPronouns.TRIANGLE_DESC;
 		case SplitAscending:
-			return " "+BoundPronouns.TRIANGLE_ASC+BoundPronouns.DIAMOND;
+			return " " + BoundPronouns.TRIANGLE_ASC + BoundPronouns.DIAMOND;
 		case SplitDescending:
-			return " "+BoundPronouns.TRIANGLE_DESC+BoundPronouns.DIAMOND;
+			return " " + BoundPronouns.TRIANGLE_DESC + BoundPronouns.DIAMOND;
 		}
 		return "";
 	}
@@ -373,14 +363,10 @@ public class ShowList implements Screen {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -392,6 +378,7 @@ public class ShowList implements Screen {
 	public void dispose() {
 		stage.dispose();
 		drecs.clear();
+		skin.dispose();
 	}
 
 }

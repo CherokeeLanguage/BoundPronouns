@@ -44,7 +44,7 @@ public class MainMenuScreen implements Screen {
 				game.err(this, e.getMessage(), e);
 				return false;
 			}
-			game.log(this, "Loaded "+records.size()+" records.");
+//			game.log(this, "Loaded "+records.size()+" records.");
 			game.setScreen(new ShowList(game, MainMenuScreen.this, records));
 			return true;
 		}
@@ -61,8 +61,8 @@ public class MainMenuScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
-			game.log(this, "Event: " + event.getClass().getName());
-			return false;
+			game.setScreen(new ShowAbout(game, MainMenuScreen.this));
+			return true;
 		}
 	};
 	private ClickListener viewPractice = new ClickListener() {

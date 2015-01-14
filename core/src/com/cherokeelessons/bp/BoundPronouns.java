@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
+import com.badlogic.gdx.assets.loaders.SkinLoader.SkinParameter;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,9 +18,11 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class BoundPronouns extends Game {
 
+	public static final String SKIN = "skins/holo/Holo-light-xhdpi.json";
 	public static final String DIAMOND = "\u25c8";
 	public static final String TRIANGLE_ASC = "\u25bc";
 	public static final String TRIANGLE_DESC = "\u25b2";
@@ -51,6 +54,7 @@ public class BoundPronouns extends Game {
 	public SpriteBatch batch;
 	public BitmapFont font;
 	public AssetManager manager;
+//	public Skin skin;
 
 	@Override
 	public void create() {
@@ -66,6 +70,7 @@ public class BoundPronouns extends Game {
 	}
 
 	private void initManager() {
+		
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.setLoader(FreeTypeFontGenerator.class,
 				new FreeTypeFontGeneratorLoader(resolver));
@@ -92,6 +97,8 @@ public class BoundPronouns extends Game {
 		addFreeSansFor(72);
 		addFreeSansFor(144);
 
+//		SkinParameter skinparam=new SkinParameter("skins/holo/Holo-light-xhdpi.atlas");
+//		manager.load(SKIN, Skin.class, skinparam);
 	}
 
 	public void addFreeSansFor(int size) {

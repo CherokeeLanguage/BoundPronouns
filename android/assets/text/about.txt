@@ -1,0 +1,18 @@
+Created by Michael Joyner
+
+Bound Pronouns from the official Cherokee English Dictionary as published by the Cherokee Nation of Oklahoma.
+
+Uses CC0 artwork from http://opengameart.org/
+Uses CC0 artwork from https://openclipart.org/
+
+Uses CC0 audio from http://opengameart.org/
+
+Uses "Holo" theme from posting on LibGDX forums.
+
+Uses the "FreeSans" font for Cherokee Syllabary and English text rendering.
+Uses some symbol glyphs from the "DejaVuSans" font.
+
+Powered by LibGDX
+Powered by Apache Commons Lang3
+
+Built using Gradle, Maven, and Eclipse
