@@ -1,0 +1,34 @@
+http://lenmus.sourceforge.net/en/lenmusdocs/hacking/exercises/problem-modes.html
+
+The first tested algorithm was a direct implementation of Leitner method:
+
+1. Prepare set of questions that need repetition (Set0):
+
+   * Explore all questions and move to Set0 all those questions whose
+     scheduled time is <= Today or are in box 0
+
+2. Start exercise:
+
+   * Shuffle Set0 (random ordering).
+   * While questions in Set0:
+       * For iQ=1 until iQ=num questions in Set0
+           * Take question iQ and ask it
+           * If Success mark it to be promoted, and schedule it for
+             repetition at Current date plus Interval Repetition for
+             the box in which the question is classified. Else, if
+             answer was wrong, move question to box 0.
+       * End of For loop
+
+       * At this point a full round of scheduled questions has taken
+         place: Remove from Set0 all questions marked as 'to be
+         promoted'.
+
+   * End of While loop
+
+ 3. At this point, a successful round of all questions has been
+    made:
+
+   * Display message informing about exercise completion for today
+     and about next repetition schedule. If student would like to
+     continue practising must move to 'Practising Mode'.
+
