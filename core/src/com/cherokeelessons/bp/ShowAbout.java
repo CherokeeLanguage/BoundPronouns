@@ -68,7 +68,7 @@ public class ShowAbout implements Screen {
 		back.setAlignment(Align.topLeft);
 		ls.fontColor=Color.DARK_GRAY;
 		
-		container.row();		
+		container.row();
 		container.add(back).left().top().padLeft(30);
 		back.addListener(die);
 		
@@ -81,7 +81,9 @@ public class ShowAbout implements Screen {
 		scroll.setSmoothScrolling(true);
 		
 		String text = Gdx.files.internal("text/about.txt").readString("UTF-8");
-		
+		text+="\n\n";
+		text+="libGDX "+com.badlogic.gdx.Version.VERSION;
+		text+="\n \n";
 		Label label = new Label(text, ls);
 		label.setWrap(true);
 		
