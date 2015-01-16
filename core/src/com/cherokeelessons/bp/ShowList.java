@@ -269,12 +269,35 @@ public class ShowList implements Screen {
 		String prevLatin = "";
 		String prevChr = "";
 		for (CSVRecord record : records) {
-			String chr = record.get(0);
+			String vtmode=record.get(0);
+			if (StringUtils.isBlank(vtmode)){
+				continue;
+			}
+			String chr = record.get(1);
 			if (chr.startsWith("#")) {
 				continue;
 			}
-			String latin = record.get(1);
-			String defin = record.get(2);
+			String latin = record.get(2);
+			String defin = record.get(3)+" + "+record.get(4);
+			if (StringUtils.isBlank(record.get(3))){
+				String tmp = record.get(4);
+				passive:{
+					if (tmp.equalsIgnoreCase("he")){
+						defin = tmp+" (was being)";
+						break passive;
+					}
+					if (tmp.equalsIgnoreCase("i")){
+						defin = tmp+" (was being)";
+						break passive;
+					}
+//					if (tmp.equalsIgnoreCase("you one")){
+//						defin = tmp+" (was being)";
+//						break passive;
+//					} 
+					defin = tmp+" (were being)";
+					break passive;
+				}				
+			}
 			if (StringUtils.isBlank(latin)) {
 				latin = prevLatin;
 			}
