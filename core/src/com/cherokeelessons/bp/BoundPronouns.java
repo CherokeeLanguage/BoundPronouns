@@ -21,6 +21,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 
 public class BoundPronouns extends Game {
 
@@ -44,11 +46,12 @@ public class BoundPronouns extends Game {
 	public static final String IMG_SCROLLBAR = "scrollpane/basic-vbar.png";
 	public static final String IMG_SCROLLBUTTON = "scrollpane/basic-vbutton.png";
 	
-	public static final String IMG_LOADINGBAR = "images/coyote.png";
+	public static final String IMG_LOADING = "images/coyote.png";
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
 	public static final String SND_MENU = "audio/click.wav";
 	public static final String SND_HOWL = "audio/wolfhowls.ogg";
+	public static final float BACK_WIDTH = 168f;
 	static {
 		specials = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
@@ -91,12 +94,12 @@ public class BoundPronouns extends Game {
 		param.magFilter = TextureFilter.Linear;
 		param.minFilter = TextureFilter.Linear;
 
-		manager.load(IMG_LOADINGBAR, Texture.class, param);
+		manager.load(IMG_LOADING, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
 		manager.load(IMG_MAYAN, Texture.class, param);
 		manager.load(IMG_SCROLLBAR, Texture.class, param);
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
-		
+		manager.load(SKIN, Skin.class);
 		
 
 		addFreeSansFor(24);

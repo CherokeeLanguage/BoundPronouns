@@ -3,6 +3,8 @@ package com.cherokeelessons.bp;
 import java.io.IOException;
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding.Style;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -18,8 +20,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
@@ -32,6 +33,7 @@ public class MainScreen implements Screen {
 	private final BoundPronouns game;
 	private final FitViewport viewport;
 	private final Stage stage;
+	private final Skin skin;
 	private ClickListener viewPronounsList = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
@@ -90,6 +92,7 @@ public class MainScreen implements Screen {
 
 	public MainScreen(BoundPronouns boundPronouns) {
 		this.game = boundPronouns;
+		this.skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		stage = new Stage();
 		viewport = new FitViewport(1280, 720, stage.getCamera());
 		viewport.update(1280, 720, true);
@@ -103,66 +106,52 @@ public class MainScreen implements Screen {
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		container.setBackground(d);
-
-		Label label;
-
-		LabelStyle lstyle24 = new LabelStyle(null, Color.BLUE);
-		lstyle24.font = game.manager.get("font24.ttf", BitmapFont.class);
-
-		LabelStyle lstyle54 = new LabelStyle(null, Color.BLUE);
-		lstyle54.font = game.manager.get("font54.ttf", BitmapFont.class);
-		LabelStyle lstyle72 = new LabelStyle(null, Color.BLUE);
-		lstyle72.font = game.manager.get("font72.ttf", BitmapFont.class);
-
-		label = new Label("Cherokee Language Bound Pronouns Practice", lstyle54);
+		
+		TextButton button;
+		TextButtonStyle bstyle;
+		
+		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));		
+		bstyle.font=game.manager.get("font54.ttf", BitmapFont.class);
+//		bstyle.disabledFontColor=Color.DARK_GRAY;
+		
+		button = new TextButton("Cherokee Language Bound Pronouns Practice", bstyle);
+		button.setDisabled(true);
+		
 		container.row();
-		container.add(new Label(" ", lstyle24));
-		container.row();
-		container.add(label);
+		int padBottom = 20;
+		container.add(button).padBottom(padBottom);
 
-		TextButtonStyle tbstyle = new TextButtonStyle();
-		tbstyle.fontColor = Color.BLUE;
-		tbstyle.font = game.manager.get("font54.ttf", BitmapFont.class);
-
-		TextButton button = new TextButton("Do A Practice", tbstyle);
+		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));		
+		bstyle.font=game.manager.get("font54.ttf", BitmapFont.class);
+		button = new TextButton("Do A Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(new Label(" ", lstyle24));
-		container.row();
-		container.add(button);
+		container.add(button).padBottom(padBottom);
 
-		button = new TextButton("View Pronouns List", tbstyle);
+		button = new TextButton("View Pronouns List", bstyle);
 		button.addListener(viewPronounsList);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(new Label(" ", lstyle24));
-		container.row();
-		container.add(button);
+		container.add(button).padBottom(padBottom);
 
-		button = new TextButton("Settings", tbstyle);
+		button = new TextButton("Settings", bstyle);
 		button.addListener(viewSettings);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(new Label(" ", lstyle24));
-		container.row();
-		container.add(button);
+		container.add(button).padBottom(padBottom);
 
-		button = new TextButton("About", tbstyle);
+		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(new Label(" ", lstyle24));
-		container.row();
-		container.add(button);
+		container.add(button).padBottom(padBottom);
 
-		button = new TextButton("Quit", tbstyle);
+		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(new Label(" ", lstyle24));
-		container.row();
-		container.add(button);
+		container.add(button).padBottom(padBottom);
 		
 		container.pack();
 	}

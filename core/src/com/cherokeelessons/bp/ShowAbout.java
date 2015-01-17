@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -26,7 +28,7 @@ public class ShowAbout extends ChildScreen {
 		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
 		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		Table container = new Table(skin);
@@ -37,14 +39,11 @@ public class ShowAbout extends ChildScreen {
 		
 		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
 		
-		LabelStyle bls=new LabelStyle(ls);
-		bls.fontColor=Color.BLUE;
-		Label back = new Label(BoundPronouns.BACK_ARROW, bls);
-		back.setAlignment(Align.topLeft);
-		ls.fontColor=Color.DARK_GRAY;
-		
 		container.row();
-		container.add(back).left().top().padLeft(30);
+		TextButtonStyle bls=new TextButtonStyle(skin.get("default", TextButtonStyle.class));
+		bls.font=f36;
+		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
+		container.add(back).left().fill().width(BoundPronouns.BACK_WIDTH);
 		back.addListener(exit);
 		
 		table = new Table(skin);

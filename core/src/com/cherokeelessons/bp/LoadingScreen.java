@@ -61,12 +61,12 @@ public class LoadingScreen implements Screen {
 				howl.play();
 			}
 		}
-		if (!game.manager.isLoaded(BoundPronouns.IMG_LOADINGBAR)) {
+		if (!game.manager.isLoaded(BoundPronouns.IMG_LOADING)) {
 			return;
 		}
 		if (loadingBar == null) {
 			Gdx.app.log(this.getClass().getName(), "Loading Bar");
-			Texture texture = game.manager.get(BoundPronouns.IMG_LOADINGBAR,
+			Texture texture = game.manager.get(BoundPronouns.IMG_LOADING,
 					Texture.class);
 			if (texture == null) {
 				Gdx.app.log(this.getClass().getName(),
@@ -113,7 +113,7 @@ public class LoadingScreen implements Screen {
 			howl.stop();
 		}
 		game.manager.unload(BoundPronouns.SND_HOWL);
-		game.manager.unload(BoundPronouns.IMG_LOADINGBAR);
+		game.manager.unload(BoundPronouns.IMG_LOADING);
 	}
 
 }

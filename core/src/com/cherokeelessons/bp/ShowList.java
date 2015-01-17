@@ -8,43 +8,28 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class ShowList implements Screen {
+public class ShowList extends ChildScreen {
 
 	private static final String SORT_BY_ENGLISH = "Sort by English";
 	private static final String SORT_BY_LATIN = "Sort by Latin";
 	private static final String SORT_BY_SYLLABARY = "Sort by Syllabary";
-	private final BoundPronouns game;
-	private final FitViewport viewport;
-	private final Stage stage;
-
-	private ClickListener die = new ClickListener() {
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
-			game.click();
-			game.setScreen(caller);
-			dispose();
-			return true;
-		};
-	};
-	private final Screen caller;
 	private final Array<DisplayRecord> drecs = new Array<>();
 
 	private static class DisplayRecord implements Comparable<DisplayRecord> {
@@ -196,26 +181,22 @@ public class ShowList implements Screen {
 			return true;
 		};
 	};
-	private Label sortByS;
-	private Label sortByL;
-	private Label sortByD;
+	private TextButton sortByS;
+	private TextButton sortByL;
+	private TextButton sortByD;
 	private ScrollPane scroll;
 	private final Skin skin;
 	private final Table container;
 	
 	public ShowList(final BoundPronouns game, Screen callingScreen,
-			final List<CSVRecord> records) {		
-		this.caller = callingScreen;
-		this.game = game;
-		stage = new Stage();
-		viewport = new FitViewport(1280, 720, stage.getCamera());
-		viewport.update(1280, 720, true);
-		stage.setViewport(viewport);
-		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
+			final List<CSVRecord> records) {
+		super(game, callingScreen);
+		
+		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		table = new Table();
 		container = new Table(skin);
 		stage.addActor(container);
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		container.setBackground(d);
@@ -230,32 +211,33 @@ public class ShowList implements Screen {
 	}
 
 	public void initialPopulate(BoundPronouns game, List<CSVRecord> records) {
-		Texture texture = game.manager.get(BoundPronouns.IMG_PAPER1,
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
 		
-		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
+		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
+		bstyle.font=f36;
 
 		container.row();
-		LabelStyle bls=new LabelStyle(ls);
+		TextButtonStyle bls=new TextButtonStyle(bstyle);
 		bls.fontColor=Color.BLUE;
-		Label back = new Label(BoundPronouns.BACK_ARROW, bls);
-		container.add(back).left().top().padLeft(30);
-		back.addListener(die);
+		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
+		container.add(back).center().fill().width(BoundPronouns.BACK_WIDTH);
+		back.addListener(exit);
 
-		sortByS = new Label(SORT_BY_SYLLABARY, ls);
+		sortByS = new TextButton(SORT_BY_SYLLABARY, bstyle);
 		sortByS.addListener(list_sortByS);
-
-		container.add(sortByS);
-		sortByL = new Label(SORT_BY_LATIN, ls);
+		container.add(sortByS).center().fill().expand();
+		
+		sortByL = new TextButton(SORT_BY_LATIN, bstyle);
 		sortByL.addListener(list_sortByL);
-
-		container.add(sortByL);
-		sortByD = new Label(SORT_BY_ENGLISH, ls);
+		container.add(sortByL).center().fill().expand();
+		
+		sortByD = new TextButton(SORT_BY_ENGLISH, bstyle);
 		sortByD.addListener(list_sortByD);
 
-		int c = container.add(sortByD).getColumn();
+		int c = container.add(sortByD).center().fill().expand().getColumn();
 
 		table.setBackground(d);
 
@@ -265,6 +247,10 @@ public class ShowList implements Screen {
 		scroll.setSmoothScrolling(true);		
 		container.row();
 		container.add(scroll).expand().fill().colspan(c + 1);		
+		
+		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
+		ls.font=f36;
+		ls.background=null;
 		
 		String prevLatin = "";
 		String prevChr = "";
@@ -290,10 +276,6 @@ public class ShowList implements Screen {
 						defin = tmp+" (was being)";
 						break passive;
 					}
-//					if (tmp.equalsIgnoreCase("you one")){
-//						defin = tmp+" (was being)";
-//						break passive;
-//					} 
 					defin = tmp+" (were being)";
 					break passive;
 				}				
@@ -305,6 +287,7 @@ public class ShowList implements Screen {
 				chr = prevChr;
 			}
 			DisplayRecord dr = new DisplayRecord();
+			
 			Label actor;
 
 			actor = new Label(chr, ls);
@@ -324,7 +307,7 @@ public class ShowList implements Screen {
 		DisplayRecord.setSortBy(DisplayRecord.SortBy.Syllabary);
 		DisplayRecord.setSortSubOrder(DisplayRecord.SortOrder.Ascending);
 		drecs.sort();
-		populateList();
+		populateList();	
 	}
 
 	private void populateList() {
@@ -348,8 +331,9 @@ public class ShowList implements Screen {
 			// int span = cell_def.getColumn() + 1;
 		}
 		updateLabels();
+		table.pack();
 		stage.setKeyboardFocus(scroll);
-		stage.setScrollFocus(scroll);
+		stage.setScrollFocus(scroll);		
 	}
 
 	private void updateLabels() {
@@ -380,42 +364,11 @@ public class ShowList implements Screen {
 		return "";
 	}
 
-	@Override
-	public void show() {
-		Gdx.input.setInputProcessor(stage);
-	}
-
-	@Override
-	public void render(float delta) {
-		stage.act();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.draw();
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		stage.getViewport().update(width, height);
-	}
-
-	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
-	public void hide() {
-		Gdx.input.setInputProcessor(null);
-	}
 
 	@Override
 	public void dispose() {
-		stage.dispose();
 		drecs.clear();
-		skin.dispose();
+		super.dispose();
 	}
 
 }
