@@ -2,7 +2,6 @@ package com.cherokeelessons.bp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,13 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 
-public class ShowAbout extends ChildScreen {
-
+public class ShowSettings extends ChildScreen {
+	
 	private final Skin skin;
 	private final Table table;
 	private final ScrollPane scroll;
 	
-	public ShowAbout(BoundPronouns game, MainScreen mainScreen) {
+	public ShowSettings(BoundPronouns game, MainScreen mainScreen) {
 		super(game, mainScreen);
 		
 		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
@@ -55,20 +54,7 @@ public class ShowAbout extends ChildScreen {
 		scroll.setFadeScrollBars(false);
 		scroll.setSmoothScrolling(true);
 		
-		String text = Gdx.files.internal("text/about.txt").readString("UTF-8");
-		text+="\n\n";
-		text+="libGDX "+com.badlogic.gdx.Version.VERSION;
-		text+="\n \n";
-		Label label = new Label(text, ls);
-		label.setWrap(true);
 		
-		table.row();
-		table.add(label).expand().fill().left().padLeft(20).padRight(20);
-		
-		container.row();
-		container.add(scroll).expand().fill();
-		stage.setKeyboardFocus(scroll);
-		stage.setScrollFocus(scroll);
 	}
 
 	@Override

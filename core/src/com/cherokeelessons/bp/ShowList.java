@@ -226,6 +226,7 @@ public class ShowList implements Screen {
 				initialPopulate(game, records);
 			}
 		});
+		
 	}
 
 	public void initialPopulate(BoundPronouns game, List<CSVRecord> records) {
@@ -261,11 +262,10 @@ public class ShowList implements Screen {
 		scroll = new ScrollPane(table, skin);
 		scroll.setColor(Color.DARK_GRAY);
 		scroll.setFadeScrollBars(false);
-		scroll.setSmoothScrolling(true);
-
+		scroll.setSmoothScrolling(true);		
 		container.row();
-		container.add(scroll).expand().fill().colspan(c + 1);
-
+		container.add(scroll).expand().fill().colspan(c + 1);		
+		
 		String prevLatin = "";
 		String prevChr = "";
 		for (CSVRecord record : records) {
@@ -348,6 +348,8 @@ public class ShowList implements Screen {
 			// int span = cell_def.getColumn() + 1;
 		}
 		updateLabels();
+		stage.setKeyboardFocus(scroll);
+		stage.setScrollFocus(scroll);
 	}
 
 	private void updateLabels() {

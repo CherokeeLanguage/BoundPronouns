@@ -27,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class MainMenuScreen implements Screen {
+public class MainScreen implements Screen {
 
 	private final BoundPronouns game;
 	private final FitViewport viewport;
@@ -46,7 +46,7 @@ public class MainMenuScreen implements Screen {
 				return false;
 			}
 //			game.log(this, "Loaded "+records.size()+" records.");
-			game.setScreen(new ShowList(game, MainMenuScreen.this, records));
+			game.setScreen(new ShowList(game, MainScreen.this, records));
 			return true;
 		}
 	};
@@ -55,8 +55,8 @@ public class MainMenuScreen implements Screen {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			game.click();
-			game.log(this, "Event: " + event.getClass().getName());
-			return false;
+			game.setScreen(new ShowSettings(game, MainScreen.this));			
+			return true;
 		}
 	};
 	private ClickListener viewAbout = new ClickListener() {
@@ -64,7 +64,7 @@ public class MainMenuScreen implements Screen {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			game.click();
-			game.setScreen(new ShowAbout(game, MainMenuScreen.this));			
+			game.setScreen(new ShowAbout(game, MainScreen.this));			
 			return true;
 		}
 	};
@@ -73,7 +73,7 @@ public class MainMenuScreen implements Screen {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			game.click();
-			game.setScreen(new ChooseProfileScreen(game, MainMenuScreen.this));
+			game.setScreen(new ChooseProfileScreen(game, MainScreen.this));
 			return true;
 		}
 	};
@@ -82,13 +82,13 @@ public class MainMenuScreen implements Screen {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			game.click();
-			game.setScreen(new GoodByeScreen());
+			game.setScreen(new GoodByeScreen(game, MainScreen.this));
 			dispose();
 			return true;
 		}
 	};
 
-	public MainMenuScreen(BoundPronouns boundPronouns) {
+	public MainScreen(BoundPronouns boundPronouns) {
 		this.game = boundPronouns;
 		stage = new Stage();
 		viewport = new FitViewport(1280, 720, stage.getCamera());

@@ -1,49 +1,22 @@
 package com.cherokeelessons.bp;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class ChooseProfileScreen implements Screen {
+public class ChooseProfileScreen extends ChildScreen {
 
-	private final BoundPronouns game;
-	private final FitViewport viewport;
-	private final Stage stage;
-	private final Screen caller;
-	
-	private final EventListener goBack=new ClickListener(){
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
-			game.click();
-			game.setScreen(caller);
-			dispose();
-			return true;
-		};
-	};
-	
 	public ChooseProfileScreen(BoundPronouns game, Screen mainMenuScreen) {
-		this.game = game;
-		stage = new Stage();
-		viewport = new FitViewport(1280, 720, stage.getCamera());
-		viewport.update(1280, 720, true);
-		stage.setViewport(viewport);
-		caller=mainMenuScreen;
+		super(game, mainMenuScreen);
 
 		Table container = new Table();
 		container.setFillParent(true);		
@@ -85,7 +58,7 @@ public class ChooseProfileScreen implements Screen {
 		container.add(button);
 
 		button = new TextButton("Back", tbstyle);
-		button.addListener(goBack);
+		button.addListener(exit);
 		button.setTouchable(Touchable.enabled);
 		container.row();
 		container.add(new Label(" ", lstyle24));
@@ -94,45 +67,4 @@ public class ChooseProfileScreen implements Screen {
 		
 		container.pack();
 	}
-
-	@Override
-	public void show() {
-		Gdx.input.setInputProcessor(stage);
-	}
-
-	@Override
-	public void render(float delta) {
-		stage.act();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.draw();
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		stage.getViewport().update(width, height);
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void hide() {
-		Gdx.input.setInputProcessor(null);
-	}
-
-	@Override
-	public void dispose() {
-		stage.dispose();
-	}
-
 }
