@@ -50,7 +50,11 @@ public class ShowList extends ChildScreen {
 			}
 			if (DisplayRecord.by.equals(by)) {
 				int nextOrdinal = DisplayRecord.order.ordinal() + 1;
-				nextOrdinal %= DisplayRecord.SortOrder.values().length;
+				if (!by.equals(DisplayRecord.SortBy.Definition)){
+					nextOrdinal %= 2;
+				} else {
+					nextOrdinal %= DisplayRecord.SortOrder.values().length;
+				}
 				DisplayRecord.order = DisplayRecord.SortOrder.values()[nextOrdinal];
 			} else {
 				DisplayRecord.by = by;
@@ -214,7 +218,9 @@ public class ShowList extends ChildScreen {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
+		BitmapFont f36_base = game.manager.get("font36.ttf", BitmapFont.class);
+		BitmapFont f36 = new BitmapFont(f36_base.getData(), f36_base.getRegions(), true);
+		f36.setMarkupEnabled(true);
 		
 		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		bstyle.font=f36;
@@ -290,13 +296,13 @@ public class ShowList extends ChildScreen {
 			
 			Label actor;
 
-			actor = new Label(chr, ls);
+			actor = new Label(chr.replace("[", "[["), ls);
 			dr.syllabary = actor;
 
-			actor = new Label(latin, ls);
+			actor = new Label(latin.replace("[", "[["), ls);
 			dr.latin = actor;
 
-			actor = new Label(defin, ls);
+			actor = new Label(defin.replace("[", "[["), ls);
 			dr.definition = actor;
 
 			drecs.add(dr);
@@ -328,7 +334,6 @@ public class ShowList extends ChildScreen {
 				cell_latin.padBottom(40);
 				cell_def.padBottom(40);
 			}
-			// int span = cell_def.getColumn() + 1;
 		}
 		updateLabels();
 		table.pack();
@@ -337,7 +342,6 @@ public class ShowList extends ChildScreen {
 	}
 
 	private void updateLabels() {
-		// String tmp;
 		sortByS.setText(SORT_BY_SYLLABARY
 				+ getIndicator(DisplayRecord.SortBy.Syllabary));
 		sortByL.setText(SORT_BY_LATIN
@@ -348,20 +352,21 @@ public class ShowList extends ChildScreen {
 
 	private String getIndicator(
 			com.cherokeelessons.bp.ShowList.DisplayRecord.SortBy by) {
+		final String trans = "[#00000000]";
 		if (!DisplayRecord.by.equals(by)) {
-			return "";
+			return trans + " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";
 		}
 		switch (DisplayRecord.order) {
 		case Ascending:
-			return " " + BoundPronouns.TRIANGLE_ASC;
+			return " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";
 		case Descending:
-			return " " + BoundPronouns.TRIANGLE_DESC;
+			return " " + BoundPronouns.TRIANGLE_DESC + trans + BoundPronouns.DIAMOND + "[]";
 		case SplitAscending:
-			return " " + BoundPronouns.TRIANGLE_ASC + BoundPronouns.DIAMOND;
+			return " " + BoundPronouns.TRIANGLE_ASC + BoundPronouns.DIAMOND + "[]";
 		case SplitDescending:
-			return " " + BoundPronouns.TRIANGLE_DESC + BoundPronouns.DIAMOND;
+			return " " + BoundPronouns.TRIANGLE_DESC + BoundPronouns.DIAMOND + "[]";
 		}
-		return "";
+		return trans + " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";
 	}
 
 
