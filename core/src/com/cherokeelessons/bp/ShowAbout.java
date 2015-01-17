@@ -37,7 +37,9 @@ public class ShowAbout extends ChildScreen {
 		container.setBackground(d);
 		container.setFillParent(true);
 		
-		LabelStyle ls = new LabelStyle(f36, Color.DARK_GRAY);
+		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
+		ls.font=f36;
+		ls.background=null;
 		
 		container.row();
 		TextButtonStyle bls=new TextButtonStyle(skin.get("default", TextButtonStyle.class));
