@@ -224,7 +224,6 @@ public class ShowList extends ChildScreen {
 		
 		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		bstyle.font=f36;
-
 		container.row();
 		TextButtonStyle bls=new TextButtonStyle(bstyle);
 		bls.fontColor=Color.BLUE;

@@ -48,6 +48,7 @@ public class BoundPronouns extends Game {
 	public static final String IMG_LOADING = "images/coyote.png";
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
+	public static final String IMG_MAYAN_DIALOG = "images/MayanStoneSmall.png";
 	public static final String SND_MENU = "audio/click.wav";
 	public static final String SND_HOWL = "audio/wolfhowls.ogg";
 	public static final float BACK_WIDTH = 168f;
@@ -96,18 +97,19 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_LOADING, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
 		manager.load(IMG_MAYAN, Texture.class, param);
+		manager.load(IMG_MAYAN_DIALOG, Texture.class, param);
 		manager.load(IMG_SCROLLBAR, Texture.class, param);
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
 		manager.load(SKIN, Skin.class);
 		
 
-		addFreeSansFor(24);
-		addFreeSansFor(28);
+//		addFreeSansFor(24);
+//		addFreeSansFor(28);
 		addFreeSansFor(36);
-		addFreeSansFor(48);
+//		addFreeSansFor(48);
 		addFreeSansFor(54);
-		addFreeSansFor(72);
-		addFreeSansFor(144);
+//		addFreeSansFor(72);
+//		addFreeSansFor(144);
 
 //		SkinParameter skinparam=new SkinParameter("skins/holo/Holo-light-xhdpi.atlas");
 //		manager.load(SKIN, Skin.class, skinparam);

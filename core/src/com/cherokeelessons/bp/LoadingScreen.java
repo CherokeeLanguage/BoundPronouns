@@ -6,8 +6,10 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -44,11 +46,11 @@ public class LoadingScreen implements Screen {
 		stage.act();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
-		if (game.manager.update())
+		if (game.manager.update()) 
 			nextscreen: {
 				if (howl != null && !Gdx.input.isTouched() && howl.isPlaying()) {
 					break nextscreen;
-				}
+				}				
 				game.setScreen(new MainScreen(game));
 				dispose();
 				return;
