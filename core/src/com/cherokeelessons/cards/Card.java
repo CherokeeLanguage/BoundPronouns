@@ -10,6 +10,7 @@ import com.cherokeelessons.bp.BoundPronouns;
 
 @SuppressWarnings("serial")
 public class Card implements Serializable, Comparable<Card> {
+	private static final boolean debug=false; 
 	public int id;
 	public int group;
 	public int proficiency_level;
@@ -17,7 +18,9 @@ public class Card implements Serializable, Comparable<Card> {
 	public int nextSession;
 	public List<String> challenge=new ArrayList<>();
 	public List<String> answer=new ArrayList<>();
-	
+	public String key;
+	public String pgroup;
+	public String vgroup;
 	
 	@Override
 	public int compareTo(Card o) {
@@ -30,13 +33,17 @@ public class Card implements Serializable, Comparable<Card> {
 			String tmp = challenge.get(0);
 			tmp=tmp.replaceAll("[¹²³⁴ɂ"+BoundPronouns.SPECIALS+"]", "");			
 			tmp=StringUtils.substringBefore(tmp, ",");
-			tmp=StringUtils.strip(tmp);			
+			if (tmp.matches(".*[Ꭰ-Ᏼ].*")){
+				tmp=tmp.replaceAll("[^Ꭰ-Ᏼ]", "");			
+			}
 			String length = tmp.length()+"";
 			while (length.length()<4) {
 				length="0"+length;
 			}
 			key.append(length);
-			key.append("+");			
+			key.append("+");
+			key.append(tmp);
+			key.append("+");
 		}
 		for (String s: challenge) {
 			key.append(s);
@@ -45,6 +52,9 @@ public class Card implements Serializable, Comparable<Card> {
 		for (String s: answer) {
 			key.append(s);
 			key.append("+");
+		}
+		if (debug) {
+			this.key=key.toString();
 		}
 		return key.toString();
 	}
