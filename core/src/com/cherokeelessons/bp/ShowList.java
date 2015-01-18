@@ -219,7 +219,7 @@ public class ShowList extends ChildScreen {
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		BitmapFont f36_base = game.manager.get("sans36.ttf", BitmapFont.class);
-		BitmapFont f36_serif = game.manager.get("serif36.ttf", BitmapFont.class);
+//		BitmapFont f36_serif = game.manager.get("serif36.ttf", BitmapFont.class);
 		BitmapFont f36 = new BitmapFont(f36_base.getData(), f36_base.getRegions(), true);
 		f36.setMarkupEnabled(true);
 		
