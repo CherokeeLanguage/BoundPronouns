@@ -29,7 +29,7 @@ public class ShowSettings extends ChildScreen {
 		container.setBackground(d);
 		container.setFillParent(true);
 		
-		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
+		BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
 		
 		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		bstyle.font=f36;

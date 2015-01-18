@@ -41,7 +41,7 @@ public class BoundPronouns extends Game {
 	public static final String UNDERCUBE = "\u033B";
 	public static final String DSUNDERLINE = "\u0347";
 
-	private static final String specials;
+	public static final String SPECIALS;
 	public static final String IMG_SCROLLBAR = "scrollpane/basic-vbar.png";
 	public static final String IMG_SCROLLBUTTON = "scrollpane/basic-vbutton.png";
 	
@@ -53,7 +53,7 @@ public class BoundPronouns extends Game {
 	public static final String SND_HOWL = "audio/wolfhowls.ogg";
 	public static final float BACK_WIDTH = 168f;
 	static {
-		specials = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
+		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
 				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC;
 	}
@@ -102,20 +102,11 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
 		manager.load(SKIN, Skin.class);
 		
-
-//		addFreeSansFor(24);
-//		addFreeSansFor(28);
 		addFreeSansFor(36);
-//		addFreeSansFor(48);
 		addFreeSansFor(54);
-//		addFreeSansFor(72);
-//		addFreeSansFor(144);
-
-//		SkinParameter skinparam=new SkinParameter("skins/holo/Holo-light-xhdpi.atlas");
-//		manager.load(SKIN, Skin.class, skinparam);
 	}
 
-	public void addFreeSansFor(int size) {
+	private void addFreeSansFor(int size) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			String valueOf = String.valueOf(c);
@@ -129,7 +120,7 @@ public class BoundPronouns extends Game {
 				defaultChars += valueOf;
 			}
 		}
-		for (char c : specials.toCharArray()) {
+		for (char c : SPECIALS.toCharArray()) {
 			String valueOf = String.valueOf(c);
 			if (!defaultChars.contains(valueOf)) {
 				defaultChars += valueOf;
@@ -142,7 +133,39 @@ public class BoundPronouns extends Game {
 		font.fontParameters.size = size;
 		font.fontParameters.magFilter = TextureFilter.Linear;
 		font.fontParameters.minFilter = TextureFilter.Linear;
-		manager.load("font" + size + ".ttf", BitmapFont.class, font);
+		manager.load("sans" + size + ".ttf", BitmapFont.class, font);
+		return;
+	}
+	
+	@SuppressWarnings("unused")
+	private void addFreeSerifFor(int size) {
+		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
+		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
+			String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		for (char c : "ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ".toCharArray()) {
+			String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		for (char c : SPECIALS.toCharArray()) {
+			String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		FreeTypeFontLoaderParameter font = new FreeTypeFontLoaderParameter();
+		font.fontFileName = "otf/FreeSerif.otf";
+		font.fontParameters.characters = defaultChars;
+		font.fontParameters.kerning = true;
+		font.fontParameters.size = size;
+		font.fontParameters.magFilter = TextureFilter.Linear;
+		font.fontParameters.minFilter = TextureFilter.Linear;
+		manager.load("serif" + size + ".ttf", BitmapFont.class, font);
 		return;
 	}
 

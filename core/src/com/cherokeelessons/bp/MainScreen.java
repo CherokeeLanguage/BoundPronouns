@@ -73,9 +73,9 @@ public class MainScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
-			BitmapFont f54 = game.manager.get("font54.ttf", BitmapFont.class);
-			BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
-			SlotDialog chooseSlot = new SlotDialog(" Select Slot ", skin, game, f54){
+			BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
+			BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
+			SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game, f54){
 				@Override
 				protected void result(Object object) {
 					if (object==null) {
@@ -83,7 +83,7 @@ public class MainScreen implements Screen {
 					}
 					if (object instanceof FileHandle) {						
 						game.log(this, ((FileHandle)object).path());
-						game.setScreen(new CardSession(game, MainScreen.this, (FileHandle)object));
+						game.setScreen(new CardSessionInit(game, MainScreen.this, (FileHandle)object));
 					}
 				}				
 			};
@@ -136,7 +136,7 @@ public class MainScreen implements Screen {
 				tbs.font=f36;
 				textb.setStyle(tbs);
 				t.add(textb).pad(0).expand().fill();
-				chooseSlot.text(textb, p0.parent());
+				chooseSlot.text(textb, p0);
 			}
 			
 			TextButtonStyle backstyle = new TextButtonStyle(skin.get("default",
@@ -172,7 +172,7 @@ public class MainScreen implements Screen {
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
 
-		BitmapFont f54 = game.manager.get("font54.ttf", BitmapFont.class);
+		BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
 
 		container = new Table();
 		container.setFillParent(true);

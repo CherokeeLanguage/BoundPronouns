@@ -25,7 +25,7 @@ public class ShowAbout extends ChildScreen {
 	public ShowAbout(BoundPronouns game, MainScreen mainScreen) {
 		super(game, mainScreen);
 		
-		BitmapFont f36 = game.manager.get("font36.ttf", BitmapFont.class);
+		BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
 		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,

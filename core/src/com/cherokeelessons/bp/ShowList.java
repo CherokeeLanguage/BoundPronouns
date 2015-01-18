@@ -218,7 +218,8 @@ public class ShowList extends ChildScreen {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		BitmapFont f36_base = game.manager.get("font36.ttf", BitmapFont.class);
+		BitmapFont f36_base = game.manager.get("sans36.ttf", BitmapFont.class);
+		BitmapFont f36_serif = game.manager.get("serif36.ttf", BitmapFont.class);
 		BitmapFont f36 = new BitmapFont(f36_base.getData(), f36_base.getRegions(), true);
 		f36.setMarkupEnabled(true);
 		
@@ -254,7 +255,7 @@ public class ShowList extends ChildScreen {
 		container.add(scroll).expand().fill().colspan(c + 1);		
 		
 		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=f36;
+		ls.font=f36_base;
 		ls.background=null;
 		
 		String prevLatin = "";
@@ -295,13 +296,13 @@ public class ShowList extends ChildScreen {
 			
 			Label actor;
 
-			actor = new Label(chr.replace("[", "[["), ls);
+			actor = new Label(chr, ls);
 			dr.syllabary = actor;
 
-			actor = new Label(latin.replace("[", "[["), ls);
+			actor = new Label(latin, ls);
 			dr.latin = actor;
 
-			actor = new Label(defin.replace("[", "[["), ls);
+			actor = new Label(defin, ls);
 			dr.definition = actor;
 
 			drecs.add(dr);
