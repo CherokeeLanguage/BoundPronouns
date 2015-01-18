@@ -35,17 +35,8 @@ public class MainScreen implements Screen {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
-			game.click();
-			FileHandle list = Gdx.files.internal("csv/pronouns-list.csv");
-			List<CSVRecord> records;
-			try (CSVParser parse = CSVParser.parse(list.readString(),
-					CSVFormat.RFC4180)) {
-				records = parse.getRecords();
-			} catch (IOException e) {
-				game.err(this, e.getMessage(), e);
-				return false;
-			}
-			game.setScreen(new ShowList(game, MainScreen.this, records));
+			game.click();			
+			game.setScreen(new ShowList(game, MainScreen.this));
 			return true;
 		}
 	};

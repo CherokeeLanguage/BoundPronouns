@@ -1,6 +1,14 @@
 package com.cherokeelessons.bp;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,6 +21,7 @@ import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -22,6 +31,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.cherokeelessons.bp.BuildDeck.DataSet;
 
 public class BoundPronouns extends Game {
 
@@ -102,6 +112,7 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
 		manager.load(SKIN, Skin.class);
 		
+		addFreeSerifFor(36);
 		addFreeSansFor(36);
 		addFreeSansFor(54);
 	}
@@ -137,7 +148,6 @@ public class BoundPronouns extends Game {
 		return;
 	}
 	
-	@SuppressWarnings("unused")
 	private void addFreeSerifFor(int size) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
@@ -199,5 +209,65 @@ public class BoundPronouns extends Game {
 			click=manager.get(SND_MENU);
 		}
 		click.play(1f);
+	}
+	
+	private static final List<DataSet> pronouns=new ArrayList<BuildDeck.DataSet>();
+	
+	public static List<DataSet> loadPronounRecords() {
+		if (pronouns.size()!=0) {
+			return new ArrayList<>(pronouns);
+		}
+		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list.csv");
+		List<CSVRecord> records;
+		try (CSVParser parse = CSVParser.parse(csvlist.readString(),
+				CSVFormat.RFC4180)) {
+			records = parse.getRecords();
+		} catch (IOException e) {
+			return null;
+		}		
+		
+		String prevLatin = "";
+		String prevChr = "";
+		for (CSVRecord record : records) {
+			String vtmode=record.get(0);
+			if (StringUtils.isBlank(vtmode)){
+				continue;
+			}
+			String chr = record.get(1);
+			if (chr.startsWith("#")) {
+				continue;
+			}
+			String latin = record.get(2);
+			String defin = record.get(3)+" + "+record.get(4);
+			if (StringUtils.isBlank(record.get(3))){
+				String tmp = record.get(4);
+				passive:{
+					if (tmp.equalsIgnoreCase("he")){
+						defin = tmp+" (was being)";
+						break passive;
+					}
+					if (tmp.equalsIgnoreCase("i")){
+						defin = tmp+" (was being)";
+						break passive;
+					}
+					defin = tmp+" (were being)";
+					break passive;
+				}				
+			}
+			if (StringUtils.isBlank(latin)) {
+				latin = prevLatin;
+			}
+			if (StringUtils.isBlank(chr)) {
+				chr = prevChr;
+			}
+			DataSet data = new DataSet();
+			data.chr=chr;
+			data.latin=latin;
+			data.def=defin;
+			pronouns.add(data);
+			prevLatin = latin;
+			prevChr = chr;
+		}
+		return new ArrayList<>(pronouns);
 	}
 }

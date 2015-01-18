@@ -2,7 +2,6 @@ package com.cherokeelessons.bp;
 
 import java.util.List;
 
-import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -24,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.cherokeelessons.bp.BuildDeck.DataSet;
 
 public class ShowList extends ChildScreen {
 
@@ -192,8 +192,7 @@ public class ShowList extends ChildScreen {
 	private final Skin skin;
 	private final Table container;
 	
-	public ShowList(final BoundPronouns game, Screen callingScreen,
-			final List<CSVRecord> records) {
+	public ShowList(final BoundPronouns game, Screen callingScreen) {
 		super(game, callingScreen);
 		
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
@@ -208,13 +207,13 @@ public class ShowList extends ChildScreen {
 		Gdx.app.postRunnable(new Runnable() {
 			@Override
 			public void run() {
-				initialPopulate(game, records);
+				initialPopulate(game);
 			}
 		});
 		
 	}
 
-	public void initialPopulate(BoundPronouns game, List<CSVRecord> records) {
+	public void initialPopulate(BoundPronouns game) {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
@@ -258,63 +257,32 @@ public class ShowList extends ChildScreen {
 		ls.font=f36_base;
 		ls.background=null;
 		
-		String prevLatin = "";
-		String prevChr = "";
-		for (CSVRecord record : records) {
-			String vtmode=record.get(0);
-			if (StringUtils.isBlank(vtmode)){
-				continue;
-			}
-			String chr = record.get(1);
-			if (chr.startsWith("#")) {
-				continue;
-			}
-			String latin = record.get(2);
-			String defin = record.get(3)+" + "+record.get(4);
-			if (StringUtils.isBlank(record.get(3))){
-				String tmp = record.get(4);
-				passive:{
-					if (tmp.equalsIgnoreCase("he")){
-						defin = tmp+" (was being)";
-						break passive;
-					}
-					if (tmp.equalsIgnoreCase("i")){
-						defin = tmp+" (was being)";
-						break passive;
-					}
-					defin = tmp+" (were being)";
-					break passive;
-				}				
-			}
-			if (StringUtils.isBlank(latin)) {
-				latin = prevLatin;
-			}
-			if (StringUtils.isBlank(chr)) {
-				chr = prevChr;
-			}
-			DisplayRecord dr = new DisplayRecord();
-			
-			Label actor;
+		List<DataSet> list = BoundPronouns.loadPronounRecords();
+		
+		for (DataSet data: list) {
+		DisplayRecord dr = new DisplayRecord();
+		
+		Label actor;
 
-			actor = new Label(chr, ls);
-			dr.syllabary = actor;
+		actor = new Label(data.chr, ls);
+		dr.syllabary = actor;
 
-			actor = new Label(latin, ls);
-			dr.latin = actor;
+		actor = new Label(data.latin, ls);
+		dr.latin = actor;
 
-			actor = new Label(defin, ls);
-			dr.definition = actor;
+		actor = new Label(data.def, ls);
+		dr.definition = actor;
 
-			drecs.add(dr);
-
-			prevLatin = latin;
-			prevChr = chr;
+		drecs.add(dr);
 		}
+		
 		DisplayRecord.setSortBy(DisplayRecord.SortBy.Syllabary);
 		DisplayRecord.setSortSubOrder(DisplayRecord.SortOrder.Ascending);
 		drecs.sort();
 		populateList();	
 	}
+
+	
 
 	private void populateList() {
 		int ix = 0;

@@ -315,9 +315,27 @@ public class BuildDeck implements Runnable {
 				 */
 
 				if (cStem) {
+					
+					if (vroot.matches("[TtDdSs].*")){
+						if (d.latin.equalsIgnoreCase("A¹gị²")){
+							d.latin="a¹k";
+							d.chr="Ꭰ¹Ꭹ͓";
+						}
+						if (d.latin.equalsIgnoreCase("Jạ²")){
+							d.latin="ts";
+							d.chr="Ꮳ͓";
+						}
+					}
+					if (vroot.matches("[Tt].*")){
+						if (d.latin.equalsIgnoreCase("I¹ji²")){
+							d.latin="i¹jch";
+							d.chr="Ꭲ¹Ꮵ͓";
+						}
+					}
+					
 					d.chr += vroot_chr;
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
-
+					
 					d.latin += vroot;
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
 				}
@@ -381,6 +399,14 @@ public class BuildDeck implements Runnable {
 				d.def = null;
 				if (!StringUtils.isEmpty(subj)) {
 					d.def = vdef_active;
+					if (subj.contains("I")) {
+						d.def = d.def.replace("[s]", "");
+					}
+					if (isPluralSubj(subj)) {
+						d.def = d.def.replace("[s]", "");
+					} else {
+						d.def = d.def.replace("[s]", "s");
+					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
 						d.def = d.def.replaceFirst("^[hH]e ", pronoun.get(3)
 								+ " ");
@@ -415,6 +441,14 @@ public class BuildDeck implements Runnable {
 
 				} else {
 					d.def = vdef_passive;
+					if (obj.contains("I")) {
+						d.def = d.def.replace("[s]", "");
+					}
+					if (isPluralSubj(obj)) {
+						d.def = d.def.replace("[s]", "");
+					} else {
+						d.def = d.def.replace("[s]", "s");
+					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
 						d.def = d.def.replaceFirst("^[hH]e ", obj + " ");
 					}
@@ -442,6 +476,7 @@ public class BuildDeck implements Runnable {
 					c.challenge.add(d.chr);
 					c.challenge.add(d.latin);
 				}
+				
 				definitionEnglishFixer(d);
 
 				if (c.answer.contains(d.def)) {
@@ -602,6 +637,12 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("You two is", "You two are");
 		d.def = d.def.replace("You all is", "You all are");
 		d.def = d.def.replace("They is", "They are");
+		
+		d.def = d.def.replace("and I was", "and I were");
+		d.def = d.def.replace("You one was", "You one were");
+		d.def = d.def.replace("You two was", "You two were");
+		d.def = d.def.replace("You all was", "You all were");
+		d.def = d.def.replace("They was", "They were");
 
 		d.def = d.def.replace("and I often is", "and I often are");
 		d.def = d.def.replace("I often is", "I often am");
@@ -647,7 +688,7 @@ public class BuildDeck implements Runnable {
 
 	private void addDiPrefix(DataSet d) {
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = "dị" + d.latin.substring(2);
+			d.latin = "dị" + d.latin.substring(1);
 			d.chr = "Ꮧ" + d.chr.substring(1);
 			return;
 		}
