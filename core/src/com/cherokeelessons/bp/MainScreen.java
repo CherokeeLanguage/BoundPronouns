@@ -31,7 +31,7 @@ public class MainScreen implements Screen {
 	private final FitViewport viewport;
 	private final Stage stage;
 	private final Skin skin;
-	private ClickListener viewPronounsList = new ClickListener() {
+	private ClickListener viewPronouns = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
@@ -45,8 +45,16 @@ public class MainScreen implements Screen {
 				game.err(this, e.getMessage(), e);
 				return false;
 			}
-			// game.log(this, "Loaded "+records.size()+" records.");
 			game.setScreen(new ShowList(game, MainScreen.this, records));
+			return true;
+		}
+	};
+	private ClickListener viewChallenges = new ClickListener() {
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y,
+				int pointer, int button) {
+			game.click();			
+			game.setScreen(new ShowChallenges(game, MainScreen.this));
 			return true;
 		}
 	};
@@ -194,7 +202,7 @@ public class MainScreen implements Screen {
 		button.setDisabled(true);
 
 		container.row();
-		int padBottom = 20;
+		int padBottom = 0;
 		container.add(button).padBottom(padBottom);
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
@@ -205,8 +213,14 @@ public class MainScreen implements Screen {
 		container.row();
 		container.add(button).padBottom(padBottom);
 
-		button = new TextButton("View Pronouns List", bstyle);
-		button.addListener(viewPronounsList);
+		button = new TextButton("View Pronouns", bstyle);
+		button.addListener(viewPronouns);
+		button.setTouchable(Touchable.enabled);
+		container.row();
+		container.add(button).padBottom(padBottom);
+		
+		button = new TextButton("View Challenges", bstyle);
+		button.addListener(viewChallenges);
 		button.setTouchable(Touchable.enabled);
 		container.row();
 		container.add(button).padBottom(padBottom);
