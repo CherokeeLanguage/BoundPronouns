@@ -113,6 +113,8 @@ public class BoundPronouns extends Game {
 		manager.load(SKIN, Skin.class);
 		
 		addFreeSerifFor(36);
+		addFreeSerifFor(54);
+		
 		addFreeSansFor(36);
 		addFreeSansFor(54);
 	}

@@ -51,7 +51,7 @@ public class LoadingScreen implements Screen {
 				if (howl != null && !Gdx.input.isTouched() && howl.isPlaying()) {
 					break nextscreen;
 				}				
-				game.setScreen(new MainScreen(game));
+				game.setScreen(new BuildDeckScreen(game, null));
 				dispose();
 				return;
 			}

@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -35,58 +34,17 @@ import com.cherokeelessons.cards.Deck;
 
 public class ShowChallenges extends ChildScreen implements Screen {
 
-	private final BuildDeck buildDeck;
-	private boolean dataReady=false;	
 	private final Map<String, Deck> cards=new HashMap<>();
 	
-	private Runnable done = new Runnable() {
-		@Override
-		public void run() {
-			dataReady=true;
-		}
-	};
 	private boolean viewReady;
 	private final Json json;
 	public ShowChallenges(BoundPronouns game, Screen caller) {
 		super(game, caller);
-		buildDeck=new BuildDeck(game, getSlot(), done);
-		buildDeck.setSkipBareForms(true);
-		Gdx.app.postRunnable(buildDeck);
 		json=new Json();
 		json.setIgnoreUnknownFields(true);
 		json.setOutputType(OutputType.json);
-	}
+	}	
 	
-	private FileHandle getSlot(){
-		FileHandle p0;
-		String path0 = "BoundPronouns/slots/x";
-		switch (Gdx.app.getType()) {
-		case Android:
-			p0 = Gdx.files.local(path0);
-			break;
-		case Applet:
-			p0 = Gdx.files.external(path0);
-			break;
-		case Desktop:
-			p0 = Gdx.files.external(path0);
-			break;
-		case HeadlessDesktop:
-			p0 = Gdx.files.external(path0);
-			break;
-		case WebGL:
-			p0 = Gdx.files.external(path0);
-			break;
-		case iOS:
-			p0 = Gdx.files.local(path0);
-			break;
-		default:
-			p0 = Gdx.files.external(path0);
-		}
-		if (!p0.exists()) {
-			p0.mkdirs();
-		}
-		return p0;
-	}
 	private Skin skin;	
 	@Override
 	public void show() {
@@ -94,27 +52,34 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		Table t = new Table(skin);
 		t.setFillParent(true);
-		Label msg = new Label("Loading Deck ...", skin);
-		msg.getStyle().font=f54();
+		msg = new Label("Building Deck ...", skin);
+		msg.getStyle().font=s54();
+		msg.setStyle(msg.getStyle());
 		t.add(msg).fill().expand().center();
 		TiledDrawable background = getBackground();
 		t.setBackground(background);
 		stage.addActor(t);
 	}
+	
+	private Label msg;
 
-	public BitmapFont f54() {
+	private BitmapFont f54() {
 		return game.manager.get("sans54.ttf", BitmapFont.class);
 	}
 	
-	public BitmapFont f36() {
+	private BitmapFont s54() {
+		return game.manager.get("serif54.ttf", BitmapFont.class);
+	}
+	
+	private BitmapFont f36() {
 		return game.manager.get("sans36.ttf", BitmapFont.class);
 	}
 	
-	public BitmapFont s36() {
+	private BitmapFont s36() {
 		return game.manager.get("serif36.ttf", BitmapFont.class);
 	}
 
-	public TiledDrawable getBackground() {
+	private TiledDrawable getBackground() {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		TextureRegion region = new TextureRegion(texture);
 		TiledDrawable background = new TiledDrawable(region);
@@ -123,13 +88,15 @@ public class ShowChallenges extends ChildScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
-		if (!dataReady) {
-			super.render(delta);
-			return;
-		}
 		if (!viewReady) {
+			msg.setText("Building view...");
 			viewReady=true;
-			readyView();
+			Gdx.app.postRunnable(new Runnable() {
+				@Override
+				public void run() {
+					readyView();
+				}
+			});
 			return;
 		}
 		super.render(delta);		
@@ -164,7 +131,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		groupsPane.setColor(Color.DARK_GRAY);
 		chooseGroup.getContentTable().add(groupsPane).expand().fill();
 		
-		Deck deck = json.fromJson(Deck.class, getSlot().child("deck.json"));
+		Deck deck = json.fromJson(Deck.class, BuildDeck.getDeckSlot().child("deck.json"));
 		cards.clear();
 		for (Card card: deck.cards) {
 			Deck groupdeck = cards.get(card.pgroup);
@@ -219,7 +186,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		chooseGroup.show(stage).addAction(focus);
 	}
 
-	protected void showDialogFor(String group) {
+	private void showDialogFor(String group) {
 		TiledDrawable background = getBackground();
 		Dialog theGroup = new Dialog(group, skin);
 		background.setMinHeight(0);
