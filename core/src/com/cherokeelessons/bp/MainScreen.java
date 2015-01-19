@@ -130,7 +130,7 @@ public class MainScreen implements Screen {
 				textb.addListener(new ClickListener(){
 					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 						game.log(this, p0.path());
-						game.setScreen(new CardSession(game, MainScreen.this, p0));
+						game.setScreen(new LearningSession(game, MainScreen.this, p0));
 						return true;
 					};
 				});

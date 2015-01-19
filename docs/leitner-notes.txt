@@ -1,28 +1,39 @@
-http://lenmus.sourceforge.net/en/lenmusdocs/hacking/exercises/problem-modes.html
 
-The first tested algorithm was a direct implementation of Leitner method:
+Start exercise:
+	
+   * set RT = 5
+   
+   * set Maxshows = 200
+   
+   * set Totalshows = 0
+   
+   * while (Set0 < 10 cards) add a card.
 
-1. Prepare set of questions that need repetition (Set0):
-
-   * Explore all questions and move to Set0 all those questions whose
-     scheduled time is <= Today or are in box 0
-
-2. Start exercise:
-
-   * Shuffle Set0 (random ordering).
    * While questions in Set0:
        * For iQ=1 until iQ=num questions in Set0
+       	   * If new card, show card & answer until student says "next" then shove card back into set +3 then loop to next card       	   
            * Take question iQ and ask it
-           * If Success mark it to be promoted, and schedule it for
-             repetition at Current date plus Interval Repetition for
-             the box in which the question is classified. Else, if
-             answer was wrong, move question to box 0.
+           * If Success, increment the question repetitions counter.
+             Else reset the question repetitions counter and move
+             question to previous box
+           * If the question repetitions counter is greater than the
+             Repetition Threshold (RT) mark the question to be promoted,
+             and schedule it for repetition at Current date plus
+             Interval Repetition for the box in which the question
+             is classified.
+           * totalshows ++
        * End of For loop
 
        * At this point a full round of scheduled questions has taken
          place: Remove from Set0 all questions marked as 'to be
          promoted'.
-
+         
+        * while (Set0.size * RT < (MaxShows - Totalshows)) add a card.
+        
+        * if Set0.size < 3 break loop
+        
+        * shuffle cards, making sure new 1st card is not old last card 
+         
    * End of While loop
 
  3. At this point, a successful round of all questions has been

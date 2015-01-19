@@ -10,9 +10,10 @@ public class Deck {
 	
 	public static Array<Integer> intervals=new Array<>();
 	static {
-		intervals.add(5);
-		intervals.add(25);
-		intervals.add(2*60);
-		intervals.add(10*60);
+		int secs=1;
+		for (int i=0; i<15; i++) {
+			secs*=5;
+			intervals.add(secs);
+		}
 	}
 }

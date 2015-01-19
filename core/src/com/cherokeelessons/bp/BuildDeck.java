@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue.PrettyPrintSettings;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
@@ -55,9 +56,13 @@ public class BuildDeck implements Runnable {
 			game.log(this, "buildDeck#save");
 			FileHandle dest = slot.child("deck.json");
 			json.setOutputType(OutputType.json);
-			json.setTypeName(null);
+			json.setTypeName(null);			
 			Collections.sort(deck.cards);
+			for (int i=0; i<deck.cards.size(); i++) {
+				deck.cards.get(i).id=i+1;
+			}
 			game.log(this, deck.cards.size() + " cards in deck.");
+			dest.writeString(json.prettyPrint(deck), false, "UTF-8");
 			if (done != null) {
 				Gdx.app.postRunnable(done);
 			}			
@@ -91,52 +96,49 @@ public class BuildDeck implements Runnable {
 				if (StringUtils.isBlank(vtmode)) {
 					continue;
 				}
-				StringBuilder chr = new StringBuilder(record.get(1));
-				if (chr.toString().startsWith("#")) {
+				String chr = record.get(1);
+				if (chr.startsWith("#")) {
 					continue;
 				}
 				setStatus("Create pronoun card for "+chr);
-				StringBuilder latin = new StringBuilder(record.get(2));
-				StringBuilder defin = new StringBuilder(record.get(3) + " + " + record.get(4));
+				String latin = record.get(2);
+				String defin = record.get(3) + " + " + record.get(4);
 				if (StringUtils.isBlank(record.get(3))) {
 					String tmp = record.get(4);
 					passive: {
-						defin.setLength(0);
-						defin.append(tmp);
+						defin=tmp;
 						if (tmp.equalsIgnoreCase("he")) {
-							defin.append(" (was being)");
+							defin+=" (was being)";
 							break passive;
 						}
 						if (tmp.equalsIgnoreCase("i")) {
-							defin.append(" (was being)");
+							defin+=" (was being)";
 							break passive;
 						}
-						defin.append(" (were being)");
+						defin+=" (were being)";
 						break passive;
 					}
 				}
 				if (StringUtils.isBlank(latin)) {
-					latin.setLength(0);
-					latin.append(prevLatin);
+					latin=prevLatin;
 				}
 				if (StringUtils.isBlank(chr)) {
-					chr.setLength(0);
-					chr.append(prevChr);
+					chr=prevChr;
 				}
 
-				Card c = deckmap.get(chr);
+				Card c = deckmap.get(chr.toString());
 				if (c == null) {
 					c = new Card();
-					c.pgroup = chr.toString();
+					c.pgroup = chr;
 					c.vgroup = "";
 					c.challenge.add(chr.toString());
 					c.challenge.add(latin.toString());
 					deck.cards.add(c);
-					deckmap.put(chr.toString(), c);
+					deckmap.put(chr, c);
 				}
-				c.answer.add(defin.toString());
-				prevChr = chr.toString();
-				prevLatin = latin.toString();
+				c.answer.add(defin);
+				prevChr = chr;
+				prevLatin = latin;
 				if (System.currentTimeMillis() - tick > 100) {
 					game.log(this, "buildDeck#breathe");
 					break work;

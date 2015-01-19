@@ -12,10 +12,7 @@ import com.cherokeelessons.bp.BoundPronouns;
 public class Card implements Serializable, Comparable<Card> {
 	private static final boolean debug=false; 
 	public int id;
-	public int group;
-	public int proficiency_level;
-	public int correct_in_a_row;
-	public int nextSession;
+	
 	public List<String> challenge=new ArrayList<>();
 	public List<String> answer=new ArrayList<>();
 	public String key;

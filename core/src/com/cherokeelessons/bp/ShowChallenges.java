@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
@@ -133,6 +135,9 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		Deck deck = json.fromJson(Deck.class, BuildDeck.getDeckSlot().child("deck.json"));
 		cards.clear();
 		for (Card card: deck.cards) {
+			if (StringUtils.isBlank(card.vgroup)){
+				continue;
+			}
 			Deck groupdeck = cards.get(card.pgroup);
 			if (groupdeck==null) {
 				groupdeck=new Deck();
