@@ -1,15 +1,9 @@
 package com.cherokeelessons.bp;
 
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,6 +11,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -74,24 +71,19 @@ public class MainScreen implements Screen {
 				int pointer, int button) {
 			BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
 			BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
-			SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game, f54){
-				@Override
-				protected void result(Object object) {
-					if (object==null) {
-						return;
-					}
-					if (object instanceof FileHandle) {						
-						game.log(this, ((FileHandle)object).path());
-						game.setScreen(new CardSessionInit(game, MainScreen.this, (FileHandle)object));
-					}
-				}				
-			};
+			final SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game, f54);
 			chooseSlot.setKeepWithinStage(true);
 			chooseSlot.setModal(true);
 			chooseSlot.setFillParent(true);
 			
-			for (int ix = 0; ix < 5; ix++) {
-				FileHandle p0, p1;
+			Table slots = new Table(skin);
+			final ScrollPane slotsPane = new ScrollPane(slots, skin);
+			slotsPane.setFadeScrollBars(false);
+			slotsPane.setColor(Color.DARK_GRAY);
+			chooseSlot.getContentTable().add(slotsPane).expand().fill();
+			
+			for (int ix = 0; ix < 10; ix++) {
+				final FileHandle p0, p1;
 				String path0 = "BoundPronouns/slots/" + ix + "/";
 				String path1 = "BoundPronouns/slots/" + ix + "/info.json";
 				switch (Gdx.app.getType()) {
@@ -129,22 +121,34 @@ public class MainScreen implements Screen {
 				if (p1.exists()) {
 					txt = p1.readString("UTF-8");
 				}
-				Table t = new Table(skin);
 				TextButton textb = new TextButton(txt, skin);
 				TextButtonStyle tbs = new TextButtonStyle(textb.getStyle());
 				tbs.font=f36;
 				textb.setStyle(tbs);
-				t.add(textb).pad(0).expand().fill();
-				chooseSlot.text(textb, p0);
+				slots.row();
+				slots.add(textb).pad(0).expand().fill();
+				textb.addListener(new ClickListener(){
+					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+						game.log(this, p0.path());
+						game.setScreen(new CardSessionInit(game, MainScreen.this, p0));
+						return true;
+					};
+				});
 			}
 			
-			TextButtonStyle backstyle = new TextButtonStyle(skin.get("default",
-					TextButtonStyle.class));
-			backstyle.font = f54;
-			TextButton tb;
-			tb = new TextButton(BoundPronouns.BACK_ARROW, backstyle);
-			chooseSlot.button(tb);
-			chooseSlot.show(stage);
+			RunnableAction focus = Actions.run(new Runnable() {			
+				@Override
+				public void run() {
+					stage.setScrollFocus(slotsPane);
+					stage.setKeyboardFocus(slotsPane);
+				}
+			});
+			
+			TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
+			back.getStyle().font=f54;
+			back.setStyle(back.getStyle());
+			chooseSlot.button(back);
+			chooseSlot.show(stage).addAction(focus);
 			game.click();
 			return true;
 		}
