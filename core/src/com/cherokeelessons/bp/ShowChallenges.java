@@ -189,6 +189,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		List<String> groups = new ArrayList<>();
 		groups.addAll(cards.keySet());
 		Collections.sort(groups);
+		boolean nextRow=true;
 		for(final String group: groups) {
 			String group_name=group+"\n"+lookup_details.get(group);
 			TextButton button = new TextButton(group_name, skin);
@@ -202,8 +203,11 @@ public class ShowChallenges extends ChildScreen implements Screen {
 					return true;
 				}
 			});
-			groupsTable.row();
-			groupsTable.add(button);
+			if (nextRow) {
+				groupsTable.row();
+			}
+			groupsTable.add(button).fill();
+			nextRow=!nextRow;
 		}
 		RunnableAction focus = Actions.run(new Runnable() {			
 			@Override

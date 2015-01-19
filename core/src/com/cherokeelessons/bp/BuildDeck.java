@@ -162,11 +162,25 @@ public class BuildDeck implements Runnable {
 			boolean vSetB = challenge.get(3).startsWith("u")
 					|| challenge.get(3).startsWith("ụ")
 					|| challenge.get(3).startsWith("j");
-			String vroot = challenge.get(4);
-			String vroot_chr = challenge.get(2);
+			String vroot_set = challenge.get(4);			
+			String vroot_chr_set = challenge.get(2);
 			String vdef_active = challenge.get(5);
 			String vdef_passive = challenge.get(6);
 			String vdef_objects = challenge.get(7);
+			String vroot_h=StringUtils.substringBefore(vroot_set, ",");
+			String vroot_h_chr=StringUtils.substringBefore(vroot_chr_set, ",");
+			String vroot_alt=StringUtils.substringAfter(vroot_set, ",");
+			String vroot_alt_chr=StringUtils.substringAfter(vroot_chr_set, ",");
+			if (StringUtils.isBlank(vroot_alt)) {
+				vroot_alt=vroot_h;
+			}
+			if (StringUtils.isBlank(vroot_alt_chr)) {
+				vroot_alt_chr=vroot_h_chr;
+			}
+			vroot_h=StringUtils.strip(vroot_h);
+			vroot_alt=StringUtils.strip(vroot_alt);
+			vroot_h_chr=StringUtils.strip(vroot_h_chr);
+			vroot_alt_chr=StringUtils.strip(vroot_alt_chr);
 
 			boolean v_imp = vdef_active.toLowerCase().startsWith("let");
 			boolean v_inf = vdef_active.toLowerCase().startsWith("for");
@@ -175,12 +189,12 @@ public class BuildDeck implements Runnable {
 				v_inf = vdef_passive.toLowerCase().startsWith("for");
 			}
 
-			boolean aStem = vroot.matches("[ạaẠA].*");
-			boolean eStem = vroot.matches("[ẹeịiọoụuẸEỊIỌOỤU].*");
-			boolean vStem = vroot.matches("[ṿvṾV].*");
+			boolean aStem = vroot_h.matches("[ạaẠA].*");
+			boolean eStem = vroot_h.matches("[ẹeịiọoụuẸEỊIỌOỤU].*");
+			boolean vStem = vroot_h.matches("[ṿvṾV].*");
 			boolean cStem = !(aStem | eStem | vStem);
 
-			String vgroup = vroot_chr;
+			String vgroup = vroot_h_chr;
 
 			while (ipro.hasNext()) {
 				CSVRecord pronoun = ipro.next();
@@ -204,6 +218,13 @@ public class BuildDeck implements Runnable {
 				Set<String> ptypes = new HashSet<>();
 				ptypes.addAll(Arrays.asList(pronoun.get(0).split(",\\s*")));
 
+				String vroot=vroot_h;
+				String vroot_chr=vroot_h_chr;
+				if (ptypes.contains("alt")){
+					vroot=vroot_alt;
+					vroot_chr=vroot_alt_chr;
+				}
+				
 				boolean p_g3rd = false;
 				if (ptypes.contains("g")) {
 					p_g3rd = true;
