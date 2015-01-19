@@ -58,7 +58,6 @@ public class BuildDeck implements Runnable {
 			json.setTypeName(null);
 			Collections.sort(deck.cards);
 			game.log(this, deck.cards.size() + " cards in deck.");
-			json.toJson(deck, dest);
 			if (done != null) {
 				Gdx.app.postRunnable(done);
 			}			

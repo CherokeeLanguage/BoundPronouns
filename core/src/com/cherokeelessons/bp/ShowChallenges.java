@@ -52,7 +52,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		Table t = new Table(skin);
 		t.setFillParent(true);
-		msg = new Label("Building Deck ...", skin);
+		msg = new Label("Loading Deck ...", skin);
 		msg.getStyle().font=s54();
 		msg.setStyle(msg.getStyle());
 		t.add(msg).fill().expand().center();
@@ -88,8 +88,8 @@ public class ShowChallenges extends ChildScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
+		super.render(delta);		
 		if (!viewReady) {
-			msg.setText("Building view...");
 			viewReady=true;
 			Gdx.app.postRunnable(new Runnable() {
 				@Override
@@ -99,7 +99,6 @@ public class ShowChallenges extends ChildScreen implements Screen {
 			});
 			return;
 		}
-		super.render(delta);		
 	}
 
 	private void readyView() {
