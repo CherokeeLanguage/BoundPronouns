@@ -2,8 +2,10 @@ package com.cherokeelessons.bp;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import com.badlogic.gdx.Screen;
@@ -11,7 +13,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
@@ -24,58 +25,18 @@ import com.cherokeelessons.cards.Deck;
 
 public class LearningSession extends ChildScreen implements Screen {
 
-	private final long maxTime = 20l * 60l * 60l * 1000l;// 20 minutes max per
-															// session ?
-
-	private static final int RT = 5;
 	private static final int MaxTotalShows = 100;
 
-	private int totalshows = 0;
+	private static final int RT = 5;
+	private ActiveDeck activeDeckFromDisk;
+
+	private final Map<String, Card> cards_by_id = new HashMap<>();
 
 	private Table container;
 
-	private Deck deck;
-	private ActiveDeck activeDeckFromDisk;
-	private final Json json;
 	private ActiveDeck current_active = new ActiveDeck();
 	private ActiveDeck current_seen = new ActiveDeck();
-	private final Set<String> nodupes = new HashSet<>();
-
-	private Runnable loadDeck = new Runnable() {
-		@Override
-		public void run() {
-			game.log(this, "Loading Deck...");
-			stage.addAction(Actions.run(loadStats));
-			deck = json.fromJson(Deck.class, slot.child("deck.json"));
-		}
-	};
-
-	protected Comparator<ActiveCard> sortByNextShow = new Comparator<ActiveCard>() {
-		@Override
-		public int compare(ActiveCard o1, ActiveCard o2) {
-			if (o1.show_again_ms != o2.show_again_ms) {
-				return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
-			}
-			return o1.box - o2.box;
-		}
-	};
-
-	private Runnable loadStats = new Runnable() {
-		@Override
-		public void run() {
-			game.log(this, "Loading Stats...");
-			stage.addAction(Actions.run(initSet0));
-			if (!slot.child("stats.json").exists()) {
-				activeDeckFromDisk = new ActiveDeck();
-				json.toJson(activeDeckFromDisk, slot.child("stats.json"));
-				return;
-			}
-			activeDeckFromDisk = json.fromJson(ActiveDeck.class,
-					slot.child("stats.json"));
-			Collections.sort(activeDeckFromDisk.stats, sortByNextShow);
-		}
-	};
-
+	private Deck deck;
 	private Runnable initSet0 = new Runnable() {
 		@Override
 		public void run() {
@@ -97,32 +58,43 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 
 	};
-	
-	private ActiveCard getNextCard(){
-		if (current_active.stats.size()==0) {
-			current_active.stats.addAll(current_seen.stats);
-			current_seen.stats.clear();
-			if (current_active.stats.size()==0) {
-				return null;
-			}
-		}
-		ActiveCard card = current_active.stats.get(0);
-		current_seen.stats.add(card);
-		current_active.stats.remove(0);
-		return card;
-	}
-
-	private Runnable showACard = new Runnable() {
+	private final Json json;
+	private Runnable loadDeck = new Runnable() {
 		@Override
 		public void run() {
-			ActiveCard card = getNextCard();
-			if (card.newCard) {
-				newCardDialog.showCard(deck, current_active, current_seen, card);
-			} else {
-				prevCardDialog.showCard(deck, current_active, current_seen, card);
-			}			
+			game.log(this, "Loading Deck...");
+			stage.addAction(Actions.run(loadStats));
+			deck = json.fromJson(Deck.class, slot.child("deck.json"));
+			cards_by_id.clear();
+			for (Card c : deck.cards) {
+				cards_by_id.put(c.pgroup + "+" + c.vgroup, c);
+			}
 		}
 	};
+	private Runnable loadStats = new Runnable() {
+		@Override
+		public void run() {
+			game.log(this, "Loading Stats...");
+			stage.addAction(Actions.run(initSet0));
+			if (!slot.child("stats.json").exists()) {
+				activeDeckFromDisk = new ActiveDeck();
+				json.toJson(activeDeckFromDisk, slot.child("stats.json"));
+				return;
+			}
+			activeDeckFromDisk = json.fromJson(ActiveDeck.class,
+					slot.child("stats.json"));
+			Collections.sort(activeDeckFromDisk.stats, sortByNextShow);
+		}
+	};
+
+	private final long maxTime = 20l * 60l * 60l * 1000l;// 20 minutes max per
+															// session ?
+
+	private final NewCardDialog newCardDialog;
+
+	private final Set<String> nodupes = new HashSet<>();
+
+	private final PreviousCardDialog prevCardDialog;
 
 	private Runnable saveStats = new Runnable() {
 		@Override
@@ -138,21 +110,79 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 
-	/**
-	 * record all cards currently "in-play" so that when cards are retrieved
-	 * from the master deck they are new cards
-	 * 
-	 * @param activeDeck
-	 */
-	public void recordAlreadySeen(ActiveDeck activeDeck) {
-		Iterator<ActiveCard> istat = activeDeck.stats.iterator();
-		while (istat.hasNext()) {
-			ActiveCard next = istat.next();
-			String unique_id = next.pgroup + "+" + next.vgroup;
-			nodupes.add(unique_id);
+	private Runnable showACard = new Runnable() {
+		@Override
+		public void run() {
+			ActiveCard card = getNextCard();
+			if (card.newCard) {
+				newCardDialog.setCard(cards_by_id.get(card.pgroup + "+"
+						+ card.vgroup));
+				newCardDialog.show(stage);
+				card.box = 0;
+				card.correct_in_a_row = 0;
+				card.newCard = false;
+				card.show_again_ms = Deck.intervals.get(0);
+				reInsertCard(card);
+				stage.addAction(Actions.run(saveStats));
+			} else {
+				prevCardDialog.setCard(cards_by_id.get(card.pgroup + "+"
+						+ card.vgroup));
+				prevCardDialog.show(stage);
+			}
 		}
-	}
+	};
 
+	private final Skin skin;
+
+	private final FileHandle slot;
+
+	protected Comparator<ActiveCard> sortByNextShow = new Comparator<ActiveCard>() {
+		@Override
+		public int compare(ActiveCard o1, ActiveCard o2) {
+			if (o1.show_again_ms != o2.show_again_ms) {
+				return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
+			}
+			return o1.box - o2.box;
+		}
+	};
+
+	private int totalshows = 0;
+
+	public LearningSession(BoundPronouns game, Screen caller, FileHandle slot) {
+		super(game, caller);
+		this.slot = slot;
+		slot.mkdirs();
+		if (!slot.child("deck.json").exists()) {
+			BuildDeck.getDeckSlot().child("deck.json")
+					.copyTo(slot.child("deck.json"));
+		}
+
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
+				Texture.class);
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
+		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
+		container = new Table(skin);
+		container.setBackground(d);
+		container.setFillParent(true);
+		stage.addActor(container);
+		stage.addAction(Actions.delay(.01f, Actions.run(loadDeck)));
+		json = new Json();
+		json.setOutputType(OutputType.json);
+		json.setTypeName(null);
+
+		newCardDialog = new NewCardDialog(game, "", skin) {
+			@Override
+			protected void result(Object object) {
+				stage.addAction(Actions.run(showACard));
+			}
+		};
+		prevCardDialog = new PreviousCardDialog(game, "", skin) {
+			@Override
+			protected void result(Object object) {
+				stage.addAction(Actions.run(showACard));
+			}
+		};
+	}
 	/**
 	 * add this many cards to the Stat set first from the current stats set then
 	 * from the master Deck set
@@ -201,37 +231,42 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private final Skin skin;
-	private final FileHandle slot;
-
-	public LearningSession(BoundPronouns game, Screen caller, FileHandle slot) {
-		super(game, caller);
-		this.slot = slot;
-		slot.mkdirs();
-		if (!slot.child("deck.json").exists()) {
-			BuildDeck.getDeckSlot().child("deck.json")
-					.copyTo(slot.child("deck.json"));
+	private ActiveCard getNextCard() {
+		if (current_active.stats.size() == 0) {
+			current_active.stats.addAll(current_seen.stats);
+			current_seen.stats.clear();
+			if (current_active.stats.size() == 0) {
+				return null;
+			}
 		}
-
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
-		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
-		container = new Table(skin);
-		container.setBackground(d);
-		container.setFillParent(true);
-		stage.addActor(container);
-		stage.addAction(Actions.delay(.01f, Actions.run(loadDeck)));
-		json = new Json();
-		json.setOutputType(OutputType.json);
-		json.setTypeName(null);
-		
-		newCardDialog = new NewCardDialog(game, "", skin);
-		prevCardDialog = new PreviousCardDialog(game, "", skin);
+		ActiveCard card = current_active.stats.get(0);
+		current_seen.stats.add(card);
+		current_active.stats.remove(0);
+		return card;
 	}
-	
-	private final NewCardDialog newCardDialog;
-	private final PreviousCardDialog prevCardDialog;
+
+	/**
+	 * record all cards currently "in-play" so that when cards are retrieved
+	 * from the master deck they are new cards
+	 * 
+	 * @param activeDeck
+	 */
+	public void recordAlreadySeen(ActiveDeck activeDeck) {
+		Iterator<ActiveCard> istat = activeDeck.stats.iterator();
+		while (istat.hasNext()) {
+			ActiveCard next = istat.next();
+			String unique_id = next.pgroup + "+" + next.vgroup;
+			nodupes.add(unique_id);
+		}
+	}
+	private void reInsertCard(ActiveCard card) {
+		if (current_active.stats.size() < 2) {
+			current_active.stats.add(card);
+		} else {
+			current_active.stats.add(1, card);
+		}
+		current_seen.stats.remove(card);
+	}
 
 	/**
 	 * time-shift all cards by time since last recorded run

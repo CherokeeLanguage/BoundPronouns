@@ -117,6 +117,7 @@ public class BoundPronouns extends Game {
 		
 		addFreeSansFor(36);
 		addFreeSansFor(54);
+		addFreeSansFor(72);
 	}
 
 	private void addFreeSansFor(int size) {
