@@ -29,10 +29,11 @@ public class PreviousCardDialog extends Dialog {
 
 	private final TextButton challenge_top;
 	
-	public PreviousCardDialog(BoundPronouns game, String title, Skin skin) {
-		super(title, skin);
+	public PreviousCardDialog(BoundPronouns game, Skin skin) {
+		super("Challenge Card", skin);
+		this.title="Challenge Card";
 		this.game=game;
-		this.title=title;
+		
 		getStyle().titleFont=sans54();
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
@@ -44,7 +45,7 @@ public class PreviousCardDialog extends Dialog {
 		setModal(true);
 		setFillParent(true);
 		
-		setTitle("Challenge Card");
+		setTitle(title);
 		
 		challenge_top=new TextButton("", skin);
 		challenge_top.setDisabled(true);

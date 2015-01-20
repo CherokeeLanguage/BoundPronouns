@@ -23,10 +23,9 @@ public class NewCardDialog extends Dialog {
 
 	private String title="";
 
-	public NewCardDialog(BoundPronouns game, String title, Skin skin) {
-		super(title, skin);
+	public NewCardDialog(BoundPronouns game, Skin skin) {
+		super("New Vocabulary Card", skin);
 		this.game=game;
-		this.title=title;
 		
 		getStyle().titleFont=sans54();
 		getStyle().background=getDialogBackground();
@@ -39,7 +38,8 @@ public class NewCardDialog extends Dialog {
 		setModal(true);
 		setFillParent(true);
 		
-		setTitle("New Vocabulary Card");
+		title="New Vocabulary Card";
+		setTitle(title);
 		
 		challenge_top=new TextButton("", skin);
 		challenge_top.setDisabled(true);

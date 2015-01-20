@@ -172,13 +172,13 @@ public class LearningSession extends ChildScreen implements Screen {
 		json.setOutputType(OutputType.json);
 		json.setTypeName(null);
 
-		newCardDialog = new NewCardDialog(game, "", skin) {
+		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
 				stage.addAction(Actions.run(showACard));
 			}
 		};
-		prevCardDialog = new PreviousCardDialog(game, "", skin) {
+		prevCardDialog = new PreviousCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
 				stage.addAction(Actions.run(showACard));
