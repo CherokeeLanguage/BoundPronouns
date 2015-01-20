@@ -93,7 +93,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final Set<String> nodupes = new HashSet<>();
 
-	private final PreviousCardDialog prevCardDialog;
+	private final ChallengeCardDialog prevCardDialog;
 
 	private Runnable saveStats = new Runnable() {
 		@Override
@@ -178,7 +178,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				stage.addAction(Actions.run(showACard));
 			}
 		};
-		prevCardDialog = new PreviousCardDialog(game, skin) {
+		prevCardDialog = new ChallengeCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
 				stage.addAction(Actions.run(showACard));

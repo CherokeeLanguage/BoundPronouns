@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.cards.Card;
 
-public class PreviousCardDialog extends Dialog {
+public class ChallengeCardDialog extends Dialog {
 	
 	private int counter=0;
 	public void setCounter(int cardcount) {
@@ -29,7 +29,7 @@ public class PreviousCardDialog extends Dialog {
 
 	private final TextButton challenge_top;
 	
-	public PreviousCardDialog(BoundPronouns game, Skin skin) {
+	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
 		this.title="Challenge Card";
 		this.game=game;
