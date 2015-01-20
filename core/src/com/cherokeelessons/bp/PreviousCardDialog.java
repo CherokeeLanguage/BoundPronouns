@@ -16,7 +16,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.cards.Card;
 
 public class PreviousCardDialog extends Dialog {
-
+	
+	private int counter=0;
+	public void setCounter(int cardcount) {
+		counter=cardcount;
+		setTitle(title+" ["+cardcount+"]");
+	}
+	
+	private String title="";
+	
 	private final BoundPronouns game;
 
 	private final TextButton challenge_top;
@@ -24,7 +32,7 @@ public class PreviousCardDialog extends Dialog {
 	public PreviousCardDialog(BoundPronouns game, String title, Skin skin) {
 		super(title, skin);
 		this.game=game;
-		
+		this.title=title;
 		getStyle().titleFont=sans54();
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
@@ -110,7 +118,7 @@ public class PreviousCardDialog extends Dialog {
 		return game.manager.get("serif54.ttf", BitmapFont.class);
 	}
 	
-	private BitmapFont f36() {
+	private BitmapFont sans36() {
 		return game.manager.get("sans36.ttf", BitmapFont.class);
 	}
 	

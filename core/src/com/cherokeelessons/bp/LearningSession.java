@@ -56,7 +56,6 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			stage.addAction(Actions.run(showACard));
 		}
-
 	};
 	private final Json json;
 	private Runnable loadDeck = new Runnable() {
@@ -110,13 +109,16 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 
+	private int cardcount=0;
+	
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
 			ActiveCard card = getNextCard();
+			String card_id = card.pgroup + "+" + card.vgroup;
 			if (card.newCard) {
-				newCardDialog.setCard(cards_by_id.get(card.pgroup + "+"
-						+ card.vgroup));
+				newCardDialog.setCounter(cardcount++);
+				newCardDialog.setCard(cards_by_id.get(card_id));
 				newCardDialog.show(stage);
 				card.box = 0;
 				card.correct_in_a_row = 0;
@@ -125,8 +127,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				reInsertCard(card);
 				stage.addAction(Actions.run(saveStats));
 			} else {
-				prevCardDialog.setCard(cards_by_id.get(card.pgroup + "+"
-						+ card.vgroup));
+				prevCardDialog.setCounter(cardcount++);
+				prevCardDialog.setCard(cards_by_id.get(card_id));
 				prevCardDialog.show(stage);
 			}
 		}
@@ -183,6 +185,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 		};
 	}
+
 	/**
 	 * add this many cards to the Stat set first from the current stats set then
 	 * from the master Deck set
@@ -259,6 +262,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			nodupes.add(unique_id);
 		}
 	}
+
 	private void reInsertCard(ActiveCard card) {
 		if (current_active.stats.size() < 2) {
 			current_active.stats.add(card);

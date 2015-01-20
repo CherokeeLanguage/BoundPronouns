@@ -21,9 +21,12 @@ public class NewCardDialog extends Dialog {
 
 	private final TextButton challenge_top;
 
+	private String title="";
+
 	public NewCardDialog(BoundPronouns game, String title, Skin skin) {
 		super(title, skin);
 		this.game=game;
+		this.title=title;
 		
 		getStyle().titleFont=sans54();
 		getStyle().background=getDialogBackground();
@@ -84,7 +87,7 @@ public class NewCardDialog extends Dialog {
 			showCardSb.append(a);
 			showCardSb.append("\n");
 		}
-		answer.setText(showCardSb.toString());
+		answer.setText(showCardSb.toString());		
 	}
 
 	private TiledDrawable getDialogBackground() {
@@ -115,5 +118,11 @@ public class NewCardDialog extends Dialog {
 	
 	private BitmapFont serif36() {
 		return game.manager.get("serif36.ttf", BitmapFont.class);
+	}
+
+	private int counter=0;
+	public void setCounter(int cardcount) {
+		counter=cardcount;
+		setTitle(title+" ["+cardcount+"]");
 	}
 }
