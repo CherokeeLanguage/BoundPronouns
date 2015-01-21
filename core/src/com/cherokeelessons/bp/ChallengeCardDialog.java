@@ -1,7 +1,6 @@
 package com.cherokeelessons.bp;
 
 import java.util.Iterator;
-import java.util.List;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,10 +17,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
-import com.cherokeelessons.cards.AnswerSet;
+import com.cherokeelessons.cards.Answer;
+import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 
-public class ChallengeCardDialog extends Dialog {
+public abstract class ChallengeCardDialog extends Dialog {
 	
 	public void setCounter(int cardcount) {
 		setTitle(title+" ["+cardcount+"]");
@@ -44,10 +44,6 @@ public class ChallengeCardDialog extends Dialog {
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
 		
-		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font=sans54();
-		back.setStyle(back.getStyle());
-		button(back);
 		setModal(true);
 		setFillParent(true);
 		
@@ -83,9 +79,30 @@ public class ChallengeCardDialog extends Dialog {
 		tcell.fill();
 		
 		Cell<Table> bcell = getCell(getButtonTable());
-		bcell.expand();
-		bcell.fill();
+		bcell.expandX();
+		bcell.fillX().bottom();
+		
+		row();
+		add(appNavBar=new Table(skin)).left().expandX().bottom();
+		appNavBar.defaults().space(6);		
+		TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		navStyle.font=sans36();
+		TextButton main = new TextButton("Main Menu", navStyle);
+		appNavBar.row();
+		appNavBar.add(main).left().expandX();
+		main.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				doNav();
+				return true;
+			}
+		});
 	}
+	
+	protected abstract void  doNav();
+	
+	private Table appNavBar;
 
 	private final Label challenge_bottom;
 	
@@ -140,14 +157,15 @@ public class ChallengeCardDialog extends Dialog {
 		return game.manager.get("serif36.ttf", BitmapFont.class);
 	}
 
-	public void addAnswers(List<AnswerSet> answerSetsFor) {
+	
+	public void addAnswers(AnswerList answers) {
 		TextButtonStyle tbs = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		tbs.font=serif36();
-		 
+		final AnswerList selected=new AnswerList();
 		Table btable = getButtonTable();
 		btable.clearChildren();
 		boolean odd=true;
-		for (AnswerSet answer: answerSetsFor) {
+		for (final Answer answer: answers.list) {
 			if (odd) {
 				btable.row();
 			}
@@ -156,7 +174,15 @@ public class ChallengeCardDialog extends Dialog {
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
-					a.setColor(a.isChecked()?Color.WHITE:Color.GREEN);
+					if (a.isChecked()) {
+						//we are being unchecked
+						a.setColor(Color.WHITE);
+						selected.list.remove(answer);
+					} else {
+						//we are being checked
+						a.setColor(Color.GREEN);
+						selected.list.add(answer);
+					}
 					return true;
 				}
 			});
@@ -164,15 +190,17 @@ public class ChallengeCardDialog extends Dialog {
 			btable.add(a).fill().expandX();
 			odd=!odd;
 		}
-		btable.row();		
-		TextButton a = new TextButton("CHECK!", skin);
-		setObject(a, null);
+		btable.row();
+		TextButtonStyle tbs_check = new TextButtonStyle(tbs);
+		tbs_check.font=sans36();
+		TextButton a = new TextButton("CHECK!", tbs_check);
+		setObject(a, selected);
 		btable.add(a).colspan(2).fill().expandX();
 		btable.row();
-		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=sans36();
-		Label label = new Label("Select the correct answer or answers then hit 'CHECK'", ls);
-		btable.add(label).colspan(2);
+//		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
+//		ls.font=sans36();
+//		Label label = new Label("Select the correct answer or answers then hit 'CHECK'", ls);
+//		btable.add(label).colspan(2);
 	}
 
 }

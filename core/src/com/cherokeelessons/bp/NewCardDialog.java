@@ -5,17 +5,20 @@ import java.util.Iterator;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.cards.Card;
 
-public class NewCardDialog extends Dialog {
+public abstract class NewCardDialog extends Dialog {
 	
 	private final BoundPronouns game;
 
@@ -31,10 +34,6 @@ public class NewCardDialog extends Dialog {
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
 		
-		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font=sans54();
-		back.setStyle(back.getStyle());
-		button(back);
 		setModal(true);
 		setFillParent(true);
 		
@@ -66,8 +65,47 @@ public class NewCardDialog extends Dialog {
 		ctable.add(challenge_top).fill().expand();
 		ctable.row();
 		ctable.add(answer).fill().expand();
+		
+		Cell<Table> tcell = getCell(getContentTable());
+		tcell.expand();
+		tcell.fill();
+		
+		Cell<Table> bcell = getCell(getButtonTable());
+		bcell.expandX();
+		bcell.fillX().bottom();
+		
+		row();
+		add(appNavBar=new Table(skin)).left().expandX().bottom();
+		appNavBar.defaults().space(6);
+		
+		TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		navStyle.font=sans36();
+		TextButton main = new TextButton("Main Menu", navStyle);
+		appNavBar.row();		
+		appNavBar.add(main).left().expandX();
+		main.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				doNav();
+				return true;
+			}
+		});
+		
+		Table btable = getButtonTable();
+		btable.clearChildren();
+		btable.row();
+		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
+		tbs_check.font=sans36();
+		TextButton a = new TextButton("READY!", tbs_check);
+		btable.add(a).fill().expandX().bottom();
+		setObject(a, null);
 	}
+	
+	protected abstract void  doNav();
 
+	private Table appNavBar;
+	
 	private final Label challenge_bottom;
 	
 	private final TextButton answer;
@@ -112,7 +150,7 @@ public class NewCardDialog extends Dialog {
 		return game.manager.get("serif54.ttf", BitmapFont.class);
 	}
 	
-	private BitmapFont f36() {
+	private BitmapFont sans36() {
 		return game.manager.get("sans36.ttf", BitmapFont.class);
 	}
 	

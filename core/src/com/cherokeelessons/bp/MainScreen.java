@@ -128,7 +128,8 @@ public class MainScreen implements Screen {
 				slots.row();
 				slots.add(textb).pad(0).expand().fill();
 				textb.addListener(new ClickListener(){
-					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {						
+						chooseSlot.hide(null);
 						game.log(this, p0.path());
 						game.setScreen(new LearningSession(game, MainScreen.this, p0));
 						return true;

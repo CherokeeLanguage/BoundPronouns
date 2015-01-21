@@ -1,10 +1,16 @@
 package com.cherokeelessons.cards;
 
-public class AnswerSet {
-	public AnswerSet() {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Answer {
+	public static class AnswerList {
+		public List<Answer> list = new ArrayList<>(); 
+	}
+	public Answer() {
 	}
 
-	public AnswerSet(boolean correct, String answer, int distance) {
+	public Answer(boolean correct, String answer, int distance) {
 		super();
 		this.correct = correct;
 		this.answer = answer;

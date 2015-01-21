@@ -25,7 +25,8 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
-import com.cherokeelessons.cards.AnswerSet;
+import com.cherokeelessons.cards.Answer;
+import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 
@@ -69,7 +70,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			game.log(this, "Loading Deck...");
 			stage.addAction(Actions.run(loadStats));
-			deck = json.fromJson(Deck.class, slot.child("deck.json"));
+			deck = json.fromJson(Deck.class, BuildDeck.getDeckSlot().child("deck.json"));
 			cards_by_id.clear();
 			for (Card c : deck.cards) {
 				cards_by_id.put(c.pgroup + "+" + c.vgroup, c);
@@ -79,7 +80,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Runnable loadStats = new Runnable() {
 		@Override
 		public void run() {
-			game.log(this, "Loading Stats...");
+			game.log(this, "Loading Active Deck ...");
 			stage.addAction(Actions.run(initSet0));
 			if (!slot.child("stats.json").exists()) {
 				activeDeckFromDisk = new ActiveDeck();
@@ -151,9 +152,9 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * The sort only considers edit distance and does not factor in actual
 	 * String values - this is intentional.
 	 */
-	private Comparator<AnswerSet> byDistance = new Comparator<AnswerSet>() {
+	private Comparator<Answer> byDistance = new Comparator<Answer>() {
 		@Override
-		public int compare(AnswerSet o1, AnswerSet o2) {
+		public int compare(Answer o1, Answer o2) {
 			if (o1.correct != o2.correct && o1.correct) {
 				return -1;
 			}
@@ -167,14 +168,14 @@ public class LearningSession extends ChildScreen implements Screen {
 	private static final int maxAnswers = 4;
 	private static final int maxCorrect = 2;
 
-	private List<AnswerSet> getAnswerSetsFor(final ActiveCard active,
+	private AnswerList getAnswerSetsFor(final ActiveCard active,
 			final Card card, Deck deck) {
 		/**
 		 * contains copies of used answers, vgroups, and pgroups to prevent
 		 * duplicates
 		 */
 		Set<String> already = new HashSet<String>();
-		List<AnswerSet> set = new ArrayList<>();
+		AnswerList answers = new AnswerList();
 
 		/**
 		 * for temporary manipulation of list data so we don't mess with master
@@ -208,7 +209,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		int r = rand.nextInt(tmp_correct.size()) + 1;
 		for (int i = 0; i < r && i < maxCorrect; i++) {
 			String answer = tmp_correct.get(i);
-			set.add(0, new AnswerSet(true, answer, 0));
+			answers.list.add(0, new Answer(true, answer, 0));
 		}
 
 		/*
@@ -262,7 +263,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						if (ldistance < 1) {
 							continue;
 						}
-						set.add(new AnswerSet(false, t, ldistance));
+						answers.list.add(new Answer(false, t, ldistance));
 						already.add(deckCard.pgroup);
 						already.add(deckCard.vgroup);
 						already.add(t);
@@ -270,19 +271,19 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 				}
 			}
-			if (set.size() > maxAnswers) {
+			if (answers.list.size() > maxAnswers) {
 				break scanDeck;
 			}
 		}
-		Collections.sort(set, byDistance);
-		if (set.size() > maxAnswers) {
-			set.subList(maxAnswers, set.size()).clear();
+		Collections.sort(answers.list, byDistance);
+		if (answers.list.size() > maxAnswers) {
+			answers.list.subList(maxAnswers, answers.list.size()).clear();
 		}
-		for (AnswerSet a : set) {
+		for (Answer a : answers.list) {
 			game.log(this, a.toString());
 		}
-		Collections.shuffle(set);
-		return set;
+		Collections.shuffle(answers.list);
+		return answers;
 	}
 
 	private final Skin skin;
@@ -301,13 +302,12 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private int totalshows = 0;
 
-	public LearningSession(BoundPronouns game, Screen caller, FileHandle slot) {
-		super(game, caller);
+	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
+		super(_game, caller);
 		this.slot = slot;
 		slot.mkdirs();
-		if (!slot.child("deck.json").exists()) {
-			BuildDeck.getDeckSlot().child("deck.json")
-					.copyTo(slot.child("deck.json"));
+		if (slot.child("deck.json").exists()) {
+			slot.child("deck.json").delete();
 		}
 
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
@@ -328,11 +328,29 @@ public class LearningSession extends ChildScreen implements Screen {
 			protected void result(Object object) {
 				stage.addAction(Actions.run(showACard));
 			}
+
+			@Override
+			protected void doNav() {
+				game.setScreen(LearningSession.this.caller);
+				LearningSession.this.dispose();
+			}
 		};
 		challengeCardDialog = new ChallengeCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
 				stage.addAction(Actions.run(showACard));
+				if (object instanceof AnswerList) {
+					AnswerList al = (AnswerList) object;
+					for (Answer a: al.list) {
+						game.log(this, a.toString());
+					}
+				}
+			}
+
+			@Override
+			protected void doNav() {
+				game.setScreen(LearningSession.this.caller);
+				LearningSession.this.dispose();				
 			}
 		};
 	}
