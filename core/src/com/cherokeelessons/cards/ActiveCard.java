@@ -1,5 +1,8 @@
 package com.cherokeelessons.cards;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ActiveCard {
 	/**
 	 * id of card in main deck
@@ -24,8 +27,10 @@ public class ActiveCard {
 	public int tries_remaining;
 	/**
 	 * How many times has it been correct in a row?
+	 * RECORDED PER ANSWER.
 	 */
-	public int correct_in_a_row;
+	public Map<String, Integer> correct_in_a_row=new HashMap<>();
+	
 	/**
 	 * What Leitner proficiency box is this assigned to? This selects which
 	 * "interval" is used to add for the "show again secs" value

@@ -1,10 +1,14 @@
 package com.cherokeelessons.bp;
 
 import java.util.Iterator;
+import java.util.List;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -12,14 +16,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.cherokeelessons.cards.AnswerSet;
 import com.cherokeelessons.cards.Card;
 
 public class ChallengeCardDialog extends Dialog {
 	
-	private int counter=0;
 	public void setCounter(int cardcount) {
-		counter=cardcount;
 		setTitle(title+" ["+cardcount+"]");
 	}
 	
@@ -28,12 +32,14 @@ public class ChallengeCardDialog extends Dialog {
 	private final BoundPronouns game;
 
 	private final TextButton challenge_top;
+
+	private Skin skin;
 	
 	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
 		this.title="Challenge Card";
 		this.game=game;
-		
+		this.skin=skin;
 		getStyle().titleFont=sans54();
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
@@ -45,13 +51,12 @@ public class ChallengeCardDialog extends Dialog {
 		setModal(true);
 		setFillParent(true);
 		
-		setTitle(title);
-		
 		challenge_top=new TextButton("", skin);
 		challenge_top.setDisabled(true);
 		challenge_bottom=new Label("", skin);
 		answer=new TextButton("", skin);
 		answer.setDisabled(true);
+		answer.setVisible(false);
 		
 		TextButtonStyle chr_san_large = new TextButtonStyle(challenge_top.getStyle());		
 		chr_san_large.font=sans_large();
@@ -72,6 +77,14 @@ public class ChallengeCardDialog extends Dialog {
 		ctable.add(challenge_top).fill().expand();
 		ctable.row();
 		ctable.add(answer).fill().expand();
+		
+		Cell<Table> tcell = getCell(getContentTable());
+		tcell.expand();
+		tcell.fill();
+		
+		Cell<Table> bcell = getCell(getButtonTable());
+		bcell.expand();
+		bcell.fill();
 	}
 
 	private final Label challenge_bottom;
@@ -125,6 +138,41 @@ public class ChallengeCardDialog extends Dialog {
 	
 	private BitmapFont serif36() {
 		return game.manager.get("serif36.ttf", BitmapFont.class);
+	}
+
+	public void addAnswers(List<AnswerSet> answerSetsFor) {
+		TextButtonStyle tbs = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
+		tbs.font=serif36();
+		 
+		Table btable = getButtonTable();
+		btable.clearChildren();
+		boolean odd=true;
+		for (AnswerSet answer: answerSetsFor) {
+			if (odd) {
+				btable.row();
+			}
+			final TextButton a = new TextButton(answer.answer, tbs);
+			a.addListener(new ClickListener(){
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					a.setColor(a.isChecked()?Color.WHITE:Color.BLUE);
+					return true;
+				}
+			});
+			a.setColor(Color.WHITE);
+			btable.add(a).fill().expandX();
+			odd=!odd;
+		}
+		btable.row();		
+		TextButton a = new TextButton("CHECK!", skin);
+		setObject(a, null);
+		btable.add(a).colspan(2).fill().expandX();
+		btable.row();
+		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
+		ls.font=sans36();
+		Label label = new Label("Select the correct answer or answers then hit 'CHECK'", ls);
+		btable.add(label).colspan(2);
 	}
 
 }

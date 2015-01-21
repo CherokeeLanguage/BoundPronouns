@@ -1,12 +1,17 @@
 package com.cherokeelessons.bp;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
@@ -20,6 +25,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
+import com.cherokeelessons.cards.AnswerSet;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 
@@ -93,7 +99,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final Set<String> nodupes = new HashSet<>();
 
-	private final ChallengeCardDialog prevCardDialog;
+	private final ChallengeCardDialog challengeCardDialog;
 
 	private Runnable saveStats = new Runnable() {
 		@Override
@@ -109,30 +115,175 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 
-	private int cardcount=0;
-	
+	private int cardcount = 0;
+
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
 			ActiveCard card = getNextCard();
 			String card_id = card.pgroup + "+" + card.vgroup;
+			Card the_card = cards_by_id.get(card_id);
 			if (card.newCard) {
 				newCardDialog.setCounter(cardcount++);
-				newCardDialog.setCard(cards_by_id.get(card_id));
+				newCardDialog.setCard(the_card);
 				newCardDialog.show(stage);
 				card.box = 0;
-				card.correct_in_a_row = 0;
+				card.correct_in_a_row.clear();
 				card.newCard = false;
 				card.show_again_ms = Deck.intervals.get(0);
 				reInsertCard(card);
 				stage.addAction(Actions.run(saveStats));
 			} else {
-				prevCardDialog.setCounter(cardcount++);
-				prevCardDialog.setCard(cards_by_id.get(card_id));
-				prevCardDialog.show(stage);
+				challengeCardDialog.setCounter(cardcount++);
+				challengeCardDialog.setCard(the_card);
+				challengeCardDialog.show(stage);
+				challengeCardDialog.addAnswers(getAnswerSetsFor(card, the_card, deck));
+				card.tries_remaining--;
 			}
 		}
+
 	};
+
+	private final Random rand = new Random();
+
+	/**
+	 * Sort answers by edit distance so the list can be trimmed to size easily.
+	 * The sort only considers edit distance and does not factor in actual
+	 * String values - this is intentional.
+	 */
+	private Comparator<AnswerSet> byDistance = new Comparator<AnswerSet>() {
+		@Override
+		public int compare(AnswerSet o1, AnswerSet o2) {
+			if (o1.correct != o2.correct && o1.correct) {
+				return -1;
+			}
+			if (o2.correct) {
+				return 1;
+			}
+			return Integer.compare(o1.distance, o2.distance);
+		}
+	};
+
+	private static final int maxAnswers = 4;
+	private static final int maxCorrect = 2;
+
+	private List<AnswerSet> getAnswerSetsFor(final ActiveCard active,
+			final Card card, Deck deck) {
+		/**
+		 * contains copies of used answers, vgroups, and pgroups to prevent
+		 * duplicates
+		 */
+		Set<String> already = new HashSet<String>();
+		List<AnswerSet> set = new ArrayList<>();
+
+		/**
+		 * for temporary manipulation of list data so we don't mess with master
+		 * copies in cards, etc.
+		 */
+		List<String> tmp_answers = new ArrayList<String>();
+		List<String> tmp_correct = new ArrayList<String>();
+
+		already.add(card.pgroup);
+		already.add(card.vgroup);
+		already.addAll(card.answer);
+
+		tmp_correct.clear();
+		tmp_correct.addAll(card.answer);
+		/**
+		 * sort answers from least known to most known
+		 */
+		Collections.sort(tmp_correct, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				Integer i1 = active.correct_in_a_row.get(o1);
+				Integer i2 = active.correct_in_a_row.get(o2);
+				i1 = (i1 == null ? 0 : i1);
+				i2 = (i2 == null ? 0 : i2);
+				if (i1 != i2) {
+					return Integer.compare(i1, i2);
+				}
+				return o1.compareTo(o2);
+			}
+		});
+		int r = rand.nextInt(tmp_correct.size()) + 1;
+		for (int i = 0; i < r && i < maxCorrect; i++) {
+			String answer = tmp_correct.get(i);
+			set.add(0, new AnswerSet(true, answer, 0));
+		}
+
+		/*
+		 * look for "similar" looking answers
+		 */
+		Deck tmp = new Deck();
+		tmp.cards.addAll(deck.cards);
+		Collections.shuffle(tmp.cards);
+		scanDeck: for (int distance = 1; distance < 10; distance++) {
+			for (Card deckCard : deck.cards) {
+				/*
+				 * make sure we have unique pronouns for each wrong answer
+				 */
+				if (already.contains(deckCard.pgroup)) {
+					continue;
+				}
+				/*
+				 * make sure we keep bare pronouns with bare pronouns and
+				 * vice-versa
+				 */
+				if (StringUtils.isBlank(card.vgroup) != StringUtils
+						.isBlank(deckCard.vgroup)) {
+					continue;
+				}
+				/*
+				 * keep verbs unique as well
+				 */
+				if (!StringUtils.isBlank(deckCard.vgroup)) {
+					if (already.contains(deckCard.vgroup)) {
+						continue;
+					}
+				}
+				/**
+				 * if edit distance is close enough, add it, then add pgroup,
+				 * vgroup and selected answer to already used list
+				 */
+
+				tmp_answers.clear();
+				tmp_answers.addAll(deckCard.answer);
+				Collections.shuffle(tmp_answers);
+				addWrongAnswer: for (String t : tmp_answers) {
+					if (already.contains(t)) {
+						continue;
+					}
+					tmp_correct.clear();
+					tmp_correct.addAll(card.answer);
+					Collections.shuffle(tmp_correct);
+					for (String s : card.answer) {
+						int ldistance = StringUtils.getLevenshteinDistance(s,
+								t, distance);
+						if (ldistance < 1) {
+							continue;
+						}
+						set.add(new AnswerSet(false, t, ldistance));
+						already.add(deckCard.pgroup);
+						already.add(deckCard.vgroup);
+						already.add(t);
+						break addWrongAnswer;
+					}
+				}
+			}
+			if (set.size() > maxAnswers) {
+				break scanDeck;
+			}
+		}
+		Collections.sort(set, byDistance);
+		if (set.size() > maxAnswers) {
+			set.subList(maxAnswers, set.size()).clear();
+		}
+		for (AnswerSet a : set) {
+			game.log(this, a.toString());
+		}
+		Collections.shuffle(set);
+		return set;
+	}
 
 	private final Skin skin;
 
@@ -178,7 +329,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				stage.addAction(Actions.run(showACard));
 			}
 		};
-		prevCardDialog = new ChallengeCardDialog(game, skin) {
+		challengeCardDialog = new ChallengeCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
 				stage.addAction(Actions.run(showACard));
@@ -203,7 +354,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (next.show_again_ms > 0) {
 				continue;
 			}
-			next.correct_in_a_row = 0;
+			next.correct_in_a_row.clear();
 			next.tries_remaining = RT * 2;
 			set.stats.add(next);
 			needed--;
@@ -221,7 +372,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			ActiveCard stat = new ActiveCard();
 			stat.box = 0;
-			stat.correct_in_a_row = 0;
+			stat.correct_in_a_row.clear();
 			stat.id = next.id;
 			stat.newCard = true;
 			stat.pgroup = next.pgroup;
