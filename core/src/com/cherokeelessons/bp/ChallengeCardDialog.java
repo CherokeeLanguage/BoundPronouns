@@ -156,7 +156,7 @@ public class ChallengeCardDialog extends Dialog {
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
-					a.setColor(a.isChecked()?Color.WHITE:Color.BLUE);
+					a.setColor(a.isChecked()?Color.WHITE:Color.GREEN);
 					return true;
 				}
 			});
