@@ -14,12 +14,20 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
@@ -31,6 +39,7 @@ import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 
 public class LearningSession extends ChildScreen implements Screen {
+
 
 	private static final int MaxTotalShows = 100;
 
@@ -70,7 +79,8 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			game.log(this, "Loading Deck...");
 			stage.addAction(Actions.run(loadStats));
-			deck = json.fromJson(Deck.class, BuildDeck.getDeckSlot().child("deck.json"));
+			deck = json.fromJson(Deck.class,
+					BuildDeck.getDeckSlot().child("deck.json"));
 			cards_by_id.clear();
 			for (Card c : deck.cards) {
 				cards_by_id.put(c.pgroup + "+" + c.vgroup, c);
@@ -121,25 +131,26 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
-			ActiveCard card = getNextCard();
-			String card_id = card.pgroup + "+" + card.vgroup;
-			Card the_card = cards_by_id.get(card_id);
-			if (card.newCard) {
+			final ActiveCard activeCard = getNextCard();
+			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
+			final Card deckCard = cards_by_id.get(card_id);
+			if (activeCard.newCard) {
 				newCardDialog.setCounter(cardcount++);
-				newCardDialog.setCard(the_card);
+				newCardDialog.setCard(deckCard);
 				newCardDialog.show(stage);
-				card.box = 0;
-				card.correct_in_a_row.clear();
-				card.newCard = false;
-				card.show_again_ms = Deck.intervals.get(0);
-				reInsertCard(card);
+				activeCard.box = 0;
+				activeCard.correct_in_a_row.clear();
+				activeCard.newCard = false;
+				activeCard.show_again_ms = Deck.intervals.get(0);
+				reInsertCard(activeCard);
 				stage.addAction(Actions.run(saveStats));
 			} else {
 				challengeCardDialog.setCounter(cardcount++);
-				challengeCardDialog.setCard(the_card);
+				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
-				challengeCardDialog.addAnswers(getAnswerSetsFor(card, the_card, deck));
-				card.tries_remaining--;
+				challengeCardDialog.addAnswers(getAnswerSetsFor(activeCard,
+						deckCard, deck));
+				activeCard.tries_remaining--;
 			}
 		}
 
@@ -302,6 +313,14 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private int totalshows = 0;
 
+	private Sound ticktock;
+
+	private Sound cow;
+
+	private Sound buzzer;
+
+	private Sound ding;
+
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
 		this.slot = slot;
@@ -335,26 +354,78 @@ public class LearningSession extends ChildScreen implements Screen {
 				LearningSession.this.dispose();
 			}
 		};
-		challengeCardDialog = new ChallengeCardDialog(game, skin) {
+		challengeCardDialog = new ChallengeCardDialog(game, skin) {			
+			Runnable hideThisCard = new Runnable() {
+				@Override
+				public void run() {
+					hide();
+				}
+			};
+
 			@Override
 			protected void result(Object object) {
-				stage.addAction(Actions.run(showACard));
+				cancel();
+				AnswerList al;
 				if (object instanceof AnswerList) {
-					AnswerList al = (AnswerList) object;
-					for (Answer a: al.list) {
-						game.log(this, a.toString());
+					al = (AnswerList) object;
+				} else {
+					al=new AnswerList();
+				}
+				boolean buzzer=false;
+				for (Actor b: getButtonTable().getChildren()) {
+					if (b instanceof Button) {
+						((Button)b).setDisabled(true);
+					}
+					if (b instanceof TextButton) {
+						TextButton tb = (TextButton) b;
+						if (tb.getUserObject() != null
+								&& tb.getUserObject() instanceof Answer) {
+							Answer ans = (Answer) tb.getUserObject();
+
+							if (!tb.isChecked() && !ans.correct) {
+								tb.addAction(Actions.fadeOut(.2f));
+							}
+							if (tb.isChecked() && !ans.correct) {
+								ColorAction toRed = Actions.color(Color.RED, .4f);
+								tb.addAction(toRed);
+								tb.setText(BoundPronouns.HEAVY_BALLOT_X+" "+ans.answer);
+								buzzer = true;
+							}
+							if (!tb.isChecked() && ans.correct) {
+								ColorAction toGreen = Actions.color(Color.GREEN, .4f);
+								ColorAction toClear = Actions.color(Color.CLEAR, .2f);
+								SequenceAction sequence = Actions.sequence(toClear, toGreen);
+								tb.addAction(Actions.repeat(2, sequence));
+								tb.setText(BoundPronouns.RIGHT_ARROW+" "+ans.answer);
+								buzzer = true;
+							}
+							if (tb.isChecked() && ans.correct) {
+								ColorAction toGreen = Actions.color(Color.GREEN, .2f);
+								tb.addAction(toGreen);
+								buzzer = true;
+								tb.setText(BoundPronouns.HEAVY_CHECK_MARK+" "+ans.answer);
+							}
+
+						}
 					}
 				}
+				stage.addAction(Actions.delay(buzzer?5.9f:.9f , Actions.run(hideThisCard)));
+				stage.addAction(Actions.delay(buzzer?6f:1f, Actions.run(showACard)));
 			}
+
 
 			@Override
 			protected void doNav() {
 				game.setScreen(LearningSession.this.caller);
-				LearningSession.this.dispose();				
+				LearningSession.this.dispose();
 			}
 		};
 	}
 
+	private BitmapFont serifb36() {
+		return game.manager.get("serifb36.ttf", BitmapFont.class);
+	}
+	
 	/**
 	 * add this many cards to the Stat set first from the current stats set then
 	 * from the master Deck set
@@ -461,6 +532,33 @@ public class LearningSession extends ChildScreen implements Screen {
 			ActiveCard next = istat.next();
 			next.show_again_ms -= since;
 		}
+	}
+	
+	@Override
+	public void dispose() {
+		super.dispose();
+		game.manager.unload(BoundPronouns.SND_DING);
+		game.manager.unload(BoundPronouns.SND_BUZZ);
+		game.manager.unload(BoundPronouns.SND_COW);
+		game.manager.unload(BoundPronouns.SND_TICKTOCK);
+		buzzer=null;
+		cow=null;
+		ticktock=null;
+	}
+	
+	@Override
+	public void show() {
+		super.show();
+		game.manager.load(BoundPronouns.SND_DING, Sound.class);
+		game.manager.load(BoundPronouns.SND_BUZZ, Sound.class);
+		game.manager.load(BoundPronouns.SND_COW, Sound.class);
+		game.manager.load(BoundPronouns.SND_TICKTOCK, Sound.class);
+		game.manager.finishLoading();
+		ding = game.manager.get(BoundPronouns.SND_DING, Sound.class);
+		ding.play();
+		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
+		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
+		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
 	}
 
 }

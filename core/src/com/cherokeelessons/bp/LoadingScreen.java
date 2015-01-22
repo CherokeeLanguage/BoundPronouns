@@ -6,16 +6,14 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class LoadingScreen implements Screen {
 
-	private static final boolean doHowl = false;
+	private static final boolean doHowl = true;
 	private final BoundPronouns game;
 	private final FitViewport viewport;
 	private final Stage stage;
@@ -56,8 +54,8 @@ public class LoadingScreen implements Screen {
 				return;
 			}
 		if (doHowl) {
-			if (howl == null && game.manager.isLoaded(BoundPronouns.SND_HOWL)) {
-				howl = game.manager.get(BoundPronouns.SND_HOWL, Music.class);
+			if (howl == null && game.manager.isLoaded(BoundPronouns.SND_COYOTE)) {
+				howl = game.manager.get(BoundPronouns.SND_COYOTE, Music.class);
 				howl.setLooping(false);
 				howl.setVolume(1f);
 				howl.play();
@@ -114,7 +112,7 @@ public class LoadingScreen implements Screen {
 		if (howl != null) {
 			howl.stop();
 		}
-		game.manager.unload(BoundPronouns.SND_HOWL);
+		game.manager.unload(BoundPronouns.SND_COYOTE);
 		game.manager.unload(BoundPronouns.IMG_LOADING);
 	}
 

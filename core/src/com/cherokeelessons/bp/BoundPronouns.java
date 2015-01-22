@@ -36,6 +36,7 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 public class BoundPronouns extends Game {
 
 	public static final String SKIN = "skins/holo/Holo-light-xhdpi.json";
+	
 	public static final String DIAMOND = "\u25c8";
 	public static final String TRIANGLE_ASC = "\u25bc";
 	public static final String TRIANGLE_DESC = "\u25b2";
@@ -50,22 +51,33 @@ public class BoundPronouns extends Game {
 	public static final String UNDERX = "\u0353";
 	public static final String UNDERCUBE = "\u033B";
 	public static final String DSUNDERLINE = "\u0347";
+	public static final String HEAVY_BALLOT_X = "\u2717";
+	public static final String HEAVY_CHECK_MARK = "\u2713";
+	public static final String LEFT_ARROW = "\u21e6";
+	public static final String RIGHT_ARROW = "\u27a1";
 
 	public static final String SPECIALS;
 	public static final String IMG_SCROLLBAR = "scrollpane/basic-vbar.png";
 	public static final String IMG_SCROLLBUTTON = "scrollpane/basic-vbutton.png";
-	
+
 	public static final String IMG_LOADING = "images/coyote.png";
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
 	public static final String IMG_MAYAN_DIALOG = "images/MayanStoneSmall.png";
+	
 	public static final String SND_MENU = "audio/click.wav";
-	public static final String SND_HOWL = "audio/wolfhowls.ogg";
+	public static final String SND_COYOTE = "audio/coyote.ogg";
+	public static final String SND_BUZZ = "audio/buzzer2.ogg";
+	public static final String SND_COW = "audio/cow1.ogg";
+	public static final String SND_TICKTOCK = "audio/ticktock.ogg";
+	public static final String SND_DING = "audio/ding.ogg";
+	
 	public static final float BACK_WIDTH = 168f;
 	static {
 		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
-				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC;
+				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC
+				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW;
 	}
 
 	public SpriteBatch batch;
@@ -84,8 +96,7 @@ public class BoundPronouns extends Game {
 	}
 
 	private void initManager() {
-		
-		
+
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.setLoader(FreeTypeFontGenerator.class,
 				new FreeTypeFontGeneratorLoader(resolver));
@@ -94,12 +105,12 @@ public class BoundPronouns extends Game {
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(
 				resolver));
 
-		MusicParameter mus_param=new MusicParameter();
-		manager.load(SND_HOWL, Music.class, mus_param);
-		
-		SoundParameter snd_param=new SoundParameter();
-		manager.load(SND_MENU, Sound.class, snd_param);		
-		
+		MusicParameter mus_param = new MusicParameter();
+		manager.load(SND_COYOTE, Music.class, mus_param);
+
+		SoundParameter snd_param = new SoundParameter();
+		manager.load(SND_MENU, Sound.class, snd_param);
+
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Linear;
 		param.minFilter = TextureFilter.Linear;
@@ -111,13 +122,15 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_SCROLLBAR, Texture.class, param);
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
 		manager.load(SKIN, Skin.class);
-		
+
 		addFreeSerifFor(36);
+		addFreeSerifBoldFor(36);
 		addFreeSerifFor(54);
-		
+
 		addFreeSansFor(36);
 		addFreeSansFor(54);
 		addFreeSansFor(72);
+		
 	}
 
 	private void addFreeSansFor(int size) {
@@ -150,7 +163,7 @@ public class BoundPronouns extends Game {
 		manager.load("sans" + size + ".ttf", BitmapFont.class, font);
 		return;
 	}
-	
+
 	private void addFreeSerifFor(int size) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
@@ -182,6 +195,37 @@ public class BoundPronouns extends Game {
 		return;
 	}
 
+	private void addFreeSerifBoldFor(int size) {
+		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
+		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
+			String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		for (char c : "ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ".toCharArray()) {
+			String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		for (char c : SPECIALS.toCharArray()) {
+			String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		FreeTypeFontLoaderParameter font = new FreeTypeFontLoaderParameter();
+		font.fontFileName = "otf/FreeSerifBold.otf";
+		font.fontParameters.characters = defaultChars;
+		font.fontParameters.kerning = true;
+		font.fontParameters.size = size;
+		font.fontParameters.magFilter = TextureFilter.Linear;
+		font.fontParameters.minFilter = TextureFilter.Linear;
+		manager.load("serifb" + size + ".ttf", BitmapFont.class, font);
+		return;
+	}
+
 	@Override
 	public void render() {
 		super.render();
@@ -207,17 +251,18 @@ public class BoundPronouns extends Game {
 	}
 
 	private Sound click = null;
+
 	public void click() {
-		if (click==null) {
-			click=manager.get(SND_MENU);
+		if (click == null) {
+			click = manager.get(SND_MENU);
 		}
 		click.play(1f);
 	}
-	
-	private static final List<DataSet> pronouns=new ArrayList<BuildDeck.DataSet>();
-	
+
+	private static final List<DataSet> pronouns = new ArrayList<BuildDeck.DataSet>();
+
 	public static List<DataSet> loadPronounRecords() {
-		if (pronouns.size()!=0) {
+		if (pronouns.size() != 0) {
 			return new ArrayList<>(pronouns);
 		}
 		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list.csv");
@@ -227,13 +272,13 @@ public class BoundPronouns extends Game {
 			records = parse.getRecords();
 		} catch (IOException e) {
 			return null;
-		}		
-		
+		}
+
 		String prevLatin = "";
 		String prevChr = "";
 		for (CSVRecord record : records) {
-			String vtmode=record.get(0);
-			if (StringUtils.isBlank(vtmode)){
+			String vtmode = record.get(0);
+			if (StringUtils.isBlank(vtmode)) {
 				continue;
 			}
 			String chr = record.get(1);
@@ -241,21 +286,21 @@ public class BoundPronouns extends Game {
 				continue;
 			}
 			String latin = record.get(2);
-			String defin = record.get(3)+" + "+record.get(4);
-			if (StringUtils.isBlank(record.get(3))){
+			String defin = record.get(3) + " + " + record.get(4);
+			if (StringUtils.isBlank(record.get(3))) {
 				String tmp = record.get(4);
-				passive:{
-					if (tmp.equalsIgnoreCase("he")){
-						defin = tmp+" (was being)";
+				passive: {
+					if (tmp.equalsIgnoreCase("he")) {
+						defin = tmp + " (was being)";
 						break passive;
 					}
-					if (tmp.equalsIgnoreCase("i")){
-						defin = tmp+" (was being)";
+					if (tmp.equalsIgnoreCase("i")) {
+						defin = tmp + " (was being)";
 						break passive;
 					}
-					defin = tmp+" (were being)";
+					defin = tmp + " (were being)";
 					break passive;
-				}				
+				}
 			}
 			if (StringUtils.isBlank(latin)) {
 				latin = prevLatin;
@@ -264,9 +309,9 @@ public class BoundPronouns extends Game {
 				chr = prevChr;
 			}
 			DataSet data = new DataSet();
-			data.chr=chr;
-			data.latin=latin;
-			data.def=defin;
+			data.chr = chr;
+			data.latin = latin;
+			data.def = defin;
 			pronouns.add(data);
 			prevLatin = latin;
 			prevChr = chr;

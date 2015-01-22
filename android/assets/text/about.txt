@@ -3,16 +3,15 @@ Created by Michael Joyner
 Bound Pronouns from the official Cherokee English Dictionary as published by the Cherokee Nation of Oklahoma.
 
 Uses CC0 artwork from http://opengameart.org/
-Uses CC0 artwork from https://openclipart.org/
+Uses CC0 artwork from http://openclipart.org/
 
+Uses CC0 audio from http://www.freesound.org/
 Uses CC0 audio from http://opengameart.org/
 Uses CC0 audio from http://archive.org/
-Uses CC0 audio from U.S. Fish and Wildlife Service
 
 Uses "Holo" theme from posting on LibGDX forums.
 
-Uses the "FreeSans" font for Cherokee Syllabary and English text rendering.
-Uses some symbol glyphs from the "DejaVuSans" font.
+Uses the "FreeSans" and "FreeSerif" fonts for Cherokee Syllabary and English text rendering.
 
 Powered by LibGDX
 Powered by Apache Commons Lang3
