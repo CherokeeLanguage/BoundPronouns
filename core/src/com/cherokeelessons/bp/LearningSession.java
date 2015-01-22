@@ -21,10 +21,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
+import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -40,6 +43,7 @@ import com.cherokeelessons.cards.Deck;
 
 public class LearningSession extends ChildScreen implements Screen {
 
+	private static final float MaxTimePerCard_sec = 15f;
 
 	private static final int MaxTotalShows = 100;
 
@@ -56,7 +60,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Runnable initSet0 = new Runnable() {
 		@Override
 		public void run() {
-			// stage.addAction(Actions.run(saveStats));
 			nodupes.clear();
 			game.log(this, "Loading Set 0...");
 
@@ -127,14 +130,19 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	private int cardcount = 0;
+	private float elapsed_sec;
+	private long ticktock_id;
 
 	private Runnable showACard = new Runnable() {
+
 		@Override
 		public void run() {
+			stage.addAction(Actions.run(saveStats));
 			final ActiveCard activeCard = getNextCard();
 			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
 			final Card deckCard = cards_by_id.get(card_id);
 			if (activeCard.newCard) {
+				ticktock.stop();
 				newCardDialog.setCounter(cardcount++);
 				newCardDialog.setCard(deckCard);
 				newCardDialog.show(stage);
@@ -143,15 +151,34 @@ public class LearningSession extends ChildScreen implements Screen {
 				activeCard.newCard = false;
 				activeCard.show_again_ms = Deck.intervals.get(0);
 				reInsertCard(activeCard);
-				stage.addAction(Actions.run(saveStats));
 			} else {
+				ticktock_id = ticktock.play();
+				ticktock.setLooping(ticktock_id, true);
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
 				challengeCardDialog.addAnswers(getAnswerSetsFor(activeCard,
 						deckCard, deck));
+				challengeCardDialog.addAction(Actions.delay(MaxTimePerCard_sec,
+						Actions.run(new Runnable() {
+							@Override
+							public void run() {
+								challengeCardDialog.result(null);
+							}
+						})));
+				for (float x = MaxTimePerCard_sec; x >= 0; x--) {
+					final float timer = MaxTimePerCard_sec - x;
+					DelayAction updater = Actions.delay(x - .05f, Actions.run(new Runnable() {
+						@Override
+						public void run() {
+							challengeCardDialog.setTimer(timer);
+						}
+					}));
+					challengeCardDialog.addAction(updater);
+				}
 				activeCard.tries_remaining--;
 			}
+			elapsed_sec = 0f;
 		}
 
 	};
@@ -345,6 +372,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
+				this.clearActions();
 				stage.addAction(Actions.run(showACard));
 			}
 
@@ -353,8 +381,13 @@ public class LearningSession extends ChildScreen implements Screen {
 				game.setScreen(LearningSession.this.caller);
 				LearningSession.this.dispose();
 			}
+
+			@Override
+			public Dialog show(Stage stage) {
+				return super.show(stage);
+			}
 		};
-		challengeCardDialog = new ChallengeCardDialog(game, skin) {			
+		challengeCardDialog = new ChallengeCardDialog(game, skin) {
 			Runnable hideThisCard = new Runnable() {
 				@Override
 				public void run() {
@@ -364,17 +397,23 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			@Override
 			protected void result(Object object) {
+				this.clearActions();
+				setTimer(0);
+				ticktock.stop();
 				cancel();
-				AnswerList al;
-				if (object instanceof AnswerList) {
-					al = (AnswerList) object;
-				} else {
-					al=new AnswerList();
-				}
-				boolean buzzer=false;
-				for (Actor b: getButtonTable().getChildren()) {
+				/**
+				 * set when any wrong
+				 */
+				boolean doBuzzer = false;
+				/**
+				 * worst case scenario, all wrong ones marked and no right ones
+				 * marked, gets set to false if ANY combination of
+				 * checked/unchecked is valid
+				 */
+				boolean doCow = true;
+				for (Actor b : getButtonTable().getChildren()) {
 					if (b instanceof Button) {
-						((Button)b).setDisabled(true);
+						((Button) b).setDisabled(true);
 					}
 					if (b instanceof TextButton) {
 						TextButton tb = (TextButton) b;
@@ -384,48 +423,67 @@ public class LearningSession extends ChildScreen implements Screen {
 
 							if (!tb.isChecked() && !ans.correct) {
 								tb.addAction(Actions.fadeOut(.2f));
+								doCow = false;
 							}
 							if (tb.isChecked() && !ans.correct) {
-								ColorAction toRed = Actions.color(Color.RED, .4f);
+								ColorAction toRed = Actions.color(Color.RED,
+										.4f);
 								tb.addAction(toRed);
-								tb.setText(BoundPronouns.HEAVY_BALLOT_X+" "+ans.answer);
-								buzzer = true;
+								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
+										+ ans.answer);
+								doBuzzer = true;
 							}
 							if (!tb.isChecked() && ans.correct) {
-								ColorAction toGreen = Actions.color(Color.GREEN, .4f);
-								ColorAction toClear = Actions.color(Color.CLEAR, .2f);
-								SequenceAction sequence = Actions.sequence(toClear, toGreen);
+								ColorAction toGreen = Actions.color(
+										Color.GREEN, .4f);
+								ColorAction toClear = Actions.color(
+										Color.CLEAR, .2f);
+								SequenceAction sequence = Actions.sequence(
+										toClear, toGreen);
 								tb.addAction(Actions.repeat(2, sequence));
-								tb.setText(BoundPronouns.RIGHT_ARROW+" "+ans.answer);
-								buzzer = true;
+								tb.setText(BoundPronouns.RIGHT_ARROW + " "
+										+ ans.answer);
+								doBuzzer = true;
 							}
 							if (tb.isChecked() && ans.correct) {
-								ColorAction toGreen = Actions.color(Color.GREEN, .2f);
+								ColorAction toGreen = Actions.color(
+										Color.GREEN, .2f);
 								tb.addAction(toGreen);
-								buzzer = true;
-								tb.setText(BoundPronouns.HEAVY_CHECK_MARK+" "+ans.answer);
+								doCow = false;
+								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
+										+ ans.answer);
 							}
-
 						}
 					}
 				}
-				stage.addAction(Actions.delay(buzzer?5.9f:.9f , Actions.run(hideThisCard)));
-				stage.addAction(Actions.delay(buzzer?6f:1f, Actions.run(showACard)));
+				if (doCow) {
+					cow.play();
+				}
+				if (doBuzzer && !doCow) {
+					buzzer.play();
+				}
+				if (!doCow && !doBuzzer) {
+					ding.play();
+				}
+				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
+						Actions.run(hideThisCard)));
+				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
+						Actions.run(showACard)));
 			}
-
 
 			@Override
 			protected void doNav() {
 				game.setScreen(LearningSession.this.caller);
 				LearningSession.this.dispose();
 			}
+
 		};
 	}
 
 	private BitmapFont serifb36() {
 		return game.manager.get("serifb36.ttf", BitmapFont.class);
 	}
-	
+
 	/**
 	 * add this many cards to the Stat set first from the current stats set then
 	 * from the master Deck set
@@ -533,7 +591,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			next.show_again_ms -= since;
 		}
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -541,11 +599,11 @@ public class LearningSession extends ChildScreen implements Screen {
 		game.manager.unload(BoundPronouns.SND_BUZZ);
 		game.manager.unload(BoundPronouns.SND_COW);
 		game.manager.unload(BoundPronouns.SND_TICKTOCK);
-		buzzer=null;
-		cow=null;
-		ticktock=null;
+		buzzer = null;
+		cow = null;
+		ticktock = null;
 	}
-	
+
 	@Override
 	public void show() {
 		super.show();
@@ -559,6 +617,11 @@ public class LearningSession extends ChildScreen implements Screen {
 		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
 		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
 		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
+	}
+
+	@Override
+	public void render(float delta) {
+		super.render(delta);
 	}
 
 }

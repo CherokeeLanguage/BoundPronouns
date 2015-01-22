@@ -25,7 +25,7 @@ public abstract class NewCardDialog extends Dialog {
 	private final TextButton challenge_top;
 
 	private String title="";
-
+	
 	public NewCardDialog(BoundPronouns game, Skin skin) {
 		super("New Vocabulary Card", skin);
 		this.game=game;
@@ -100,6 +100,11 @@ public abstract class NewCardDialog extends Dialog {
 		TextButton a = new TextButton("READY!", tbs_check);
 		btable.add(a).fill().expandX().bottom();
 		setObject(a, null);
+	}
+	
+	@Override
+	public void act(float delta) {
+		super.act(delta);
 	}
 	
 	protected abstract void  doNav();

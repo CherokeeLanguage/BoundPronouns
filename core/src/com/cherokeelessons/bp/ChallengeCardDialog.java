@@ -23,6 +23,12 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 
 public abstract class ChallengeCardDialog extends Dialog {
+	
+	
+	@Override
+	public void act(float delta) {
+		super.act(delta);
+	}
 
 	public void setCounter(int cardcount) {
 		setTitle(title + " [" + cardcount + "]");
@@ -81,7 +87,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		bcell.fillX().bottom();
 
 		row();
-		add(appNavBar = new Table(skin)).left().expandX().bottom();
+		add(appNavBar = new Table(skin)).expandX().fillX().bottom();
 		appNavBar.defaults().space(6);
 		TextButtonStyle navStyle = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
@@ -97,6 +103,17 @@ public abstract class ChallengeCardDialog extends Dialog {
 				return true;
 			}
 		});
+		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
+		ls.font=sans36();
+		timer = new Label("--", ls);
+		appNavBar.add(timer).right().expandX();
+	}
+	
+	private Label timer;
+	public void setTimer(float time) {
+		int x = (int)time;
+		String z = (x<10 ? "0" : "") + x;
+		timer.setText(z);
 	}
 
 	protected abstract void doNav();
@@ -203,6 +220,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	public void setAnswersVisible(boolean b) {
 		getButtonTable().setVisible(b);		
+	}
+
+	public void setMaxTime(float maxtimepercardSec) {
+		
 	}
 
 }
