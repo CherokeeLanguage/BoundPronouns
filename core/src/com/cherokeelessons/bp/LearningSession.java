@@ -18,7 +18,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -42,17 +41,18 @@ import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 
 public class LearningSession extends ChildScreen implements Screen {
+	
+	private static final String ActiveDeckJson = "ActiveDeck.json";
 
-	private static final int maxAnswers = 4;
+	private static final int TriesPerCard=7;
+
+	private static final int maxAnswers = 6;
 
 	private static final int maxCorrect = 2;
 
 	private static final float MaxTimePerCard_sec = 15f;
-	private static final int MaxTotalShows = 100;
 
-	private static final int RT = 5;
-
-	private ActiveDeck activeDeckFromDisk;
+	private static final int SendToNextSessionThreshold = 3;
 
 	private Sound buzzer;
 	/**
@@ -78,15 +78,22 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Table container;
 	private Sound cow;
 
-	private ActiveDeck current_active = new ActiveDeck();
-
-	private ActiveDeck current_seen = new ActiveDeck();
+	/**
+	 * currently being looped through for display
+	 */
+	private final ActiveDeck current_active = new ActiveDeck();
+	/**
+	 * holding area for cards that have just been displayed or are not scheduled yet for display
+	 */
+	private final ActiveDeck current_pending = new ActiveDeck();
+	/**
+	 * holding area for cards that should not be shown any more this session
+	 */
+	private final ActiveDeck current_done = new ActiveDeck();
 
 	private Deck deck;
 
 	private Sound ding;
-
-	private float elapsed_sec;
 
 	private Runnable initSet0 = new Runnable() {
 		@Override
@@ -96,12 +103,12 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			int needed = 10;
 
-			recordAlreadySeen(activeDeckFromDisk);
+			recordAlreadySeen(current_pending);
 
 			// time-shift all cards by time since last recorded run
-			updateTime(activeDeckFromDisk);
+			updateTime(current_pending);
 
-			// add cards if more cards are needed
+			// add cards to the current_active
 			addCards(needed, current_active);
 
 			stage.addAction(Actions.run(showACard));
@@ -127,19 +134,17 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			game.log(this, "Loading Active Deck ...");
 			stage.addAction(Actions.run(initSet0));
-			if (!slot.child("stats.json").exists()) {
-				activeDeckFromDisk = new ActiveDeck();
-				json.toJson(activeDeckFromDisk, slot.child("stats.json"));
+			if (!slot.child(ActiveDeckJson).exists()) {
+				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
 				return;
 			}
-			activeDeckFromDisk = json.fromJson(ActiveDeck.class,
-					slot.child("stats.json"));
-			Collections.sort(activeDeckFromDisk.stats, sortByNextShow);
+			ActiveDeck tmp = json.fromJson(ActiveDeck.class,
+					slot.child(ActiveDeckJson));
+			current_pending.deck=tmp.deck;
+			current_pending.lastrun=tmp.lastrun;
+			Collections.sort(current_pending.deck, byNextShowTime);			
 		}
 	};
-
-	private final long maxTime = 20l * 60l * 60l * 1000l;// 20 minutes max per
-															// session ?
 
 	private final NewCardDialog newCardDialog;
 
@@ -150,22 +155,39 @@ public class LearningSession extends ChildScreen implements Screen {
 		@Override
 		public void run() {
 			ActiveDeck tosave = new ActiveDeck();
-			tosave.stats.addAll(current_active.stats);
-			tosave.stats.addAll(current_seen.stats);
+			tosave.deck.addAll(current_active.deck);
+			tosave.deck.addAll(current_pending.deck);
+			tosave.deck.addAll(current_done.deck);
 			tosave.lastrun = System.currentTimeMillis();
-			FileHandle tmp = FileHandle.tempFile("stats.json");
+			Collections.sort(tosave.deck, byNextShowTime);
+			FileHandle tmp = FileHandle.tempFile(ActiveDeckJson);
 			tmp.writeString(json.prettyPrint(tosave), false, "UTF-8");
-			tmp.moveTo(slot.child("stats.json"));
+			tmp.moveTo(slot.child(ActiveDeckJson));
 			tmp.delete();
 		}
 	};
 
 	private Runnable showACard = new Runnable() {
-
 		@Override
 		public void run() {
 			stage.addAction(Actions.run(saveStats));
 			final ActiveCard activeCard = getNextCard();
+			if (activeCard == null) {
+				Dialog bye = new Dialog("DONE!", skin) {
+					{
+						text("Session Complete!");
+						button("OK!");
+					}
+					protected void result(Object object) {
+						game.setScreen(caller);
+						dispose();
+					};
+				};
+				bye.show(stage);
+				bye.setModal(true);
+				bye.setFillParent(true);
+				return;
+			}
 			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
 			final Card deckCard = cards_by_id.get(card_id);
 			if (activeCard.newCard) {
@@ -174,9 +196,9 @@ public class LearningSession extends ChildScreen implements Screen {
 				newCardDialog.setCard(deckCard);
 				newCardDialog.show(stage);
 				activeCard.box = 0;
-				activeCard.correct_in_a_row.clear();
+				activeCard.resetCorrectInARow(deckCard.answer);
 				activeCard.newCard = false;
-				activeCard.show_again_ms = Deck.intervals.get(0);
+				activeCard.show_again_ms = Deck.getNextInterval(0);
 				reInsertCard(activeCard);
 			} else {
 				ticktock_id = ticktock.play(0f);
@@ -205,18 +227,16 @@ public class LearningSession extends ChildScreen implements Screen {
 					}));
 					challengeCardDialog.addAction(updater);
 				}				
-				activeCard.tries_remaining--;
+				activeCard.tries_remaining--;				
 			}
-			elapsed_sec = 0f;
 		}
-
 	};
 
 	private final Skin skin;
 
 	private final FileHandle slot;
 
-	protected Comparator<ActiveCard> sortByNextShow = new Comparator<ActiveCard>() {
+	protected Comparator<ActiveCard> byNextShowTime = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
 			if (o1.show_again_ms != o2.show_again_ms) {
@@ -229,8 +249,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Sound ticktock;
 
 	private long ticktock_id;
-
-	private int totalshows = 0;
 
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
@@ -252,6 +270,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		json = new Json();
 		json.setOutputType(OutputType.json);
 		json.setTypeName(null);
+		json.setIgnoreUnknownFields(true);
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
@@ -263,7 +282,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			@Override
 			protected void result(Object object) {
 				this.clearActions();
-				stage.addAction(Actions.run(showACard));
+				stage.addAction(Actions.run(showACard));				
 			}
 
 			@Override
@@ -322,6 +341,7 @@ public class LearningSession extends ChildScreen implements Screen {
 								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
 										+ ans.answer);
 								doBuzzer = true;
+								_activeCard.resetCorrectInARow();								
 							}
 							if (!tb.isChecked() && ans.correct) {
 								ColorAction toGreen = Actions.color(
@@ -334,6 +354,7 @@ public class LearningSession extends ChildScreen implements Screen {
 								tb.setText(BoundPronouns.RIGHT_ARROW + " "
 										+ ans.answer);
 								doBuzzer = true;
+								_activeCard.markInCorrect(ans.answer);
 							}
 							if (tb.isChecked() && ans.correct) {
 								ColorAction toGreen = Actions.color(
@@ -342,6 +363,7 @@ public class LearningSession extends ChildScreen implements Screen {
 								doCow = false;
 								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
 										+ ans.answer);
+								_activeCard.markCorrect(ans.answer);								
 							}
 						}
 					}
@@ -352,9 +374,17 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (doBuzzer && !doCow) {
 					buzzer.play();
 				}
-				if (!doCow && !doBuzzer) {
-					ding.play();
+				if (doCow || doBuzzer) {
+					_activeCard.box--;
+					if (_activeCard.box<0) {
+						_activeCard.box=0;
+					}
 				}
+				if (!doCow && !doBuzzer) {
+					ding.play();					
+					_activeCard.box++;
+				}
+				_activeCard.show_again_ms=Deck.getNextInterval(_activeCard.box);
 				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
 						Actions.run(hideThisCard)));
 				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
@@ -364,26 +394,27 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	/**
-	 * add this many cards to the Stat set first from the current stats set then
+	 * add this many cards to the Current Active Deck first from the current Active Deck then
 	 * from the master Deck set
 	 * 
 	 * @param needed
-	 * @param set
+	 * @param active
 	 */
-	public void addCards(int needed, ActiveDeck set) {
+	public void addCards(int needed, ActiveDeck active) {
 		/**
 		 * look for previous cards to load first, if their delay time is up
 		 */
-		Iterator<ActiveCard> istat = activeDeckFromDisk.stats.iterator();
-		while (needed > 0 && istat.hasNext()) {
-			ActiveCard next = istat.next();
+		Iterator<ActiveCard> ipending = current_pending.deck.iterator();
+		while (needed > 0 && ipending.hasNext()) {
+			ActiveCard next = ipending.next();
 			if (next.show_again_ms > 0) {
 				continue;
 			}
-			next.correct_in_a_row.clear();
-			next.tries_remaining = RT * 2;
-			set.stats.add(next);
+			next.resetCorrectInARow();
+			next.tries_remaining = TriesPerCard;
+			active.deck.add(next);
 			needed--;
+			ipending.remove();
 		}
 
 		/**
@@ -396,16 +427,16 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (nodupes.contains(unique_id)) {
 				continue;
 			}
-			ActiveCard stat = new ActiveCard();
-			stat.box = 0;
-			stat.correct_in_a_row.clear();
-			stat.id = next.id;
-			stat.newCard = true;
-			stat.pgroup = next.pgroup;
-			stat.show_again_ms = 0;
-			stat.tries_remaining = RT * 2;
-			stat.vgroup = next.vgroup;
-			set.stats.add(stat);
+			ActiveCard activeCard = new ActiveCard();
+			activeCard.box = 0;
+			activeCard.resetCorrectInARow(next.answer);
+			activeCard.id = next.id;
+			activeCard.newCard = true;
+			activeCard.pgroup = next.pgroup;
+			activeCard.show_again_ms = 0;
+			activeCard.tries_remaining = TriesPerCard;
+			activeCard.vgroup = next.vgroup;
+			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
 		}
@@ -451,8 +482,8 @@ public class LearningSession extends ChildScreen implements Screen {
 		Collections.sort(tmp_correct, new Comparator<String>() {
 			@Override
 			public int compare(String o1, String o2) {
-				Integer i1 = active.correct_in_a_row.get(o1);
-				Integer i2 = active.correct_in_a_row.get(o2);
+				Integer i1 = active.getCorrectInARowFor(o1);
+				Integer i2 = active.getCorrectInARowFor(o2);
 				i1 = (i1 == null ? 0 : i1);
 				i2 = (i2 == null ? 0 : i2);
 				if (i1 != i2) {
@@ -473,7 +504,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
 		Collections.shuffle(tmp.cards);
-		scanDeck: for (int distance = 1; distance < 10; distance++) {
+		scanDeck: for (int distance = 1; distance < 100; distance++) {
 			for (Card deckCard : deck.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
@@ -534,24 +565,42 @@ public class LearningSession extends ChildScreen implements Screen {
 		if (answers.list.size() > maxAnswers) {
 			answers.list.subList(maxAnswers, answers.list.size()).clear();
 		}
-		for (Answer a : answers.list) {
-			game.log(this, a.toString());
-		}
 		Collections.shuffle(answers.list);
 		return answers;
 	}
 
 	private ActiveCard getNextCard() {
-		if (current_active.stats.size() == 0) {
-			current_active.stats.addAll(current_seen.stats);
-			current_seen.stats.clear();
-			if (current_active.stats.size() == 0) {
+		if (current_active.deck.size() == 0) {
+			updateTime(current_pending);
+			current_pending.lastrun=System.currentTimeMillis();
+			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
+			while (itmp.hasNext()) {
+				ActiveCard tmp = itmp.next();
+				if (tmp.show_again_ms>(20l*60l*1000l)) {
+					continue;
+				}
+				current_active.deck.add(tmp);
+				itmp.remove();
+			}
+			if (current_active.deck.size() == 0) {
 				return null;
 			}
+			Collections.sort(current_active.deck, byNextShowTime);
 		}
-		ActiveCard card = current_active.stats.get(0);
-		current_seen.stats.add(card);
-		current_active.stats.remove(0);
+		ActiveCard card = current_active.deck.get(0);
+		current_active.deck.remove(0);
+		if (card.isAllPassedThreshold(SendToNextSessionThreshold)) {
+			card.box++;
+			current_done.deck.add(card);
+			game.log(this, "Bumped Card: "+card.pgroup+" "+card.vgroup);
+			return getNextCard();
+		}
+		if (card.tries_remaining<0) {		
+			current_done.deck.add(card);
+			game.log(this, "Retired Card: "+card.pgroup+" "+card.vgroup);
+			return getNextCard();
+		}
+		current_pending.deck.add(card);
 		return card;
 	}
 
@@ -562,7 +611,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * @param activeDeck
 	 */
 	public void recordAlreadySeen(ActiveDeck activeDeck) {
-		Iterator<ActiveCard> istat = activeDeck.stats.iterator();
+		Iterator<ActiveCard> istat = activeDeck.deck.iterator();
 		while (istat.hasNext()) {
 			ActiveCard next = istat.next();
 			String unique_id = next.pgroup + "+" + next.vgroup;
@@ -571,12 +620,12 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private void reInsertCard(ActiveCard card) {
-		if (current_active.stats.size() < 2) {
-			current_active.stats.add(card);
+		if (current_active.deck.size() < 2) {
+			current_active.deck.add(card);
 		} else {
-			current_active.stats.add(1, card);
+			current_active.deck.add(1, card);
 		}
-		current_seen.stats.remove(card);
+		current_pending.deck.remove(card);
 	}
 
 	@Override
@@ -593,7 +642,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		game.manager.load(BoundPronouns.SND_TICKTOCK, Sound.class);
 		game.manager.finishLoading();
 		ding = game.manager.get(BoundPronouns.SND_DING, Sound.class);
-		ding.play();
 		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
 		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
 		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
@@ -614,7 +662,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		if (since < 0l || since > (24l * 60l * 60l * 1000l)) {
 			since = (24l * 60l * 60l * 1000l);
 		}
-		Iterator<ActiveCard> istat = activeDeck.stats.iterator();
+		Iterator<ActiveCard> istat = activeDeck.deck.iterator();
 		while (istat.hasNext()) {
 			ActiveCard next = istat.next();
 			next.show_again_ms -= since;

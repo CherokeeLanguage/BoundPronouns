@@ -5,5 +5,5 @@ import java.util.List;
 
 public class ActiveDeck {
 	public long lastrun;
-	public List<ActiveCard> stats=new ArrayList<>();
+	public List<ActiveCard> deck=new ArrayList<>();
 }

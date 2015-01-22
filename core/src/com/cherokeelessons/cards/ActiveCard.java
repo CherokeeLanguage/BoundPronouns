@@ -1,9 +1,50 @@
 package com.cherokeelessons.cards;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class ActiveCard {
+	
+	public int getCorrectInARowFor(String answer) {
+		Integer c = correct_in_a_row.get(answer);
+		return c!=null?c:0;
+	}
+	
+	public void markInCorrect(String answer) {
+		Integer c = correct_in_a_row.get(answer);
+		correct_in_a_row.put(answer, c!=null?c+1:1);
+	}
+	
+	public void markCorrect(String answer) {
+		Integer c = correct_in_a_row.get(answer);
+		correct_in_a_row.put(answer, c!=null?c+1:1);
+	}
+	
+	public boolean isAllPassedThreshold(int threshold){
+		for (String key: correct_in_a_row.keySet()) {
+			if (correct_in_a_row.get(key)==null) {
+				return false;
+			}
+			if (correct_in_a_row.get(key)<threshold) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void resetCorrectInARow(Collection<String> answers) {
+		correct_in_a_row.clear();
+		for (String a: answers) {
+			correct_in_a_row.put(a, 0);
+		}
+	}
+	
+	public void resetCorrectInARow() {
+		resetCorrectInARow(new HashSet<String>(correct_in_a_row.keySet()));
+	}
+	
 	/**
 	 * id of card in main deck
 	 */
@@ -29,7 +70,7 @@ public class ActiveCard {
 	 * How many times has it been correct in a row?
 	 * RECORDED PER ANSWER.
 	 */
-	public Map<String, Integer> correct_in_a_row=new HashMap<>();
+	private HashMap<String, Integer> correct_in_a_row=new HashMap<>();
 	
 	/**
 	 * What Leitner proficiency box is this assigned to? This selects which

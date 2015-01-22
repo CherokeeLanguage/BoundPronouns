@@ -124,14 +124,14 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	final private StringBuilder showCardSb = new StringBuilder();
 
-	private Card deckCard;
+	protected Card _deckCard;
 
-	private ActiveCard activeCard;
+	protected ActiveCard _activeCard;
 	
 	public void setCard(ActiveCard activeCard, Card deckCard) {
 		
-		this.activeCard = activeCard;
-		this.deckCard = deckCard;
+		this._activeCard = activeCard;
+		this._deckCard = deckCard;
 		
 		Iterator<String> i = deckCard.challenge.iterator();
 		challenge_top.setText(i.next());

@@ -124,7 +124,6 @@ public class BoundPronouns extends Game {
 		manager.load(SKIN, Skin.class);
 
 		addFreeSerifFor(36);
-		addFreeSerifBoldFor(36);
 		addFreeSerifFor(54);
 
 		addFreeSansFor(36);
@@ -192,37 +191,6 @@ public class BoundPronouns extends Game {
 		font.fontParameters.magFilter = TextureFilter.Linear;
 		font.fontParameters.minFilter = TextureFilter.Linear;
 		manager.load("serif" + size + ".ttf", BitmapFont.class, font);
-		return;
-	}
-
-	private void addFreeSerifBoldFor(int size) {
-		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
-		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
-			String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		for (char c : "ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ".toCharArray()) {
-			String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		for (char c : SPECIALS.toCharArray()) {
-			String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		FreeTypeFontLoaderParameter font = new FreeTypeFontLoaderParameter();
-		font.fontFileName = "otf/FreeSerifBold.otf";
-		font.fontParameters.characters = defaultChars;
-		font.fontParameters.kerning = true;
-		font.fontParameters.size = size;
-		font.fontParameters.magFilter = TextureFilter.Linear;
-		font.fontParameters.minFilter = TextureFilter.Linear;
-		manager.load("serifb" + size + ".ttf", BitmapFont.class, font);
 		return;
 	}
 
