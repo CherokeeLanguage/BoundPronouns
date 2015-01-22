@@ -43,20 +43,51 @@ import com.cherokeelessons.cards.Deck;
 
 public class LearningSession extends ChildScreen implements Screen {
 
-	private static final float MaxTimePerCard_sec = 15f;
+	private static final int maxAnswers = 4;
 
+	private static final int maxCorrect = 2;
+
+	private static final float MaxTimePerCard_sec = 15f;
 	private static final int MaxTotalShows = 100;
 
 	private static final int RT = 5;
+
 	private ActiveDeck activeDeckFromDisk;
 
+	private Sound buzzer;
+	/**
+	 * Sort answers by edit distance so the list can be trimmed to size easily.
+	 * The sort only considers edit distance and does not factor in actual
+	 * String values - this is intentional.
+	 */
+	private Comparator<Answer> byDistance = new Comparator<Answer>() {
+		@Override
+		public int compare(Answer o1, Answer o2) {
+			if (o1.correct != o2.correct && o1.correct) {
+				return -1;
+			}
+			if (o2.correct) {
+				return 1;
+			}
+			return Integer.compare(o1.distance, o2.distance);
+		}
+	};
+	private int cardcount = 0;
 	private final Map<String, Card> cards_by_id = new HashMap<>();
-
+	private final ChallengeCardDialog challengeCardDialog;
 	private Table container;
+	private Sound cow;
 
 	private ActiveDeck current_active = new ActiveDeck();
+
 	private ActiveDeck current_seen = new ActiveDeck();
+
 	private Deck deck;
+
+	private Sound ding;
+
+	private float elapsed_sec;
+
 	private Runnable initSet0 = new Runnable() {
 		@Override
 		public void run() {
@@ -90,6 +121,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 		}
 	};
+
 	private Runnable loadStats = new Runnable() {
 		@Override
 		public void run() {
@@ -112,8 +144,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	private final NewCardDialog newCardDialog;
 
 	private final Set<String> nodupes = new HashSet<>();
-
-	private final ChallengeCardDialog challengeCardDialog;
+	private final Random rand = new Random();
 
 	private Runnable saveStats = new Runnable() {
 		@Override
@@ -128,10 +159,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			tmp.delete();
 		}
 	};
-
-	private int cardcount = 0;
-	private float elapsed_sec;
-	private long ticktock_id;
 
 	private Runnable showACard = new Runnable() {
 
@@ -152,7 +179,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				activeCard.show_again_ms = Deck.intervals.get(0);
 				reInsertCard(activeCard);
 			} else {
-				ticktock_id = ticktock.play();
+				ticktock_id = ticktock.play(0f);
 				ticktock.setLooping(ticktock_id, true);
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
@@ -165,17 +192,19 @@ public class LearningSession extends ChildScreen implements Screen {
 							public void run() {
 								challengeCardDialog.result(null);
 							}
-						})));
-				for (float x = MaxTimePerCard_sec; x >= 0; x--) {
+						})));				
+				for (float x = MaxTimePerCard_sec; x >= 0; x-=.1f) {
 					final float timer = MaxTimePerCard_sec - x;
+					final float volume = x/MaxTimePerCard_sec;
 					DelayAction updater = Actions.delay(x - .05f, Actions.run(new Runnable() {
 						@Override
 						public void run() {
-							challengeCardDialog.setTimer(timer);
+							ticktock.setVolume(ticktock_id, volume);
+							challengeCardDialog.setTimer(timer);							
 						}
 					}));
 					challengeCardDialog.addAction(updater);
-				}
+				}				
 				activeCard.tries_remaining--;
 			}
 			elapsed_sec = 0f;
@@ -183,28 +212,216 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	};
 
-	private final Random rand = new Random();
+	private final Skin skin;
 
-	/**
-	 * Sort answers by edit distance so the list can be trimmed to size easily.
-	 * The sort only considers edit distance and does not factor in actual
-	 * String values - this is intentional.
-	 */
-	private Comparator<Answer> byDistance = new Comparator<Answer>() {
+	private final FileHandle slot;
+
+	protected Comparator<ActiveCard> sortByNextShow = new Comparator<ActiveCard>() {
 		@Override
-		public int compare(Answer o1, Answer o2) {
-			if (o1.correct != o2.correct && o1.correct) {
-				return -1;
+		public int compare(ActiveCard o1, ActiveCard o2) {
+			if (o1.show_again_ms != o2.show_again_ms) {
+				return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
 			}
-			if (o2.correct) {
-				return 1;
-			}
-			return Integer.compare(o1.distance, o2.distance);
+			return o1.box - o2.box;
 		}
 	};
 
-	private static final int maxAnswers = 4;
-	private static final int maxCorrect = 2;
+	private Sound ticktock;
+
+	private long ticktock_id;
+
+	private int totalshows = 0;
+
+	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
+		super(_game, caller);
+		this.slot = slot;
+		slot.mkdirs();
+		if (slot.child("deck.json").exists()) {
+			slot.child("deck.json").delete();
+		}
+
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
+				Texture.class);
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
+		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
+		container = new Table(skin);
+		container.setBackground(d);
+		container.setFillParent(true);
+		stage.addActor(container);
+		stage.addAction(Actions.delay(.05f, Actions.run(loadDeck)));
+		json = new Json();
+		json.setOutputType(OutputType.json);
+		json.setTypeName(null);
+
+		newCardDialog = new NewCardDialog(game, skin) {
+			@Override
+			protected void doNav() {
+				game.setScreen(LearningSession.this.caller);
+				LearningSession.this.dispose();
+			}
+
+			@Override
+			protected void result(Object object) {
+				this.clearActions();
+				stage.addAction(Actions.run(showACard));
+			}
+
+			@Override
+			public Dialog show(Stage stage) {
+				return super.show(stage);
+			}
+		};
+		challengeCardDialog = new ChallengeCardDialog(game, skin) {
+			Runnable hideThisCard = new Runnable() {
+				@Override
+				public void run() {
+					hide();
+				}
+			};
+
+			@Override
+			protected void doNav() {
+				game.setScreen(LearningSession.this.caller);
+				LearningSession.this.dispose();
+			}
+
+			@Override
+			protected void result(Object object) {
+				this.clearActions();
+				setTimer(0);
+				ticktock.stop();
+				cancel();
+				/**
+				 * set when any wrong
+				 */
+				boolean doBuzzer = false;
+				/**
+				 * worst case scenario, all wrong ones marked and no right ones
+				 * marked, gets set to false if ANY combination of
+				 * checked/unchecked is valid
+				 */
+				boolean doCow = true;
+				for (Actor b : getButtonTable().getChildren()) {
+					if (b instanceof Button) {
+						((Button) b).setDisabled(true);
+					}
+					if (b instanceof TextButton) {
+						TextButton tb = (TextButton) b;
+						if (tb.getUserObject() != null
+								&& tb.getUserObject() instanceof Answer) {
+							Answer ans = (Answer) tb.getUserObject();
+
+							if (!tb.isChecked() && !ans.correct) {
+								tb.addAction(Actions.fadeOut(.2f));
+								doCow = false;
+							}
+							if (tb.isChecked() && !ans.correct) {
+								ColorAction toRed = Actions.color(Color.RED,
+										.4f);
+								tb.addAction(toRed);
+								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
+										+ ans.answer);
+								doBuzzer = true;
+							}
+							if (!tb.isChecked() && ans.correct) {
+								ColorAction toGreen = Actions.color(
+										Color.GREEN, .4f);
+								ColorAction toClear = Actions.color(
+										Color.CLEAR, .2f);
+								SequenceAction sequence = Actions.sequence(
+										toClear, toGreen);
+								tb.addAction(Actions.repeat(2, sequence));
+								tb.setText(BoundPronouns.RIGHT_ARROW + " "
+										+ ans.answer);
+								doBuzzer = true;
+							}
+							if (tb.isChecked() && ans.correct) {
+								ColorAction toGreen = Actions.color(
+										Color.GREEN, .2f);
+								tb.addAction(toGreen);
+								doCow = false;
+								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
+										+ ans.answer);
+							}
+						}
+					}
+				}
+				if (doCow) {
+					cow.play();
+				}
+				if (doBuzzer && !doCow) {
+					buzzer.play();
+				}
+				if (!doCow && !doBuzzer) {
+					ding.play();
+				}
+				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
+						Actions.run(hideThisCard)));
+				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
+						Actions.run(showACard)));
+			}
+		};
+	}
+
+	/**
+	 * add this many cards to the Stat set first from the current stats set then
+	 * from the master Deck set
+	 * 
+	 * @param needed
+	 * @param set
+	 */
+	public void addCards(int needed, ActiveDeck set) {
+		/**
+		 * look for previous cards to load first, if their delay time is up
+		 */
+		Iterator<ActiveCard> istat = activeDeckFromDisk.stats.iterator();
+		while (needed > 0 && istat.hasNext()) {
+			ActiveCard next = istat.next();
+			if (next.show_again_ms > 0) {
+				continue;
+			}
+			next.correct_in_a_row.clear();
+			next.tries_remaining = RT * 2;
+			set.stats.add(next);
+			needed--;
+		}
+
+		/**
+		 * add new never seen cards second
+		 */
+		Iterator<Card> ideck = deck.cards.iterator();
+		while (needed > 0 && ideck.hasNext()) {
+			Card next = ideck.next();
+			String unique_id = next.pgroup + "+" + next.vgroup;
+			if (nodupes.contains(unique_id)) {
+				continue;
+			}
+			ActiveCard stat = new ActiveCard();
+			stat.box = 0;
+			stat.correct_in_a_row.clear();
+			stat.id = next.id;
+			stat.newCard = true;
+			stat.pgroup = next.pgroup;
+			stat.show_again_ms = 0;
+			stat.tries_remaining = RT * 2;
+			stat.vgroup = next.vgroup;
+			set.stats.add(stat);
+			needed--;
+			nodupes.add(unique_id);
+		}
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		game.manager.unload(BoundPronouns.SND_DING);
+		game.manager.unload(BoundPronouns.SND_BUZZ);
+		game.manager.unload(BoundPronouns.SND_COW);
+		game.manager.unload(BoundPronouns.SND_TICKTOCK);
+		buzzer = null;
+		cow = null;
+		ticktock = null;
+	}
 
 	private AnswerList getAnswerSetsFor(final ActiveCard active,
 			final Card card, Deck deck) {
@@ -324,214 +541,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		return answers;
 	}
 
-	private final Skin skin;
-
-	private final FileHandle slot;
-
-	protected Comparator<ActiveCard> sortByNextShow = new Comparator<ActiveCard>() {
-		@Override
-		public int compare(ActiveCard o1, ActiveCard o2) {
-			if (o1.show_again_ms != o2.show_again_ms) {
-				return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
-			}
-			return o1.box - o2.box;
-		}
-	};
-
-	private int totalshows = 0;
-
-	private Sound ticktock;
-
-	private Sound cow;
-
-	private Sound buzzer;
-
-	private Sound ding;
-
-	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
-		super(_game, caller);
-		this.slot = slot;
-		slot.mkdirs();
-		if (slot.child("deck.json").exists()) {
-			slot.child("deck.json").delete();
-		}
-
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
-		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
-		container = new Table(skin);
-		container.setBackground(d);
-		container.setFillParent(true);
-		stage.addActor(container);
-		stage.addAction(Actions.delay(.01f, Actions.run(loadDeck)));
-		json = new Json();
-		json.setOutputType(OutputType.json);
-		json.setTypeName(null);
-
-		newCardDialog = new NewCardDialog(game, skin) {
-			@Override
-			protected void result(Object object) {
-				this.clearActions();
-				stage.addAction(Actions.run(showACard));
-			}
-
-			@Override
-			protected void doNav() {
-				game.setScreen(LearningSession.this.caller);
-				LearningSession.this.dispose();
-			}
-
-			@Override
-			public Dialog show(Stage stage) {
-				return super.show(stage);
-			}
-		};
-		challengeCardDialog = new ChallengeCardDialog(game, skin) {
-			Runnable hideThisCard = new Runnable() {
-				@Override
-				public void run() {
-					hide();
-				}
-			};
-
-			@Override
-			protected void result(Object object) {
-				this.clearActions();
-				setTimer(0);
-				ticktock.stop();
-				cancel();
-				/**
-				 * set when any wrong
-				 */
-				boolean doBuzzer = false;
-				/**
-				 * worst case scenario, all wrong ones marked and no right ones
-				 * marked, gets set to false if ANY combination of
-				 * checked/unchecked is valid
-				 */
-				boolean doCow = true;
-				for (Actor b : getButtonTable().getChildren()) {
-					if (b instanceof Button) {
-						((Button) b).setDisabled(true);
-					}
-					if (b instanceof TextButton) {
-						TextButton tb = (TextButton) b;
-						if (tb.getUserObject() != null
-								&& tb.getUserObject() instanceof Answer) {
-							Answer ans = (Answer) tb.getUserObject();
-
-							if (!tb.isChecked() && !ans.correct) {
-								tb.addAction(Actions.fadeOut(.2f));
-								doCow = false;
-							}
-							if (tb.isChecked() && !ans.correct) {
-								ColorAction toRed = Actions.color(Color.RED,
-										.4f);
-								tb.addAction(toRed);
-								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
-										+ ans.answer);
-								doBuzzer = true;
-							}
-							if (!tb.isChecked() && ans.correct) {
-								ColorAction toGreen = Actions.color(
-										Color.GREEN, .4f);
-								ColorAction toClear = Actions.color(
-										Color.CLEAR, .2f);
-								SequenceAction sequence = Actions.sequence(
-										toClear, toGreen);
-								tb.addAction(Actions.repeat(2, sequence));
-								tb.setText(BoundPronouns.RIGHT_ARROW + " "
-										+ ans.answer);
-								doBuzzer = true;
-							}
-							if (tb.isChecked() && ans.correct) {
-								ColorAction toGreen = Actions.color(
-										Color.GREEN, .2f);
-								tb.addAction(toGreen);
-								doCow = false;
-								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
-										+ ans.answer);
-							}
-						}
-					}
-				}
-				if (doCow) {
-					cow.play();
-				}
-				if (doBuzzer && !doCow) {
-					buzzer.play();
-				}
-				if (!doCow && !doBuzzer) {
-					ding.play();
-				}
-				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
-						Actions.run(hideThisCard)));
-				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
-						Actions.run(showACard)));
-			}
-
-			@Override
-			protected void doNav() {
-				game.setScreen(LearningSession.this.caller);
-				LearningSession.this.dispose();
-			}
-
-		};
-	}
-
-	private BitmapFont serifb36() {
-		return game.manager.get("serifb36.ttf", BitmapFont.class);
-	}
-
-	/**
-	 * add this many cards to the Stat set first from the current stats set then
-	 * from the master Deck set
-	 * 
-	 * @param needed
-	 * @param set
-	 */
-	public void addCards(int needed, ActiveDeck set) {
-		/**
-		 * look for previous cards to load first, if their delay time is up
-		 */
-		Iterator<ActiveCard> istat = activeDeckFromDisk.stats.iterator();
-		while (needed > 0 && istat.hasNext()) {
-			ActiveCard next = istat.next();
-			if (next.show_again_ms > 0) {
-				continue;
-			}
-			next.correct_in_a_row.clear();
-			next.tries_remaining = RT * 2;
-			set.stats.add(next);
-			needed--;
-		}
-
-		/**
-		 * add new never seen cards second
-		 */
-		Iterator<Card> ideck = deck.cards.iterator();
-		while (needed > 0 && ideck.hasNext()) {
-			Card next = ideck.next();
-			String unique_id = next.pgroup + "+" + next.vgroup;
-			if (nodupes.contains(unique_id)) {
-				continue;
-			}
-			ActiveCard stat = new ActiveCard();
-			stat.box = 0;
-			stat.correct_in_a_row.clear();
-			stat.id = next.id;
-			stat.newCard = true;
-			stat.pgroup = next.pgroup;
-			stat.show_again_ms = 0;
-			stat.tries_remaining = RT * 2;
-			stat.vgroup = next.vgroup;
-			set.stats.add(stat);
-			needed--;
-			nodupes.add(unique_id);
-		}
-	}
-
 	private ActiveCard getNextCard() {
 		if (current_active.stats.size() == 0) {
 			current_active.stats.addAll(current_seen.stats);
@@ -570,6 +579,26 @@ public class LearningSession extends ChildScreen implements Screen {
 		current_seen.stats.remove(card);
 	}
 
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+	}
+
+	@Override
+	public void show() {
+		super.show();
+		game.manager.load(BoundPronouns.SND_DING, Sound.class);
+		game.manager.load(BoundPronouns.SND_BUZZ, Sound.class);
+		game.manager.load(BoundPronouns.SND_COW, Sound.class);
+		game.manager.load(BoundPronouns.SND_TICKTOCK, Sound.class);
+		game.manager.finishLoading();
+		ding = game.manager.get(BoundPronouns.SND_DING, Sound.class);
+		ding.play();
+		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
+		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
+		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
+	}
+
 	/**
 	 * time-shift all cards by time since last recorded run
 	 * 
@@ -590,38 +619,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			ActiveCard next = istat.next();
 			next.show_again_ms -= since;
 		}
-	}
-
-	@Override
-	public void dispose() {
-		super.dispose();
-		game.manager.unload(BoundPronouns.SND_DING);
-		game.manager.unload(BoundPronouns.SND_BUZZ);
-		game.manager.unload(BoundPronouns.SND_COW);
-		game.manager.unload(BoundPronouns.SND_TICKTOCK);
-		buzzer = null;
-		cow = null;
-		ticktock = null;
-	}
-
-	@Override
-	public void show() {
-		super.show();
-		game.manager.load(BoundPronouns.SND_DING, Sound.class);
-		game.manager.load(BoundPronouns.SND_BUZZ, Sound.class);
-		game.manager.load(BoundPronouns.SND_COW, Sound.class);
-		game.manager.load(BoundPronouns.SND_TICKTOCK, Sound.class);
-		game.manager.finishLoading();
-		ding = game.manager.get(BoundPronouns.SND_DING, Sound.class);
-		ding.play();
-		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
-		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
-		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
-	}
-
-	@Override
-	public void render(float delta) {
-		super.render(delta);
 	}
 
 }
