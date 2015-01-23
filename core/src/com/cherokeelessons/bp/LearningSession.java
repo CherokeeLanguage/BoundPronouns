@@ -431,7 +431,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				continue;
 			}
 			next.resetCorrectInARow();
-			next.tries_remaining = SendToNextSessionThreshold*next.getAnswerCount();
+			next.tries_remaining = SendToNextSessionThreshold*next.getAnswerCount()+1;
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -454,7 +454,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			activeCard.newCard = true;
 			activeCard.pgroup = next.pgroup;
 			activeCard.show_again_ms = 0;
-			activeCard.tries_remaining = TriesPerCard;
+			activeCard.tries_remaining = SendToNextSessionThreshold*activeCard.getAnswerCount()+1;
 			activeCard.vgroup = next.vgroup;
 			active.deck.add(activeCard);
 			needed--;
