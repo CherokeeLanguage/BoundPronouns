@@ -527,7 +527,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
 		Collections.shuffle(tmp.cards);
-		scanDeck: for (int distance = 1; distance < 100; distance++) {
+		scanDeck: for (int distance = 4; distance < 100; distance++) {
 			for (Card deckCard : deck.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
