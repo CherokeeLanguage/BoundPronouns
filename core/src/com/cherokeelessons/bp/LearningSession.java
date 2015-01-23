@@ -58,7 +58,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	protected static final float MinSessionTime = 60f*15f;
 	protected static final float MaxSessionTime = 60f*25f;
 
-	protected static final int InitialDeckSize = 10;
+	protected static final int InitialDeckSize = 3;
 
 	private Sound buzzer;
 	/**
@@ -185,7 +185,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
-			stage.addAction(Actions.run(saveStats));
 			final ActiveCard activeCard = getNextCard();
 			if (activeCard == null && elapsed < MinSessionTime) {
 				addCards(InitialDeckSize, current_pending);
@@ -206,6 +205,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				bye.show(stage);
 				bye.setModal(true);
 				bye.setFillParent(true);
+				stage.addAction(Actions.run(saveStats));
 				return;
 			}
 			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
@@ -594,7 +594,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
-				if (tmp.isAllPassedThreshold(SendToNextSessionThreshold)) {
+				if (tmp.isAllCorrectInARow(SendToNextSessionThreshold)) {
 					tmp.box++;
 					current_done.deck.add(tmp);
 					tmp.show_again_ms=tmp.show_again_ms+Deck.getNextSessionInterval(tmp.box);

@@ -34,7 +34,7 @@ public class ActiveCard {
 		correct_in_a_row.put(answer, c!=null?c+1:1);
 	}
 	
-	public boolean isAllPassedThreshold(int threshold){
+	public boolean isAllCorrectInARow(int threshold){
 		for (String key: correct_in_a_row.keySet()) {
 			if (correct_in_a_row.get(key)==null) {
 				return false;

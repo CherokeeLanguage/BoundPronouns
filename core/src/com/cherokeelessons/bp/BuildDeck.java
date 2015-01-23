@@ -24,7 +24,7 @@ import com.cherokeelessons.cards.Deck;
 
 public class BuildDeck implements Runnable {
 	
-	public static int version = 1;
+	public static int version = 2;
 	
 	private boolean skipBareForms = false;
 
@@ -119,14 +119,14 @@ public class BuildDeck implements Runnable {
 					passive: {
 						defin=tmp;
 						if (tmp.equalsIgnoreCase("he")) {
-							defin+=" (was being)";
+							defin+=" (being)";
 							break passive;
 						}
 						if (tmp.equalsIgnoreCase("i")) {
-							defin+=" (was being)";
+							defin+=" (being)";
 							break passive;
 						}
-						defin+=" (were being)";
+						defin+=" (being)";
 						break passive;
 					}
 				}
