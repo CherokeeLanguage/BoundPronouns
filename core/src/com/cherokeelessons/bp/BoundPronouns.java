@@ -69,7 +69,7 @@ public class BoundPronouns extends Game {
 	public static final String SND_COYOTE = "audio/coyote.ogg";
 	public static final String SND_BUZZ = "audio/buzzer2.ogg";
 	public static final String SND_COW = "audio/cow1.ogg";
-	public static final String SND_TICKTOCK = "audio/ticktock.ogg";
+	public static final String SND_TICKTOCK = "audio/ticktock.wav";
 	public static final String SND_DING = "audio/ding.ogg";
 	
 	public static final float BACK_WIDTH = 168f;
