@@ -93,4 +93,8 @@ public class ActiveCard {
 	 * How long before this card should be tried again?
 	 */
 	public long show_again_ms;
+	public int getAnswerCount() {
+		int i=correct_in_a_row.size();
+		return i>0?i:1;
+	}
 }

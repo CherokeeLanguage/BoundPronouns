@@ -45,7 +45,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	
 	private static final String ActiveDeckJson = "ActiveDeck.json";
 
-	private static final int TriesPerCard=7;
+//	private static final int TriesPerCard=7;
 
 	private static final int maxAnswers = 6;
 
@@ -431,7 +431,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				continue;
 			}
 			next.resetCorrectInARow();
-			next.tries_remaining = TriesPerCard;
+			next.tries_remaining = SendToNextSessionThreshold*next.getAnswerCount();
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -603,11 +603,13 @@ public class LearningSession extends ChildScreen implements Screen {
 					tmp.box++;
 					current_done.deck.add(tmp);
 					game.log(this, "Bumped Card: "+tmp.pgroup+" "+tmp.vgroup);
+					itmp.remove();
 					return getNextCard();
 				}
 				if (tmp.tries_remaining<0) {		
 					current_done.deck.add(tmp);
 					game.log(this, "Retired Card: "+tmp.pgroup+" "+tmp.vgroup);
+					itmp.remove();
 					return getNextCard();
 				}
 				if (tmp.show_again_ms>0) {
