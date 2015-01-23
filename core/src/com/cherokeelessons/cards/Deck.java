@@ -28,10 +28,8 @@ public class Deck {
 		sm2_intervals.add(ms_day);
 		for (int i=0; i<15; i++) {
 			sm2_intervals.add((long) (ms_day*days));
-			Gdx.app.log("SM2: ",(i+1)+") "+Math.round(days));
 			days*=1.7f;
-		}
-		
+		}		
 	}
 	/**
 	 * Pimsleur staggered intervals (powers of 5) seconds as ms

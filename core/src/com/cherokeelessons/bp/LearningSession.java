@@ -194,7 +194,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (activeCard == null || elapsed > MaxSessionTime) {
 				Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 					{
-						text("Session Complete!\nPlease wait at least 5 hours before starting your next session.\nDo not skip any days before starting your next sesssion!");
+						text("Session Complete!\nPlease wait 1 day before starting your next session.");
 						button("OK!");
 					}
 					protected void result(Object object) {
