@@ -53,7 +53,8 @@ public class BuildDeck implements Runnable {
 	public Runnable save=new Runnable() {
 		@Override
 		public void run() {
-			game.log(this, "buildDeck#save");		
+			game.log(this, "buildDeck#save");
+			deck.version=version;
 			json.setOutputType(OutputType.json);
 			json.setTypeName(null);			
 			Collections.sort(deck.cards);
