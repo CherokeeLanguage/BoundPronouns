@@ -3,9 +3,21 @@ package com.cherokeelessons.cards;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class ActiveCard {
+	
+	public int getMinCorrectInARow(){
+		int min = 3;
+		for (String key: correct_in_a_row.keySet()) {
+			if (correct_in_a_row.get(key)==null) {
+				continue;
+			}
+			if (correct_in_a_row.get(key)<min) {
+				min=correct_in_a_row.get(key);
+			}
+		}
+		return min;
+	}
 	
 	public int getCorrectInARowFor(String answer) {
 		Integer c = correct_in_a_row.get(answer);
