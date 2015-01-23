@@ -4,12 +4,17 @@ a) Fix a-stem + di should not be "di-" but instead be "da-"
 b) If user starts session after 16 hours, auto jump to 24 hours
    and continue with no prompting
 
-c) If user starts session before 16 hours, prompt choices of
-   "Jump Forward One Day?", "Practice Existing Cards", "Cancel"  
+c) If user starts session before 16 hours, prompt with choices of
+   "Jump Forward One Day?", "Practice With Existing Cards", "Cancel"  
 
-d) Add STATS display at end of each session and as "info" button on SETTINGS screen
+d) Add STATS display at end of each session and as "INFO" button on SETTINGS screen
 
 e) Add Mute/Unmute to bottom of main play screen
 
 f) Add Pause/Unpause to bottom of main play screen
 
+g) Prompt to NAME each session at start
+
+h) Add RENAME session on SETTINGS screen
+
+i) Add DELETE session on SETTING screen

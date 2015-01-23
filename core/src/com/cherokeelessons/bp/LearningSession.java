@@ -181,6 +181,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	private float elapsed=0f;
+	private boolean elapsed_tick_on=false;
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
@@ -210,6 +211,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
 			final Card deckCard = cards_by_id.get(card_id);
 			if (activeCard.newCard) {
+				elapsed_tick_on=false;
 				ticktock.stop();
 				newCardDialog.setCounter(cardcount++);
 				newCardDialog.setCard(deckCard);
@@ -220,7 +222,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				activeCard.show_again_ms = Deck.getNextInterval(0);
 				reInsertCard(activeCard);
 			} else {
-				ticktock_id = ticktock.play(0f);
+				elapsed_tick_on=true;
+				ticktock_id = ticktock.play(.01f);
 				ticktock.setLooping(ticktock_id, true);
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
@@ -521,7 +524,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
 		Collections.shuffle(tmp.cards);
-		scanDeck: for (int distance = 4; distance < 100; distance++) {
+		scanDeck: for (int distance = 10; distance < 100; distance++) {
 			for (Card deckCard : deck.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
@@ -653,7 +656,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		elapsed+=delta;
+		if (elapsed_tick_on) {
+			elapsed+=delta;
+		}
 		super.render(delta);
 	}
 

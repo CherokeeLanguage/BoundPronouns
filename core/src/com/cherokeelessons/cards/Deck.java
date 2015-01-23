@@ -3,10 +3,10 @@ package com.cherokeelessons.cards;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
-
 public class Deck {
 	public List<Card> cards=new ArrayList<>();
+
+	public int version=-1;
 	
 	private static final List<Long> pimsleur_intervals=new ArrayList<>();
 	private static final List<Long> sm2_intervals=new ArrayList<>();

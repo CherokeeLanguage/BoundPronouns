@@ -18,14 +18,14 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonValue.PrettyPrintSettings;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 
 public class BuildDeck implements Runnable {
 	
-
+	public static int version = 1;
+	
 	private boolean skipBareForms = false;
 
 	private Json json = new Json();
@@ -41,20 +41,19 @@ public class BuildDeck implements Runnable {
 	}
 
 	private final BoundPronouns game;
-	private final FileHandle slot;
 	private final Runnable done;
-
+	private final FileHandle dest;
+	
 	public BuildDeck(BoundPronouns game, FileHandle slot, Runnable done) {
 		this.game = game;
-		this.slot = slot;
 		this.done = done;
+		dest = slot.child("deck.json");
 	}
 
 	public Runnable save=new Runnable() {
 		@Override
 		public void run() {
-			game.log(this, "buildDeck#save");
-			FileHandle dest = slot.child("deck.json");
+			game.log(this, "buildDeck#save");		
 			json.setOutputType(OutputType.json);
 			json.setTypeName(null);			
 			Collections.sort(deck.cards);
@@ -65,7 +64,7 @@ public class BuildDeck implements Runnable {
 			dest.writeString(json.prettyPrint(deck), false, "UTF-8");
 			if (done != null) {
 				Gdx.app.postRunnable(done);
-			}			
+			}
 		}
 	};
 	
@@ -73,6 +72,17 @@ public class BuildDeck implements Runnable {
 	public void run() {
 		long tick = System.currentTimeMillis();
 		work: {
+			if (dest.exists()) {
+				Deck deck = json.fromJson(Deck.class, dest);
+				if (deck.version==version) {
+					game.log(this, deck.cards.size() + " cards in deck.");
+					if (done != null) {
+						Gdx.app.postRunnable(done);
+					}
+					return;
+				}
+				dest.delete();
+			}
 			if (pronouns == null) {
 				game.log(this, "buildDeck#init");
 				init();
@@ -89,7 +99,7 @@ public class BuildDeck implements Runnable {
 			}
 			game.log(this, "buildDeck#run");
 			Iterator<CSVRecord> irec = pronouns.iterator();
-			while (irec.hasNext()) {				
+			while (irec.hasNext()) {
 				CSVRecord record = irec.next();
 				irec.remove();
 				String vtmode = record.get(0);
