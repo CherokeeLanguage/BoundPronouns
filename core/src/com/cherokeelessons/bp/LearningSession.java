@@ -392,12 +392,6 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (doBuzzer && !doCow) {
 					buzzer.play();
 				}
-				if (doCow || doBuzzer) {
-					_activeCard.box--;
-					if (_activeCard.box<0) {
-						_activeCard.box=0;
-					}
-				}
 				if (!doCow && !doBuzzer) {
 					ding.play();
 				}
@@ -602,15 +596,17 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (tmp.isAllPassedThreshold(SendToNextSessionThreshold)) {
 					tmp.box++;
 					current_done.deck.add(tmp);
-					game.log(this, "Bumped Card: "+tmp.pgroup+" "+tmp.vgroup);
 					tmp.show_again_ms=tmp.show_again_ms+Deck.getNextSessionInterval(tmp.box);
 					itmp.remove();
+					game.log(this, "Bumped Card: "+tmp.pgroup+" "+tmp.vgroup);
 					return getNextCard();
 				}
-				if (tmp.tries_remaining<0) {		
+				if (tmp.tries_remaining<0) {
+					tmp.box--;
 					current_done.deck.add(tmp);
-					game.log(this, "Retired Card: "+tmp.pgroup+" "+tmp.vgroup);
+					tmp.show_again_ms=tmp.show_again_ms+Deck.getNextSessionInterval(tmp.box);
 					itmp.remove();
+					game.log(this, "Retired Card: "+tmp.pgroup+" "+tmp.vgroup);
 					return getNextCard();
 				}
 				if (tmp.show_again_ms>0) {

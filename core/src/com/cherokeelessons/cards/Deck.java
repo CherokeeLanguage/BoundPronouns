@@ -51,7 +51,13 @@ public class Deck {
 	 * @return
 	 */
 	public static long getNextSessionInterval(int box) {
-		
-		return 0;
+		box--;
+		if (box<0) { 
+			box=2;
+		}
+		if (box>=sm2_intervals.size()) {
+			box=sm2_intervals.size()-1;
+		}
+		return sm2_intervals.get(box);
 	}
 }
