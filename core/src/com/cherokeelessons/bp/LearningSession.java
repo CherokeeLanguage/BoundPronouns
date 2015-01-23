@@ -603,6 +603,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					tmp.box++;
 					current_done.deck.add(tmp);
 					game.log(this, "Bumped Card: "+tmp.pgroup+" "+tmp.vgroup);
+					tmp.show_again_ms=tmp.show_again_ms+Deck.getNextSessionInterval(tmp.box);
 					itmp.remove();
 					return getNextCard();
 				}

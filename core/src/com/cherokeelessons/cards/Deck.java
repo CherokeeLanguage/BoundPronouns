@@ -3,24 +3,57 @@ package com.cherokeelessons.cards;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
+
 public class Deck {
 	public List<Card> cards=new ArrayList<>();
 	
-	public static List<Long> intervals=new ArrayList<>();
+	private static final List<Long> pimsleur_intervals=new ArrayList<>();
+	private static final List<Long> sm2_intervals=new ArrayList<>();
+	
 	static {
+		/*
+		 * for Pimsleur
+		 */
 		long ms=1000l;
 		for (int i=0; i<15; i++) {
 			ms*=5l;
-			intervals.add(ms);
+			pimsleur_intervals.add(ms);
 		}
+		/*
+		 * for SM2 gaps
+		 */
+		long ms_day=1000l*60l*60l*24;
+		float days=4f;
+		sm2_intervals.add(ms_day);
+		for (int i=0; i<15; i++) {
+			sm2_intervals.add((long) (ms_day*days));
+			Gdx.app.log("SM2: ",(i+1)+") "+Math.round(days));
+			days*=1.7f;
+		}
+		
 	}
-	public static long getNextInterval(int box) {
-		if (box<0) {
-			box=0;
+	/**
+	 * Pimsleur staggered intervals (powers of 5) seconds as ms
+	 * @param correct_in_a_row
+	 * @return
+	 */
+	public static long getNextInterval(int correct_in_a_row) {
+		if (correct_in_a_row<0) {
+			correct_in_a_row=0;
 		}
-		if (box>intervals.size()-1){
-			box=intervals.size()-1;
+		if (correct_in_a_row>pimsleur_intervals.size()-1){
+			correct_in_a_row=pimsleur_intervals.size()-1;
 		}
-		return intervals.get(box);
+		return pimsleur_intervals.get(correct_in_a_row);
+	}
+	/**
+	 * SM2 staggered intervals (powers of 1.7) days as ms
+	 * @param box
+	 * @return
+	 */
+	public static long getNextSessionInterval(int box) {
+		
+		return 0;
 	}
 }
