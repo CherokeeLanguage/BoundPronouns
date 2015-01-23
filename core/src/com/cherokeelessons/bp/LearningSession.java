@@ -211,8 +211,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
 			final Card deckCard = cards_by_id.get(card_id);
 			if (activeCard.newCard) {
-				elapsed_tick_on=false;
-				ticktock.stop();
+				ticktock.stop(ticktock_id);
 				newCardDialog.setCounter(cardcount++);
 				newCardDialog.setCard(deckCard);
 				newCardDialog.show(stage);
@@ -222,9 +221,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				activeCard.show_again_ms = Deck.getNextInterval(0);
 				reInsertCard(activeCard);
 			} else {
-				elapsed_tick_on=true;
-				ticktock_id = ticktock.play(.01f);
-				ticktock.setLooping(ticktock_id, true);
+				elapsed_tick_on=true;	
+				ticktock_id=ticktock.loop(.01f);				
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
@@ -329,7 +327,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			protected void result(Object object) {
 				this.clearActions();
 				setTimer(0);
-				ticktock.stop();
+				ticktock.stop(ticktock_id);
 				cancel();
 				/**
 				 * set when any wrong

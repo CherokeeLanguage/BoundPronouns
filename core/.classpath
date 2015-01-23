@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer" exported="true"/>
 	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="/home/mjoyner/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.5.3/5ae3e32b01bcaa3d97d819b39c04da78d094563b/gdx-1.5.3-sources.jar" kind="lib" path="/home/mjoyner/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.5.3/3b8f2a7e697b097735ec8fd2b9d576d0959cb7c9/gdx-1.5.3.jar" exported="true"/>
+	<classpathentry sourcepath="/home/mjoyner/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.5.3/b76720b4b7aada6d6a70e7765dc44e8d1fbdf068/gdx-freetype-1.5.3-sources.jar" kind="lib" path="/home/mjoyner/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.5.3/f77c1547eca7c5f508367f7034a509677b157a8b/gdx-freetype-1.5.3.jar" exported="true"/>
+	<classpathentry sourcepath="/home/mjoyner/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-controllers/1.5.3/c518d90784a89a9c7e5fc6c4f60646fa8f5b6efc/gdx-controllers-1.5.3-sources.jar" kind="lib" path="/home/mjoyner/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-controllers/1.5.3/a21503c7167d7b0a31daf3166ffae84c25d3644d/gdx-controllers-1.5.3.jar" exported="true"/>
+	<classpathentry sourcepath="/home/mjoyner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-csv/1.1/67d709cfe7ed870b123df9d7e5b5ec4e9d5806ad/commons-csv-1.1-sources.jar" kind="lib" path="/home/mjoyner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-csv/1.1/1eeeb118cab7ec49c9a10b478356eff108d5e87e/commons-csv-1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/home/mjoyner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/8d30b90ae8bda4fbac8363161c8a9b5a99e23baf/commons-lang3-3.1-sources.jar" kind="lib" path="/home/mjoyner/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.1/905075e6c80f206bbe6cf1e809d2caa69f420c76/commons-lang3-3.1.jar" exported="true"/>
 </classpath>
