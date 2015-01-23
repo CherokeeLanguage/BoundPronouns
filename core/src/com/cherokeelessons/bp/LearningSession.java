@@ -75,7 +75,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (o2.correct) {
 				return 1;
 			}
-			return Integer.compare(o1.distance, o2.distance);
+			if (o1.distance<o2.distance) {
+				return -1;
+			}
+			if (o1.distance>o2.distance) {
+				return 1;
+			}
+			return 0;
 		}
 	};
 	private int cardcount = 0;
@@ -500,8 +506,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				Integer i2 = active.getCorrectInARowFor(o2);
 				i1 = (i1 == null ? 0 : i1);
 				i2 = (i2 == null ? 0 : i2);
-				if (i1 != i2) {
-					return Integer.compare(i1, i2);
+				if (i1<i2) {
+					return -1;
+				}
+				if (i1>i2) {
+					return 1;
 				}
 				return o1.compareTo(o2);
 			}
