@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
@@ -52,7 +53,12 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final float MaxTimePerCard_sec = 15f;
 
-	private static final int SendToNextSessionThreshold = 3;
+	private static final int SendToNextSessionThreshold = 4;
+
+	protected static final float MinSessionTime = 60f*15f;
+	protected static final float MaxSessionTime = 60f*25f;
+
+	protected static final int InitialDeckSize = 10;
 
 	private Sound buzzer;
 	/**
@@ -94,14 +100,14 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Deck deck;
 
 	private Sound ding;
-
+	
 	private Runnable initSet0 = new Runnable() {
 		@Override
 		public void run() {
 			nodupes.clear();
 			game.log(this, "Loading Set 0...");
 
-			int needed = 10;
+			int needed = InitialDeckSize;
 
 			recordAlreadySeen(current_pending);
 
@@ -159,23 +165,30 @@ public class LearningSession extends ChildScreen implements Screen {
 			tosave.deck.addAll(current_pending.deck);
 			tosave.deck.addAll(current_done.deck);
 			tosave.lastrun = System.currentTimeMillis();
+			tosave.size=tosave.deck.size();
 			Collections.sort(tosave.deck, byNextShowTime);
-			FileHandle tmp = FileHandle.tempFile(ActiveDeckJson);
+			FileHandle tmp = slot.child(ActiveDeckJson+".tmp");
 			tmp.writeString(json.prettyPrint(tosave), false, "UTF-8");
-			tmp.moveTo(slot.child(ActiveDeckJson));
+			tmp.moveTo(slot.child(ActiveDeckJson));			
 			tmp.delete();
 		}
 	};
 
+	private float elapsed=0f;
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
 			stage.addAction(Actions.run(saveStats));
 			final ActiveCard activeCard = getNextCard();
-			if (activeCard == null) {
-				Dialog bye = new Dialog("DONE!", skin) {
+			if (activeCard == null && elapsed < MinSessionTime) {
+				addCards(InitialDeckSize, current_pending);
+				Gdx.app.postRunnable(showACard);
+				return;
+			}
+			if (activeCard == null || elapsed > MaxSessionTime) {
+				Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 					{
-						text("Session Complete!");
+						text("Session Complete!\nPlease wait at least 5 hours before starting your next session.\nDo not skip any days before starting your next sesssion!");
 						button("OK!");
 					}
 					protected void result(Object object) {
@@ -227,7 +240,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					}));
 					challengeCardDialog.addAction(updater);
 				}				
-				activeCard.tries_remaining--;				
 			}
 		}
 	};
@@ -381,10 +393,9 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 				}
 				if (!doCow && !doBuzzer) {
-					ding.play();					
-					_activeCard.box++;
+					ding.play();
 				}
-				_activeCard.show_again_ms=Deck.getNextInterval(_activeCard.box);
+				_activeCard.show_again_ms=Deck.getNextInterval(_activeCard.getMinCorrectInARow());
 				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
 						Actions.run(hideThisCard)));
 				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
@@ -407,6 +418,9 @@ public class LearningSession extends ChildScreen implements Screen {
 		Iterator<ActiveCard> ipending = current_pending.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
 			ActiveCard next = ipending.next();
+			if (next.box>9){
+				continue;
+			}
 			if (next.show_again_ms > 0) {
 				continue;
 			}
@@ -576,9 +590,21 @@ public class LearningSession extends ChildScreen implements Screen {
 			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
-				if (tmp.show_again_ms>(20l*60l*1000l)) {
+				if (tmp.isAllPassedThreshold(SendToNextSessionThreshold)) {
+					tmp.box++;
+					current_done.deck.add(tmp);
+					game.log(this, "Bumped Card: "+tmp.pgroup+" "+tmp.vgroup);
+					return getNextCard();
+				}
+				if (tmp.tries_remaining<0) {		
+					current_done.deck.add(tmp);
+					game.log(this, "Retired Card: "+tmp.pgroup+" "+tmp.vgroup);
+					return getNextCard();
+				}
+				if (tmp.show_again_ms>0) {
 					continue;
 				}
+				tmp.tries_remaining--;
 				current_active.deck.add(tmp);
 				itmp.remove();
 			}
@@ -588,18 +614,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Collections.sort(current_active.deck, byNextShowTime);
 		}
 		ActiveCard card = current_active.deck.get(0);
-		current_active.deck.remove(0);
-		if (card.isAllPassedThreshold(SendToNextSessionThreshold)) {
-			card.box++;
-			current_done.deck.add(card);
-			game.log(this, "Bumped Card: "+card.pgroup+" "+card.vgroup);
-			return getNextCard();
-		}
-		if (card.tries_remaining<0) {		
-			current_done.deck.add(card);
-			game.log(this, "Retired Card: "+card.pgroup+" "+card.vgroup);
-			return getNextCard();
-		}
+		current_active.deck.remove(0);		
 		current_pending.deck.add(card);
 		return card;
 	}
@@ -630,6 +645,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		elapsed+=delta;
 		super.render(delta);
 	}
 
