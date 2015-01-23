@@ -17,3 +17,14 @@ Powered by LibGDX
 Powered by Apache Commons Lang3
 
 Built using Gradle, Maven, and Eclipse
+
+This software incorporates a heavily modified Leitner Learning Method algorithm based on the description of the Leitner system as implemented by LenMus. This software does NOT use any LenMus code or derived code.
+
+The "box" timings are based on information as listed as part of the LenMus project at http://lenmus.sourceforge.net/en/lenmusdocs/hacking/exercises/problem-modes.html that were in Section 1.1.2.3. Repetition intervals.
+
+The card positions during a session are based on using the Pimsleur power of 5 timing intervals accounting for correct or incorrect responses.
+
+---
+
+Versions:
+
