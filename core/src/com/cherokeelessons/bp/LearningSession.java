@@ -342,13 +342,17 @@ public class LearningSession extends ChildScreen implements Screen {
 				info.name="ᎤᏲᏒ ᎣᎦᎾ!";
 			} else {
 				info = json.fromJson(SlotInfo.class, infoFile);
-			}
-			
+			}			
 			calculateStats(tosave, info);
-			json.toJson(info, slot.child(INFO_JSON));
+			
 			FileHandle tmp = slot.child(ActiveDeckJson + ".tmp");
 			tmp.writeString(json.prettyPrint(tosave), false, "UTF-8");
 			tmp.moveTo(slot.child(ActiveDeckJson));
+			tmp.delete();
+			
+			tmp = slot.child(INFO_JSON + ".tmp");
+			tmp.writeString(json.prettyPrint(info), false, "UTF-8");
+			tmp.moveTo(slot.child(INFO_JSON));
 			tmp.delete();
 		}
 
