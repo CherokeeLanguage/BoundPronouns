@@ -76,8 +76,10 @@ public class BuildDeck implements Runnable {
 	public void run() {
 		long tick = System.currentTimeMillis();
 		work: {
-			if (forceRebuild && dest.exists()) {
-				dest.delete();
+			if (forceRebuild) {
+				if (dest.exists()) {
+					dest.delete();
+				}
 			}
 			if (dest.exists()) {
 				Deck deck = json.fromJson(Deck.class, dest);
