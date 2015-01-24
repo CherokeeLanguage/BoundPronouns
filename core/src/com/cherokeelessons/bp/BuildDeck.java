@@ -24,7 +24,7 @@ import com.cherokeelessons.cards.Deck;
 
 public class BuildDeck implements Runnable {
 	
-	public static int version = 2;
+	public static int version = 3;
 	
 	private boolean skipBareForms = false;
 
@@ -437,14 +437,14 @@ public class BuildDeck implements Runnable {
 						addDePrefix(d);
 					}
 					if (vtypes.contains("xdi")) {
-						addDiPrefix(d);
+						addDiPrefix(d, aStem);
 					}
 				} else if (isPluralSubj(obj)) {
 					if (vtypes.contains("xde")) {
 						addDePrefix(d);
 					}
 					if (vtypes.contains("xdi")) {
-						addDiPrefix(d);
+						addDiPrefix(d, aStem);
 					}
 				}
 
@@ -758,7 +758,17 @@ public class BuildDeck implements Runnable {
 		}
 	}
 
-	private void addDiPrefix(DataSet d) {
+	private void addDiPrefix(DataSet d, boolean aStem) {
+		if (d.latin.matches("[ạ].*") && aStem) {
+			d.latin = "dạ" + d.latin.substring(1);
+			d.chr = "Ꮣ" + d.chr.substring(1);
+			return;
+		}
+		if (d.latin.matches("[a].*") && aStem) {
+			d.latin = "da" + d.latin.substring(1);
+			d.chr = "Ꮣ" + d.chr.substring(1);
+			return;
+		}
 		if (d.latin.matches("[ạa].*")) {
 			d.latin = "dị" + d.latin.substring(1);
 			d.chr = "Ꮧ" + d.chr.substring(1);
