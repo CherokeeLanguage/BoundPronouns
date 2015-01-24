@@ -139,6 +139,10 @@ public class LearningSession extends ChildScreen implements Screen {
 			 */
 			current_pending.lastrun = System.currentTimeMillis() - ONE_DAY_ms;
 			updateTime(current_pending);
+			/*
+			 * ALWAYS force reset ALL correct in a row counts on load!
+			 */
+			resetCorrectInARow(current_pending);
 
 			/*
 			 * time-shift all cards by an additional seven days to pull in more
@@ -159,7 +163,21 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			stage.addAction(Actions.run(showACard));
 		}
+
 	};
+	private void resetCorrectInARow(ActiveDeck current_pending) {
+		for(ActiveCard card: current_pending.deck) {
+			resetCorrectInARow(card);
+		}		
+	}
+
+	public void resetCorrectInARow(ActiveCard card) {
+		Card dcard = cards_by_id.get(card.getId());
+		card.resetCorrectInARow(dcard.answer);
+		card.tries_remaining=SendToNextSessionThreshold*dcard.answer.size()+1;
+		game.log(this, "Resetting correct in a row for: "+card.getId());
+	}
+	
 	private final Json json;
 	private Runnable loadDeck = new Runnable() {
 		@Override
@@ -447,9 +465,9 @@ public class LearningSession extends ChildScreen implements Screen {
 				newCardDialog.setCard(deckCard);
 				newCardDialog.show(stage);
 				activeCard.box = 0;
-				activeCard.resetCorrectInARow(deckCard.answer);
 				activeCard.newCard = false;
 				activeCard.show_again_ms = Deck.getNextInterval(0);
+				resetCorrectInARow(activeCard);
 				reInsertCard(activeCard);
 			} else {
 				elapsed_tick_on = true;
@@ -661,9 +679,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (next.show_again_ms > 0) {
 				continue;
 			}
-			next.resetCorrectInARow();
-			next.tries_remaining = SendToNextSessionThreshold
-					* next.getAnswerCount() + 1;
+			resetCorrectInARow(next);
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -680,14 +696,12 @@ public class LearningSession extends ChildScreen implements Screen {
 				continue;
 			}
 			ActiveCard activeCard = new ActiveCard();
-			activeCard.box = 0;
-			activeCard.resetCorrectInARow(next.answer);
+			activeCard.box = 0;			
 			activeCard.newCard = true;
 			activeCard.pgroup = next.pgroup;
-			activeCard.show_again_ms = 0;
-			activeCard.tries_remaining = SendToNextSessionThreshold
-					* activeCard.getAnswerCount() + 1;
+			activeCard.show_again_ms = 0;			
 			activeCard.vgroup = next.vgroup;
+			resetCorrectInARow(activeCard);
 			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
@@ -840,6 +854,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
+				if (tmp.show_again_ms > 0) {
+					continue;
+				}
 				if (tmp.isAllCorrectInARow(SendToNextSessionThreshold)) {
 					tmp.box++;
 					current_done.deck.add(tmp);
@@ -859,10 +876,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					game.log(this, "Retired Card: " + tmp.pgroup + " "
 							+ tmp.vgroup);
 					return getNextCard();
-				}
-				if (tmp.show_again_ms > 0) {
-					continue;
-				}
+				}				
 				tmp.tries_remaining--;
 				current_active.deck.add(tmp);
 				itmp.remove();

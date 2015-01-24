@@ -46,7 +46,10 @@ public class ActiveCard {
 		return true;
 	}
 
-	public void resetCorrectInARow(Collection<String> answers) {
+	public void resetCorrectInARow(Collection<String> answers) {		
+		if (answers.size()==0) {
+			throw new RuntimeException("EMPTY ANSWER LIST ?!?! ["+getId()+"]");
+		}
 		correct_in_a_row.clear();
 		for (String a : answers) {
 			correct_in_a_row.put(a, 0);
