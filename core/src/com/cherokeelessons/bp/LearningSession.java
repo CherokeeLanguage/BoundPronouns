@@ -3,7 +3,6 @@ package com.cherokeelessons.bp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -44,10 +43,10 @@ import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.Answer;
-import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
+import com.cherokeelessons.cards.SlotInfo;
 
 public class LearningSession extends ChildScreen implements Screen {
 
@@ -351,7 +350,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			tosave.deck.addAll(current_pending.deck);
 			tosave.deck.addAll(current_done.deck);
 			tosave.lastrun = sessionStart;
-			tosave.size = tosave.deck.size();
 			Collections.sort(tosave.deck, byNextShowTime);
 			
 			SlotInfo info;
@@ -417,6 +415,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			final ActiveCard activeCard = getNextCard();
 			if (activeCard == null) {
 				if (elapsed < MinSessionTime) {
+					game.log(this, "session time is not up, adding new cards");
 					addCards(IncrementDeckBySize, current_pending);
 					Gdx.app.postRunnable(showACard);
 					return;
@@ -424,14 +423,15 @@ public class LearningSession extends ChildScreen implements Screen {
 				/*
 				 * Session time is up, force time shift cards into active show range...
 				 */
-				if (elapsed > MinSessionTime && current_pending.size>0) {
-					current_active.deck.addAll(current_pending.deck);
-					current_pending.lastrun=System.currentTimeMillis()-ONE_HOUR_ms;
+				if (elapsed > MinSessionTime && current_pending.deck.size()>0) {
+					game.log(this, "session time up, shifting cards by 1 minute and trying again");
+					current_pending.lastrun=System.currentTimeMillis()-ONE_MINUTE_ms;
 					updateTime(current_pending);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
 				if (elapsed > MinSessionTime) {
+					game.log(this, "no cards have retries remaining and session time is up");
 					stage.addAction(Actions.run(saveActiveDeck));
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 						{
@@ -479,8 +479,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				newCardDialog.show(stage);
 				activeCard.box = 0;
 				activeCard.newCard = false;
-				activeCard.show_again_ms = Deck.getNextInterval(0);
-				resetCorrectInARow(activeCard);
+				activeCard.show_again_ms = Deck.getNextInterval(0);				
 				reInsertCard(activeCard);
 			} else {
 				elapsed_tick_on = true;
@@ -488,8 +487,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
-				challengeCardDialog.setAnswers(getAnswerSetsFor(activeCard,
-						deckCard, deck));
+				AnswerList answerSetsFor = getAnswerSetsFor(activeCard,
+						deckCard, deck);
+				activeCard.tries_remaining -= answerSetsFor.correctCount();				
+				challengeCardDialog.setAnswers(answerSetsFor);
 				challengeCardDialog.addAction(Actions.delay(MaxTimePerCard_sec,
 						Actions.run(new Runnable() {
 							@Override
@@ -589,6 +590,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			@Override
 			protected void result(Object object) {
+//				Card card = cards_by_id.get(_activeCard.getId());
 				this.clearActions();
 				this.setCheckVisible(false);
 				setTimer(0);
@@ -625,8 +627,7 @@ public class LearningSession extends ChildScreen implements Screen {
 								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
 										+ ans.answer);
 								doBuzzer = true;
-								Card card = cards_by_id.get(_activeCard.getId());
-								_activeCard.resetCorrectInARow(card.answer);
+								resetCorrectInARow(_activeCard);
 							}
 							if (!tb.isChecked() && ans.correct) {
 								ColorAction toGreen = Actions.color(
@@ -639,7 +640,7 @@ public class LearningSession extends ChildScreen implements Screen {
 								tb.setText(BoundPronouns.RIGHT_ARROW + " "
 										+ ans.answer);
 								doBuzzer = true;
-								_activeCard.markInCorrect(ans.answer);
+								resetCorrectInARow(_activeCard);
 							}
 							if (tb.isChecked() && ans.correct) {
 								ColorAction toGreen = Actions.color(
@@ -692,7 +693,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (next.show_again_ms > 0) {
 				continue;
 			}
-			resetCorrectInARow(next);
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -858,17 +858,24 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * is being displayed and the user sets the tablet down and hits
 			 * HOME or goes to lunch or something
 			 */
-			if (System.currentTimeMillis() - current_pending.lastrun > ONE_MINUTE_ms) {
-				current_pending.lastrun = System.currentTimeMillis()
-						- ONE_MINUTE_ms;
-			}
+//			if (System.currentTimeMillis() - current_pending.lastrun > ONE_MINUTE_ms) {
+//				current_pending.lastrun = System.currentTimeMillis()
+//						- ONE_MINUTE_ms;
+//			}
 			updateTime(current_pending);
 			current_pending.lastrun = System.currentTimeMillis();
 			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
-				if (tmp.show_again_ms > 0) {
-					continue;
+				if (tmp.tries_remaining < 0) {
+					tmp.box--;
+					current_done.deck.add(tmp);
+					tmp.show_again_ms = tmp.show_again_ms
+							+ Deck.getNextSessionInterval(tmp.box);
+					itmp.remove();
+					game.log(this, "Retired Card: " + tmp.pgroup + " "
+							+ tmp.vgroup);
+					return getNextCard();
 				}
 				if (tmp.isAllCorrectInARow(SendToNextSessionThreshold)) {
 					tmp.box++;
@@ -880,17 +887,9 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ tmp.vgroup);
 					return getNextCard();
 				}
-				if (tmp.tries_remaining < 0) {
-					tmp.box--;
-					current_done.deck.add(tmp);
-					tmp.show_again_ms = tmp.show_again_ms
-							+ Deck.getNextSessionInterval(tmp.box);
-					itmp.remove();
-					game.log(this, "Retired Card: " + tmp.pgroup + " "
-							+ tmp.vgroup);
-					return getNextCard();
+				if (tmp.show_again_ms > 0) {
+					continue;
 				}				
-				tmp.tries_remaining--;
 				current_active.deck.add(tmp);
 				itmp.remove();
 			}

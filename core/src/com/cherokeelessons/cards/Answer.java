@@ -5,7 +5,16 @@ import java.util.List;
 
 public class Answer {
 	public static class AnswerList {
-		public List<Answer> list = new ArrayList<>(); 
+		public List<Answer> list = new ArrayList<>();
+		public int correctCount(){
+			int c=0;
+			for (Answer a: list) {
+				if (a.correct) {
+					c++;
+				}
+			}
+			return c;
+		}
 	}
 	public Answer() {
 	}

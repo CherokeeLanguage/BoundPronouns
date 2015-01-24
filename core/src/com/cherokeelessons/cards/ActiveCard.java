@@ -24,11 +24,6 @@ public class ActiveCard {
 		return c != null ? c : 0;
 	}
 
-	public void markInCorrect(String answer) {
-		Integer c = correct_in_a_row.get(answer);
-		correct_in_a_row.put(answer, c != null ? c + 1 : 1);
-	}
-
 	public void markCorrect(String answer) {
 		Integer c = correct_in_a_row.get(answer);
 		correct_in_a_row.put(answer, c != null ? c + 1 : 1);
