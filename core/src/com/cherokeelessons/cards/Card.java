@@ -55,6 +55,12 @@ public class Card implements Serializable, Comparable<Card> {
 		}
 		return key.toString();
 	}
-	
+
+	/**
+	 * id of card in main deck based on pgroup/vgroup combinations
+	 */
+	public String getId(){
+		return pgroup + "+" + vgroup;
+	};	
 	
 }

@@ -170,7 +170,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					BuildDeck.getDeckSlot().child("deck.json"));
 			cards_by_id.clear();
 			for (Card c : deck.cards) {
-				cards_by_id.put(c.pgroup + "+" + c.vgroup, c);
+				cards_by_id.put(c.getId(), c);
 			}
 		}
 	};
@@ -440,8 +440,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					return;
 				}
 			}
-			String card_id = activeCard.pgroup + "+" + activeCard.vgroup;
-			final Card deckCard = cards_by_id.get(card_id);
+			final Card deckCard = cards_by_id.get(activeCard.getId());
 			if (activeCard.newCard) {
 				ticktock.stop(ticktock_id);
 				newCardDialog.setCounter(cardcount++);
@@ -595,7 +594,8 @@ public class LearningSession extends ChildScreen implements Screen {
 								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
 										+ ans.answer);
 								doBuzzer = true;
-								_activeCard.resetCorrectInARow();
+								Card card = cards_by_id.get(_activeCard.getId());
+								_activeCard.resetCorrectInARow(card.answer);
 							}
 							if (!tb.isChecked() && ans.correct) {
 								ColorAction toGreen = Actions.color(
@@ -682,7 +682,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			ActiveCard activeCard = new ActiveCard();
 			activeCard.box = 0;
 			activeCard.resetCorrectInARow(next.answer);
-			activeCard.id = next.id;
 			activeCard.newCard = true;
 			activeCard.pgroup = next.pgroup;
 			activeCard.show_again_ms = 0;

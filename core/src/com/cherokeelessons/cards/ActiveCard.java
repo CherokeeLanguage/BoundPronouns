@@ -58,9 +58,11 @@ public class ActiveCard {
 	}
 
 	/**
-	 * id of card in main deck
+	 * id of card in main deck based on pgroup/vgroup combinations
 	 */
-	public int id;
+	public String getId(){
+		return pgroup + "+" + vgroup;
+	};
 	/**
 	 * verb group for this card
 	 */
