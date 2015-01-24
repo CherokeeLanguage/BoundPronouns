@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deck {
-	public List<Card> cards=new ArrayList<>();
-
 	public int version=-1;
+	public int size=0;
+	public List<Card> cards=new ArrayList<>();
 	
 	private static final List<Long> pimsleur_intervals=new ArrayList<>();
 	private static final List<Long> sm2_intervals=new ArrayList<>();
@@ -51,10 +51,6 @@ public class Deck {
 	 * @return
 	 */
 	public static long getNextSessionInterval(int box) {
-		box--;
-		if (box<0) { 
-			box=2;
-		}
 		if (box>=sm2_intervals.size()) {
 			box=sm2_intervals.size()-1;
 		}

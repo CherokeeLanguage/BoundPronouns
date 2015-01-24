@@ -62,6 +62,7 @@ public class BuildDeck implements Runnable {
 				deck.cards.get(i).id=i+1;
 			}
 			game.log(this, deck.cards.size() + " cards in deck.");
+			deck.size=deck.cards.size();
 			dest.writeString(json.prettyPrint(deck), false, "UTF-8");
 			if (done != null) {
 				Gdx.app.postRunnable(done);

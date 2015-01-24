@@ -20,7 +20,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.cherokeelessons.cards.SlotInfo;
 
 public class MainScreen implements Screen {
 
@@ -64,6 +67,8 @@ public class MainScreen implements Screen {
 			return true;
 		}
 	};
+	
+	private final Json json;
 
 	private ClickListener viewPractice = new ClickListener() {
 		@Override
@@ -82,34 +87,27 @@ public class MainScreen implements Screen {
 			slotsPane.setColor(Color.DARK_GRAY);
 			chooseSlot.getContentTable().add(slotsPane).expand().fill();
 			
-			for (int ix = 0; ix < 10; ix++) {
+			for (int ix = 0; ix < 7; ix++) {
 				final FileHandle p0, p1;
-				String path0 = "BoundPronouns/slots/" + ix + "/";
-				String path1 = "BoundPronouns/slots/" + ix + "/info.json";
+				String path0 = "BoundPronouns/slots/" + ix + "/";				
 				switch (Gdx.app.getType()) {
 				case Android:
 					p0 = Gdx.files.local(path0);
-					p1 = Gdx.files.local(path1);
 					break;
 				case Applet:
 					p0 = Gdx.files.external(path0);
-					p1 = Gdx.files.external(path1);
 					break;
 				case Desktop:
 					p0 = Gdx.files.external(path0);
-					p1 = Gdx.files.external(path1);
 					break;
 				case HeadlessDesktop:
 					p0 = Gdx.files.external(path0);
-					p1 = Gdx.files.external(path1);
 					break;
 				case WebGL:
 					p0 = Gdx.files.external(path0);
-					p1 = Gdx.files.external(path1);
 					break;
 				case iOS:
 					p0 = Gdx.files.local(path0);
-					p1 = Gdx.files.local(path1);
 					break;
 				default:
 					continue;
@@ -118,8 +116,13 @@ public class MainScreen implements Screen {
 					p0.mkdirs();
 				}
 				String txt = "*** EMPTY ***";
+				p1 = p0.child("info.json");
 				if (p1.exists()) {
-					txt = p1.readString("UTF-8");
+					SlotInfo info = json.fromJson(SlotInfo.class, p1);
+					txt = (info!=null&&info.name!=null) ? info.name : "ᎤᏲᏒ ᏥᏍᏕᏥ!";
+					txt += "\n"+info.activeCards+" cards";
+					txt += ", "+((int)(info.proficiency*100))+"% proficiency";
+					txt += ", "+((int)(info.learned*100))+"% fully learned";
 				}
 				TextButton textb = new TextButton(txt, skin);
 				TextButtonStyle tbs = new TextButtonStyle(textb.getStyle());
@@ -175,6 +178,11 @@ public class MainScreen implements Screen {
 		viewport = new FitViewport(1280, 720, stage.getCamera());
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
+		
+		json = new Json();
+		json.setOutputType(OutputType.json);
+		json.setTypeName(null);
+		json.setIgnoreUnknownFields(true);
 
 		BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
 

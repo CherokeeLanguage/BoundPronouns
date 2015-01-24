@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.cards.ActiveCard;
@@ -23,8 +24,7 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 
 public abstract class ChallengeCardDialog extends Dialog {
-	
-	
+
 	@Override
 	public void act(float delta) {
 		super.act(delta);
@@ -41,7 +41,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 	private final TextButton challenge_top;
 
 	private Skin skin;
-	
+
 	@Override
 	protected void result(Object object) {
 		super.result(object);
@@ -104,15 +104,27 @@ public abstract class ChallengeCardDialog extends Dialog {
 			}
 		});
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
-		ls.font=sans36();
+		ls.font = sans36();
 		timer = new Label("--", ls);
 		appNavBar.add(timer).right().expandX();
+
+		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default",
+				TextButtonStyle.class));
+		tbs_check.font = sans36();
+		check = new TextButton("CHECK!", tbs_check);
+		
+		answer_style = new TextButtonStyle(skin.get("default",
+				TextButtonStyle.class));
+		answer_style.font = serif36();
 	}
 	
+	private final TextButtonStyle answer_style;
+
 	private Label timer;
+
 	public void setTimer(float time) {
-		int x = (int)time;
-		String z = (x<10 ? "0" : "") + x;
+		int x = (int) time;
+		String z = (x < 10 ? "0" : "") + x;
 		timer.setText(z);
 	}
 
@@ -127,12 +139,11 @@ public abstract class ChallengeCardDialog extends Dialog {
 	protected Card _deckCard;
 
 	protected ActiveCard _activeCard;
-	
+
 	public void setCard(ActiveCard activeCard, Card deckCard) {
-		
 		this._activeCard = activeCard;
 		this._deckCard = deckCard;
-		
+
 		Iterator<String> i = deckCard.challenge.iterator();
 		challenge_top.setText(i.next());
 		showCardSb.setLength(0);
@@ -175,11 +186,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 		return game.manager.get("serif36.ttf", BitmapFont.class);
 	}
 
-	public void addAnswers(AnswerList answers) {
-		TextButtonStyle tbs = new TextButtonStyle(skin.get("default",
-				TextButtonStyle.class));
-		tbs.font = serif36();
-		final AnswerList selected = new AnswerList();
+	final AnswerList selected = new AnswerList();
+	
+	public void setAnswers(AnswerList answers) {
+		selected.list.clear();
 		Table btable = getButtonTable();
 		btable.clearChildren();
 		boolean odd = true;
@@ -187,7 +197,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 			if (odd) {
 				btable.row();
 			}
-			final TextButton a = new TextButton(answer.answer, tbs);
+			final TextButton a = new TextButton(answer.answer, answer_style);
 			a.setUserObject(answer);
 			a.addListener(new ClickListener() {
 				@Override
@@ -206,24 +216,22 @@ public abstract class ChallengeCardDialog extends Dialog {
 				}
 			});
 			a.setColor(Color.WHITE);
-			btable.add(a).fill().expandX();
+			Value percentWidth = Value.percentWidth(.5f, btable);
+			btable.add(a).fillX().width(percentWidth).padLeft(0).padRight(0).spaceLeft(0).spaceRight(0);
 			odd = !odd;
 		}
 		btable.row();
-		TextButtonStyle tbs_check = new TextButtonStyle(tbs);
-		tbs_check.font = sans36();
-		TextButton a = new TextButton("CHECK!", tbs_check);
-		setObject(a, selected);
-		btable.add(a).colspan(2).fill().expandX();
+		setObject(check, selected);
+		btable.add(check).colspan(2).fillX().expandX();
 		btable.row();
+		check.setVisible(true);
+		check.setDisabled(false);
+	}
+	
+	public void setCheckVisible(boolean visible){
+		check.setVisible(visible);
 	}
 
-	public void setAnswersVisible(boolean b) {
-		getButtonTable().setVisible(b);		
-	}
-
-	public void setMaxTime(float maxtimepercardSec) {
-		
-	}
+	private final TextButton check;
 
 }
