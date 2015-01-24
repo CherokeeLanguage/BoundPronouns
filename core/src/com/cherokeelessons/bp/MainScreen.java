@@ -116,11 +116,11 @@ public class MainScreen implements Screen {
 					p0.mkdirs();
 				}
 				String txt = "*** EMPTY ***";
-				p1 = p0.child("info.json");
+				p1 = p0.child(BoundPronouns.INFO_JSON);
 				if (p1.exists()) {
 					SlotInfo info = json.fromJson(SlotInfo.class, p1);
 					txt = (info!=null&&info.name!=null) ? info.name : "ᎤᏲᏒ ᏥᏍᏕᏥ!";
-					txt += "\n"+info.activeCards+" cards";
+					txt += "\n"+info.activeCards+" active cards";
 					txt += ", "+((int)(info.proficiency*100))+"% proficiency";
 					txt += ", "+((int)(info.learned*100))+"% fully learned";
 				}

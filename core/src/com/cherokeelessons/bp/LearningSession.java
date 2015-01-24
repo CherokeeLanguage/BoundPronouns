@@ -50,6 +50,8 @@ import com.cherokeelessons.cards.Deck;
 
 public class LearningSession extends ChildScreen implements Screen {
 
+	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
+
 	private static final long ONE_MINUTE_ms = 60l * 1000l;
 
 	private static final long ONE_DAY_ms = 24l * 60l * ONE_MINUTE_ms;
@@ -216,7 +218,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							info.name = info.name + " " + slot.nameWithoutExtension();
 						}
 					}
-					json.toJson(info, slot.child("info.json"));
+					json.toJson(info, slot.child(INFO_JSON));
 					stage.addAction(Actions.run(initSet0));
 				};
 
@@ -302,7 +304,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
-			if (!slot.child("info.json").exists()) {
+			if (!slot.child(INFO_JSON).exists()) {
 				Gdx.app.postRunnable(setName);
 				return;
 			}
@@ -334,7 +336,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Collections.sort(tosave.deck, byNextShowTime);
 			
 			SlotInfo info;
-			FileHandle infoFile = slot.child("info.json");
+			FileHandle infoFile = slot.child(INFO_JSON);
 			if (!infoFile.exists()) {
 				info = new SlotInfo();
 				info.name="ᎤᏲᏒ ᎣᎦᎾ!";
@@ -342,41 +344,46 @@ public class LearningSession extends ChildScreen implements Screen {
 				info = json.fromJson(SlotInfo.class, infoFile);
 			}
 			
-			/*
-			 * How many are "fully learned" out of the full deck?			
-			 */
-			float decksize = deck.cards.size();
-			float full = 0f;
-			for (ActiveCard card: tosave.deck) {
-				if (card.box>=FULLY_LEARNED_BOX) {
-					full++;
-				}
-			}
-			info.learned=full/decksize;
-			
-			/*
-			 * How many are "well known" out of the active deck? (excluding full learned ones)
-			 */
-			decksize=0f;
-			full=0f;
-			for (ActiveCard card: tosave.deck) {
-				if (card.box>=FULLY_LEARNED_BOX) {
-					continue;
-				}
-				if (card.box>PROFICIENT_BOX) {
-					full++;
-				}
-				decksize++;
-			}
-			info.proficiency=full/decksize;
-			info.activeCards=(int) decksize;
-			
+			calculateStats(tosave, info);
+			json.toJson(info, slot.child(INFO_JSON));
 			FileHandle tmp = slot.child(ActiveDeckJson + ".tmp");
 			tmp.writeString(json.prettyPrint(tosave), false, "UTF-8");
 			tmp.moveTo(slot.child(ActiveDeckJson));
 			tmp.delete();
 		}
+
 	};
+	
+	public void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
+		/*
+		 * How many are "fully learned" out of the full deck?			
+		 */
+		float decksize = deck.cards.size();
+		float full = 0f;
+		for (ActiveCard card: activeDeck.deck) {
+			if (card.box>=FULLY_LEARNED_BOX) {
+				full++;
+			}
+		}
+		info.learned=full/decksize;
+		
+		/*
+		 * How many are "well known" out of the active deck? (excluding full learned ones)
+		 */
+		decksize=0f;
+		full=0f;
+		for (ActiveCard card: activeDeck.deck) {
+			if (card.box>=FULLY_LEARNED_BOX) {
+				continue;
+			}
+			if (card.box>PROFICIENT_BOX) {
+				full++;
+			}
+			decksize++;
+		}
+		info.proficiency=full/decksize;
+		info.activeCards=(int) decksize;
+	}
 
 	private float elapsed = 0f;
 	private boolean elapsed_tick_on = false;
@@ -394,7 +401,27 @@ public class LearningSession extends ChildScreen implements Screen {
 					stage.addAction(Actions.run(saveActiveDeck));
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 						{
-							text("Session Complete!\nPlease wait 1 day before starting your next session.");
+							ActiveDeck activeDeck = new ActiveDeck();
+							activeDeck.deck.addAll(current_active.deck);
+							activeDeck.deck.addAll(current_pending.deck);
+							activeDeck.deck.addAll(current_done.deck);
+							
+							SlotInfo info = new SlotInfo();
+							calculateStats(activeDeck, info);
+							
+							StringBuilder sb = new StringBuilder();
+							sb.append("You Current Statistics");
+							sb.append("\n\n");
+							sb.append(info.activeCards+" active cards");
+							sb.append("\n");
+							sb.append(((int)(info.proficiency*100))+"% proficiency");
+							sb.append("\n");
+							sb.append(((int)(info.learned*100))+"% fully learned");
+							sb.append("\n\n");
+							int minutes = (int) (elapsed/60f);
+							int seconds = (int) (elapsed - minutes*60f);
+							sb.append("Elapsed time: "+minutes+":"+(seconds<10?"0":"")+seconds);
+							text(sb.toString());
 							button("OK!");
 						}
 

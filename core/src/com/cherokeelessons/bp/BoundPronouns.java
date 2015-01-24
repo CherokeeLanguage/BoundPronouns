@@ -229,6 +229,8 @@ public class BoundPronouns extends Game {
 
 	private static final List<DataSet> pronouns = new ArrayList<BuildDeck.DataSet>();
 
+	public static final String INFO_JSON = "info.json";
+
 	public static List<DataSet> loadPronounRecords() {
 		if (pronouns.size() != 0) {
 			return new ArrayList<>(pronouns);
