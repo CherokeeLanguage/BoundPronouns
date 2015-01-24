@@ -24,7 +24,9 @@ import com.cherokeelessons.cards.Deck;
 
 public class BuildDeck implements Runnable {
 	
-	public static int version = 3;
+	private static final boolean forceRebuild=false;
+	
+	public static int version = 4;
 	
 	private boolean skipBareForms = false;
 
@@ -74,6 +76,9 @@ public class BuildDeck implements Runnable {
 	public void run() {
 		long tick = System.currentTimeMillis();
 		work: {
+			if (forceRebuild && dest.exists()) {
+				dest.delete();
+			}
 			if (dest.exists()) {
 				Deck deck = json.fromJson(Deck.class, dest);
 				if (deck.version==version) {
@@ -287,7 +292,7 @@ public class BuildDeck implements Runnable {
 					if (!StringUtils.isBlank(pronoun.get(6))) {
 						d.chr = pronoun.get(6);
 						d.latin = pronoun.get(7);
-					}
+					}					
 				}
 
 				/*
@@ -309,7 +314,7 @@ public class BuildDeck implements Runnable {
 					d.latin = StringUtils.substringBefore(d.latin, ",");
 					d.latin = StringUtils.strip(d.latin);
 				}
-
+				
 				if (!cStem && d.chr.contains(",")) {
 					/*
 					 * select vowel stem pronoun
@@ -332,6 +337,19 @@ public class BuildDeck implements Runnable {
 					d.latin = StringUtils.substringBefore(d.latin, ",");
 					d.latin = StringUtils.substringBefore(d.latin, "-");
 					d.latin = StringUtils.strip(d.latin);
+				}
+				
+				if ((v_imp||v_inf)&&aStem) {
+					if (d.chr.equals("Ꮨ̣²")){
+						game.log(this, "ti -> t");
+						d.chr="Ꮤ͓";
+						d.latin="t";
+					}
+					if (d.chr.equals("Ꮧ̣²")){
+						game.log(this, "di -> d");
+						d.chr="Ꮣ͓";
+						d.latin="d";
+					}
 				}
 
 				/*
@@ -371,7 +389,7 @@ public class BuildDeck implements Runnable {
 
 					d.latin = d.latin.replaceAll("\\[d\\]$", "d");
 				}
-
+				
 				/*
 				 * combine stem and pronouns together
 				 */
@@ -402,12 +420,13 @@ public class BuildDeck implements Runnable {
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
 				}
 
-				if (aStem) {
+				if (aStem) {					
 					d.chr += vroot_chr;
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
-
+					
 					d.latin += vroot;
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+				
 				}
 
 				if (eStem) {
