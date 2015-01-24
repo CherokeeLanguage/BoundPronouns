@@ -3,6 +3,7 @@ package com.cherokeelessons.bp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -407,6 +408,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		info.activeCards=(int) decksize;
 	}
 
+	private float notice_elapsed=0f;
 	private float elapsed = 0f;
 	private boolean elapsed_tick_on = false;
 	private Runnable showACard = new Runnable() {
@@ -416,6 +418,16 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (activeCard == null) {
 				if (elapsed < MinSessionTime) {
 					addCards(IncrementDeckBySize, current_pending);
+					Gdx.app.postRunnable(showACard);
+					return;
+				}
+				/*
+				 * Session time is up, force time shift cards into active show range...
+				 */
+				if (elapsed > MinSessionTime && current_pending.size>0) {
+					current_active.deck.addAll(current_pending.deck);
+					current_pending.lastrun=System.currentTimeMillis()-ONE_HOUR_ms;
+					updateTime(current_pending);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
@@ -460,6 +472,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			final Card deckCard = cards_by_id.get(activeCard.getId());
 			if (activeCard.newCard) {
+				elapsed_tick_on = false;
 				ticktock.stop(ticktock_id);
 				newCardDialog.setCounter(cardcount++);
 				newCardDialog.setCard(deckCard);
@@ -920,6 +933,13 @@ public class LearningSession extends ChildScreen implements Screen {
 	public void render(float delta) {
 		if (elapsed_tick_on) {
 			elapsed += delta;
+			notice_elapsed += delta;
+			if (notice_elapsed>60f) {
+				notice_elapsed=0f;
+				int mins = (int) (elapsed/60);
+				int secs = (int) (elapsed - mins*60f);
+				game.log(this, mins+":"+(secs<10?"0":"")+secs);
+			}
 		}
 		super.render(delta);
 	}
