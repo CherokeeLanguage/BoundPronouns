@@ -2,7 +2,6 @@ package com.cherokeelessons.bp;
 
 import java.util.Iterator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,11 +25,6 @@ import com.cherokeelessons.cards.Card;
 
 public abstract class ChallengeCardDialog extends Dialog {
 
-	@Override
-	public void act(float delta) {
-		super.act(delta);
-	}
-
 	public void setCounter(int cardcount) {
 		setTitle(title + " [" + cardcount + "]");
 	}
@@ -41,8 +35,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	private final TextButton challenge_top;
 
-	private Skin skin;
-
 	@Override
 	protected void result(Object object) {
 		super.result(object);
@@ -52,7 +44,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 		super("Challenge Card", skin);
 		this.title = "Challenge Card";
 		this.game = game;
-		this.skin = skin;
 		getStyle().titleFont = sans54();
 		getStyle().background = getDialogBackground();
 		setStyle(getStyle());

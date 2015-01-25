@@ -79,6 +79,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	protected static final int PROFICIENT_BOX = 3;
 
+	private static final int DAILY_BOX = 1;
+
 	private Sound buzzer;
 	/**
 	 * Sort answers by edit distance so the list can be trimmed to size easily.
@@ -213,7 +215,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					this,
 					"Moved "
 							+ current_done.deck.size()
-							+ " future pending or proficient cards into the 'done' deck.");
+							+ " future pending or fully learned cards into the 'done' deck.");
 		}
 
 		private void clampBoxValues(ActiveDeck deck) {
@@ -344,7 +346,6 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		@Override
 		public void run() {
-//			game.log(this, "Not long enough!");
 			Dialog whichMode = new Dialog(
 					"It's too soon for a regular session.", skin) {
 				{
@@ -459,6 +460,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	public void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
+		
 		/*
 		 * How many are "fully learned" out of the full deck?
 		 */
@@ -469,8 +471,13 @@ public class LearningSession extends ChildScreen implements Screen {
 				full++;
 			}
 		}
-		info.learned = full / decksize;
-
+		info.longTerm = full / decksize;
+		
+		/*
+		 * record all active cards that aren't "fully learned"
+		 */
+		info.activeCards = deck.cards.size() - (int) decksize;
+		
 		/*
 		 * How many are "well known" out of the active deck? (excluding full
 		 * learned ones)
@@ -481,13 +488,32 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (card.box >= FULLY_LEARNED_BOX) {
 				continue;
 			}
-			if (card.box > PROFICIENT_BOX) {
+			if (card.box >= PROFICIENT_BOX) {
 				full++;
 			}
 			decksize++;
 		}
-		info.proficiency = full / decksize;
-		info.activeCards = (int) decksize;
+		info.mediumTerm = full / decksize;
+		
+		/*
+		 * How many are "short term known" out of the active deck? (excluding full
+		 * learned ones)
+		 */
+		decksize = 0f;
+		full = 0f;
+		for (ActiveCard card : activeDeck.deck) {
+			if (card.box >= FULLY_LEARNED_BOX) {
+				continue;
+			}
+			if (card.box >= PROFICIENT_BOX) {
+				continue;
+			}
+			if (card.box > DAILY_BOX) {
+				full++;
+			}
+			decksize++;
+		}
+		info.shortTerm = full / decksize;		
 	}
 
 	private float notice_elapsed = 0f;
@@ -534,10 +560,10 @@ public class LearningSession extends ChildScreen implements Screen {
 							sb.append("\n\n");
 							sb.append(info.activeCards + " active cards");
 							sb.append("\n");
-							sb.append(((int) (info.proficiency * 100))
+							sb.append(((int) (info.mediumTerm * 100))
 									+ "% proficiency");
 							sb.append("\n");
-							sb.append(((int) (info.learned * 100))
+							sb.append(((int) (info.longTerm * 100))
 									+ "% fully learned");
 							sb.append("\n\n");
 							int minutes = (int) (elapsed / 60f);

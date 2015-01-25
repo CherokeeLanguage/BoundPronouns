@@ -1,16 +1,14 @@
-[ ] Add option to concentrate only on bare pronouns or only on conjugated verbs
+[ ] Add RENAME session on SELECTION screen
+
+[ ] Add DELETE session on SELECTION screen
 
 [ ] Syllabary only vs Latin only vs Both
 
-[ ] Add STATS display as "INFO" button on SETTINGS screen
+[ ] Add option to concentrate only on bare pronouns or only on conjugated verbs
 
 [X] Add Mute/Unmute to bottom of main play screen
 
 [X] Add Pause/Unpause to bottom of main play screen
-
-[ ] Add RENAME session on SETTINGS screen
-
-[ ] Add DELETE session on SETTING screen
 
 [x] Fix a-stem + di should not be "di-" but instead be "da-"
 

@@ -87,7 +87,7 @@ public class MainScreen implements Screen {
 			slotsPane.setColor(Color.DARK_GRAY);
 			chooseSlot.getContentTable().add(slotsPane).expand().fill();
 			
-			for (int ix = 0; ix < 7; ix++) {
+			for (int ix = 0; ix < 4; ix++) {
 				final FileHandle p0, p1;
 				String path0 = "BoundPronouns/slots/" + ix + "/";				
 				switch (Gdx.app.getType()) {
@@ -115,21 +115,28 @@ public class MainScreen implements Screen {
 				if (!p0.exists()) {
 					p0.mkdirs();
 				}
-				String txt = "*** EMPTY ***";
+				boolean blank;
+				SlotInfo info;				
 				p1 = p0.child(BoundPronouns.INFO_JSON);
 				if (p1.exists()) {
-					SlotInfo info = json.fromJson(SlotInfo.class, p1);
-					txt = (info!=null&&info.name!=null) ? info.name : "ᎤᏲᏒ ᏥᏍᏕᏥ!";
-					txt += "\n"+info.activeCards+" active cards";
-					txt += ", "+((int)(info.proficiency*100))+"% proficiency";
-					txt += ", "+((int)(info.learned*100))+"% fully learned";
+					info = json.fromJson(SlotInfo.class, p1);
+					blank=false;
+				} else {
+					info = new SlotInfo();
+					info.name="*** NEW SESSION ***";
+					blank=true;
 				}
+				String txt = (info!=null&&info.name!=null) ? info.name : "ᎤᏲᏒ ᏥᏍᏕᏥ!";
+				txt += "\n"+info.activeCards+" active cards";
+				txt += ", "+((int)(info.shortTerm*100))+"% short term";
+				txt += ", "+((int)(info.mediumTerm*100))+"% medium term";
+				txt += ", "+((int)(info.longTerm*100))+"% long term";
 				TextButton textb = new TextButton(txt, skin);
 				TextButtonStyle tbs = new TextButtonStyle(textb.getStyle());
 				tbs.font=f36;
 				textb.setStyle(tbs);
 				slots.row();
-				slots.add(textb).pad(0).expand().fill();
+				slots.add(textb).pad(0).expand().fill().left();
 				textb.addListener(new ClickListener(){
 					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {						
 						chooseSlot.hide(null);
@@ -206,7 +213,7 @@ public class MainScreen implements Screen {
 		button.setDisabled(true);
 
 		container.row();
-		int padBottom = 0;
+		int padBottom = 12;
 		container.add(button).padBottom(padBottom);
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
@@ -229,11 +236,11 @@ public class MainScreen implements Screen {
 		container.row();
 		container.add(button).padBottom(padBottom);
 
-		button = new TextButton("Settings", bstyle);
-		button.addListener(viewSettings);
-		button.setTouchable(Touchable.enabled);
-		container.row();
-		container.add(button).padBottom(padBottom);
+//		button = new TextButton("Settings", bstyle);
+//		button.addListener(viewSettings);
+//		button.setTouchable(Touchable.enabled);
+//		container.row();
+//		container.add(button).padBottom(padBottom);
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);

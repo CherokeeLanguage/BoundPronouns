@@ -5,7 +5,8 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
 	public String name="";
-	public float learned=0f;
-	public float proficiency=0f;
 	public int activeCards=0;
+	public float shortTerm=0f;
+	public float mediumTerm=0f;
+	public float longTerm=0f;
 }
