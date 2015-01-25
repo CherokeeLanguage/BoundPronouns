@@ -140,6 +140,18 @@ public class LearningSession extends ChildScreen implements Screen {
 			current_pending.lastrun = System.currentTimeMillis() - ONE_DAY_ms;
 			updateTime(current_pending);
 			/*
+			 * Make sure we don't have active cards pointing to no longer existing master deck cards
+			 */
+			Iterator<ActiveCard> ipending = current_pending.deck.iterator();
+			while (ipending.hasNext()) {
+				ActiveCard active = ipending.next();
+				if (cards_by_id.containsKey(active.getId())){
+					continue;
+				}				
+				ipending.remove();
+				game.log(this, "Removed no longer valid entry: "+active.getId());
+			}
+			/*
 			 * ALWAYS force reset ALL correct in a row counts on load!
 			 */
 			resetCorrectInARow(current_pending);
@@ -235,15 +247,18 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	public void resetCorrectInARow(ActiveCard card) {
 		Card dcard = cards_by_id.get(card.getId());
+		if (dcard==null) {
+			card.resetCorrectInARow(new ArrayList<String>());
+			return;
+		}
 		card.resetCorrectInARow(dcard.answer);
-		game.log(this, "Resetting correct in a row for: " + card.getId());
 	}
 
 	private final Json json;
 	private Runnable loadDeck = new Runnable() {
 		@Override
 		public void run() {
-			game.log(this, "Loading Deck...");
+			game.log(this, "Loading Master Deck...");
 			stage.addAction(Actions.run(loadStats));
 			deck = json.fromJson(Deck.class,
 					BuildDeck.getDeckSlot().child("deck.json"));
@@ -323,7 +338,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		@Override
 		public void run() {
-			game.log(this, "Not long enough!");
+//			game.log(this, "Not long enough!");
 			Dialog whichMode = new Dialog(
 					"It's too soon for a regular session.", skin) {
 				{
@@ -378,7 +393,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					slot.child(ActiveDeckJson));
 			current_pending.deck = tmp.deck;
 			current_pending.lastrun = tmp.lastrun;
-			Collections.sort(current_pending.deck, byNextShowTime);
+			Collections.sort(current_pending.deck, byShowTime);
 
 			if (System.currentTimeMillis() - current_pending.lastrun < 16 * ONE_HOUR_ms) {
 				Gdx.app.postRunnable(tooSoon);
@@ -412,7 +427,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			tosave.deck.addAll(current_pending.deck);
 			tosave.deck.addAll(current_done.deck);
 			tosave.lastrun = sessionStart;
-			Collections.sort(tosave.deck, byNextShowTime);
+			Collections.sort(tosave.deck, byShowTime);
 
 			SlotInfo info;
 			FileHandle infoFile = slot.child(INFO_JSON);
@@ -488,8 +503,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * range...
 				 */
 				if (elapsed > MinSessionTime && current_pending.deck.size() > 0) {
-					game.log(this,
-							"session time up, shifting cards by 1 minute and trying again");
+					game.log(this, "session time up, shifting cards");
 					current_pending.lastrun = System.currentTimeMillis()
 							- ONE_MINUTE_ms;
 					updateTime(current_pending);
@@ -497,8 +511,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					return;
 				}
 				if (elapsed > MinSessionTime) {
-					game.log(this,
-							"no cards have retries remaining and session time is up");
+					game.log(this, "no cards remaining");
 					stage.addAction(Actions.run(saveActiveDeck));
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 						{
@@ -559,9 +572,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.show(stage);
 				AnswerList answerSetsFor = getAnswerSetsFor(activeCard,
 						deckCard, deck);
-				activeCard.tries_remaining -= answerSetsFor.correctCount();
-				game.log(this, "Tries remaining: " + activeCard.getId() + " = "
-						+ activeCard.tries_remaining);
+				activeCard.tries_remaining -= answerSetsFor.correctCount();				
 				challengeCardDialog.setAnswers(answerSetsFor);
 				challengeCardDialog.addAction(Actions.delay(MaxTimePerCard_sec,
 						Actions.run(new Runnable() {
@@ -591,13 +602,25 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final FileHandle slot;
 
-	protected Comparator<ActiveCard> byNextShowTime = new Comparator<ActiveCard>() {
+	protected Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
 			if (o1.show_again_ms != o2.show_again_ms) {
 				return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
 			}
 			return o1.box - o2.box;
+		}
+	};
+	
+	protected Comparator<ActiveCard> byShowTimeApprox = new Comparator<ActiveCard>() {
+		@Override
+		public int compare(ActiveCard o1, ActiveCard o2) {
+			long dif = o1.show_again_ms-o2.show_again_ms;
+			if (dif<0) dif=-dif;
+			if (dif<ONE_MINUTE_ms) {
+				return 0;
+			}			
+			return o1.show_again_ms > o2.show_again_ms ? 1 : -1;			
 		}
 	};
 
@@ -973,8 +996,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			if (current_active.deck.size() == 0) {
 				return null;
-			}
-			Collections.sort(current_active.deck, byNextShowTime);
+			}			
+			Collections.shuffle(current_active.deck);
+			Collections.sort(current_active.deck, byShowTimeApprox);
 		}
 		ActiveCard card = current_active.deck.get(0);
 		current_active.deck.remove(0);

@@ -26,7 +26,7 @@ public class BuildDeck implements Runnable {
 	
 	private static final boolean forceRebuild=false;
 	
-	public static int version = 6;
+	public static int version = 7;
 	
 	private boolean skipBareForms = false;
 
