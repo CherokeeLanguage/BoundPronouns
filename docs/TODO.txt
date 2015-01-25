@@ -1,10 +1,10 @@
-[ ] Add RENAME session on SELECTION screen
+[X] Add RENAME session on SELECTION screen
 
-[ ] Add DELETE session on SELECTION screen
+[X] Add DELETE session on SELECTION screen
 
-[ ] Syllabary only vs Latin only vs Both
+[X] Syllabary only vs Latin only vs Both
 
-[ ] Add option to concentrate only on bare pronouns or only on conjugated verbs
+[X] Add option to concentrate only on bare pronouns or only on conjugated verbs
 
 [X] Add Mute/Unmute to bottom of main play screen
 
