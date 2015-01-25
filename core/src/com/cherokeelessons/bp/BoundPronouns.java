@@ -36,7 +36,7 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 public class BoundPronouns extends Game {
 
 	public static final String SKIN = "skins/holo/Holo-light-xhdpi.json";
-	
+
 	public static final String DIAMOND = "\u25c8";
 	public static final String TRIANGLE_ASC = "\u25bc";
 	public static final String TRIANGLE_DESC = "\u25b2";
@@ -64,20 +64,21 @@ public class BoundPronouns extends Game {
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
 	public static final String IMG_MAYAN_DIALOG = "images/MayanStoneSmall.png";
-	
+
 	public static final String SND_MENU = "audio/click.wav";
 	public static final String SND_COYOTE = "audio/coyote.ogg";
 	public static final String SND_BUZZ = "audio/buzzer2.ogg";
 	public static final String SND_COW = "audio/cow1.ogg";
 	public static final String SND_TICKTOCK = "audio/ticktock.wav";
 	public static final String SND_DING = "audio/ding.ogg";
-	
+
 	public static final float BACK_WIDTH = 168f;
 	static {
 		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
 				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC
-				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW;
+				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW
+				;
 	}
 
 	public SpriteBatch batch;
@@ -129,7 +130,7 @@ public class BoundPronouns extends Game {
 		addFreeSansFor(36);
 		addFreeSansFor(54);
 		addFreeSansFor(72);
-		
+
 	}
 
 	private void addFreeSansFor(int size) {

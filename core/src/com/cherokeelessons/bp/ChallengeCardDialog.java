@@ -2,6 +2,7 @@ package com.cherokeelessons.bp;
 
 import java.util.Iterator;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -94,7 +95,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		navStyle.font = sans36();
 		TextButton main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();
-		appNavBar.add(main).left().expandX();
+		appNavBar.add(main).left();
 		main.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
@@ -103,6 +104,53 @@ public abstract class ChallengeCardDialog extends Dialog {
 				return true;
 			}
 		});
+		
+		final TextButton mute = new TextButton("Unmute", navStyle);
+		Cell<TextButton> c = appNavBar.add(mute).left().fillX();
+		float tmp = c.getPrefWidth();
+		c.width(tmp);
+		mute.setText("Mute");
+		mute.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {				
+				if (mute.isChecked()) {
+					//being unchecked
+					mute.setText("Mute");
+					muted=false;
+				} else {
+					//being checked
+					mute.setText("Unmute");
+					muted=true;
+				}
+				return true;
+			}
+		});
+		
+		final TextButton pause = new TextButton("Unpause", navStyle);
+		c=appNavBar.add(pause).left().fillX();
+		tmp = c.getPrefWidth();
+		c.width(tmp);
+		pause.setText("Pause");
+		pause.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (pause.isChecked()) {
+					//being unchecked
+					paused=false;
+					getButtonTable().setVisible(true);
+					pause.setText("Pause");
+				} else {
+					//being checked
+					paused=true;
+					getButtonTable().setVisible(false);
+					pause.setText("Unpause");
+				}
+				return true;
+			}
+		});
+		
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
 		ls.font = sans36();
 		timer = new Label("--", ls);
@@ -117,6 +165,9 @@ public abstract class ChallengeCardDialog extends Dialog {
 				TextButtonStyle.class));
 		answer_style.font = serif36();
 	}
+	
+	public boolean muted=false;
+	public boolean paused=false;
 	
 	private final TextButtonStyle answer_style;
 

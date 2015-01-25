@@ -4,9 +4,9 @@
 
 [ ] Add STATS display as "INFO" button on SETTINGS screen
 
-[ ] Add Mute/Unmute to bottom of main play screen
+[X] Add Mute/Unmute to bottom of main play screen
 
-[ ] Add Pause/Unpause to bottom of main play screen
+[X] Add Pause/Unpause to bottom of main play screen
 
 [ ] Add RENAME session on SETTINGS screen
 

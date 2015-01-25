@@ -18,6 +18,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -593,6 +594,10 @@ public class LearningSession extends ChildScreen implements Screen {
 							Actions.run(new Runnable() {
 								@Override
 								public void run() {
+									if (challengeCardDialog.muted) {
+										ticktock.setVolume(ticktock_id, 0f);
+										return;
+									}
 									ticktock.setVolume(ticktock_id, volume);
 									challengeCardDialog.setTimer(timer);
 								}
@@ -757,13 +762,19 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 				}
 				if (doCow) {
-					cow.play();
+					if (!challengeCardDialog.muted) {
+						cow.play();
+					}
 				}
 				if (doBuzzer && !doCow) {
-					buzzer.play();
+					if (!challengeCardDialog.muted) {
+						buzzer.play();
+					}
 				}
 				if (!doCow && !doBuzzer) {
-					ding.play();
+					if (!challengeCardDialog.muted) {
+						ding.play();
+					}
 				}
 				_activeCard.show_again_ms = Deck.getNextInterval(_activeCard
 						.getMinCorrectInARow());
@@ -1037,6 +1048,13 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		if (challengeCardDialog.paused) {
+			Gdx.gl.glClearColor(0, 0, 0, 1);
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			stage.draw();
+			ticktock.setVolume(ticktock_id, 0f);
+			return;
+		}
 		if (elapsed_tick_on) {
 			elapsed += delta;
 			notice_elapsed += delta;
