@@ -272,6 +272,7 @@ public class MainScreen implements Screen {
 					ActiveDeck adeck = json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
 					LearningSession.calculateStats(adeck, info);
 					adeck=null;
+					json.toJson(info, p1);
 				}
 			}
 			if (info == null) {
