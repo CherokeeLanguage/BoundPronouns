@@ -186,8 +186,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			// move cards due tomorrow a later into the already done pile!
 			retireNotYetCards(current_pending);
 
+			// initial randomize and resort of pending deck
+			Collections.shuffle(current_pending.deck);
+			Collections.sort(current_pending.deck, byShowTimeChunks);
+			
 			// add cards to the active deck
 			addCards(needed, current_active);
+			
 
 			stage.addAction(Actions.run(showACard));
 		}
@@ -612,12 +617,12 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 	
-	protected Comparator<ActiveCard> byShowTimeApprox = new Comparator<ActiveCard>() {
+	protected Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
 			long dif = o1.show_again_ms-o2.show_again_ms;
 			if (dif<0) dif=-dif;
-			if (dif<ONE_MINUTE_ms) {
+			if (dif<ONE_MINUTE_ms*5) {
 				return 0;
 			}			
 			return o1.show_again_ms > o2.show_again_ms ? 1 : -1;			
@@ -886,7 +891,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
 		Collections.shuffle(tmp.cards);
-		scanDeck: for (int distance = 10; distance < 100; distance++) {
+		scanDeck: for (int distance = 15; distance < 100; distance++) {
 			for (Card deckCard : tmp.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
@@ -998,7 +1003,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				return null;
 			}			
 			Collections.shuffle(current_active.deck);
-			Collections.sort(current_active.deck, byShowTimeApprox);
+			Collections.sort(current_active.deck, byShowTimeChunks);
 		}
 		ActiveCard card = current_active.deck.get(0);
 		current_active.deck.remove(0);
