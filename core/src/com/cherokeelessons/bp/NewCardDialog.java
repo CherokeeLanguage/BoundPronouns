@@ -17,8 +17,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.cards.Card;
+import com.cherokeelessons.cards.SlotInfo;
 
 public abstract class NewCardDialog extends Dialog {
+	
+	public SlotInfo.Settings settings=new SlotInfo.Settings();
 	
 	private final BoundPronouns game;
 
@@ -118,11 +121,19 @@ public abstract class NewCardDialog extends Dialog {
 	final private StringBuilder showCardSb = new StringBuilder();
 	public void setCard(Card the_card) {
 		Iterator<String> i = the_card.challenge.iterator();
+		if (settings.display.equals(SlotInfo.DisplayMode.Latin)){
+			//skip the Syllabary entry
+			i.next();
+		}
 		challenge_top.setText(i.next());
 		showCardSb.setLength(0);
 		while (i.hasNext()) {
 			showCardSb.append(i.next());
 			showCardSb.append("\n");
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)){
+			//dont' add the latin
+			showCardSb.setLength(0);
 		}
 		challenge_bottom.setText(showCardSb.toString());
 		showCardSb.setLength(0);
@@ -163,9 +174,8 @@ public abstract class NewCardDialog extends Dialog {
 		return game.manager.get("serif36.ttf", BitmapFont.class);
 	}
 
-	private int counter=0;
 	public void setCounter(int cardcount) {
-		counter=cardcount;
 		setTitle(title+" ["+cardcount+"]");
 	}
+
 }

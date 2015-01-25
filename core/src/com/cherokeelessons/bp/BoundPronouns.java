@@ -127,6 +127,7 @@ public class BoundPronouns extends Game {
 		addFreeSerifFor(36);
 		addFreeSerifFor(54);
 
+		addFreeSansFor(30);
 		addFreeSansFor(36);
 		addFreeSansFor(54);
 		addFreeSansFor(72);

@@ -27,7 +27,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -35,9 +34,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
@@ -143,16 +139,18 @@ public class LearningSession extends ChildScreen implements Screen {
 			current_pending.lastrun = System.currentTimeMillis() - ONE_DAY_ms;
 			updateTime(current_pending);
 			/*
-			 * Make sure we don't have active cards pointing to no longer existing master deck cards
+			 * Make sure we don't have active cards pointing to no longer
+			 * existing master deck cards
 			 */
 			Iterator<ActiveCard> ipending = current_pending.deck.iterator();
 			while (ipending.hasNext()) {
 				ActiveCard active = ipending.next();
-				if (cards_by_id.containsKey(active.getId())){
+				if (cards_by_id.containsKey(active.getId())) {
 					continue;
-				}				
+				}
 				ipending.remove();
-				game.log(this, "Removed no longer valid entry: "+active.getId());
+				game.log(this,
+						"Removed no longer valid entry: " + active.getId());
 			}
 			/*
 			 * ALWAYS force reset ALL correct in a row counts on load!
@@ -192,10 +190,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			// initial randomize and resort of pending deck
 			Collections.shuffle(current_pending.deck);
 			Collections.sort(current_pending.deck, byShowTimeChunks);
-			
+
 			// add cards to the active deck
 			addCards(needed, current_active);
-			
 
 			stage.addAction(Actions.run(showACard));
 		}
@@ -255,7 +252,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	public void resetCorrectInARow(ActiveCard card) {
 		Card dcard = cards_by_id.get(card.getId());
-		if (dcard==null) {
+		if (dcard == null) {
 			card.resetCorrectInARow(new ArrayList<String>());
 			return;
 		}
@@ -270,75 +267,36 @@ public class LearningSession extends ChildScreen implements Screen {
 			stage.addAction(Actions.run(loadStats));
 			deck = json.fromJson(Deck.class,
 					BuildDeck.getDeckSlot().child("deck.json"));
+			
+			Iterator<Card> ideck = deck.cards.iterator();
+			while (ideck.hasNext()) {
+				Card card = ideck.next();
+				switch (info.settings.deck) {
+				case Both:
+					break;
+				case Conjugations:
+					if (StringUtils.isBlank(card.vgroup)) {
+						ideck.remove();
+						continue;
+					}
+					break;
+				case Pronouns:
+					if (!StringUtils.isBlank(card.vgroup)) {
+						ideck.remove();
+						continue;
+					}
+					break;
+				default:
+					break;				
+				}
+			}
+			
 			cards_by_id.clear();
 			for (Card c : deck.cards) {
 				cards_by_id.put(c.getId(), c);
 			}
-		}
-	};
-
-	private Runnable setName = new Runnable() {
-		@Override
-		public void run() {
-			Dialog setNameDialog = new Dialog("Please name this session", skin) {
-				final TextField tf;
-				{
-					TextFieldStyle tfs = skin.get(TextFieldStyle.class);
-					tfs.font = game.manager.get("sans36.ttf", BitmapFont.class);
-					tf = new TextField("", tfs);
-					tf.setMessageText("Please enter a description.");
-					tf.setAlignment(Align.center);
-					getContentTable().row();
-					getContentTable().add(tf).fillX().expandX();
-
-					TextButtonStyle tbs = new TextButtonStyle(
-							skin.get(TextButtonStyle.class));
-					tbs.font = game.manager.get("sans36.ttf", BitmapFont.class);
-					TextButton tb;
-					tb = new TextButton("OK", tbs);
-					button(tb, tf);
-					setFillParent(true);
-				}
-
-				final String fallback = "ᏐᏈᎵ ᏂᏧᏙᎥᎾ";
-				final String[] prefixes = { "ᎢᎬᏱᎢ", "ᏔᎵᏁᎢ", "ᏦᎢᏁᎢ", "ᏅᎩᏁᎢ",
-						"ᎯᏍᎩᏁᎢ", "ᏑᏓᎵᏁᎢ", "ᎦᎵᏉᎩᏁᎢ" };
-
-				protected void result(Object object) {
-					SlotInfo info = new SlotInfo();
-					info.name = tf.getText();
-					int islot = -1;
-					try {
-						islot = Integer.valueOf(slot.nameWithoutExtension());
-					} catch (NumberFormatException e) {
-					}
-					if (info.name.length() == 0) {
-						info.name = fallback;
-						if (islot >= 0 && islot < prefixes.length) {
-							info.name = prefixes[islot] + " " + info.name;
-						} else {
-							info.name = info.name + " "
-									+ slot.nameWithoutExtension();
-						}
-					}
-					json.toJson(info, slot.child(INFO_JSON));
-					stage.addAction(Actions.run(initSet0));
-				};
-
-				public Dialog show(final Stage stage) {
-					super.show(stage);
-					RunnableAction focus = Actions.run(new Runnable() {
-						@Override
-						public void run() {
-							stage.setScrollFocus(tf);
-							stage.setKeyboardFocus(tf);
-						}
-					});
-					stage.addAction(focus);
-					return this;
-				};
-			};
-			setNameDialog.show(stage);
+			
+			game.log(this, "Loaded "+info.settings.deck.name()+" "+deck.cards.size()+" master cards.");
 		}
 	};
 
@@ -406,10 +364,6 @@ public class LearningSession extends ChildScreen implements Screen {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
-			if (!slot.child(INFO_JSON).exists()) {
-				Gdx.app.postRunnable(setName);
-				return;
-			}
 			stage.addAction(Actions.run(initSet0));
 		}
 	};
@@ -440,7 +394,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			FileHandle infoFile = slot.child(INFO_JSON);
 			if (!infoFile.exists()) {
 				info = new SlotInfo();
-				info.name = "ᎤᏲᏒ ᎣᎦᎾ!";
+				info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
 			} else {
 				info = json.fromJson(SlotInfo.class, infoFile);
 			}
@@ -460,7 +414,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	public void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
-		
+
 		/*
 		 * How many are "fully learned" out of the full deck?
 		 */
@@ -472,12 +426,12 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 		}
 		info.longTerm = full / decksize;
-		
+
 		/*
 		 * record all active cards that aren't "fully learned"
 		 */
 		info.activeCards = deck.cards.size() - (int) decksize;
-		
+
 		/*
 		 * How many are "well known" out of the active deck? (excluding full
 		 * learned ones)
@@ -494,10 +448,10 @@ public class LearningSession extends ChildScreen implements Screen {
 			decksize++;
 		}
 		info.mediumTerm = full / decksize;
-		
+
 		/*
-		 * How many are "short term known" out of the active deck? (excluding full
-		 * learned ones)
+		 * How many are "short term known" out of the active deck? (excluding
+		 * full learned ones)
 		 */
 		decksize = 0f;
 		full = 0f;
@@ -513,7 +467,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			decksize++;
 		}
-		info.shortTerm = full / decksize;		
+		info.shortTerm = full / decksize;
 	}
 
 	private float notice_elapsed = 0f;
@@ -604,7 +558,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.show(stage);
 				AnswerList answerSetsFor = getAnswerSetsFor(activeCard,
 						deckCard, deck);
-				activeCard.tries_remaining -= answerSetsFor.correctCount();				
+				activeCard.tries_remaining -= answerSetsFor.correctCount();
 				challengeCardDialog.setAnswers(answerSetsFor);
 				challengeCardDialog.addAction(Actions.delay(MaxTimePerCard_sec,
 						Actions.run(new Runnable() {
@@ -620,11 +574,11 @@ public class LearningSession extends ChildScreen implements Screen {
 							Actions.run(new Runnable() {
 								@Override
 								public void run() {
-									if (challengeCardDialog.muted) {
+									if (challengeCardDialog.settings.muted) {
 										ticktock.setVolume(ticktock_id, 0f);
-										return;
+									} else {
+										ticktock.setVolume(ticktock_id, volume);
 									}
-									ticktock.setVolume(ticktock_id, volume);
 									challengeCardDialog.setTimer(timer);
 								}
 							}));
@@ -647,16 +601,17 @@ public class LearningSession extends ChildScreen implements Screen {
 			return o1.box - o2.box;
 		}
 	};
-	
+
 	protected Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
-			long dif = o1.show_again_ms-o2.show_again_ms;
-			if (dif<0) dif=-dif;
-			if (dif<ONE_MINUTE_ms*5) {
+			long dif = o1.show_again_ms - o2.show_again_ms;
+			if (dif < 0)
+				dif = -dif;
+			if (dif < ONE_MINUTE_ms * 5) {
 				return 0;
-			}			
-			return o1.show_again_ms > o2.show_again_ms ? 1 : -1;			
+			}
+			return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
 		}
 	};
 
@@ -664,9 +619,11 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private long ticktock_id;
 
-	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
+	final private SlotInfo info;
+
+	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {		
 		super(_game, caller);
-		this.slot = slot;
+		this.slot = slot;		
 		slot.mkdirs();
 		if (slot.child("deck.json").exists()) {
 			slot.child("deck.json").delete();
@@ -685,6 +642,14 @@ public class LearningSession extends ChildScreen implements Screen {
 		json.setOutputType(OutputType.json);
 		json.setTypeName(null);
 		json.setIgnoreUnknownFields(true);
+		
+		FileHandle infoFile = slot.child(INFO_JSON);
+		if (!infoFile.exists()) {
+			info = new SlotInfo();
+			info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
+		} else {
+			info = json.fromJson(SlotInfo.class, infoFile);
+		}
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
@@ -787,18 +752,19 @@ public class LearningSession extends ChildScreen implements Screen {
 						}
 					}
 				}
+
 				if (doCow) {
-					if (!challengeCardDialog.muted) {
+					if (!challengeCardDialog.settings.muted) {
 						cow.play();
 					}
 				}
 				if (doBuzzer && !doCow) {
-					if (!challengeCardDialog.muted) {
+					if (!challengeCardDialog.settings.muted) {
 						buzzer.play();
 					}
 				}
 				if (!doCow && !doBuzzer) {
-					if (!challengeCardDialog.muted) {
+					if (!challengeCardDialog.settings.muted) {
 						ding.play();
 					}
 				}
@@ -810,6 +776,10 @@ public class LearningSession extends ChildScreen implements Screen {
 						Actions.run(showACard)));
 			}
 		};
+
+		newCardDialog.settings = info.settings;
+		challengeCardDialog.settings = info.settings;
+		challengeCardDialog.updateMuteButtonText();
 	}
 
 	/**
@@ -1038,7 +1008,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			if (current_active.deck.size() == 0) {
 				return null;
-			}			
+			}
 			Collections.shuffle(current_active.deck);
 			Collections.sort(current_active.deck, byShowTimeChunks);
 		}

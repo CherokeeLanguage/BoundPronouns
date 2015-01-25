@@ -20,10 +20,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.Answer;
+import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 
 public abstract class ChallengeCardDialog extends Dialog {
+	
+	public SlotInfo.Settings settings=new SlotInfo.Settings();
 
 	public void setCounter(int cardcount) {
 		setTitle(title + " [" + cardcount + "]");
@@ -39,6 +42,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 	protected void result(Object object) {
 		super.result(object);
 	}
+	
+	private TextButton mute;
 
 	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
@@ -96,7 +101,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 			}
 		});
 		
-		final TextButton mute = new TextButton("Unmute", navStyle);
+		mute = new TextButton("Unmute", navStyle);
 		Cell<TextButton> c = appNavBar.add(mute).left().fillX();
 		float tmp = c.getPrefWidth();
 		c.width(tmp);
@@ -104,16 +109,9 @@ public abstract class ChallengeCardDialog extends Dialog {
 		mute.addListener(new ClickListener(){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {				
-				if (mute.isChecked()) {
-					//being unchecked
-					mute.setText("Mute");
-					muted=false;
-				} else {
-					//being checked
-					mute.setText("Unmute");
-					muted=true;
-				}
+					int pointer, int button) {
+				settings.muted=!settings.muted;
+				updateMuteButtonText();
 				return true;
 			}
 		});
@@ -157,7 +155,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 		answer_style.font = serif36();
 	}
 	
-	public boolean muted=false;
 	public boolean paused=false;
 	
 	private final TextButtonStyle answer_style;
@@ -187,11 +184,19 @@ public abstract class ChallengeCardDialog extends Dialog {
 		this._deckCard = deckCard;
 
 		Iterator<String> i = deckCard.challenge.iterator();
+		if (settings.display.equals(SlotInfo.DisplayMode.Latin)){
+			//skip the Syllabary entry
+			i.next();
+		}
 		challenge_top.setText(i.next());
 		showCardSb.setLength(0);
 		while (i.hasNext()) {
 			showCardSb.append(i.next());
 			showCardSb.append("\n");
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)){
+			//dont' add the latin
+			showCardSb.setLength(0);
 		}
 		challenge_bottom.setText(showCardSb.toString());
 		showCardSb.setLength(0);
@@ -274,6 +279,14 @@ public abstract class ChallengeCardDialog extends Dialog {
 		check.setVisible(visible);
 	}
 
+	public void updateMuteButtonText() {
+		mute.setText(settings.muted?"Unmute":"Mute");
+	}
+
 	private final TextButton check;
+
+	public void updateSettings() {
+		updateMuteButtonText();		
+	}
 
 }
