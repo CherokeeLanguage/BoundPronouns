@@ -31,6 +31,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
@@ -267,6 +268,11 @@ public class MainScreen implements Screen {
 			if (p1.exists()) {
 				info = json.fromJson(SlotInfo.class, p1);
 				blank = false;
+				if (info.version!=SlotInfo.StatsVersion) {
+					ActiveDeck adeck = json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
+					LearningSession.calculateStats(adeck, info);
+					adeck=null;
+				}
 			}
 			if (info == null) {
 				info = new SlotInfo();
@@ -275,7 +281,7 @@ public class MainScreen implements Screen {
 			SlotInfo.Settings settings = info.settings;
 			String txt = (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
 					: settings.name;
-			txt += "\n" + info.activeCards + " active cards";
+			txt += "\n" + info.activeCards + " cards";
 			txt += ", " + ((int) (info.shortTerm * 100)) + "% short term";
 			txt += ", " + ((int) (info.mediumTerm * 100)) + "% medium term";
 			txt += ", " + ((int) (info.longTerm * 100)) + "% long term";

@@ -55,7 +55,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final long ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
 
-	private static final String ActiveDeckJson = "ActiveDeck.json";
+	public static final String ActiveDeckJson = "ActiveDeck.json";
 
 	private static final int maxAnswers = 6;
 
@@ -413,12 +413,18 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	};
 
-	public void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
+	public static void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
+		
+		if (activeDeck==null || info==null) {
+			return;
+		}
+		
+		info.version=SlotInfo.StatsVersion;
 
 		/*
-		 * How many are "fully learned" out of the full deck?
+		 * How many are "fully learned" out of the active deck?
 		 */
-		float decksize = deck.cards.size();
+		float decksize = activeDeck.deck.size();
 		float full = 0f;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= FULLY_LEARNED_BOX) {
@@ -428,9 +434,9 @@ public class LearningSession extends ChildScreen implements Screen {
 		info.longTerm = full / decksize;
 
 		/*
-		 * record all active cards that aren't "fully learned"
+		 * count all active cards that aren't "fully learned"
 		 */
-		info.activeCards = deck.cards.size() - (int) decksize;
+		info.activeCards = activeDeck.deck.size() - (int)full;
 
 		/*
 		 * How many are "well known" out of the active deck? (excluding full
@@ -456,13 +462,10 @@ public class LearningSession extends ChildScreen implements Screen {
 		decksize = 0f;
 		full = 0f;
 		for (ActiveCard card : activeDeck.deck) {
-			if (card.box >= FULLY_LEARNED_BOX) {
-				continue;
-			}
 			if (card.box >= PROFICIENT_BOX) {
 				continue;
 			}
-			if (card.box > DAILY_BOX) {
+			if (card.box >= DAILY_BOX) {
 				full++;
 			}
 			decksize++;
@@ -510,15 +513,18 @@ public class LearningSession extends ChildScreen implements Screen {
 							calculateStats(activeDeck, info);
 
 							StringBuilder sb = new StringBuilder();
-							sb.append("You Current Statistics");
+							sb.append("Your Current Statistics");
 							sb.append("\n\n");
 							sb.append(info.activeCards + " active cards");
 							sb.append("\n");
 							sb.append(((int) (info.mediumTerm * 100))
-									+ "% proficiency");
+									+ "% short term memorized");
+							sb.append("\n");
+							sb.append(((int) (info.mediumTerm * 100))
+									+ "% medium term memorized");
 							sb.append("\n");
 							sb.append(((int) (info.longTerm * 100))
-									+ "% fully learned");
+									+ "% long term memorized");
 							sb.append("\n\n");
 							int minutes = (int) (elapsed / 60f);
 							int seconds = (int) (elapsed - minutes * 60f);
