@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class ActiveCard {
+	
+	public boolean noErrors=false;
 
 	public int getMinCorrectInARow() {
 		int min = 3;

@@ -54,6 +54,9 @@ public class Deck {
 		if (box>=sm2_intervals.size()) {
 			box=sm2_intervals.size()-1;
 		}
+		if (box<0) {
+			box=0;
+		}
 		return sm2_intervals.get(box);
 	}
 }
