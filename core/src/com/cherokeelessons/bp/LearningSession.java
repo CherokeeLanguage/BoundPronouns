@@ -575,16 +575,17 @@ public class LearningSession extends ChildScreen implements Screen {
 						deckCard, deck);
 				activeCard.tries_remaining -= answerSetsFor.correctCount();
 				challengeCardDialog.setAnswers(answerSetsFor);
-				challengeCardDialog.addAction(Actions.delay(MaxTimePerCard_sec,
+				float duration = MaxTimePerCard_sec-(float)activeCard.box;
+				challengeCardDialog.addAction(Actions.delay(duration,
 						Actions.run(new Runnable() {
 							@Override
 							public void run() {
 								challengeCardDialog.result(null);
 							}
 						})));
-				for (float x = MaxTimePerCard_sec; x >= 0; x -= .1f) {
-					final float timer = MaxTimePerCard_sec - x;
-					final float volume = x / MaxTimePerCard_sec;
+				for (float x = duration; x >= 0; x -= .1f) {
+					final float timer = duration - x;
+					final float volume = x / duration;
 					DelayAction updater = Actions.delay(x - .05f,
 							Actions.run(new Runnable() {
 								@Override
