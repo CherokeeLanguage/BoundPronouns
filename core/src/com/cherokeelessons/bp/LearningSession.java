@@ -134,10 +134,19 @@ public class LearningSession extends ChildScreen implements Screen {
 			int needed = InitialDeckSize;
 
 			/*
-			 * time-shift all cards by exactly one day
+			 * time-shift all cards by exactly one day + twenty minutes (about the length of a session)
 			 */
-			current_pending.lastrun = System.currentTimeMillis() - ONE_DAY_ms;
+			current_pending.lastrun = System.currentTimeMillis() - (ONE_DAY_ms); 
 			updateTime(current_pending);
+			current_pending.lastrun = System.currentTimeMillis() - (20l*ONE_MINUTE_ms); 
+			updateTime(current_pending);
+			int due=0;
+			for (ActiveCard card: current_pending.deck) {
+				if (card.show_again_ms<0) {
+					due++;
+				}
+			}
+			game.log(this, due+" cards are due.");
 			/*
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
