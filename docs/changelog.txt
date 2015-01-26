@@ -1,3 +1,7 @@
+1.38
+
+now randomized between he/she, him/her, and himself/herself for challenges
+
 1.37
 
 subtract box as seconds from time allowed to answer.... you should know the higher ranked cards faster and faster ...
