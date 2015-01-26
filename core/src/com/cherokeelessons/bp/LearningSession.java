@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -134,19 +135,21 @@ public class LearningSession extends ChildScreen implements Screen {
 			int needed = InitialDeckSize;
 
 			/*
-			 * time-shift all cards by exactly one day + one extra hour for safety
+			 * time-shift all cards by exactly one day + one extra hour for
+			 * safety
 			 */
-			current_pending.lastrun = System.currentTimeMillis() - (ONE_DAY_ms); 
+			current_pending.lastrun = System.currentTimeMillis() - (ONE_DAY_ms);
 			updateTime(current_pending);
-			current_pending.lastrun = System.currentTimeMillis() - (ONE_HOUR_ms); 
+			current_pending.lastrun = System.currentTimeMillis()
+					- (ONE_HOUR_ms);
 			updateTime(current_pending);
-			int due=0;
-			for (ActiveCard card: current_pending.deck) {
-				if (card.show_again_ms<0) {
+			int due = 0;
+			for (ActiveCard card : current_pending.deck) {
+				if (card.show_again_ms < 0) {
 					due++;
 				}
 			}
-			game.log(this, due+" cards are due.");
+			game.log(this, due + " cards are due.");
 			/*
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
@@ -276,7 +279,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			stage.addAction(Actions.run(loadStats));
 			deck = json.fromJson(Deck.class,
 					BuildDeck.getDeckSlot().child("deck.json"));
-			
+
 			Iterator<Card> ideck = deck.cards.iterator();
 			while (ideck.hasNext()) {
 				Card card = ideck.next();
@@ -296,16 +299,17 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 					break;
 				default:
-					break;				
+					break;
 				}
 			}
-			
+
 			cards_by_id.clear();
 			for (Card c : deck.cards) {
 				cards_by_id.put(c.getId(), c);
 			}
-			
-			game.log(this, "Loaded "+info.settings.deck.name()+" "+deck.cards.size()+" master cards.");
+
+			game.log(this, "Loaded " + info.settings.deck.name() + " "
+					+ deck.cards.size() + " master cards.");
 		}
 	};
 
@@ -395,7 +399,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			tosave.deck.addAll(current_active.deck);
 			tosave.deck.addAll(current_pending.deck);
 			tosave.deck.addAll(current_done.deck);
-			tosave.lastrun = System.currentTimeMillis()-((long)elapsed)*1000l;
+			tosave.lastrun = System.currentTimeMillis() - ((long) elapsed)
+					* 1000l;
 			Collections.sort(tosave.deck, byShowTime);
 
 			SlotInfo info;
@@ -422,12 +427,12 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	public static void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
-		
-		if (activeDeck==null || info==null) {
+
+		if (activeDeck == null || info == null) {
 			return;
 		}
-		
-		info.version=SlotInfo.StatsVersion;
+
+		info.version = SlotInfo.StatsVersion;
 
 		/*
 		 * How many are "fully learned" out of the active deck?
@@ -444,7 +449,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		/*
 		 * count all active cards that aren't "fully learned"
 		 */
-		info.activeCards = activeDeck.deck.size() - (int)full;
+		info.activeCards = activeDeck.deck.size() - (int) full;
 
 		/*
 		 * How many are "well known" out of the active deck? (excluding full
@@ -508,7 +513,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					return;
 				}
 				if (elapsed > MinSessionTime) {
-					elapsed_tick_on=false;
+					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
 					stage.addAction(Actions.run(saveActiveDeck));
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
@@ -554,7 +559,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					return;
 				}
 			}
-			final Card deckCard = cards_by_id.get(activeCard.getId());
+			final Card deckCard = new Card(cards_by_id.get(activeCard.getId()));
 			if (activeCard.newCard) {
 				elapsed_tick_on = false;
 				ticktock.stop(ticktock_id);
@@ -573,9 +578,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.show(stage);
 				AnswerList answerSetsFor = getAnswerSetsFor(activeCard,
 						deckCard, deck);
+				randomizeSexes(answerSetsFor);
 				activeCard.tries_remaining -= answerSetsFor.correctCount();
 				challengeCardDialog.setAnswers(answerSetsFor);
-				float duration = MaxTimePerCard_sec-(float)activeCard.box;
+				float duration = MaxTimePerCard_sec - (float) activeCard.box;
 				challengeCardDialog.addAction(Actions.delay(duration,
 						Actions.run(new Runnable() {
 							@Override
@@ -599,6 +605,25 @@ public class LearningSession extends ChildScreen implements Screen {
 								}
 							}));
 					challengeCardDialog.addAction(updater);
+				}
+			}
+		}
+
+		Random r = new Random();
+
+		private void randomizeSexes(AnswerList answerSetsFor) {
+			Iterator<Answer> li = answerSetsFor.list.iterator();
+			while (li.hasNext()) {
+				Answer answer = li.next();
+				if (r.nextBoolean() && answer.answer.contains("himself")) {
+					answer.answer = answer.answer.replace("He ", "She ");
+					answer.answer = answer.answer.replace(" him", " her");
+				}
+				if (r.nextBoolean() && !answer.answer.contains("himself")) {
+					answer.answer = answer.answer.replace("He ", "She ");
+				}
+				if (r.nextBoolean() && !answer.answer.contains("himself")) {
+					answer.answer = answer.answer.replace(" him", " her");
 				}
 			}
 		}
@@ -637,9 +662,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	final private SlotInfo info;
 
-	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {		
+	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
-		this.slot = slot;		
+		this.slot = slot;
 		slot.mkdirs();
 		if (slot.child("deck.json").exists()) {
 			slot.child("deck.json").delete();
@@ -657,7 +682,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		json.setOutputType(OutputType.json);
 		json.setTypeName(null);
 		json.setIgnoreUnknownFields(true);
-		
+
 		FileHandle infoFile = slot.child(INFO_JSON);
 		if (!infoFile.exists()) {
 			info = new SlotInfo();
