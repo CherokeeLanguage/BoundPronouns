@@ -1,3 +1,11 @@
+Shift all "update time" logic to use "elapsed" only and not system time
+
+Always subtract "elapsed" from activedeck before saving it
+
+Add option for "session length" as "short" (5 minutes), "standard" (10 minutes), and "long" (15 minutes)
+
+Dynamic timing of cards, on a per card basis, based on response times?
+
 [X] Add RENAME session on SELECTION screen
 
 [X] Add DELETE session on SELECTION screen
