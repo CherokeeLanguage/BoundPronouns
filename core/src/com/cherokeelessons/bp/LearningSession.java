@@ -134,11 +134,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			int needed = InitialDeckSize;
 
 			/*
-			 * time-shift all cards by exactly one day + twenty minutes (about the length of a session)
+			 * time-shift all cards by exactly one day + one extra hour for safety
 			 */
 			current_pending.lastrun = System.currentTimeMillis() - (ONE_DAY_ms); 
 			updateTime(current_pending);
-			current_pending.lastrun = System.currentTimeMillis() - (20l*ONE_MINUTE_ms); 
+			current_pending.lastrun = System.currentTimeMillis() - (ONE_HOUR_ms); 
 			updateTime(current_pending);
 			int due=0;
 			for (ActiveCard card: current_pending.deck) {
@@ -383,7 +383,6 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final Set<String> nodupes = new HashSet<>();
 	private final Random rand = new Random();
-	private final long sessionStart;
 
 	private Runnable saveActiveDeck = new Runnable() {
 		@Override
@@ -396,7 +395,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			tosave.deck.addAll(current_active.deck);
 			tosave.deck.addAll(current_pending.deck);
 			tosave.deck.addAll(current_done.deck);
-			tosave.lastrun = sessionStart;
+			tosave.lastrun = System.currentTimeMillis()-((long)elapsed)*1000l;
 			Collections.sort(tosave.deck, byShowTime);
 
 			SlotInfo info;
@@ -509,6 +508,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					return;
 				}
 				if (elapsed > MinSessionTime) {
+					elapsed_tick_on=false;
 					game.log(this, "no cards remaining");
 					stage.addAction(Actions.run(saveActiveDeck));
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
@@ -644,7 +644,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		if (slot.child("deck.json").exists()) {
 			slot.child("deck.json").delete();
 		}
-		sessionStart = System.currentTimeMillis();
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
