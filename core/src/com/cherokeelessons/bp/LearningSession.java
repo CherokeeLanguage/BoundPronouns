@@ -526,7 +526,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							sb.append("\n\n");
 							sb.append(info.activeCards + " active cards");
 							sb.append("\n");
-							sb.append(((int) (info.mediumTerm * 100))
+							sb.append(((int) (info.shortTerm * 100))
 									+ "% short term memorized");
 							sb.append("\n");
 							sb.append(((int) (info.mediumTerm * 100))
