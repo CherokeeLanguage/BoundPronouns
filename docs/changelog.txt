@@ -1,3 +1,7 @@
+1.37
+
+subtract box as seconds from time allowed to answer.... you should know the higher ranked cards faster and faster ...
+
 1.36
 
 fix issue where cards are getting missed by 20 minutes for the next
