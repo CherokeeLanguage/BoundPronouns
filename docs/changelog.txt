@@ -9,18 +9,18 @@ bug fix for stats bug fixer which causes fatal crashes
 
 1.34
 
-[X] Fix error in Statistics Calculation.
+Fix error in Statistics Calculation.
 
 1.33
 
-[X] Added EDIT SETTINGS on SLOT SELECTION screen
+Added EDIT SETTINGS on SLOT SELECTION screen
 
-[X] Added ERASE on SLOT SELECTION screen
+Added ERASE on SLOT SELECTION screen
 
-[X] Syllabary only vs Latin only vs Both
+Syllabary only vs Latin only vs Both
 
-[X] Add option to concentrate only on bare pronouns or only on conjugated verbs
+Add option to concentrate only on bare pronouns or only on conjugated verbs
 
-[X] Add Mute/Unmute to bottom of main play screen
+Add Mute/Unmute to bottom of main play screen
 
-[X] Add Pause/Unpause to bottom of main play screen
+Add Pause/Unpause to bottom of main play screen
