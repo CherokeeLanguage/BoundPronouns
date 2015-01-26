@@ -84,7 +84,7 @@ public class MainScreen implements Screen {
 			tiled.setMinHeight(0);
 			tiled.setMinWidth(0);
 			tiled.setTopHeight(f54.getCapHeight() + 20);
-		}	
+		}
 	}
 
 	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession) {
@@ -94,8 +94,9 @@ public class MainScreen implements Screen {
 			}
 		});
 	}
-	
-	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession, final Runnable onResult) {
+
+	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession,
+			final Runnable onResult) {
 
 		final BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
 		final BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
@@ -124,44 +125,46 @@ public class MainScreen implements Screen {
 		// Slot display name
 		TextFieldStyle tfs = new TextFieldStyle(skin.get(TextFieldStyle.class));
 		tfs.font = f36;
-		
+
 		if (!newSession) {
 			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ"
 					: info.settings.name;
 		}
-				
-		final TextField name = new TextField(info.settings.name, tfs);		
-		final TextButton mode = new TextButton(info.settings.display.toString(), tbs);
-		mode.addListener(new ClickListener(){
+
+		final TextField name = new TextField(info.settings.name, tfs);
+		final TextButton mode = new TextButton(
+				info.settings.display.toString(), tbs);
+		mode.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				info.settings.display=DisplayMode.getNext(info.settings.display);
+				info.settings.display = DisplayMode
+						.getNext(info.settings.display);
 				mode.setText(info.settings.display.toString());
 				return true;
 			}
 		});
-		final TextButton muted = new TextButton(info.settings.muted ? "Yes" : "No",
-				tbs);
-		muted.addListener(new ClickListener(){
+		final TextButton muted = new TextButton(info.settings.muted ? "Yes"
+				: "No", tbs);
+		muted.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				info.settings.muted=!info.settings.muted;
+				info.settings.muted = !info.settings.muted;
 				muted.setText(info.settings.muted ? "Yes" : "No");
 				return true;
 			}
 		});
-		final TextButton whichCards = new TextButton(info.settings.deck.toString(),
-				tbs);
-		whichCards.addListener(new ClickListener(){
+		final TextButton whichCards = new TextButton(
+				info.settings.deck.toString(), tbs);
+		whichCards.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (whichCards.isDisabled()) {
 					return false;
 				}
-				info.settings.deck=DeckMode.getNext(info.settings.deck);
+				info.settings.deck = DeckMode.getNext(info.settings.deck);
 				whichCards.setText(info.settings.deck.toString());
 				return true;
 			}
@@ -169,15 +172,16 @@ public class MainScreen implements Screen {
 		if (!newSession) {
 			whichCards.setDisabled(true);
 		}
-		
+
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
-				info.settings.name=name.getText();				
+				info.settings.name = name.getText();
 				json.toJson(info, p1);
-				if (onResult!=null) {
+				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
 			};
+
 			@Override
 			public Dialog show(Stage stage) {
 				super.show(stage);
@@ -193,7 +197,7 @@ public class MainScreen implements Screen {
 		contentTable.clearChildren();
 		contentTable.row();
 		contentTable.add("Name: ").left().fillX();
-		contentTable.add(name).expand().fillX().left();		
+		contentTable.add(name).expand().fillX().left();
 		contentTable.row();
 		contentTable.add("Display: ").left().fillX();
 		contentTable.add(mode).expand().fillX().left();
@@ -268,11 +272,21 @@ public class MainScreen implements Screen {
 			if (p1.exists()) {
 				info = json.fromJson(SlotInfo.class, p1);
 				blank = false;
-				if (info.version!=SlotInfo.StatsVersion) {
-					ActiveDeck adeck = json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
+				if (info.version != SlotInfo.StatsVersion) {
+					if (!p0.child(LearningSession.ActiveDeckJson).exists()) {
+						json.toJson(new ActiveDeck(),
+								p0.child(LearningSession.ActiveDeckJson));
+					}
+
+					ActiveDeck adeck = json.fromJson(ActiveDeck.class,
+							p0.child(LearningSession.ActiveDeckJson));
+					if (adeck == null) {
+						adeck = new ActiveDeck();
+					}
 					LearningSession.calculateStats(adeck, info);
-					adeck=null;
+					adeck = null;
 					json.toJson(info, p1);
+
 				}
 			}
 			if (info == null) {
@@ -292,21 +306,22 @@ public class MainScreen implements Screen {
 			textb.setStyle(tbs);
 			slots.row();
 			slots.add(textb).pad(0).expand().fill().left();
-			final boolean isNewSession=blank;
+			final boolean isNewSession = blank;
 			textb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {					
-					final Runnable startSession = new Runnable() {						
+						int pointer, int button) {
+					final Runnable startSession = new Runnable() {
 						@Override
 						public void run() {
 							chooseSlot.hide(null);
 							game.log(this, p0.path());
-							game.setScreen(new LearningSession(game, MainScreen.this,
-									p0));							
+							game.setScreen(new LearningSession(game,
+									MainScreen.this, p0));
 						}
-					};					
+					};
 					if (isNewSession) {
-						DialogX d = getEditDialogFor(p1, isNewSession, startSession);
+						DialogX d = getEditDialogFor(p1, isNewSession,
+								startSession);
 						d.show(stage);
 						return true;
 					}
@@ -332,11 +347,11 @@ public class MainScreen implements Screen {
 			editb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
-					DialogX edit = getEditDialogFor(p1, false, new Runnable(){
+					DialogX edit = getEditDialogFor(p1, false, new Runnable() {
 						@Override
 						public void run() {
 							chooseSlot.hide();
-							doSlotsDialog();							
+							doSlotsDialog();
 						}
 					});
 					edit.show(stage);
