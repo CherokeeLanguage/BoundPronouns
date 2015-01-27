@@ -1,3 +1,7 @@
+1.40
+
+Layout changes
+
 1.39
 
 Enlarged fonts a bit where feasible.

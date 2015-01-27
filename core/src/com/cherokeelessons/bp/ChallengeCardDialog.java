@@ -2,6 +2,8 @@ package com.cherokeelessons.bp;
 
 import java.util.Iterator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
@@ -36,8 +39,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	private final BoundPronouns game;
 
-	private final TextButton challenge_top;
-
 	@Override
 	protected void result(Object object) {
 		super.result(object);
@@ -45,8 +46,11 @@ public abstract class ChallengeCardDialog extends Dialog {
 	
 	private TextButton mute;
 
+	private final Skin skin;
+
 	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
+		this.skin=skin;
 		this.title = "Challenge Card";
 		this.game = game;
 		getStyle().titleFont = game.getFont(Font.SansLarge);
@@ -55,25 +59,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 		setModal(true);
 		setFillParent(true);
-
-		challenge_top = new TextButton("", skin);
-		challenge_top.setDisabled(true);
-		challenge_bottom = new Label("", skin);
-
-		TextButtonStyle chr_san_large = new TextButtonStyle(
-				challenge_top.getStyle());
-		chr_san_large.font = game.getFont(Font.SansXLarge);
-		challenge_top.setStyle(chr_san_large);
-
-		LabelStyle pronounce_large = new LabelStyle(challenge_bottom.getStyle());
-		pronounce_large.font = game.getFont(Font.SerifLarge);
-		challenge_bottom.setStyle(pronounce_large);
-
-		challenge_top.add(challenge_bottom).pad(0).top();
-
-		Table ctable = getContentTable();
-		ctable.row();
-		ctable.add(challenge_top).fill().expand();
 
 		Cell<Table> tcell = getCell(getContentTable());
 		tcell.expand();
@@ -152,7 +137,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		
 		answer_style = new TextButtonStyle(skin.get("default",
 				TextButtonStyle.class));
-		answer_style.font = game.getFont(Font.SerifMediumLarge);
+		answer_style.font = game.getFont(Font.SerifMedium);
 	}
 	
 	public boolean paused=false;
@@ -171,7 +156,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	private Table appNavBar;
 
-	private final Label challenge_bottom;
+//	private final Label challenge_bottom;
 
 	final private StringBuilder showCardSb = new StringBuilder();
 
@@ -179,27 +164,60 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	protected ActiveCard _activeCard;
 
+	/**
+	 * It is assumed that the Syllabary is entry #0 and the Latin is entry #1
+	 * @param activeCard
+	 * @param deckCard
+	 */
 	public void setCard(ActiveCard activeCard, Card deckCard) {
+		
 		this._activeCard = activeCard;
 		this._deckCard = deckCard;
 
+		String syllabary="";
+		String latin="";
 		Iterator<String> i = deckCard.challenge.iterator();
+		if (i.hasNext()) {
+			syllabary=i.next();
+		}
+		if (i.hasNext()) {
+			latin=i.next();
+		}		
 		if (settings.display.equals(SlotInfo.DisplayMode.Latin)){
-			//skip the Syllabary entry
-			i.next();
-		}
-		challenge_top.setText(i.next());
-		showCardSb.setLength(0);
-		while (i.hasNext()) {
-			showCardSb.append(i.next());
-			showCardSb.append("\n");
-		}
+			syllabary="";
+		} 
 		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)){
-			//dont' add the latin
-			showCardSb.setLength(0);
+			latin="";
 		}
-		challenge_bottom.setText(showCardSb.toString());
-		showCardSb.setLength(0);
+		
+		Table ctable = getContentTable();
+		ctable.clearChildren();
+		ctable.row();
+		
+		TextButtonStyle chr_san_large = new TextButtonStyle(
+				skin.get(TextButtonStyle.class));
+		chr_san_large.font = game.getFont(Font.SansXLarge);
+		
+		TextButton challenge_top = new TextButton("", chr_san_large);
+		challenge_top.setDisabled(true);
+		challenge_top.clearChildren();
+		
+		ctable.add(challenge_top).fill().expand().align(Align.center);
+		
+		LabelStyle lstyle = new LabelStyle(game.getFont(Font.SansXLarge), chr_san_large.fontColor);
+		Label msg;
+		if (!StringUtils.isBlank(syllabary)) {
+			msg = new Label(syllabary, lstyle);
+			msg.setAlignment(Align.center);
+			msg.setWrap(true);
+			challenge_top.add(msg).fill().expand();
+		}
+		if (!StringUtils.isBlank(latin)) {
+			msg = new Label(latin, lstyle);
+			msg.setAlignment(Align.center);
+			msg.setWrap(true);
+			challenge_top.add(msg).fill().expand();
+		}
 	}
 
 	private TiledDrawable getDialogBackground() {

@@ -200,7 +200,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			// move cards due tomorrow a later into the already done pile!
 			retireNotYetCards(current_pending);
-
+			//round cards to nearest minute
+			truncateToMinutes(current_pending.deck);
 			// initial randomize and resort of pending deck
 			Collections.shuffle(current_pending.deck);
 			Collections.sort(current_pending.deck, byShowTimeChunks);
@@ -209,6 +210,12 @@ public class LearningSession extends ChildScreen implements Screen {
 			addCards(needed, current_active);
 
 			stage.addAction(Actions.run(showACard));
+		}
+
+		private void truncateToMinutes(List<ActiveCard> deck) {
+			for (ActiveCard card: deck) {
+				card.show_again_ms=(60l*1000l)*(card.show_again_ms/(1000l*60l));
+			}			
 		}
 
 		private void retireNotYetCards(ActiveDeck current_pending) {
@@ -659,7 +666,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			long dif = o1.show_again_ms - o2.show_again_ms;
 			if (dif < 0)
 				dif = -dif;
-			if (dif < ONE_MINUTE_ms * 5) {
+			if (dif < ONE_MINUTE_ms) {
 				return 0;
 			}
 			return o1.show_again_ms > o2.show_again_ms ? 1 : -1;

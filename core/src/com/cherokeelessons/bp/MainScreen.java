@@ -446,53 +446,49 @@ public class MainScreen implements Screen {
 		TextButtonStyle bstyle;
 
 		bstyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
-		bstyle.font = game.getFont(Font.SansLarge);
+		bstyle.font = game.getFont(Font.SansXLarge);
 
-		button = new TextButton("Cherokee Language - Bound Pronouns Practice",
+		button = new TextButton("Cherokee Language\nBound Pronouns Practice",
 				bstyle);
 		button.setDisabled(true);
 
-		container.row();
 		int padBottom = 12;
-		container.add(button).padBottom(padBottom);
+		container.row();
+		container.add(button).padBottom(padBottom).colspan(2).fillX();
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bstyle.font = game.getFont(Font.SansLarge);
+		bstyle.font = game.getFont(Font.SansXLarge);
 		button = new TextButton("Do A Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom);
+		container.add(button).padBottom(padBottom).fillX();
 
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
 		button.setTouchable(Touchable.enabled);
-		container.row();
-		container.add(button).padBottom(padBottom);
+//		container.row();
+		container.add(button).padBottom(padBottom).fillX();
+		
+		
 
 		button = new TextButton("View Challenges", bstyle);
 		button.addListener(viewChallenges);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom);
-
-		// button = new TextButton("Settings", bstyle);
-		// button.addListener(viewSettings);
-		// button.setTouchable(Touchable.enabled);
-		// container.row();
-		// container.add(button).padBottom(padBottom);
+		container.add(button).padBottom(padBottom).fillX();
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
-		container.row();
-		container.add(button).padBottom(padBottom);
+//		container.row();
+		container.add(button).padBottom(padBottom).fillX();
 
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom);
+		container.add(button).padBottom(padBottom).colspan(2).fillX();
 	}
 
 	@Override
