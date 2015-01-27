@@ -535,6 +535,9 @@ public class LearningSession extends ChildScreen implements Screen {
 					stage.addAction(Actions.run(saveActiveDeck));
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 						{
+							LabelStyle lstyle = skin.get(LabelStyle.class);
+							lstyle.font = game.getFont(Font.SansLarge);
+							
 							ActiveDeck activeDeck = new ActiveDeck();
 							activeDeck.deck.addAll(current_active.deck);
 							activeDeck.deck.addAll(current_pending.deck);
@@ -561,7 +564,8 @@ public class LearningSession extends ChildScreen implements Screen {
 							int seconds = (int) (elapsed - minutes * 60f);
 							sb.append("Elapsed time: " + minutes + ":"
 									+ (seconds < 10 ? "0" : "") + seconds);
-							text(sb.toString());
+							Label label = new Label(sb.toString(), lstyle);
+							text(label);
 							button("OK!");
 						}
 
