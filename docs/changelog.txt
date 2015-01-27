@@ -1,3 +1,8 @@
+1.39
+
+Enlarged fonts a bit where feasible.
+Added code to migrate Android from internal storage to external storage (sdcard)
+
 1.38
 
 now randomized between he/she, him/her, and himself/herself for challenges
