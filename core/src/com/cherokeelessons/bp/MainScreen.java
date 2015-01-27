@@ -4,11 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -31,6 +31,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
@@ -80,10 +81,9 @@ public class MainScreen implements Screen {
 					BoundPronouns.IMG_MAYAN, Texture.class);
 			final TextureRegion region = new TextureRegion(background);
 			final TiledDrawable tiled = new TiledDrawable(region);
-			BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
 			tiled.setMinHeight(0);
 			tiled.setMinWidth(0);
-			tiled.setTopHeight(f54.getCapHeight() + 20);
+			tiled.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
 		}
 	}
 
@@ -98,16 +98,13 @@ public class MainScreen implements Screen {
 	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession,
 			final Runnable onResult) {
 
-		final BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
-		final BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
-
 		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		final TextureRegion region = new TextureRegion(background);
 		final TiledDrawable tiled = new TiledDrawable(region);
 		tiled.setMinHeight(0);
 		tiled.setMinWidth(0);
-		tiled.setTopHeight(f54.getCapHeight() + 20);
+		tiled.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
 
 		final SlotInfo info;
 		if (p1.exists()) {
@@ -120,11 +117,11 @@ public class MainScreen implements Screen {
 		} else {
 			info = new SlotInfo();
 		}
-		TextButtonStyle tbs = skin.get(TextButtonStyle.class);
-		tbs.font = f36;
+		TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		tbs.font = game.getFont(Font.SansMedium);
 		// Slot display name
 		TextFieldStyle tfs = new TextFieldStyle(skin.get(TextFieldStyle.class));
-		tfs.font = f36;
+		tfs.font = game.getFont(Font.SansMedium);
 
 		if (!newSession) {
 			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ"
@@ -191,21 +188,23 @@ public class MainScreen implements Screen {
 				return this;
 			}
 		};
-		final Table contentTable = edit.getContentTable();
+		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
+		ls.font = game.getFont(Font.SansMedium);
+		final Table contentTable = edit.getContentTable();		
 		edit.setBackground(tiled);
 		edit.setFillParent(true);
 		contentTable.clearChildren();
 		contentTable.row();
-		contentTable.add("Name: ").left().fillX();
+		contentTable.add(new Label("Name: ", ls)).left().fillX();
 		contentTable.add(name).expand().fillX().left();
 		contentTable.row();
-		contentTable.add("Display: ").left().fillX();
+		contentTable.add(new Label("Display: ", ls)).left().fillX();
 		contentTable.add(mode).expand().fillX().left();
 		contentTable.row();
-		contentTable.add("Mute by default: ").left().fillX();
+		contentTable.add(new Label("Mute by default: ", ls)).left().fillX();
 		contentTable.add(muted).expand().fillX().left();
 		contentTable.row();
-		contentTable.add("Which card set?").left().fillX();
+		contentTable.add(new Label("Which card set?", ls)).left().fillX();
 		contentTable.add(whichCards).expand().fillX().left();
 		TextButton ok = new TextButton("OK", tbs);
 		edit.button(ok);
@@ -214,11 +213,8 @@ public class MainScreen implements Screen {
 
 	public void doSlotsDialog() {
 
-		final BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
-		final BitmapFont f36 = game.manager.get("sans36.ttf", BitmapFont.class);
-		final BitmapFont f30 = game.manager.get("sans30.ttf", BitmapFont.class);
 		final SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game,
-				f54);
+				game.getFont(Font.SansLarge));
 		chooseSlot.setKeepWithinStage(true);
 		chooseSlot.setModal(true);
 		chooseSlot.setFillParent(true);
@@ -229,7 +225,7 @@ public class MainScreen implements Screen {
 		final TiledDrawable tiled = new TiledDrawable(region);
 		tiled.setMinHeight(0);
 		tiled.setMinWidth(0);
-		tiled.setTopHeight(f54.getCapHeight() + 20);
+		tiled.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
 
 		Table slots = new Table(skin);
 		final ScrollPane slotsPane = new ScrollPane(slots, skin);
@@ -240,30 +236,15 @@ public class MainScreen implements Screen {
 		for (int ix = 0; ix < 4; ix++) {
 			final FileHandle p0, p1;
 			String path0 = "BoundPronouns/slots/" + ix + "/";
-			switch (Gdx.app.getType()) {
-			case Android:
-				p0 = Gdx.files.local(path0);
-				break;
-			case Applet:
-				p0 = Gdx.files.external(path0);
-				break;
-			case Desktop:
-				p0 = Gdx.files.external(path0);
-				break;
-			case HeadlessDesktop:
-				p0 = Gdx.files.external(path0);
-				break;
-			case WebGL:
-				p0 = Gdx.files.external(path0);
-				break;
-			case iOS:
-				p0 = Gdx.files.local(path0);
-				break;
-			default:
-				continue;
-			}
-			if (!p0.exists()) {
-				p0.mkdirs();
+			p0 = Gdx.files.external(path0);
+			p0.mkdirs();
+			if (Gdx.app.getType().equals(ApplicationType.Android)){
+				game.log(this, "Migrating from internal storage to external storage...");
+				FileHandle px = Gdx.files.internal(path0);
+				if (px.exists()) {
+					p0.deleteDirectory();
+					px.moveTo(p0);
+				}
 			}
 
 			boolean blank = true;
@@ -277,7 +258,6 @@ public class MainScreen implements Screen {
 						json.toJson(new ActiveDeck(),
 								p0.child(LearningSession.ActiveDeckJson));
 					}
-
 					ActiveDeck adeck = json.fromJson(ActiveDeck.class,
 							p0.child(LearningSession.ActiveDeckJson));
 					if (adeck == null) {
@@ -296,14 +276,17 @@ public class MainScreen implements Screen {
 			SlotInfo.Settings settings = info.settings;
 			String txt = (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
 					: settings.name;
-			txt += "\n" + info.activeCards + " cards";
-			txt += ", " + ((int) (info.shortTerm * 100)) + "% short term";
+			txt += " - ";
+			txt += info.activeCards + " cards";
+			txt += "\n";
+			txt += ((int) (info.shortTerm * 100)) + "% short term";
 			txt += ", " + ((int) (info.mediumTerm * 100)) + "% medium term";
 			txt += ", " + ((int) (info.longTerm * 100)) + "% long term";
-			TextButton textb = new TextButton(txt, skin);
-			TextButtonStyle tbs = new TextButtonStyle(textb.getStyle());
-			tbs.font = f36;
-			textb.setStyle(tbs);
+			
+			TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
+			tbs.font = game.getFont(Font.SansMedium);
+			TextButton textb = new TextButton(txt, tbs);
+			
 			slots.row();
 			slots.add(textb).pad(0).expand().fill().left();
 			final boolean isNewSession = blank;
@@ -330,11 +313,15 @@ public class MainScreen implements Screen {
 				};
 			});
 			tbs = new TextButtonStyle(textb.getStyle());
-			tbs.font = f30;
+			tbs.font = game.getFont(Font.SansSmall);
 			VerticalGroup editControls = new VerticalGroup();
 			editControls.center();
 			TextButton editb = new TextButton("SETTINGS", tbs);
+			editb.padTop(0);
+			editb.padBottom(0);
 			TextButton deleteb = new TextButton("ERASE", tbs);
+			deleteb.padTop(0);
+			deleteb.padBottom(0);
 			editControls.addActor(editb);
 			editControls.addActor(deleteb);
 			editControls.fill();
@@ -363,6 +350,11 @@ public class MainScreen implements Screen {
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
 					Dialog confirm = new Dialog("Erase?", skin) {
+						{
+							WindowStyle ws = new WindowStyle(skin.get(WindowStyle.class));
+							ws.titleFont=game.getFont(Font.SansLarge);
+							setStyle(ws);
+						}
 						protected void result(Object object) {
 							if (object == null) {
 								return;
@@ -376,7 +368,7 @@ public class MainScreen implements Screen {
 					};
 					confirm.setBackground(tiled);
 					LabelStyle ls = skin.get(LabelStyle.class);
-					ls.font = f36;
+					ls.font = game.getFont(Font.SansMedium);
 					Label msg = new Label("Erase this slot?\n\n" + slotTxt, ls);
 					msg.setWrap(true);
 					confirm.getContentTable().clearChildren();
@@ -399,7 +391,7 @@ public class MainScreen implements Screen {
 		});
 
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font = f54;
+		back.getStyle().font = game.getFont(Font.SansLarge);
 		back.setStyle(back.getStyle());
 		chooseSlot.button(back);
 		chooseSlot.show(stage).addAction(focus);
@@ -441,8 +433,6 @@ public class MainScreen implements Screen {
 		json.setTypeName(null);
 		json.setIgnoreUnknownFields(true);
 
-		BitmapFont f54 = game.manager.get("sans54.ttf", BitmapFont.class);
-
 		container = new Table();
 		container.setFillParent(true);
 		stage.addActor(container);
@@ -455,10 +445,10 @@ public class MainScreen implements Screen {
 		TextButton button;
 		TextButtonStyle bstyle;
 
-		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bstyle.font = f54;
+		bstyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		bstyle.font = game.getFont(Font.SansLarge);
 
-		button = new TextButton("Cherokee Language Bound Pronouns Practice",
+		button = new TextButton("Cherokee Language - Bound Pronouns Practice",
 				bstyle);
 		button.setDisabled(true);
 
@@ -467,7 +457,7 @@ public class MainScreen implements Screen {
 		container.add(button).padBottom(padBottom);
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bstyle.font = f54;
+		bstyle.font = game.getFont(Font.SansLarge);
 		button = new TextButton("Do A Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);

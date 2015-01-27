@@ -124,17 +124,34 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
 		manager.load(SKIN, Skin.class);
 
-		addFreeSerifFor(36);
-		addFreeSerifFor(54);
-
-		addFreeSansFor(30);
-		addFreeSansFor(36);
-		addFreeSansFor(54);
-		addFreeSansFor(72);
+		addFonts();
 
 	}
+	
+	private void addFonts() {
+		addFreeSerifFor(36, Font.SerifSmall);
+		addFreeSerifFor(42, Font.SerifMedium);
+		addFreeSerifFor(48, Font.SerifMediumLarge);
+		addFreeSerifFor(58, Font.SerifLarge);
+		addFreeSerifFor(72, Font.SerifXLarge);
 
-	private void addFreeSansFor(int size) {
+		addFreeSansFor(30, Font.SansXSmall);
+		addFreeSansFor(34, Font.SansSmaller);
+		addFreeSansFor(36, Font.SansSmall);
+		addFreeSansFor(42, Font.SansMedium);
+		addFreeSansFor(54, Font.SansLarge);
+		addFreeSansFor(72, Font.SansXLarge);		
+	}
+
+	public static enum Font {
+		SansXSmall, SansSmall, SansMedium, SansLarge, SansXLarge, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SansSmaller, SerifMediumLarge;
+	}
+	
+	public BitmapFont getFont(Font font) {		
+		return manager.get(font.name()+".ttf", BitmapFont.class);
+	}
+
+	private void addFreeSansFor(int size, Font fontname) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			String valueOf = String.valueOf(c);
@@ -161,11 +178,11 @@ public class BoundPronouns extends Game {
 		font.fontParameters.size = size;
 		font.fontParameters.magFilter = TextureFilter.Linear;
 		font.fontParameters.minFilter = TextureFilter.Linear;
-		manager.load("sans" + size + ".ttf", BitmapFont.class, font);
+		manager.load(fontname.name() + ".ttf", BitmapFont.class, font);
 		return;
 	}
 
-	private void addFreeSerifFor(int size) {
+	private void addFreeSerifFor(int size, Font fontname) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			String valueOf = String.valueOf(c);
@@ -192,7 +209,7 @@ public class BoundPronouns extends Game {
 		font.fontParameters.size = size;
 		font.fontParameters.magFilter = TextureFilter.Linear;
 		font.fontParameters.minFilter = TextureFilter.Linear;
-		manager.load("serif" + size + ".ttf", BitmapFont.class, font);
+		manager.load(fontname.name()+ ".ttf", BitmapFont.class, font);
 		return;
 	}
 

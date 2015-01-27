@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -21,7 +20,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -31,13 +29,17 @@ import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.Answer;
@@ -320,13 +322,21 @@ public class LearningSession extends ChildScreen implements Screen {
 			Dialog whichMode = new Dialog(
 					"It's too soon for a regular session.", skin) {
 				{
-					text("Please select an option:\n\n"
+					String text="Please select an option:\n\n"
 							+ "Would you like to practice your existing challenges?\n\n"
 							+ "Would you like to jump forward by a full day?\n\n"
-							+ "Would you like to cancel and go back to main menu?");
+							+ "Would you like to cancel and go back to main menu?";
+					
+					LabelStyle lstyle = skin.get(LabelStyle.class);
+					lstyle.font=game.getFont(Font.SansMedium);
+					Label label = new Label(text, lstyle);
+					label.setAlignment(Align.left, Align.left);
+					label.setWrap(true);
+					getContentTable().clearChildren();
+					getContentTable().add(label).fill().expand().left();
 					TextButtonStyle tbs = new TextButtonStyle(
 							skin.get(TextButtonStyle.class));
-					tbs.font = game.manager.get("sans36.ttf", BitmapFont.class);
+					tbs.font = game.getFont(Font.SansMedium);
 					TextButton tb;
 					tb = new TextButton("DO A PRACTICE", tbs);
 					button(tb, "A");

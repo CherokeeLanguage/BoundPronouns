@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -18,11 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.Answer;
-import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
+import com.cherokeelessons.cards.SlotInfo;
 
 public abstract class ChallengeCardDialog extends Dialog {
 	
@@ -49,7 +49,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		super("Challenge Card", skin);
 		this.title = "Challenge Card";
 		this.game = game;
-		getStyle().titleFont = sans54();
+		getStyle().titleFont = game.getFont(Font.SansLarge);
 		getStyle().background = getDialogBackground();
 		setStyle(getStyle());
 
@@ -62,11 +62,11 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 		TextButtonStyle chr_san_large = new TextButtonStyle(
 				challenge_top.getStyle());
-		chr_san_large.font = sans_large();
+		chr_san_large.font = game.getFont(Font.SansXLarge);
 		challenge_top.setStyle(chr_san_large);
 
 		LabelStyle pronounce_large = new LabelStyle(challenge_bottom.getStyle());
-		pronounce_large.font = serif54();
+		pronounce_large.font = game.getFont(Font.SerifLarge);
 		challenge_bottom.setStyle(pronounce_large);
 
 		challenge_top.add(challenge_bottom).pad(0).top();
@@ -88,7 +88,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		appNavBar.defaults().space(6);
 		TextButtonStyle navStyle = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
-		navStyle.font = sans36();
+		navStyle.font = game.getFont(Font.SansMedium);
 		TextButton main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();
 		appNavBar.add(main).left();
@@ -141,18 +141,18 @@ public abstract class ChallengeCardDialog extends Dialog {
 		});
 		
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
-		ls.font = sans36();
+		ls.font = game.getFont(Font.SansMedium);
 		timer = new Label("--", ls);
 		appNavBar.add(timer).right().expandX();
 
 		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default",
 				TextButtonStyle.class));
-		tbs_check.font = sans36();
+		tbs_check.font = game.getFont(Font.SansLarge);
 		check = new TextButton("CHECK!", tbs_check);
 		
 		answer_style = new TextButtonStyle(skin.get("default",
 				TextButtonStyle.class));
-		answer_style.font = serif36();
+		answer_style.font = game.getFont(Font.SerifMediumLarge);
 	}
 	
 	public boolean paused=false;
@@ -209,28 +209,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 		TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
-		background.setTopHeight(sans54().getCapHeight() + 20);
+		background.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
 		return background;
-	}
-
-	private BitmapFont sans_large() {
-		return game.manager.get("sans72.ttf", BitmapFont.class);
-	}
-
-	private BitmapFont sans54() {
-		return game.manager.get("sans54.ttf", BitmapFont.class);
-	}
-
-	private BitmapFont serif54() {
-		return game.manager.get("serif54.ttf", BitmapFont.class);
-	}
-
-	private BitmapFont sans36() {
-		return game.manager.get("sans36.ttf", BitmapFont.class);
-	}
-
-	private BitmapFont serif36() {
-		return game.manager.get("serif36.ttf", BitmapFont.class);
 	}
 
 	final AnswerList selected = new AnswerList();
@@ -245,6 +225,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 				btable.row();
 			}
 			final TextButton a = new TextButton(answer.answer, answer_style);
+			a.getLabel().setWrap(true);
 			a.setUserObject(answer);
 			a.addListener(new ClickListener() {
 				@Override
@@ -263,8 +244,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 				}
 			});
 			a.setColor(Color.WHITE);
-			Value percentWidth = Value.percentWidth(.5f, btable);
-			btable.add(a).fillX().width(percentWidth).padLeft(0).padRight(0).spaceLeft(0).spaceRight(0);
+			Value percentWidth = Value.percentWidth(.49f, btable);
+			btable.add(a).fillX().width(percentWidth).pad(0).space(0);
 			odd = !odd;
 		}
 		btable.row();

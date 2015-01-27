@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.SlotInfo;
 
@@ -33,7 +34,7 @@ public abstract class NewCardDialog extends Dialog {
 		super("New Vocabulary Card", skin);
 		this.game=game;
 		
-		getStyle().titleFont=sans54();
+		getStyle().titleFont=game.getFont(Font.SansLarge);
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
 		
@@ -50,15 +51,15 @@ public abstract class NewCardDialog extends Dialog {
 		answer.setDisabled(true);
 		
 		TextButtonStyle chr_san_large = new TextButtonStyle(challenge_top.getStyle());		
-		chr_san_large.font=sans_large();
+		chr_san_large.font=game.getFont(Font.SansXLarge);
 		challenge_top.setStyle(chr_san_large);
 		
 		LabelStyle pronounce_large = new LabelStyle(challenge_bottom.getStyle());
-		pronounce_large.font=serif54();
+		pronounce_large.font=game.getFont(Font.SerifLarge);
 		challenge_bottom.setStyle(pronounce_large);		
 		
 		TextButtonStyle answerStyle = new TextButtonStyle(answer.getStyle());		
-		answerStyle.font=serif36();
+		answerStyle.font=game.getFont(Font.SansMedium);
 		answer.setStyle(answerStyle);
 		
 		challenge_top.add(challenge_bottom).pad(0).top();
@@ -82,7 +83,7 @@ public abstract class NewCardDialog extends Dialog {
 		appNavBar.defaults().space(6);
 		
 		TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
-		navStyle.font=sans36();
+		navStyle.font=game.getFont(Font.SansMedium);
 		TextButton main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();		
 		appNavBar.add(main).left().expandX();
@@ -99,7 +100,7 @@ public abstract class NewCardDialog extends Dialog {
 		btable.clearChildren();
 		btable.row();
 		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		tbs_check.font=sans36();
+		tbs_check.font=game.getFont(Font.SansMedium);
 		TextButton a = new TextButton("READY!", tbs_check);
 		btable.add(a).fill().expandX().bottom();
 		setObject(a, null);
@@ -150,28 +151,8 @@ public abstract class NewCardDialog extends Dialog {
 		TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
-		background.setTopHeight(sans54().getCapHeight()+20);
+		background.setTopHeight(game.getFont(Font.SansLarge).getCapHeight()+20);
 		return background;
-	}
-	
-	private BitmapFont sans_large() {
-		return game.manager.get("sans72.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont sans54() {
-		return game.manager.get("sans54.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont serif54() {
-		return game.manager.get("serif54.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont sans36() {
-		return game.manager.get("sans36.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont serif36() {
-		return game.manager.get("serif36.ttf", BitmapFont.class);
 	}
 
 	public void setCounter(int cardcount) {

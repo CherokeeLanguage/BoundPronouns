@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 
 public class ShowList extends ChildScreen {
@@ -217,18 +218,17 @@ public class ShowList extends ChildScreen {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		BitmapFont f36_base = game.manager.get("sans36.ttf", BitmapFont.class);
-//		BitmapFont f36_serif = game.manager.get("serif36.ttf", BitmapFont.class);
-		BitmapFont f36 = new BitmapFont(f36_base.getData(), f36_base.getRegions(), true);
-		f36.setMarkupEnabled(true);
+		BitmapFont font_base = game.getFont(Font.SansSmall);
+		BitmapFont font = new BitmapFont(font_base.getData(), font_base.getRegions(), true);
+		font.setMarkupEnabled(true);
 		
 		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bstyle.font=f36;
+		bstyle.font=font;
 		container.row();
 		TextButtonStyle bls=new TextButtonStyle(bstyle);
 		bls.fontColor=Color.BLUE;
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
-		container.add(back).center().fill().width(BoundPronouns.BACK_WIDTH);
+		container.add(back).center().width(BoundPronouns.BACK_WIDTH);
 		back.addListener(exit);
 
 		sortByS = new TextButton(SORT_BY_SYLLABARY, bstyle);
@@ -254,7 +254,7 @@ public class ShowList extends ChildScreen {
 		container.add(scroll).expand().fill().colspan(c + 1);		
 		
 		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=f36_base;
+		ls.font=font_base;
 		ls.background=null;
 		
 		List<DataSet> list = BoundPronouns.loadPronounRecords();

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 
 public class ShowAbout extends ChildScreen {
 
@@ -43,21 +44,17 @@ public class ShowAbout extends ChildScreen {
 		return new TiledDrawable(new TextureRegion(texture));
 	}
 	
-	private BitmapFont f36() {
-		return game.manager.get("sans36.ttf", BitmapFont.class);
-	}
-
 	private Runnable initView = new Runnable() {
 		public void run() {
 		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=f36();
+		ls.font=game.getFont(Font.SansMedium);
 		ls.background=null;
 		
 		container.row();
 		TextButtonStyle bls=new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bls.font=f36();
+		bls.font=game.getFont(Font.SansMedium);
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
-		container.add(back).left().fill().width(BoundPronouns.BACK_WIDTH);
+		container.add(back).left().width(BoundPronouns.BACK_WIDTH);
 		back.addListener(exit);
 		
 		table = new Table(skin);

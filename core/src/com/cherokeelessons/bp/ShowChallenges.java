@@ -12,7 +12,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -28,6 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
+import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
@@ -54,7 +54,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		Table t = new Table(skin);
 		t.setFillParent(true);
 		msg = new Label("Loading Deck ...", skin);
-		msg.getStyle().font=s54();
+		msg.getStyle().font=game.getFont(Font.SerifLarge);
 		msg.setStyle(msg.getStyle());
 		t.add(msg).fill().expand().center();
 		TiledDrawable background = getBackground();
@@ -63,22 +63,6 @@ public class ShowChallenges extends ChildScreen implements Screen {
 	}
 	
 	private Label msg;
-
-	private BitmapFont f54() {
-		return game.manager.get("sans54.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont s54() {
-		return game.manager.get("serif54.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont f36() {
-		return game.manager.get("sans36.ttf", BitmapFont.class);
-	}
-	
-	private BitmapFont s36() {
-		return game.manager.get("serif36.ttf", BitmapFont.class);
-	}
 
 	private TiledDrawable getBackground() {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
@@ -115,12 +99,12 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		};
 		background.setMinHeight(0);
 		background.setMinWidth(0);
-		background.setTopHeight(f54().getCapHeight()+20);
-		chooseGroup.getStyle().titleFont=f54();
+		background.setTopHeight(game.getFont(Font.SansLarge).getCapHeight()+20);
+		chooseGroup.getStyle().titleFont=game.getFont(Font.SansLarge);
 		chooseGroup.getStyle().background=background;
 		chooseGroup.setStyle(chooseGroup.getStyle());
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font=f54();
+		back.getStyle().font=game.getFont(Font.SansLarge);
 		back.setStyle(back.getStyle());
 		chooseGroup.button(back);
 		chooseGroup.setModal(true);
@@ -163,7 +147,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		for(final String group: groups) {
 			String group_name=group+"\n"+lookup_details.get(group);
 			TextButton button = new TextButton(group_name, skin);
-			button.getStyle().font=f36();
+			button.getStyle().font=game.getFont(Font.SerifMedium);
 			button.setStyle(button.getStyle());
 			button.addListener(new ClickListener(){
 				@Override
@@ -194,12 +178,12 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		Dialog theGroup = new Dialog(group, skin);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
-		background.setTopHeight(f54().getCapHeight()+20);
+		background.setTopHeight(game.getFont(Font.SansXLarge).getCapHeight()+20);
 		theGroup.getStyle().background=background;
-		theGroup.getStyle().titleFont=f54();
+		theGroup.getStyle().titleFont=game.getFont(Font.SansXLarge);
 		theGroup.setStyle(theGroup.getStyle());
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font=f54();
+		back.getStyle().font=game.getFont(Font.SansLarge);
 		back.setStyle(back.getStyle());
 		theGroup.button(back);
 		theGroup.setModal(true);
@@ -217,7 +201,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		}
 		Collections.sort(deck.cards);
 		TextButtonStyle tbstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		tbstyle.font=s36();
+		tbstyle.font=game.getFont(Font.SerifMedium);
 		for (Card card: deck.cards) {
 			StringBuilder sb = new StringBuilder();
 			for (String c: card.challenge) {
