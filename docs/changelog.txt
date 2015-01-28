@@ -1,3 +1,9 @@
+1.41
+
+Semi-adaptive font sizing for Challenge Card.
+
+DISABLE touchable on buttons that are marked as disabled!
+
 1.40
 
 Layout changes
