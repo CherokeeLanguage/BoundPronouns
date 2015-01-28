@@ -23,6 +23,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
@@ -766,6 +767,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				for (Actor b : getButtonTable().getChildren()) {
 					if (b instanceof Button) {
 						((Button) b).setDisabled(true);
+						((Button) b).setTouchable(Touchable.disabled);
 					}
 					if (b instanceof TextButton) {
 						TextButton tb = (TextButton) b;

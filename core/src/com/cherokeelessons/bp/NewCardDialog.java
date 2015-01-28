@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -46,9 +47,11 @@ public abstract class NewCardDialog extends Dialog {
 		
 		challenge_top=new TextButton("", skin);
 		challenge_top.setDisabled(true);
+		challenge_top.setTouchable(Touchable.disabled);
 		challenge_bottom=new Label("", skin);
 		answer=new TextButton("", skin);
 		answer.setDisabled(true);
+		answer.setTouchable(Touchable.disabled);
 		
 		TextButtonStyle chr_san_large = new TextButtonStyle(challenge_top.getStyle());		
 		chr_san_large.font=game.getFont(Font.SansXLarge);

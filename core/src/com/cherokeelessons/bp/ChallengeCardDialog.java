@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -156,10 +157,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	private Table appNavBar;
 
-//	private final Label challenge_bottom;
-
-	final private StringBuilder showCardSb = new StringBuilder();
-
 	protected Card _deckCard;
 
 	protected ActiveCard _activeCard;
@@ -200,20 +197,34 @@ public abstract class ChallengeCardDialog extends Dialog {
 		
 		TextButton challenge_top = new TextButton("", chr_san_large);
 		challenge_top.setDisabled(true);
+		challenge_top.setTouchable(Touchable.disabled);
 		challenge_top.clearChildren();
 		
 		ctable.add(challenge_top).fill().expand().align(Align.center);
 		
-		LabelStyle lstyle = new LabelStyle(game.getFont(Font.SansXLarge), chr_san_large.fontColor);
+		boolean shrink=false;
+		if (syllabary.length()+latin.length()>32) {
+			shrink=true;
+		}
 		Label msg;
 		if (!StringUtils.isBlank(syllabary)) {
-			msg = new Label(syllabary, lstyle);
+			LabelStyle san_style = new LabelStyle(game.getFont(Font.SansXLarge), chr_san_large.fontColor);
+			if (shrink) {
+				game.log(this, syllabary.length()+"");
+				san_style = new LabelStyle(game.getFont(Font.SansLLarge), chr_san_large.fontColor);
+			}
+			msg = new Label(syllabary, san_style);
 			msg.setAlignment(Align.center);
 			msg.setWrap(true);
 			challenge_top.add(msg).fill().expand();
 		}
 		if (!StringUtils.isBlank(latin)) {
-			msg = new Label(latin, lstyle);
+			LabelStyle serif_style = new LabelStyle(game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
+			if (shrink) {
+				game.log(this, latin.length()+"");
+				serif_style = new LabelStyle(game.getFont(Font.SerifLLarge), chr_san_large.fontColor);
+			}
+			msg = new Label(latin, serif_style);
 			msg.setAlignment(Align.center);
 			msg.setWrap(true);
 			challenge_top.add(msg).fill().expand();
@@ -272,6 +283,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		btable.row();
 		check.setVisible(true);
 		check.setDisabled(false);
+		check.setTouchable(Touchable.enabled);
 	}
 	
 	public void setCheckVisible(boolean visible){

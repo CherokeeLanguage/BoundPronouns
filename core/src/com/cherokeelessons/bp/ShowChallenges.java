@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -214,6 +215,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 			}
 			TextButton button = new TextButton(sb.toString(), tbstyle);
 			button.setDisabled(true);
+			button.setTouchable(Touchable.disabled);
 			challenges.row();
 			challenges.add(button).fillX().expand().padBottom(20);
 			

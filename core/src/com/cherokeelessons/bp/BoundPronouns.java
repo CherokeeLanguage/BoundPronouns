@@ -133,6 +133,7 @@ public class BoundPronouns extends Game {
 		addFreeSerifFor(42, Font.SerifMedium);
 		addFreeSerifFor(48, Font.SerifMediumLarge);
 		addFreeSerifFor(58, Font.SerifLarge);
+		addFreeSerifFor(62, Font.SerifLLarge);
 		addFreeSerifFor(72, Font.SerifXLarge);
 
 		addFreeSansFor(30, Font.SansXSmall);
@@ -140,11 +141,12 @@ public class BoundPronouns extends Game {
 		addFreeSansFor(36, Font.SansSmall);
 		addFreeSansFor(42, Font.SansMedium);
 		addFreeSansFor(54, Font.SansLarge);
+		addFreeSansFor(62, Font.SansLLarge);
 		addFreeSansFor(72, Font.SansXLarge);		
 	}
 
 	public static enum Font {
-		SansXSmall, SansSmall, SansMedium, SansLarge, SansXLarge, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SansSmaller, SerifMediumLarge;
+		SansXSmall, SansSmall, SansMedium, SansLarge, SansXLarge, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SansSmaller, SerifMediumLarge, SerifLLarge, SansLLarge;
 	}
 	
 	public BitmapFont getFont(Font font) {		

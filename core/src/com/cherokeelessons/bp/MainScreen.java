@@ -2,9 +2,9 @@ package com.cherokeelessons.bp;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -46,16 +46,16 @@ public class MainScreen implements Screen {
 	private ClickListener viewPronouns = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+				int pointer, int button) {			
 			game.click();
 			game.setScreen(new ShowList(game, MainScreen.this));
 			return true;
 		}
 	};
-	private ClickListener viewChallenges = new ClickListener() {
+	private ClickListener viewChallenges = new ClickListener() {		
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+				int pointer, int button) {			
 			game.click();
 			game.setScreen(new ShowChallenges(game, MainScreen.this));
 			return true;
@@ -65,7 +65,7 @@ public class MainScreen implements Screen {
 	private ClickListener viewAbout = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+				int pointer, int button) {			
 			game.click();
 			game.setScreen(new ShowAbout(game, MainScreen.this));
 			return true;
@@ -97,7 +97,6 @@ public class MainScreen implements Screen {
 
 	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession,
 			final Runnable onResult) {
-
 		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		final TextureRegion region = new TextureRegion(background);
@@ -134,7 +133,7 @@ public class MainScreen implements Screen {
 		mode.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+					int pointer, int button) {				
 				info.settings.display = DisplayMode
 						.getNext(info.settings.display);
 				mode.setText(info.settings.display.toString());
@@ -146,7 +145,7 @@ public class MainScreen implements Screen {
 		muted.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+					int pointer, int button) {				
 				info.settings.muted = !info.settings.muted;
 				muted.setText(info.settings.muted ? "Yes" : "No");
 				return true;
@@ -157,10 +156,7 @@ public class MainScreen implements Screen {
 		whichCards.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				if (whichCards.isDisabled()) {
-					return false;
-				}
+					int pointer, int button) {				
 				info.settings.deck = DeckMode.getNext(info.settings.deck);
 				whichCards.setText(info.settings.deck.toString());
 				return true;
@@ -168,6 +164,7 @@ public class MainScreen implements Screen {
 		});
 		if (!newSession) {
 			whichCards.setDisabled(true);
+			whichCards.setTouchable(Touchable.disabled);
 		}
 
 		final DialogX edit = new DialogX("Settings", skin) {
@@ -212,7 +209,6 @@ public class MainScreen implements Screen {
 	};
 
 	public void doSlotsDialog() {
-
 		final SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game,
 				game.getFont(Font.SansLarge));
 		chooseSlot.setKeepWithinStage(true);
@@ -292,7 +288,7 @@ public class MainScreen implements Screen {
 			final boolean isNewSession = blank;
 			textb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+						int pointer, int button) {					
 					final Runnable startSession = new Runnable() {
 						@Override
 						public void run() {
@@ -328,12 +324,14 @@ public class MainScreen implements Screen {
 			slots.add(editControls);
 			if (blank) {
 				editb.setDisabled(true);
+				editb.setTouchable(Touchable.disabled);
 				deleteb.setDisabled(true);
+				deleteb.setTouchable(Touchable.disabled);
 			}
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+						int pointer, int button) {					
 					DialogX edit = getEditDialogFor(p1, false, new Runnable() {
 						@Override
 						public void run() {
@@ -348,7 +346,7 @@ public class MainScreen implements Screen {
 			});
 			deleteb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+						int pointer, int button) {					
 					Dialog confirm = new Dialog("Erase?", skin) {
 						{
 							WindowStyle ws = new WindowStyle(skin.get(WindowStyle.class));
@@ -401,7 +399,7 @@ public class MainScreen implements Screen {
 	private ClickListener viewPractice = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+				int pointer, int button) {			
 			doSlotsDialog();
 			return true;
 		}
@@ -410,7 +408,7 @@ public class MainScreen implements Screen {
 	private ClickListener viewQuit = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+				int pointer, int button) {			
 			game.click();
 			game.setScreen(new GoodByeScreen(game, MainScreen.this));
 			dispose();
@@ -451,6 +449,7 @@ public class MainScreen implements Screen {
 		button = new TextButton("Cherokee Language\nBound Pronouns Practice",
 				bstyle);
 		button.setDisabled(true);
+		button.setTouchable(Touchable.disabled);
 
 		int padBottom = 12;
 		container.row();

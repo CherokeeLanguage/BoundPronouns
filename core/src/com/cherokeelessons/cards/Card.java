@@ -35,7 +35,7 @@ public class Card implements Serializable, Comparable<Card> {
 
 	@Override
 	public int compareTo(Card o) {
-		return getKey().compareTo(o.getKey());
+		return -getKey().compareTo(o.getKey());
 	}
 
 	private String getKey() {
