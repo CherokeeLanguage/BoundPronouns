@@ -20,6 +20,7 @@ public class Card implements Serializable, Comparable<Card> {
 	public String key;
 	public String pgroup;
 	public String vgroup;
+	public boolean reversed;
 
 	public Card() {
 	}

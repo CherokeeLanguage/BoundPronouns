@@ -24,20 +24,28 @@ import com.cherokeelessons.cards.Deck;
 
 public class BuildDeck implements Runnable {
 	
-	private static final boolean forceRebuild=false;
-	
-	public static int version = 9;
-	
+	/**
+	 * If enabled will add reversed cards, this causes this deck size to jump from 1,939
+	 * to 4,378 cards! Additionally the UI is net setup to handle these reversed cards.
+	 */
+	private static final boolean addReversed = false;
+
+	private static final boolean forceRebuild = false;
+
+	public static int version = 15;
+
 	private boolean skipBareForms = false;
 
 	private Json json = new Json();
 	private List<CSVRecord> pronouns = null;
 	private List<CSVRecord> challenges = null;
 	private Deck deck = new Deck();
+	private Deck inverted = new Deck();
 	private Map<String, Card> deckmap = new HashMap<>();
 	private String prevLatin = "";
 	private String prevChr = "";
-	private String status="";
+	private String status = "";
+
 	public String getStatus() {
 		return status;
 	}
@@ -45,33 +53,87 @@ public class BuildDeck implements Runnable {
 	private final BoundPronouns game;
 	private final Runnable done;
 	private final FileHandle dest;
-	
+
 	public BuildDeck(BoundPronouns game, FileHandle slot, Runnable done) {
 		this.game = game;
 		this.done = done;
 		dest = slot.child("deck.json");
 	}
 
-	public Runnable save=new Runnable() {
+	public Runnable save = new Runnable() {
 		@Override
 		public void run() {
 			game.log(this, "buildDeck#save");
-			deck.version=version;
-			json.setOutputType(OutputType.json);
-			json.setTypeName(null);			
-			Collections.sort(deck.cards);
-			for (int i=0; i<deck.cards.size(); i++) {
-				deck.cards.get(i).id=i+1;
+			for (int i = 0; i < deck.cards.size(); i++) {
+				deck.cards.get(i).id = i + 1;
 			}
+			deck.version = version;
+			json.setOutputType(OutputType.json);
+			json.setTypeName(null);
 			game.log(this, deck.cards.size() + " cards in deck.");
-			deck.size=deck.cards.size();
+			deck.size = deck.cards.size();
 			dest.writeString(json.prettyPrint(deck), false, "UTF-8");
 			if (done != null) {
 				Gdx.app.postRunnable(done);
 			}
 		}
 	};
-	
+
+	public Runnable addReversedCards = new Runnable() {
+		@Override
+		public void run() {
+			game.log(this, "buildDeck#addReversedCards");
+			Collections.sort(deck.cards);
+			Collections.reverse(deck.cards);
+			Iterator<Card> rcard = inverted.cards.iterator();
+			while (rcard.hasNext()) {
+				Card reversed = rcard.next();
+				insert_lookup: for (int i = 0; i < deck.cards.size(); i++) {
+					Card card = deck.cards.get(i);
+					if (card.id == reversed.id) {
+						deck.cards.add(i, reversed);
+						break insert_lookup;
+					}
+				}
+			}
+			Collections.reverse(deck.cards);
+			Gdx.app.postRunnable(save);
+		}
+	};
+
+	public Runnable createReversed = new Runnable() {
+		@Override
+		public void run() {
+			game.log(this, "buildDeck#createReversed");
+			Map<String, Card> map = new HashMap<>();
+			Collections.sort(deck.cards);
+			for (int i = 0; i < deck.cards.size(); i++) {
+				deck.cards.get(i).id = i + 1;
+			}
+			for (int ix = 0; ix < deck.cards.size(); ix++) {
+				Card card = deck.cards.get(ix);
+				for (String answer : card.answer) {
+					Card xcard = map.get(answer);
+					if (xcard == null) {
+						xcard = new Card(card);
+						xcard.reversed = true;
+						xcard.challenge.clear();
+						xcard.answer.clear();
+						xcard.vgroup = answer;
+						xcard.challenge.add(answer);
+						map.put(answer, xcard);
+						inverted.cards.add(xcard);
+					}
+					xcard.id = card.id;
+					xcard.answer.add(StringUtils.join(card.challenge, "\n"));
+				}
+			}
+			game.log(this, inverted.cards.size()
+					+ " reversed cards created out of main deck.");
+			Gdx.app.postRunnable(addReversedCards);
+		}
+	};
+
 	@Override
 	public void run() {
 		long tick = System.currentTimeMillis();
@@ -83,7 +145,7 @@ public class BuildDeck implements Runnable {
 			}
 			if (dest.exists()) {
 				Deck deck = json.fromJson(Deck.class, dest);
-				if (deck.version==version) {
+				if (deck.version == version) {
 					game.log(this, deck.cards.size() + " cards in deck.");
 					if (done != null) {
 						Gdx.app.postRunnable(done);
@@ -102,8 +164,12 @@ public class BuildDeck implements Runnable {
 				break work;
 			}
 			if (isSkipBareForms() || pronouns.size() == 0) {
-				setStatus("Storing ...");
-				Gdx.app.postRunnable(save);
+				setStatus("Saving ...");
+				if (addReversed) {
+					Gdx.app.postRunnable(createReversed);
+				} else {
+					Gdx.app.postRunnable(save);
+				}
 				return;
 			}
 			game.log(this, "buildDeck#run");
@@ -119,30 +185,30 @@ public class BuildDeck implements Runnable {
 				if (chr.startsWith("#")) {
 					continue;
 				}
-				setStatus("Create pronoun card for "+chr);
+				setStatus("Create pronoun card for " + chr);
 				String latin = record.get(2);
 				String defin = record.get(3) + " + " + record.get(4);
 				if (StringUtils.isBlank(record.get(3))) {
 					String tmp = record.get(4);
 					passive: {
-						defin=tmp;
+						defin = tmp;
 						if (tmp.equalsIgnoreCase("he")) {
-							defin+=" (being)";
+							defin += " (being)";
 							break passive;
 						}
 						if (tmp.equalsIgnoreCase("i")) {
-							defin+=" (being)";
+							defin += " (being)";
 							break passive;
 						}
-						defin+=" (being)";
+						defin += " (being)";
 						break passive;
 					}
 				}
 				if (StringUtils.isBlank(latin)) {
-					latin=prevLatin;
+					latin = prevLatin;
 				}
 				if (StringUtils.isBlank(chr)) {
-					chr=prevChr;
+					chr = prevChr;
 				}
 
 				Card c = deckmap.get(chr.toString());
@@ -168,18 +234,18 @@ public class BuildDeck implements Runnable {
 	}
 
 	private void addChallengesToDeck() {
-		
+
 		DataSet d = new DataSet();
-		StringBuilder vroot=new StringBuilder();
-		StringBuilder vroot_chr=new StringBuilder();
-		
-		long tick=System.currentTimeMillis();
+		StringBuilder vroot = new StringBuilder();
+		StringBuilder vroot_chr = new StringBuilder();
+
+		long tick = System.currentTimeMillis();
 		Iterator<CSVRecord> irec = challenges.iterator();
 		while (irec.hasNext()) {
 			/*
 			 * Breathe...
 			 */
-			if (System.currentTimeMillis()-tick>100) {
+			if (System.currentTimeMillis() - tick > 100) {
 				game.log(this, "buildDeck#breathe-conjugating");
 				return;
 			}
@@ -205,25 +271,27 @@ public class BuildDeck implements Runnable {
 			boolean vSetB = challenge.get(3).startsWith("u")
 					|| challenge.get(3).startsWith("ụ")
 					|| challenge.get(3).startsWith("j");
-			String vroot_set = challenge.get(4);			
+			String vroot_set = challenge.get(4);
 			String vroot_chr_set = challenge.get(2);
 			String vdef_active = challenge.get(5);
 			String vdef_passive = challenge.get(6);
 			String vdef_objects = challenge.get(7);
-			String vroot_h=StringUtils.substringBefore(vroot_set, ",");
-			String vroot_h_chr=StringUtils.substringBefore(vroot_chr_set, ",");
-			String vroot_alt=StringUtils.substringAfter(vroot_set, ",");
-			String vroot_alt_chr=StringUtils.substringAfter(vroot_chr_set, ",");
+			String vroot_h = StringUtils.substringBefore(vroot_set, ",");
+			String vroot_h_chr = StringUtils
+					.substringBefore(vroot_chr_set, ",");
+			String vroot_alt = StringUtils.substringAfter(vroot_set, ",");
+			String vroot_alt_chr = StringUtils.substringAfter(vroot_chr_set,
+					",");
 			if (StringUtils.isBlank(vroot_alt)) {
-				vroot_alt=vroot_h;
+				vroot_alt = vroot_h;
 			}
 			if (StringUtils.isBlank(vroot_alt_chr)) {
-				vroot_alt_chr=vroot_h_chr;
+				vroot_alt_chr = vroot_h_chr;
 			}
-			vroot_h=StringUtils.strip(vroot_h);
-			vroot_alt=StringUtils.strip(vroot_alt);
-			vroot_h_chr=StringUtils.strip(vroot_h_chr);
-			vroot_alt_chr=StringUtils.strip(vroot_alt_chr);
+			vroot_h = StringUtils.strip(vroot_h);
+			vroot_alt = StringUtils.strip(vroot_alt);
+			vroot_h_chr = StringUtils.strip(vroot_h_chr);
+			vroot_alt_chr = StringUtils.strip(vroot_alt_chr);
 
 			boolean v_imp = vdef_active.toLowerCase().startsWith("let");
 			boolean v_inf = vdef_active.toLowerCase().startsWith("for");
@@ -239,9 +307,9 @@ public class BuildDeck implements Runnable {
 
 			String vgroup = vroot_h_chr;
 
-			setStatus("Conjugating: "+vroot_h);
+			setStatus("Conjugating: " + vroot_h);
 			Iterator<CSVRecord> ipro = pronouns.iterator();
-			
+
 			while (ipro.hasNext()) {
 				CSVRecord pronoun = ipro.next();
 				boolean pSetB = pronoun.get(5).equalsIgnoreCase("b");
@@ -269,11 +337,11 @@ public class BuildDeck implements Runnable {
 					p_g3rd = true;
 					ptypes.remove("g");
 				}
-				
+
 				if (Collections.disjoint(vtypes, ptypes)) {
 					continue;
 				}
-				
+
 				vroot.setLength(0);
 				vroot_chr.setLength(0);
 				if (ptypes.contains("alt")) {
@@ -286,7 +354,7 @@ public class BuildDeck implements Runnable {
 
 				d.chr = pronoun.get(1);
 				d.latin = pronoun.get(2);
-				d.def="";
+				d.def = "";
 
 				String pgroup = d.chr;
 
@@ -294,7 +362,7 @@ public class BuildDeck implements Runnable {
 					if (!StringUtils.isBlank(pronoun.get(6))) {
 						d.chr = pronoun.get(6);
 						d.latin = pronoun.get(7);
-					}					
+					}
 				}
 
 				/*
@@ -316,7 +384,7 @@ public class BuildDeck implements Runnable {
 					d.latin = StringUtils.substringBefore(d.latin, ",");
 					d.latin = StringUtils.strip(d.latin);
 				}
-				
+
 				if (!cStem && d.chr.contains(",")) {
 					/*
 					 * select vowel stem pronoun
@@ -340,17 +408,17 @@ public class BuildDeck implements Runnable {
 					d.latin = StringUtils.substringBefore(d.latin, "-");
 					d.latin = StringUtils.strip(d.latin);
 				}
-				
-				if ((v_imp||v_inf)&&aStem) {
-					if (d.chr.equals("Ꮨ̣²")){
+
+				if ((v_imp || v_inf) && aStem) {
+					if (d.chr.equals("Ꮨ̣²")) {
 						game.log(this, "ti -> t");
-						d.chr="Ꮤ͓";
-						d.latin="t";
+						d.chr = "Ꮤ͓";
+						d.latin = "t";
 					}
-					if (d.chr.equals("Ꮧ̣²")){
+					if (d.chr.equals("Ꮧ̣²")) {
 						game.log(this, "di -> d");
-						d.chr="Ꮣ͓";
-						d.latin="d";
+						d.chr = "Ꮣ͓";
+						d.latin = "d";
 					}
 				}
 
@@ -391,44 +459,44 @@ public class BuildDeck implements Runnable {
 
 					d.latin = d.latin.replaceAll("\\[d\\]$", "d");
 				}
-				
+
 				/*
 				 * combine stem and pronouns together
 				 */
 
 				if (cStem) {
-					
-					if (vroot.toString().matches("[TtDdSs].*")){
-						if (d.latin.equalsIgnoreCase("A¹gị²")){
-							d.latin="a¹k";
-							d.chr="Ꭰ¹Ꭹ͓";
+
+					if (vroot.toString().matches("[TtDdSs].*")) {
+						if (d.latin.equalsIgnoreCase("A¹gị²")) {
+							d.latin = "a¹k";
+							d.chr = "Ꭰ¹Ꭹ͓";
 						}
-						if (d.latin.equalsIgnoreCase("Jạ²")){
-							d.latin="ts";
-							d.chr="Ꮳ͓";
-						}
-					}
-					if (vroot.toString().matches("[Tt].*")){
-						if (d.latin.equalsIgnoreCase("I¹ji²")){
-							d.latin="i¹jch";
-							d.chr="Ꭲ¹Ꮵ͓";
+						if (d.latin.equalsIgnoreCase("Jạ²")) {
+							d.latin = "ts";
+							d.chr = "Ꮳ͓";
 						}
 					}
-					
+					if (vroot.toString().matches("[Tt].*")) {
+						if (d.latin.equalsIgnoreCase("I¹ji²")) {
+							d.latin = "i¹jch";
+							d.chr = "Ꭲ¹Ꮵ͓";
+						}
+					}
+
 					d.chr += vroot_chr;
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
-					
+
 					d.latin += vroot;
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
 				}
 
-				if (aStem) {					
+				if (aStem) {
 					d.chr += vroot_chr;
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
-					
+
 					d.latin += vroot;
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
-				
+
 				}
 
 				if (eStem) {
@@ -559,7 +627,7 @@ public class BuildDeck implements Runnable {
 					c.challenge.add(d.chr);
 					c.challenge.add(d.latin);
 				}
-				
+
 				definitionEnglishFixer(d);
 
 				if (c.answer.contains(d.def)) {
@@ -575,7 +643,7 @@ public class BuildDeck implements Runnable {
 	}
 
 	private void setStatus(String string) {
-		this.status=string;		
+		this.status = string;
 	}
 
 	private void doSyllabaryConsonentVowelFixes(DataSet d) {
@@ -584,10 +652,10 @@ public class BuildDeck implements Runnable {
 			game.log(this, d.chr);
 		}
 		final String x = BoundPronouns.UNDERX;
-		if (!d.chr.contains(x)){
+		if (!d.chr.contains(x)) {
 			return;
 		}
-		if (!d.chr.matches(".*"+x+"[ᎠᎡᎢᎣᎤᎥ].*")){
+		if (!d.chr.matches(".*" + x + "[ᎠᎡᎢᎣᎤᎥ].*")) {
 			return;
 		}
 		String set;
@@ -730,7 +798,7 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("You two is", "You two are");
 		d.def = d.def.replace("You all is", "You all are");
 		d.def = d.def.replace("They is", "They are");
-		
+
 		d.def = d.def.replace("and I was", "and I were");
 		d.def = d.def.replace("You one was", "You one were");
 		d.def = d.def.replace("You two was", "You two were");
@@ -930,8 +998,8 @@ public class BuildDeck implements Runnable {
 		public String latin;
 		public String def;
 	}
-	
-	public static FileHandle getDeckSlot(){
+
+	public static FileHandle getDeckSlot() {
 		FileHandle p0;
 		String path0 = "BoundPronouns/slots/deck";
 		switch (Gdx.app.getType()) {
