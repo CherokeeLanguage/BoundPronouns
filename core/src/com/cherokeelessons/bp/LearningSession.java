@@ -31,10 +31,10 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
@@ -921,13 +921,12 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * for temporary manipulation of list data so we don't mess with master
 		 * copies in cards, etc.
 		 */
-		List<String> tmp_answers = new ArrayList<String>();
-		List<String> tmp_correct = new ArrayList<String>();
 
 		already.add(card.pgroup);
 		already.add(card.vgroup);
 		already.addAll(card.answer);
 
+		List<String> tmp_correct = new ArrayList<String>();
 		tmp_correct.clear();
 		tmp_correct.addAll(card.answer);
 		/**
@@ -960,8 +959,9 @@ public class LearningSession extends ChildScreen implements Screen {
 		 */
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
-		Collections.shuffle(tmp.cards);
-		scanDeck: for (int distance = 15; distance < 100; distance++) {
+//		String challenge = getOneOf(card.challenge.get(0));		
+		scanDeck: for (int distance = rand.nextInt(10); distance < 100; distance++) {
+			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
@@ -989,7 +989,22 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * if edit distance is close enough, add it, then add pgroup,
 				 * vgroup and selected answer to already used list
 				 */
+//				String wrong_chr = getOneOf(deckCard.challenge.get(0));
+//				int ldistance = StringUtils.getLevenshteinDistance(challenge,
+//				wrong_chr, distance);
+//				if (ldistance < 1) {
+//					continue;
+//				}
+//				String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
+//				if (already.contains(wrong_answer)){
+//					continue;
+//				}
+//				answers.list.add(new Answer(false, wrong_answer, ldistance));
+//				already.add(deckCard.pgroup);
+//				already.add(deckCard.vgroup);
+//				already.add(wrong_answer);
 
+				List<String> tmp_answers = new ArrayList<String>();
 				tmp_answers.clear();
 				tmp_answers.addAll(deckCard.answer);
 				Collections.shuffle(tmp_answers);
@@ -1024,6 +1039,16 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 		Collections.shuffle(answers.list);
 		return answers;
+	}
+
+	@SuppressWarnings("unused")
+	private String getOneOf(String string) {
+		if (!string.contains(",")){
+			return string;
+		}
+		String[] tmp = StringUtils.split(",");
+		string = tmp[rand.nextInt(tmp.length)];
+		return StringUtils.strip(string);
 	}
 
 	private ActiveCard getNextCard() {
