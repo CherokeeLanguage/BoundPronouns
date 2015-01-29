@@ -32,7 +32,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 15;
+	public static int version = 17;
 
 	private boolean skipBareForms = false;
 
@@ -82,8 +82,15 @@ public class BuildDeck implements Runnable {
 	public Runnable addReversedCards = new Runnable() {
 		@Override
 		public void run() {
-			game.log(this, "buildDeck#addReversedCards");
 			Collections.sort(deck.cards);
+			if (addReversed) {
+				game.log(this, "buildDeck#addReversedCards");
+				_run();
+			}
+			Gdx.app.postRunnable(save);
+		}
+
+		private void _run() {
 			Collections.reverse(deck.cards);
 			Iterator<Card> rcard = inverted.cards.iterator();
 			while (rcard.hasNext()) {
@@ -97,14 +104,20 @@ public class BuildDeck implements Runnable {
 				}
 			}
 			Collections.reverse(deck.cards);
-			Gdx.app.postRunnable(save);
 		}
 	};
 
 	public Runnable createReversed = new Runnable() {
 		@Override
 		public void run() {
-			game.log(this, "buildDeck#createReversed");
+			if (addReversed) {
+				game.log(this, "buildDeck#createReversed");
+				_run();
+			}
+			Gdx.app.postRunnable(addReversedCards);
+		}
+
+		private void _run() {
 			Map<String, Card> map = new HashMap<>();
 			Collections.sort(deck.cards);
 			for (int i = 0; i < deck.cards.size(); i++) {
@@ -130,7 +143,6 @@ public class BuildDeck implements Runnable {
 			}
 			game.log(this, inverted.cards.size()
 					+ " reversed cards created out of main deck.");
-			Gdx.app.postRunnable(addReversedCards);
 		}
 	};
 
@@ -165,11 +177,7 @@ public class BuildDeck implements Runnable {
 			}
 			if (isSkipBareForms() || pronouns.size() == 0) {
 				setStatus("Saving ...");
-				if (addReversed) {
-					Gdx.app.postRunnable(createReversed);
-				} else {
-					Gdx.app.postRunnable(save);
-				}
+				Gdx.app.postRunnable(createReversed);
 				return;
 			}
 			game.log(this, "buildDeck#run");
