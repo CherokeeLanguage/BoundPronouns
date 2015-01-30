@@ -603,7 +603,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				randomizeSexes(answerSetsFor);
 				activeCard.tries_remaining -= answerSetsFor.correctCount();
 				challengeCardDialog.setAnswers(answerSetsFor);
-				float duration = MaxTimePerCard_sec - (float) activeCard.box;
+				
+				float duration = MaxTimePerCard_sec - (float) activeCard.box - (float) activeCard.getMinCorrectInARow();
+				if (duration<5) {
+					duration=5f;
+				}
 				challengeCardDialog.addAction(Actions.delay(duration,
 						Actions.run(new Runnable() {
 							@Override
