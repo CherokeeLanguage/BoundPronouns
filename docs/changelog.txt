@@ -1,3 +1,9 @@
+1.42
+
+Added icon.
+
+Adjusted timing calculations for max time a card is able to be answered in to be based both on the "proficiency box" it is in and also how many times in a row it has been answered correctly in. 
+
 1.41
 
 Semi-adaptive font sizing for Challenge Card.
