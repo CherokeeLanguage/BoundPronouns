@@ -63,7 +63,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int maxAnswers = 6;
 
-	private static final int maxCorrect = 2;
+	private static final int maxCorrect = 6;
 
 	private static final float MaxTimePerCard_sec = 15f;
 
