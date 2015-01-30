@@ -97,7 +97,7 @@ public class BoundPronouns extends Game {
 	}
 
 	private void initManager() {
-
+		
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.setLoader(FreeTypeFontGenerator.class,
 				new FreeTypeFontGeneratorLoader(resolver));
