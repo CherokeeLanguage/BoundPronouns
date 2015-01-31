@@ -562,12 +562,16 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
-				AnswerList answerSetsFor = getAnswerSetsFor(activeCard,
+				
+				AnswerList tracked_answers = getAnswerSetsFor(activeCard,
 						deckCard, game.deck);
-				randomizeSexes(answerSetsFor);
-				activeCard.tries_remaining -= answerSetsFor.correctCount();
-				challengeCardDialog.setAnswers(answerSetsFor);
+				AnswerList displayed_answers = new AnswerList(tracked_answers);
+				randomizeSexes(displayed_answers);
 
+				game.log(this, deckCard.challenge.get(0)+" remaining tries: "+activeCard.tries_remaining);
+				activeCard.tries_remaining -= tracked_answers.correctCount();
+				challengeCardDialog.setAnswers(tracked_answers, displayed_answers);
+				
 				float duration = MaxTimePerCard_sec - (float) activeCard.box
 						- (float) activeCard.getMinCorrectInARow();
 				if (duration < 5) {
@@ -602,10 +606,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		Random r = new Random();
 
-		private void randomizeSexes(AnswerList answerSetsFor) {
-			Iterator<Answer> li = answerSetsFor.list.iterator();
-			while (li.hasNext()) {
-				Answer answer = li.next();
+		private void randomizeSexes(AnswerList answers) {
+			for (Answer answer : answers.list) {
 				if (r.nextBoolean() && answer.answer.contains("himself")) {
 					answer.answer = answer.answer.replace("He ", "She ");
 					answer.answer = answer.answer.replace(" him", " her");
@@ -742,23 +744,22 @@ public class LearningSession extends ChildScreen implements Screen {
 						TextButton tb = (TextButton) b;
 						if (tb.getUserObject() != null
 								&& tb.getUserObject() instanceof Answer) {
-							Answer ans = (Answer) tb.getUserObject();
-
-							if (!tb.isChecked() && !ans.correct) {
+							Answer tracked_answer = (Answer) tb.getUserObject();
+							if (!tb.isChecked() && !tracked_answer.correct) {
 								tb.addAction(Actions.fadeOut(.2f));
 								doCow = false;
 							}
-							if (tb.isChecked() && !ans.correct) {
+							if (tb.isChecked() && !tracked_answer.correct) {
 								ColorAction toRed = Actions.color(Color.RED,
 										.4f);
 								tb.addAction(toRed);
 								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
-										+ ans.answer);
+										+ tb.getText());
 								doBuzzer = true;
 								resetCorrectInARow(_activeCard);
 								_activeCard.noErrors = false;
 							}
-							if (!tb.isChecked() && ans.correct) {
+							if (!tb.isChecked() && tracked_answer.correct) {
 								ColorAction toGreen = Actions.color(
 										Color.GREEN, .4f);
 								ColorAction toClear = Actions.color(
@@ -767,19 +768,19 @@ public class LearningSession extends ChildScreen implements Screen {
 										toClear, toGreen);
 								tb.addAction(Actions.repeat(2, sequence));
 								tb.setText(BoundPronouns.RIGHT_ARROW + " "
-										+ ans.answer);
+										+ tb.getText());
 								doBuzzer = true;
 								resetCorrectInARow(_activeCard);
 								_activeCard.noErrors = false;
 							}
-							if (tb.isChecked() && ans.correct) {
+							if (tb.isChecked() && tracked_answer.correct) {
 								ColorAction toGreen = Actions.color(
 										Color.GREEN, .2f);
 								tb.addAction(toGreen);
 								doCow = false;
 								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
-										+ ans.answer);
-								_activeCard.markCorrect(ans.answer);
+										+ tb.getText());
+								_activeCard.markCorrect(tracked_answer.answer);
 							}
 						}
 					}
@@ -874,7 +875,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
 			activeCard.tries_remaining = SendToNextSessionThreshold
-					* next.answer.size() + 1;
+					* next.answer.size();
 			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
