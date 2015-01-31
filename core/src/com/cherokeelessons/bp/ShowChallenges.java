@@ -26,25 +26,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Card;
-import com.cherokeelessons.cards.Deck;
 
 
 public class ShowChallenges extends ChildScreen implements Screen {
 
-	private final Map<String, Deck> cards=new HashMap<>();
+	private final List<String> pgroups;
 	
 	private boolean viewReady;
-	private final Json json;
 	public ShowChallenges(BoundPronouns game, Screen caller) {
 		super(game, caller);
-		json=new Json();
-		json.setIgnoreUnknownFields(true);
-		json.setOutputType(OutputType.json);
+		pgroups=new ArrayList<String>();
 	}	
 	
 	private Skin skin;	
@@ -115,22 +109,16 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		groupsPane.setFadeScrollBars(false);
 		groupsPane.setColor(Color.DARK_GRAY);
 		chooseGroup.getContentTable().add(groupsPane).expand().fill();
-		
-		Deck deck = json.fromJson(Deck.class, BuildDeck.getDeckSlot().child("deck.json"));
-		cards.clear();
-		for (Card card: deck.cards) {
+
+		for (Card card: game.deck.cards) {
 			if (StringUtils.isBlank(card.vgroup)){
 				continue;
 			}
-			Deck groupdeck = cards.get(card.pgroup);
-			if (groupdeck==null) {
-				groupdeck=new Deck();
-				cards.put(card.pgroup, groupdeck);
+			if (pgroups.contains(card.pgroup)){
+				continue;
 			}
-			groupdeck.cards.add(card);
+			pgroups.add(card.pgroup);
 		}
-		deck.cards.clear();
-		deck=null;
 		
 		Map<String, String> lookup_details = new HashMap<String, String>();
 		List<DataSet> plist = BoundPronouns.loadPronounRecords();
@@ -141,11 +129,9 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		plist.clear();
 		plist=null;
 		
-		List<String> groups = new ArrayList<>();
-		groups.addAll(cards.keySet());
-		Collections.sort(groups);
+		Collections.sort(pgroups);
 		boolean nextRow=true;
-		for(final String group: groups) {
+		for(final String group: pgroups) {
 			String group_name=group+"\n"+lookup_details.get(group);
 			TextButton button = new TextButton(group_name, skin);
 			button.getStyle().font=game.getFont(Font.SerifMedium);
@@ -195,16 +181,16 @@ public class ShowChallenges extends ChildScreen implements Screen {
 		challengesPane.setColor(Color.DARK_GRAY);
 		theGroup.getContentTable().add(challengesPane).expand().fill();
 		
-		Deck deck = cards.get(group);
-		if (deck==null) {
-			game.log(this, "FATAL EMPTY DECK?");
+		List<Card> cards = getCardsFor(group);
+		if (cards.size()==0) {
+			game.log(this, "FATAL EMPTY PGROUP?");
 			return;
 		}
-		Collections.sort(deck.cards);
 		TextButtonStyle tbstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		tbstyle.font=game.getFont(Font.SerifMedium);
-		for (Card card: deck.cards) {
-			StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
+		for (Card card: cards) {
+			sb.setLength(0);
 			for (String c: card.challenge) {
 				sb.append(c);
 				sb.append("\n");
@@ -217,8 +203,7 @@ public class ShowChallenges extends ChildScreen implements Screen {
 			button.setDisabled(true);
 			button.setTouchable(Touchable.disabled);
 			challenges.row();
-			challenges.add(button).fillX().expand().padBottom(20);
-			
+			challenges.add(button).fillX().expand().padBottom(20);			
 		}
 		RunnableAction focus = Actions.run(new Runnable() {			
 			@Override
@@ -228,5 +213,17 @@ public class ShowChallenges extends ChildScreen implements Screen {
 			}
 		});
 		theGroup.show(stage).addAction(focus);
+	}
+
+	private List<Card> getCardsFor(String group) {
+		List<Card> list = new ArrayList<>();
+		for (Card card: game.deck.cards) {
+			if (!card.pgroup.equals(group)){
+				continue;
+			}
+			list.add(card);
+		}
+		Collections.sort(list);
+		return list;
 	}
 }

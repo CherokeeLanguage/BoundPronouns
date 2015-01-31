@@ -32,8 +32,11 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
+import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
+	
+	public final Deck deck=new Deck();
 
 	public static final String SKIN = "skins/holo/Holo-light-xhdpi.json";
 
@@ -129,30 +132,24 @@ public class BoundPronouns extends Game {
 	}
 	
 	private void addFonts() {
+		addFreeSerifFor(30, Font.SerifXSmall);
 		addFreeSerifFor(36, Font.SerifSmall);
 		addFreeSerifFor(42, Font.SerifMedium);
 		addFreeSerifFor(48, Font.SerifMediumLarge);
 		addFreeSerifFor(58, Font.SerifLarge);
 		addFreeSerifFor(62, Font.SerifLLarge);
 		addFreeSerifFor(72, Font.SerifXLarge);
-
-		addFreeSansFor(30, Font.SansXSmall);
-		addFreeSansFor(34, Font.SansSmaller);
-		addFreeSansFor(36, Font.SansSmall);
-		addFreeSansFor(42, Font.SansMedium);
-		addFreeSansFor(54, Font.SansLarge);
-		addFreeSansFor(62, Font.SansLLarge);
-		addFreeSansFor(72, Font.SansXLarge);		
 	}
 
 	public static enum Font {
-		SansXSmall, SansSmall, SansMedium, SansLarge, SansXLarge, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SansSmaller, SerifMediumLarge, SerifLLarge, SansLLarge;
+		SerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SerifMediumLarge, SerifLLarge;
 	}
 	
 	public BitmapFont getFont(Font font) {		
 		return manager.get(font.name()+".ttf", BitmapFont.class);
 	}
 
+	@SuppressWarnings("unused")
 	private void addFreeSansFor(int size, Font fontname) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {

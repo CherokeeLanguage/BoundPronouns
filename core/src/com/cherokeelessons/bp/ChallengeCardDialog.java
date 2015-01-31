@@ -54,6 +54,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		this.skin=skin;
 		this.title = "Challenge Card";
 		this.game = game;
+//		getStyle().titleFont = game.getFont(Font.SansLarge);
 		getStyle().titleFont = game.getFont(Font.SerifLarge);
 		getStyle().background = getDialogBackground();
 		setStyle(getStyle());
@@ -74,6 +75,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		appNavBar.defaults().space(6);
 		TextButtonStyle navStyle = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
+//		navStyle.font = game.getFont(Font.SansMedium);
 		navStyle.font = game.getFont(Font.SerifMedium);
 		TextButton main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();
@@ -127,12 +129,14 @@ public abstract class ChallengeCardDialog extends Dialog {
 		});
 		
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
+//		ls.font = game.getFont(Font.SansMedium);
 		ls.font = game.getFont(Font.SerifMedium);
 		timer = new Label("--", ls);
 		appNavBar.add(timer).right().expandX();
 
 		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default",
 				TextButtonStyle.class));
+//		tbs_check.font = game.getFont(Font.SansLarge);
 		tbs_check.font = game.getFont(Font.SerifLarge);
 		check = new TextButton("CHECK!", tbs_check);
 		
@@ -193,6 +197,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		
 		TextButtonStyle chr_san_large = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
+//		chr_san_large.font = game.getFont(Font.SansXLarge);
 		chr_san_large.font = game.getFont(Font.SerifXLarge);
 		
 		TextButton challenge_top = new TextButton("", chr_san_large);
@@ -208,9 +213,11 @@ public abstract class ChallengeCardDialog extends Dialog {
 		}
 		Label msg;
 		if (!StringUtils.isBlank(syllabary)) {
+//			LabelStyle san_style = new LabelStyle(game.getFont(Font.SansXLarge), chr_san_large.fontColor);
 			LabelStyle san_style = new LabelStyle(game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
 			if (shrink) {
 				game.log(this, syllabary.length()+"");
+//				san_style = new LabelStyle(game.getFont(Font.SansLLarge), chr_san_large.fontColor);
 				san_style = new LabelStyle(game.getFont(Font.SerifLLarge), chr_san_large.fontColor);
 			}
 			msg = new Label(syllabary, san_style);
@@ -238,6 +245,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
+//		background.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
 		background.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
 		return background;
 	}

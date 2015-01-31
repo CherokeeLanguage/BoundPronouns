@@ -28,14 +28,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
+import com.cherokeelessons.util.JsonConverter;
 
 public class MainScreen implements Screen {
 
@@ -72,7 +71,7 @@ public class MainScreen implements Screen {
 		}
 	};
 
-	private final Json json;
+	private final JsonConverter json;
 
 	public class DialogX extends Dialog {
 		public DialogX(String title, Skin skin) {
@@ -235,9 +234,9 @@ public class MainScreen implements Screen {
 			p0 = Gdx.files.external(path0);
 			p0.mkdirs();
 			if (Gdx.app.getType().equals(ApplicationType.Android)){
-				game.log(this, "Migrating from internal storage to external storage...");
 				FileHandle px = Gdx.files.internal(path0);
 				if (px.exists()) {
+					game.log(this, "Migrating from private storage to public storage...");
 					p0.deleteDirectory();
 					px.moveTo(p0);
 				}
@@ -248,21 +247,21 @@ public class MainScreen implements Screen {
 			p1 = p0.child(BoundPronouns.INFO_JSON);
 			if (p1.exists()) {
 				info = json.fromJson(SlotInfo.class, p1);
-				blank = false;
-				if (info.version != SlotInfo.StatsVersion) {
-					if (!p0.child(LearningSession.ActiveDeckJson).exists()) {
-						json.toJson(new ActiveDeck(),
-								p0.child(LearningSession.ActiveDeckJson));
+				if (info!=null) {
+					blank = false;
+					if (info.version != SlotInfo.StatsVersion) {
+						if (!p0.child(LearningSession.ActiveDeckJson).exists()) {
+							json.toJson(new ActiveDeck(), p0.child(LearningSession.ActiveDeckJson));
+						}
+						ActiveDeck adeck = json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
+						if (adeck == null) {
+							adeck = new ActiveDeck();
+						}
+						LearningSession.calculateStats(adeck, info);
+						adeck = null;
+						json.toJson(info, p1);
+						
 					}
-					ActiveDeck adeck = json.fromJson(ActiveDeck.class,
-							p0.child(LearningSession.ActiveDeckJson));
-					if (adeck == null) {
-						adeck = new ActiveDeck();
-					}
-					LearningSession.calculateStats(adeck, info);
-					adeck = null;
-					json.toJson(info, p1);
-
 				}
 			}
 			if (info == null) {
@@ -426,10 +425,7 @@ public class MainScreen implements Screen {
 		viewport.update(1280, 720, true);
 		stage.setViewport(viewport);
 
-		json = new Json();
-		json.setOutputType(OutputType.json);
-		json.setTypeName(null);
-		json.setIgnoreUnknownFields(true);
+		json = new JsonConverter();
 
 		container = new Table();
 		container.setFillParent(true);

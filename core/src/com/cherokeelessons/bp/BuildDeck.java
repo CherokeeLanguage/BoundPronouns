@@ -17,34 +17,42 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
+import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
-	
+
 	/**
-	 * If enabled will add reversed cards, this causes this deck size to jump from 1,939
-	 * to 4,378 cards! Additionally the UI is net setup to handle these reversed cards.
+	 * If enabled will add reversed cards, this causes this deck size to jump
+	 * from 1,939 to 4,378 cards! Additionally the UI is net setup to handle
+	 * these reversed cards and the memory usage skyrockets.
 	 */
 	private static final boolean addReversed = false;
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 17;
+	public static int version = 23;
 
 	private boolean skipBareForms = false;
 
-	private Json json = new Json();
+	private JsonConverter json = new JsonConverter();
 	private List<CSVRecord> pronouns = null;
 	private List<CSVRecord> challenges = null;
-	private Deck deck = new Deck();
+	private final Deck deck;
 	private Deck inverted = new Deck();
-	private Map<String, Card> deckmap = new HashMap<>();
 	private String prevLatin = "";
 	private String prevChr = "";
 	private String status = "";
+
+	private Card getCardByChallenge(String chr, Deck deck) {
+		for (Card card : deck.cards) {
+			if (card.challenge.get(0).equals(chr)) {
+				return card;
+			}
+		}
+		return null;
+	}
 
 	public String getStatus() {
 		return status;
@@ -57,6 +65,7 @@ public class BuildDeck implements Runnable {
 	public BuildDeck(BoundPronouns game, FileHandle slot, Runnable done) {
 		this.game = game;
 		this.done = done;
+		this.deck = game.deck;
 		dest = slot.child("deck.json");
 	}
 
@@ -68,11 +77,9 @@ public class BuildDeck implements Runnable {
 				deck.cards.get(i).id = i + 1;
 			}
 			deck.version = version;
-			json.setOutputType(OutputType.json);
-			json.setTypeName(null);
 			game.log(this, deck.cards.size() + " cards in deck.");
 			deck.size = deck.cards.size();
-			dest.writeString(json.prettyPrint(deck), false, "UTF-8");
+			json.toJson(deck, dest);
 			if (done != null) {
 				Gdx.app.postRunnable(done);
 			}
@@ -156,12 +163,23 @@ public class BuildDeck implements Runnable {
 				}
 			}
 			if (dest.exists()) {
-				Deck deck = json.fromJson(Deck.class, dest);
+				Deck deck;
+				try {
+					deck = json.fromJson(Deck.class, dest);
+				} catch (Exception e) {
+					deck = new Deck();
+				}
 				if (deck.version == version) {
-					game.log(this, deck.cards.size() + " cards in deck.");
+					game.deck.cards.clear();
+					game.deck.cards.addAll(deck.cards);
+					deck.cards.clear();
+					game.deck.size = deck.size;
+					game.deck.version = deck.version;
+					game.log(this, game.deck.cards.size() + " cards in deck.");
 					if (done != null) {
 						Gdx.app.postRunnable(done);
 					}
+					deck = null;
 					return;
 				}
 				dest.delete();
@@ -219,7 +237,7 @@ public class BuildDeck implements Runnable {
 					chr = prevChr;
 				}
 
-				Card c = deckmap.get(chr.toString());
+				Card c = getCardByChallenge(chr.toString(), deck);
 				if (c == null) {
 					c = new Card();
 					c.pgroup = chr;
@@ -227,7 +245,6 @@ public class BuildDeck implements Runnable {
 					c.challenge.add(chr.toString());
 					c.challenge.add(latin.toString());
 					deck.cards.add(c);
-					deckmap.put(chr, c);
 				}
 				c.answer.add(defin);
 				prevChr = chr;
@@ -284,10 +301,12 @@ public class BuildDeck implements Runnable {
 			String vdef_active = challenge.get(5);
 			String vdef_passive = challenge.get(6);
 			String vdef_objects = challenge.get(7);
-			String vroot_h = StringUtils.substringBefore(vroot_set, ",").intern();
+			String vroot_h = StringUtils.substringBefore(vroot_set, ",")
+					.intern();
 			String vroot_h_chr = StringUtils
 					.substringBefore(vroot_chr_set, ",").intern();
-			String vroot_alt = StringUtils.substringAfter(vroot_set, ",").intern();
+			String vroot_alt = StringUtils.substringAfter(vroot_set, ",")
+					.intern();
 			String vroot_alt_chr = StringUtils.substringAfter(vroot_chr_set,
 					",").intern();
 			if (StringUtils.isBlank(vroot_alt)) {
@@ -388,7 +407,8 @@ public class BuildDeck implements Runnable {
 				if (!v_g3rd && p_g3rd) {
 					d.chr = StringUtils.substringBefore(d.chr, ",").intern();
 					d.chr = StringUtils.strip(d.chr).intern();
-					d.latin = StringUtils.substringBefore(d.latin, ",").intern();
+					d.latin = StringUtils.substringBefore(d.latin, ",")
+							.intern();
 					d.latin = StringUtils.strip(d.latin).intern();
 				}
 
@@ -401,7 +421,8 @@ public class BuildDeck implements Runnable {
 					d.chr = StringUtils.strip(d.chr).intern();
 
 					d.latin = StringUtils.substringAfter(d.latin, ",").intern();
-					d.latin = StringUtils.substringBefore(d.latin, "-").intern();
+					d.latin = StringUtils.substringBefore(d.latin, "-")
+							.intern();
 					d.latin = StringUtils.strip(d.latin).intern();
 
 				} else {
@@ -411,8 +432,10 @@ public class BuildDeck implements Runnable {
 					d.chr = StringUtils.substringBefore(d.chr, ",").intern();
 					d.chr = StringUtils.substringBefore(d.chr, "-").intern();
 					d.chr = StringUtils.strip(d.chr).intern();
-					d.latin = StringUtils.substringBefore(d.latin, ",").intern();
-					d.latin = StringUtils.substringBefore(d.latin, "-").intern();
+					d.latin = StringUtils.substringBefore(d.latin, ",")
+							.intern();
+					d.latin = StringUtils.substringBefore(d.latin, "-")
+							.intern();
 					d.latin = StringUtils.strip(d.latin).intern();
 				}
 
@@ -434,8 +457,9 @@ public class BuildDeck implements Runnable {
 				 * use case consonent stem
 				 */
 				if (!cStem) {
-					d.chr = d.chr.replaceAll(BoundPronouns.UNDERDOT
-							+ "?[¹²³⁴]$", BoundPronouns.UNDERX).intern();
+					d.chr = d.chr.replaceAll(
+							BoundPronouns.UNDERDOT + "?[¹²³⁴]$",
+							BoundPronouns.UNDERX).intern();
 					d.latin = d.latin.replaceAll(
 							"[ẠAạaẸEẹeỊIịiỌOọoỤUụuṾVṿv][¹²³⁴]$", "").intern();
 				}
@@ -449,7 +473,8 @@ public class BuildDeck implements Runnable {
 				}
 				if (aStem) {
 					d.chr = d.chr.replaceAll("Ꮣ[¹²³⁴]\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
-					d.latin = d.latin.replaceAll("da[¹²³⁴]\\[d\\]$", "d").intern();
+					d.latin = d.latin.replaceAll("da[¹²³⁴]\\[d\\]$", "d")
+							.intern();
 				}
 				if (eStem) {
 					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
@@ -493,7 +518,8 @@ public class BuildDeck implements Runnable {
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
+							.intern();
 				}
 
 				if (aStem) {
@@ -501,7 +527,8 @@ public class BuildDeck implements Runnable {
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
+							.intern();
 
 				}
 
@@ -510,7 +537,8 @@ public class BuildDeck implements Runnable {
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
+							.intern();
 				}
 
 				if (vStem) {
@@ -518,7 +546,8 @@ public class BuildDeck implements Runnable {
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
+							.intern();
 				}
 
 				doSyllabaryConsonentVowelFixes(d);
@@ -565,8 +594,8 @@ public class BuildDeck implements Runnable {
 						d.def = d.def.replace("[s]", "s").intern();
 					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ", pronoun.get(3)
-								+ " ").intern();
+						d.def = d.def.replaceFirst("^[hH]e ",
+								pronoun.get(3) + " ").intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
@@ -574,16 +603,16 @@ public class BuildDeck implements Runnable {
 							subj = StringUtils.left(subj, 1).toLowerCase()
 									+ StringUtils.substring(subj, 1).intern();
 						}
-						d.def = d.def.replaceFirst("^[Ff]or him ", "For "
-								+ subj + " ").intern();
+						d.def = d.def.replaceFirst("^[Ff]or him ",
+								"For " + subj + " ").intern();
 					}
 					if (d.def.matches("[Ll]et him.*")) {
 						if (!subj.startsWith("I")) {
 							subj = StringUtils.left(subj, 1).toLowerCase()
 									+ StringUtils.substring(subj, 1).intern();
 						}
-						d.def = d.def.replaceFirst("^[Ll]et him ", "Let "
-								+ subj + " ").intern();
+						d.def = d.def.replaceFirst("^[Ll]et him ",
+								"Let " + subj + " ").intern();
 					}
 					if (!StringUtils.isBlank(vdef_objects)) {
 						String[] o = vdef_objects.split(",\\s*");
@@ -607,26 +636,26 @@ public class BuildDeck implements Runnable {
 						d.def = d.def.replace("[s]", "s").intern();
 					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ", obj + " ").intern();
+						d.def = d.def.replaceFirst("^[hH]e ", obj + " ")
+								.intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
-						d.def = d.def.replaceFirst("^[Ff]or him ", "For " + obj
-								+ " ").intern();
+						d.def = d.def.replaceFirst("^[Ff]or him ",
+								"For " + obj + " ").intern();
 					}
 					if (d.def.matches("[Ll]et him.*")) {
 						if (!obj.startsWith("I")) {
-							obj = (StringUtils.left(obj, 1).toLowerCase()
-									+ StringUtils.substring(obj, 1)).intern();
+							obj = (StringUtils.left(obj, 1).toLowerCase() + StringUtils
+									.substring(obj, 1)).intern();
 						}
-						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + obj
-								+ " ").intern();
+						d.def = d.def.replaceFirst("^[Ll]et him ",
+								"Let " + obj + " ").intern();
 					}
 				}
-				Card c = deckmap.get(d.chr);
+				Card c = getCardByChallenge(d.chr, deck);
 				if (c == null) {
 					c = new Card();
-					deckmap.put(d.chr.intern(), c);
 					deck.cards.add(c);
 					c.vgroup = vgroup;
 					c.pgroup = pgroup;
@@ -827,9 +856,12 @@ public class BuildDeck implements Runnable {
 
 		d.def = d.def.replace("and I often has", "and I often have").intern();
 		d.def = d.def.replace("I often has", "I often have").intern();
-		d.def = d.def.replace("You one often has", "You one often have").intern();
-		d.def = d.def.replace("You two often has", "You two often have").intern();
-		d.def = d.def.replace("You all often has", "You all often have").intern();
+		d.def = d.def.replace("You one often has", "You one often have")
+				.intern();
+		d.def = d.def.replace("You two often has", "You two often have")
+				.intern();
+		d.def = d.def.replace("You all often has", "You all often have")
+				.intern();
 		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {

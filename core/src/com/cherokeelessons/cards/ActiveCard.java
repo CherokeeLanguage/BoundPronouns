@@ -45,7 +45,7 @@ public class ActiveCard {
 
 	public void resetCorrectInARow(Collection<String> answers) {		
 		if (answers.size()==0) {
-			throw new RuntimeException("EMPTY ANSWER LIST ?!?! ["+getId()+"]");
+			throw new RuntimeException("EMPTY ANSWER LIST ?!?! ["+pgroup+"|"+vgroup+"]");
 		}
 		correct_in_a_row.clear();
 		for (String a : answers) {
@@ -60,9 +60,9 @@ public class ActiveCard {
 	/**
 	 * id of card in main deck based on pgroup/vgroup combinations
 	 */
-	public String getId(){
-		return pgroup + "+" + vgroup;
-	};
+//	public String getId(){
+//		return pgroup + "+" + vgroup;
+//	};
 	/**
 	 * verb group for this card
 	 */

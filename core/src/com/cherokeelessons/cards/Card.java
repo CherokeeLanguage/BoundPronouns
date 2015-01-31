@@ -3,8 +3,6 @@ package com.cherokeelessons.cards;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -36,10 +34,10 @@ public class Card implements Serializable, Comparable<Card> {
 
 	@Override
 	public int compareTo(Card o) {
-		return getKey().compareTo(o.getKey());
+		return sortKey().compareTo(o.sortKey());
 	}
 
-	private String getKey() {
+	private String sortKey() {
 		StringBuilder key = new StringBuilder();
 		if (challenge.size() != 0) {
 			String tmp = challenge.get(0);
@@ -74,8 +72,8 @@ public class Card implements Serializable, Comparable<Card> {
 	/**
 	 * id of card in main deck based on pgroup/vgroup combinations
 	 */
-	public String getId() {
-		return (pgroup + "+" + vgroup).intern();
-	};
+//	public String getId() {
+//		return (pgroup + "+" + vgroup).intern();
+//	};
 
 }
