@@ -242,18 +242,18 @@ public class BuildDeck implements Runnable {
 	}
 
 	private void addChallengesToDeck() {
-
 		DataSet d = new DataSet();
 		StringBuilder vroot = new StringBuilder();
 		StringBuilder vroot_chr = new StringBuilder();
-
+		Set<String> vtypes = new HashSet<>();
+		Set<String> ptypes = new HashSet<>();
 		long tick = System.currentTimeMillis();
 		Iterator<CSVRecord> irec = challenges.iterator();
 		while (irec.hasNext()) {
 			/*
 			 * Breathe...
 			 */
-			if (System.currentTimeMillis() - tick > 100) {
+			if (System.currentTimeMillis() - tick > 50) {
 				game.log(this, "buildDeck#breathe-conjugating");
 				return;
 			}
@@ -265,7 +265,7 @@ public class BuildDeck implements Runnable {
 			if (challenge.get(0).startsWith("#")) {
 				continue;
 			}
-			Set<String> vtypes = new HashSet<>();
+			vtypes.clear();
 			vtypes.addAll(Arrays.asList(challenge.get(0).split(",\\s*")));
 			boolean v_g3rd = false;
 			if (vtypes.contains("g")) {
@@ -284,12 +284,12 @@ public class BuildDeck implements Runnable {
 			String vdef_active = challenge.get(5);
 			String vdef_passive = challenge.get(6);
 			String vdef_objects = challenge.get(7);
-			String vroot_h = StringUtils.substringBefore(vroot_set, ",");
+			String vroot_h = StringUtils.substringBefore(vroot_set, ",").intern();
 			String vroot_h_chr = StringUtils
-					.substringBefore(vroot_chr_set, ",");
-			String vroot_alt = StringUtils.substringAfter(vroot_set, ",");
+					.substringBefore(vroot_chr_set, ",").intern();
+			String vroot_alt = StringUtils.substringAfter(vroot_set, ",").intern();
 			String vroot_alt_chr = StringUtils.substringAfter(vroot_chr_set,
-					",");
+					",").intern();
 			if (StringUtils.isBlank(vroot_alt)) {
 				vroot_alt = vroot_h;
 			}
@@ -337,7 +337,7 @@ public class BuildDeck implements Runnable {
 				if (pronoun.get(1).startsWith("#")) {
 					continue;
 				}
-				Set<String> ptypes = new HashSet<>();
+				ptypes.clear();
 				ptypes.addAll(Arrays.asList(pronoun.get(0).split(",\\s*")));
 
 				boolean p_g3rd = false;
@@ -349,7 +349,6 @@ public class BuildDeck implements Runnable {
 				if (Collections.disjoint(vtypes, ptypes)) {
 					continue;
 				}
-
 				vroot.setLength(0);
 				vroot_chr.setLength(0);
 				if (ptypes.contains("alt")) {
@@ -377,44 +376,44 @@ public class BuildDeck implements Runnable {
 				 * a vs ga select
 				 */
 				if (v_g3rd && p_g3rd) {
-					d.chr = StringUtils.substringAfter(d.chr, ",");
-					d.chr = StringUtils.strip(d.chr);
-					d.latin = StringUtils.substringAfter(d.latin, ",");
-					d.latin = StringUtils.strip(d.latin);
+					d.chr = StringUtils.substringAfter(d.chr, ",").intern();
+					d.chr = StringUtils.strip(d.chr).intern();
+					d.latin = StringUtils.substringAfter(d.latin, ",").intern();
+					d.latin = StringUtils.strip(d.latin).intern();
 				}
 
 				/*
 				 * a vs ga select
 				 */
 				if (!v_g3rd && p_g3rd) {
-					d.chr = StringUtils.substringBefore(d.chr, ",");
-					d.chr = StringUtils.strip(d.chr);
-					d.latin = StringUtils.substringBefore(d.latin, ",");
-					d.latin = StringUtils.strip(d.latin);
+					d.chr = StringUtils.substringBefore(d.chr, ",").intern();
+					d.chr = StringUtils.strip(d.chr).intern();
+					d.latin = StringUtils.substringBefore(d.latin, ",").intern();
+					d.latin = StringUtils.strip(d.latin).intern();
 				}
 
 				if (!cStem && d.chr.contains(",")) {
 					/*
 					 * select vowel stem pronoun
 					 */
-					d.chr = StringUtils.substringAfter(d.chr, ",");
-					d.chr = StringUtils.substringBefore(d.chr, "-");
-					d.chr = StringUtils.strip(d.chr);
+					d.chr = StringUtils.substringAfter(d.chr, ",").intern();
+					d.chr = StringUtils.substringBefore(d.chr, "-").intern();
+					d.chr = StringUtils.strip(d.chr).intern();
 
-					d.latin = StringUtils.substringAfter(d.latin, ",");
-					d.latin = StringUtils.substringBefore(d.latin, "-");
-					d.latin = StringUtils.strip(d.latin);
+					d.latin = StringUtils.substringAfter(d.latin, ",").intern();
+					d.latin = StringUtils.substringBefore(d.latin, "-").intern();
+					d.latin = StringUtils.strip(d.latin).intern();
 
 				} else {
 					/*
 					 * select consonent stem pronoun
 					 */
-					d.chr = StringUtils.substringBefore(d.chr, ",");
-					d.chr = StringUtils.substringBefore(d.chr, "-");
-					d.chr = StringUtils.strip(d.chr);
-					d.latin = StringUtils.substringBefore(d.latin, ",");
-					d.latin = StringUtils.substringBefore(d.latin, "-");
-					d.latin = StringUtils.strip(d.latin);
+					d.chr = StringUtils.substringBefore(d.chr, ",").intern();
+					d.chr = StringUtils.substringBefore(d.chr, "-").intern();
+					d.chr = StringUtils.strip(d.chr).intern();
+					d.latin = StringUtils.substringBefore(d.latin, ",").intern();
+					d.latin = StringUtils.substringBefore(d.latin, "-").intern();
+					d.latin = StringUtils.strip(d.latin).intern();
 				}
 
 				if ((v_imp || v_inf) && aStem) {
@@ -436,36 +435,35 @@ public class BuildDeck implements Runnable {
 				 */
 				if (!cStem) {
 					d.chr = d.chr.replaceAll(BoundPronouns.UNDERDOT
-							+ "?[¹²³⁴]$", BoundPronouns.UNDERX);
+							+ "?[¹²³⁴]$", BoundPronouns.UNDERX).intern();
 					d.latin = d.latin.replaceAll(
-							"[ẠAạaẸEẹeỊIịiỌOọoỤUụuṾVṿv][¹²³⁴]$", "");
+							"[ẠAạaẸEẹeỊIịiỌOọoỤUụuṾVṿv][¹²³⁴]$", "").intern();
 				}
 
 				/*
 				 * "[d]" reflexive form fixups
 				 */
 				if (cStem) {
-					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "");
-					d.latin = d.latin.replaceAll("\\[d\\]$", "");
+					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "").intern();
+					d.latin = d.latin.replaceAll("\\[d\\]$", "").intern();
 				}
 				if (aStem) {
-					d.chr = d.chr.replaceAll("Ꮣ[¹²³⁴]\\[Ꮣ͓\\]$", "Ꮣ͓");
-					d.latin = d.latin.replaceAll("da[¹²³⁴]\\[d\\]$", "d");
+					d.chr = d.chr.replaceAll("Ꮣ[¹²³⁴]\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
+					d.latin = d.latin.replaceAll("da[¹²³⁴]\\[d\\]$", "d").intern();
 				}
 				if (eStem) {
-					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓");
-					d.chr = d.chr.replace("Ꮣ͓Ꭱ", "Ꮥ");
-					d.chr = d.chr.replace("Ꮣ͓Ꭲ", "Ꮧ");
-					d.chr = d.chr.replace("Ꮣ͓Ꭳ", "Ꮩ");
-					d.chr = d.chr.replace("Ꮣ͓Ꭴ", "Ꮪ");
+					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
+					d.chr = d.chr.replace("Ꮣ͓Ꭱ", "Ꮥ").intern();
+					d.chr = d.chr.replace("Ꮣ͓Ꭲ", "Ꮧ").intern();
+					d.chr = d.chr.replace("Ꮣ͓Ꭳ", "Ꮩ").intern();
+					d.chr = d.chr.replace("Ꮣ͓Ꭴ", "Ꮪ").intern();
 
-					d.latin = d.latin.replaceAll("\\[d\\]$", "d");
+					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
 				}
 				if (vStem) {
-					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓");
-					d.chr = d.chr.replace("Ꮣ͓Ꭵ", "Ꮫ");
-
-					d.latin = d.latin.replaceAll("\\[d\\]$", "d");
+					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
+					d.chr = d.chr.replace("Ꮣ͓Ꭵ", "Ꮫ").intern();
+					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
 				}
 
 				/*
@@ -492,40 +490,40 @@ public class BuildDeck implements Runnable {
 					}
 
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 				}
 
 				if (aStem) {
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 				}
 
 				if (eStem) {
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 				}
 
 				if (vStem) {
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 				}
 
 				doSyllabaryConsonentVowelFixes(d);
 
-				d.latin = d.latin.toLowerCase();
+				d.latin = d.latin.toLowerCase().intern();
 				String subj = pronoun.get(3);
 				String obj = pronoun.get(4);
 
@@ -559,33 +557,33 @@ public class BuildDeck implements Runnable {
 				if (!StringUtils.isEmpty(subj)) {
 					d.def = vdef_active;
 					if (subj.contains("I")) {
-						d.def = d.def.replace("[s]", "");
+						d.def = d.def.replace("[s]", "").intern();
 					}
 					if (isPluralSubj(subj)) {
-						d.def = d.def.replace("[s]", "");
+						d.def = d.def.replace("[s]", "").intern();
 					} else {
-						d.def = d.def.replace("[s]", "s");
+						d.def = d.def.replace("[s]", "s").intern();
 					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
 						d.def = d.def.replaceFirst("^[hH]e ", pronoun.get(3)
-								+ " ");
+								+ " ").intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
 						if (!subj.startsWith("I")) {
 							subj = StringUtils.left(subj, 1).toLowerCase()
-									+ StringUtils.substring(subj, 1);
+									+ StringUtils.substring(subj, 1).intern();
 						}
 						d.def = d.def.replaceFirst("^[Ff]or him ", "For "
-								+ subj + " ");
+								+ subj + " ").intern();
 					}
 					if (d.def.matches("[Ll]et him.*")) {
 						if (!subj.startsWith("I")) {
 							subj = StringUtils.left(subj, 1).toLowerCase()
-									+ StringUtils.substring(subj, 1);
+									+ StringUtils.substring(subj, 1).intern();
 						}
 						d.def = d.def.replaceFirst("^[Ll]et him ", "Let "
-								+ subj + " ");
+								+ subj + " ").intern();
 					}
 					if (!StringUtils.isBlank(vdef_objects)) {
 						String[] o = vdef_objects.split(",\\s*");
@@ -593,42 +591,42 @@ public class BuildDeck implements Runnable {
 						if (o.length > 1 && obj.contains("them")) {
 							vobj = o[1];
 						}
-						d.def = d.def.replaceAll("\\bx\\b", vobj);
+						d.def = d.def.replaceAll("\\bx\\b", vobj).intern();
 					} else {
-						d.def = d.def.replaceAll("\\bx\\b", obj);
+						d.def = d.def.replaceAll("\\bx\\b", obj).intern();
 					}
 
 				} else {
 					d.def = vdef_passive;
 					if (obj.contains("I")) {
-						d.def = d.def.replace("[s]", "");
+						d.def = d.def.replace("[s]", "").intern();
 					}
 					if (isPluralSubj(obj)) {
-						d.def = d.def.replace("[s]", "");
+						d.def = d.def.replace("[s]", "").intern();
 					} else {
-						d.def = d.def.replace("[s]", "s");
+						d.def = d.def.replace("[s]", "s").intern();
 					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ", obj + " ");
+						d.def = d.def.replaceFirst("^[hH]e ", obj + " ").intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
 						d.def = d.def.replaceFirst("^[Ff]or him ", "For " + obj
-								+ " ");
+								+ " ").intern();
 					}
 					if (d.def.matches("[Ll]et him.*")) {
 						if (!obj.startsWith("I")) {
-							obj = StringUtils.left(obj, 1).toLowerCase()
-									+ StringUtils.substring(obj, 1);
+							obj = (StringUtils.left(obj, 1).toLowerCase()
+									+ StringUtils.substring(obj, 1)).intern();
 						}
 						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + obj
-								+ " ");
+								+ " ").intern();
 					}
 				}
 				Card c = deckmap.get(d.chr);
 				if (c == null) {
 					c = new Card();
-					deckmap.put(d.chr, c);
+					deckmap.put(d.chr.intern(), c);
 					deck.cards.add(c);
 					c.vgroup = vgroup;
 					c.pgroup = pgroup;
@@ -668,103 +666,103 @@ public class BuildDeck implements Runnable {
 		}
 		String set;
 		set = "[Ꭰ-Ꭵ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭰ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭱ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭲ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭳ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭴ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭵ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭰ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭱ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭲ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭳ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭴ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭵ").intern();
 		if (debug) {
 			game.log(this, d.chr);
 		}
 
 		set = "[Ꭷ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭷ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭷ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ").intern();
 
 		set = "[ᎦᎨᎩᎪᎫᎬ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭶ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭶ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ").intern();
 
 		set = "[ᎭᎮᎯᎰᎱᎲ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭽ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭾ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭿ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮀ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮁ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮂ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭽ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭾ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭿ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮀ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮁ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮂ").intern();
 
 		set = "[ᎾᏁᏂᏃᏄᏅ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮎ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮎ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ").intern();
 
 		set = "[Ꮏ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮏ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮏ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ").intern();
 
 		set = "[ᏣᏤᏥᏦᏧᏨ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮳ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮴ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮵ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮶ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮷ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮸ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮳ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮴ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮵ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮶ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮷ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮸ").intern();
 
 		set = "[ᏆᏇᏈᏉᏊᏋ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮖ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮗ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮘ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮙ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮚ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮛ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮖ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮗ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮘ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮙ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮚ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮛ").intern();
 
 		set = "[ᏓᏕᏗᏙᏚᏛ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮣ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮥ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮧ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮣ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮥ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮧ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ").intern();
 
 		set = "[ᏔᏖᏘ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮤ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮦ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮨ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮤ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮦ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮨ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ").intern();
 
 		set = "[ᏩᏪᏫᏬᏭᏮ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮹ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮺ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮻ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮼ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮽ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮾ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮹ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮺ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮻ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮼ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮽ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮾ").intern();
 
 		set = "[ᏯᏰᏱᏲᏳᏴ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮿ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ᏸ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ᏹ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ᏺ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ᏻ");
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ᏼ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮿ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ᏸ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ᏹ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ᏺ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ᏻ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ᏼ").intern();
 		if (debug) {
 			game.log(this, d.chr);
 			game.log("");
@@ -800,177 +798,177 @@ public class BuildDeck implements Runnable {
 	public void definitionEnglishFixer(DataSet d) {
 		d.def = StringUtils.left(d.def, 1).toUpperCase()
 				+ StringUtils.substring(d.def, 1);
-		d.def = d.def.replace("and I is", "and I are");
-		d.def = d.def.replace("I is", "I am");
-		d.def = d.def.replace("You one is", "You one are");
-		d.def = d.def.replace("You two is", "You two are");
-		d.def = d.def.replace("You all is", "You all are");
-		d.def = d.def.replace("They is", "They are");
+		d.def = d.def.replace("and I is", "and I are").intern();
+		d.def = d.def.replace("I is", "I am").intern();
+		d.def = d.def.replace("You one is", "You one are").intern();
+		d.def = d.def.replace("You two is", "You two are").intern();
+		d.def = d.def.replace("You all is", "You all are").intern();
+		d.def = d.def.replace("They is", "They are").intern();
 
-		d.def = d.def.replace("and I was", "and I were");
-		d.def = d.def.replace("You one was", "You one were");
-		d.def = d.def.replace("You two was", "You two were");
-		d.def = d.def.replace("You all was", "You all were");
-		d.def = d.def.replace("They was", "They were");
+		d.def = d.def.replace("and I was", "and I were").intern();
+		d.def = d.def.replace("You one was", "You one were").intern();
+		d.def = d.def.replace("You two was", "You two were").intern();
+		d.def = d.def.replace("You all was", "You all were").intern();
+		d.def = d.def.replace("They was", "They were").intern();
 
-		d.def = d.def.replace("and I often is", "and I often are");
-		d.def = d.def.replace("I often is", "I often am");
-		d.def = d.def.replace("You one often is", "You one often are");
-		d.def = d.def.replace("You two often is", "You two often are");
-		d.def = d.def.replace("You all often is", "You all often are");
-		d.def = d.def.replace("They often is", "They often are");
+		d.def = d.def.replace("and I often is", "and I often are").intern();
+		d.def = d.def.replace("I often is", "I often am").intern();
+		d.def = d.def.replace("You one often is", "You one often are").intern();
+		d.def = d.def.replace("You two often is", "You two often are").intern();
+		d.def = d.def.replace("You all often is", "You all often are").intern();
+		d.def = d.def.replace("They often is", "They often are").intern();
 
-		d.def = d.def.replace("and I has", "and I have");
-		d.def = d.def.replace("I has", "I have");
-		d.def = d.def.replace("You one has", "You one have");
-		d.def = d.def.replace("You two has", "You two have");
-		d.def = d.def.replace("You all has", "You all have");
-		d.def = d.def.replace("They has", "They have");
+		d.def = d.def.replace("and I has", "and I have").intern();
+		d.def = d.def.replace("I has", "I have").intern();
+		d.def = d.def.replace("You one has", "You one have").intern();
+		d.def = d.def.replace("You two has", "You two have").intern();
+		d.def = d.def.replace("You all has", "You all have").intern();
+		d.def = d.def.replace("They has", "They have").intern();
 
-		d.def = d.def.replace("and I often has", "and I often have");
-		d.def = d.def.replace("I often has", "I often have");
-		d.def = d.def.replace("You one often has", "You one often have");
-		d.def = d.def.replace("You two often has", "You two often have");
-		d.def = d.def.replace("You all often has", "You all often have");
-		d.def = d.def.replace("They often has", "They often have");
+		d.def = d.def.replace("and I often has", "and I often have").intern();
+		d.def = d.def.replace("I often has", "I often have").intern();
+		d.def = d.def.replace("You one often has", "You one often have").intern();
+		d.def = d.def.replace("You two often has", "You two often have").intern();
+		d.def = d.def.replace("You all often has", "You all often have").intern();
+		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {
-			d.def = d.def.replace("For he ", "For him ");
-			d.def = d.def.replace("For He ", "For him ");
-			d.def = d.def.replace("For I ", "For me ");
-			d.def = d.def.replace("For they ", "For them ");
-			d.def = d.def.replace("For They ", "For them ");
-			d.def = d.def.replace("and I ", "and me ");
-			d.def = d.def.replace("For You ", "For you ");
+			d.def = d.def.replace("For he ", "For him ").intern();
+			d.def = d.def.replace("For He ", "For him ").intern();
+			d.def = d.def.replace("For I ", "For me ").intern();
+			d.def = d.def.replace("For they ", "For them ").intern();
+			d.def = d.def.replace("For They ", "For them ").intern();
+			d.def = d.def.replace("and I ", "and me ").intern();
+			d.def = d.def.replace("For You ", "For you ").intern();
 		}
 
 		if (d.def.startsWith("Let")) {
-			d.def = d.def.replace("Let he ", "Let him ");
-			d.def = d.def.replace("Let He ", "Let him ");
-			d.def = d.def.replace("Let I ", "Let me ");
-			d.def = d.def.replace("Let they ", "Let them ");
-			d.def = d.def.replace("Let They ", "Let them ");
-			d.def = d.def.replace("and I ", "and me ");
-			d.def = d.def.replace("Let You ", "Let you ");
+			d.def = d.def.replace("Let he ", "Let him ").intern();
+			d.def = d.def.replace("Let He ", "Let him ").intern();
+			d.def = d.def.replace("Let I ", "Let me ").intern();
+			d.def = d.def.replace("Let they ", "Let them ").intern();
+			d.def = d.def.replace("Let They ", "Let them ").intern();
+			d.def = d.def.replace("and I ", "and me ").intern();
+			d.def = d.def.replace("Let You ", "Let you ").intern();
 		}
 	}
 
 	private void addDiPrefix(DataSet d, boolean aStem) {
 		if (d.latin.matches("[ạ].*") && aStem) {
-			d.latin = "dạ" + d.latin.substring(1);
-			d.chr = "Ꮣ" + d.chr.substring(1);
+			d.latin = ("dạ" + d.latin.substring(1)).intern();
+			d.chr = ("Ꮣ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[a].*") && aStem) {
-			d.latin = "da" + d.latin.substring(1);
-			d.chr = "Ꮣ" + d.chr.substring(1);
+			d.latin = ("da" + d.latin.substring(1)).intern();
+			d.chr = ("Ꮣ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = "dị" + d.latin.substring(1);
-			d.chr = "Ꮧ" + d.chr.substring(1);
+			d.latin = ("dị" + d.latin.substring(1)).intern();
+			d.chr = ("Ꮧ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ẹe].*")) {
-			d.latin = "j" + d.latin;
-			d.chr = "Ꮴ" + d.chr.substring(1);
+			d.latin = ("j" + d.latin).intern();
+			d.chr = ("Ꮴ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ọo].*")) {
-			d.latin = "j" + d.latin;
-			d.chr = "Ꮶ" + d.chr.substring(1);
+			d.latin = ("j" + d.latin).intern();
+			d.chr = ("Ꮶ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ụu].*")) {
-			d.latin = "j" + d.latin;
-			d.chr = "Ꮷ" + d.chr.substring(1);
+			d.latin = ("j" + d.latin).intern();
+			d.chr = ("Ꮷ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ṿv].*")) {
-			d.latin = "j" + d.latin;
-			d.chr = "Ꮸ" + d.chr.substring(1);
+			d.latin = ("j" + d.latin).intern();
+			d.chr = ("Ꮸ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ịi].*")) {
-			d.latin = "d" + d.latin;
-			d.chr = "Ꮧ" + d.chr.substring(1);
+			d.latin = ("d" + d.latin).intern();
+			d.chr = ("Ꮧ" + d.chr.substring(1)).intern();
 			return;
 		}
 
-		d.latin = "dị²" + d.latin;
-		d.chr = "Ꮧ̣²" + d.chr;
+		d.latin = ("dị²" + d.latin).intern();
+		d.chr = ("Ꮧ̣²" + d.chr).intern();
 
 	}
 
 	public void addWiPrefix(DataSet d) {
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = "w" + d.latin;
-			d.chr = "Ꮹ" + d.chr.substring(1);
+			d.latin = ("w" + d.latin).intern();
+			d.chr = ("Ꮹ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ẹe].*")) {
-			d.latin = "w" + d.latin;
-			d.chr = "Ꮺ" + d.chr.substring(1);
+			d.latin = ("w" + d.latin).intern();
+			d.chr = ("Ꮺ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ọo].*")) {
-			d.latin = "w" + d.latin;
-			d.chr = "Ꮼ" + d.chr.substring(1);
+			d.latin = ("w" + d.latin).intern();
+			d.chr = ("Ꮼ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ụu].*")) {
-			d.latin = "w" + d.latin;
-			d.chr = "Ꮽ" + d.chr.substring(1);
+			d.latin = ("w" + d.latin).intern();
+			d.chr = ("Ꮽ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ṿv].*")) {
-			d.latin = "w" + d.latin;
-			d.chr = "Ꮾ" + d.chr.substring(1);
+			d.latin = ("w" + d.latin).intern();
+			d.chr = ("Ꮾ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ịi].*")) {
-			d.latin = "w" + d.latin;
-			d.chr = "Ꮻ" + d.chr.substring(1);
+			d.latin = ("w" + d.latin).intern();
+			d.chr = ("Ꮻ" + d.chr.substring(1)).intern();
 			return;
 		}
-		d.latin = "wị²" + d.latin;
-		d.chr = "Ꮻ̣²" + d.chr;
+		d.latin = ("wị²" + d.latin).intern();
+		d.chr = ("Ꮻ̣²" + d.chr).intern();
 	}
 
 	private void addDePrefix(DataSet d) {
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = "d" + d.latin;
-			d.chr = "Ꮣ" + d.chr.substring(1);
+			d.latin = ("d" + d.latin).intern();
+			d.chr = ("Ꮣ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ẹe].*")) {
-			d.latin = "d" + d.latin;
-			d.chr = "Ꮥ" + d.chr.substring(1);
+			d.latin = ("d" + d.latin).intern();
+			d.chr = ("Ꮥ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ọo].*")) {
-			d.latin = "d" + d.latin;
-			d.chr = "Ꮩ" + d.chr.substring(1);
+			d.latin = ("d" + d.latin).intern();
+			d.chr = ("Ꮩ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ụu].*")) {
-			d.latin = "d" + d.latin;
-			d.chr = "Ꮪ" + d.chr.substring(1);
+			d.latin = ("d" + d.latin).intern();
+			d.chr = ("Ꮪ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ṿv].*")) {
-			d.latin = "d" + d.latin;
-			d.chr = "Ꮫ" + d.chr.substring(1);
+			d.latin = ("d" + d.latin).intern();
+			d.chr = ("Ꮫ" + d.chr.substring(1)).intern();
 			return;
 		}
 		if (d.latin.matches("[ịi].*")) {
-			d.latin = "de³" + d.latin.substring(2);
-			d.chr = "Ꮥ³" + d.chr.substring(2);
+			d.latin = ("de³" + d.latin.substring(2)).intern();
+			d.chr = ("Ꮥ³" + d.chr.substring(2)).intern();
 			return;
 		}
 
-		d.latin = "de²" + d.latin;
-		d.chr = "Ꮥ²" + d.chr;
+		d.latin = ("de²" + d.latin).intern();
+		d.chr = ("Ꮥ²" + d.chr).intern();
 
 	}
 

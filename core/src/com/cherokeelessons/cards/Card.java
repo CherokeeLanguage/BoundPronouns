@@ -75,7 +75,7 @@ public class Card implements Serializable, Comparable<Card> {
 	 * id of card in main deck based on pgroup/vgroup combinations
 	 */
 	public String getId() {
-		return pgroup + "+" + vgroup;
+		return (pgroup + "+" + vgroup).intern();
 	};
 
 }

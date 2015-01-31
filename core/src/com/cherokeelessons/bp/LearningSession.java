@@ -337,7 +337,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ "Would you like to cancel and go back to main menu?";
 
 					LabelStyle lstyle = skin.get(LabelStyle.class);
-					lstyle.font = game.getFont(Font.SansMedium);
+					lstyle.font = game.getFont(Font.SerifMedium);
 					Label label = new Label(text, lstyle);
 					label.setAlignment(Align.left, Align.left);
 					label.setWrap(true);
@@ -345,7 +345,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					getContentTable().add(label).fill().expand().left();
 					TextButtonStyle tbs = new TextButtonStyle(
 							skin.get(TextButtonStyle.class));
-					tbs.font = game.getFont(Font.SansMedium);
+					tbs.font = game.getFont(Font.SerifMedium);
 					TextButton tb;
 					tb = new TextButton("DO A PRACTICE", tbs);
 					button(tb, "A");
@@ -538,7 +538,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 						{
 							LabelStyle lstyle = skin.get(LabelStyle.class);
-							lstyle.font = game.getFont(Font.SansLarge);
+							lstyle.font = game.getFont(Font.SerifLarge);
 
 							ActiveDeck activeDeck = new ActiveDeck();
 							activeDeck.deck.addAll(current_active.deck);

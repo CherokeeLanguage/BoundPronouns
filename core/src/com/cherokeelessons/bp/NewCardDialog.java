@@ -35,7 +35,7 @@ public abstract class NewCardDialog extends Dialog {
 		super("New Vocabulary Card", skin);
 		this.game=game;
 		
-		getStyle().titleFont=game.getFont(Font.SansLarge);
+		getStyle().titleFont=game.getFont(Font.SerifLarge);
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
 		
@@ -54,7 +54,7 @@ public abstract class NewCardDialog extends Dialog {
 		answer.setTouchable(Touchable.disabled);
 		
 		TextButtonStyle chr_san_large = new TextButtonStyle(challenge_top.getStyle());		
-		chr_san_large.font=game.getFont(Font.SansXLarge);
+		chr_san_large.font=game.getFont(Font.SerifXLarge);
 		challenge_top.setStyle(chr_san_large);
 		
 		LabelStyle pronounce_large = new LabelStyle(challenge_bottom.getStyle());
@@ -62,7 +62,7 @@ public abstract class NewCardDialog extends Dialog {
 		challenge_bottom.setStyle(pronounce_large);		
 		
 		TextButtonStyle answerStyle = new TextButtonStyle(answer.getStyle());		
-		answerStyle.font=game.getFont(Font.SansMedium);
+		answerStyle.font=game.getFont(Font.SerifMedium);
 		answer.setStyle(answerStyle);
 		
 		challenge_top.add(challenge_bottom).pad(0).top();
@@ -86,7 +86,7 @@ public abstract class NewCardDialog extends Dialog {
 		appNavBar.defaults().space(6);
 		
 		TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
-		navStyle.font=game.getFont(Font.SansMedium);
+		navStyle.font=game.getFont(Font.SerifMedium);
 		TextButton main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();		
 		appNavBar.add(main).left().expandX();
@@ -103,7 +103,7 @@ public abstract class NewCardDialog extends Dialog {
 		btable.clearChildren();
 		btable.row();
 		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		tbs_check.font=game.getFont(Font.SansMedium);
+		tbs_check.font=game.getFont(Font.SerifMedium);
 		TextButton a = new TextButton("READY!", tbs_check);
 		btable.add(a).fill().expandX().bottom();
 		setObject(a, null);
@@ -154,7 +154,7 @@ public abstract class NewCardDialog extends Dialog {
 		TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
-		background.setTopHeight(game.getFont(Font.SansLarge).getCapHeight()+20);
+		background.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight()+20);
 		return background;
 	}
 

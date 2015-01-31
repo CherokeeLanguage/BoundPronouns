@@ -47,12 +47,12 @@ public class ShowAbout extends ChildScreen {
 	private Runnable initView = new Runnable() {
 		public void run() {
 		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=game.getFont(Font.SansMedium);
+		ls.font=game.getFont(Font.SerifMedium);
 		ls.background=null;
 		
 		container.row();
 		TextButtonStyle bls=new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bls.font=game.getFont(Font.SansMedium);
+		bls.font=game.getFont(Font.SerifMedium);
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
 		container.add(back).left().width(BoundPronouns.BACK_WIDTH);
 		back.addListener(exit);

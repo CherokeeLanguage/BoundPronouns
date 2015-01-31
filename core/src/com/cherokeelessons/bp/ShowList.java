@@ -218,7 +218,7 @@ public class ShowList extends ChildScreen {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		BitmapFont font_base = game.getFont(Font.SansSmall);
+		BitmapFont font_base = game.getFont(Font.SerifSmall);
 		BitmapFont font = new BitmapFont(font_base.getData(), font_base.getRegions(), true);
 		font.setMarkupEnabled(true);
 		

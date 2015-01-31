@@ -83,7 +83,7 @@ public class MainScreen implements Screen {
 			final TiledDrawable tiled = new TiledDrawable(region);
 			tiled.setMinHeight(0);
 			tiled.setMinWidth(0);
-			tiled.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
+			tiled.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
 		}
 	}
 
@@ -103,7 +103,7 @@ public class MainScreen implements Screen {
 		final TiledDrawable tiled = new TiledDrawable(region);
 		tiled.setMinHeight(0);
 		tiled.setMinWidth(0);
-		tiled.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
+		tiled.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
 
 		final SlotInfo info;
 		if (p1.exists()) {
@@ -117,10 +117,10 @@ public class MainScreen implements Screen {
 			info = new SlotInfo();
 		}
 		TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
-		tbs.font = game.getFont(Font.SansMedium);
+		tbs.font = game.getFont(Font.SerifMedium);
 		// Slot display name
 		TextFieldStyle tfs = new TextFieldStyle(skin.get(TextFieldStyle.class));
-		tfs.font = game.getFont(Font.SansMedium);
+		tfs.font = game.getFont(Font.SerifMedium);
 
 		if (!newSession) {
 			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ"
@@ -186,7 +186,7 @@ public class MainScreen implements Screen {
 			}
 		};
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
-		ls.font = game.getFont(Font.SansMedium);
+		ls.font = game.getFont(Font.SerifMedium);
 		final Table contentTable = edit.getContentTable();		
 		edit.setBackground(tiled);
 		edit.setFillParent(true);
@@ -210,7 +210,7 @@ public class MainScreen implements Screen {
 
 	public void doSlotsDialog() {
 		final SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game,
-				game.getFont(Font.SansLarge));
+				game.getFont(Font.SerifLarge));
 		chooseSlot.setKeepWithinStage(true);
 		chooseSlot.setModal(true);
 		chooseSlot.setFillParent(true);
@@ -221,7 +221,7 @@ public class MainScreen implements Screen {
 		final TiledDrawable tiled = new TiledDrawable(region);
 		tiled.setMinHeight(0);
 		tiled.setMinWidth(0);
-		tiled.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() + 20);
+		tiled.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
 
 		Table slots = new Table(skin);
 		final ScrollPane slotsPane = new ScrollPane(slots, skin);
@@ -280,7 +280,7 @@ public class MainScreen implements Screen {
 			txt += ", " + ((int) (info.longTerm * 100)) + "% long term";
 			
 			TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
-			tbs.font = game.getFont(Font.SansMedium);
+			tbs.font = game.getFont(Font.SerifMedium);
 			TextButton textb = new TextButton(txt, tbs);
 			
 			slots.row();
@@ -309,7 +309,7 @@ public class MainScreen implements Screen {
 				};
 			});
 			tbs = new TextButtonStyle(textb.getStyle());
-			tbs.font = game.getFont(Font.SansSmall);
+			tbs.font = game.getFont(Font.SerifSmall);
 			VerticalGroup editControls = new VerticalGroup();
 			editControls.center();
 			TextButton editb = new TextButton("SETTINGS", tbs);
@@ -350,7 +350,7 @@ public class MainScreen implements Screen {
 					Dialog confirm = new Dialog("Erase?", skin) {
 						{
 							WindowStyle ws = new WindowStyle(skin.get(WindowStyle.class));
-							ws.titleFont=game.getFont(Font.SansLarge);
+							ws.titleFont=game.getFont(Font.SerifLarge);
 							setStyle(ws);
 						}
 						protected void result(Object object) {
@@ -366,7 +366,7 @@ public class MainScreen implements Screen {
 					};
 					confirm.setBackground(tiled);
 					LabelStyle ls = skin.get(LabelStyle.class);
-					ls.font = game.getFont(Font.SansMedium);
+					ls.font = game.getFont(Font.SerifMedium);
 					Label msg = new Label("Erase this slot?\n\n" + slotTxt, ls);
 					msg.setWrap(true);
 					confirm.getContentTable().clearChildren();
@@ -389,7 +389,7 @@ public class MainScreen implements Screen {
 		});
 
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font = game.getFont(Font.SansLarge);
+		back.getStyle().font = game.getFont(Font.SerifLarge);
 		back.setStyle(back.getStyle());
 		chooseSlot.button(back);
 		chooseSlot.show(stage).addAction(focus);
@@ -444,7 +444,7 @@ public class MainScreen implements Screen {
 		TextButtonStyle bstyle;
 
 		bstyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
-		bstyle.font = game.getFont(Font.SansXLarge);
+		bstyle.font = game.getFont(Font.SerifXLarge);
 
 		button = new TextButton("Cherokee Language\nBound Pronouns Practice",
 				bstyle);
@@ -456,7 +456,7 @@ public class MainScreen implements Screen {
 		container.add(button).padBottom(padBottom).colspan(2).fillX();
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bstyle.font = game.getFont(Font.SansXLarge);
+		bstyle.font = game.getFont(Font.SerifXLarge);
 		button = new TextButton("Do A Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
