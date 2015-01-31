@@ -198,25 +198,26 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			// mark cards already in the active deck
 			recordAlreadySeen(current_pending);
-
-			// move cards due tomorrow a later into the already done pile!
+			// move cards due tomorrow or later into the already done pile!
 			retireNotYetCards(current_pending);
-			//round cards to nearest minute
+			// truncate card timings to minute (enables semi-shuffled ordering)
 			truncateToMinutes(current_pending.deck);
-			// initial randomize and resort of pending deck
+			// initial shuffle
 			Collections.shuffle(current_pending.deck);
+			// resort deck, any cards with the same truncated show time stay in
+			// their local shuffled order
 			Collections.sort(current_pending.deck, byShowTimeChunks);
-
 			// add cards to the active deck
 			addCards(needed, current_active);
-
+			// go!
 			stage.addAction(Actions.run(showACard));
 		}
 
 		private void truncateToMinutes(List<ActiveCard> deck) {
-			for (ActiveCard card: deck) {
-				card.show_again_ms=(60l*1000l)*(card.show_again_ms/(1000l*60l));
-			}			
+			for (ActiveCard card : deck) {
+				card.show_again_ms = (60l * 1000l)
+						* (card.show_again_ms / (1000l * 60l));
+			}
 		}
 
 		private void retireNotYetCards(ActiveDeck current_pending) {
@@ -330,13 +331,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			Dialog whichMode = new Dialog(
 					"It's too soon for a regular session.", skin) {
 				{
-					String text="Please select an option:\n\n"
+					String text = "Please select an option:\n\n"
 							+ "Would you like to practice your existing challenges?\n\n"
 							+ "Would you like to jump forward by a full day?\n\n"
 							+ "Would you like to cancel and go back to main menu?";
-					
+
 					LabelStyle lstyle = skin.get(LabelStyle.class);
-					lstyle.font=game.getFont(Font.SansMedium);
+					lstyle.font = game.getFont(Font.SansMedium);
 					Label label = new Label(text, lstyle);
 					label.setAlignment(Align.left, Align.left);
 					label.setWrap(true);
@@ -538,7 +539,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						{
 							LabelStyle lstyle = skin.get(LabelStyle.class);
 							lstyle.font = game.getFont(Font.SansLarge);
-							
+
 							ActiveDeck activeDeck = new ActiveDeck();
 							activeDeck.deck.addAll(current_active.deck);
 							activeDeck.deck.addAll(current_pending.deck);
@@ -603,10 +604,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				randomizeSexes(answerSetsFor);
 				activeCard.tries_remaining -= answerSetsFor.correctCount();
 				challengeCardDialog.setAnswers(answerSetsFor);
-				
-				float duration = MaxTimePerCard_sec - (float) activeCard.box - (float) activeCard.getMinCorrectInARow();
-				if (duration<5) {
-					duration=5f;
+
+				float duration = MaxTimePerCard_sec - (float) activeCard.box
+						- (float) activeCard.getMinCorrectInARow();
+				if (duration < 5) {
+					duration = 5f;
 				}
 				challengeCardDialog.addAction(Actions.delay(duration,
 						Actions.run(new Runnable() {
@@ -963,7 +965,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 */
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
-//		String challenge = getOneOf(card.challenge.get(0));		
+		// String challenge = getOneOf(card.challenge.get(0));
 		scanDeck: for (int distance = rand.nextInt(10); distance < 100; distance++) {
 			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
@@ -993,20 +995,21 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * if edit distance is close enough, add it, then add pgroup,
 				 * vgroup and selected answer to already used list
 				 */
-//				String wrong_chr = getOneOf(deckCard.challenge.get(0));
-//				int ldistance = StringUtils.getLevenshteinDistance(challenge,
-//				wrong_chr, distance);
-//				if (ldistance < 1) {
-//					continue;
-//				}
-//				String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
-//				if (already.contains(wrong_answer)){
-//					continue;
-//				}
-//				answers.list.add(new Answer(false, wrong_answer, ldistance));
-//				already.add(deckCard.pgroup);
-//				already.add(deckCard.vgroup);
-//				already.add(wrong_answer);
+				// String wrong_chr = getOneOf(deckCard.challenge.get(0));
+				// int ldistance = StringUtils.getLevenshteinDistance(challenge,
+				// wrong_chr, distance);
+				// if (ldistance < 1) {
+				// continue;
+				// }
+				// String wrong_answer =
+				// deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
+				// if (already.contains(wrong_answer)){
+				// continue;
+				// }
+				// answers.list.add(new Answer(false, wrong_answer, ldistance));
+				// already.add(deckCard.pgroup);
+				// already.add(deckCard.vgroup);
+				// already.add(wrong_answer);
 
 				List<String> tmp_answers = new ArrayList<String>();
 				tmp_answers.clear();
@@ -1047,7 +1050,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	@SuppressWarnings("unused")
 	private String getOneOf(String string) {
-		if (!string.contains(",")){
+		if (!string.contains(",")) {
 			return string;
 		}
 		String[] tmp = StringUtils.split(",");
