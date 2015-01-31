@@ -69,17 +69,17 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int SendToNextSessionThreshold = 4;
 
-	protected static final float MinSessionTime = 60f * 10f;
+	private static final float MinSessionTime = 60f * 10f;
 
-	protected static final int InitialDeckSize = 7;
+	private static final int InitialDeckSize = 7;
 
-	protected static final int IncrementDeckBySize = 3;
+	private static final int IncrementDeckBySize = 3;
 
 	private static final int FULLY_LEARNED_BOX = 10;
 
-	protected static final int PROFICIENT_BOX = 3;
+	private static final int PROFICIENT_BOX = 5;
 
-	private static final int DAILY_BOX = 1;
+	private static final int JUST_LEARNED_BOX = 1;
 
 	private Sound buzzer;
 	/**
@@ -496,7 +496,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (card.box >= PROFICIENT_BOX) {
 				continue;
 			}
-			if (card.box >= DAILY_BOX) {
+			if (card.box >= JUST_LEARNED_BOX) {
 				full++;
 			}
 			decksize++;
