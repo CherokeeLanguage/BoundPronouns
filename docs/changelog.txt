@@ -1,3 +1,12 @@
+1.44
+
+Fixed issue with "he/she etc" forms not tracking properly for 'correct in a row' calculations to show as actually learned.
+
+Try and reduce 'deck card' memory consumption to prevent out of memory errors.
+
+Switch to using only a single font to reduce memory consumption and out of memory errors.
+
+
 1.42
 
 Added icon.
