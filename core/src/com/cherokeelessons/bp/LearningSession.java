@@ -78,6 +78,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int JUST_LEARNED_BOX = 1;
 
+	private static final long ONE_SECOND_ms = 1000l;
+
 	private Sound buzzer;
 	/**
 	 * Sort answers by edit distance so the list can be trimmed to size easily.
@@ -135,7 +137,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * time-shift all cards by exactly one day + one extra hour for
 			 * safety
 			 */
-			updateTime(current_pending, ONE_DAY_ms+ONE_HOUR_ms);
+			updateTime(current_pending, ONE_DAY_ms + ONE_HOUR_ms);
 			int due = 0;
 			for (ActiveCard card : current_pending.deck) {
 				if (card.show_again_ms < 0) {
@@ -181,7 +183,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			 */
 
 			if (isExtraPractice) {
-				updateTime(current_pending, ONE_DAY_ms*7l);
+				updateTime(current_pending, ONE_DAY_ms * 7l);
 			}
 
 			// mark cards already in the active deck
@@ -467,6 +469,18 @@ public class LearningSession extends ChildScreen implements Screen {
 		info.shortTerm = full / decksize;
 	}
 
+	private long getMinShiftTimeOf(ActiveDeck current_pending) {
+		long by = Long.MAX_VALUE;
+		Iterator<ActiveCard> icard = current_pending.deck.iterator();
+		while (icard.hasNext()) {
+			ActiveCard card = icard.next();
+			if (by > card.show_again_ms) {
+				by = card.show_again_ms;
+			}
+		}
+		return by;
+	}
+
 	private float notice_elapsed = 0f;
 	private float elapsed = 0f;
 	private float sinceLastNextCard_elapsed = 0f;
@@ -477,8 +491,16 @@ public class LearningSession extends ChildScreen implements Screen {
 			final ActiveCard activeCard = getNextCard();
 			if (activeCard == null) {
 				if (elapsed < MinSessionTime) {
-					game.log(this, "session time is not up, adding new cards");
-					addCards(IncrementDeckBySize, current_pending);
+					game.log(this, "session time is not up");
+					long shift_by_ms = getMinShiftTimeOf(current_pending);
+					if (shift_by_ms > ONE_MINUTE_ms) {
+						game.log(this, "large shift of "
+								+ (shift_by_ms / ONE_SECOND_ms)+ " secs", "adding "
+								+ IncrementDeckBySize + " new card(s)");
+						addCards(IncrementDeckBySize, current_active);
+					}
+					game.log(this, "shifting deck to zero point");
+					updateTime(current_pending, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
@@ -487,8 +509,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * range...
 				 */
 				if (elapsed > MinSessionTime && current_pending.deck.size() > 0) {
-					game.log(this, "session time up, shifting cards");
-					updateTime(current_pending, ONE_MINUTE_ms);
+					game.log(this, "session time up",
+							"shifting deck to zero point");
+					long shift_by_ms = getMinShiftTimeOf(current_pending);
+					updateTime(current_pending, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
@@ -562,16 +586,19 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.setCounter(cardcount++);
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
-				
+
 				AnswerList tracked_answers = getAnswerSetsFor(activeCard,
 						deckCard, game.deck);
+				// AnswerList tracked_answers =
+				// getAnswerSetsForBySimilarChallenge(activeCard, deckCard,
+				// game.deck);
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 
-				game.log(this, deckCard.challenge.get(0)+" remaining tries: "+activeCard.tries_remaining);
 				activeCard.tries_remaining -= tracked_answers.correctCount();
-				challengeCardDialog.setAnswers(tracked_answers, displayed_answers);
-				
+				challengeCardDialog.setAnswers(tracked_answers,
+						displayed_answers);
+
 				float duration = MaxTimePerCard_sec - (float) activeCard.box
 						- (float) activeCard.getMinCorrectInARow();
 				if (duration < 5) {
@@ -899,27 +926,29 @@ public class LearningSession extends ChildScreen implements Screen {
 		game.manager.unload(BoundPronouns.SND_TICKTOCK);
 	}
 
-	private AnswerList getAnswerSetsFor(final ActiveCard active,
-			final Card card, Deck deck) {
+	@SuppressWarnings("unused")
+	private AnswerList getAnswerSetsForBySimilarChallenge(
+			final ActiveCard active, final Card card, Deck deck) {
+		AnswerList answers = new AnswerList();
+		String challenge = card.challenge.get(0);
 		/**
 		 * contains copies of used answers, vgroups, and pgroups to prevent
 		 * duplicates
 		 */
 		Set<String> already = new HashSet<String>();
-		AnswerList answers = new AnswerList();
+		already.add(card.pgroup);
+		already.add(card.vgroup);
+		already.addAll(card.answer);
+		already.add(challenge);
 
 		/**
 		 * for temporary manipulation of list data so we don't mess with master
 		 * copies in cards, etc.
 		 */
-
-		already.add(card.pgroup);
-		already.add(card.vgroup);
-		already.addAll(card.answer);
-
 		List<String> tmp_correct = new ArrayList<String>();
 		tmp_correct.clear();
 		tmp_correct.addAll(card.answer);
+
 		/**
 		 * sort answers from least known to most known
 		 */
@@ -939,6 +968,9 @@ public class LearningSession extends ChildScreen implements Screen {
 				return o1.compareTo(o2);
 			}
 		});
+		/*
+		 * Add a random count of correct answers. Least known first.
+		 */
 		int r = rand.nextInt(tmp_correct.size()) + 1;
 		for (int i = 0; i < r && i < maxCorrect; i++) {
 			String answer = tmp_correct.get(i);
@@ -946,7 +978,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 
 		/*
-		 * look for "similar" looking answers
+		 * look for "similar" looking challenges
 		 */
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
@@ -980,49 +1012,153 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * if edit distance is close enough, add it, then add pgroup,
 				 * vgroup and selected answer to already used list
 				 */
-				// String wrong_chr = getOneOf(deckCard.challenge.get(0));
-				// int ldistance = StringUtils.getLevenshteinDistance(challenge,
-				// wrong_chr, distance);
-				// if (ldistance < 1) {
-				// continue;
-				// }
-				// String wrong_answer =
-				// deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
-				// if (already.contains(wrong_answer)){
-				// continue;
-				// }
-				// answers.list.add(new Answer(false, wrong_answer, ldistance));
-				// already.add(deckCard.pgroup);
-				// already.add(deckCard.vgroup);
-				// already.add(wrong_answer);
-
-				List<String> tmp_answers = new ArrayList<String>();
-				tmp_answers.clear();
-				tmp_answers.addAll(deckCard.answer);
-				Collections.shuffle(tmp_answers);
-				addWrongAnswer: for (String t : tmp_answers) {
-					if (already.contains(t)) {
+				List<String> wrong_answers = new ArrayList<String>();
+				wrong_answers.addAll(deckCard.answer);
+				Collections.shuffle(wrong_answers);
+				String tmp_challenge = deckCard.challenge.get(0);
+				if (already.contains(tmp_challenge)) {
+					continue;
+				}
+				int ldistance = StringUtils.getLevenshteinDistance(challenge,
+						tmp_challenge, distance);
+				if (ldistance < 1) {
+					continue;
+				}
+				for (String wrong_answer : wrong_answers) {
+					if (already.contains(wrong_answer)) {
 						continue;
 					}
-					tmp_correct.clear();
-					tmp_correct.addAll(card.answer);
-					Collections.shuffle(tmp_correct);
-					for (String s : card.answer) {
-						int ldistance = StringUtils.getLevenshteinDistance(s,
-								t, distance);
-						if (ldistance < 1) {
-							continue;
-						}
-						answers.list.add(new Answer(false, t, ldistance));
-						already.add(deckCard.pgroup);
-						already.add(deckCard.vgroup);
-						already.add(t);
-						break addWrongAnswer;
-					}
+					already.add(wrong_answer);
+					answers.list
+							.add(new Answer(false, wrong_answer, ldistance));
+					break;
+				}
+				if (answers.list.size() >= maxAnswers) {
+					break scanDeck;
 				}
 			}
-			if (answers.list.size() > maxAnswers) {
-				break scanDeck;
+		}
+		Collections.sort(answers.list, byDistance);
+		if (answers.list.size() > maxAnswers) {
+			answers.list.subList(maxAnswers, answers.list.size()).clear();
+		}
+		Collections.shuffle(answers.list);
+		return answers;
+	}
+
+	private AnswerList getAnswerSetsFor(final ActiveCard active,
+			final Card challengeCard, Deck deck) {
+		AnswerList answers = new AnswerList();
+		/*
+		 * contains copies of used answers, vgroups, and pgroups to prevent
+		 * duplicates
+		 */
+		Set<String> already = new HashSet<String>();
+		already.add(challengeCard.pgroup);
+		already.add(challengeCard.vgroup);
+		/*
+		 * make sure all correct answers are in the "black list" for potential
+		 * wrong answers
+		 */
+		already.addAll(challengeCard.answer);
+
+		/*
+		 * for temporary manipulation of list data so we don't mess with master
+		 * copies in cards, etc.
+		 */
+		List<String> tmp_correct = new ArrayList<String>();
+		tmp_correct.clear();
+		tmp_correct.addAll(challengeCard.answer);
+
+		/**
+		 * sort answers from least known to most known
+		 */
+		Collections.sort(tmp_correct, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				Integer i1 = active.getCorrectInARowFor(o1);
+				Integer i2 = active.getCorrectInARowFor(o2);
+				i1 = (i1 == null ? 0 : i1);
+				i2 = (i2 == null ? 0 : i2);
+				if (i1 < i2) {
+					return -1;
+				}
+				if (i1 > i2) {
+					return 1;
+				}
+				return o1.compareTo(o2);
+			}
+		});
+		int r = rand.nextInt(tmp_correct.size()) + 1;
+		for (int i = 0; i < r && i < maxCorrect; i++) {
+			String answer = tmp_correct.get(i);
+			answers.list.add(0, new Answer(true, answer, 0));
+		}
+
+		/*
+		 * look for "similar" looking answers by picking one random correct
+		 * answer and comparing to one random wrong answer per card in the
+		 * master deck
+		 */
+		Deck tmp = new Deck();
+		tmp.cards.addAll(deck.cards);
+		// String challenge = getOneOf(card.challenge.get(0));
+		scanDeck: for (int distance = 1; distance < 100; distance++) {
+			Collections.shuffle(tmp.cards);
+			for (Card deckCard : tmp.cards) {
+				/*
+				 * make sure we have unique pronouns for each wrong answer
+				 */
+				if (already.contains(deckCard.pgroup)) {
+					continue;
+				}
+				/*
+				 * make sure we keep bare pronouns with bare pronouns and
+				 * vice-versa
+				 */
+				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils
+						.isBlank(deckCard.vgroup)) {
+					continue;
+				}
+				/*
+				 * keep verbs unique as well
+				 */
+				if (!StringUtils.isBlank(deckCard.vgroup)) {
+					if (already.contains(deckCard.vgroup)) {
+						continue;
+					}
+				}
+				/*
+				 * select a random correct answer
+				 */
+				String correct_answer = challengeCard.answer.get(rand
+						.nextInt(challengeCard.answer.size()));
+				/*
+				 * select a random wrong answer
+				 */
+				String wrong_answer = deckCard.answer.get(rand
+						.nextInt(deckCard.answer.size()));
+				if (already.contains(wrong_answer)) {
+					continue;
+				}
+				/*
+				 * if edit distance is close enough, add it, then add pgroup,
+				 * vgroup and selected answer to already used list otherwise go
+				 * on and check next card
+				 */
+
+				int ldistance = StringUtils.getLevenshteinDistance(
+						correct_answer, wrong_answer, distance);
+				if (ldistance < 1) {
+					continue;
+				}
+				answers.list.add(new Answer(false, wrong_answer, ldistance));
+				already.add(deckCard.pgroup);
+				already.add(deckCard.vgroup);
+				already.add(wrong_answer);
+				if (answers.list.size() >= maxAnswers) {
+					break scanDeck;
+				}
 			}
 		}
 		Collections.sort(answers.list, byDistance);
@@ -1045,8 +1181,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private ActiveCard getNextCard() {
 		if (current_active.deck.size() == 0) {
-			updateTime(current_pending, (long)(sinceLastNextCard_elapsed*1000f));
-			sinceLastNextCard_elapsed=0;
+			updateTime(current_pending,
+					(long) (sinceLastNextCard_elapsed * 1000f));
+			sinceLastNextCard_elapsed = 0;
 			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
@@ -1151,13 +1288,12 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	/**
-	 * time-shift all cards by time since last recorded run. clamps at 24 hours
-	 * for max time adjustment.
+	 * time-shift all cards by time since last recorded run.
 	 * 
-	 * @param activeDeck
+	 * @param currentDeck
 	 */
-	public void updateTime(ActiveDeck activeDeck, long ms) {
-		Iterator<ActiveCard> istat = activeDeck.deck.iterator();
+	public void updateTime(ActiveDeck currentDeck, long ms) {
+		Iterator<ActiveCard> istat = currentDeck.deck.iterator();
 		while (istat.hasNext()) {
 			ActiveCard next = istat.next();
 			next.show_again_ms -= ms;
