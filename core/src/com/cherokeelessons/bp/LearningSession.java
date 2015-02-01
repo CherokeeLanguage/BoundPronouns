@@ -186,20 +186,33 @@ public class LearningSession extends ChildScreen implements Screen {
 				updateTime(current_pending, ONE_DAY_ms * 7l);
 			}
 
-			// mark cards already in the active deck
+			/*
+			 *  mark cards already in the active deck
+			 */
 			recordAlreadySeen(current_pending);
-			// move cards due tomorrow or later into the already done pile!
+			/*
+			 *  move cards due tomorrow or later into the already done pile!
+			 */
 			retireNotYetCards(current_pending);
-			// truncate card timings to minute (enables semi-shuffled ordering)
+			/*
+			 *  truncate card timings to minute (enables semi-shuffled ordering)
+			 */
 			truncateToNearestMinute(current_pending.deck);
-			// initial shuffle
+			/*
+			 *  initial shuffle
+			 */
 			Collections.shuffle(current_pending.deck);
-			// resort deck, any cards with the same truncated show time stay in
-			// their local shuffled order
+			/*
+			 *  resort deck, any cards with the same truncated show time stay in their local shuffled order
+			 */
 			Collections.sort(current_pending.deck, byShowTimeChunks);
-			// add cards to the active deck
+			/*
+			 *  add cards to the active deck
+			 */
 			addCards(needed, current_active);
-			// go!
+			/*
+			 *  go!
+			 */
 			stage.addAction(Actions.run(showACard));
 		}
 
