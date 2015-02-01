@@ -191,7 +191,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			// move cards due tomorrow or later into the already done pile!
 			retireNotYetCards(current_pending);
 			// truncate card timings to minute (enables semi-shuffled ordering)
-			truncateToMinutes(current_pending.deck);
+			truncateToNearestMinute(current_pending.deck);
 			// initial shuffle
 			Collections.shuffle(current_pending.deck);
 			// resort deck, any cards with the same truncated show time stay in
@@ -203,7 +203,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			stage.addAction(Actions.run(showACard));
 		}
 
-		private void truncateToMinutes(List<ActiveCard> deck) {
+		private void truncateToNearestMinute(List<ActiveCard> deck) {
 			for (ActiveCard card : deck) {
 				card.show_again_ms = (60l * 1000l)
 						* (card.show_again_ms / (1000l * 60l));
