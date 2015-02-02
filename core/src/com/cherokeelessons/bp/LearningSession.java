@@ -130,7 +130,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			nodupes.clear();
 			game.log(this, "Loading Set 0...");
-
+			
 			int needed = InitialDeckSize;
 
 			/*
@@ -145,6 +145,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 			game.log(this, due + " cards are due.");
+			
 			/*
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
@@ -159,14 +160,17 @@ public class LearningSession extends ChildScreen implements Screen {
 				game.log(this, "Removed no longer valid entry: "
 						+ active.pgroup + " - " + active.vgroup);
 			}
+			
 			/*
 			 * ALWAYS force reset ALL correct in a row counts on load!
 			 */
 			resetCorrectInARow(current_pending);
+			
 			/*
 			 * RESET tries max count
 			 */
 			resetRetriesCount(current_pending);
+			
 			/*
 			 * ALWAYS start off as being eligible for "bump"
 			 */
@@ -175,13 +179,12 @@ public class LearningSession extends ChildScreen implements Screen {
 			/*
 			 * Make sure no boxes out of range
 			 */
-			clampBoxValues(current_pending);
+			onlyPositiveBoxValues(current_pending);
 
 			/*
 			 * time-shift all cards by an additional seven days to pull in more
 			 * cards if this is an extra practice session
 			 */
-
 			if (isExtraPractice) {
 				updateTime(current_pending, ONE_DAY_ms * 7l);
 			}
@@ -190,26 +193,32 @@ public class LearningSession extends ChildScreen implements Screen {
 			 *  mark cards already in the active deck
 			 */
 			recordAlreadySeen(current_pending);
+			
 			/*
 			 *  move cards due tomorrow or later into the already done pile!
 			 */
 			retireNotYetCards(current_pending);
+			
 			/*
 			 *  truncate card timings to minute (enables semi-shuffled ordering)
 			 */
 			truncateToNearestMinute(current_pending.deck);
+			
 			/*
 			 *  initial shuffle
 			 */
 			Collections.shuffle(current_pending.deck);
+			
 			/*
 			 *  resort deck, any cards with the same truncated show time stay in their local shuffled order
 			 */
 			Collections.sort(current_pending.deck, byShowTimeChunks);
+			
 			/*
 			 *  add cards to the active deck
 			 */
 			addCards(needed, current_active);
+			
 			/*
 			 *  go!
 			 */
@@ -241,14 +250,11 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ " future pending or fully learned cards into the 'done' deck.");
 		}
 
-		private void clampBoxValues(ActiveDeck deck) {
+		private void onlyPositiveBoxValues(ActiveDeck deck) {
 			for (ActiveCard card : deck.deck) {
 				if (card.box < 0) {
 					card.box = 0;
 					continue;
-				}
-				if (card.box > FULLY_LEARNED_BOX) {
-					card.box = FULLY_LEARNED_BOX;
 				}
 			}
 
@@ -563,7 +569,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							sb.append("\n\n");
 							int minutes = (int) (elapsed / 60f);
 							int seconds = (int) (elapsed - minutes * 60f);
-							sb.append("Elapsed time: " + minutes + ":"
+							sb.append("Total actual challenge time: " + minutes + ":"
 									+ (seconds < 10 ? "0" : "") + seconds);
 							Label label = new Label(sb.toString(), lstyle);
 							text(label);
@@ -879,9 +885,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			ipending.remove();
 		}
+		
+		if (needed<=0) {
+			return;
+		}
 
 		/**
-		 * add new never seen cards second
+		 * not enough already seen cards, add new never seen cards
 		 */
 		Iterator<Card> ideck = game.deck.cards.iterator();
 		while (needed > 0 && ideck.hasNext()) {
@@ -920,6 +930,17 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			nodupes.add(unique_id);
 		}
+		
+		if (needed<=0) {
+			return;
+		}
+		
+		/**
+		 * yikes! They processed ALL the cards!   
+		 */
+		
+		
+		
 	}
 
 	@Override
