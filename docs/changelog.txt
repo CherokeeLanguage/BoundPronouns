@@ -1,3 +1,11 @@
+1.46
+
+Better handling of back key.
+
+1.45
+
+Adjust when "new cards" are added during a session when currently scheduled cards are well known.
+
 1.44
 
 Fixed issue with "he/she etc" forms not tracking properly for 'correct in a row' calculations to show as actually learned.
