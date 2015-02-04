@@ -421,7 +421,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			info.version=SlotInfo.StatsVersion;
 			tmp = slot.child(INFO_JSON + ".tmp");
-			json.toJson(tosave, tmp);
+			json.toJson(info, tmp);
 			tmp.moveTo(slot.child(INFO_JSON));
 			tmp.delete();
 		}
