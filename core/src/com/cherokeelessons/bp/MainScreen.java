@@ -250,24 +250,9 @@ public class MainScreen implements Screen, InputProcessor {
 			p1 = p0.child(BoundPronouns.INFO_JSON);
 			if (p1.exists()) {
 				info = json.fromJson(SlotInfo.class, p1);
-				if (info!=null) {
-					blank = false;
-					if (info.version != SlotInfo.StatsVersion) {
-						if (!p0.child(LearningSession.ActiveDeckJson).exists()) {
-							json.toJson(new ActiveDeck(), p0.child(LearningSession.ActiveDeckJson));
-						}
-						ActiveDeck adeck = json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
-						if (adeck == null) {
-							adeck = new ActiveDeck();
-						}
-						LearningSession.calculateStats(adeck, info);
-						adeck = null;
-						json.toJson(info, p1);
-						
-					}
-				}
+				blank = (info==null);				
 			}
-			if (info == null) {
+			if (blank) {
 				info = new SlotInfo();
 				info.settings.name = "*** NEW SESSION ***";
 			}
