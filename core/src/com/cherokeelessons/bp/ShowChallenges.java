@@ -31,7 +31,7 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Card;
 
 
-public class ShowChallenges extends ChildScreen implements Screen {
+public class ShowChallenges extends ChildScreen {
 
 	private final List<String> pgroups;
 	

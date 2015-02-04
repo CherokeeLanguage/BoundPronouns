@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
-import com.cherokeelessons.util.JsonConverter;
 
 
 public class BuildDeckScreen extends ChildScreen {
@@ -24,16 +23,12 @@ public class BuildDeckScreen extends ChildScreen {
 		}
 	};
 	private boolean ready;
-	private final JsonConverter json;
 
 	public BuildDeckScreen(BoundPronouns game, Screen caller) {
 		super(game, caller);
 		buildDeck=new BuildDeck(game, BuildDeck.getDeckSlot(), done);	
 		
 		Gdx.app.postRunnable(buildDeck);
-		json=new JsonConverter();
-//		json.setIgnoreUnknownFields(true);
-//		json.setOutputType(OutputType.json);
 	}
 	
 	private Skin skin;

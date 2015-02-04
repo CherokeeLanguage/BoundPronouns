@@ -3,7 +3,10 @@ package com.cherokeelessons.bp;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -36,7 +39,7 @@ import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
 import com.cherokeelessons.util.JsonConverter;
 
-public class MainScreen implements Screen {
+public class MainScreen implements Screen, InputProcessor {
 
 	private final BoundPronouns game;
 	private final FitViewport viewport;
@@ -420,6 +423,7 @@ public class MainScreen implements Screen {
 	public MainScreen(BoundPronouns boundPronouns) {
 		this.game = boundPronouns;
 		this.skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
+		this.multi=new InputMultiplexer();
 		stage = new Stage();
 		viewport = new FitViewport(1280, 720, stage.getCamera());
 		viewport.update(1280, 720, true);
@@ -486,8 +490,11 @@ public class MainScreen implements Screen {
 		container.add(button).padBottom(padBottom).colspan(2).fillX();
 	}
 
+	protected final InputMultiplexer multi;
 	@Override
 	public void show() {
+		multi.addProcessor(this);
+		multi.addProcessor(stage);
 		Gdx.input.setInputProcessor(stage);
 	}
 
@@ -520,6 +527,53 @@ public class MainScreen implements Screen {
 	@Override
 	public void dispose() {
 		stage.dispose();
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		switch (keycode) {
+		case Keys.BACK:
+		case Keys.ESCAPE:
+			game.setScreen(new GoodByeScreen(game, this));
+			return true;
+		default:
+		}
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		return false;
 	}
 
 }

@@ -92,6 +92,7 @@ public class BoundPronouns extends Game {
 		manager = new AssetManager();
 		initManager();
 		this.setScreen(new LoadingScreen(this));
+		Gdx.input.setCatchBackKey(true);
 	}
 
 	@Override

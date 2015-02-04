@@ -47,7 +47,7 @@ import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
-
+	
 	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
 
 	private static final long ONE_MINUTE_ms = 60l * 1000l;
