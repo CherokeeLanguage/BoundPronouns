@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.cherokeelessons.bp.ios;
 
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.UIApplication;
