@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -54,8 +55,8 @@ public class ChildScreen implements Screen, InputProcessor {
 
 	@Override
 	public void render(float delta) {
-		stage.act();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		stage.act();		
+		BoundPronouns.glClearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 	}

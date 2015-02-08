@@ -508,7 +508,7 @@ public class MainScreen implements Screen, InputProcessor {
 	@Override
 	public void render(float delta) {
 		stage.act();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		BoundPronouns.glClearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 	}

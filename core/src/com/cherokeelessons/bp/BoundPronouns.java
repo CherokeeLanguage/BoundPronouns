@@ -22,6 +22,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -35,6 +36,8 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
+	
+	public final static Color ClearColor;
 	
 	public final Deck deck=new Deck();
 
@@ -82,6 +85,7 @@ public class BoundPronouns extends Game {
 				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC
 				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW
 				;
+		ClearColor=new Color((float)0xb3/(float)0xff, (float)0xb3/(float)0xff, (float)0xb1/(float)0xff, 1);
 	}
 
 	public SpriteBatch batch;
@@ -306,5 +310,9 @@ public class BoundPronouns extends Game {
 			prevChr = chr;
 		}
 		return new ArrayList<>(pronouns);
+	}
+
+	public static void glClearColor() {
+		Gdx.gl.glClearColor(ClearColor.r, ClearColor.g, ClearColor.b, ClearColor.a);		
 	}
 }

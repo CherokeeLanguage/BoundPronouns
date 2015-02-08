@@ -1287,7 +1287,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		if (challengeCardDialog.paused) {
-			Gdx.gl.glClearColor(0, 0, 0, 1);
+			BoundPronouns.glClearColor();
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 			stage.draw();
 			ticktock.setVolume(ticktock_id, 0f);
