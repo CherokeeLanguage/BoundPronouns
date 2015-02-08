@@ -21,6 +21,20 @@ function process() {
 	
 }
 
+function process_white() {
+	SIZE="$1"
+	shift
+	DEST="${D}/$1"
+	shift
+	XARGS="$@"
+	echo gm convert -filter ${FILTER} "${SRC}" -resize "${SIZE}" -gravity center -background white -extent "${SIZE}" ${XARGS} "${DEST}"
+	gm convert -filter ${FILTER} "${SRC}" ${XARGS} -resize "${SIZE}" -gravity center -background white -extent "${SIZE}" "${DEST}"
+	
+}
+
+process_white 1024x500 promo-image-flat.jpg
+process_white 180x120 promo-graphic-flat.jpg
+
 process 750x1334 Default-375w-667h@2x.png -rotate 90
 process 1242x2208 Default-414w-736h@3x.png -rotate 90
 process 640x1136 Default-568h@2x.png -rotate 90
