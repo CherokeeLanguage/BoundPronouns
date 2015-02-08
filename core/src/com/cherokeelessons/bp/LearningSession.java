@@ -47,7 +47,7 @@ import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
-	
+
 	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
 
 	private static final long ONE_MINUTE_ms = 60l * 1000l;
@@ -130,7 +130,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			nodupes.clear();
 			game.log(this, "Loading Set 0...");
-			
+
 			int needed = InitialDeckSize;
 
 			/*
@@ -145,7 +145,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 			game.log(this, due + " cards are due.");
-			
+
 			/*
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
@@ -160,17 +160,17 @@ public class LearningSession extends ChildScreen implements Screen {
 				game.log(this, "Removed no longer valid entry: "
 						+ active.pgroup + " - " + active.vgroup);
 			}
-			
+
 			/*
 			 * ALWAYS force reset ALL correct in a row counts on load!
 			 */
 			resetCorrectInARow(current_pending);
-			
+
 			/*
 			 * RESET tries max count
 			 */
 			resetRetriesCount(current_pending);
-			
+
 			/*
 			 * ALWAYS start off as being eligible for "bump"
 			 */
@@ -190,37 +190,38 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 
 			/*
-			 *  mark cards already in the active deck
+			 * mark cards already in the active deck
 			 */
 			recordAlreadySeen(current_pending);
-			
+
 			/*
-			 *  move cards due tomorrow or later into the already done pile!
+			 * move cards due tomorrow or later into the already done pile!
 			 */
 			retireNotYetCards(current_pending);
-			
+
 			/*
-			 *  truncate card timings to minute (enables semi-shuffled ordering)
+			 * truncate card timings to minute (enables semi-shuffled ordering)
 			 */
 			truncateToNearestMinute(current_pending.deck);
-			
+
 			/*
-			 *  initial shuffle
+			 * initial shuffle
 			 */
 			Collections.shuffle(current_pending.deck);
-			
+
 			/*
-			 *  resort deck, any cards with the same truncated show time stay in their local shuffled order
+			 * resort deck, any cards with the same truncated show time stay in
+			 * their local shuffled order
 			 */
 			Collections.sort(current_pending.deck, byShowTimeChunks);
-			
+
 			/*
-			 *  add cards to the active deck
+			 * add cards to the active deck
 			 */
 			addCards(needed, current_active);
-			
+
 			/*
-			 *  go!
+			 * go!
 			 */
 			stage.addAction(Actions.run(showACard));
 		}
@@ -410,16 +411,16 @@ public class LearningSession extends ChildScreen implements Screen {
 				info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
 			} else {
 				info = json.fromJson(SlotInfo.class, infoFile);
-				infoFile.copyTo(slot.child(INFO_JSON+".bak"));
+				infoFile.copyTo(slot.child(INFO_JSON + ".bak"));
 			}
 			calculateStats(tosave, info);
-			
+
 			FileHandle tmp = slot.child(ActiveDeckJson + ".tmp");
 			json.toJson(tosave, tmp);
 			tmp.moveTo(slot.child(ActiveDeckJson));
 			tmp.delete();
 
-			info.version=SlotInfo.StatsVersion;
+			info.version = SlotInfo.StatsVersion;
 			tmp = slot.child(INFO_JSON + ".tmp");
 			json.toJson(info, tmp);
 			tmp.moveTo(slot.child(INFO_JSON));
@@ -514,8 +515,9 @@ public class LearningSession extends ChildScreen implements Screen {
 					long shift_by_ms = getMinShiftTimeOf(current_pending);
 					if (shift_by_ms > ONE_MINUTE_ms) {
 						game.log(this, "large shift of "
-								+ (shift_by_ms / ONE_SECOND_ms)+ " secs", "adding "
-								+ IncrementDeckBySize + " new card(s)");
+								+ (shift_by_ms / ONE_SECOND_ms) + " secs",
+								"adding " + IncrementDeckBySize
+										+ " new card(s)");
 						addCards(IncrementDeckBySize, current_active);
 					}
 					game.log(this, "shifting deck to zero point");
@@ -569,8 +571,8 @@ public class LearningSession extends ChildScreen implements Screen {
 							sb.append("\n\n");
 							int minutes = (int) (elapsed / 60f);
 							int seconds = (int) (elapsed - minutes * 60f);
-							sb.append("Total actual challenge time: " + minutes + ":"
-									+ (seconds < 10 ? "0" : "") + seconds);
+							sb.append("Total actual challenge time: " + minutes
+									+ ":" + (seconds < 10 ? "0" : "") + seconds);
 							Label label = new Label(sb.toString(), lstyle);
 							text(label);
 							button("OK!");
@@ -606,11 +608,14 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
 
-				AnswerList tracked_answers = getAnswerSetsFor(activeCard,
-						deckCard, game.deck);
-				// AnswerList tracked_answers =
-				// getAnswerSetsForBySimilarChallenge(activeCard, deckCard,
-				// game.deck);
+				AnswerList tracked_answers;
+				if (rand.nextBoolean()) {
+					tracked_answers = getAnswerSetsFor(activeCard, deckCard,
+							game.deck);
+				} else {
+					tracked_answers = getAnswerSetsForBySimilarChallenge(
+							activeCard, deckCard, game.deck);
+				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 
@@ -885,8 +890,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			ipending.remove();
 		}
-		
-		if (needed<=0) {
+
+		if (needed <= 0) {
 			return;
 		}
 
@@ -930,17 +935,15 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			nodupes.add(unique_id);
 		}
-		
-		if (needed<=0) {
+
+		if (needed <= 0) {
 			return;
 		}
-		
+
 		/**
-		 * yikes! They processed ALL the cards!   
+		 * yikes! They processed ALL the cards!
 		 */
-		
-		
-		
+
 	}
 
 	@Override
@@ -960,7 +963,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		game.manager.unload(BoundPronouns.SND_TICKTOCK);
 	}
 
-	@SuppressWarnings("unused")
 	private AnswerList getAnswerSetsForBySimilarChallenge(
 			final ActiveCard active, final Card card, Deck deck) {
 		AnswerList answers = new AnswerList();
@@ -1046,9 +1048,6 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * if edit distance is close enough, add it, then add pgroup,
 				 * vgroup and selected answer to already used list
 				 */
-				List<String> wrong_answers = new ArrayList<String>();
-				wrong_answers.addAll(deckCard.answer);
-				Collections.shuffle(wrong_answers);
 				String tmp_challenge = deckCard.challenge.get(0);
 				if (already.contains(tmp_challenge)) {
 					continue;
@@ -1058,15 +1057,16 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (ldistance < 1) {
 					continue;
 				}
-				for (String wrong_answer : wrong_answers) {
-					if (already.contains(wrong_answer)) {
-						continue;
-					}
-					already.add(wrong_answer);
-					answers.list
-							.add(new Answer(false, wrong_answer, ldistance));
-					break;
+				/*
+				 * select a random wrong answer
+				 */
+				String wrong_answer = deckCard.answer.get(rand
+						.nextInt(deckCard.answer.size()));
+				if (already.contains(wrong_answer)) {
+					continue;
 				}
+				already.add(wrong_answer);
+				answers.list.add(new Answer(false, wrong_answer, ldistance));
 				if (answers.list.size() >= maxAnswers) {
 					break scanDeck;
 				}
