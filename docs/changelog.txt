@@ -1,4 +1,4 @@
-1.50
+1.52
 
 Graphics fixes.
 Change "wrong answer" selection logic.
