@@ -1,3 +1,9 @@
+1.50
+
+Graphics fixes.
+Change "wrong answer" selection logic.
+Prepare for eventual Apple Device deployment.
+ 
 1.47
 
 Fix bug in stats save at completion of a session. Added code to try and repair stats if stats are detected as being bad.
