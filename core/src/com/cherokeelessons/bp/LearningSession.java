@@ -513,19 +513,18 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Runnable showACard = new Runnable() {
 		@Override
 		public void run() {
+			//TODO: Try and reduce repeats by moving repeated card back into discards one time with next time > least time of discards or pending  
 			final ActiveCard activeCard = getNextCard();
 			if (activeCard == null) {
 				if (elapsed < MinSessionTime) {
 					game.log(this, "session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
+					game.log(this, "shifting discards to zero point: "+(shift_by_ms/ONE_SECOND_ms));
 					if (shift_by_ms > ONE_MINUTE_ms) {
-						game.log(this, "large shift of "
-								+ (shift_by_ms / ONE_SECOND_ms) + " secs",
-								"adding " + IncrementDeckBySize
+						game.log(this, "adding " + IncrementDeckBySize
 										+ " new card(s)");
 						addCards(IncrementDeckBySize, current_active);
 					}
-					game.log(this, "shifting discards to zero point");
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
@@ -535,9 +534,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * range...
 				 */
 				if (elapsed > MinSessionTime && current_discards.deck.size() > 0) {
-					game.log(this, "session time up",
-							"shifting discards to zero point");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
+					game.log(this, "shifting discards to zero point: "+(shift_by_ms/ONE_SECOND_ms));
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
