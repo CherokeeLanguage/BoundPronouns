@@ -117,7 +117,11 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * holding area for cards that have just been displayed or are not scheduled
 	 * yet for display
 	 */
-	private final ActiveDeck current_pending = new ActiveDeck();
+	private final ActiveDeck current_discards = new ActiveDeck();
+	/**
+	 * holding area for cards that are "due" but deck size says don't show yet
+	 */
+	private final ActiveDeck current_due = new ActiveDeck();
 	/**
 	 * holding area for cards that should not be shown any more this session
 	 */
@@ -137,9 +141,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * time-shift all cards by exactly one day + one extra hour for
 			 * safety
 			 */
-			updateTime(current_pending, ONE_DAY_ms + ONE_HOUR_ms);
+			updateTime(current_due, ONE_DAY_ms + ONE_HOUR_ms);
 			int due = 0;
-			for (ActiveCard card : current_pending.deck) {
+			for (ActiveCard card : current_due.deck) {
 				if (card.show_again_ms < 0) {
 					due++;
 				}
@@ -150,7 +154,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
 			 */
-			Iterator<ActiveCard> ipending = current_pending.deck.iterator();
+			Iterator<ActiveCard> ipending = current_due.deck.iterator();
 			while (ipending.hasNext()) {
 				ActiveCard active = ipending.next();
 				if (getCardById(active.pgroup, active.vgroup) != null) {
@@ -164,56 +168,56 @@ public class LearningSession extends ChildScreen implements Screen {
 			/*
 			 * ALWAYS force reset ALL correct in a row counts on load!
 			 */
-			resetCorrectInARow(current_pending);
+			resetCorrectInARow(current_due);
 
 			/*
 			 * RESET tries max count
 			 */
-			resetRetriesCount(current_pending);
+			resetRetriesCount(current_due);
 
 			/*
 			 * ALWAYS start off as being eligible for "bump"
 			 */
-			markAllNoErrors(current_pending);
+			markAllNoErrors(current_due);
 
 			/*
 			 * Make sure no boxes out of range
 			 */
-			onlyPositiveBoxValues(current_pending);
+			onlyPositiveBoxValues(current_due);
 
 			/*
 			 * time-shift all cards by an additional seven days to pull in more
 			 * cards if this is an extra practice session
 			 */
 			if (isExtraPractice) {
-				updateTime(current_pending, ONE_DAY_ms * 7l);
+				updateTime(current_due, ONE_DAY_ms * 7l);
 			}
 
 			/*
 			 * mark cards already in the active deck
 			 */
-			recordAlreadySeen(current_pending);
+			recordAlreadySeen(current_due);
 
 			/*
 			 * move cards due tomorrow or later into the already done pile!
 			 */
-			retireNotYetCards(current_pending);
+			retireNotYetCards(current_due);
 
 			/*
 			 * truncate card timings to minute (enables semi-shuffled ordering)
 			 */
-			truncateToNearestMinute(current_pending.deck);
+			truncateToNearestMinute(current_due.deck);
 
 			/*
 			 * initial shuffle
 			 */
-			Collections.shuffle(current_pending.deck);
+			Collections.shuffle(current_due.deck);
 
 			/*
 			 * resort deck, any cards with the same truncated show time stay in
 			 * their local shuffled order
 			 */
-			Collections.sort(current_pending.deck, byShowTimeChunks);
+			Collections.sort(current_due.deck, byShowTimeChunks);
 
 			/*
 			 * add cards to the active deck
@@ -370,11 +374,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			ActiveDeck tmp = json.fromJson(ActiveDeck.class,
 					slot.child(ActiveDeckJson));
-			current_pending.deck = tmp.deck;
-			current_pending.lastrun = tmp.lastrun;
-			Collections.sort(current_pending.deck, byShowTime);
+			current_due.deck = tmp.deck;
+			current_due.lastrun = tmp.lastrun;
+			Collections.sort(current_due.deck, byShowTime);
 
-			if (System.currentTimeMillis() - current_pending.lastrun < 16 * ONE_HOUR_ms) {
+			if (System.currentTimeMillis() - current_due.lastrun < 16 * ONE_HOUR_ms) {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
@@ -398,7 +402,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			ActiveDeck tosave = new ActiveDeck();
 			tosave.deck.addAll(current_active.deck);
-			tosave.deck.addAll(current_pending.deck);
+			tosave.deck.addAll(current_due.deck);
+			tosave.deck.addAll(current_discards.deck);
 			tosave.deck.addAll(current_done.deck);
 			tosave.lastrun = System.currentTimeMillis() - ((long) elapsed)
 					* 1000l;
@@ -512,7 +517,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (activeCard == null) {
 				if (elapsed < MinSessionTime) {
 					game.log(this, "session time is not up");
-					long shift_by_ms = getMinShiftTimeOf(current_pending);
+					long shift_by_ms = getMinShiftTimeOf(current_discards);
 					if (shift_by_ms > ONE_MINUTE_ms) {
 						game.log(this, "large shift of "
 								+ (shift_by_ms / ONE_SECOND_ms) + " secs",
@@ -520,8 +525,8 @@ public class LearningSession extends ChildScreen implements Screen {
 										+ " new card(s)");
 						addCards(IncrementDeckBySize, current_active);
 					}
-					game.log(this, "shifting deck to zero point");
-					updateTime(current_pending, shift_by_ms);
+					game.log(this, "shifting discards to zero point");
+					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
@@ -529,11 +534,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * Session time is up, force time shift cards into active show
 				 * range...
 				 */
-				if (elapsed > MinSessionTime && current_pending.deck.size() > 0) {
+				if (elapsed > MinSessionTime && current_discards.deck.size() > 0) {
 					game.log(this, "session time up",
-							"shifting deck to zero point");
-					long shift_by_ms = getMinShiftTimeOf(current_pending);
-					updateTime(current_pending, shift_by_ms);
+							"shifting discards to zero point");
+					long shift_by_ms = getMinShiftTimeOf(current_discards);
+					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
@@ -549,7 +554,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 							ActiveDeck activeDeck = new ActiveDeck();
 							activeDeck.deck.addAll(current_active.deck);
-							activeDeck.deck.addAll(current_pending.deck);
+							activeDeck.deck.addAll(current_due.deck);
+							activeDeck.deck.addAll(current_discards.deck);
 							activeDeck.deck.addAll(current_done.deck);
 
 							SlotInfo info = new SlotInfo();
@@ -878,7 +884,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		/**
 		 * look for previous cards to load first, if their delay time is up
 		 */
-		Iterator<ActiveCard> ipending = current_pending.deck.iterator();
+		Iterator<ActiveCard> ipending = current_due.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
 			ActiveCard next = ipending.next();
 			if (next.box >= FULLY_LEARNED_BOX) {
@@ -1219,10 +1225,10 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private ActiveCard getNextCard() {
 		if (current_active.deck.size() == 0) {
-			updateTime(current_pending,
+			updateTime(current_discards,
 					(long) (sinceLastNextCard_elapsed * 1000f));
 			sinceLastNextCard_elapsed = 0;
-			Iterator<ActiveCard> itmp = current_pending.deck.iterator();
+			Iterator<ActiveCard> itmp = current_discards.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
 				if (tmp.noErrors
@@ -1260,7 +1266,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 		ActiveCard card = current_active.deck.get(0);
 		current_active.deck.remove(0);
-		current_pending.deck.add(card);
+		current_discards.deck.add(card);
 		return card;
 	}
 
@@ -1285,7 +1291,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		} else {
 			current_active.deck.add(1, card);
 		}
-		current_pending.deck.remove(card);
+		current_discards.deck.remove(card);
 	}
 
 	@Override
