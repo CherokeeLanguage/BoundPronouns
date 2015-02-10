@@ -144,7 +144,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					due++;
 				}
 			}
-			game.log(this, due + " cards are due.");
+			game.log(this, due + " cards previous cards are due.");
 
 			/*
 			 * Make sure we don't have active cards pointing to no longer
@@ -874,6 +874,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * @param active
 	 */
 	public void addCards(int needed, ActiveDeck active) {
+		int startingSize=active.deck.size();
 		/**
 		 * look for previous cards to load first, if their delay time is up
 		 */
@@ -890,6 +891,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			ipending.remove();
 		}
+		game.log(this, "Added "+(active.deck.size()-startingSize)+" previous cards.");
 
 		if (needed <= 0) {
 			return;
@@ -898,6 +900,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		/**
 		 * not enough already seen cards, add new never seen cards
 		 */
+		startingSize=active.deck.size();
 		Iterator<Card> ideck = game.deck.cards.iterator();
 		while (needed > 0 && ideck.hasNext()) {
 			Card next = ideck.next();
@@ -935,6 +938,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			nodupes.add(unique_id);
 		}
+		game.log(this, "Added "+(active.deck.size()-startingSize)+" new cards.");
 
 		if (needed <= 0) {
 			return;
