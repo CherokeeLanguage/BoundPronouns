@@ -1,3 +1,6 @@
 /.settings/
 /.classpath
 /.project
+/IOSLauncher.app/
+/IOSLauncher.app.dSYM/
+/IOSLauncher.ipa
