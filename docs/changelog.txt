@@ -3,6 +3,7 @@
 Graphics fixes.
 Change "wrong answer" selection logic.
 Prepare for eventual Apple Device deployment.
+Log when cards are added to active deck
  
 1.47
 
