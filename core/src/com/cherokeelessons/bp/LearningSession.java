@@ -495,6 +495,9 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private long getMinShiftTimeOf(ActiveDeck current_pending) {
+		if (current_pending.deck.size() == 0) {
+			return 0;
+		}
 		long by = Long.MAX_VALUE;
 		Iterator<ActiveCard> icard = current_pending.deck.iterator();
 		while (icard.hasNext()) {
@@ -511,18 +514,34 @@ public class LearningSession extends ChildScreen implements Screen {
 	private float sinceLastNextCard_elapsed = 0f;
 	private boolean elapsed_tick_on = false;
 	private Runnable showACard = new Runnable() {
+		private ActiveCard previousCard;
+
 		@Override
 		public void run() {
-			//TODO: Try and reduce repeats by moving repeated card back into discards one time with next time > least time of discards or pending  
-			final ActiveCard activeCard = getNextCard();
+			ActiveCard activeCard;
+			do {
+				activeCard = getNextCard();
+				if (activeCard == null) {
+					break;
+				}
+				if (!activeCard.equals(previousCard)) {
+					break;
+				}
+				if (current_discards.deck.size() == 0
+						&& current_active.deck.size() == 0) {
+					break;
+				}
+				activeCard.show_again_ms = Deck.getNextInterval(activeCard.getMinCorrectInARow()+1);
+				previousCard=null;
+			} while (true);
+
 			if (activeCard == null) {
 				if (elapsed < MinSessionTime) {
 					game.log(this, "session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					game.log(this, "shifting discards to zero point: "+(shift_by_ms/ONE_SECOND_ms));
-					if (shift_by_ms > ONE_MINUTE_ms) {
-						game.log(this, "adding " + IncrementDeckBySize
-										+ " new card(s)");
+					game.log(this, "shifting discards to zero point: "
+							+ (shift_by_ms / ONE_SECOND_ms));
+					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
 						addCards(IncrementDeckBySize, current_active);
 					}
 					updateTime(current_discards, shift_by_ms);
@@ -533,9 +552,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * Session time is up, force time shift cards into active show
 				 * range...
 				 */
-				if (elapsed > MinSessionTime && current_discards.deck.size() > 0) {
+				if (elapsed > MinSessionTime
+						&& current_discards.deck.size() > 0) {
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					game.log(this, "shifting discards to zero point: "+(shift_by_ms/ONE_SECOND_ms));
+					game.log(this, "shifting discards to zero point: "
+							+ (shift_by_ms / ONE_SECOND_ms));
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
@@ -593,6 +614,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					return;
 				}
 			}
+			previousCard = activeCard;
 			final Card deckCard = new Card(getCardById(activeCard.pgroup,
 					activeCard.vgroup));
 			if (activeCard.newCard) {
@@ -878,7 +900,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * @param active
 	 */
 	public void addCards(int needed, ActiveDeck active) {
-		int startingSize=active.deck.size();
+		int startingSize = active.deck.size();
 		/**
 		 * look for previous cards to load first, if their delay time is up
 		 */
@@ -895,7 +917,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			ipending.remove();
 		}
-		game.log(this, "Added "+(active.deck.size()-startingSize)+" previous cards.");
+		game.log(this, "Added " + (active.deck.size() - startingSize)
+				+ " previous cards.");
 
 		if (needed <= 0) {
 			return;
@@ -904,7 +927,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		/**
 		 * not enough already seen cards, add new never seen cards
 		 */
-		startingSize=active.deck.size();
+		startingSize = active.deck.size();
 		Iterator<Card> ideck = game.deck.cards.iterator();
 		while (needed > 0 && ideck.hasNext()) {
 			Card next = ideck.next();
@@ -942,7 +965,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			nodupes.add(unique_id);
 		}
-		game.log(this, "Added "+(active.deck.size()-startingSize)+" new cards.");
+		game.log(this, "Added " + (active.deck.size() - startingSize)
+				+ " new cards.");
 
 		if (needed <= 0) {
 			return;
