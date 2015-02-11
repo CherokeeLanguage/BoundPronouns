@@ -65,8 +65,8 @@ eclipse.project {
 }
 
 robovm {
-	iosSignIdentity = "Michael Joyner"
-	iosProvisioningProfile = "com.cherokeelessons.bp.ios.IOSLauncher"
+	iosSignIdentity = "iPhone Distribution: Michael Joyner"
+	iosProvisioningProfile = "iOSTeam Provisioning Profile: *"
 	iosSkipSigning = false
 	stdoutFifo = ""
 	stderrFifo = ""
