@@ -32,7 +32,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 26;
+	public static int version = 27;
 
 	private boolean skipBareForms = false;
 
@@ -1006,7 +1006,7 @@ public class BuildDeck implements Runnable {
 
 	private void init() {
 		FileHandle csv = Gdx.files.internal("csv/pronouns-list.csv");
-		try (CSVParser parse = CSVParser.parse(csv.readString(),
+		try (CSVParser parse = CSVParser.parse(csv.readString("UTF-8"),
 				CSVFormat.RFC4180)) {
 			pronouns = parse.getRecords();
 		} catch (IOException e) {
@@ -1014,7 +1014,7 @@ public class BuildDeck implements Runnable {
 			return;
 		}
 		csv = Gdx.files.internal("csv/challenges.csv");
-		try (CSVParser parse = CSVParser.parse(csv.readString(),
+		try (CSVParser parse = CSVParser.parse(csv.readString("UTF-8"),
 				CSVFormat.RFC4180)) {
 			challenges = parse.getRecords();
 		} catch (IOException e) {
