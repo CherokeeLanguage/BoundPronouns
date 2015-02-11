@@ -1,3 +1,9 @@
+1.54
+
+Dynamic sizing to fit various display sizes better.
+Desktop version now auto adjusts layout as you resize.
+No more 'letterbox'
+
 1.52
 
 Graphics fixes.
