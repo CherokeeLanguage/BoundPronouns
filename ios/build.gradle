@@ -64,10 +64,4 @@ eclipse.project {
     natures 'org.robovm.eclipse.RoboVMNature'
 }
 
-robovm {
-	iosSignIdentity = "iPhone Distribution: Michael Joyner"
-	iosProvisioningProfile = "iOSTeam Provisioning Profile: *"
-	iosSkipSigning = false
-	stdoutFifo = ""
-	stderrFifo = ""
-}
+
