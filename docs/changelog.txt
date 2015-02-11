@@ -1,3 +1,7 @@
+1.56
+
+Fix for Windows and that stupid "1251-1" charset default Java uses there.
+
 1.54
 
 Dynamic sizing to fit various display sizes better.
