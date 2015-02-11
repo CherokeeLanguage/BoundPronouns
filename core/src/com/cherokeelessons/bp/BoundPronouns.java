@@ -53,7 +53,7 @@ public class BoundPronouns extends Game {
 	public static FitViewport getFitViewport(Camera camera) {
 		Rectangle surrounds = fittedSize();
 		FitViewport fitViewport = new FitViewport(surrounds.width,
-				surrounds.height, camera);
+				surrounds.height, camera);		
 		fitViewport.update((int) surrounds.width, (int) surrounds.height, true);
 		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
 				"Camera Size: " + (int) surrounds.getWidth() + "x"

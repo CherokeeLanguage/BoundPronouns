@@ -16,7 +16,6 @@ public class LoadingScreen implements Screen {
 
 	private static final boolean doHowl = true;
 	private final BoundPronouns game;
-	private final FitViewport viewport;
 	private final Stage stage;
 	private Image loadingBar = null;
 	private final Table table;
@@ -24,8 +23,7 @@ public class LoadingScreen implements Screen {
 	public LoadingScreen(BoundPronouns boundPronouns) {
 		this.game = boundPronouns;
 		stage = new Stage();
-		viewport = BoundPronouns.getFitViewport(stage.getCamera());
-		stage.setViewport(viewport);
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 		table = new Table();
 		stage.addActor(table);
 		table.setFillParent(true);
@@ -78,6 +76,7 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 		stage.getViewport().update(width, height);
 	}
 

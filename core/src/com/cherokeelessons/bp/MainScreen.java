@@ -42,7 +42,6 @@ import com.cherokeelessons.util.JsonConverter;
 public class MainScreen implements Screen, InputProcessor {
 
 	private final BoundPronouns game;
-	private final FitViewport viewport;
 	private final Stage stage;
 	private final Skin skin;
 	private ClickListener viewPronouns = new ClickListener() {
@@ -433,8 +432,7 @@ public class MainScreen implements Screen, InputProcessor {
 		this.skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		this.multi = new InputMultiplexer();
 		stage = new Stage();
-		viewport = BoundPronouns.getFitViewport(stage.getCamera());
-		stage.setViewport(viewport);
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 
 		json = new JsonConverter();
 
@@ -514,6 +512,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	@Override
 	public void resize(int width, int height) {
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 		stage.getViewport().update(width, height);
 	}
 

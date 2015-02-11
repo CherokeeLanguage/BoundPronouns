@@ -5,19 +5,15 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class ChildScreen implements Screen, InputProcessor {
 	
 	protected final BoundPronouns game;
 	protected final Screen caller;
-	protected final FitViewport viewport;
 	protected final Stage stage;
 	protected final InputMultiplexer multi;
 	
@@ -42,8 +38,7 @@ public class ChildScreen implements Screen, InputProcessor {
 		this.caller=caller;
 		this.multi=new InputMultiplexer();
 		stage = new Stage();
-		viewport = BoundPronouns.getFitViewport(stage.getCamera());		
-		stage.setViewport(viewport);
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 	}
 	
 	@Override
@@ -63,6 +58,7 @@ public class ChildScreen implements Screen, InputProcessor {
 
 	@Override
 	public void resize(int width, int height) {
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 		stage.getViewport().update(width, height);
 	}
 
