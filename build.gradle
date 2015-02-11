@@ -77,7 +77,7 @@ project(":ios") {
     apply plugin: "robovm"
     
     robovm {
-	iosSignIdentity = "854DA15E74466A2556F284AB77C61FE1D87A780D"
+	iosSignIdentity = "9CD239D45C8710A1A437CFB010AD91A6EB1CAFCF"
 	iosProvisioningProfile = "bb4faef1-36e8-4a94-afc5-3826fef9bb3b"
 	iosSkipSigning = false
 	stdoutFifo = ""
