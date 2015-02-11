@@ -63,3 +63,11 @@ eclipse.project {
     name = appName + "-ios"
     natures 'org.robovm.eclipse.RoboVMNature'
 }
+
+robovm {
+	iosSignIdentity = "Michael Joyner"
+	iosProvisioningProfile = "com.cherokeelessons.bp.ios.IOSLauncher"
+	iosSkipSigning = false
+	stdoutFifo = ""
+	stderrFifo = ""
+}
