@@ -10,11 +10,13 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.allowSoftwareMode=true;
 		config.forceExit=true;
-		config.height=720;
-		config.width=1280;
+		config.height=768;
+		config.width=1024;
 		config.addIcon("icons/icon-128.png", FileType.Internal);
 		config.addIcon("icons/icon-32.png", FileType.Internal);
 		config.addIcon("icons/icon-16.png", FileType.Internal);
 		new LwjglApplication(new BoundPronouns(), config);
 	}
+	
+	
 }

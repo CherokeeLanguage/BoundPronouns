@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class LoadingScreen implements Screen {
@@ -18,23 +19,20 @@ public class LoadingScreen implements Screen {
 	private final FitViewport viewport;
 	private final Stage stage;
 	private Image loadingBar = null;
-	private final VerticalGroup vg;
+	private final Table table;
 
 	public LoadingScreen(BoundPronouns boundPronouns) {
 		this.game = boundPronouns;
 		stage = new Stage();
-		viewport = new FitViewport(1280, 720, stage.getCamera());
-		viewport.update(1280, 720, true);
+		viewport = BoundPronouns.getFitViewport(stage.getCamera());
 		stage.setViewport(viewport);
-		vg = new VerticalGroup();
-		stage.addActor(vg);
-		vg.setFillParent(true);
+		table = new Table();
+		stage.addActor(table);
+		table.setFillParent(true);
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-
 	}
 
 	private Music howl;
@@ -73,13 +71,8 @@ public class LoadingScreen implements Screen {
 						"Failed loading 'Loading Bar' image!");
 			}
 			loadingBar = new Image(texture);
-			vg.addActor(loadingBar);
-			float w = loadingBar.getWidth();
-			float h = loadingBar.getHeight();
-			loadingBar.setOrigin(w / 2, h / 2);
-			loadingBar.invalidateHierarchy();
+			table.add(loadingBar).align(Align.center).expand();
 			loadingBar.setColor(Color.RED);
-			vg.pack();
 		}
 	}
 

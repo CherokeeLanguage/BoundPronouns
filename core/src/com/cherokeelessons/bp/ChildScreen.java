@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -36,13 +37,12 @@ public class ChildScreen implements Screen, InputProcessor {
 		};
 	};
 	
-	public ChildScreen(BoundPronouns game, Screen caller) {
+	public ChildScreen(BoundPronouns game, Screen caller) {		
 		this.game=game;
 		this.caller=caller;
 		this.multi=new InputMultiplexer();
 		stage = new Stage();
-		viewport = new FitViewport(1280, 720, stage.getCamera());
-		viewport.update(1280, 720, true);
+		viewport = BoundPronouns.getFitViewport(stage.getCamera());		
 		stage.setViewport(viewport);
 	}
 	

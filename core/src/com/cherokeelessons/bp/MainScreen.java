@@ -433,8 +433,7 @@ public class MainScreen implements Screen, InputProcessor {
 		this.skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		this.multi = new InputMultiplexer();
 		stage = new Stage();
-		viewport = new FitViewport(1280, 720, stage.getCamera());
-		viewport.update(1280, 720, true);
+		viewport = BoundPronouns.getFitViewport(stage.getCamera());
 		stage.setViewport(viewport);
 
 		json = new JsonConverter();

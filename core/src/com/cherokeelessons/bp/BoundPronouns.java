@@ -22,6 +22,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -31,15 +32,38 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
-	
+
+	private final static Rectangle minSize = new Rectangle(0, 0, 1280, 720);
+
+	private static Rectangle fittedSize() {
+		int h = Gdx.graphics.getHeight();
+		int w = Gdx.graphics.getWidth();
+		Rectangle surrounds = new Rectangle(0, 0, w, h);
+		surrounds.fitOutside(minSize);
+		return surrounds;
+	}
+
+	public static FitViewport getFitViewport(Camera camera) {
+		Rectangle surrounds = fittedSize();
+		FitViewport fitViewport = new FitViewport(surrounds.width,
+				surrounds.height, camera);
+		fitViewport.update((int) surrounds.width, (int) surrounds.height, true);
+		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
+				"Camera Size: " + (int) surrounds.getWidth() + "x"
+						+ (int) surrounds.getHeight());
+		return fitViewport;
+	}
+
 	public final static Color ClearColor;
-	
-	public final Deck deck=new Deck();
+
+	public final Deck deck = new Deck();
 
 	public static final String SKIN = "skins/holo/Holo-light-xhdpi.json";
 
@@ -83,9 +107,9 @@ public class BoundPronouns extends Game {
 		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
 				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC
-				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW
-				;
-		ClearColor=new Color((float)0xb3/(float)0xff, (float)0xb3/(float)0xff, (float)0xb1/(float)0xff, 1);
+				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW;
+		ClearColor = new Color((float) 0xb3 / (float) 0xff, (float) 0xb3
+				/ (float) 0xff, (float) 0xb1 / (float) 0xff, 1);
 	}
 
 	public SpriteBatch batch;
@@ -105,7 +129,7 @@ public class BoundPronouns extends Game {
 	}
 
 	private void initManager() {
-		
+
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.setLoader(FreeTypeFontGenerator.class,
 				new FreeTypeFontGeneratorLoader(resolver));
@@ -135,7 +159,7 @@ public class BoundPronouns extends Game {
 		addFonts();
 
 	}
-	
+
 	private void addFonts() {
 		addFreeSerifFor(30, Font.SerifXSmall);
 		addFreeSerifFor(36, Font.SerifSmall);
@@ -149,9 +173,9 @@ public class BoundPronouns extends Game {
 	public static enum Font {
 		SerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SerifMediumLarge, SerifLLarge;
 	}
-	
-	public BitmapFont getFont(Font font) {		
-		return manager.get(font.name()+".ttf", BitmapFont.class);
+
+	public BitmapFont getFont(Font font) {
+		return manager.get(font.name() + ".ttf", BitmapFont.class);
 	}
 
 	@SuppressWarnings("unused")
@@ -213,7 +237,7 @@ public class BoundPronouns extends Game {
 		font.fontParameters.size = size;
 		font.fontParameters.magFilter = TextureFilter.Linear;
 		font.fontParameters.minFilter = TextureFilter.Linear;
-		manager.load(fontname.name()+ ".ttf", BitmapFont.class, font);
+		manager.load(fontname.name() + ".ttf", BitmapFont.class, font);
 		return;
 	}
 
@@ -313,6 +337,7 @@ public class BoundPronouns extends Game {
 	}
 
 	public static void glClearColor() {
-		Gdx.gl.glClearColor(ClearColor.r, ClearColor.g, ClearColor.b, ClearColor.a);		
+		Gdx.gl.glClearColor(ClearColor.r, ClearColor.g, ClearColor.b,
+				ClearColor.a);
 	}
 }
