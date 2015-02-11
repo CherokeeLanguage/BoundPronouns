@@ -78,7 +78,7 @@ project(":ios") {
     
     robovm {
 	iosSignIdentity = "854DA15E74466A2556F284AB77C61FE1D87A780D"
-	iosProvisioningProfile = "acc695c4-0205-4a2e-acc6-8fcaeeca2d2e"
+	iosProvisioningProfile = "bb4faef1-36e8-4a94-afc5-3826fef9bb3b"
 	iosSkipSigning = false
 	stdoutFifo = ""
 	stderrFifo = ""
