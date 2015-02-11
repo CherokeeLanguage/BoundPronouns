@@ -7,8 +7,8 @@ import java.util.HashSet;
 import com.badlogic.gdx.Gdx;
 
 public class ActiveCard {
-	
-	public boolean noErrors=false;
+
+	public boolean noErrors = false;
 
 	public int getMinCorrectInARow() {
 		int min = 3;
@@ -45,9 +45,10 @@ public class ActiveCard {
 		return true;
 	}
 
-	public void resetCorrectInARow(Collection<String> answers) {		
-		if (answers.size()==0) {
-			throw new RuntimeException("EMPTY ANSWER LIST ?!?! ["+pgroup+"|"+vgroup+"]");
+	public void resetCorrectInARow(Collection<String> answers) {
+		if (answers.size() == 0) {
+			throw new RuntimeException("EMPTY ANSWER LIST ?!?! [" + pgroup
+					+ "|" + vgroup + "]");
 		}
 		correct_in_a_row.clear();
 		for (String a : answers) {
@@ -62,9 +63,9 @@ public class ActiveCard {
 	/**
 	 * id of card in main deck based on pgroup/vgroup combinations
 	 */
-//	public String getId(){
-//		return pgroup + "+" + vgroup;
-//	};
+	// public String getId(){
+	// return pgroup + "+" + vgroup;
+	// };
 	/**
 	 * verb group for this card
 	 */
@@ -101,5 +102,18 @@ public class ActiveCard {
 	public int getAnswerCount() {
 		int i = correct_in_a_row.size();
 		return i > 0 ? i : 1;
+	}
+
+	/**
+	 * Two active cards are equal if both the pgroup and vgroup and the same.
+	 * All other attributes are ignored.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof ActiveCard)) {
+			return false;
+		}
+		ActiveCard other = (ActiveCard) obj;
+		return vgroup.equals(other.vgroup) && pgroup.equals(other.pgroup);
 	}
 }
