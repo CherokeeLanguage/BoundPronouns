@@ -3,8 +3,8 @@ package com.cherokeelessons.bp;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Application.ApplicationType;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -31,7 +31,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
@@ -128,7 +127,6 @@ public class MainScreen implements Screen, InputProcessor {
 			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ"
 					: info.settings.name;
 		}
-
 		final TextField name = new TextField(info.settings.name, tfs);
 		final TextButton mode = new TextButton(
 				info.settings.display.toString(), tbs);
@@ -255,7 +253,7 @@ public class MainScreen implements Screen, InputProcessor {
 				if (info == null) {
 					info = new SlotInfo();
 				}
-				if (info.version!=SlotInfo.StatsVersion) {
+				if (info.version != SlotInfo.StatsVersion) {
 					FileHandle activeDeckFile = p0
 							.child(LearningSession.ActiveDeckJson);
 					ActiveDeck activeDeck = null;
