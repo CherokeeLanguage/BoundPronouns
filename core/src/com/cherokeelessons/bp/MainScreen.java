@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -128,6 +129,30 @@ public class MainScreen implements Screen, InputProcessor {
 					: info.settings.name;
 		}
 		final TextField name = new TextField(info.settings.name, tfs);
+		name.setDisabled(true);
+		name.setTouchable(Touchable.enabled);
+		name.addListener(new ClickListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				name.setTouchable(Touchable.disabled);
+				TextInputListener listener=new TextInputListener() {			
+					@Override
+					public void input(String text) {
+						name.setText(text);
+						name.setTouchable(Touchable.enabled);
+					}
+					
+					@Override
+					public void canceled() {
+						name.setTouchable(Touchable.enabled);
+					}
+				};
+				Gdx.input.getTextInput(listener, "Profile Name?", name.getText(), "");
+				return true;
+			}
+		});
+		
 		final TextButton mode = new TextButton(
 				info.settings.display.toString(), tbs);
 		mode.addListener(new ClickListener() {
