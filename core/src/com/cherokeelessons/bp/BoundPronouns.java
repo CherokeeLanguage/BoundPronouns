@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.MusicLoader.MusicParameter;
@@ -39,6 +40,12 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
+	
+	public static PlatformTextInput pInput;
+	
+	public static interface PlatformTextInput {
+		public void getTextInput (final TextInputListener listener, final String title, final String text, final String hint);
+	}
 
 	private final static Rectangle minSize = new Rectangle(0, 0, 1280, 720);
 

@@ -148,7 +148,11 @@ public class MainScreen implements Screen, InputProcessor {
 						name.setTouchable(Touchable.enabled);
 					}
 				};
-				Gdx.input.getTextInput(listener, "Profile Name?", name.getText(), "");
+				if (BoundPronouns.pInput==null) {
+					Gdx.input.getTextInput(listener, "Profile Name?", name.getText(), "");
+				} else {
+					BoundPronouns.pInput.getTextInput(listener, "Profile Name?", name.getText(), "");
+				}
 				return true;
 			}
 		});
