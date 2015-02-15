@@ -22,6 +22,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.lwjgl.opengl.Display;
+
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
@@ -149,12 +151,17 @@ public class DesktopLauncher implements PlatformTextInput {
 				
 				dialog.setVisible(false);
 				
-				Gdx.app.log(this.getClass().getName(), "setting dialog options");
+				int x = Display.getX() + Display.getWidth()/2;
+				int y = Display.getY() + Display.getHeight()/2;
+				dialog.setLocation(x, y);
+				
+				Gdx.app.log(this.getClass().getName(), "setting dialog options: "+x+"x"+y);
 				dialog.setModalityType(Dialog.ModalityType.TOOLKIT_MODAL);
 				dialog.setAlwaysOnTop(true);
 				
 				Gdx.app.log(this.getClass().getName(), "showing dialog");
 				dialog.setVisible(true);
+				
 				dialog.dispose();
 
 				Object selectedValue = pane.getValue();
