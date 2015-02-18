@@ -49,4 +49,5 @@ build/
 /.project
 /skin-editor/
 /.settings/
+
 /local.properties
