@@ -9,11 +9,12 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
+import org.h2.jdbcx.JdbcConnectionPool;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.TextInputListener;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.MusicLoader.MusicParameter;
@@ -40,6 +41,14 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
+	
+	public static final JdbcConnectionPool cp;
+	
+	static {
+		FileHandle slot = BuildDeck.getDeckSlot().child("database");
+		cp = JdbcConnectionPool.create(
+				"jdbc:h2:"+slot.file(), "sa", "");
+	}
 	
 	public static PlatformTextInput pInput;
 	
