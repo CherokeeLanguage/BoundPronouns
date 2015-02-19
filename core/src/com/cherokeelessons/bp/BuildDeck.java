@@ -82,7 +82,7 @@ public class BuildDeck implements Runnable {
 			json.toJson(deck, dest);
 			if (done != null) {
 				Gdx.app.postRunnable(done);
-			}
+			}			
 		}
 	};
 

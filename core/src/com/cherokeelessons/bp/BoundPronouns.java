@@ -1,6 +1,8 @@
 package com.cherokeelessons.bp;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,12 +44,24 @@ import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
 	
-	public static final JdbcConnectionPool cp;
+	private static JdbcConnectionPool cp=null;
 	
-	static {
-		FileHandle slot = BuildDeck.getDeckSlot().child("database");
-		cp = JdbcConnectionPool.create(
-				"jdbc:h2:"+slot.file(), "sa", "");
+	public static JdbcConnectionPool getPool(){
+		if (cp==null) {
+			FileHandle slot = BuildDeck.getDeckSlot().child("database");
+			cp = JdbcConnectionPool.create(
+					"jdbc:h2:"+slot.file()+";AUTO_SERVER=TRUE;COMPRESS=TRUE;", "sa", "");
+		}
+		return cp;
+	}
+	
+	public static Connection connect(){
+		try {
+			return getPool().getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public static PlatformTextInput pInput;

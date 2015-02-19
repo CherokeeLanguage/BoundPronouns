@@ -46,6 +46,7 @@ public class BuildDeckScreen extends ChildScreen {
 		TiledDrawable background = getBackground();
 		t.setBackground(background);
 		stage.addActor(t);
+		BoundPronouns.connect();
 	}
 	
 	private Label msg;
