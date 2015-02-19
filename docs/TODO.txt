@@ -1,10 +1,16 @@
-Shift all "update time" logic to use "elapsed" only and not system time
+[ ] View challenges => View deck, straight list or Remove (?)
 
-Always subtract "elapsed" from activedeck before saving it
+[ ] Introduction - Instructions
 
-Add option for "session length" as "short" (5 minutes), "standard" (10 minutes), and "long" (15 minutes)
+[ ] Add option for "session length":  "short" (5 minutes), "standard" (10 minutes), and "long" (15 minutes)
 
-Dynamic timing of cards, on a per card basis, based on response times?
+[ ] Add option for "initial card time limit as": as "infinite", "short" (10 seconds), "standard" (15 seconds), "long" (30 seconds), "x-long" (60 seconds)
+
+[ ] "you one understands it" => "you one understand it"
+
+[x] Shift all "update time" logic to use "elapsed" only and not system time
+
+[x] Always subtract "elapsed" from activedeck before saving it
 
 [X] Add RENAME session on SELECTION screen
 
