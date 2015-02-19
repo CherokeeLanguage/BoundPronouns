@@ -1,5 +1,8 @@
 package com.cherokeelessons.bp;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
@@ -46,7 +49,13 @@ public class BuildDeckScreen extends ChildScreen {
 		TiledDrawable background = getBackground();
 		t.setBackground(background);
 		stage.addActor(t);
-		BoundPronouns.connect();
+		Connection c = BoundPronouns.connect();
+		try {
+			c.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private Label msg;

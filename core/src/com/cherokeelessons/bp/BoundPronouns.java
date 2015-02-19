@@ -2,6 +2,7 @@ package com.cherokeelessons.bp;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
-import org.h2.jdbcx.JdbcConnectionPool;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -44,20 +44,17 @@ import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
 	
-	private static JdbcConnectionPool cp=null;
-	
-	public static JdbcConnectionPool getPool(){
-		if (cp==null) {
-			FileHandle slot = BuildDeck.getDeckSlot().child("database");
-			cp = JdbcConnectionPool.create(
-					"jdbc:h2:"+slot.file()+";AUTO_SERVER=TRUE;COMPRESS=TRUE;", "sa", "");
-		}
-		return cp;
-	}
-	
-	public static Connection connect(){
+	static {
 		try {
-			return getPool().getConnection();
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+		}
+	}
+		
+	public static Connection connect(){
+		try {			
+			FileHandle slot = BuildDeck.getDeckSlot().child("database");
+			return DriverManager.getConnection("jdbc:h2:"+slot.file()+";COMPRESS=TRUE;", "sa", "");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

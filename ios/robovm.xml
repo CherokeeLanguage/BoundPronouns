@@ -31,7 +31,11 @@
     <pattern>com.android.org.bouncycastle.crypto.digests.AndroidDigestFactoryOpenSSL</pattern>
     <pattern>org.apache.harmony.security.provider.cert.DRLCertFactory</pattern>
     <pattern>org.apache.harmony.security.provider.crypto.CryptoProvider</pattern>
-    <pattern>javax.sql.XADataSource</pattern>
+    <pattern>org.h2.**</pattern>
+    <pattern>org.h2.upgrade.**</pattern>
+    <pattern>com.ibm.icu.text.**</pattern>
+    <pattern>org.h2.store.fs.**</pattern>
+    <pattern>com.vididsolutions.jts.geom.**</pattern>
   </forceLinkClasses>
   <libs>
     <lib>build/libs/ios/libgdx-freetype.a</lib>
