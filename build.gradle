@@ -45,7 +45,7 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+        compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"                
     }
 }
 
@@ -69,6 +69,7 @@ project(":android") {
         compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+        compile 'com.h2database:h2:1.4.185'
     }
 }
 
@@ -106,6 +107,7 @@ project(":core") {
         compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+        compile 'com.h2database:h2:1.4.185'
     }
 }
 
