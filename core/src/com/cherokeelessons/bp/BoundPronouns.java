@@ -53,8 +53,8 @@ public class BoundPronouns extends Game {
 		
 	public static Connection connect(){
 		try {			
-			FileHandle slot = BuildDeck.getDeckSlot().child("database");
-			return DriverManager.getConnection("jdbc:h2:"+slot.file()+";COMPRESS=TRUE;", "sa", "");
+			FileHandle slot = BuildDeck.getDeckSlot().child("deck");
+			return DriverManager.getConnection("jdbc:h2:"+slot.file()+";AUTO_SERVER=TRUE;COMPRESS=TRUE;", "sa", "");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
