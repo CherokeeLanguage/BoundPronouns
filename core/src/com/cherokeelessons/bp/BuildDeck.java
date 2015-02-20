@@ -3,11 +3,9 @@ package com.cherokeelessons.bp;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.csv.CSVFormat;
@@ -23,24 +21,14 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
 
-	/**
-	 * If enabled will add reversed cards, this causes this deck size to jump
-	 * from 1,939 to 4,378 cards! Additionally the UI is net setup to handle
-	 * these reversed cards and the memory usage skyrockets.
-	 */
-	private static final boolean addReversed = false;
-
 	private static final boolean forceRebuild = false;
 
-	public static int version = 27;
-
-	private boolean skipBareForms = false;
+	public static int version = 28;
 
 	private JsonConverter json = new JsonConverter();
 	private List<CSVRecord> pronouns = null;
 	private List<CSVRecord> challenges = null;
 	private final Deck deck;
-	private Deck inverted = new Deck();
 	private String prevLatin = "";
 	private String prevChr = "";
 	private String status = "";
@@ -86,73 +74,6 @@ public class BuildDeck implements Runnable {
 		}
 	};
 
-	public Runnable addReversedCards = new Runnable() {
-		@Override
-		public void run() {
-			Collections.sort(deck.cards);
-			if (addReversed) {
-				game.log(this, "buildDeck#addReversedCards");
-				_run();
-			}
-			Gdx.app.postRunnable(save);
-		}
-
-		private void _run() {
-			Collections.reverse(deck.cards);
-			Iterator<Card> rcard = inverted.cards.iterator();
-			while (rcard.hasNext()) {
-				Card reversed = rcard.next();
-				insert_lookup: for (int i = 0; i < deck.cards.size(); i++) {
-					Card card = deck.cards.get(i);
-					if (card.id == reversed.id) {
-						deck.cards.add(i, reversed);
-						break insert_lookup;
-					}
-				}
-			}
-			Collections.reverse(deck.cards);
-		}
-	};
-
-	public Runnable createReversed = new Runnable() {
-		@Override
-		public void run() {
-			if (addReversed) {
-				game.log(this, "buildDeck#createReversed");
-				_run();
-			}
-			Gdx.app.postRunnable(addReversedCards);
-		}
-
-		private void _run() {
-			Map<String, Card> map = new HashMap<>();
-			Collections.sort(deck.cards);
-			for (int i = 0; i < deck.cards.size(); i++) {
-				deck.cards.get(i).id = i + 1;
-			}
-			for (int ix = 0; ix < deck.cards.size(); ix++) {
-				Card card = deck.cards.get(ix);
-				for (String answer : card.answer) {
-					Card xcard = map.get(answer);
-					if (xcard == null) {
-						xcard = new Card(card);
-						xcard.reversed = true;
-						xcard.challenge.clear();
-						xcard.answer.clear();
-						xcard.vgroup = answer;
-						xcard.challenge.add(answer);
-						map.put(answer, xcard);
-						inverted.cards.add(xcard);
-					}
-					xcard.id = card.id;
-					xcard.answer.add(StringUtils.join(card.challenge, "\n"));
-				}
-			}
-			game.log(this, inverted.cards.size()
-					+ " reversed cards created out of main deck.");
-		}
-	};
-
 	@Override
 	public void run() {
 		long tick = System.currentTimeMillis();
@@ -193,9 +114,9 @@ public class BuildDeck implements Runnable {
 				addChallengesToDeck();
 				break work;
 			}
-			if (isSkipBareForms() || pronouns.size() == 0) {
+			if (pronouns.size() == 0) {
 				setStatus("Saving ...");
-				Gdx.app.postRunnable(createReversed);
+				Gdx.app.postRunnable(save);
 				return;
 			}
 			game.log(this, "buildDeck#run");
@@ -586,6 +507,9 @@ public class BuildDeck implements Runnable {
 				if (!StringUtils.isEmpty(subj)) {
 					d.def = vdef_active;
 					if (subj.contains("I")) {
+						d.def = d.def.replace("[s]", "").intern();
+					}
+					if (subj.contains("You one")) {
 						d.def = d.def.replace("[s]", "").intern();
 					}
 					if (isPluralSubj(subj)) {
@@ -1021,14 +945,6 @@ public class BuildDeck implements Runnable {
 			game.err(this, e.getMessage(), e);
 			return;
 		}
-	}
-
-	public boolean isSkipBareForms() {
-		return skipBareForms;
-	}
-
-	public void setSkipBareForms(boolean skipBareForms) {
-		this.skipBareForms = skipBareForms;
 	}
 
 	public static class DataSet {
