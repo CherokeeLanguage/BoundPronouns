@@ -1,9 +1,6 @@
 package com.cherokeelessons.bp;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -171,17 +168,17 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFonts() {
-		addFreeSerifFor(30, Font.SerifXSmall);
+//		addFreeSerifFor(30, Font.SerifXSmall);
 		addFreeSerifFor(36, Font.SerifSmall);
 		addFreeSerifFor(42, Font.SerifMedium);
-		addFreeSerifFor(48, Font.SerifMediumLarge);
+//		addFreeSerifFor(48, Font.SerifMediumLarge);
 		addFreeSerifFor(58, Font.SerifLarge);
 		addFreeSerifFor(62, Font.SerifLLarge);
 		addFreeSerifFor(72, Font.SerifXLarge);
 	}
 
 	public static enum Font {
-		SerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, SerifMediumLarge, SerifLLarge;
+		xSerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, xSerifMediumLarge, SerifLLarge;
 	}
 
 	public BitmapFont getFont(Font font) {
