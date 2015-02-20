@@ -6,7 +6,7 @@
 
 [ ] Add option for "initial card time limit as": as "infinite", "short" (10 seconds), "standard" (15 seconds), "long" (30 seconds), "x-long" (60 seconds)
 
-[ ] "you one understands it" => "you one understand it"
+[x] "you one understands it" => "you one understand it"
 
 [x] Shift all "update time" logic to use "elapsed" only and not system time
 
