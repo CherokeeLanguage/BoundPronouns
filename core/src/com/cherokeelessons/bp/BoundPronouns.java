@@ -44,23 +44,6 @@ import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
 	
-	static {
-		try {
-			Class.forName("org.h2.Driver");
-		} catch (ClassNotFoundException e) {
-		}
-	}
-		
-	public static Connection connect(){
-		try {			
-			FileHandle slot = BuildDeck.getDeckSlot().child("deck");
-			return DriverManager.getConnection("jdbc:h2:"+slot.file()+";AUTO_SERVER=TRUE;COMPRESS=TRUE;", "sa", "");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 	public static PlatformTextInput pInput;
 	
 	public static interface PlatformTextInput {
