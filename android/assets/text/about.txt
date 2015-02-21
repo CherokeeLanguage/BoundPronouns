@@ -1,6 +1,15 @@
 Created by Michael Joyner
 
-Bound Pronouns from the official Cherokee English Dictionary as published by the Cherokee Nation of Oklahoma.
+Grammar information from:
+
+  "The Cherokee English Dictionary"
+   - published by the Cherokee Nation of Oklahoma.
+   
+  "A Reference Grammar of Oklahoma Cherokee"
+   - Brad Montgomery-Anderson
+   
+  "A Learner's Guide to the Cherokee-English Dictionary"
+   - Christian Koops (Rice University)
 
 Uses CC0 artwork from http://opengameart.org/
 Uses CC0 artwork from http://openclipart.org/
@@ -11,12 +20,12 @@ Uses CC0 audio from http://archive.org/
 
 Uses "Holo" theme from posting on LibGDX forums.
 
-Uses the "FreeSans" and "FreeSerif" fonts for Cherokee Syllabary and English text rendering.
+Uses the "FreeSerif" font for Cherokee Syllabary and English text rendering.
 
-Powered by LibGDX
-Powered by Apache Commons Lang3
-
-Built using Gradle, Maven, and Eclipse
+Powered by LibGDX + RoboVM
+Uses Apache Commons Lang3 (org.apache.commons:commons-lang3)
+Uses Apache CSV (org.apache.commons:commons-csv)
+Uses Jackson/Json (com.fasterxml.jackson.core:jackson-databind)
 
 This software incorporates a heavily modified Leitner Learning Method algorithm based on the description of the Leitner system as implemented by LenMus. This software does NOT use any LenMus code or derived code.
 
