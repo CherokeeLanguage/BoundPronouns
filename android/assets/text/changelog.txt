@@ -2,11 +2,13 @@
 
 Added option for "session length".
 Added option for "initial card time limit"
-Fix deck sorting regression.
+Fix deck sorting regression caused by code cleanup.
 Better main menu display (display fitting).
 Removed "View Challenges"
 Added "Instructions"
 Moved changelog to "assets" folder of app.
+Adjusted "ᎢᏨ" to be understandable by 2 English entries.
+Append "changelog.txt" to "about.txt" for "About" display.
 
 1.59
 

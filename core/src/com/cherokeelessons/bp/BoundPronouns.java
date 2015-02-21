@@ -41,11 +41,12 @@ import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {
-	
+
 	public static PlatformTextInput pInput;
-	
+
 	public static interface PlatformTextInput {
-		public void getTextInput (final TextInputListener listener, final String title, final String text, final String hint);
+		public void getTextInput(final TextInputListener listener,
+				final String title, final String text, final String hint);
 	}
 
 	private final static Rectangle minSize = new Rectangle(0, 0, 1280, 720);
@@ -61,7 +62,7 @@ public class BoundPronouns extends Game {
 	public static FitViewport getFitViewport(Camera camera) {
 		Rectangle surrounds = fittedSize();
 		FitViewport fitViewport = new FitViewport(surrounds.width,
-				surrounds.height, camera);		
+				surrounds.height, camera);
 		fitViewport.update((int) surrounds.width, (int) surrounds.height, true);
 		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
 				"Camera Size: " + (int) surrounds.getWidth() + "x"
@@ -93,6 +94,9 @@ public class BoundPronouns extends Game {
 	public static final String HEAVY_CHECK_MARK = "\u2713";
 	public static final String LEFT_ARROW = "\u21e6";
 	public static final String RIGHT_ARROW = "\u27a1";
+	public static final String DOT = "•";
+	public static final String RDQUOTE = "”";
+	public static final String LDQUOTE = "“";
 
 	public static final String SPECIALS;
 	public static final String IMG_SCROLLBAR = "scrollpane/basic-vbar.png";
@@ -115,7 +119,8 @@ public class BoundPronouns extends Game {
 		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
 				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
 				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC
-				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW;
+				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW
+				+ DOT + LDQUOTE + RDQUOTE;
 		ClearColor = new Color((float) 0xb3 / (float) 0xff, (float) 0xb3
 				/ (float) 0xff, (float) 0xb1 / (float) 0xff, 1);
 	}
@@ -169,10 +174,10 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFonts() {
-//		addFreeSerifFor(30, Font.SerifXSmall);
+		// addFreeSerifFor(30, Font.SerifXSmall);
 		addFreeSerifFor(36, Font.SerifSmall);
 		addFreeSerifFor(42, Font.SerifMedium);
-//		addFreeSerifFor(48, Font.SerifMediumLarge);
+		// addFreeSerifFor(48, Font.SerifMediumLarge);
 		addFreeSerifFor(58, Font.SerifLarge);
 		addFreeSerifFor(62, Font.SerifLLarge);
 		addFreeSerifFor(72, Font.SerifXLarge);
@@ -298,7 +303,7 @@ public class BoundPronouns extends Game {
 		} catch (IOException e) {
 			return null;
 		}
-		
+
 		Iterator<CSVRecord> ipro = records.iterator();
 		while (ipro.hasNext()) {
 			CSVRecord pronoun = ipro.next();
@@ -308,11 +313,11 @@ public class BoundPronouns extends Game {
 				ipro.remove();
 				continue;
 			}
-			if (vtmode.startsWith("#")){
+			if (vtmode.startsWith("#")) {
 				ipro.remove();
 				continue;
 			}
-			if (syllabary.startsWith("#")){
+			if (syllabary.startsWith("#")) {
 				ipro.remove();
 				continue;
 			}

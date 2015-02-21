@@ -1,0 +1,83 @@
+The program has 5 main sections:
+
+• Practice: This section is for doing the actual practices.
+• Instructions: What is being displayed now.
+• View Pronouns: This section of the program displays a quick reference listing of the pronouns taught by this program.
+• About: Describes the software itself and attributes various sources.
+• Quit: Exits the software completely.
+  
+Practicing:
+
+When you select “Practice” you will be presented the “Select Session” screen.
+
+Selecting any session with “*** NEW SESSION ***” will then present you with the initial session setup settings display:
+• Name: An optional session name. Tap the "underline" to enter a name in a popup dialog.
+• Display: Do want Syllabary only challenges? Latin alphabet only challenges? or both?
+• Session Length: How long do you want a practice session to last?
+• Card Time Limit: How long do you want to be allowed to answer each challenge in?
+• Mute by default: Do you want the sound effects muted?
+• Which card set?: You can choose to study only the bare prefixes, only the conjugated forms, or a mixture of both. This setting can not be changed later.
+
+For any already existing session you can erase it or edit its settings.
+
+Selecting any already existing session will start that session. If you are doing sessions “back-to-back” you will prompted with doing a simple practice or jumping forwards in time by a full day.
+• If you select practice, then the session will start and not record the results when done.
+• If you select jump forward, then the session will start as if a full day had passed and record the results when done.
+
+Pronunciation and Markings:
+
+Cherokee has six main vowels. They are “a”, “e”, “i”, “o”, “u”, and “v”.
+
+They are generally pronounced as follows:
+• a: as (a) in father.
+• e: as (a) in cake.
+• i: as (e) in Pete.
+• o: as (o) in hello.
+• u: as (u) in tuba.
+• v: as (u) in rung and is always nasalized.
+
+A long vowel is a vowel held for a normal length of time.
+A short vowel is a vowel spoken for a very brief length of time.
+
+Any vowel at the end of a word is short.
+Any vowel followed by a consonent with a silent vowel is short.
+Any vowel marked with an “underdot” is short.
+
+Any Syllabary letter marked with an "underdot" has a short vowel.
+Any Syllabary letter marked with an "under-x" has a silent vowel.
+
+Getting the silent, short, and long vowels correct is very important!
+
+ɂ - A glottal stop indicates a brief pause in speaking. Glottal stops are important!
+
+The superscripted numbers ¹, ², ³, and ⁴ refer to tone. The tones used in words or phrases can dramatically change their meaning.
+
+• A “²” indicates a tone with a normal pitch.
+• A “³” indicates a tone with a higher pitch.
+
+Many words have parts with “gliding” tones.
+
+• A “²³” indicates a tone that starts out normal and then is glided higher.
+• A “³²” indicates a tone that starts out high and then is glided down to normal.
+
+There are two more tones which will be only marked with single numbers and one special gliding tone that has no marking at all:
+
+• A “¹” indicates a tone that starts normal and then is glided downwards.
+• A “⁴” indicates a tone that starts out “normal” or “high” and then is glided upwards.
+• At the end of every word, unless marked otherwise, there is a “⁴³” gliding tone which starts out with very high and then is glided down. 
+
+Unlike English, where you stress different syllables in words with loudness you should try and keep all the syllables in your Cherokee words held at an equal volume.
+
+Cherokee is spoken with the tip of the tongue against the lower front teeth most of the time. You should be using the middle of your tongue to make the “s”, “d”, and “t” sounds, not the tongue's tip.
+
+Cherokee does not usually make a distinction between “he”, “she”, or “it”. When you see “he”, you can usually substitute “she” or “it”.
+
+Cherokee is more precise than English when talking about people, the English words “we” and “us” will be avoided.
+
+Cherokee usually makes a clear distinction between “you one”, “you two”, and “you all”.
+
+Keep in mind:
+
+• This program is for learning the bound pronouns in both their “bare” and “conjugated” forms.
+• This program is NOT for learning about general grammar, various verb stems and tenses, or for general vocabulary building.
+• This program uses “C.E.D.” spellings and pronunciation markings. This is not changable. 

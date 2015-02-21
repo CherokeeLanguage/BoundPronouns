@@ -29,6 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
@@ -270,7 +271,7 @@ public class MainScreen implements Screen, InputProcessor {
 	};
 
 	public void doSlotsDialog() {
-		final SlotDialog chooseSlot = new SlotDialog("Select Slot", skin, game,
+		final SlotDialog chooseSlot = new SlotDialog("Select Session", skin, game,
 				game.getFont(Font.SerifLarge));
 		chooseSlot.setKeepWithinStage(true);
 		chooseSlot.setModal(true);
@@ -525,24 +526,24 @@ public class MainScreen implements Screen, InputProcessor {
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom).expand().fill();
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("Instructions", bstyle);
 		button.addListener(viewInstructions);
 		button.setTouchable(Touchable.enabled);
-		container.add(button).padBottom(padBottom).expand().fill();
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 		
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom).expand().fill();
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
 		// container.row();
-		container.add(button).padBottom(padBottom).expand().fill();
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);

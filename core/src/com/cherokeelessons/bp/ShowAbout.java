@@ -63,10 +63,15 @@ public class ShowAbout extends ChildScreen {
 		scroll.setFadeScrollBars(false);
 		scroll.setSmoothScrolling(true);
 		
-		String text = Gdx.files.internal("text/about.txt").readString("UTF-8");
+		String text = Gdx.files.internal("text/about.txt").readString("UTF-8");		
 		text+="\n\n";
-		text+="libGDX "+com.badlogic.gdx.Version.VERSION;
-		text+="\n \n";
+		text+="===========\n";
+		text+="CHANGELOG\n";
+		text+="===========\n";
+		text+="\n\n";
+		
+		text += Gdx.files.internal("text/changelog.txt").readString("UTF-8");
+
 		Label label = new Label(text, ls);
 		label.setWrap(true);
 		
