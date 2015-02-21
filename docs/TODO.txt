@@ -2,9 +2,9 @@
 
 [ ] Introduction - Instructions
 
-[ ] Add option for "session length":  "short" (5 minutes), "standard" (10 minutes), and "long" (15 minutes)
+[x] Add option for "session length":  "short" (5 minutes), "standard" (10 minutes), and "long" (15 minutes)
 
-[ ] Add option for "initial card time limit as": as "infinite", "short" (10 seconds), "standard" (15 seconds), "long" (30 seconds), "x-long" (60 seconds)
+[x] Add option for "initial card time limit as": as "infinite", "short" (10 seconds), "standard" (15 seconds), "long" (30 seconds), "x-long" (60 seconds)
 
 [x] "you one understands it" => "you one understand it"
 

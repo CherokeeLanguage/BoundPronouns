@@ -62,11 +62,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int maxCorrect = 6;
 
-	private static final float MaxTimePerCard_sec = 15f;
-
 	private static final int SendToNextSessionThreshold = 4;
-
-	private static final float MinSessionTime = 60f * 10f;
 
 	private static final int InitialDeckSize = 3;
 
@@ -436,7 +432,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	public static void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
 
-		if (activeDeck == null || info == null) {
+		if (activeDeck == null || info == null || activeDeck.deck.size()==0) {
 			return;
 		}
 
@@ -445,7 +441,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		/*
 		 * How many are "fully learned" out of the active deck?
 		 */
-		float decksize = activeDeck.deck.size();
+		final float decksize = activeDeck.deck.size();
 		float full = 0f;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= FULLY_LEARNED_BOX) {
@@ -463,16 +459,11 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * How many are "well known" out of the active deck? (excluding full
 		 * learned ones)
 		 */
-		decksize = 0f;
 		full = 0f;
 		for (ActiveCard card : activeDeck.deck) {
-			if (card.box >= FULLY_LEARNED_BOX) {
-				continue;
-			}
-			if (card.box >= PROFICIENT_BOX) {
+			if (card.box >= PROFICIENT_BOX && card.box < FULLY_LEARNED_BOX) {
 				full++;
 			}
-			decksize++;
 		}
 		info.mediumTerm = full / decksize;
 
@@ -480,16 +471,11 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * How many are "short term known" out of the active deck? (excluding
 		 * full learned ones)
 		 */
-		decksize = 0f;
 		full = 0f;
 		for (ActiveCard card : activeDeck.deck) {
-			if (card.box >= PROFICIENT_BOX) {
-				continue;
-			}
-			if (card.box >= JUST_LEARNED_BOX) {
+			if (card.box >= JUST_LEARNED_BOX && card.box < PROFICIENT_BOX) {
 				full++;
 			}
-			decksize++;
 		}
 		info.shortTerm = full / decksize;
 	}
@@ -513,7 +499,9 @@ public class LearningSession extends ChildScreen implements Screen {
 	private float elapsed = 0f;
 	private float sinceLastNextCard_elapsed = 0f;
 	private boolean elapsed_tick_on = false;
-	private Runnable showACard = new Runnable() {
+
+	private class ShowACard implements Runnable {
+
 		private ActiveCard previousCard;
 
 		@Override
@@ -531,12 +519,13 @@ public class LearningSession extends ChildScreen implements Screen {
 						&& current_active.deck.size() == 0) {
 					break;
 				}
-				activeCard.show_again_ms = Deck.getNextInterval(activeCard.getMinCorrectInARow()+1);
-				previousCard=null;
+				activeCard.show_again_ms = Deck.getNextInterval(activeCard
+						.getMinCorrectInARow() + 1);
+				previousCard = null;
 			} while (true);
 
 			if (activeCard == null) {
-				if (elapsed < MinSessionTime) {
+				if (elapsed < info.settings.sessionLength.getSeconds()) {
 					game.log(this, "session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
 					game.log(this, "shifting discards to zero point: "
@@ -552,7 +541,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * Session time is up, force time shift cards into active show
 				 * range...
 				 */
-				if (elapsed > MinSessionTime
+				if (elapsed > info.settings.sessionLength.getSeconds()
 						&& current_discards.deck.size() > 0) {
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
 					game.log(this, "shifting discards to zero point: "
@@ -561,7 +550,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
-				if (elapsed > MinSessionTime) {
+				if (elapsed > info.settings.sessionLength.getSeconds()) {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
 					stage.addAction(Actions.run(saveActiveDeck));
@@ -649,10 +638,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.setAnswers(tracked_answers,
 						displayed_answers);
 
-				float duration = MaxTimePerCard_sec - (float) activeCard.box
+				float duration = info.settings.timeLimit.getSeconds()
+						- (float) activeCard.box
 						- (float) activeCard.getMinCorrectInARow();
-				if (duration < 5) {
-					duration = 5f;
+				if (duration < 4) {
+					duration = 4f;
 				}
 				challengeCardDialog.addAction(Actions.delay(duration,
 						Actions.run(new Runnable() {
@@ -697,6 +687,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 		}
+	}
+
+	private Runnable showACard = new ShowACard() {
+
 	};
 
 	private final Skin skin;

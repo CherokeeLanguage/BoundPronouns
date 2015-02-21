@@ -37,6 +37,8 @@ import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
+import com.cherokeelessons.cards.SlotInfo.SessionLength;
+import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.JsonConverter;
 
 public class MainScreen implements Screen, InputProcessor {
@@ -117,6 +119,7 @@ public class MainScreen implements Screen, InputProcessor {
 		} else {
 			info = new SlotInfo();
 		}
+		info.validate();
 		TextButtonStyle tbs = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifMedium);
@@ -166,6 +169,26 @@ public class MainScreen implements Screen, InputProcessor {
 				info.settings.display = DisplayMode
 						.getNext(info.settings.display);
 				mode.setText(info.settings.display.toString());
+				return true;
+			}
+		});
+		final TextButton sessionLength = new TextButton(info.settings.sessionLength.toString(), tbs);
+		sessionLength.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				info.settings.sessionLength = SessionLength.getNext(info.settings.sessionLength);
+				sessionLength.setText(info.settings.sessionLength.toString());
+				return true;
+			}
+		});
+		final TextButton timeLimit = new TextButton(info.settings.timeLimit.toString(), tbs);
+		timeLimit.addListener(new ClickListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				info.settings.timeLimit = TimeLimit.getNext(info.settings.timeLimit);
+				timeLimit.setText(info.settings.timeLimit.toString());
 				return true;
 			}
 		});
@@ -226,6 +249,15 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.row();
 		contentTable.add(new Label("Display: ", ls)).left().fillX();
 		contentTable.add(mode).expand().fillX().left();
+		
+		contentTable.row();
+		contentTable.add(new Label("Session Length: ", ls)).left().fillX();
+		contentTable.add(sessionLength).expand().fillX().left();
+		
+		contentTable.row();
+		contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
+		contentTable.add(timeLimit).expand().fillX().left();
+		
 		contentTable.row();
 		contentTable.add(new Label("Mute by default: ", ls)).left().fillX();
 		contentTable.add(muted).expand().fillX().left();

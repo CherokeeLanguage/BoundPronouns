@@ -41,8 +41,10 @@ public class DesktopLauncher implements PlatformTextInput {
 
 	public static void main (String[] arg) {		
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-		int width = (80*gd.getDisplayMode().getWidth())/100;
-		int height = (86*gd.getDisplayMode().getHeight())/100;		
+//		int width = (80*gd.getDisplayMode().getWidth())/100;
+//		int height = (86*gd.getDisplayMode().getHeight())/100;
+		int width=1280;
+		int height=720;
 		config = new LwjglApplicationConfiguration();
 		config.allowSoftwareMode=true;
 		config.forceExit=true;

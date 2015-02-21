@@ -23,7 +23,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 34;
+	public static int version = 35;
 
 	private JsonConverter json = new JsonConverter();
 	private List<CSVRecord> pronouns = null;
@@ -60,7 +60,7 @@ public class BuildDeck implements Runnable {
 	public Runnable save = new Runnable() {
 		@Override
 		public void run() {
-//			game.log(this, "buildDeck#save");
+			Collections.sort(deck.cards);
 			for (int i = 0; i < deck.cards.size(); i++) {
 				deck.cards.get(i).id = i + 1;
 			}
@@ -106,7 +106,6 @@ public class BuildDeck implements Runnable {
 				dest.delete();
 			}
 			if (pronouns == null) {
-//				game.log(this, "buildDeck#init");
 				init();
 				break work;
 			}
@@ -119,7 +118,6 @@ public class BuildDeck implements Runnable {
 				Gdx.app.postRunnable(save);
 				return;
 			}
-//			game.log(this, "buildDeck#run");
 			Iterator<CSVRecord> irec = pronouns.iterator();
 			while (irec.hasNext()) {
 				CSVRecord record = irec.next();
