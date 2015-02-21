@@ -1,3 +1,8 @@
+1.61
+
+Fix error with ᏍᎩᏂ- "You one + you two" should read "You one + him and me"
+Reduced ᏍᎩᏂ- cards from 3 to 2 cards.
+
 1.60
 
 Added option for "session length".
