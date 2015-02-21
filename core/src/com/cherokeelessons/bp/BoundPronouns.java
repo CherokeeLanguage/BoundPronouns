@@ -3,6 +3,7 @@ package com.cherokeelessons.bp;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -297,6 +298,25 @@ public class BoundPronouns extends Game {
 		} catch (IOException e) {
 			return null;
 		}
+		
+		Iterator<CSVRecord> ipro = records.iterator();
+		while (ipro.hasNext()) {
+			CSVRecord pronoun = ipro.next();
+			String vtmode = StringUtils.strip(pronoun.get(0));
+			String syllabary = StringUtils.strip(pronoun.get(1));
+			if (StringUtils.isBlank(vtmode)) {
+				ipro.remove();
+				continue;
+			}
+			if (vtmode.startsWith("#")){
+				ipro.remove();
+				continue;
+			}
+			if (syllabary.startsWith("#")){
+				ipro.remove();
+				continue;
+			}
+		}
 
 		String prevLatin = "";
 		String prevChr = "";
@@ -315,14 +335,14 @@ public class BoundPronouns extends Game {
 				String tmp = record.get(4);
 				passive: {
 					if (tmp.equalsIgnoreCase("he")) {
-						defin = tmp + " (was being)";
+						defin = tmp + " (being)";
 						break passive;
 					}
 					if (tmp.equalsIgnoreCase("i")) {
-						defin = tmp + " (was being)";
+						defin = tmp + " (being)";
 						break passive;
 					}
-					defin = tmp + " (were being)";
+					defin = tmp + " (being)";
 					break passive;
 				}
 			}
