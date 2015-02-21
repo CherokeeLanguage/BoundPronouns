@@ -1,3 +1,12 @@
+1.59
+
+Adjusted "ᎢᏍᎩ" and "ᎢᏨ" bound pronoun entries to be understandable as 3 English
+entries each instead of  5 English entries each to improve learnability.
+
+Adjusted "ᏍᏛ" bound pronoun entry from 3 English entries to 2 English entries.
+
+This reduces deck size to 1,929 cards.
+
 1.56
 
 Fix for Windows and that stupid "1251-1" charset default Java uses there.
