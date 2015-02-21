@@ -15,7 +15,7 @@ vti,"Ꮣ¹Ꭹ²-, Ꮣ¹Ꮖ͓-","Da¹gị²-, Da¹gw-",I,them-inanimate,b,"Ꮧ̣�
 "vi, vti",Ꭿ̣²-,Hị²-,You one,it,a,,
 "vi, vti",Ꮳ̣²-,Jạ²-,You one,it,b,,
 "vta, alt",ᏍᎩ̣²Ꮒ²-,Sgị²ni²-,You one or you two,him and me,,,
-vta,"Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-","I¹sgi²-, I¹sgi²y-",You one,you all,,,
+vta,"Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-","I¹sgi²-, I¹sgi²y-",You one or you two,them and me,,,
 vta,"Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-","Gạ²hi²-, Gạ²hi²y-",You one,them-animate,,,
 vti,Ꮥ²Ꭿ̣²-,De²hị²-,You one,them-inanimate,a,Ꮨ̣²-,tị²-
 vti,Ꮥ²Ꮳ̣²-,De²jạ²-,You one,them-inanimate,b,Ꮧ̣²Ꮳ̣²-,Dị²jạ²-
@@ -75,7 +75,7 @@ vta,ᏍᎩ̣²Ꮒ²-,Sgị²ni²-,You two,me,,,
 "vta, alt",Ꭱ¹ᏍᏗ²-,E¹sdi²-,You two,him,,,
 "vi, vti",ᏍᏗ²-,Sdi²-,You two,it,,,
 #vta,ᏍᎩ̣²Ꮒ²-,Sgi²̣ni²-,You two,him and me,,,
-vta,"Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-","I¹sgi²-, I¹sgi²y-",You two,them and me,,,
+#vta,"Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-","I¹sgi²-, I¹sgi²y-",You two,them and me,,,
 vta,Ꭸ²ᏍᏗ²-,Ge²sdi²-,You two,them-animate,,,
 vti,Ꮥ²ᏍᏗ²-,De²sdi²-,You two,them-inanimate,,Ꮧ̣²ᏍᏗ²-,Dị²sdi²-
 "",#R9,,,,,,
