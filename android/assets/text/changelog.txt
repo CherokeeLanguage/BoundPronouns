@@ -1,9 +1,9 @@
 1.61
 
 Fix error with ᎢᏍᎩ- "You one + you all" should read "You one + them and me"
-Reduced ᎢᏍᎩ- cards from 3 to 2 cards.
+Reduced ᎢᏍᎩ- challenges from 3 to 2 cards.
 Fix error with ᏍᎩᏂ- "You one + you two" should read "You one + him and me"
-Reduced ᏍᎩᏂ- cards from 3 to 2 cards.
+Reduced ᏍᎩᏂ- challenges from 3 to 2 cards.
 
 1.60
 
