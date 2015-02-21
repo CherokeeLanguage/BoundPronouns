@@ -55,12 +55,12 @@ public class MainScreen implements Screen, InputProcessor {
 			return true;
 		}
 	};
-	private ClickListener viewChallenges = new ClickListener() {
+	private ClickListener viewInstructions = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			game.click();
-			game.setScreen(new ShowChallenges(game, MainScreen.this));
+			game.setScreen(new ShowInstructions(game, MainScreen.this));
 			return true;
 		}
 	};
@@ -517,39 +517,38 @@ public class MainScreen implements Screen, InputProcessor {
 
 		int padBottom = 12;
 		container.row();
-		container.add(button).padBottom(padBottom).colspan(2).fillX();
+		container.add(button).padBottom(padBottom).colspan(2).expand().fill();
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		bstyle.font = game.getFont(Font.SerifXLarge);
-		button = new TextButton("Do A Practice", bstyle);
+		button = new TextButton("Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom).fillX();
+		container.add(button).padBottom(padBottom).expand().fill();
 
+		button = new TextButton("Instructions", bstyle);
+		button.addListener(viewInstructions);
+		button.setTouchable(Touchable.enabled);
+		container.add(button).padBottom(padBottom).expand().fill();
+		
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
 		button.setTouchable(Touchable.enabled);
-		// container.row();
-		container.add(button).padBottom(padBottom).fillX();
-
-		button = new TextButton("View Challenges", bstyle);
-		button.addListener(viewChallenges);
-		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom).fillX();
+		container.add(button).padBottom(padBottom).expand().fill();
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
 		// container.row();
-		container.add(button).padBottom(padBottom).fillX();
+		container.add(button).padBottom(padBottom).expand().fill();
 
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
 		container.row();
-		container.add(button).padBottom(padBottom).colspan(2).fillX();
+		container.add(button).padBottom(padBottom).colspan(2).expand().fill();
 	}
 
 	protected final InputMultiplexer multi;

@@ -1,7 +1,17 @@
+1.60
+
+Added option for "session length".
+Added option for "initial card time limit"
+Fix deck sorting regression.
+Better main menu display (display fitting).
+Removed "View Challenges"
+Added "Instructions"
+Moved changelog to "assets" folder of app.
+
 1.59
 
 Adjusted "ᎢᏍᎩ" and "ᎢᏨ" bound pronoun entries to be understandable as 3 English
-entries each instead of  5 English entries each to improve learnability.
+entries each instead of 5 English entries each to improve learnability.
 
 Adjusted "ᏍᏛ" bound pronoun entry from 3 English entries to 2 English entries.
 

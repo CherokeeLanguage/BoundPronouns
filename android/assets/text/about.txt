@@ -23,7 +23,7 @@ Uses "Holo" theme from posting on LibGDX forums.
 Uses the "FreeSerif" font for Cherokee Syllabary and English text rendering.
 
 Powered by LibGDX + RoboVM
-Uses Apache Commons Lang3 (org.apache.commons:commons-lang3)
+Uses Apache Lang3 (org.apache.commons:commons-lang3)
 Uses Apache CSV (org.apache.commons:commons-csv)
 Uses Jackson/Json (com.fasterxml.jackson.core:jackson-databind)
 

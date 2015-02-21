@@ -1,6 +1,6 @@
-[ ] View challenges => View deck, straight list or Remove (?)
+[x] View challenges => View deck, straight list or Remove (?) => REMOVED
 
-[ ] Introduction - Instructions
+[x] Introduction - Instructions
 
 [x] Add option for "session length":  "short" (5 minutes), "standard" (10 minutes), and "long" (15 minutes)
 
