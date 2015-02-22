@@ -315,7 +315,7 @@ public class MainScreen implements Screen, InputProcessor {
 				if (info == null) {
 					info = new SlotInfo();
 				}
-				if (info.version != SlotInfo.StatsVersion) {
+				if (!info.updatedVersion()) {
 					FileHandle activeDeckFile = p0
 							.child(LearningSession.ActiveDeckJson);
 					ActiveDeck activeDeck = null;
@@ -334,15 +334,22 @@ public class MainScreen implements Screen, InputProcessor {
 				info = new SlotInfo();
 				info.settings.name = "*** NEW SESSION ***";
 			}
+			info.validate();
 			SlotInfo.Settings settings = info.settings;
-			String txt = (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
+			String txt = "";			
+			txt += (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
 					: settings.name;
 			txt += " - ";
 			txt += info.activeCards + " cards";
+			
 			txt += "\n";
-			txt += ((int) (info.shortTerm * 100)) + "% short term";
-			txt += ", " + ((int) (info.mediumTerm * 100)) + "% medium term";
-			txt += ", " + ((int) (info.longTerm * 100)) + "% long term";
+			txt += "Level: "+info.level.getLevel();
+			txt += " - ";
+			txt += info.level; 
+			txt += ", ";
+			txt += ((int) (info.shortTerm * 100)) + "% short";
+			txt += ", " + ((int) (info.mediumTerm * 100)) + "% medium";
+			txt += ", " + ((int) (info.longTerm * 100)) + "% long";
 
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
@@ -376,18 +383,20 @@ public class MainScreen implements Screen, InputProcessor {
 			});
 			tbs = new TextButtonStyle(textb.getStyle());
 			tbs.font = game.getFont(Font.SerifSmall);
-			VerticalGroup editControls = new VerticalGroup();
+			Table editControls = new Table();
 			editControls.center();
+			editControls.defaults().fill().expand().pad(0).space(0);
 			TextButton editb = new TextButton("SETTINGS", tbs);
 			editb.padTop(0);
 			editb.padBottom(0);
 			TextButton deleteb = new TextButton("ERASE", tbs);
 			deleteb.padTop(0);
 			deleteb.padBottom(0);
-			editControls.addActor(editb);
-			editControls.addActor(deleteb);
-			editControls.fill();
-			slots.add(editControls);
+			editControls.row();
+			editControls.add(editb);
+			editControls.row();
+			editControls.add(deleteb);			
+			slots.add(editControls).fill().expandY();
 			if (blank) {
 				editb.setDisabled(true);
 				editb.setTouchable(Touchable.disabled);

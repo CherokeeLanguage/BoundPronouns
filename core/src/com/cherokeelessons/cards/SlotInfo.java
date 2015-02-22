@@ -4,7 +4,48 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
-	public static final int StatsVersion = 1;
+	private static final int StatsVersion = 9;
+
+	public static enum LevelName {
+		Newbie("Newbie", 0), Novice("Novice", 1), Rookie("Rookie", 2), Beginner(
+				"Beginner", 3), Apprentice("Apprentice", 4), Intermediate("Intermediate", 5), Advanced(
+				"Advanced", 6), Proficient("Proficient", 7), Expert(
+				"Expert", 8), Master("Master", 9), GrandMaster("Grandmaster", 10);
+		private final int level;
+		private final String engrish;
+
+		LevelName(String engrish, int level) {
+			this.engrish = engrish;
+			this.level = level;
+		}
+
+		public static LevelName forLevel(int level_number) {
+			LevelName level = Newbie;
+			for (LevelName maybe : LevelName.values()) {
+				if (maybe.level == level_number) {
+					return maybe;
+				}
+				if (maybe.level > level.level && maybe.level < level_number) {
+					level = maybe;
+				}
+			}
+			return level;
+		}
+
+		public int getLevel() {
+			return level;
+		}
+
+		public String getEngrish() {
+			return engrish;
+		}
+		
+		@Override
+		public String toString() {
+			return getEngrish();
+		}
+
+	}
 
 	public static enum DisplayMode {
 		Syllabary("Only show Syllabary"), Latin("Only show Latin"), Both(
@@ -89,7 +130,8 @@ public class SlotInfo implements Serializable {
 	public static enum TimeLimit {
 		Expert("Expert: Max 10 seconds", 10f), Standard(
 				"Standard: Max 15 seconds", 15f), Novice(
-				"Novice: Max 30 seconds", 30f), Newbie("Newbie: Max 1 hour", 60f*60f);
+				"Novice: Max 30 seconds", 30f), Newbie("Newbie: Max 1 hour",
+				60f * 60f);
 
 		private TimeLimit(String engrish, float seconds) {
 			this.engrish = engrish.intern();
@@ -153,12 +195,28 @@ public class SlotInfo implements Serializable {
 	public float mediumTerm = 0f;
 	public float longTerm = 0f;
 	public Settings settings = new Settings();
-	public int version;
+	private int version;
+	public LevelName level;
 
 	public void validate() {
+		if (level==null) {
+			level=LevelName.Newbie;
+		}
 		if (settings == null) {
 			settings = new Settings();
 		}
 		settings.validate();
+	}
+
+	public int getVersion() {
+		return StatsVersion;
+	}
+
+	public boolean updatedVersion() {
+		return version == StatsVersion;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 }

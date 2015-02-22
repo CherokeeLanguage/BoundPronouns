@@ -5,10 +5,14 @@ The program has 5 main sections:
 • View Pronouns: This section of the program displays a quick reference listing of the pronouns taught by this program.
 • About: Describes the software itself and attributes various sources.
 • Quit: Exits the software completely.
-  
+
+Your stats:
+
+When you complete a session your ongoing statistics will calculated then displayed. Your level is based on your average proficency with all your active cards and ranges from "Newbie" to "Grandmaster". Your short term percentage is the number of active cards with a rating of 1 to 4. You medium percentage is the number of active cards with a rating of 5 to 9. You long term percentage is the number of active cards with a rating of 10 or higher.
+
 Practicing:
 
-When you select “Practice” you will be presented the “Select Session” screen.
+When you select “Practice” you will be presented with the “Select Session” screen.
 
 Selecting any session with “*** NEW SESSION ***” will then present you with the initial session setup settings display:
 • Name: An optional session name. Tap the "underline" to enter a name in a popup dialog.

@@ -41,6 +41,7 @@ import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.Answer;
 import com.cherokeelessons.cards.Answer.AnswerList;
+import com.cherokeelessons.cards.SlotInfo.LevelName;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
@@ -64,9 +65,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int SendToNextSessionThreshold = 4;
 
-	private static final int InitialDeckSize = 3;
+	private static final int InitialDeckSize = 5;
 
-	private static final int IncrementDeckBySize = 1;
+	private static final int IncrementDeckBySize = 2;
 
 	private static final int FULLY_LEARNED_BOX = 10;
 
@@ -420,8 +421,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			json.toJson(tosave, tmp);
 			tmp.moveTo(slot.child(ActiveDeckJson));
 			tmp.delete();
-
-			info.version = SlotInfo.StatsVersion;
 			tmp = slot.child(INFO_JSON + ".tmp");
 			json.toJson(info, tmp);
 			tmp.moveTo(slot.child(INFO_JSON));
@@ -435,8 +434,16 @@ public class LearningSession extends ChildScreen implements Screen {
 		if (activeDeck == null || info == null || activeDeck.deck.size()==0) {
 			return;
 		}
+		
+		/*
+		 * Set "level" to ceil(average box value) found in active deck.
+		 */
 
-		info.version = SlotInfo.StatsVersion;
+		int boxsum=0;
+		for (ActiveCard card : activeDeck.deck) {
+			boxsum+= (card.box>0?card.box:0);
+		}
+		info.level=LevelName.forLevel((int)Math.ceil((double)(boxsum)/(double)activeDeck.deck.size()));
 
 		/*
 		 * How many are "fully learned" out of the active deck?
@@ -480,6 +487,11 @@ public class LearningSession extends ChildScreen implements Screen {
 		info.shortTerm = full / decksize;
 	}
 
+	/**
+	 * Calculates amount of ms needed to shift by to move deck to "0" point.
+	 * @param current_pending
+	 * @return
+	 */
 	private long getMinShiftTimeOf(ActiveDeck current_pending) {
 		if (current_pending.deck.size() == 0) {
 			return 0;
@@ -488,9 +500,15 @@ public class LearningSession extends ChildScreen implements Screen {
 		Iterator<ActiveCard> icard = current_pending.deck.iterator();
 		while (icard.hasNext()) {
 			ActiveCard card = icard.next();
+			if (card.tries_remaining<1) {
+				continue;
+			}
 			if (by > card.show_again_ms) {
 				by = card.show_again_ms;
 			}
+		}
+		if (by==Long.MAX_VALUE) {
+			by=ONE_MINUTE_ms;
 		}
 		return by;
 	}
@@ -570,8 +588,9 @@ public class LearningSession extends ChildScreen implements Screen {
 							calculateStats(activeDeck, info);
 
 							StringBuilder sb = new StringBuilder();
-							sb.append("Your Current Statistics");
-							sb.append("\n\n");
+							sb.append("Level: ");
+							sb.append(info.level);
+							sb.append("\n");
 							sb.append(info.activeCards + " active cards");
 							sb.append("\n");
 							sb.append(((int) (info.shortTerm * 100))
@@ -582,7 +601,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							sb.append("\n");
 							sb.append(((int) (info.longTerm * 100))
 									+ "% long term memorized");
-							sb.append("\n\n");
+							sb.append("\n");
 							int minutes = (int) (elapsed / 60f);
 							int seconds = (int) (elapsed - minutes * 60f);
 							sb.append("Total actual challenge time: " + minutes
