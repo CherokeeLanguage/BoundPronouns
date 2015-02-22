@@ -67,7 +67,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int InitialDeckSize = 5;
 
-	private static final int IncrementDeckBySize = 2;
+	private static final int IncrementDeckBySize = 1;
 
 	private static final int FULLY_LEARNED_BOX = 10;
 
