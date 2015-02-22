@@ -1,9 +1,11 @@
 package com.cherokeelessons.bp.android;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URLEncoder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -62,8 +64,9 @@ public class AndroidLauncher extends AndroidApplication implements
 			e1.printStackTrace();
 			return;
 		}
-
-		Intent intent = new Intent(str.toString());
-		this.sendBroadcast(intent);
+		
+		Uri uri = Uri.parse(str.toString());
+		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+		startActivity(intent);
 	}
 }
