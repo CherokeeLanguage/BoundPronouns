@@ -1,10 +1,6 @@
 package com.cherokeelessons.bp.android;
 
-import java.awt.Desktop;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URLEncoder;
 
 import android.content.Intent;
