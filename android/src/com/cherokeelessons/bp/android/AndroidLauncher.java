@@ -27,14 +27,6 @@ public class AndroidLauncher extends AndroidApplication implements
 	@Override
 	public void fbshare(SlotInfo info) {
 		info.validate();
-
-		String text = "";
-		text += info.activeCards + " active cards";
-		text += " - ";
-		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
-		text += ", " + ((int) (info.mediumTerm * 100))
-				+ "% medium term memorized";
-		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
 		
 		StringBuilder str = new StringBuilder();
 		str.append("Cherokee Language Bound Pronouns");
@@ -43,9 +35,19 @@ public class AndroidLauncher extends AndroidApplication implements
 		str.append(info.level.getLevel());
 		str.append(" - ");
 		str.append(info.level);
+		str.append(" - ");
+		str.append(info.activeCards);
+		str.append(" active cards");
 		str.append("\n");
-		str.append(text);
-		str.append("\n");
+		
+		str.append(((int) (info.shortTerm * 100)));
+		str.append("% short term memorized");
+		str.append(", ");
+		str.append(((int) (info.mediumTerm * 100)));
+		str.append("% medium term memorized");
+		str.append(", ");
+		str.append(((int) (info.longTerm * 100)));
+		str.append("% fully learned");
 
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
