@@ -219,11 +219,27 @@ public class MainScreen implements Screen, InputProcessor {
 			whichCards.setDisabled(true);
 			whichCards.setTouchable(Touchable.disabled);
 		}
-
+		
+		final TextButton ok = new TextButton("OK", tbs);		
+		final TextButton cancel = new TextButton("CANCEL", tbs);		
+		final TextButton fb = new TextButton("SHARE STATS", tbs);
+		
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
-				info.settings.name = name.getText();
-				json.toJson(info, p1);
+				if (object==null) {
+					object=cancel;
+				}
+				if (ok.equals(object)) {
+					info.settings.name = name.getText();
+					json.toJson(info, p1);
+				}
+				if (fb.equals(object)) {
+					cancel();
+					if (BoundPronouns.fb!=null) {
+						BoundPronouns.fb.fbshare(info);
+					}
+					return;
+				}
 				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
@@ -265,8 +281,13 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.row();
 		contentTable.add(new Label("Which card set?", ls)).left().fillX();
 		contentTable.add(whichCards).expand().fillX().left();
-		TextButton ok = new TextButton("OK", tbs);
-		edit.button(ok);
+		
+		edit.button(ok, ok);
+		edit.button(cancel, cancel);
+		if (BoundPronouns.fb!=null){
+			edit.button(fb, fb);
+		}
+		
 		return edit;
 	};
 
@@ -336,7 +357,7 @@ public class MainScreen implements Screen, InputProcessor {
 			}
 			info.validate();
 			SlotInfo.Settings settings = info.settings;
-			String txt = "";			
+			String txt = "";
 			txt += (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
 					: settings.name;
 			txt += " - ";

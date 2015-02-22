@@ -572,10 +572,13 @@ public class LearningSession extends ChildScreen implements Screen {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
 					stage.addAction(Actions.run(saveActiveDeck));
+					TextButtonStyle tbs = new TextButtonStyle(
+							skin.get(TextButtonStyle.class));
+					tbs.font = game.getFont(Font.SerifMedium);
+					final TextButton fb = new TextButton("SHARE STATS", tbs);
 					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
 						{
 							LabelStyle lstyle = skin.get(LabelStyle.class);
-							// lstyle.font = game.getFont(Font.SansLarge);
 							lstyle.font = game.getFont(Font.SerifLarge);
 
 							ActiveDeck activeDeck = new ActiveDeck();
@@ -609,9 +612,21 @@ public class LearningSession extends ChildScreen implements Screen {
 							Label label = new Label(sb.toString(), lstyle);
 							text(label);
 							button("OK!");
+							if (BoundPronouns.fb!=null) {
+								button(fb);
+							}
 						}
 
 						protected void result(Object object) {
+							
+							if (fb.equals(object)) {
+								cancel();
+								if (BoundPronouns.fb!=null) {
+									BoundPronouns.fb.fbshare(info);
+								}
+								return;
+							}
+							
 							game.setScreen(caller);
 							dispose();
 						};

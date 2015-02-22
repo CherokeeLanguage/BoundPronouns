@@ -1,6 +1,7 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
@@ -8,6 +9,11 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -22,20 +28,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.opengl.Display;
 
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
+import com.cherokeelessons.bp.BoundPronouns.FBShareStatistics;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
+import com.cherokeelessons.cards.SlotInfo;
 
-public class DesktopLauncher implements PlatformTextInput {
+public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 
 	private static LwjglApplicationConfiguration config;
 
@@ -53,7 +61,9 @@ public class DesktopLauncher implements PlatformTextInput {
 		config.addIcon("icons/icon-128.png", FileType.Internal);
 		config.addIcon("icons/icon-32.png", FileType.Internal);
 		config.addIcon("icons/icon-16.png", FileType.Internal);
-		BoundPronouns.pInput=new DesktopLauncher();
+		DesktopLauncher desktopLauncher = new DesktopLauncher();
+		BoundPronouns.pInput=desktopLauncher;
+		BoundPronouns.fb=desktopLauncher;
 		new LwjglApplication(new BoundPronouns(), config);
 	}
 	
@@ -179,6 +189,46 @@ public class DesktopLauncher implements PlatformTextInput {
 
 			}
 		});
+	}
+
+	@Override
+	public void fbshare(SlotInfo info) {
+		info.validate();
+
+		String text = "";		
+		text += info.activeCards + " active cards";		
+		text += " - ";		
+		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
+		text += ", " + ((int) (info.mediumTerm * 100)) + "% medium term memorized";
+		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
+		StringBuilder str = new StringBuilder();
+		try {
+			str.append("https://www.facebook.com/dialog/feed?");
+			str.append("&app_id=");
+			str.append("148519351857873");
+			str.append("&redirect_uri=");
+			str.append(URLEncoder.encode("http://www.cherokeelessons.com/phpBB3/viewforum.php?f=24#", "UTF-8"));
+			str.append("&link=");
+			str.append(URLEncoder.encode("http://www.cherokeelessons.com/phpBB3/viewtopic.php?f=24&t=73#p230", "UTF-8"));
+			str.append("&picture=");
+			str.append(URLEncoder.encode("http://www.cherokeelessons.com/phpBB3/download/file.php?id=242", "UTF-8"));
+			str.append("&name=");
+			str.append(URLEncoder.encode("Cherokee Language Bound Pronouns", "UTF-8"));
+			str.append("&caption=");
+			str.append(URLEncoder.encode("Level: "+info.level.getLevel()+" - "+info.level, "UTF-8"));
+			str.append("&description=");
+			str.append(URLEncoder.encode(text, "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			return;
+		}
+		
+		try {
+			URI uri;
+			uri = new URI(str.toString());
+			Desktop.getDesktop().browse(uri);
+		} catch (URISyntaxException e) {
+		} catch (IOException e) {
+		}
 	}
 	
 	

@@ -39,15 +39,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
+import com.cherokeelessons.cards.SlotInfo;
 
 public class BoundPronouns extends Game {
-
-	public static PlatformTextInput pInput;
 
 	public static interface PlatformTextInput {
 		public void getTextInput(final TextInputListener listener,
 				final String title, final String text, final String hint);
 	}
+	public static PlatformTextInput pInput;
+	
+	public static interface FBShareStatistics {
+		public void fbshare(SlotInfo info);
+	}
+	public static FBShareStatistics fb;
 
 	private final static Rectangle minSize = new Rectangle(0, 0, 1280, 720);
 
