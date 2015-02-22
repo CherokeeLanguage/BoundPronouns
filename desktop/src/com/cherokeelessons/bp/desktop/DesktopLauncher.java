@@ -28,7 +28,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.opengl.Display;
 
 import com.badlogic.gdx.Files.FileType;
