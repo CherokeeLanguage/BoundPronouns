@@ -284,7 +284,7 @@ public class MainScreen implements Screen, InputProcessor {
 		
 		edit.button(ok, ok);
 		edit.button(cancel, cancel);
-		if (BoundPronouns.fb!=null){
+		if (BoundPronouns.fb!=null && info.activeCards!=0){
 			edit.button(fb, fb);
 		}
 		

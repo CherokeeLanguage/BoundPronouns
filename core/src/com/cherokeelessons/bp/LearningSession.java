@@ -613,20 +613,18 @@ public class LearningSession extends ChildScreen implements Screen {
 							text(label);
 							button("OK!");
 							if (BoundPronouns.fb!=null) {
-								button(fb);
+								button(fb, fb);
 							}
 						}
 
-						protected void result(Object object) {
-							
+						protected void result(Object object) {							
 							if (fb.equals(object)) {
 								cancel();
 								if (BoundPronouns.fb!=null) {
 									BoundPronouns.fb.fbshare(info);
 								}
 								return;
-							}
-							
+							}							
 							game.setScreen(caller);
 							dispose();
 						};
