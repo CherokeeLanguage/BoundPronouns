@@ -35,8 +35,8 @@ public class AndroidLauncher extends AndroidApplication implements
 		text += ", " + ((int) (info.mediumTerm * 100))
 				+ "% medium term memorized";
 		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
+		
 		StringBuilder str = new StringBuilder();
-
 		str.append("Cherokee Language Bound Pronouns");
 		str.append("\n");
 		str.append("Level: ");
