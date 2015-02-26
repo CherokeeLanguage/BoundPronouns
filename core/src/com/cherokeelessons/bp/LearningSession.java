@@ -393,10 +393,8 @@ public class LearningSession extends ChildScreen implements Screen {
 	private Runnable saveActiveDeck = new Runnable() {
 		@Override
 		public void run() {
-			if (isExtraPractice) {
-				game.log(this, "Extra Practice Session - NOT SAVING!");
-				return;
-			}
+			
+			
 			ActiveDeck tosave = new ActiveDeck();
 			tosave.deck.addAll(current_active.deck);
 			tosave.deck.addAll(current_due.deck);
@@ -406,7 +404,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					* 1000l;
 			Collections.sort(tosave.deck, byShowTime);
 
-			SlotInfo info;
+			final SlotInfo info;
 			FileHandle infoFile = slot.child(INFO_JSON);
 			if (!infoFile.exists()) {
 				info = new SlotInfo();
@@ -416,7 +414,66 @@ public class LearningSession extends ChildScreen implements Screen {
 				infoFile.copyTo(slot.child(INFO_JSON + ".bak"));
 			}
 			calculateStats(tosave, info);
+			
+			TextButtonStyle tbs = new TextButtonStyle(
+					skin.get(TextButtonStyle.class));
+			tbs.font = game.getFont(Font.SerifMedium);
+			final TextButton fb = new TextButton("SHARE STATS", tbs);
+			String dtitle = isExtraPractice?"Extra Practice Results":"Practice Results";
+			
+			Dialog bye = new Dialog(dtitle, skin) {
+				{
+					LabelStyle lstyle = skin.get(LabelStyle.class);
+					lstyle.font = game.getFont(Font.SerifLarge);
+					
+					StringBuilder sb = new StringBuilder();
+					sb.append("Level: ");
+					sb.append(info.level);
+					sb.append("\n");
+					sb.append(info.activeCards + " active cards");
+					sb.append("\n");
+					sb.append(((int) (info.shortTerm * 100))
+							+ "% short term memorized");
+					sb.append("\n");
+					sb.append(((int) (info.mediumTerm * 100))
+							+ "% medium term memorized");
+					sb.append("\n");
+					sb.append(((int) (info.longTerm * 100))
+							+ "% long term memorized");
+					sb.append("\n");
+					int minutes = (int) (elapsed / 60f);
+					int seconds = (int) (elapsed - minutes * 60f);
+					sb.append("Total actual challenge time: " + minutes
+							+ ":" + (seconds < 10 ? "0" : "") + seconds);
+					Label label = new Label(sb.toString(), lstyle);
+					text(label);
+					button("OK!");
+					if (BoundPronouns.fb!=null && !isExtraPractice) {
+						button(fb, fb);
+					}
+				}
 
+				protected void result(Object object) {							
+					if (fb.equals(object)) {
+						cancel();
+						if (BoundPronouns.fb!=null) {
+							BoundPronouns.fb.fbshare(info);
+						}
+						return;
+					}							
+					game.setScreen(caller);
+					dispose();
+				};
+			};
+			bye.show(stage);
+			bye.setModal(true);
+			bye.setFillParent(true);
+
+			if (isExtraPractice) {
+				game.log(this, "Extra Practice Session - NOT SAVING!");
+				return;
+			}
+			
 			FileHandle tmp = slot.child(ActiveDeckJson + ".tmp");
 			json.toJson(tosave, tmp);
 			tmp.moveTo(slot.child(ActiveDeckJson));
@@ -571,66 +628,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (elapsed > info.settings.sessionLength.getSeconds()) {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
-					stage.addAction(Actions.run(saveActiveDeck));
-					TextButtonStyle tbs = new TextButtonStyle(
-							skin.get(TextButtonStyle.class));
-					tbs.font = game.getFont(Font.SerifMedium);
-					final TextButton fb = new TextButton("SHARE STATS", tbs);
-					Dialog bye = new Dialog("CONGRATULATIONS!", skin) {
-						{
-							LabelStyle lstyle = skin.get(LabelStyle.class);
-							lstyle.font = game.getFont(Font.SerifLarge);
-
-							ActiveDeck activeDeck = new ActiveDeck();
-							activeDeck.deck.addAll(current_active.deck);
-							activeDeck.deck.addAll(current_due.deck);
-							activeDeck.deck.addAll(current_discards.deck);
-							activeDeck.deck.addAll(current_done.deck);
-							SlotInfo activeStats=new SlotInfo(LearningSession.this.info);
-							calculateStats(activeDeck, activeStats);
-
-							StringBuilder sb = new StringBuilder();
-							sb.append("Level: ");
-							sb.append(activeStats.level);
-							sb.append("\n");
-							sb.append(activeStats.activeCards + " active cards");
-							sb.append("\n");
-							sb.append(((int) (activeStats.shortTerm * 100))
-									+ "% short term memorized");
-							sb.append("\n");
-							sb.append(((int) (activeStats.mediumTerm * 100))
-									+ "% medium term memorized");
-							sb.append("\n");
-							sb.append(((int) (activeStats.longTerm * 100))
-									+ "% long term memorized");
-							sb.append("\n");
-							int minutes = (int) (elapsed / 60f);
-							int seconds = (int) (elapsed - minutes * 60f);
-							sb.append("Total actual challenge time: " + minutes
-									+ ":" + (seconds < 10 ? "0" : "") + seconds);
-							Label label = new Label(sb.toString(), lstyle);
-							text(label);
-							button("OK!");
-							if (BoundPronouns.fb!=null) {
-								button(fb, fb);
-							}
-						}
-
-						protected void result(Object object) {							
-							if (fb.equals(object)) {
-								cancel();
-								if (BoundPronouns.fb!=null) {
-									BoundPronouns.fb.fbshare(info);
-								}
-								return;
-							}							
-							game.setScreen(caller);
-							dispose();
-						};
-					};
-					bye.show(stage);
-					bye.setModal(true);
-					bye.setFillParent(true);
+					stage.addAction(Actions.run(saveActiveDeck));					
 					return;
 				}
 			}
