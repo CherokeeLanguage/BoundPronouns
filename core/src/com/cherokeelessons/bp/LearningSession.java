@@ -394,7 +394,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		@Override
 		public void run() {
 			
-			
 			ActiveDeck tosave = new ActiveDeck();
 			tosave.deck.addAll(current_active.deck);
 			tosave.deck.addAll(current_due.deck);
