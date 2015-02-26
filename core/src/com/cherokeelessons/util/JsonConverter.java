@@ -56,15 +56,15 @@ public class JsonConverter {
 		mapper.disable(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY);
 	}
 
-	private String toJson(Object object) {
-		ObjectWriter writer;
-		writer = mapper.writer();
-		try {
-			return writer.writeValueAsString(object);
-		} catch (JsonProcessingException e) {
-			return null;
-		}
-	}
+//	private String toJson(Object object) {
+//		ObjectWriter writer;
+//		writer = mapper.writer();
+//		try {
+//			return writer.writeValueAsString(object);
+//		} catch (JsonProcessingException e) {
+//			return null;
+//		}
+//	}
 
 	private void toJson(File dest, Object object) {
 		ObjectWriter writer;
@@ -76,20 +76,20 @@ public class JsonConverter {
 		}
 	}
 
-	private <T> T fromJson(String json, Class<T> classOfT) {
-		if (json == null)
-			return null;
-		T result = null;
-		ObjectReader reader;
-		reader = mapper.reader(classOfT);
-		try {
-			result = reader.readValue(json);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-		}
-		return result;
-	}
+//	private <T> T fromJson(String json, Class<T> classOfT) {
+//		if (json == null)
+//			return null;
+//		T result = null;
+//		ObjectReader reader;
+//		reader = mapper.reader(classOfT);
+//		try {
+//			result = reader.readValue(json);
+//		} catch (JsonProcessingException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//		}
+//		return result;
+//	}
 
 	private <T> T fromJson(File src, Class<T> classOfT) {
 		if (src == null || !src.isFile() || !src.canRead()) {
