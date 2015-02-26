@@ -64,6 +64,8 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 		BoundPronouns.pInput=desktopLauncher;
 		BoundPronouns.fb=desktopLauncher;
 		new LwjglApplication(new BoundPronouns(), config);
+		
+		new GooglePlayGameServices().start();
 	}
 	
 	@Override
