@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import com.badlogic.gdx.Gdx;
-
 public class ActiveCard {
 
 	public boolean noErrors = false;
