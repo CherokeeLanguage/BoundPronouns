@@ -586,23 +586,22 @@ public class LearningSession extends ChildScreen implements Screen {
 							activeDeck.deck.addAll(current_due.deck);
 							activeDeck.deck.addAll(current_discards.deck);
 							activeDeck.deck.addAll(current_done.deck);
-
-							SlotInfo info = new SlotInfo();
-							calculateStats(activeDeck, info);
+							SlotInfo activeStats=new SlotInfo(LearningSession.this.info);
+							calculateStats(activeDeck, activeStats);
 
 							StringBuilder sb = new StringBuilder();
 							sb.append("Level: ");
-							sb.append(info.level);
+							sb.append(activeStats.level);
 							sb.append("\n");
-							sb.append(info.activeCards + " active cards");
+							sb.append(activeStats.activeCards + " active cards");
 							sb.append("\n");
-							sb.append(((int) (info.shortTerm * 100))
+							sb.append(((int) (activeStats.shortTerm * 100))
 									+ "% short term memorized");
 							sb.append("\n");
-							sb.append(((int) (info.mediumTerm * 100))
+							sb.append(((int) (activeStats.mediumTerm * 100))
 									+ "% medium term memorized");
 							sb.append("\n");
-							sb.append(((int) (info.longTerm * 100))
+							sb.append(((int) (activeStats.longTerm * 100))
 									+ "% long term memorized");
 							sb.append("\n");
 							int minutes = (int) (elapsed / 60f);

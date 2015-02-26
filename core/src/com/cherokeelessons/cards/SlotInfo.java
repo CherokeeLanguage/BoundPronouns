@@ -174,6 +174,17 @@ public class SlotInfo implements Serializable {
 		 */
 		public TimeLimit timeLimit = TimeLimit.Standard;
 
+		public Settings() {
+		}
+		public Settings(Settings settings) {
+			this.deck=settings.deck;
+			this.display=settings.display;
+			this.muted=settings.muted;
+			this.name=settings.name;
+			this.sessionLength=settings.sessionLength;
+			this.timeLimit=settings.timeLimit;
+		}
+
 		public void validate() {
 			if (display == null) {
 				display = DisplayMode.Both;
@@ -197,6 +208,17 @@ public class SlotInfo implements Serializable {
 	public Settings settings = new Settings();
 	private int version;
 	public LevelName level;
+
+	public SlotInfo() {
+	}
+	public SlotInfo(SlotInfo info) {
+		this.activeCards=info.activeCards;
+		this.level=info.level;
+		this.longTerm=info.longTerm;
+		this.mediumTerm=info.mediumTerm;
+		this.settings=new Settings(info.settings);
+		
+	}
 
 	public void validate() {
 		if (level==null) {
