@@ -4,19 +4,32 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
-	private static final int StatsVersion = 9;
+	private static final int StatsVersion = 10;
 
 	public static enum LevelName {
-		Newbie("Newbie", 0), Novice("Novice", 1), Rookie("Rookie", 2), Beginner(
-				"Beginner", 3), Apprentice("Apprentice", 4), Intermediate("Intermediate", 5), Advanced(
-				"Advanced", 6), Proficient("Proficient", 7), Expert(
-				"Expert", 8), Master("Master", 9), GrandMaster("Grandmaster", 10);
+		Newbie("Newbie", 0, "CgkIy7GTtc0TEAIQBg"), Novice("Novice", 1,
+				"CgkIy7GTtc0TEAIQBw"), Rookie("Rookie", 2, "CgkIy7GTtc0TEAIQCA"), Beginner(
+				"Beginner", 3, "CgkIy7GTtc0TEAIQCQ"), Apprentice("Apprentice", 4, "CgkIy7GTtc0TEAIQCg"), Intermediate(
+				"Intermediate", 5, "CgkIy7GTtc0TEAIQCw"), Advanced("Advanced", 6, "CgkIy7GTtc0TEAIQDA"), Proficient(
+				"Proficient", 7, "CgkIy7GTtc0TEAIQDQ"), Expert("Expert", 8, "CgkIy7GTtc0TEAIQDg"), Master("Master",
+				9, "CgkIy7GTtc0TEAIQDw"), GrandMaster("Grandmaster", 10, "CgkIy7GTtc0TEAIQEA");
+
 		private final int level;
 		private final String engrish;
+		private final String id;
 
-		LevelName(String engrish, int level) {
+		public String getId() {
+			return id;
+		}
+
+		public int getAchievementPoints() {
+			return (level + 1) * 5;
+		}
+
+		LevelName(String engrish, int level, String id) {
 			this.engrish = engrish;
 			this.level = level;
+			this.id = id;
 		}
 
 		public static LevelName forLevel(int level_number) {
@@ -39,7 +52,7 @@ public class SlotInfo implements Serializable {
 		public String getEngrish() {
 			return engrish;
 		}
-		
+
 		@Override
 		public String toString() {
 			return getEngrish();
@@ -96,17 +109,23 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum SessionLength {
-		Brief("Brief: about 5-8 minutes", 5f), Standard(
-				"Standard: about 10-15 minutes", 10f), Long(
-				"Long: about 15-20 minutes", 15f), BrainNumbing(
-				"Brain Numbing: very long", 60f);
+		Brief("Brief: about 5-8 minutes", 5f, "CgkIy7GTtc0TEAIQAg"), Standard(
+				"Standard: about 10-15 minutes", 10f, "CgkIy7GTtc0TEAIQAw"), Long(
+				"Long: about 15-20 minutes", 15f, "CgkIy7GTtc0TEAIQBA"), BrainNumbing(
+				"Brain Numbing: very long", 60f, "CgkIy7GTtc0TEAIQBQ");
 
 		final private float seconds;
 		final private String engrish;
+		final private String id;
 
-		private SessionLength(String engrish, float minutes) {
+		public String getId() {
+			return id;
+		}
+
+		private SessionLength(String engrish, float minutes, String id) {
 			this.engrish = engrish.intern();
 			this.seconds = minutes * 60f;
+			this.id = id;
 		}
 
 		public float getSeconds() {
@@ -176,13 +195,14 @@ public class SlotInfo implements Serializable {
 
 		public Settings() {
 		}
+
 		public Settings(Settings settings) {
-			this.deck=settings.deck;
-			this.display=settings.display;
-			this.muted=settings.muted;
-			this.name=settings.name;
-			this.sessionLength=settings.sessionLength;
-			this.timeLimit=settings.timeLimit;
+			this.deck = settings.deck;
+			this.display = settings.display;
+			this.muted = settings.muted;
+			this.name = settings.name;
+			this.sessionLength = settings.sessionLength;
+			this.timeLimit = settings.timeLimit;
 		}
 
 		public void validate() {
@@ -201,6 +221,15 @@ public class SlotInfo implements Serializable {
 		}
 	}
 
+	/**
+	 * The summed "box" values for all active cards
+	 */
+	public int fullScore=0;
+	/**
+	 * The summbed "box" values for the most recent learning session
+	 */
+	public int sessionScore=0;
+	
 	public int activeCards = 0;
 	public float shortTerm = 0f;
 	public float mediumTerm = 0f;
@@ -211,18 +240,19 @@ public class SlotInfo implements Serializable {
 
 	public SlotInfo() {
 	}
+
 	public SlotInfo(SlotInfo info) {
-		this.activeCards=info.activeCards;
-		this.level=info.level;
-		this.longTerm=info.longTerm;
-		this.mediumTerm=info.mediumTerm;
-		this.settings=new Settings(info.settings);
-		
+		this.activeCards = info.activeCards;
+		this.level = info.level;
+		this.longTerm = info.longTerm;
+		this.mediumTerm = info.mediumTerm;
+		this.settings = new Settings(info.settings);
+
 	}
 
 	public void validate() {
-		if (level==null) {
-			level=LevelName.Newbie;
+		if (level == null) {
+			level = LevelName.Newbie;
 		}
 		if (settings == null) {
 			settings = new Settings();

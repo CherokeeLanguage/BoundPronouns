@@ -492,7 +492,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 		
 		/*
-		 * Set "level" to ceil(average box value) found in active deck.
+		 * Set "level" to ceil(average box value) found in active deck. Negative box values are ignored.
 		 */
 
 		int boxsum=0;
@@ -500,6 +500,15 @@ public class LearningSession extends ChildScreen implements Screen {
 			boxsum+= (card.box>0?card.box:0);
 		}
 		info.level=LevelName.forLevel((int)Math.ceil((double)(boxsum)/(double)activeDeck.deck.size()));
+		/*
+		 * Set "fullScore" to sum of all box values found in actice deck
+		 */
+		boxsum=0;
+		for (ActiveCard card : activeDeck.deck) {
+			boxsum+=card.box;
+		}
+		info.fullScore=boxsum;
+		
 
 		/*
 		 * How many are "fully learned" out of the active deck?

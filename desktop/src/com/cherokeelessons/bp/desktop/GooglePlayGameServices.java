@@ -23,6 +23,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.games.Games;
 import com.google.api.services.games.Games.Leaderboards;
+import com.google.api.services.games.GamesScopes;
 
 public class GooglePlayGameServices extends Thread {
 	private final File DATA_STORE_DIR;
@@ -55,7 +56,10 @@ public class GooglePlayGameServices extends Thread {
 	}
 	
 	private void getLeaderboards() throws IOException{
-		Games g = new Games(httpTransport, JSON_FACTORY, credential);
+		Games.Builder b = new Games.Builder(httpTransport, JSON_FACTORY, credential);
+		b.setApplicationName("Cherokee Bound Pronouns/1.0");
+		Games g = b.build();
+//		Games g = new Games(httpTransport, JSON_FACTORY, credential);
 		Leaderboards.List leaders = g.leaderboards().list();
 		LEADERS_DIR.mkdirs();
 		
@@ -77,7 +81,9 @@ public class GooglePlayGameServices extends Thread {
 						.getResourceAsStream("/client_secrets.json")));
 
 		ArrayList<String> scopes = new ArrayList<String>();
-		scopes.add("https://www.googleapis.com/auth/games");
+		scopes.add(GamesScopes.DRIVE_APPDATA);
+		scopes.add(GamesScopes.GAMES);
+//		scopes.add(GamesScopes.PLUS_LOGIN);
 
 		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
 				httpTransport, JSON_FACTORY, clientSecrets, scopes);
