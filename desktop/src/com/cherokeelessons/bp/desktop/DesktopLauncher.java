@@ -1,6 +1,7 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
@@ -8,6 +9,11 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -35,8 +41,6 @@ import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.FBShareStatistics;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
 import com.cherokeelessons.cards.SlotInfo;
-import com.cherokeelessons.util.GooglePlayGameServices.Callback;
-import com.google.api.client.auth.oauth2.TokenResponseException;
 
 public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 
@@ -63,12 +67,7 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 		BoundPronouns.fb = desktopLauncher;
 		desktopGameServices = new DesktopGameServices();
 		BoundPronouns.services = desktopGameServices;
-		new LwjglApplication(new BoundPronouns(), config);
-		Callback<Void> noop = new Callback<Void>() {
-			@Override
-			public void run() {
-			}
-		};
+		new LwjglApplication(new BoundPronouns(), config);		
 	}
 
 
@@ -207,43 +206,48 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 	@Override
 	public void fbshare(final SlotInfo info) {
 		info.validate();
+
+		String text = "";
+		text += info.activeCards + " active cards";
+		text += " - ";
+		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
+		text += ", " + ((int) (info.mediumTerm * 100))
+				+ "% medium term memorized";
+		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
+		StringBuilder str = new StringBuilder();
+		try {
+			str.append("https://www.facebook.com/dialog/feed?");
+			str.append("&app_id=");
+			str.append("148519351857873");
+			str.append("&redirect_uri=");
+			str.append(URLEncoder
+					.encode("http://www.cherokeelessons.com/phpBB3/viewforum.php?f=24#",
+							"UTF-8"));
+			str.append("&link=");
+			str.append(URLEncoder
+					.encode("http://www.cherokeelessons.com/phpBB3/viewtopic.php?f=24&t=73#p230",
+							"UTF-8"));
+			str.append("&picture=");
+			str.append(URLEncoder
+					.encode("http://www.cherokeelessons.com/phpBB3/download/file.php?id=242",
+							"UTF-8"));
+			str.append("&caption=");
+			str.append(URLEncoder.encode("Level: " + info.level.getLevel()
+					+ " - " + info.level, "UTF-8"));
+			str.append("&description=");
+			str.append(URLEncoder.encode(text, "UTF-8"));
+			str.append("&name=");
+			str.append(URLEncoder.encode("Cherokee Language Bound Pronouns",
+					"UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			return;
+		}
 		
-		desktopGameServices.login(login_success, login_error);
+		try {
+			URI uri=new URI(str.toString());
+			Desktop.getDesktop().browse(uri);
+		} catch (IOException | URISyntaxException e) {
+		}
 		
-	}
-	
-	private Callback<Void> login_success=new Callback<Void>() {		
-		@Override
-		public void run() {
-			System.out.println("=== login_success");			
-		}
-	};
-	private Callback<Exception> login_error=new Callback<Exception>() {
-		@Override
-		public void run() {
-			System.err.println("=== login_error");
-			System.err.println("--- "+getData().getClass().getSimpleName());
-			System.err.println("--- "+getData().getMessage());
-			System.err.println("=== login_error");
-			if (getData() instanceof TokenResponseException) {
-				desktopGameServices.logout(logout_success, logout_error);
-			}
-		}
-	};
-	
-	private Callback<Void> logout_success=new Callback<Void>() {
-		@Override
-		public void run() {
-			System.out.println("=== logout_success");
-		}
-	};
-	private Callback<Exception> logout_error=new Callback<Exception>() {
-		@Override
-		public void run() {
-			System.err.println("=== logout_error");
-			System.err.println("--- "+getData().getClass().getSimpleName());
-			System.err.println("--- "+getData().getMessage());
-			System.err.println("=== logout_error");			
-		}
-	};
+	}	
 }
