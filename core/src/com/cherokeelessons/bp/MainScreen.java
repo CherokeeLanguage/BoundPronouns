@@ -1,5 +1,7 @@
 package com.cherokeelessons.bp;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Application.ApplicationType;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -30,6 +33,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
@@ -39,6 +43,7 @@ import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
 import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
+import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 
 public class MainScreen implements Screen, InputProcessor {
@@ -51,7 +56,7 @@ public class MainScreen implements Screen, InputProcessor {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			game.click();
-			game.setScreen(new ShowList(game, MainScreen.this));
+			game.setScreen(new ShowPronouns(game, MainScreen.this));
 			return true;
 		}
 	};
@@ -74,10 +79,11 @@ public class MainScreen implements Screen, InputProcessor {
 			return true;
 		}
 	};
-	
+
 	private ClickListener viewBoards = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y,
+				int pointer, int button) {
 			game.click();
 			game.setScreen(new ShowLeaderboards(game, MainScreen.this));
 			return true;
@@ -148,27 +154,29 @@ public class MainScreen implements Screen, InputProcessor {
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
 				name.setTouchable(Touchable.disabled);
-				TextInputListener listener=new TextInputListener() {			
+				TextInputListener listener = new TextInputListener() {
 					@Override
 					public void input(String text) {
 						name.setText(text);
 						name.setTouchable(Touchable.enabled);
 					}
-					
+
 					@Override
 					public void canceled() {
 						name.setTouchable(Touchable.enabled);
 					}
 				};
-				if (BoundPronouns.pInput==null) {
-					Gdx.input.getTextInput(listener, "Profile Name?", name.getText(), "");
+				if (BoundPronouns.pInput == null) {
+					Gdx.input.getTextInput(listener, "Profile Name?",
+							name.getText(), "");
 				} else {
-					BoundPronouns.pInput.getTextInput(listener, "Profile Name?", name.getText(), "");
+					BoundPronouns.pInput.getTextInput(listener,
+							"Profile Name?", name.getText(), "");
 				}
 				return true;
 			}
 		});
-		
+
 		final TextButton mode = new TextButton(
 				info.settings.display.toString(), tbs);
 		mode.addListener(new ClickListener() {
@@ -181,22 +189,26 @@ public class MainScreen implements Screen, InputProcessor {
 				return true;
 			}
 		});
-		final TextButton sessionLength = new TextButton(info.settings.sessionLength.toString(), tbs);
-		sessionLength.addListener(new ClickListener(){
+		final TextButton sessionLength = new TextButton(
+				info.settings.sessionLength.toString(), tbs);
+		sessionLength.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				info.settings.sessionLength = SessionLength.getNext(info.settings.sessionLength);
+				info.settings.sessionLength = SessionLength
+						.getNext(info.settings.sessionLength);
 				sessionLength.setText(info.settings.sessionLength.toString());
 				return true;
 			}
 		});
-		final TextButton timeLimit = new TextButton(info.settings.timeLimit.toString(), tbs);
-		timeLimit.addListener(new ClickListener(){
+		final TextButton timeLimit = new TextButton(
+				info.settings.timeLimit.toString(), tbs);
+		timeLimit.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				info.settings.timeLimit = TimeLimit.getNext(info.settings.timeLimit);
+				info.settings.timeLimit = TimeLimit
+						.getNext(info.settings.timeLimit);
 				timeLimit.setText(info.settings.timeLimit.toString());
 				return true;
 			}
@@ -227,15 +239,15 @@ public class MainScreen implements Screen, InputProcessor {
 			whichCards.setDisabled(true);
 			whichCards.setTouchable(Touchable.disabled);
 		}
-		
-		final TextButton ok = new TextButton("OK", tbs);		
-		final TextButton cancel = new TextButton("CANCEL", tbs);		
+
+		final TextButton ok = new TextButton("OK", tbs);
+		final TextButton cancel = new TextButton("CANCEL", tbs);
 		final TextButton fb = new TextButton("SHARE STATS", tbs);
-		
+
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
-				if (object==null) {
-					object=cancel;
+				if (object == null) {
+					object = cancel;
 				}
 				if (ok.equals(object)) {
 					info.settings.name = name.getText();
@@ -243,7 +255,7 @@ public class MainScreen implements Screen, InputProcessor {
 				}
 				if (fb.equals(object)) {
 					cancel();
-					if (BoundPronouns.fb!=null) {
+					if (BoundPronouns.fb != null) {
 						BoundPronouns.fb.fbshare(info);
 					}
 					return;
@@ -274,34 +286,34 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.row();
 		contentTable.add(new Label("Display: ", ls)).left().fillX();
 		contentTable.add(mode).expand().fillX().left();
-		
+
 		contentTable.row();
 		contentTable.add(new Label("Session Length: ", ls)).left().fillX();
 		contentTable.add(sessionLength).expand().fillX().left();
-		
+
 		contentTable.row();
 		contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
 		contentTable.add(timeLimit).expand().fillX().left();
-		
+
 		contentTable.row();
 		contentTable.add(new Label("Mute by default: ", ls)).left().fillX();
 		contentTable.add(muted).expand().fillX().left();
 		contentTable.row();
 		contentTable.add(new Label("Which card set?", ls)).left().fillX();
 		contentTable.add(whichCards).expand().fillX().left();
-		
+
 		edit.button(ok, ok);
 		edit.button(cancel, cancel);
-		if (BoundPronouns.fb!=null && info.activeCards!=0){
+		if (BoundPronouns.fb != null && info.activeCards != 0) {
 			edit.button(fb, fb);
 		}
-		
+
 		return edit;
 	};
 
 	public void doSlotsDialog() {
-		final SlotDialog chooseSlot = new SlotDialog("Select Session", skin, game,
-				game.getFont(Font.SerifLarge));
+		final SlotDialog chooseSlot = new SlotDialog("Select Session", skin,
+				game, game.getFont(Font.SerifLarge));
 		chooseSlot.setKeepWithinStage(true);
 		chooseSlot.setModal(true);
 		chooseSlot.setFillParent(true);
@@ -370,11 +382,11 @@ public class MainScreen implements Screen, InputProcessor {
 					: settings.name;
 			txt += " - ";
 			txt += info.activeCards + " cards";
-			
+
 			txt += "\n";
-			txt += "Level: "+info.level.getLevel();
+			txt += "Level: " + info.level.getLevel();
 			txt += " - ";
-			txt += info.level; 
+			txt += info.level;
 			txt += ", ";
 			txt += ((int) (info.shortTerm * 100)) + "% short";
 			txt += ", " + ((int) (info.mediumTerm * 100)) + "% medium";
@@ -424,7 +436,7 @@ public class MainScreen implements Screen, InputProcessor {
 			editControls.row();
 			editControls.add(editb);
 			editControls.row();
-			editControls.add(deleteb);			
+			editControls.add(deleteb);
 			slots.add(editControls).fill().expandY();
 			if (blank) {
 				editb.setDisabled(true);
@@ -526,6 +538,7 @@ public class MainScreen implements Screen, InputProcessor {
 	private final Table container;
 
 	public MainScreen(BoundPronouns boundPronouns) {
+
 		this.game = boundPronouns;
 		this.skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		this.multi = new InputMultiplexer();
@@ -554,11 +567,11 @@ public class MainScreen implements Screen, InputProcessor {
 		button.setDisabled(true);
 		button.setTouchable(Touchable.disabled);
 
-		int column=0;
+		int column = 0;
 		int padBottom = 12;
-		if ((++column)%2==0) {
+		if ((++column) % 2 == 0) {
 			container.row();
-			column=0;
+			column = 0;
 		}
 		container.add(button).padBottom(padBottom).colspan(2).expand().fill();
 
@@ -567,68 +580,114 @@ public class MainScreen implements Screen, InputProcessor {
 		button = new TextButton("Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
-		if ((++column)%2==0) {
+		if ((++column) % 2 == 0) {
 			container.row();
-			column=0;
+			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
-		
-		boolean showLeaderboards = Gdx.app.getType().equals(ApplicationType.Desktop);
-		if (showLeaderboards){
+		container.add(button).padBottom(padBottom).expand().fill()
+				.width(Value.percentWidth(.5f, container));
+
+		boolean showLeaderboards = Gdx.app.getType().equals(
+				ApplicationType.Desktop);
+		if (showLeaderboards) {
 			button = new TextButton("Leader Boards", bstyle);
 			button.addListener(viewBoards);
 			button.setTouchable(Touchable.enabled);
-			if ((++column)%2==0) {
+			if ((++column) % 2 == 0) {
 				container.row();
-				column=0;
+				column = 0;
 			}
-			container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
+			container.add(button).padBottom(padBottom).expand().fill()
+					.width(Value.percentWidth(.5f, container));
 		}
 
 		button = new TextButton("Instructions", bstyle);
 		button.addListener(viewInstructions);
 		button.setTouchable(Touchable.enabled);
-		if ((++column)%2==0) {
+		if ((++column) % 2 == 0) {
 			container.row();
-			column=0;
+			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
-		
+		container.add(button).padBottom(padBottom).expand().fill()
+				.width(Value.percentWidth(.5f, container));
+
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
 		button.setTouchable(Touchable.enabled);
-		if ((++column)%2==0) {
+		if ((++column) % 2 == 0) {
 			container.row();
-			column=0;
+			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
+		container.add(button).padBottom(padBottom).expand().fill()
+				.width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
-		if ((++column)%2==0) {
+		if ((++column) % 2 == 0) {
 			container.row();
-			column=0;
+			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
+		container.add(button).padBottom(padBottom).expand().fill()
+				.width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
-		if ((++column)%2==0) {
+		if ((++column) % 2 == 0) {
 			container.row();
-			column=0;
+			column = 0;
 		}
 		container.add(button).padBottom(padBottom).colspan(2).expand().fill();
 	}
 
-	protected final InputMultiplexer multi;
+	private final InputMultiplexer multi;
 
+	private boolean loginDialogDone=false;
 	@Override
 	public void show() {
 		multi.addProcessor(this);
 		multi.addProcessor(stage);
 		Gdx.input.setInputProcessor(stage);
+		Preferences prefs = BoundPronouns.getPrefs();
+		if (!prefs.contains("CherokeeBoundPronouns")) {
+			prefs.putString("CherokeeBoundPronouns", new Date().toString());
+			prefs.flush();
+		}
+		if (!loginDialogDone && prefs.getBoolean(BoundPronouns.GoogleLoginPref, true)) {
+
+			loginDialogDone=true;
+			
+			final WindowStyle ws=new WindowStyle(skin.get(WindowStyle.class));
+			final LabelStyle ls=new LabelStyle(skin.get(LabelStyle.class));
+			final TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
+			
+			final Dialog login = new Dialog("Google Play Services", ws);
+			login.text(new Label("Connecting to Google Play Services ...", ls));
+			login.button(new TextButton("SKIP", tbs));
+			login.show(stage);
+			Callback<Void> success = new Callback<Void>() {
+				@Override
+				public void run() {
+					Gdx.app.log("Google Play Services Login", "Success");
+					login.hide();
+				}
+			};
+			Callback<Exception> error = new Callback<Exception>() {
+				@Override
+				public void run() {
+					Gdx.app.log("Google Play Services Login", "Fail: "
+							+ getData().getMessage());
+					login.hide();
+					Dialog d = new Dialog("Google Play Services Error", ws);
+					d.text(new Label("Warning! Google Play Login Failed.\n"
+							+ getData().getMessage(), ls));
+					d.button(new TextButton("DISMISS", tbs));
+					d.show(stage);
+				}
+			};
+			BoundPronouns.services.login(success, error);
+		}
 	}
 
 	@Override

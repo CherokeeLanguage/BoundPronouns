@@ -57,8 +57,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			if (initdone) {
 				return;
 			}
-			String path0 = "BoundPronouns/GooglePlayGameServices/";
-			p0 = Gdx.files.external(path0);
+			String path0 = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
+			p0 = Gdx.files.local(path0);
 			p0.mkdirs();
 			DATA_STORE_DIR = p0.child("datastore").file();
 			initdone = true;
@@ -199,6 +199,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.rank = "";
 						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
 						gs.value = e.getScoreString();
+						gs.user = "";
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {
@@ -211,7 +212,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void lb_getListFor(final String boardId,
+	public void lb_getListFor(final String boardId, final Collection collection, 
 			final Callback<GameScores> success, final Callback<Exception> error) {
 		new Thread(new Runnable() {
 			@Override
@@ -220,7 +221,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				try {
 					Games g = _getGamesObject();
 					Scores.List scores = g.scores().list(boardId,
-							Collection.PUBLIC.name(), TimeSpan.WEEKLY.name());
+							collection.name(), TimeSpan.WEEKLY.name());
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
@@ -229,6 +230,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.rank = e.getFormattedScoreRank();
 						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
 						gs.value = e.getFormattedScore();
+						gs.user=e.getPlayer().getDisplayName();
+						gs.imgUrl=e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {
@@ -241,7 +244,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void lb_getListWindowFor(final String boardId,
+	public void lb_getListWindowFor(final String boardId, final Collection collection, 
 			final Callback<GameScores> success, final Callback<Exception> error) {
 		new Thread(new Runnable() {
 			@Override
@@ -250,7 +253,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				try {
 					Games g = _getGamesObject();
 					Scores.ListWindow scores = g.scores().listWindow(boardId,
-							Collection.PUBLIC.name(), TimeSpan.WEEKLY.name());
+							collection.name(), TimeSpan.WEEKLY.name());
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
@@ -259,6 +262,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.rank = e.getFormattedScoreRank();
 						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
 						gs.value = e.getFormattedScore();
+						gs.user=e.getPlayer().getDisplayName();
+						gs.imgUrl=e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {

@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.TextInputListener;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
@@ -138,12 +139,19 @@ public class BoundPronouns extends Game {
 	public SpriteBatch batch;
 	public AssetManager manager;
 
+	private static Preferences prefs;
+
+	public static Preferences getPrefs() {
+		return prefs;
+	}
+
 	@Override
 	public void create() {
 		manager = new AssetManager();
 		initManager();
 		this.setScreen(new LoadingScreen(this));
-		Gdx.input.setCatchBackKey(true);
+		Gdx.input.setCatchBackKey(true);		
+		prefs = Gdx.app.getPreferences(this.getClass().getName());
 	}
 
 	@Override
@@ -300,6 +308,8 @@ public class BoundPronouns extends Game {
 	private static final List<DataSet> pronouns = new ArrayList<BuildDeck.DataSet>();
 
 	public static final String INFO_JSON = "info.json";
+
+	public static final String GoogleLoginPref = "GooglePlayEnabled";
 
 	public static List<DataSet> loadPronounRecords() {
 		if (pronouns.size() != 0) {

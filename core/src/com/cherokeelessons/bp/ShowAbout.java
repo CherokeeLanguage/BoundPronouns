@@ -24,8 +24,7 @@ public class ShowAbout extends ChildScreen {
 	private Table container;
 	
 	public ShowAbout(BoundPronouns game, MainScreen mainScreen) {
-		super(game, mainScreen);
-		
+		super(game, mainScreen);		
 		
 		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		

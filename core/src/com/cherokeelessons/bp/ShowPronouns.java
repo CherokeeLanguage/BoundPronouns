@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.Array;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 
-public class ShowList extends ChildScreen {
+public class ShowPronouns extends ChildScreen {
 
 	private static final String SORT_BY_ENGLISH = "Sort by English";
 	private static final String SORT_BY_LATIN = "Sort by Latin";
@@ -193,7 +193,7 @@ public class ShowList extends ChildScreen {
 	private final Skin skin;
 	private final Table container;
 	
-	public ShowList(final BoundPronouns game, Screen callingScreen) {
+	public ShowPronouns(final BoundPronouns game, Screen callingScreen) {
 		super(game, callingScreen);
 		
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
@@ -319,7 +319,7 @@ public class ShowList extends ChildScreen {
 	}
 
 	private String getIndicator(
-			com.cherokeelessons.bp.ShowList.DisplayRecord.SortBy by) {
+			com.cherokeelessons.bp.ShowPronouns.DisplayRecord.SortBy by) {
 		final String trans = "[#00000000]";
 		if (!DisplayRecord.by.equals(by)) {
 			return trans + " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";

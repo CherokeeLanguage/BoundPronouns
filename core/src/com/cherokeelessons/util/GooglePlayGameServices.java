@@ -10,13 +10,13 @@ public interface GooglePlayGameServices {
 	public void logout(Callback<Void> success, Callback<Exception> error);
 	public void lb_submit(String boardId, long score, String label, Callback<Void> success, Callback<Exception> error);
 	public void lb_getScoresFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
-	public void lb_getListFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
-	public void lb_getListWindowFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
+	public void lb_getListFor(String boardId, Collection collection, Callback<GameScores> success, Callback<Exception> error);
+	public void lb_getListWindowFor(String boardId, Collection collection, Callback<GameScores> success, Callback<Exception> error);
 	public void ach_reveal(String id, Callback<Void> success, Callback<Exception> error);
 	public void ach_unlocked(String id, Callback<Void> success, Callback<Exception> error);
 	public void ach_list(Callback<GameAchievements> success, Callback<Exception> error);
 	
-	public static abstract class Callback<T> implements Runnable {		
+	public static abstract class Callback<T> implements Runnable {
 		private T data;
 		public T getData() {
 			return data;
@@ -52,6 +52,8 @@ public interface GooglePlayGameServices {
 			public String rank;
 			public String value;
 			public String tag;
+			public String user;
+			public String imgUrl;
 		}
 		public List<GameScore> list=new ArrayList<>();
 	}
