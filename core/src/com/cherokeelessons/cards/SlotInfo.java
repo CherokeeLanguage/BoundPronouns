@@ -17,6 +17,34 @@ public class SlotInfo implements Serializable {
 		private final int level;
 		private final String engrish;
 		private final String id;
+		
+		public static LevelName getById(String id) {
+			for (LevelName level: LevelName.values()) {
+				if (level.id.equals(id)){
+					return level;
+				}
+			}
+			return Newbie;
+		}
+		
+		public static LevelName getNextById(String id) {
+			LevelName current = getById(id);
+			return getNext(current);
+		}
+		
+		public static LevelName getNext(LevelName current) {
+			if (current.equals(GrandMaster)) {
+				return GrandMaster;
+			}
+			LevelName[] values = LevelName.values();
+			for (int ix=0; ix<values.length-1; ix++) {
+				LevelName level = values[ix];
+				if (level.equals(current)) {
+					return values[ix+1];
+				}
+			}
+			return Newbie;
+		}
 
 		public String getId() {
 			return id;
@@ -26,7 +54,7 @@ public class SlotInfo implements Serializable {
 			return (level + 1) * 5;
 		}
 
-		LevelName(String engrish, int level, String id) {
+		private LevelName(String engrish, int level, String id) {
 			this.engrish = engrish;
 			this.level = level;
 			this.id = id;

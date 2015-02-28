@@ -1,7 +1,6 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
@@ -9,11 +8,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -41,10 +35,14 @@ import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.FBShareStatistics;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
 import com.cherokeelessons.cards.SlotInfo;
+import com.cherokeelessons.cards.SlotInfo.LevelName;
+import com.cherokeelessons.cards.SlotInfo.SessionLength;
+import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 
 public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 
 	private static LwjglApplicationConfiguration config;
+	private static DesktopGameServices desktopGameServices;
 
 	public static void main (String[] arg) {		
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -63,9 +61,9 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
 		BoundPronouns.pInput=desktopLauncher;
 		BoundPronouns.fb=desktopLauncher;
+		desktopGameServices = new DesktopGameServices();
+		BoundPronouns.services=desktopGameServices;
 		new LwjglApplication(new BoundPronouns(), config);
-		
-		new GooglePlayGameServices().start();
 	}
 	
 	@Override
@@ -194,43 +192,18 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 
 	@Override
 	public void fbshare(SlotInfo info) {
-		info.validate();
-
-		String text = "";		
-		text += info.activeCards + " active cards";		
-		text += " - ";		
-		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
-		text += ", " + ((int) (info.mediumTerm * 100)) + "% medium term memorized";
-		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
-		StringBuilder str = new StringBuilder();
-		try {
-			str.append("https://www.facebook.com/dialog/feed?");
-			str.append("&app_id=");
-			str.append("148519351857873");
-			str.append("&redirect_uri=");
-			str.append(URLEncoder.encode("http://www.cherokeelessons.com/phpBB3/viewforum.php?f=24#", "UTF-8"));
-			str.append("&link=");
-			str.append(URLEncoder.encode("http://www.cherokeelessons.com/phpBB3/viewtopic.php?f=24&t=73#p230", "UTF-8"));
-			str.append("&picture=");
-			str.append(URLEncoder.encode("http://www.cherokeelessons.com/phpBB3/download/file.php?id=242", "UTF-8"));
-			str.append("&caption=");
-			str.append(URLEncoder.encode("Level: "+info.level.getLevel()+" - "+info.level, "UTF-8"));
-			str.append("&description=");
-			str.append(URLEncoder.encode(text, "UTF-8"));
-			str.append("&name=");
-			str.append(URLEncoder.encode("Cherokee Language Bound Pronouns", "UTF-8"));
-		} catch (UnsupportedEncodingException e1) {
-			return;
-		}
-		
-		try {
-			URI uri;
-			uri = new URI(str.toString());
-			Desktop.getDesktop().browse(uri);
-		} catch (URISyntaxException e) {
-		} catch (IOException e) {
-		}
-	}
-	
-	
+		info.validate();		
+		Gdx.app.log(this.getClass().getName(), "Score: "+info.fullScore);		
+		Callback<Void> noop=new Callback<Void>() {			
+			@Override
+			public void run() {
+				Gdx.app.log(DesktopLauncher.this.getClass().getName(), "NOOP.");				
+			}
+		};
+		desktopGameServices.lb_submit(SessionLength.Standard.getId(), info.fullScore, info.level.getEngrish(), noop);
+		LevelName level = info.level;
+		LevelName nextAchievement = LevelName.getNext(level); 
+		desktopGameServices.ach_unlocked(level.getId(), noop);
+		desktopGameServices.ach_reveal(nextAchievement.getId(), noop);
+	}	
 }
