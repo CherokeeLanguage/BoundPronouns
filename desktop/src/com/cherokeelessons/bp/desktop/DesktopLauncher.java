@@ -35,60 +35,68 @@ import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.FBShareStatistics;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
 import com.cherokeelessons.cards.SlotInfo;
-import com.cherokeelessons.cards.SlotInfo.LevelName;
-import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
+import com.google.api.client.auth.oauth2.TokenResponseException;
 
 public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 
 	private static LwjglApplicationConfiguration config;
 	private static DesktopGameServices desktopGameServices;
 
-	public static void main (String[] arg) {		
-		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-		int width = (75*gd.getDisplayMode().getWidth())/100;
-		int height = (75*gd.getDisplayMode().getHeight())/100;
-//		int width=1280;
-//		int height=720;
+	public static void main(String[] arg) {
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment()
+				.getDefaultScreenDevice();
+		int width = (75 * gd.getDisplayMode().getWidth()) / 100;
+		int height = (75 * gd.getDisplayMode().getHeight()) / 100;
+		// int width=1280;
+		// int height=720;
 		config = new LwjglApplicationConfiguration();
-		config.allowSoftwareMode=true;
-		config.forceExit=true;
-		config.height=height;
-		config.width=width;
+		config.allowSoftwareMode = true;
+		config.forceExit = true;
+		config.height = height;
+		config.width = width;
 		config.addIcon("icons/icon-128.png", FileType.Internal);
 		config.addIcon("icons/icon-32.png", FileType.Internal);
 		config.addIcon("icons/icon-16.png", FileType.Internal);
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
-		BoundPronouns.pInput=desktopLauncher;
-		BoundPronouns.fb=desktopLauncher;
+		BoundPronouns.pInput = desktopLauncher;
+		BoundPronouns.fb = desktopLauncher;
 		desktopGameServices = new DesktopGameServices();
-		BoundPronouns.services=desktopGameServices;
+		BoundPronouns.services = desktopGameServices;
 		new LwjglApplication(new BoundPronouns(), config);
+		Callback<Void> noop = new Callback<Void>() {
+			@Override
+			public void run() {
+			}
+		};
 	}
-	
+
+
 	@Override
-	public void getTextInput (final TextInputListener listener, final String title, final String text, final String hint) {
+	public void getTextInput(final TextInputListener listener,
+			final String title, final String text, final String hint) {
 		final InputProcessor savedInput = Gdx.input.getInputProcessor();
 		Gdx.input.setInputProcessor(null);
-		
+
 		GraphicsType t = Gdx.graphics.getType();
 		Gdx.app.log(this.getClass().getName(), t.name());
-		
+
 		Window[] windows = Window.getWindows();
-		Gdx.app.log(this.getClass().getName(), "Found "+windows.length+" windows.");
-	    for (Window win : windows) {
-        	Gdx.app.log(this.getClass().getName(), win.getClass().getName());
-	    }
-	    
+		Gdx.app.log(this.getClass().getName(), "Found " + windows.length
+				+ " windows.");
+		for (Window win : windows) {
+			Gdx.app.log(this.getClass().getName(), win.getClass().getName());
+		}
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
-			public void run () {				
-				
+			public void run() {
+
 				JPanel panel = new JPanel(new FlowLayout());
 
 				@SuppressWarnings("serial")
 				JPanel textPanel = new JPanel() {
-					public boolean isOptimizedDrawingEnabled () {
+					public boolean isOptimizedDrawingEnabled() {
 						return false;
 					};
 				};
@@ -106,79 +114,85 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 				placeholderLabel.setAlignmentX(0.0f);
 				textPanel.add(placeholderLabel, 0);
 
-				textField.getDocument().addDocumentListener(new DocumentListener() {
+				textField.getDocument().addDocumentListener(
+						new DocumentListener() {
 
-					@Override
-					public void removeUpdate (DocumentEvent arg0) {
-						this.updated();
-					}
+							@Override
+							public void removeUpdate(DocumentEvent arg0) {
+								this.updated();
+							}
 
-					@Override
-					public void insertUpdate (DocumentEvent arg0) {
-						this.updated();
-					}
+							@Override
+							public void insertUpdate(DocumentEvent arg0) {
+								this.updated();
+							}
 
-					@Override
-					public void changedUpdate (DocumentEvent arg0) {
-						this.updated();
-					}
+							@Override
+							public void changedUpdate(DocumentEvent arg0) {
+								this.updated();
+							}
 
-					private void updated () {
-						if (textField.getText().length() == 0)
-							placeholderLabel.setVisible(true);
-						else
-							placeholderLabel.setVisible(false);
-					}
-				});
+							private void updated() {
+								if (textField.getText().length() == 0)
+									placeholderLabel.setVisible(true);
+								else
+									placeholderLabel.setVisible(false);
+							}
+						});
 
-				JOptionPane pane = new JOptionPane(panel, JOptionPane.QUESTION_MESSAGE, JOptionPane.OK_CANCEL_OPTION, null, null,
-					null);
+				JOptionPane pane = new JOptionPane(panel,
+						JOptionPane.QUESTION_MESSAGE,
+						JOptionPane.OK_CANCEL_OPTION, null, null, null);
 
 				pane.setInitialValue(null);
-				pane.setComponentOrientation(JOptionPane.getRootFrame().getComponentOrientation());
+				pane.setComponentOrientation(JOptionPane.getRootFrame()
+						.getComponentOrientation());
 
 				Border border = textField.getBorder();
-				placeholderLabel.setBorder(new EmptyBorder(border.getBorderInsets(textField)));
+				placeholderLabel.setBorder(new EmptyBorder(border
+						.getBorderInsets(textField)));
 
-				JFrame taskbar = new JFrame(title);				
+				JFrame taskbar = new JFrame(title);
 				taskbar.setUndecorated(true);
 				taskbar.setVisible(true);
-				taskbar.setLocationRelativeTo(null);				
+				taskbar.setLocationRelativeTo(null);
 				JDialog dialog = pane.createDialog(taskbar, title);
-								
+
 				pane.selectInitialValue();
 
 				dialog.addWindowFocusListener(new WindowFocusListener() {
 
 					@Override
-					public void windowLostFocus (WindowEvent arg0) {
+					public void windowLostFocus(WindowEvent arg0) {
 					}
 
 					@Override
-					public void windowGainedFocus (WindowEvent arg0) {
+					public void windowGainedFocus(WindowEvent arg0) {
 						textField.requestFocusInWindow();
 					}
 				});
-				
+
 				dialog.setVisible(false);
-				
-				int x = Display.getX() + Display.getWidth()/2;
-				int y = Display.getY() + Display.getHeight()/2;
+
+				int x = Display.getX() + Display.getWidth() / 2;
+				int y = Display.getY() + Display.getHeight() / 2;
 				dialog.setLocation(x, y);
-				
-				Gdx.app.log(this.getClass().getName(), "setting dialog options: "+x+"x"+y);
+
+				Gdx.app.log(this.getClass().getName(),
+						"setting dialog options: " + x + "x" + y);
 				dialog.setModalityType(Dialog.ModalityType.TOOLKIT_MODAL);
 				dialog.setAlwaysOnTop(true);
-				
+
 				Gdx.app.log(this.getClass().getName(), "showing dialog");
 				dialog.setVisible(true);
-				
+
 				dialog.dispose();
 
 				Object selectedValue = pane.getValue();
 
-				if (selectedValue != null && (selectedValue instanceof Integer)
-					&& ((Integer)selectedValue).intValue() == JOptionPane.OK_OPTION) {
+				if (selectedValue != null
+						&& (selectedValue instanceof Integer)
+						&& ((Integer) selectedValue).intValue() == JOptionPane.OK_OPTION) {
 					listener.input(textField.getText());
 					Gdx.input.setInputProcessor(savedInput);
 				} else {
@@ -191,19 +205,45 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 	}
 
 	@Override
-	public void fbshare(SlotInfo info) {
-		info.validate();		
-		Gdx.app.log(this.getClass().getName(), "Score: "+info.fullScore);		
-		Callback<Void> noop=new Callback<Void>() {			
-			@Override
-			public void run() {
-				Gdx.app.log(DesktopLauncher.this.getClass().getName(), "NOOP.");				
+	public void fbshare(final SlotInfo info) {
+		info.validate();
+		
+		desktopGameServices.login(login_success, login_error);
+		
+	}
+	
+	private Callback<Void> login_success=new Callback<Void>() {		
+		@Override
+		public void run() {
+			System.out.println("=== login_success");			
+		}
+	};
+	private Callback<Exception> login_error=new Callback<Exception>() {
+		@Override
+		public void run() {
+			System.err.println("=== login_error");
+			System.err.println("--- "+getData().getClass().getSimpleName());
+			System.err.println("--- "+getData().getMessage());
+			System.err.println("=== login_error");
+			if (getData() instanceof TokenResponseException) {
+				desktopGameServices.logout(logout_success, logout_error);
 			}
-		};
-		desktopGameServices.lb_submit(SessionLength.Standard.getId(), info.fullScore, info.level.getEngrish(), noop);
-		LevelName level = info.level;
-		LevelName nextAchievement = LevelName.getNext(level); 
-		desktopGameServices.ach_unlocked(level.getId(), noop);
-		desktopGameServices.ach_reveal(nextAchievement.getId(), noop);
-	}	
+		}
+	};
+	
+	private Callback<Void> logout_success=new Callback<Void>() {
+		@Override
+		public void run() {
+			System.out.println("=== logout_success");
+		}
+	};
+	private Callback<Exception> logout_error=new Callback<Exception>() {
+		@Override
+		public void run() {
+			System.err.println("=== logout_error");
+			System.err.println("--- "+getData().getClass().getSimpleName());
+			System.err.println("--- "+getData().getMessage());
+			System.err.println("=== logout_error");			
+		}
+	};
 }

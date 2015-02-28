@@ -69,12 +69,6 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int IncrementDeckBySize = 1;
 
-	private static final int FULLY_LEARNED_BOX = 10;
-
-	private static final int PROFICIENT_BOX = 5;
-
-	private static final int JUST_LEARNED_BOX = 1;
-
 	private static final long ONE_SECOND_ms = 1000l;
 
 	private Sound buzzer;
@@ -126,11 +120,11 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private Sound ding;
 
-	private Runnable initSet0 = new Runnable() {
+	private class LoadActiveCards implements Runnable {
 		@Override
 		public void run() {
 			nodupes.clear();
-			game.log(this, "Loading Set 0...");
+			game.log(this, "Loading Active Cards ...");
 
 			int needed = InitialDeckSize;
 
@@ -161,6 +155,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				game.log(this, "Removed no longer valid entry: "
 						+ active.pgroup + " - " + active.vgroup);
 			}
+			/*
+			 * Reset 'scoring' related values for all cards
+			 */
+			resetScoring(current_due);
 
 			/*
 			 * ALWAYS force reset ALL correct in a row counts on load!
@@ -227,6 +225,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			stage.addAction(Actions.run(showACard));
 		}
 
+		private void resetScoring(ActiveDeck deck) {
+			for (ActiveCard card : deck.deck) {
+				card.showCount=0;
+				card.showTime=0f;
+			}			
+		}
+
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
 			for (ActiveCard card : deck) {
 				card.show_again_ms = (60l * 1000l)
@@ -239,7 +244,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			while (icard.hasNext()) {
 				ActiveCard card = icard.next();
 				if (card.show_again_ms < ONE_HOUR_ms
-						&& card.box < PROFICIENT_BOX) {
+						&& card.box < SlotInfo.PROFICIENT_BOX) {
 					continue;
 				}
 				current_done.deck.add(card);
@@ -267,8 +272,9 @@ public class LearningSession extends ChildScreen implements Screen {
 				card.noErrors = true;
 			}
 		}
-
-	};
+	}
+	
+	private LoadActiveCards loadActiveCards = new LoadActiveCards() {};
 
 	private void resetCorrectInARow(ActiveDeck current_pending) {
 		for (ActiveCard card : current_pending.deck) {
@@ -294,7 +300,8 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private final JsonConverter json;
-	private Runnable loadDeck = new Runnable() {
+	
+	private class LoadMasterDeck implements Runnable {
 		@Override
 		public void run() {
 			game.log(this, "Loading Master Deck...");
@@ -303,10 +310,10 @@ public class LearningSession extends ChildScreen implements Screen {
 			game.log(this, "Loaded " + info.settings.deck.name() + " "
 					+ game.deck.cards.size() + " master cards.");
 		}
-	};
+	}
+	private LoadMasterDeck loadDeck = new LoadMasterDeck() {};
 
-	private Runnable tooSoon = new Runnable() {
-
+	private class TooSoonDialog implements Runnable {
 		@Override
 		public void run() {
 			Dialog whichMode = new Dialog(
@@ -354,14 +361,15 @@ public class LearningSession extends ChildScreen implements Screen {
 						LearningSession.this.dispose();
 						return;
 					}
-					stage.addAction(Actions.run(initSet0));
+					stage.addAction(Actions.run(loadActiveCards));
 				};
 			};
 			whichMode.show(stage);
 		}
-	};
+	}
+	private TooSoonDialog tooSoon = new TooSoonDialog() {};
 
-	private Runnable loadStats = new Runnable() {
+	private class StatsLoader implements Runnable {
 		@Override
 		public void run() {
 			game.log(this, "Loading Active Deck ...");
@@ -379,9 +387,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
-			stage.addAction(Actions.run(initSet0));
+			stage.addAction(Actions.run(loadActiveCards));
 		}
-	};
+	}
+	private StatsLoader loadStats = new StatsLoader() {};
 
 	private boolean isExtraPractice = false;
 
@@ -390,10 +399,9 @@ public class LearningSession extends ChildScreen implements Screen {
 	private final Set<String> nodupes = new HashSet<>();
 	private final Random rand = new Random();
 
-	private Runnable saveActiveDeck = new Runnable() {
+	private class SaveActiveDeckWithDialog implements Runnable {
 		@Override
-		public void run() {
-			
+		public void run() {			
 			ActiveDeck tosave = new ActiveDeck();
 			tosave.deck.addAll(current_active.deck);
 			tosave.deck.addAll(current_due.deck);
@@ -412,14 +420,13 @@ public class LearningSession extends ChildScreen implements Screen {
 				info = json.fromJson(SlotInfo.class, infoFile);
 				infoFile.copyTo(slot.child(INFO_JSON + ".bak"));
 			}
-			calculateStats(tosave, info);
+			SlotInfo.calculateStats(info, tosave);
 			
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
 			tbs.font = game.getFont(Font.SerifMedium);
 			final TextButton fb = new TextButton("SHARE STATS", tbs);
-			String dtitle = isExtraPractice?"Extra Practice Results":"Practice Results";
-			
+			String dtitle = isExtraPractice?"Extra Practice Results":"Practice Results";			
 			Dialog bye = new Dialog(dtitle, skin) {
 				{
 					LabelStyle lstyle = skin.get(LabelStyle.class);
@@ -482,75 +489,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			tmp.moveTo(slot.child(INFO_JSON));
 			tmp.delete();
 		}
-
-	};
-
-	public static void calculateStats(ActiveDeck activeDeck, SlotInfo info) {
-
-		if (activeDeck == null || info == null || activeDeck.deck.size()==0) {
-			return;
-		}
-		
-		/*
-		 * Set "level" to ceil(average box value) found in active deck. Negative box values are ignored.
-		 */
-
-		int boxsum=0;
-		for (ActiveCard card : activeDeck.deck) {
-			boxsum+= (card.box>0?card.box:0);
-		}
-		info.level=LevelName.forLevel((int)Math.ceil((double)(boxsum)/(double)activeDeck.deck.size()));
-		/*
-		 * Set "fullScore" to sum of all box values found in actice deck
-		 */
-		boxsum=0;
-		for (ActiveCard card : activeDeck.deck) {
-			boxsum+=card.box;
-		}
-		info.fullScore=boxsum;
-		
-
-		/*
-		 * How many are "fully learned" out of the active deck?
-		 */
-		final float decksize = activeDeck.deck.size();
-		float full = 0f;
-		for (ActiveCard card : activeDeck.deck) {
-			if (card.box >= FULLY_LEARNED_BOX) {
-				full++;
-			}
-		}
-		info.longTerm = full / decksize;
-
-		/*
-		 * count all active cards that aren't "fully learned"
-		 */
-		info.activeCards = activeDeck.deck.size() - (int) full;
-
-		/*
-		 * How many are "well known" out of the active deck? (excluding full
-		 * learned ones)
-		 */
-		full = 0f;
-		for (ActiveCard card : activeDeck.deck) {
-			if (card.box >= PROFICIENT_BOX && card.box < FULLY_LEARNED_BOX) {
-				full++;
-			}
-		}
-		info.mediumTerm = full / decksize;
-
-		/*
-		 * How many are "short term known" out of the active deck? (excluding
-		 * full learned ones)
-		 */
-		full = 0f;
-		for (ActiveCard card : activeDeck.deck) {
-			if (card.box >= JUST_LEARNED_BOX && card.box < PROFICIENT_BOX) {
-				full++;
-			}
-		}
-		info.shortTerm = full / decksize;
 	}
+	private SaveActiveDeckWithDialog saveActiveDeckWithDialog = new SaveActiveDeckWithDialog() {};
 
 	/**
 	 * Calculates amount of ms needed to shift by to move deck to "0" point.
@@ -578,10 +518,26 @@ public class LearningSession extends ChildScreen implements Screen {
 		return by;
 	}
 
+	/**
+	 * used for logging periodic messages
+	 */
 	private float notice_elapsed = 0f;
+	/**
+	 * total challenge time accumulated 
+	 */
 	private float elapsed = 0f;
+	/**
+	 * time since last "shuffle"
+	 */
 	private float sinceLastNextCard_elapsed = 0f;
+	/**
+	 * Whether elapsed time should be accumulated or not
+	 */
 	private boolean elapsed_tick_on = false;
+	/**
+	 * How long this challenge has been displayed.
+	 */
+	private float challenge_elapsed;
 
 	private class ShowACard implements Runnable {
 
@@ -636,7 +592,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (elapsed > info.settings.sessionLength.getSeconds()) {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
-					stage.addAction(Actions.run(saveActiveDeck));					
+					stage.addAction(Actions.run(saveActiveDeckWithDialog));					
 					return;
 				}
 			}
@@ -654,10 +610,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				activeCard.show_again_ms = Deck.getNextInterval(0);
 				reInsertCard(activeCard);
 			} else {
+				challenge_elapsed=0f;
 				elapsed_tick_on = true;
-				ticktock_id = ticktock.loop(.01f);
+				ticktock_id = ticktock.loop(0f);
 				challengeCardDialog.setCounter(cardcount++);
-				challengeCardDialog.setCard(activeCard, deckCard);
+				challengeCardDialog.setCard(activeCard, deckCard);				
 				challengeCardDialog.show(stage);
 
 				AnswerList tracked_answers;
@@ -726,9 +683,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private Runnable showACard = new ShowACard() {
-
-	};
+	private ShowACard showACard = new ShowACard() {};
 
 	private final Skin skin;
 
@@ -827,10 +782,16 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			@Override
 			protected void result(Object object) {
+				/*
+				 * bump show count and add in elapsed display time for later scoring ...
+				 */
+				_activeCard.showCount++;
+				_activeCard.showTime+=challenge_elapsed;
 				// Card card = cards_by_id.get(_activeCard.getId());
 				this.clearActions();
 				this.setCheckVisible(false);
 				setTimer(0);
+				ticktock.setVolume(ticktock_id, 0f);
 				ticktock.stop(ticktock_id);
 				cancel();
 				/**
@@ -938,7 +899,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		Iterator<ActiveCard> ipending = current_due.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
 			ActiveCard next = ipending.next();
-			if (next.box >= FULLY_LEARNED_BOX) {
+			if (next.box >= SlotInfo.FULLY_LEARNED_BOX) {
 				continue;
 			}
 			if (next.show_again_ms > 0) {
@@ -1357,6 +1318,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			return;
 		}
 		if (elapsed_tick_on) {
+			challenge_elapsed += delta;
 			sinceLastNextCard_elapsed += delta;
 			elapsed += delta;
 			notice_elapsed += delta;

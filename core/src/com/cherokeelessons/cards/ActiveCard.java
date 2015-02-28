@@ -96,6 +96,18 @@ public class ActiveCard {
 	 * How long before this card should be tried again?
 	 */
 	public long show_again_ms;
+	
+	/*
+	 * For "scoring" for leaderboards
+	 */
+	/**
+	 * total elapsed time card has been displayed
+	 */
+	public float showTime=0f;
+	/**
+	 * total times user was challenged with card
+	 */
+	public int showCount=0;
 
 	public int getAnswerCount() {
 		int i = correct_in_a_row.size();

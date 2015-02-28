@@ -5,15 +5,16 @@ import java.util.List;
 
 
 public interface GooglePlayGameServices {
-	public void login(Callback<Boolean> done);
-	public void logout(Callback<Void> done);
-	public void lb_submit(String boardId, long score, String label, Callback<Void> done);
-	public void lb_getScoresFor(String boardId, Callback<GameScores> list);
-	public void lb_getListFor(String boardId, Callback<GameScores> list);
-	public void lb_getListWindowFor(String boardId, Callback<GameScores> list);
-	public void ach_reveal(String id, Callback<Void> done);
-	public void ach_unlocked(String id, Callback<Void> done);
-	public void ach_list(Callback<GameAchievements> list);
+	
+	public void login(Callback<Void> success, Callback<Exception> error);
+	public void logout(Callback<Void> success, Callback<Exception> error);
+	public void lb_submit(String boardId, long score, String label, Callback<Void> success, Callback<Exception> error);
+	public void lb_getScoresFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
+	public void lb_getListFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
+	public void lb_getListWindowFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
+	public void ach_reveal(String id, Callback<Void> success, Callback<Exception> error);
+	public void ach_unlocked(String id, Callback<Void> success, Callback<Exception> error);
+	public void ach_list(Callback<GameAchievements> success, Callback<Exception> error);
 	
 	public static abstract class Callback<T> implements Runnable {		
 		private T data;

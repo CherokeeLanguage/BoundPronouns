@@ -74,6 +74,15 @@ public class MainScreen implements Screen, InputProcessor {
 			return true;
 		}
 	};
+	
+	private ClickListener viewBoards = new ClickListener() {
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			game.click();
+			game.setScreen(new ShowLeaderboards(game, MainScreen.this));
+			return true;
+		};
+	};
 
 	private final JsonConverter json;
 
@@ -346,7 +355,7 @@ public class MainScreen implements Screen, InputProcessor {
 					if (activeDeck == null) {
 						activeDeck = new ActiveDeck();
 					}
-					LearningSession.calculateStats(activeDeck, info);
+					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
 				}
 			}
@@ -545,8 +554,12 @@ public class MainScreen implements Screen, InputProcessor {
 		button.setDisabled(true);
 		button.setTouchable(Touchable.disabled);
 
+		int column=0;
 		int padBottom = 12;
-		container.row();
+		if ((++column)%2==0) {
+			container.row();
+			column=0;
+		}
 		container.add(button).padBottom(padBottom).colspan(2).expand().fill();
 
 		bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
@@ -554,30 +567,58 @@ public class MainScreen implements Screen, InputProcessor {
 		button = new TextButton("Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
-		container.row();
+		if ((++column)%2==0) {
+			container.row();
+			column=0;
+		}
 		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
+		
+		boolean showLeaderboards = Gdx.app.getType().equals(ApplicationType.Desktop);
+		if (showLeaderboards){
+			button = new TextButton("Leader Boards", bstyle);
+			button.addListener(viewBoards);
+			button.setTouchable(Touchable.enabled);
+			if ((++column)%2==0) {
+				container.row();
+				column=0;
+			}
+			container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
+		}
 
 		button = new TextButton("Instructions", bstyle);
 		button.addListener(viewInstructions);
 		button.setTouchable(Touchable.enabled);
+		if ((++column)%2==0) {
+			container.row();
+			column=0;
+		}
 		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 		
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
 		button.setTouchable(Touchable.enabled);
-		container.row();
+		if ((++column)%2==0) {
+			container.row();
+			column=0;
+		}
 		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
-		// container.row();
+		if ((++column)%2==0) {
+			container.row();
+			column=0;
+		}
 		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
-		container.row();
+		if ((++column)%2==0) {
+			container.row();
+			column=0;
+		}
 		container.add(button).padBottom(padBottom).colspan(2).expand().fill();
 	}
 
