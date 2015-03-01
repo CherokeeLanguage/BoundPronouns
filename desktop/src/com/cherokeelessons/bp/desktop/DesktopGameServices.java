@@ -35,7 +35,6 @@ import com.google.api.services.games.model.PlayerAchievement;
 import com.google.api.services.games.model.PlayerAchievementListResponse;
 import com.google.api.services.games.model.PlayerLeaderboardScore;
 import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
-import com.google.api.services.games.model.PlayerScoreResponse;
 
 public class DesktopGameServices implements GooglePlayGameServices {
 	private File DATA_STORE_DIR;
@@ -47,6 +46,14 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			.getDefaultInstance();
 
 	private Boolean initdone = false;
+	
+	private static void postRunnable(Runnable runnable) {
+		if (runnable==null) {
+			Gdx.app.log("DesktopGameServices", "NULL CALLBACK!");
+			return;
+		}
+		Gdx.app.postRunnable(runnable);
+	}
 
 	public DesktopGameServices() {
 
@@ -61,6 +68,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			p0 = Gdx.files.local(path0);
 			p0.mkdirs();
 			DATA_STORE_DIR = p0.child("datastore").file();
+			System.out.println("DATA STORE DIR: "+DATA_STORE_DIR.getAbsolutePath());
 			initdone = true;
 		}
 	}
@@ -78,7 +86,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 		Credential authorize = null;
 
 		authorize = new AuthorizationCodeInstalledApp(flow,
-				new LocalServerReceiver()).authorize("me");
+				new LocalServerReceiver()).authorize("user");
 
 		authorize.refreshToken();
 		return authorize;
@@ -120,10 +128,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					_login();
 				} catch (GeneralSecurityException | IOException e) {
 					error.setData(e);
-					Gdx.app.postRunnable(error);
+					postRunnable(error);
 					return;
 				}
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
@@ -148,10 +156,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					flow.getCredentialDataStore().clear();
 				} catch (IOException e) {
 					error.setData(e);
-					Gdx.app.postRunnable(error);
+					postRunnable(error);
 					return;
 				}
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
@@ -168,13 +176,11 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					Submit submit = g.scores().submit(boardId, score);
 					String tag = URLEncoder.encode(label, "UTF-8");
 					submit.setScoreTag(tag);
-					PlayerScoreResponse response = submit.execute();
-					Gdx.app.log(this.getClass().getName(),
-							response.getFormattedScore());
+					submit.execute();
 				} catch (IOException | GeneralSecurityException e) {
 					e.printStackTrace();
 				}
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
@@ -206,25 +212,31 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					e.printStackTrace();
 				}
 				success.setData(gscores);
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		});
 	}
 
 	@Override
 	public void lb_getListFor(final String boardId, final Collection collection, 
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final TimeSpan ts, final Callback<GameScores> success, final Callback<Exception> error) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				GameScores gscores = new GameScores();
 				try {
+					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "+collection.name()+" - "+ts.name()+" - "+boardId);
+							
 					Games g = _getGamesObject();
-					Scores.List scores = g.scores().list(boardId,
-							collection.name(), TimeSpan.WEEKLY.name());
+					Scores.List scores = g.scores().list(boardId,collection.name(), ts.toString());					
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
+					if (list==null) {
+						success.setData(gscores);
+						postRunnable(success);
+						return;
+					}
 					for (LeaderboardEntry e : list) {
 						GameScore gs = new GameScore();
 						gs.rank = e.getFormattedScoreRank();
@@ -234,18 +246,20 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.imgUrl=e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
+					gscores.collection=collection;
+					gscores.ts=ts;
 				} catch (IOException | GeneralSecurityException e) {
 					e.printStackTrace();
 				}
 				success.setData(gscores);
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
 
 	@Override
 	public void lb_getListWindowFor(final String boardId, final Collection collection, 
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final TimeSpan ts, final Callback<GameScores> success, final Callback<Exception> error) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -253,7 +267,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				try {
 					Games g = _getGamesObject();
 					Scores.ListWindow scores = g.scores().listWindow(boardId,
-							collection.name(), TimeSpan.WEEKLY.name());
+							collection.name(), ts.name());
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
@@ -266,13 +280,15 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.imgUrl=e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
+					gscores.collection=collection;
+					gscores.ts=ts;
 				} catch (IOException | GeneralSecurityException e) {
 					error.setData(e);
-					Gdx.app.postRunnable(error);
+					postRunnable(error);
 					return;
 				}
 				success.setData(gscores);
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
@@ -299,10 +315,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					ac.reveal(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
 					error.setData(e);
-					Gdx.app.postRunnable(error);
+					postRunnable(error);
 					return;
 				}
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
@@ -319,10 +335,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					ac.unlock(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
 					error.setData(e);
-					Gdx.app.postRunnable(error);
+					postRunnable(error);
 					return;
 				}
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		}).start();
 	}
@@ -348,11 +364,11 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					}
 				} catch (IOException | GeneralSecurityException e) {
 					error.setData(e);
-					Gdx.app.postRunnable(error);
+					postRunnable(error);
 					return;
 				}
 				success.setData(results);
-				Gdx.app.postRunnable(success);
+				postRunnable(success);
 			}
 		});
 	}

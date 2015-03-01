@@ -143,23 +143,17 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum SessionLength {
-		Brief("Brief: about 5-8 minutes", 5f, "CgkIy7GTtc0TEAIQAg"), Standard(
-				"Standard: about 10-15 minutes", 10f, "CgkIy7GTtc0TEAIQAw"), Long(
-				"Long: about 15-20 minutes", 15f, "CgkIy7GTtc0TEAIQBA"), BrainNumbing(
-				"Brain Numbing: very long", 60f, "CgkIy7GTtc0TEAIQBQ");
+		XBrief("XBrief: about 10 seconds", 1f/6f), Brief("Brief: about 5-8 minutes", 5f), Standard(
+				"Standard: about 10-15 minutes", 10f), Long(
+				"Long: about 15-20 minutes", 15f), BrainNumbing(
+				"Brain Numbing: very long", 60f);
 
 		final private float seconds;
 		final private String engrish;
-		final private String id;
 
-		public String getId() {
-			return id;
-		}
-
-		private SessionLength(String engrish, float minutes, String id) {
+		private SessionLength(String engrish, float minutes) {
 			this.engrish = engrish.intern();
 			this.seconds = minutes * 60f;
-			this.id = id;
 		}
 
 		public float getSeconds() {

@@ -256,7 +256,25 @@ public class MainScreen implements Screen, InputProcessor {
 				if (fb.equals(object)) {
 					cancel();
 					if (BoundPronouns.fb != null) {
-						BoundPronouns.fb.fbshare(info);
+						BoundPronouns.fb.fbshare(info);						
+					}
+					if (BoundPronouns.services!=null) {
+						Callback<Void> noop_success=new Callback<Void>() {
+							@Override							
+							public void run() {
+								Gdx.app.log("lb submit", "success");
+							}
+						};
+						Callback<Exception> noop_error=new Callback<Exception>() {							
+							@Override
+							public void run() {
+								Gdx.app.log("lb submit", getData().getMessage());
+							}
+						};
+						BoundPronouns.services.lb_submit(
+								ShowLeaderboards.BoardId,
+								info.lastScore, info.level.getEngrish(),
+								noop_success, noop_error);
 					}
 					return;
 				}
@@ -649,18 +667,19 @@ public class MainScreen implements Screen, InputProcessor {
 		multi.addProcessor(this);
 		multi.addProcessor(stage);
 		Gdx.input.setInputProcessor(stage);
-		Preferences prefs = BoundPronouns.getPrefs();
+		final Preferences prefs = BoundPronouns.getPrefs();
 		if (!prefs.contains("CherokeeBoundPronouns")) {
 			prefs.putString("CherokeeBoundPronouns", new Date().toString());
 			prefs.flush();
 		}
-		if (!loginDialogDone && prefs.getBoolean(BoundPronouns.GoogleLoginPref, true)) {
-
-			loginDialogDone=true;
-			
+		if (!loginDialogDone && prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+			loginDialogDone=true;			
 			final WindowStyle ws=new WindowStyle(skin.get(WindowStyle.class));
 			final LabelStyle ls=new LabelStyle(skin.get(LabelStyle.class));
 			final TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
+			ws.titleFont=game.getFont(Font.SerifLLarge);
+			ls.font=game.getFont(Font.SerifLarge);
+			tbs.font=game.getFont(Font.SerifMedium);
 			
 			final Dialog login = new Dialog("Google Play Services", ws);
 			login.text(new Label("Connecting to Google Play Services ...", ls));
@@ -671,6 +690,8 @@ public class MainScreen implements Screen, InputProcessor {
 				public void run() {
 					Gdx.app.log("Google Play Services Login", "Success");
 					login.hide();
+					prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
+					prefs.flush();
 				}
 			};
 			Callback<Exception> error = new Callback<Exception>() {
@@ -680,10 +701,14 @@ public class MainScreen implements Screen, InputProcessor {
 							+ getData().getMessage());
 					login.hide();
 					Dialog d = new Dialog("Google Play Services Error", ws);
-					d.text(new Label("Warning! Google Play Login Failed.\n"
-							+ getData().getMessage(), ls));
+					Label label = new Label(getData().getMessage(), ls);
+					d.text(label);					
 					d.button(new TextButton("DISMISS", tbs));
 					d.show(stage);
+					if (getData().getMessage().contains("access_denied")){
+						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
+						prefs.flush();
+					}
 				}
 			};
 			BoundPronouns.services.login(success, error);

@@ -75,9 +75,9 @@ public class BoundPronouns extends Game {
 		FitViewport fitViewport = new FitViewport(surrounds.width,
 				surrounds.height, camera);
 		fitViewport.update((int) surrounds.width, (int) surrounds.height, true);
-		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
-				"Camera Size: " + (int) surrounds.getWidth() + "x"
-						+ (int) surrounds.getHeight());
+//		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
+//				"Camera Size: " + (int) surrounds.getWidth() + "x"
+//						+ (int) surrounds.getHeight());
 		return fitViewport;
 	}
 
@@ -113,6 +113,7 @@ public class BoundPronouns extends Game {
 	public static final String IMG_SCROLLBAR = "scrollpane/basic-vbar.png";
 	public static final String IMG_SCROLLBUTTON = "scrollpane/basic-vbutton.png";
 
+	public static final String IMG_PIXEL = "images/a-white-pixel.png";
 	public static final String IMG_LOADING = "images/coyote.png";
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
@@ -180,6 +181,7 @@ public class BoundPronouns extends Game {
 		param.minFilter = TextureFilter.Linear;
 
 		manager.load(IMG_LOADING, Texture.class, param);
+		manager.load(IMG_PIXEL, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
 		manager.load(IMG_MAYAN, Texture.class, param);
 		manager.load(IMG_MAYAN_DIALOG, Texture.class, param);
@@ -309,7 +311,7 @@ public class BoundPronouns extends Game {
 
 	public static final String INFO_JSON = "info.json";
 
-	public static final String GoogleLoginPref = "GooglePlayEnabled";
+	public static final String GooglePlayLogginIn = "GooglePlayEnabled";
 
 	public static List<DataSet> loadPronounRecords() {
 		if (pronouns.size() != 0) {

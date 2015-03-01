@@ -1,20 +1,15 @@
 package com.cherokeelessons.bp;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Net;
-import com.badlogic.gdx.Net.HttpRequest;
-import com.badlogic.gdx.Net.HttpResponse;
-import com.badlogic.gdx.Net.HttpResponseListener;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -22,10 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
-import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
@@ -39,9 +34,6 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	private ScrollPane scroll;
 	private Table scrolltable;
 	private Label message;
-
-	private Table topScoresPublic;
-	private Table topScoresCircle;
 
 	public ShowLeaderboards(BoundPronouns game, Screen caller) {
 		super(game, caller);
@@ -66,101 +58,73 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 	private TimeSpan ts = TimeSpan.WEEKLY;
 	public FileHandle p0;
-	protected Callback<GameScores> success_populate_circle = new Callback<GameScores>() {
+
+	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th",
+			"8th", "9th", "10th" };
+
+	public Callback<GameScores> success_show_scores = new Callback<GameScores>() {
 		@Override
 		public void run() {
+			Gdx.app.log("success_show_scores", "Scores received.");
 			GameScores data = getData();
-			Table table = topScoresCircle;
-
-			table.clear();
-			table.defaults().expandX().fillX();
-			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifMedium),
-					Color.BLACK);
-			for (GameScore score : data.list) {
-				table.row();
-				table.add(new Label(score.rank, ls));
-				table.add(new Label(score.value, ls));
-				table.add(new Label(score.tag, ls));
+			if (data==null) {
+				message.setText("You must login to Google Play for Leaderboard Support");
+				return;
+			}
+			if (data.collection==null) {
+				data.collection=lb_collection;
+			}
+			if (data.ts==null) {
+				data.ts=ts;
+			}
+			if (data.collection.equals(Collection.PUBLIC)) {
+				message.setText(data.ts.getEngrish() + " Top Public Scores");
+			}
+			if (data.collection.equals(Collection.SOCIAL)) {
+				message.setText(data.ts.getEngrish() + " Top Circle Scores");
 			}
 
-		}
-	};
-	public Callback<GameScores> success_populate_public = new Callback<GameScores>() {
-		@Override
-		public void run() {
-			GameScores data = getData();
-			Table table = topScoresPublic;
+			Table table = scrolltable;
 
 			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifLarge),
 					Color.BLACK);
-			
+
 			table.clear();
-			table.defaults().expandX().fillX();
-			
-//			table.add().width(50).height(50).fill(false).expand(false, false).padLeft(15).padRight(15);
-			table.add(new Label("Rank", ls));
-			table.add(new Label("Score", ls));
-			table.add(new Label("Skill Level", ls));
-			table.add(new Label("Display Name", ls));
-			
-			String httpMethod = Net.HttpMethods.GET;
-			HttpRequest httpRequest = new HttpRequest(httpMethod);
-			
-//			Gdx.files.getLocalStoragePath();
+			table.defaults().expandX();
+			String text = "Rank";
+			table.add(new Label(text, ls)).padLeft(15).padRight(15).center();
+			text = "Score";
+			table.add(new Label(text, ls)).center();
+			text = "Skill Level";
+			table.add(new Label(text, ls)).center();
+			text = "Display Name";
+			table.add(new Label(text, ls)).center();
 
 			for (GameScore score : data.list) {
 				table.row();
-				httpRequest.setUrl(score.imgUrl);
-				httpRequest.setContent(null);
-//				final Image avatar = new Image(); 
-//				Gdx.net.sendHttpRequest(httpRequest,
-//						new HttpResponseListener() {
-//							@Override
-//							public void handleHttpResponse(
-//									HttpResponse httpResponse) {								
-//								final byte[] rawImageBytes = httpResponse
-//										.getResult();
-//								Gdx.app.postRunnable(new Runnable() {
-//									public void run() {
-//										Pixmap pixmap = new Pixmap(
-//												rawImageBytes, 0,
-//												rawImageBytes.length);
-//										Texture texture = new Texture(pixmap);
-//										avatar.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
-//									}
-//								});
-//							}
-//
-//							@Override
-//							public void failed(Throwable t) {
-//								// TODO Auto-generated method stub
-//
-//							}
-//
-//							@Override
-//							public void cancelled() {
-//								// TODO Auto-generated method stub
-//
-//							}
-//
-//						});
-//
-//				table.add(avatar).width(50).height(50).fill(false).expand(false, false).padLeft(20).padRight(10);
-//				table.add(new Label(score.imgUrl, ls));
-				table.add(new Label(score.rank, ls));
-				table.add(new Label(score.value, ls));
-				table.add(new Label(score.tag, ls));
-				table.add(new Label(StringUtils.substringBeforeLast(score.user,
-						" "), ls));
+				table.add(new Label(score.rank, ls)).padLeft(15).padRight(15)
+						.center();
+				table.add(new Label(score.value, ls)).right().padRight(30);
+				table.add(new Label(score.tag, ls)).center();
+				table.add(new Label(score.user, ls)).center();
 			}
 
-			BoundPronouns.services.lb_getListFor(BoardId, Collection.SOCIAL,
-					success_populate_circle, noop_error);
-
-			scrolltable.clear();
-			scrolltable.add(table).expand().fill();
+			for (int ix = data.list.size(); ix < ranks.length; ix++) {
+				table.row();
+				table.add(new Label(ranks[ix], ls)).padLeft(15).padRight(15)
+						.center();
+				table.add(new Label("0", ls)).right().padRight(30);
+				table.add(new Label("Newbie", ls)).center();
+				table.add(new Label("", ls)).center();
+			}
+			
+			Preferences prefs = BoundPronouns.getPrefs();
+			if (!prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+				message.setText("You must login to Google Play for Leaderboard Support");
+			}
 		}
 	};
+
 	public Callback<Exception> noop_error = new Callback<Exception>() {
 		@Override
 		public void run() {
@@ -169,7 +133,9 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		}
 	};
 
-	private static final String BoardId = SessionLength.Standard.getId();
+	public static final String BoardId = "CgkIy7GTtc0TEAIQAw";
+
+	public Collection lb_collection = Collection.PUBLIC;
 
 	private class InitView implements Runnable {
 		@Override
@@ -177,38 +143,108 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			TextButton button;
 
 			TextButtonStyle tbs = skin.get(TextButtonStyle.class);
-			tbs.checkedFontColor = Color.BLUE;
 			tbs.font = game.getFont(Font.SerifSmall);
+
+			ButtonGroup<TextButton> bgroup = new ButtonGroup<>();
+			bgroup.setMaxCheckCount(1);
+			bgroup.setMinCheckCount(1);
 
 			button = new TextButton(BoundPronouns.BACK_ARROW, tbs);
 			container.add(button).center().top()
 					.width(BoundPronouns.BACK_WIDTH);
 			button.addListener(exit);
 
-			button = new TextButton("Top Public Scores", tbs);
+			button = new TextButton(ts.getEngrish(), tbs);
+			button.setChecked(false);
+			container.add(button).center().top().expandX().fillX();
+			final TextButton ts_button = button;
+
+			button = new TextButton(lb_collection.getEnglish(), tbs);
 			button.setChecked(true);
 			container.add(button).center().top().expandX().fillX();
+			bgroup.add(button);
+			final TextButton lb_button = button;
+			lb_button.addListener(new ClickListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					lb_collection = lb_collection.next();
+					lb_button.setText(lb_collection.getEnglish());
+					requestScores();
+					return true;
+				}
+			});
+			ts_button.addListener(new ClickListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					ts = ts.next();
+					float width = ts_button.getLabel().getWidth();
+					ts_button.setText(ts.getEngrish());
+					ts_button.getLabel().setWidth(width);
+					requestScores();
+					return true;
+				}
+			});
+			
+			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifSmall),
+					Color.BLACK);
+			message = new Label("...", ls);
 
-			button = new TextButton("Top Circle Scores", tbs);
-			button.setChecked(false);
-			container.add(button).center().top().expandX().fillX();
-
-			button = new TextButton(ts.toString(), tbs);
-			button.setChecked(false);
-			container.add(button).center().top().expandX().fillX();
-
-			button = new TextButton("Google Play Setup", tbs);
-			button.setChecked(false);
+			Preferences prefs = BoundPronouns.getPrefs();
+			if (!prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+				button = new TextButton("Login to Google Play", tbs);
+				message.setText("You must login to Google Play for Leaderboard Support");
+			} else {
+				button = new TextButton("Logout of Google Play", tbs);
+			}
+			final TextButton play_button = button;
+			play_button.addListener(new ClickListener(){
+				Callback<Void> success_in=new Callback<Void>() {							
+					@Override
+					public void run() {
+						Preferences prefs = BoundPronouns.getPrefs();
+						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
+						prefs.flush();
+						requestScores();
+						play_button.setText("Logout of Google Play");
+					}
+				};
+				Callback<Void> success_out=new Callback<Void>() {							
+					@Override
+					public void run() {
+						Preferences prefs = BoundPronouns.getPrefs();
+						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
+						prefs.flush();
+						requestScores();
+						play_button.setText("Login to Google Play");
+					}
+				};
+				Callback<Exception> error=new Callback<Exception>() {
+					@Override
+					public void run() {
+						success_out.run();
+					}
+				};
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					Preferences prefs = BoundPronouns.getPrefs();
+					if (prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+						BoundPronouns.services.logout(success_out, error);
+					} else {
+						BoundPronouns.services.login(success_in, error);
+					}
+					return true;
+				}
+			});
 			container.add(button).center().top().expandX().fillX();
 
 			final int c = container.getCell(button).getColumn() + 1;
 
-			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifSmall),
-					Color.BLACK);
-			message = new Label("...", ls);
 			container.row();
-			container.add(message).expandX().fillX().colspan(c).left()
-					.padLeft(20);
+			message.setAlignment(Align.center);
+			container.add(message).expandX().fillX().colspan(c).center();
 
 			scrolltable = new Table();
 			scroll = new ScrollPane(scrolltable, skin);
@@ -217,15 +253,22 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			scroll.setSmoothScrolling(true);
 			container.row();
 			container.add(scroll).expand().fill().colspan(c);
+			stage.setScrollFocus(scroll);
+			stage.setKeyboardFocus(scroll);
+			requestScores();
+		}
 
-			topScoresCircle = new Table();
-			topScoresPublic = new Table();
+	}
 
-			if (BoundPronouns.getPrefs().getBoolean(
-					BoundPronouns.GoogleLoginPref, true)) {
-				BoundPronouns.services.lb_getListFor(BoardId,
-						Collection.PUBLIC, success_populate_public, noop_error);
-			}
+	private void requestScores() {
+		if (BoundPronouns.getPrefs().getBoolean(BoundPronouns.GooglePlayLogginIn,
+				false)) {
+			BoundPronouns.services.lb_getListFor(BoardId, lb_collection, ts,
+					success_show_scores, noop_error);
+			message.setText("Loading ...");
+		} else {
+			success_show_scores.setData(new GameScores());
+			Gdx.app.postRunnable(success_show_scores);
 		}
 	}
 }

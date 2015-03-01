@@ -41,10 +41,10 @@ import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.Answer;
 import com.cherokeelessons.cards.Answer.AnswerList;
-import com.cherokeelessons.cards.SlotInfo.LevelName;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
+import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
@@ -65,7 +65,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int SendToNextSessionThreshold = 4;
 
-	private static final int InitialDeckSize = 5;
+	private static final int InitialDeckSize = 1;
 
 	private static final int IncrementDeckBySize = 1;
 
@@ -120,11 +120,11 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private Sound ding;
 
-	private class LoadActiveCards implements Runnable {
+	private class ProcessActiveCards implements Runnable {
 		@Override
 		public void run() {
 			nodupes.clear();
-			game.log(this, "Loading Active Cards ...");
+			game.log(this, "Processing Active Cards ...");
 
 			int needed = InitialDeckSize;
 
@@ -227,9 +227,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		private void resetScoring(ActiveDeck deck) {
 			for (ActiveCard card : deck.deck) {
-				card.showCount=0;
-				card.showTime=0f;
-			}			
+				card.showCount = 0;
+				card.showTime = 0f;
+			}
 		}
 
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
@@ -273,8 +273,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 		}
 	}
-	
-	private LoadActiveCards loadActiveCards = new LoadActiveCards() {};
+
+	private ProcessActiveCards processActiveCards = new ProcessActiveCards() {
+	};
 
 	private void resetCorrectInARow(ActiveDeck current_pending) {
 		for (ActiveCard card : current_pending.deck) {
@@ -300,18 +301,20 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private final JsonConverter json;
-	
+
 	private class LoadMasterDeck implements Runnable {
 		@Override
 		public void run() {
 			game.log(this, "Loading Master Deck...");
-			stage.addAction(Actions.run(loadStats));
+			stage.addAction(Actions.run(activeDeckLoader));
 
 			game.log(this, "Loaded " + info.settings.deck.name() + " "
 					+ game.deck.cards.size() + " master cards.");
 		}
 	}
-	private LoadMasterDeck loadDeck = new LoadMasterDeck() {};
+
+	private LoadMasterDeck loadDeck = new LoadMasterDeck() {
+	};
 
 	private class TooSoonDialog implements Runnable {
 		@Override
@@ -361,15 +364,17 @@ public class LearningSession extends ChildScreen implements Screen {
 						LearningSession.this.dispose();
 						return;
 					}
-					stage.addAction(Actions.run(loadActiveCards));
+					stage.addAction(Actions.run(processActiveCards));
 				};
 			};
 			whichMode.show(stage);
 		}
 	}
-	private TooSoonDialog tooSoon = new TooSoonDialog() {};
 
-	private class StatsLoader implements Runnable {
+	private TooSoonDialog tooSoon = new TooSoonDialog() {
+	};
+
+	private class ActiveDeckLoader implements Runnable {
 		@Override
 		public void run() {
 			game.log(this, "Loading Active Deck ...");
@@ -387,10 +392,12 @@ public class LearningSession extends ChildScreen implements Screen {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
-			stage.addAction(Actions.run(loadActiveCards));
+			stage.addAction(Actions.run(processActiveCards));
 		}
 	}
-	private StatsLoader loadStats = new StatsLoader() {};
+
+	private ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader() {
+	};
 
 	private boolean isExtraPractice = false;
 
@@ -399,9 +406,22 @@ public class LearningSession extends ChildScreen implements Screen {
 	private final Set<String> nodupes = new HashSet<>();
 	private final Random rand = new Random();
 
+	private Callback<Void> noop_success = new Callback<Void>() {
+		@Override
+		public void run() {
+			Gdx.app.log("LearningSession-Score Submit", "success");
+		}
+	};
+	private Callback<Exception> noop_error = new Callback<Exception>() {
+		@Override
+		public void run() {
+			Gdx.app.log("LearningSession-Score Submit", getData().getMessage());
+		}
+	};
+
 	private class SaveActiveDeckWithDialog implements Runnable {
 		@Override
-		public void run() {			
+		public void run() {
 			ActiveDeck tosave = new ActiveDeck();
 			tosave.deck.addAll(current_active.deck);
 			tosave.deck.addAll(current_due.deck);
@@ -421,20 +441,24 @@ public class LearningSession extends ChildScreen implements Screen {
 				infoFile.copyTo(slot.child(INFO_JSON + ".bak"));
 			}
 			SlotInfo.calculateStats(info, tosave);
-			
+
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
 			tbs.font = game.getFont(Font.SerifMedium);
 			final TextButton fb = new TextButton("SHARE STATS", tbs);
-			String dtitle = isExtraPractice?"Extra Practice Results":"Practice Results";			
+			String dtitle = isExtraPractice ? "Extra Practice Results"
+					: "Practice Results";
 			Dialog bye = new Dialog(dtitle, skin) {
 				{
 					LabelStyle lstyle = skin.get(LabelStyle.class);
-					lstyle.font = game.getFont(Font.SerifLarge);
-					
+					lstyle.font = game.getFont(Font.SerifMedium);
+
 					StringBuilder sb = new StringBuilder();
 					sb.append("Level: ");
 					sb.append(info.level);
+					sb.append("\n");
+					sb.append("Score: ");
+					sb.append(info.lastScore);
 					sb.append("\n");
 					sb.append(info.activeCards + " active cards");
 					sb.append("\n");
@@ -449,24 +473,42 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					int minutes = (int) (elapsed / 60f);
 					int seconds = (int) (elapsed - minutes * 60f);
-					sb.append("Total actual challenge time: " + minutes
-							+ ":" + (seconds < 10 ? "0" : "") + seconds);
+					sb.append("Total actual challenge time: " + minutes + ":"
+							+ (seconds < 10 ? "0" : "") + seconds);
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button("OK!");
-					if (BoundPronouns.fb!=null && !isExtraPractice) {
+					if (BoundPronouns.fb != null && !isExtraPractice) {
 						button(fb, fb);
 					}
+					google_submit: {
+						if (BoundPronouns.services == null) {
+							break google_submit;
+						}
+						if (isExtraPractice) {
+							break google_submit;
+						}
+						if (!BoundPronouns.getPrefs().getBoolean(
+								BoundPronouns.GooglePlayLogginIn, false)) {
+							break google_submit;
+						}
+						BoundPronouns.services.lb_submit(
+								ShowLeaderboards.BoardId, info.lastScore,
+								info.level.getEngrish(), noop_success,
+								noop_error);
+					}
+					;
+
 				}
 
-				protected void result(Object object) {							
+				protected void result(Object object) {
 					if (fb.equals(object)) {
 						cancel();
-						if (BoundPronouns.fb!=null) {
+						if (BoundPronouns.fb != null) {
 							BoundPronouns.fb.fbshare(info);
 						}
 						return;
-					}							
+					}
 					game.setScreen(caller);
 					dispose();
 				};
@@ -479,7 +521,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				game.log(this, "Extra Practice Session - NOT SAVING!");
 				return;
 			}
-			
+
 			FileHandle tmp = slot.child(ActiveDeckJson + ".tmp");
 			json.toJson(tosave, tmp);
 			tmp.moveTo(slot.child(ActiveDeckJson));
@@ -490,10 +532,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			tmp.delete();
 		}
 	}
-	private SaveActiveDeckWithDialog saveActiveDeckWithDialog = new SaveActiveDeckWithDialog() {};
+
+	private SaveActiveDeckWithDialog saveActiveDeckWithDialog = new SaveActiveDeckWithDialog() {
+	};
 
 	/**
 	 * Calculates amount of ms needed to shift by to move deck to "0" point.
+	 * 
 	 * @param current_pending
 	 * @return
 	 */
@@ -505,15 +550,15 @@ public class LearningSession extends ChildScreen implements Screen {
 		Iterator<ActiveCard> icard = current_pending.deck.iterator();
 		while (icard.hasNext()) {
 			ActiveCard card = icard.next();
-			if (card.tries_remaining<1) {
+			if (card.tries_remaining < 1) {
 				continue;
 			}
 			if (by > card.show_again_ms) {
 				by = card.show_again_ms;
 			}
 		}
-		if (by==Long.MAX_VALUE) {
-			by=ONE_MINUTE_ms;
+		if (by == Long.MAX_VALUE) {
+			by = ONE_MINUTE_ms;
 		}
 		return by;
 	}
@@ -523,7 +568,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	 */
 	private float notice_elapsed = 0f;
 	/**
-	 * total challenge time accumulated 
+	 * total challenge time accumulated
 	 */
 	private float elapsed = 0f;
 	/**
@@ -592,7 +637,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (elapsed > info.settings.sessionLength.getSeconds()) {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
-					stage.addAction(Actions.run(saveActiveDeckWithDialog));					
+					stage.addAction(Actions.run(saveActiveDeckWithDialog));
 					return;
 				}
 			}
@@ -610,11 +655,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				activeCard.show_again_ms = Deck.getNextInterval(0);
 				reInsertCard(activeCard);
 			} else {
-				challenge_elapsed=0f;
+				challenge_elapsed = 0f;
 				elapsed_tick_on = true;
 				ticktock_id = ticktock.loop(0f);
 				challengeCardDialog.setCounter(cardcount++);
-				challengeCardDialog.setCard(activeCard, deckCard);				
+				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
 
 				AnswerList tracked_answers;
@@ -683,7 +728,8 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private ShowACard showACard = new ShowACard() {};
+	private ShowACard showACard = new ShowACard() {
+	};
 
 	private final Skin skin;
 
@@ -783,10 +829,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			@Override
 			protected void result(Object object) {
 				/*
-				 * bump show count and add in elapsed display time for later scoring ...
+				 * bump show count and add in elapsed display time for later
+				 * scoring ...
 				 */
 				_activeCard.showCount++;
-				_activeCard.showTime+=challenge_elapsed;
+				_activeCard.showTime += challenge_elapsed;
 				// Card card = cards_by_id.get(_activeCard.getId());
 				this.clearActions();
 				this.setCheckVisible(false);

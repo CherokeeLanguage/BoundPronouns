@@ -208,6 +208,8 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 		info.validate();
 
 		String text = "";
+		text += "Score: ";
+		text += info.lastScore+" - ";
 		text += info.activeCards + " active cards";
 		text += " - ";
 		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
@@ -241,13 +243,12 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 					"UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			return;
-		}
-		
+		}		
+//		Gdx.net.openURI(str.toString());
 		try {
 			URI uri=new URI(str.toString());
 			Desktop.getDesktop().browse(uri);
 		} catch (IOException | URISyntaxException e) {
-		}
-		
+		}		
 	}	
 }
