@@ -137,6 +137,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 	public Collection lb_collection = Collection.PUBLIC;
 
+	private static final float bwidth = 84f;
 	private class InitView implements Runnable {
 		@Override
 		public void run() {
@@ -151,15 +152,15 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 			button = new TextButton(BoundPronouns.BACK_ARROW, tbs);
 			container.add(button).center().top()
-					.width(BoundPronouns.BACK_WIDTH);
+					.width(bwidth);
 			button.addListener(exit);
 
-			button = new TextButton(ts.getEngrish(), tbs);
+			button = new TextButton("Show "+ts.next().getEngrish(), tbs);
 			button.setChecked(false);
 			container.add(button).center().top().expandX().fillX();
 			final TextButton ts_button = button;
 
-			button = new TextButton(lb_collection.getEnglish(), tbs);
+			button = new TextButton("Show "+lb_collection.next().getEnglish(), tbs);
 			button.setChecked(true);
 			container.add(button).center().top().expandX().fillX();
 			bgroup.add(button);
@@ -169,7 +170,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
 					lb_collection = lb_collection.next();
-					lb_button.setText(lb_collection.getEnglish());
+					lb_button.setText("Show "+lb_collection.next().getEnglish());
 					requestScores();
 					return true;
 				}
@@ -180,7 +181,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						int pointer, int button) {
 					ts = ts.next();
 					float width = ts_button.getLabel().getWidth();
-					ts_button.setText(ts.getEngrish());
+					ts_button.setText("Show "+ts.next().getEngrish());
 					ts_button.getLabel().setWidth(width);
 					requestScores();
 					return true;
