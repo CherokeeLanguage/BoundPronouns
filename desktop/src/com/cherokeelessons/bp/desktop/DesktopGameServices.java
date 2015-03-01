@@ -65,9 +65,9 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				return;
 			}
 			String path0 = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
-			p0 = Gdx.files.local(path0);
+			p0 = Gdx.files.external(path0);
 			p0.mkdirs();
-			DATA_STORE_DIR = p0.child("datastore").file();
+			DATA_STORE_DIR = p0.file();
 			System.out.println("DATA STORE DIR: "+DATA_STORE_DIR.getAbsolutePath());
 			initdone = true;
 		}
