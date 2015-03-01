@@ -64,7 +64,7 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 		config.addIcon("icons/icon-16.png", FileType.Internal);
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
 		BoundPronouns.pInput = desktopLauncher;
-		BoundPronouns.fb = desktopLauncher;
+//		BoundPronouns.fb = desktopLauncher;
 		desktopGameServices = new DesktopGameServices();
 		BoundPronouns.services = desktopGameServices;
 		new LwjglApplication(new BoundPronouns(), config);		
