@@ -605,8 +605,8 @@ public class MainScreen implements Screen, InputProcessor {
 		container.add(button).padBottom(padBottom).expand().fill()
 				.width(Value.percentWidth(.5f, container));
 
-		boolean showLeaderboards = Gdx.app.getType().equals(
-				ApplicationType.Desktop);
+		boolean showLeaderboards = (BoundPronouns.services!=null);
+		
 		if (showLeaderboards) {
 			button = new TextButton("Leader Boards", bstyle);
 			button.addListener(viewBoards);

@@ -19,8 +19,14 @@ public class AndroidLauncher extends AndroidApplication implements
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		BoundPronouns.fb = this;
+		BoundPronouns.services = new AndroidGameServices(this);
 		BoundPronouns game = new BoundPronouns();
 		initialize(game, config);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
