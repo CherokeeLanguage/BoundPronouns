@@ -32,12 +32,13 @@ import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
+import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.java6.auth.oauth2.VerificationCodeReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -75,38 +76,34 @@ public class AndroidGameServices implements GooglePlayGameServices {
 		Gdx.app.postRunnable(runnable);
 	}
 
-	VerificationCodeReceiver receiver = new VerificationCodeReceiver() {
-		@Override
-		public String waitForCode() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+	public static class CodeReceiver implements VerificationCodeReceiver {
+		private String code = "";
+
+		public String getCode() {
+			return code;
 		}
 
-		@Override
-		public void stop() throws IOException {
-			// TODO Auto-generated method stub
-
+		public void setCode(String code) {
+			this.code = code;
 		}
 
 		@Override
 		public String getRedirectUri() throws IOException {
 			return "urn:ietf:wg:oauth:2.0:oob:auto";
 		}
-	};
 
-	public static class AuthorizationCodeInstalledAndroidApp extends
-			AuthorizationCodeInstalledApp {
-
-		public static void browse(String url) {
-
+		@Override
+		public String waitForCode() throws IOException {
+			return code;
 		}
 
-		public AuthorizationCodeInstalledAndroidApp(AuthorizationCodeFlow flow,
-				VerificationCodeReceiver receiver) {
-			super(flow, receiver);
+		@Override
+		public void stop() throws IOException {
 		}
 
 	}
+
+	CodeReceiver codeReceiver = new CodeReceiver();
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void webViewLogin(final String url) {
@@ -182,11 +179,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 						if (url.indexOf("code=") != -1) {
 							String code = StringUtils.substringBetween(url,
 									"code=", "&");
-
-							AuthorizationCodeInstalledAndroidApp acia = new AuthorizationCodeInstalledAndroidApp(
-									getFlow(), receiver);
-							acia.authorize("user");
-
+							codeReceiver.setCode(code);
 						}
 
 					} catch (Exception e) {
@@ -281,12 +274,51 @@ public class AndroidGameServices implements GooglePlayGameServices {
 		init();
 		httpTransport = AndroidHttp.newCompatibleTransport();
 		dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR);
-		GoogleAuthorizationCodeFlow flow = getFlow();
-		final GoogleAuthorizationCodeRequestUrl url = flow
-				.newAuthorizationUrl();
-		webViewLogin(url.build());
 
-		credential = null;
+		credential = authorize();
+	}
+
+	private Credential authorize() throws IOException {
+
+		GoogleAuthorizationCodeFlow flow = getFlow();
+
+		Credential authorize = null;
+		AuthorizationCodeInstalledApp acia = new AuthorizationCodeInstalledApp(
+				flow, codeReceiver) {
+			@Override
+			public Credential authorize(String userId) throws IOException {
+				AuthorizationCodeFlow flow = this.getFlow();
+				VerificationCodeReceiver receiver = this.getReceiver();
+				
+				try {					
+					Credential credential = flow.loadCredential(userId);
+					if (credential != null
+							&& (credential.getRefreshToken() != null || credential
+									.getExpiresInSeconds() > 60)) {
+						return credential;
+					}
+					// open in browser
+					String redirectUri = receiver.getRedirectUri();
+					AuthorizationCodeRequestUrl authorizationUrl = flow
+							.newAuthorizationUrl().setRedirectUri(redirectUri);
+					//TODO how to set this up so that the async webview handles this?
+					onAuthorization(authorizationUrl);
+					
+					// receive authorization code and exchange it for an access
+					// token
+					String code = receiver.waitForCode();
+					TokenResponse response = flow.newTokenRequest(code)
+							.setRedirectUri(redirectUri).execute();
+					// store credential and return it
+					return flow.createAndStoreCredential(response, userId);
+				} finally {
+					receiver.stop();
+				}
+			}
+		};
+		authorize = acia.authorize("user");
+		authorize.refreshToken();
+		return authorize;
 	}
 
 	@Override
