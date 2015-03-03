@@ -33,7 +33,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
-import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
@@ -269,24 +268,24 @@ public class MainScreen implements Screen, InputProcessor {
 					if (BoundPronouns.fb != null) {
 						BoundPronouns.fb.fbshare(info);
 					}
-					if (BoundPronouns.services != null) {
-						Callback<Void> noop_success = new Callback<Void>() {
-							@Override
-							public void run() {
-								Gdx.app.log("lb submit", "success");
-							}
-						};
-						Callback<Exception> noop_error = new Callback<Exception>() {
-							@Override
-							public void run() {
-								Gdx.app.log("lb submit", getData().getMessage());
-							}
-						};
-						BoundPronouns.services.lb_submit(
-								ShowLeaderboards.BoardId, info.lastScore,
-								info.level.getEngrish(), noop_success,
-								noop_error);
-					}
+//					if (BoundPronouns.services != null) {
+//						Callback<Void> noop_success = new Callback<Void>() {
+//							@Override
+//							public void run() {
+//								Gdx.app.log("lb submit", "success");
+//							}
+//						};
+//						Callback<Exception> noop_error = new Callback<Exception>() {
+//							@Override
+//							public void run() {
+//								Gdx.app.log("lb submit", getData().getMessage());
+//							}
+//						};
+//						BoundPronouns.services.lb_submit(
+//								ShowLeaderboards.BoardId, info.lastScore,
+//								info.level.getEngrish(), noop_success,
+//								noop_error);
+//					}
 					return;
 				}
 				if (onResult != null) {

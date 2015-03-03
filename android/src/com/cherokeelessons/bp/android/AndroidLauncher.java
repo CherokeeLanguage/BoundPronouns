@@ -83,7 +83,7 @@ public class AndroidLauncher extends AndroidApplication implements
 		} catch (UnsupportedEncodingException e1) {
 			return;
 		}
-		final Application application = this.getApplication();
+		final AndroidApplication application = this;
 		this.runOnUiThread(new Runnable() {
 			@SuppressLint("SetJavaScriptEnabled")
 			@Override
@@ -152,6 +152,7 @@ public class AndroidLauncher extends AndroidApplication implements
 					@SuppressLint("DefaultLocale")
 					@Override
 					public void onPageFinished(WebView view, String url) {
+						url = StringUtils.defaultString(url);
 						String host = StringUtils.substringBetween(url, ":",
 								"/").toLowerCase();
 						if (host.contains("cherokeelessons")) {
