@@ -2,9 +2,11 @@ package com.cherokeelessons.cards;
 
 import java.io.Serializable;
 
+import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
+
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
-	private static final int StatsVersion = 10;
+	private static final int StatsVersion = 15;
 	public static final int FULLY_LEARNED_BOX = 10;
 	public static final int PROFICIENT_BOX = 5;
 	public static final int JUST_LEARNED_BOX = 1;
@@ -19,6 +21,12 @@ public class SlotInfo implements Serializable {
 				"CgkIy7GTtc0TEAIQDQ"), Expert("Expert", 8, "CgkIy7GTtc0TEAIQDg"), Master(
 				"Master", 9, "CgkIy7GTtc0TEAIQDw"), GrandMaster("Grandmaster",
 				10, "CgkIy7GTtc0TEAIQEA");
+		
+		public LevelName next() {
+			LevelName[] values = LevelName.values();
+			int ix=(ordinal()+1)%(values.length);
+			return values[ix];
+		}
 
 		private final int level;
 		private final String engrish;
@@ -34,22 +42,11 @@ public class SlotInfo implements Serializable {
 		}
 
 		public static LevelName getNextById(String id) {
-			LevelName current = getById(id);
-			return getNext(current);
+			return getById(id).next();
 		}
 
 		public static LevelName getNext(LevelName current) {
-			if (current.equals(GrandMaster)) {
-				return GrandMaster;
-			}
-			LevelName[] values = LevelName.values();
-			for (int ix = 0; ix < values.length - 1; ix++) {
-				LevelName level = values[ix];
-				if (level.equals(current)) {
-					return values[ix + 1];
-				}
-			}
-			return Newbie;
+			return current.next();
 		}
 
 		public String getId() {
@@ -265,13 +262,14 @@ public class SlotInfo implements Serializable {
 	public int sessionScore = 0;
 
 	public int activeCards = 0;
-	public float shortTerm = 0f;
-	public float mediumTerm = 0f;
-	public float longTerm = 0f;
+	public int shortTerm = 0;
+	public int mediumTerm = 0;
+	public int longTerm = 0;
 	public Settings settings = new Settings();
 	private int version;
 	public LevelName level;
 	public int lastScore;
+	public boolean perfect;
 
 	public SlotInfo() {
 	}
@@ -331,63 +329,67 @@ public class SlotInfo implements Serializable {
 			boxsum += card.box;
 		}
 		info.fullScore = boxsum;
+		
 		/*
 		 * Set last score based on timings of most recent session. Cards with
-		 * errors count as "-1" each.
+		 * errors count as "-1" each. Apply "boxlevel" values as bonus points.
 		 */
+		float maxCardScore = SlotInfo.TimeLimit.Standard.getSeconds();
 		float score = 0f;
+		boolean perfect=true;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.showCount == 0) {
 				continue;
 			}
 			if (!card.noErrors) {
-				score -= 1f;
-				continue;
+				score -= maxCardScore;
+				perfect=false;
 			}
-			score += SlotInfo.TimeLimit.Standard.getSeconds()
-					- Math.floor(card.showTime / (float) card.showCount);
+			double avgShowTime = card.showTime / (float) card.showCount;
+			double cardScore = maxCardScore - avgShowTime;
+			score += (cardScore*10f + card.box*10f);
+		}
+		if (perfect) {
+			score *= 1.1f;
 		}
 		info.lastScore = (int) Math.ceil(score);
-
+		info.perfect=perfect;
 		/*
 		 * How many are "fully learned" out of the active deck?
 		 */
-		final float decksize = activeDeck.deck.size();
-		float full = 0f;
+		
+		info.longTerm=0;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= FULLY_LEARNED_BOX) {
-				full++;
+				info.longTerm++;
 			}
 		}
-		info.longTerm = full / decksize;
 
 		/*
 		 * count all active cards that aren't "fully learned"
 		 */
-		info.activeCards = activeDeck.deck.size() - (int) full;
+		info.activeCards = activeDeck.deck.size() - info.longTerm;
 
 		/*
 		 * How many are "well known" out of the active deck? (excluding full
 		 * learned ones)
 		 */
-		full = 0f;
+		info.mediumTerm=0;		
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= PROFICIENT_BOX && card.box < FULLY_LEARNED_BOX) {
-				full++;
+				info.mediumTerm++;
 			}
 		}
-		info.mediumTerm = full / decksize;
 
 		/*
 		 * How many are "short term known" out of the active deck? (excluding
 		 * full learned ones)
 		 */
-		full = 0f;
+		info.shortTerm=0;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= JUST_LEARNED_BOX && card.box < PROFICIENT_BOX) {
-				full++;
+				info.shortTerm++;
 			}
 		}
-		info.shortTerm = full / decksize;
 	}
 }

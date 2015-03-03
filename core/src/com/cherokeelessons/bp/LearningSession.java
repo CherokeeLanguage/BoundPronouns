@@ -462,14 +462,11 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					sb.append(info.activeCards + " active cards");
 					sb.append("\n");
-					sb.append(((int) (info.shortTerm * 100))
-							+ "% short term memorized");
+					sb.append(info.shortTerm + " short term memorized");
 					sb.append("\n");
-					sb.append(((int) (info.mediumTerm * 100))
-							+ "% medium term memorized");
+					sb.append(info.mediumTerm + " medium term memorized");
 					sb.append("\n");
-					sb.append(((int) (info.longTerm * 100))
-							+ "% long term memorized");
+					sb.append(info.longTerm + " long term memorized");
 					sb.append("\n");
 					int minutes = (int) (elapsed / 60f);
 					int seconds = (int) (elapsed - minutes * 60f);
@@ -492,13 +489,19 @@ public class LearningSession extends ChildScreen implements Screen {
 								BoundPronouns.GooglePlayLogginIn, false)) {
 							break google_submit;
 						}
-						BoundPronouns.services.lb_submit(
-								ShowLeaderboards.BoardId, info.lastScore,
-								info.level.getEngrish(), noop_success,
-								noop_error);
+						Callback<Void> submit_scores=new Callback<Void>() {
+							@Override
+							public void run() {
+								BoundPronouns.services.lb_submit(
+										ShowLeaderboards.BoardId, info.lastScore,
+										info.level.getEngrish(), noop_success,
+										noop_error);
+								BoundPronouns.services.ach_unlocked(info.level.getId(),noop_success, noop_error);
+								BoundPronouns.services.ach_reveal(info.level.next().getId(),noop_success, noop_error);
+							}
+						};
+						BoundPronouns.services.login(submit_scores, noop_error);
 					}
-					;
-
 				}
 
 				protected void result(Object object) {

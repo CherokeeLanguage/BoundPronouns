@@ -12,11 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
@@ -199,11 +201,19 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			} else {
 				button = new TextButton("Logout of Google Play", tbs);
 			}
+			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
+			final LabelStyle dls=new LabelStyle(skin.get(LabelStyle.class));
+			dws.titleFont=game.getFont(Font.SerifLLarge);
+			dls.font=game.getFont(Font.SerifLarge);
 			final TextButton play_button = button;
-			play_button.addListener(new ClickListener(){
+			final Dialog login = new Dialog("Google Play Services", dws);
+			login.text(new Label("Connecting to Google Play Services ...", dls));
+			login.button(new TextButton("DISMISS", tbs));			
+			play_button.addListener(new ClickListener(){				
 				Callback<Void> success_in=new Callback<Void>() {							
 					@Override
 					public void run() {
+						login.hide();
 						Preferences prefs = BoundPronouns.getPrefs();
 						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
 						prefs.flush();
@@ -214,6 +224,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				Callback<Void> success_out=new Callback<Void>() {							
 					@Override
 					public void run() {
+						login.hide();
 						Preferences prefs = BoundPronouns.getPrefs();
 						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
 						prefs.flush();
@@ -224,6 +235,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				Callback<Exception> error=new Callback<Exception>() {
 					@Override
 					public void run() {
+						login.hide();
 						success_out.run();
 					}
 				};
@@ -234,6 +246,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					if (prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
 						BoundPronouns.services.logout(success_out, error);
 					} else {
+						login.show(stage);
 						BoundPronouns.services.login(success_in, error);
 					}
 					return true;

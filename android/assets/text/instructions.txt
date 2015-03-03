@@ -1,6 +1,7 @@
-The program has 5 main sections:
+The program has 6 main sections:
 
 • Practice: This section is for doing the actual practices.
+• Leaderboards: Shows the top scores.
 • Instructions: What is being displayed now.
 • View Pronouns: This section of the program displays a quick reference listing of the pronouns taught by this program.
 • About: Describes the software itself and attributes various sources.
@@ -8,7 +9,15 @@ The program has 5 main sections:
 
 Your stats:
 
-When you complete a session your ongoing statistics will calculated then displayed. Your level is based on your average proficency with all your active cards and ranges from "Newbie" to "Grandmaster". Your short term percentage is the number of active cards with a rating of 1 to 4. You medium percentage is the number of active cards with a rating of 5 to 9. You long term percentage is the number of active cards with a rating of 10 or higher.
+When you complete a session your statistics will be displayed.
+
+Your level is based on your average proficency with all your cards and ranges from "Newbie" to "Grandmaster". Short term cards are those with a rating of 1 to 4. Medium term cards are those with a rating of 5 to 9. Long term cards are those with a rating of 10 or higher. Your score is based on a combination of how long it takes you to answer correctly and how well you know the cards. The faster you answer correctly the better your score. Perfect sessions get a 10% score bonus.
+
+Note: If you take longer than 15 seconds to answer a card correctly you get penalized.
+
+Leaderboards:
+
+Scores from different people are visible based on each person's Google+ settings. To participate and view scores you must log into Google+. You can control who can see your game activity in your Google+ settings. To make changes you need to visit Google+ then look for "Settings" => "Apps & activities".
 
 Practicing:
 

@@ -70,6 +70,17 @@ public class MainScreen implements Screen, InputProcessor {
 		}
 	};
 
+	Callback<Void> noop_success = new Callback<Void>() {
+		@Override
+		public void run() {
+		}
+	};
+	Callback<Exception> noop_error = new Callback<Exception>() {
+		@Override
+		public void run() {
+		}
+	};
+
 	private ClickListener viewAbout = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
@@ -256,25 +267,25 @@ public class MainScreen implements Screen, InputProcessor {
 				if (fb.equals(object)) {
 					cancel();
 					if (BoundPronouns.fb != null) {
-						BoundPronouns.fb.fbshare(info);						
+						BoundPronouns.fb.fbshare(info);
 					}
-					if (BoundPronouns.services!=null) {
-						Callback<Void> noop_success=new Callback<Void>() {
-							@Override							
+					if (BoundPronouns.services != null) {
+						Callback<Void> noop_success = new Callback<Void>() {
+							@Override
 							public void run() {
 								Gdx.app.log("lb submit", "success");
 							}
 						};
-						Callback<Exception> noop_error=new Callback<Exception>() {							
+						Callback<Exception> noop_error = new Callback<Exception>() {
 							@Override
 							public void run() {
 								Gdx.app.log("lb submit", getData().getMessage());
 							}
 						};
 						BoundPronouns.services.lb_submit(
-								ShowLeaderboards.BoardId,
-								info.lastScore, info.level.getEngrish(),
-								noop_success, noop_error);
+								ShowLeaderboards.BoardId, info.lastScore,
+								info.level.getEngrish(), noop_success,
+								noop_error);
 					}
 					return;
 				}
@@ -396,19 +407,18 @@ public class MainScreen implements Screen, InputProcessor {
 			info.validate();
 			SlotInfo.Settings settings = info.settings;
 			String txt = "";
+			txt += info.level;
+			txt += " ";
 			txt += (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
 					: settings.name;
 			txt += " - ";
-			txt += info.activeCards + " cards";
-
+			txt += "Score: " + info.lastScore;
 			txt += "\n";
-			txt += "Level: " + info.level.getLevel();
-			txt += " - ";
-			txt += info.level;
-			txt += ", ";
-			txt += ((int) (info.shortTerm * 100)) + "% short";
-			txt += ", " + ((int) (info.mediumTerm * 100)) + "% medium";
-			txt += ", " + ((int) (info.longTerm * 100)) + "% long";
+			txt += info.activeCards + " cards";
+			txt += ": ";
+			txt += info.shortTerm + " short";
+			txt += ", " + info.mediumTerm + " medium";
+			txt += ", " + info.longTerm + " long";
 
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
@@ -605,8 +615,8 @@ public class MainScreen implements Screen, InputProcessor {
 		container.add(button).padBottom(padBottom).expand().fill()
 				.width(Value.percentWidth(.5f, container));
 
-		boolean showLeaderboards = (BoundPronouns.services!=null);
-		
+		boolean showLeaderboards = (BoundPronouns.services != null);
+
 		if (showLeaderboards) {
 			button = new TextButton("Leader Boards", bstyle);
 			button.addListener(viewBoards);
@@ -661,7 +671,8 @@ public class MainScreen implements Screen, InputProcessor {
 
 	private final InputMultiplexer multi;
 
-	private boolean loginDialogDone=false;
+	private boolean loginDialogDone = false;
+
 	@Override
 	public void show() {
 		multi.addProcessor(this);
@@ -672,46 +683,10 @@ public class MainScreen implements Screen, InputProcessor {
 			prefs.putString("CherokeeBoundPronouns", new Date().toString());
 			prefs.flush();
 		}
-		if (!loginDialogDone && prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
-			loginDialogDone=true;			
-			final WindowStyle ws=new WindowStyle(skin.get(WindowStyle.class));
-			final LabelStyle ls=new LabelStyle(skin.get(LabelStyle.class));
-			final TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
-			ws.titleFont=game.getFont(Font.SerifLLarge);
-			ls.font=game.getFont(Font.SerifLarge);
-			tbs.font=game.getFont(Font.SerifMedium);
-			
-			final Dialog login = new Dialog("Google Play Services", ws);
-			login.text(new Label("Connecting to Google Play Services ...", ls));
-			login.button(new TextButton("SKIP", tbs));
-			login.show(stage);
-			Callback<Void> success = new Callback<Void>() {
-				@Override
-				public void run() {
-					Gdx.app.log("Google Play Services Login", "Success");
-					login.hide();
-					prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
-					prefs.flush();
-				}
-			};
-			Callback<Exception> error = new Callback<Exception>() {
-				@Override
-				public void run() {
-					Gdx.app.log("Google Play Services Login", "Fail: "
-							+ getData().getMessage());
-					login.hide();
-					Dialog d = new Dialog("Google Play Services Error", ws);
-					Label label = new Label(getData().getMessage(), ls);
-					d.text(label);					
-					d.button(new TextButton("DISMISS", tbs));
-					d.show(stage);
-					if (getData().getMessage().contains("access_denied")){
-						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
-						prefs.flush();
-					}
-				}
-			};
-			BoundPronouns.services.login(success, error);
+		if (!loginDialogDone
+				&& prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+			loginDialogDone = true;
+			BoundPronouns.services.login(noop_success, noop_error);
 		}
 	}
 

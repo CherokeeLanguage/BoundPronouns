@@ -15,6 +15,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnDismissListener;
 import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.view.MotionEvent;
@@ -107,46 +109,12 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	CodeReceiver codeReceiver = new CodeReceiver();
 
 	@SuppressLint("SetJavaScriptEnabled")
-	private void webViewLogin(final String url, final Callback<String> callback) {
+	private void webViewLogin(final String url) {
+		Gdx.app.log("AndroidGameServices", "webViewLogin");
 		application.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-
-				final WebView webView = new WebView(application) {
-					@Override
-					public boolean onCheckIsTextEditor() {
-						return true;
-					}
-				};
-				WebSettings settings = webView.getSettings();
-				webView.setVisibility(View.VISIBLE);
-				settings.setBuiltInZoomControls(true);
-				settings.setDefaultTextEncodingName("UTF-8");
-				settings.setJavaScriptEnabled(true);
-				settings.setJavaScriptCanOpenWindowsAutomatically(true);
-				settings.setLoadsImagesAutomatically(true);
-				settings.setSaveFormData(true);
-				settings.setUseWideViewPort(false);
-
-				webView.requestFocus(View.FOCUS_DOWN);
-				webView.setOnTouchListener(new View.OnTouchListener() {
-					@SuppressLint("ClickableViewAccessibility")
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						switch (event.getAction()) {
-						case MotionEvent.ACTION_DOWN:
-						case MotionEvent.ACTION_UP:
-							if (!v.hasFocus()) {
-								v.requestFocus();
-							}
-							break;
-						}
-						return false;
-					}
-				});
-
 				final Builder alert = new AlertDialog.Builder(application);
-				alert.setView(webView);
 				alert.setTitle("Google Play Services");
 				alert.setNegativeButton("CLOSE",
 						new DialogInterface.OnClickListener() {
@@ -157,64 +125,117 @@ public class AndroidGameServices implements GooglePlayGameServices {
 							}
 						});
 				Gdx.app.log("AndroidGameServices", "alert.show();");
+				final WebView webView = new WebView(application) {
+					@Override
+					public boolean onCheckIsTextEditor() {
+						return true;
+					}
+				};
+				alert.setView(webView);
+				alert.setCancelable(true);
 				final AlertDialog adialog = alert.show();
-				
-				webView.setInitialScale(200);
-				webView.setWebViewClient(new WebViewClient() {
+				final OnDismissListener listener = new OnDismissListener() {
 					@Override
-					public void onReceivedError(WebView view, int errorCode,
-							String description, String failingUrl) {
-						super.onReceivedError(view, errorCode, description,
-								failingUrl);
-						Gdx.app.log("AndroidGameServices#onReceivedError", "["
-								+ errorCode + "] " + description);
+					public void onDismiss(DialogInterface dialog) {
+						webView.loadUrl("about:blank");
+						if (codeReceiver.getCode()==null) {
+							codeReceiver.setCode("");
+						}
 					}
+				};
+				adialog.setOnDismissListener(listener);
+				webView.loadUrl("about:blank");
 
+				application.runOnUiThread(new Runnable() {
 					@Override
-					public void onReceivedSslError(WebView view,
-							SslErrorHandler handler, SslError error) {
-						super.onReceivedSslError(view, handler, error);
-						Gdx.app.log("AndroidGameServices#onReceivedSslError",
-								error.toString());
-					}
+					public void run() {
+						WebSettings settings = webView.getSettings();
+						settings.setBuiltInZoomControls(false);
+						settings.setDefaultTextEncodingName("UTF-8");
+						settings.setJavaScriptEnabled(true);
+						settings.setJavaScriptCanOpenWindowsAutomatically(true);
+						settings.setLoadsImagesAutomatically(true);
+						settings.setSaveFormData(true);
+						settings.setUseWideViewPort(false);
 
-					@Override
-					public void onPageFinished(WebView view, String url) {
-						String title = StringUtils.defaultString(view
-								.getTitle());
-						Gdx.app.log("AndroidGameServices#onPageFinished", title);
-						if (title.toLowerCase().contains("code=")) { // OAuth2ClientCredentials.OAUTH_CALLBACK_URL))
-							webView.loadUrl("about:blank");
-							try {
-								String code = StringUtils.substringAfter(title,
-										"code=");
-								if (code.contains("&")) {
-									code = StringUtils.substringBefore(code,
-											"&");
+						settings.setFixedFontFamily("FreeMono");
+						settings.setSansSerifFontFamily("FreeSans");
+						settings.setSerifFontFamily("FreeSerif");
+						settings.setStandardFontFamily("FreeSerif");
+						settings.setLoadWithOverviewMode(true);
+
+						webView.requestFocus(View.FOCUS_DOWN);
+						webView.setOnTouchListener(new View.OnTouchListener() {
+							@SuppressLint("ClickableViewAccessibility")
+							@Override
+							public boolean onTouch(View v, MotionEvent event) {
+								switch (event.getAction()) {
+								case MotionEvent.ACTION_DOWN:
+								case MotionEvent.ACTION_UP:
+									if (!v.hasFocus()) {
+										v.requestFocus();
+									}
+									break;
 								}
-								if (StringUtils.isBlank(code)) {
-									Gdx.app.log("AndroidGameServices",
-											"Did not receive a code.");
+								return false;
+							}
+						});
+
+						webView.setWebViewClient(new WebViewClient() {
+							@Override
+							public void onReceivedError(WebView view,
+									int errorCode, String description,
+									String failingUrl) {
+								super.onReceivedError(view, errorCode,
+										description, failingUrl);
+								Gdx.app.log(
+										"AndroidGameServices#onReceivedError",
+										"[" + errorCode + "] " + description);
+							}
+
+							@Override
+							public void onReceivedSslError(WebView view,
+									SslErrorHandler handler, SslError error) {
+								super.onReceivedSslError(view, handler, error);
+								Gdx.app.log(
+										"AndroidGameServices#onReceivedSslError",
+										error.toString());
+							}
+
+							@Override
+							public void onPageFinished(WebView view, String url) {
+								String title = StringUtils.defaultString(view
+										.getTitle());
+								if (title.toLowerCase().contains("denied")) {
+									adialog.dismiss();
+									codeReceiver.setCode("");
 									return;
 								}
-								codeReceiver.setCode(code);
-								callback.setData(code);
-								application.postRunnable(callback);
-								Gdx.app.log("AndroidGameServices",
-										"Received code: " + code);
-							} catch (Exception e) {
-								e.printStackTrace();
-							} finally {
-								adialog.dismiss();
+								if (title.toLowerCase().contains("code=")) { // OAuth2ClientCredentials.OAUTH_CALLBACK_URL))
+									webView.loadUrl("about:blank");
+									String code = StringUtils.substringAfter(
+											title, "code=");
+									if (code.contains("&")) {
+										code = StringUtils.substringBefore(
+												code, "&");
+									}
+									if (StringUtils.isBlank(code)) {
+										Gdx.app.log("AndroidGameServices",
+												"Did not receive a code.");
+										adialog.dismiss();
+										codeReceiver.setCode("");
+										return;
+									}
+									codeReceiver.setCode(code);
+									Gdx.app.log("AndroidGameServices",
+											"Received code: " + code);
+									adialog.dismiss();
+								}
 							}
-							
-						}
-						System.out.println("onPageFinished : " + url);
-
+						});
+						webView.loadUrl(url);
 					}
-				});				
-				Gdx.app.log("AndroidGameServices", "webView.loadUrl(url);");
-				webView.loadUrl(url);
+				});
 			}
 		});
 	}
@@ -340,9 +361,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 
 	private Credential authorize(final Callback<Credential> callback)
 			throws IOException {
-
 		GoogleAuthorizationCodeFlow flow = getFlow();
-
 		Credential authorize = null;
 		AuthorizationCodeInstalledApp acia = new AuthorizationCodeInstalledApp(
 				flow, codeReceiver) {
@@ -350,53 +369,45 @@ public class AndroidGameServices implements GooglePlayGameServices {
 			public Credential authorize(final String userId) throws IOException {
 				final AuthorizationCodeFlow flow = this.getFlow();
 				final VerificationCodeReceiver receiver = this.getReceiver();
-
 				try {
-					final Credential credential = flow.loadCredential(userId);
+					Credential credential = flow.loadCredential(userId);
 					if (credential != null
 							&& (credential.getRefreshToken() != null || credential
 									.getExpiresInSeconds() > 60)) {
 						return credential;
 					}
-
 					// open in webview
 					Gdx.app.log("AndroidGameServices", "Opening OAUTH Webview");
 					final String redirectUri = receiver.getRedirectUri();
-					Gdx.app.log("AndroidGameServices", redirectUri);
 					AuthorizationCodeRequestUrl authorizationUrl = flow
 							.newAuthorizationUrl().setRedirectUri(redirectUri);
-
-					Gdx.app.log("AndroidGameServices", authorizationUrl.build());
-
-					Callback<String> viewCB = new Callback<String>() {
-						@Override
-						public void run() {
-							String code;
+					webViewLogin(authorizationUrl.build());
+					long timeout = 1000l * 60l * 10l;// 10minutes;
+					String code = null;
+					while (timeout > 0) {
+						code = receiver.waitForCode();
+						if (code == null) {
 							try {
-								code = receiver.waitForCode();
-								TokenResponse response = flow
-										.newTokenRequest(code)
-										.setRedirectUri(redirectUri).execute();
-								// store credential and return it
-								Credential newCredentials = flow
-										.createAndStoreCredential(response,
-												userId);
-								callback.setData(newCredentials);
-							} catch (IOException e) {
-								e.printStackTrace();
+								Thread.sleep(50l);
+								timeout -= 50l;
+								continue;
+							} catch (InterruptedException e) {
+								Gdx.app.log("AndroidGameServices",
+										"Interrupted");
+								return null;
 							}
 						}
-					};
-					Gdx.app.log("AndroidGameServices",
-							"webViewLogin(authorizationUrl.build(), viewCB)");
-					webViewLogin(authorizationUrl.build(), viewCB);
-					throw new RuntimeException("Pending");
+						break;
+					}
+					code = receiver.waitForCode();
+					TokenResponse response = flow.newTokenRequest(code)
+							.setRedirectUri(redirectUri).execute();
+					return flow.createAndStoreCredential(response, userId);
 				} finally {
 					receiver.stop();
 				}
 			}
 		};
-
 		authorize = acia.authorize("user");
 		authorize.refreshToken();
 		return authorize;
