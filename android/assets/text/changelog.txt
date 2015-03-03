@@ -1,3 +1,11 @@
+1.64
+
+Google Play Leaderboards now available for Android and Deskop.
+Better scoring for Leaderboards.
+Achievements/Levels setup.
+
+The Google Play Leaderboards do not require Google Play to be installed and should work with KindleFire and other tablets.
+
 1.61
 
 Fix error with ᎢᏍᎩ- "You one + you all" should read "You one + them and me"
