@@ -3,6 +3,8 @@ package com.cherokeelessons.bp.android;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import org.apache.commons.lang3.StringUtils;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -10,12 +12,16 @@ import android.app.Application;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
@@ -32,7 +38,7 @@ public class AndroidLauncher extends AndroidApplication implements
 		BoundPronouns game = new BoundPronouns();
 		initialize(game, config);
 	}
-	
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -77,8 +83,8 @@ public class AndroidLauncher extends AndroidApplication implements
 		} catch (UnsupportedEncodingException e1) {
 			return;
 		}
-		final Application application=this.getApplication();
-		this.runOnUiThread(new Runnable() {			
+		final Application application = this.getApplication();
+		this.runOnUiThread(new Runnable() {
 			@SuppressLint("SetJavaScriptEnabled")
 			@Override
 			public void run() {
@@ -86,13 +92,13 @@ public class AndroidLauncher extends AndroidApplication implements
 				alert.setTitle("Facebook");
 				alert.setNegativeButton("DISMISS",
 						new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog,
-							int which) {
-						dialog.dismiss();
-					}
-				});
-				
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.dismiss();
+							}
+						});
+
 				final WebView webView = new WebView(application) {
 					@Override
 					public boolean onCheckIsTextEditor() {
@@ -105,11 +111,11 @@ public class AndroidLauncher extends AndroidApplication implements
 				final OnDismissListener listener = new OnDismissListener() {
 					@Override
 					public void onDismiss(DialogInterface dialog) {
-						webView.loadUrl("about:blank");				
+						webView.loadUrl("about:blank");
 					}
 				};
 				adialog.setOnDismissListener(listener);
-				
+
 				WebSettings settings = webView.getSettings();
 				settings.setBuiltInZoomControls(false);
 				settings.setDefaultTextEncodingName("UTF-8");
@@ -141,7 +147,20 @@ public class AndroidLauncher extends AndroidApplication implements
 						return false;
 					}
 				});
-				
+
+				webView.setWebViewClient(new WebViewClient() {
+					@SuppressLint("DefaultLocale")
+					@Override
+					public void onPageFinished(WebView view, String url) {
+						String host = StringUtils.substringBetween(url, ":",
+								"/").toLowerCase();
+						if (host.contains("cherokeelessons")) {
+							webView.loadUrl("about:blank");
+							adialog.dismiss();
+						}
+					}
+				});
+
 				webView.loadUrl(str.toString());
 			}
 		});
