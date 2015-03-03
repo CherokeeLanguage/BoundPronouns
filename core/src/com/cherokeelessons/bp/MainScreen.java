@@ -252,7 +252,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 		final TextButton ok = new TextButton("OK", tbs);
 		final TextButton cancel = new TextButton("CANCEL", tbs);
-		final TextButton fb = new TextButton("SHARE STATS", tbs);
+//		final TextButton fb = new TextButton("SHARE STATS", tbs);
 
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
@@ -263,11 +263,11 @@ public class MainScreen implements Screen, InputProcessor {
 					info.settings.name = name.getText();
 					json.toJson(info, p1);
 				}
-				if (fb.equals(object)) {
-					cancel();
-					if (BoundPronouns.fb != null) {
-						BoundPronouns.fb.fbshare(info);
-					}
+//				if (fb.equals(object)) {
+//					cancel();
+//					if (BoundPronouns.fb != null) {
+//						BoundPronouns.fb.fbshare(info);
+//					}
 //					if (BoundPronouns.services != null) {
 //						Callback<Void> noop_success = new Callback<Void>() {
 //							@Override
@@ -286,8 +286,8 @@ public class MainScreen implements Screen, InputProcessor {
 //								info.level.getEngrish(), noop_success,
 //								noop_error);
 //					}
-					return;
-				}
+//					return;
+//				}
 				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
@@ -332,9 +332,9 @@ public class MainScreen implements Screen, InputProcessor {
 
 		edit.button(ok, ok);
 		edit.button(cancel, cancel);
-		if (BoundPronouns.fb != null && info.activeCards != 0) {
-			edit.button(fb, fb);
-		}
+//		if (BoundPronouns.fb != null && info.activeCards != 0) {
+//			edit.button(fb, fb);
+//		}
 
 		return edit;
 	};
