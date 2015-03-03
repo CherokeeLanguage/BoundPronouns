@@ -3,9 +3,18 @@ package com.cherokeelessons.bp.android;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Application;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -33,14 +42,15 @@ public class AndroidLauncher extends AndroidApplication implements
 	public void fbshare(SlotInfo info) {
 		info.validate();
 
-		String text = "";
-		text += info.activeCards + " active cards";
-		text += " - ";
-		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
-		text += ", " + ((int) (info.mediumTerm * 100))
-				+ "% medium term memorized";
-		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
-		StringBuilder str = new StringBuilder();
+		String txt = "";
+		txt += "Score: " + info.lastScore;
+		txt += "\n";
+		txt += info.activeCards + " cards";
+		txt += ": ";
+		txt += info.shortTerm + " short";
+		txt += ", " + info.mediumTerm + " medium";
+		txt += ", " + info.longTerm + " long";
+		final StringBuilder str = new StringBuilder();
 		try {
 			str.append("https://www.facebook.com/dialog/feed?");
 			str.append("&app_id=");
@@ -58,21 +68,84 @@ public class AndroidLauncher extends AndroidApplication implements
 					.encode("http://www.cherokeelessons.com/phpBB3/download/file.php?id=242",
 							"UTF-8"));
 			str.append("&caption=");
-			str.append(URLEncoder.encode("Level: " + info.level.getLevel()
-					+ " - " + info.level, "UTF-8"));
+			str.append(URLEncoder.encode(info.level.getEngrish(), "UTF-8"));
 			str.append("&description=");
-			str.append(URLEncoder.encode(text, "UTF-8"));
+			str.append(URLEncoder.encode(txt, "UTF-8"));
 			str.append("&name=");
 			str.append(URLEncoder.encode("Cherokee Language Bound Pronouns",
 					"UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			return;
 		}
+		final Application application=this.getApplication();
+		this.runOnUiThread(new Runnable() {			
+			@SuppressLint("SetJavaScriptEnabled")
+			@Override
+			public void run() {
+				final Builder alert = new AlertDialog.Builder(application);
+				alert.setTitle("Facebook");
+				alert.setNegativeButton("DISMISS",
+						new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog,
+							int which) {
+						dialog.dismiss();
+					}
+				});
+				
+				final WebView webView = new WebView(application) {
+					@Override
+					public boolean onCheckIsTextEditor() {
+						return true;
+					}
+				};
+				alert.setView(webView);
+				alert.setCancelable(true);
+				final AlertDialog adialog = alert.show();
+				final OnDismissListener listener = new OnDismissListener() {
+					@Override
+					public void onDismiss(DialogInterface dialog) {
+						webView.loadUrl("about:blank");				
+					}
+				};
+				adialog.setOnDismissListener(listener);
+				
+				WebSettings settings = webView.getSettings();
+				settings.setBuiltInZoomControls(false);
+				settings.setDefaultTextEncodingName("UTF-8");
+				settings.setJavaScriptEnabled(true);
+				settings.setJavaScriptCanOpenWindowsAutomatically(true);
+				settings.setLoadsImagesAutomatically(true);
+				settings.setSaveFormData(true);
+				settings.setUseWideViewPort(false);
 
-		Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(str
-				.toString()));
-		startActivity(Intent.createChooser(sendIntent,
-				"Share My Statistics Using Facebook Webview"));
+				settings.setFixedFontFamily("FreeMono");
+				settings.setSansSerifFontFamily("FreeSans");
+				settings.setSerifFontFamily("FreeSerif");
+				settings.setStandardFontFamily("FreeSerif");
+				settings.setLoadWithOverviewMode(true);
+
+				webView.requestFocus(View.FOCUS_DOWN);
+				webView.setOnTouchListener(new View.OnTouchListener() {
+					@SuppressLint("ClickableViewAccessibility")
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						switch (event.getAction()) {
+						case MotionEvent.ACTION_DOWN:
+						case MotionEvent.ACTION_UP:
+							if (!v.hasFocus()) {
+								v.requestFocus();
+							}
+							break;
+						}
+						return false;
+					}
+				});
+				
+				webView.loadUrl(str.toString());
+			}
+		});
+
 	}
 
 	public void fbshare_text(SlotInfo info) {

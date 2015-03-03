@@ -207,15 +207,14 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 	public void fbshare(final SlotInfo info) {
 		info.validate();
 
-		String text = "";
-		text += "Score: ";
-		text += info.lastScore+" - ";
-		text += info.activeCards + " active cards";
-		text += " - ";
-		text += ((int) (info.shortTerm * 100)) + "% short term memorized";
-		text += ", " + ((int) (info.mediumTerm * 100))
-				+ "% medium term memorized";
-		text += ", " + ((int) (info.longTerm * 100)) + "% fully learned";
+		String txt = "";
+		txt += "Score: " + info.lastScore;
+		txt += "\n";
+		txt += info.activeCards + " cards";
+		txt += ": ";
+		txt += info.shortTerm + " short";
+		txt += ", " + info.mediumTerm + " medium";
+		txt += ", " + info.longTerm + " long";
 		StringBuilder str = new StringBuilder();
 		try {
 			str.append("https://www.facebook.com/dialog/feed?");
@@ -234,10 +233,9 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 					.encode("http://www.cherokeelessons.com/phpBB3/download/file.php?id=242",
 							"UTF-8"));
 			str.append("&caption=");
-			str.append(URLEncoder.encode("Level: " + info.level.getLevel()
-					+ " - " + info.level, "UTF-8"));
+			str.append(URLEncoder.encode(info.level.getEngrish(), "UTF-8"));
 			str.append("&description=");
-			str.append(URLEncoder.encode(text, "UTF-8"));
+			str.append(URLEncoder.encode(txt, "UTF-8"));
 			str.append("&name=");
 			str.append(URLEncoder.encode("Cherokee Language Bound Pronouns",
 					"UTF-8"));
