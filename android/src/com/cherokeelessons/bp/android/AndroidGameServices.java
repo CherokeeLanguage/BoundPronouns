@@ -1,7 +1,9 @@
 package com.cherokeelessons.bp.android;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -284,31 +286,35 @@ public class AndroidGameServices implements GooglePlayGameServices {
 		}
 	}
 
-	private GoogleAuthorizationCodeFlow getFlow() throws IOException {
-		GoogleClientSecrets clientSecrets = null;
-
-		clientSecrets = GoogleClientSecrets.load(
-				JSON_FACTORY,
-				new InputStreamReader(BoundPronouns.class
-						.getResourceAsStream("/client_secrets.json")));
-
-		ArrayList<String> scopes = new ArrayList<String>();
-		scopes.add(GamesScopes.DRIVE_APPDATA);
-		scopes.add(GamesScopes.GAMES);
-		scopes.add(GamesScopes.PLUS_LOGIN);
-
-		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
-				httpTransport, JSON_FACTORY, clientSecrets, scopes);
-		builder.setScopes(scopes);
-		GoogleAuthorizationCodeFlow flow = null;
+	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
+		InputStream in=null;
+		InputStreamReader is=null;
 		try {
+
+			GoogleClientSecrets clientSecrets = null;
+
+			File f = Gdx.files.internal("google.json").file();
+			in = new FileInputStream(f);
+			is = new InputStreamReader(in, "UTF-8");
+
+			clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, is);
+
+			ArrayList<String> scopes = new ArrayList<String>();
+			scopes.add(GamesScopes.DRIVE_APPDATA);
+			scopes.add(GamesScopes.GAMES);
+			scopes.add(GamesScopes.PLUS_LOGIN);
+
+			GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
+					httpTransport, JSON_FACTORY, clientSecrets, scopes);
+			builder.setScopes(scopes);
+			GoogleAuthorizationCodeFlow flow = null;
 			flow = builder.setAccessType("offline")
 					.setDataStoreFactory(dataStoreFactory).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			return flow;
+		} finally {
+			in.close();
+			is.close();
 		}
-		return flow;
 	}
 
 	public static abstract class AsyncRun extends AsyncTask<Void, Void, Void>

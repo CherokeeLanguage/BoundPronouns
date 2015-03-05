@@ -1,7 +1,9 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -11,7 +13,6 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
@@ -46,9 +47,9 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			.getDefaultInstance();
 
 	private Boolean initdone = false;
-	
+
 	private static void postRunnable(Runnable runnable) {
-		if (runnable==null) {
+		if (runnable == null) {
 			Gdx.app.log("DesktopGameServices", "NULL CALLBACK!");
 			return;
 		}
@@ -68,7 +69,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			p0 = Gdx.files.external(path0);
 			p0.mkdirs();
 			DATA_STORE_DIR = p0.file();
-			System.out.println("DATA STORE DIR: "+DATA_STORE_DIR.getAbsolutePath());
+			System.out.println("DATA STORE DIR: "
+					+ DATA_STORE_DIR.getAbsolutePath());
 			initdone = true;
 		}
 	}
@@ -93,29 +95,34 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
-		GoogleClientSecrets clientSecrets = null;
-
-		clientSecrets = GoogleClientSecrets.load(
-				JSON_FACTORY,
-				new InputStreamReader(BoundPronouns.class
-						.getResourceAsStream("/client_secrets.json")));
-
-		ArrayList<String> scopes = new ArrayList<String>();
-		scopes.add(GamesScopes.DRIVE_APPDATA);
-		scopes.add(GamesScopes.GAMES);
-		scopes.add(GamesScopes.PLUS_LOGIN);
-
-		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
-				httpTransport, JSON_FACTORY, clientSecrets, scopes);
-		builder.setScopes(scopes);
-		GoogleAuthorizationCodeFlow flow = null;
+		InputStream in=null;
+		InputStreamReader is=null;
 		try {
+
+			GoogleClientSecrets clientSecrets = null;
+
+			File f = Gdx.files.internal("google.json").file();
+			in = new FileInputStream(f);
+			is = new InputStreamReader(in, "UTF-8");
+
+			clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, is);
+
+			ArrayList<String> scopes = new ArrayList<String>();
+			scopes.add(GamesScopes.DRIVE_APPDATA);
+			scopes.add(GamesScopes.GAMES);
+			scopes.add(GamesScopes.PLUS_LOGIN);
+
+			GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
+					httpTransport, JSON_FACTORY, clientSecrets, scopes);
+			builder.setScopes(scopes);
+			GoogleAuthorizationCodeFlow flow = null;
 			flow = builder.setAccessType("offline")
 					.setDataStoreFactory(dataStoreFactory).build();
-		} catch (IOException e) {
-			e.printStackTrace();
+			return flow;
+		} finally {
+			in.close();
+			is.close();
 		}
-		return flow;
 	}
 
 	@Override
@@ -217,21 +224,25 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void lb_getListFor(final String boardId, final Collection collection, 
-			final TimeSpan ts, final Callback<GameScores> success, final Callback<Exception> error) {
+	public void lb_getListFor(final String boardId,
+			final Collection collection, final TimeSpan ts,
+			final Callback<GameScores> success, final Callback<Exception> error) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				GameScores gscores = new GameScores();
 				try {
-					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "+collection.name()+" - "+ts.name()+" - "+boardId);
-							
+					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
+							+ collection.name() + " - " + ts.name() + " - "
+							+ boardId);
+
 					Games g = _getGamesObject();
-					Scores.List scores = g.scores().list(boardId,collection.name(), ts.toString());					
+					Scores.List scores = g.scores().list(boardId,
+							collection.name(), ts.toString());
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
-					if (list==null) {
+					if (list == null) {
 						success.setData(gscores);
 						postRunnable(success);
 						return;
@@ -241,12 +252,12 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.rank = e.getFormattedScoreRank();
 						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
 						gs.value = e.getFormattedScore();
-						gs.user=e.getPlayer().getDisplayName();
-						gs.imgUrl=e.getPlayer().getAvatarImageUrl();
+						gs.user = e.getPlayer().getDisplayName();
+						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
-					gscores.collection=collection;
-					gscores.ts=ts;
+					gscores.collection = collection;
+					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
 					e.printStackTrace();
 				}
@@ -257,8 +268,9 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void lb_getListWindowFor(final String boardId, final Collection collection, 
-			final TimeSpan ts, final Callback<GameScores> success, final Callback<Exception> error) {
+	public void lb_getListWindowFor(final String boardId,
+			final Collection collection, final TimeSpan ts,
+			final Callback<GameScores> success, final Callback<Exception> error) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -275,12 +287,12 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gs.rank = e.getFormattedScoreRank();
 						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
 						gs.value = e.getFormattedScore();
-						gs.user=e.getPlayer().getDisplayName();
-						gs.imgUrl=e.getPlayer().getAvatarImageUrl();
+						gs.user = e.getPlayer().getDisplayName();
+						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
-					gscores.collection=collection;
-					gscores.ts=ts;
+					gscores.collection = collection;
+					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
 					error.setData(e);
 					postRunnable(error);
