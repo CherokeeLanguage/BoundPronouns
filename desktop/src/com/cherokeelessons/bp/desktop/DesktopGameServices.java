@@ -176,7 +176,6 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					Submit submit = g.scores().submit(boardId, score);
 					String tag = URLEncoder.encode(label, "UTF-8");
 					submit.setScoreTag(tag);
-					submit.execute();
 				} catch (IOException | GeneralSecurityException e) {
 					e.printStackTrace();
 				}
