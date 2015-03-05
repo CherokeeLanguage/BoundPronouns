@@ -475,9 +475,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button("OK!");
-					if (BoundPronouns.fb != null && !isExtraPractice) {
-						button(fb, fb);
-					}
 					google_submit: {
 						if (BoundPronouns.services == null) {
 							break google_submit;
@@ -507,9 +504,6 @@ public class LearningSession extends ChildScreen implements Screen {
 				protected void result(Object object) {
 					if (fb.equals(object)) {
 						cancel();
-						if (BoundPronouns.fb != null) {
-							BoundPronouns.fb.fbshare(info);
-						}
 						return;
 					}
 					game.setScreen(caller);

@@ -1,7 +1,6 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
@@ -9,11 +8,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -38,11 +32,9 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
-import com.cherokeelessons.bp.BoundPronouns.FBShareStatistics;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
-import com.cherokeelessons.cards.SlotInfo;
 
-public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
+public class DesktopLauncher implements PlatformTextInput {
 
 	private static LwjglApplicationConfiguration config;
 	private static DesktopGameServices desktopGameServices;
@@ -201,52 +193,5 @@ public class DesktopLauncher implements PlatformTextInput, FBShareStatistics {
 
 			}
 		});
-	}
-
-	@Override
-	public void fbshare(final SlotInfo info) {
-		info.validate();
-
-		String txt = "";
-		txt += "Score: " + info.lastScore;
-		txt += "\n";
-		txt += info.activeCards + " cards";
-		txt += ": ";
-		txt += info.shortTerm + " short";
-		txt += ", " + info.mediumTerm + " medium";
-		txt += ", " + info.longTerm + " long";
-		StringBuilder str = new StringBuilder();
-		try {
-			str.append("https://www.facebook.com/dialog/feed?");
-			str.append("&app_id=");
-			str.append("148519351857873");
-			str.append("&redirect_uri=");
-			str.append(URLEncoder
-					.encode("http://www.cherokeelessons.com/phpBB3/viewforum.php?f=24#",
-							"UTF-8"));
-			str.append("&link=");
-			str.append(URLEncoder
-					.encode("http://www.cherokeelessons.com/phpBB3/viewtopic.php?f=24&t=73#p230",
-							"UTF-8"));
-			str.append("&picture=");
-			str.append(URLEncoder
-					.encode("http://www.cherokeelessons.com/phpBB3/download/file.php?id=242",
-							"UTF-8"));
-			str.append("&caption=");
-			str.append(URLEncoder.encode(info.level.getEngrish(), "UTF-8"));
-			str.append("&description=");
-			str.append(URLEncoder.encode(txt, "UTF-8"));
-			str.append("&name=");
-			str.append(URLEncoder.encode("Cherokee Language Bound Pronouns",
-					"UTF-8"));
-		} catch (UnsupportedEncodingException e1) {
-			return;
-		}		
-//		Gdx.net.openURI(str.toString());
-		try {
-			URI uri=new URI(str.toString());
-			Desktop.getDesktop().browse(uri);
-		} catch (IOException | URISyntaxException e) {
-		}		
 	}	
 }

@@ -40,7 +40,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
-import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.util.GooglePlayGameServices;
 
 public class BoundPronouns extends Game {
@@ -51,12 +50,6 @@ public class BoundPronouns extends Game {
 	}
 
 	public static PlatformTextInput pInput = null;
-
-	public static interface FBShareStatistics {
-		public void fbshare(SlotInfo info);
-	}
-
-	public static FBShareStatistics fb = null;
 
 	public static GooglePlayGameServices services = null;
 

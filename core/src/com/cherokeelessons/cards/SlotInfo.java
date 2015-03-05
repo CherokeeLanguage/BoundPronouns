@@ -2,8 +2,6 @@ package com.cherokeelessons.cards;
 
 import java.io.Serializable;
 
-import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
-
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
 	private static final int StatsVersion = 15;
