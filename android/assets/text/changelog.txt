@@ -1,3 +1,7 @@
+1.66
+
+Bugfix for Leaderboard Login
+
 1.64
 
 Google Play Leaderboards now available for Android and Deskop.
