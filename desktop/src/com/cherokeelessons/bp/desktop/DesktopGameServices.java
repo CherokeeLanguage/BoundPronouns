@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
@@ -95,34 +96,27 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
-		InputStream in=null;
-		InputStreamReader is=null;
-		try {
 
-			GoogleClientSecrets clientSecrets = null;
+		GoogleClientSecrets clientSecrets = null;
 
-			File f = Gdx.files.internal("google.json").file();
-			in = new FileInputStream(f);
-			is = new InputStreamReader(in, "UTF-8");
+		String json = Gdx.files.internal("google.json").readString();
 
-			clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, is);
+		StringReader sr = new StringReader(json);
+		clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, sr);
 
-			ArrayList<String> scopes = new ArrayList<String>();
-			scopes.add(GamesScopes.DRIVE_APPDATA);
-			scopes.add(GamesScopes.GAMES);
-			scopes.add(GamesScopes.PLUS_LOGIN);
+		ArrayList<String> scopes = new ArrayList<String>();
+		scopes.add(GamesScopes.DRIVE_APPDATA);
+		scopes.add(GamesScopes.GAMES);
+		scopes.add(GamesScopes.PLUS_LOGIN);
 
-			GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
-					httpTransport, JSON_FACTORY, clientSecrets, scopes);
-			builder.setScopes(scopes);
-			GoogleAuthorizationCodeFlow flow = null;
-			flow = builder.setAccessType("offline")
-					.setDataStoreFactory(dataStoreFactory).build();
-			return flow;
-		} finally {
-			in.close();
-			is.close();
-		}
+		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
+				httpTransport, JSON_FACTORY, clientSecrets, scopes);
+		builder.setScopes(scopes);
+		GoogleAuthorizationCodeFlow flow = null;
+		flow = builder.setAccessType("offline")
+				.setDataStoreFactory(dataStoreFactory).build();
+		return flow;
+
 	}
 
 	@Override
