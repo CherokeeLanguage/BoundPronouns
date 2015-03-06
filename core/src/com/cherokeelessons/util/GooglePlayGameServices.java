@@ -108,13 +108,14 @@ public interface GooglePlayGameServices {
 	}
 	
 	public static class AppFiles {
-		public List<AppFile> files=new ArrayList<>();
-		public static class AppFile {
+		public List<FileMeta> files=new ArrayList<>();
+		public static class FileMeta {
 			public Boolean isAppData;
 			public Date created;
 			public String id;
 			public Date lastModified;			
 			public String title;
+			public String url;
 		}
 	}
 }

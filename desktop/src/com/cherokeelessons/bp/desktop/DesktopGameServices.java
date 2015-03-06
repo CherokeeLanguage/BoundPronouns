@@ -1,7 +1,6 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URLDecoder;
@@ -9,13 +8,16 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.cherokeelessons.bp.LearningSession;
+import com.cherokeelessons.bp.MainScreen;
 import com.cherokeelessons.util.GooglePlayGameServices;
-import com.cherokeelessons.util.GooglePlayGameServices.AppFiles.AppFile;
+import com.cherokeelessons.util.GooglePlayGameServices.AppFiles.FileMeta;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.google.api.client.auth.oauth2.Credential;
@@ -25,13 +27,18 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.media.MediaHttpDownloader;
+import com.google.api.client.googleapis.media.MediaHttpUploader;
+import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
+import com.google.api.client.http.FileContent;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.Drive.Files;
+import com.google.api.services.drive.Drive.Files.Insert;
 import com.google.api.services.drive.model.FileList;
+import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.games.Games;
 import com.google.api.services.games.Games.Achievements;
 import com.google.api.services.games.Games.Scores;
@@ -45,7 +52,7 @@ import com.google.api.services.games.model.PlayerLeaderboardScore;
 import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 
 public class DesktopGameServices implements GooglePlayGameServices {
-	private File DATA_STORE_DIR;
+	private java.io.File DATA_STORE_DIR;
 	private Credential credential;
 	private FileDataStoreFactory dataStoreFactory;
 	private NetHttpTransport httpTransport;
@@ -54,15 +61,16 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			.getDefaultInstance();
 
 	private Boolean initdone = false;
-	protected Callback<AppFiles> cb_listFiles=new Callback<AppFiles>() {
+	protected Callback<AppFiles> cb_listFiles = new Callback<AppFiles>() {
 		@Override
 		public void success(AppFiles result) {
-			for (AppFile file: result.files) {
-				log("File: "+file.id+" - "+file.title+" - "+file.lastModified);
-			}			
+			for (FileMeta file : result.files) {
+				log("File: " + file.id + " - " + file.title + " - "
+						+ file.lastModified);
+			}
 		}
 	};
-	protected Callback<String> cb_bytitle=new Callback<String>() {		
+	protected Callback<String> cb_bytitle = new Callback<String>() {
 		@Override
 		public void success(String result) {
 			log("=== DOWNLOAD");
@@ -242,7 +250,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			@Override
 			public void run() {
 				listFiles(cb_listFiles);
-				getFileByTitle("Bound Pronouns - Active Cards - json", cb_bytitle);
+				getFileByTitle("Bound Pronouns - Active Cards - json",
+						cb_bytitle);
 				GameScores gscores = new GameScores();
 				try {
 					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
@@ -273,7 +282,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				} catch (IOException | GeneralSecurityException e) {
 					postRunnable(success.with(e));
 					return;
-				}				
+				}
 				postRunnable(success.with(gscores));
 			}
 		}).start();
@@ -308,7 +317,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				} catch (IOException | GeneralSecurityException e) {
 					postRunnable(success.with(e));
 					return;
-				}				
+				}
 				postRunnable(success.with(gscores));
 			}
 		}).start();
@@ -369,18 +378,22 @@ public class DesktopGameServices implements GooglePlayGameServices {
 		Drive drive = b.build();
 		return drive;
 	}
-	
+
 	public void getFile(final String id, final Callback<String> callback) {
 		new Thread(new Runnable() {
 			@Override
-			public void run() {				
-				try {					
-					ByteArrayOutputStream baos=new ByteArrayOutputStream();					
-					Drive drive = _getDriveObject();					
-					com.google.api.services.drive.model.File meta = drive.files().get(id).execute();					
-					MediaHttpDownloader downloader = new MediaHttpDownloader(httpTransport, credential);
-					downloader.download(new GenericUrl(meta.getDownloadUrl()), baos);
-					String result = new String(baos.toByteArray(), StandardCharsets.UTF_8).intern();					
+			public void run() {
+				try {
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					Drive drive = _getDriveObject();
+					com.google.api.services.drive.model.File meta = drive
+							.files().get(id).execute();
+					MediaHttpDownloader downloader = new MediaHttpDownloader(
+							httpTransport, credential);
+					downloader.download(new GenericUrl(meta.getDownloadUrl()),
+							baos);
+					String result = new String(baos.toByteArray(),
+							StandardCharsets.UTF_8).intern();
 					postRunnable(callback.with(result));
 				} catch (IOException | GeneralSecurityException e) {
 					postRunnable(callback.with(e));
@@ -388,61 +401,93 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			}
 		}).start();
 	}
-	
-	public void getFileByTitle(final String title, final Callback<String> callback) {
-		final String[] id = new String[1];
-		final Thread thread = new Thread(new Runnable() {
+
+	public static class Stashed<T> {
+		public T data;
+
+		public Stashed() {
+		}
+
+		public Stashed(T data) {
+			this.data = data;
+		}
+	}
+
+	public void getFileByTitle(final String title,
+			final Callback<String> callback) {
+		Callback<FileMeta> meta_cb = new Callback<FileMeta>() {
 			@Override
-			public void run() {				
-				try {					
-					ByteArrayOutputStream baos=new ByteArrayOutputStream();					
-					Drive drive = _getDriveObject();					
-					com.google.api.services.drive.model.File meta = drive.files().get(id[0]).execute();					
-					MediaHttpDownloader downloader = new MediaHttpDownloader(httpTransport, credential);
-					downloader.download(new GenericUrl(meta.getDownloadUrl()), baos);
-					String result = new String(baos.toByteArray(), StandardCharsets.UTF_8).intern();					
-					postRunnable(callback.with(result));
-				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(callback.with(e));
-				}
+			public void success(final FileMeta result) {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						try {
+							ByteArrayOutputStream baos = new ByteArrayOutputStream();
+							MediaHttpDownloader downloader = new MediaHttpDownloader(
+									httpTransport, credential);
+							downloader.download(new GenericUrl(result.url),
+									baos);
+							String result = new String(baos.toByteArray(),
+									StandardCharsets.UTF_8).intern();
+							postRunnable(callback.with(result));
+						} catch (IOException e) {
+							postRunnable(callback.with(e));
+						}
+					}
+				});
 			}
-		});
-		
-		Callback<AppFiles> findFile=new Callback<AppFiles>() {			
+
+			@Override
+			public void error(Exception exception) {
+				postRunnable(callback.with(exception));
+			}
+		};
+		getFileMetaByTitle(title, meta_cb);
+	}
+
+	public void getFileMetaByTitle(final String title,
+			final Callback<FileMeta> callback) {
+		Callback<AppFiles> findFile = new Callback<AppFiles>() {
 			@Override
 			public void success(AppFiles result) {
-				for (AppFile file: result.files) {
+				for (FileMeta file : result.files) {
 					if (file.title.equals(title)) {
-						id[0]=file.id;
-						thread.start();
-						break;
+						postRunnable(callback.with(file));
+						return;
 					}
 				}
 			}
+
+			@Override
+			public void error(Exception exception) {
+				postRunnable(callback.with(exception));
+			}
 		};
-		
 		listFiles(findFile);
 	}
 
 	public void listFiles(final Callback<AppFiles> callback) {
 		new Thread(new Runnable() {
 			@Override
-			public void run() {				
-				try {					
+			public void run() {
+				try {
 					AppFiles afs = new AppFiles();
 					Drive drive = _getDriveObject();
-					
+
 					Files.List request = drive.files().list();
 					request.setQ("'appfolder' in parents");
 					FileList fl = request.execute();
-					List<com.google.api.services.drive.model.File> items = fl.getItems();
-					for (com.google.api.services.drive.model.File item: items) {
-						AppFile af = new AppFile();
+					List<com.google.api.services.drive.model.File> items = fl
+							.getItems();
+					for (com.google.api.services.drive.model.File item : items) {
+						FileMeta af = new FileMeta();
 						af.isAppData = item.getAppDataContents();
 						af.created = new Date(item.getCreatedDate().getValue());
 						af.id = item.getId();
-						af.lastModified = new Date(item.getModifiedDate().getValue());
+						af.lastModified = new Date(item.getModifiedDate()
+								.getValue());
 						af.title = item.getTitle();
+						af.url = item.getDownloadUrl();
 						afs.files.add(af);
 					}
 					postRunnable(callback.with(afs));
@@ -452,64 +497,56 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			}
 		}).start();
 	}
+	
+//	public void drive_updateById(String id, final java.io.File file,
+//			final Callback<String> callback);
+//	
+//	public void drive_updateByTitle(String id, final java.io.File file,
+//			final Callback<String> callback);
 
-//	public void drive_list() {
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				try {
-//					Drive drive = _getDriveObject();
-//					Get api_about = drive.about().get();
-//					About about = api_about.execute();
-//					log("isCurrentAppInstalled: "
-//							+ about.getIsCurrentAppInstalled());
-//					// log("about: "+about.toPrettyString());
-//
-//					com.google.api.services.drive.Drive.Files.List listRequest = drive
-//							.files().list();
-//					listRequest.setQ("'appfolder' in parents");
-//					FileList list = listRequest.execute();
-//					for (com.google.api.services.drive.model.File item : list
-//							.getItems()) {
-//						log("file: " + item.getId() + " - " + item.getTitle());
-//					}
-//
-//					com.google.api.services.drive.model.File meta = new com.google.api.services.drive.model.File();
-//					meta.setParents(Arrays.asList(new ParentReference()
-//							.setId("appfolder")));
-//					meta.setTitle("Bound Pronouns - Active Cards - json");
-//					meta.setDescription("This file is used to track your active cards.");
-//					FileContent content = new FileContent("application/json",
-//							MainScreen.getFolder(0)
-//									.child(LearningSession.ActiveDeckJson)
-//									.file());
-//
-//					Insert insert = drive.files().insert(meta, content);
-//					insert.getMediaHttpUploader().setDirectUploadEnabled(true);
-//					insert.getMediaHttpUploader().setProgressListener(
-//							new MediaHttpUploaderProgressListener() {
-//								@Override
-//								public void progressChanged(
-//										MediaHttpUploader uploader)
-//										throws IOException {
-//									log("uploaded: "
-//											+ ((int) (uploader.getProgress() * 100))
-//											+ "%");
-//								}
-//							});
-//					insert.execute();
-//
-//				} catch (GeneralSecurityException | IOException e) {
-//					e.printStackTrace();
-//					// error.setData(e);
-//					// postRunnable(error);
-//					return;
-//				}
-//				// postRunnable(success);
-//			}
-//		}).start();
-//
-//	}
+	public void drive_add(final java.io.File file,
+			final Callback<String> callback) {
+		drive_add(file, file.getName(), file.getName(), callback);
+	}
+
+	public void drive_add(final java.io.File file, final String title,
+			final String description, final Callback<String> callback) {
+		final Stashed<String> _title = new Stashed<String>(title);
+		if (title == null || title.trim().length() == 0) {
+			_title.data = file.getName();
+		}
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Drive drive = _getDriveObject();
+					com.google.api.services.drive.model.File meta = new com.google.api.services.drive.model.File();
+					meta.setParents(Arrays.asList(new ParentReference()
+							.setId("appfolder")));
+					meta.setTitle(_title.data);
+					FileContent content = new FileContent("application/json", file);
+					Insert insert = drive.files().insert(meta, content);
+					insert.getMediaHttpUploader().setProgressListener(
+							new MediaHttpUploaderProgressListener() {
+								@Override
+								public void progressChanged(
+										MediaHttpUploader uploader)
+										throws IOException {
+									log("uploaded: "
+											+ ((int) (uploader.getProgress() * 100))
+											+ "%");
+								}
+							});
+					com.google.api.services.drive.model.File i = insert
+							.execute();
+					postRunnable(callback.with(i.getId()));
+				} catch (GeneralSecurityException | IOException e) {
+					postRunnable(callback.with(e));
+				}
+			}
+		}).start();
+	}
 
 	private static void log(String msg) {
 		Gdx.app.log("DesktopGameServices", msg);
