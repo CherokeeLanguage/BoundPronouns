@@ -1,6 +1,7 @@
 package com.cherokeelessons.util;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,20 +17,11 @@ public interface GooglePlayGameServices {
 	public void ach_unlocked(String id, Callback<Void> callback);
 	public void ach_list(Callback<GameAchievements> callback);
 	
-	public static abstract class Callback<T> implements Runnable {
-		private T data;
-		public T getData() {
-			return data;
-		}
-		public void setData(T data) {
-			this.data=data;
-		}
+	public static abstract class Callback<T> {
 		public Callback() {
 		}
-		@Override
-		public abstract void run();
 		
-		public Runnable withError(final Exception e) {
+		public Runnable with(final Exception e) {
 			return new Runnable() {				
 				@Override
 				public void run() {
@@ -39,12 +31,27 @@ public interface GooglePlayGameServices {
 		}
 		
 		public Runnable with(final T data) {
-			setData(data);
-			return this;
+			return new Runnable() {				
+				@Override
+				public void run() {
+					Callback.this.success(data);
+				}
+			};
+		}
+		
+		public Runnable with() {
+			return new Runnable() {				
+				@Override
+				public void run() {
+					Callback.this.success(null);
+				}
+			};
 		}
 		
 		public void error(Exception exception) {
 		};
+		
+		public abstract void success(T result);
 	}
 	
 	public static enum Collection {
@@ -98,5 +105,16 @@ public interface GooglePlayGameServices {
 		public Collection collection;
 		public TimeSpan ts;
 		public List<GameScore> list=new ArrayList<>();
+	}
+	
+	public static class AppFiles {
+		public List<AppFile> files=new ArrayList<>();
+		public static class AppFile {
+			public Boolean isAppData;
+			public Date created;
+			public String id;
+			public Date lastModified;			
+			public String title;
+		}
 	}
 }

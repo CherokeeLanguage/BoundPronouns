@@ -66,9 +66,8 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 	public Callback<GameScores> success_show_scores = new Callback<GameScores>() {
 		@Override
-		public void run() {
+		public void success(GameScores data) {
 			Gdx.app.log("success_show_scores", "Scores received.");
-			GameScores data = getData();
 			if (data==null) {
 				message.setText("You must login to Google Play for Leaderboard Support");
 				return;
@@ -124,14 +123,6 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			if (!prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
 				message.setText("You must login to Google Play for Leaderboard Support");
 			}
-		}
-	};
-
-	public Callback<Exception> noop_error = new Callback<Exception>() {
-		@Override
-		public void run() {
-			Gdx.app.log("Google Play Leaderboard Error: ", getData()
-					.getMessage());
 		}
 	};
 
@@ -212,7 +203,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			play_button.addListener(new ClickListener(){				
 				Callback<Void> success_in=new Callback<Void>() {							
 					@Override
-					public void run() {
+					public void success(Void result) {
 						login.hide();
 						Preferences prefs = BoundPronouns.getPrefs();
 						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
@@ -223,12 +214,12 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					@Override
 					public void error(Exception exception) {
 						login.hide();
-						success_out.run();
+						success_out.with().run();
 					}
 				};
 				Callback<Void> success_out=new Callback<Void>() {							
 					@Override
-					public void run() {
+					public void success(Void result) {
 						login.hide();
 						Preferences prefs = BoundPronouns.getPrefs();
 						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
@@ -239,7 +230,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					@Override
 					public void error(Exception exception) {
 						login.hide();
-						success_out.run();
+						success_out.with().run();
 					}
 				};
 				@Override
@@ -284,8 +275,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					success_show_scores);
 			message.setText("Loading ...");
 		} else {
-			success_show_scores.setData(new GameScores());
-			Gdx.app.postRunnable(success_show_scores);
+			Gdx.app.postRunnable(success_show_scores.with(new GameScores()));
 		}
 	}
 }

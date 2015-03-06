@@ -1,20 +1,21 @@
 package com.cherokeelessons.bp.desktop;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.cherokeelessons.bp.LearningSession;
-import com.cherokeelessons.bp.MainScreen;
 import com.cherokeelessons.util.GooglePlayGameServices;
+import com.cherokeelessons.util.GooglePlayGameServices.AppFiles.AppFile;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.google.api.client.auth.oauth2.Credential;
@@ -23,18 +24,14 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.googleapis.media.MediaHttpUploader;
-import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
-import com.google.api.client.http.FileContent;
+import com.google.api.client.googleapis.media.MediaHttpDownloader;
+import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
-import com.google.api.services.drive.Drive.About.Get;
-import com.google.api.services.drive.Drive.Files.Insert;
-import com.google.api.services.drive.model.About;
+import com.google.api.services.drive.Drive.Files;
 import com.google.api.services.drive.model.FileList;
-import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.games.Games;
 import com.google.api.services.games.Games.Achievements;
 import com.google.api.services.games.Games.Scores;
@@ -57,6 +54,21 @@ public class DesktopGameServices implements GooglePlayGameServices {
 			.getDefaultInstance();
 
 	private Boolean initdone = false;
+	protected Callback<AppFiles> cb_listFiles=new Callback<AppFiles>() {
+		@Override
+		public void success(AppFiles result) {
+			for (AppFile file: result.files) {
+				log("File: "+file.id+" - "+file.title+" - "+file.lastModified);
+			}			
+		}
+	};
+	protected Callback<String> cb_bytitle=new Callback<String>() {		
+		@Override
+		public void success(String result) {
+			log("=== DOWNLOAD");
+			log(result);
+		}
+	};
 
 	private static void postRunnable(Runnable runnable) {
 		if (runnable == null) {
@@ -136,10 +148,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 				try {
 					_login();
 				} catch (GeneralSecurityException | IOException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		}).start();
 	}
@@ -162,10 +174,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					flow = getFlow();
 					flow.getCredentialDataStore().clear();
 				} catch (IOException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		}).start();
 	}
@@ -182,10 +194,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					String tag = URLEncoder.encode(label, "UTF-8");
 					submit.setScoreTag(tag);
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		}).start();
 	}
@@ -214,11 +226,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				success.setData(gscores);
-				postRunnable(success);
+				postRunnable(success.with(gscores));
 			}
 		});
 	}
@@ -230,7 +241,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				drive_list();
+				listFiles(cb_listFiles);
+				getFileByTitle("Bound Pronouns - Active Cards - json", cb_bytitle);
 				GameScores gscores = new GameScores();
 				try {
 					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
@@ -244,8 +256,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
 					if (list == null) {
-						success.setData(gscores);
-						postRunnable(success);
+						postRunnable(success.with(gscores));
 						return;
 					}
 					for (LeaderboardEntry e : list) {
@@ -260,11 +271,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
-				}
-				success.setData(gscores);
-				postRunnable(success);
+				}				
+				postRunnable(success.with(gscores));
 			}
 		}).start();
 	}
@@ -296,11 +306,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
-				}
-				success.setData(gscores);
-				postRunnable(success);
+				}				
+				postRunnable(success.with(gscores));
 			}
 		}).start();
 	}
@@ -325,10 +334,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.reveal(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		}).start();
 	}
@@ -343,10 +352,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.unlock(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		}).start();
 	}
@@ -360,80 +369,147 @@ public class DesktopGameServices implements GooglePlayGameServices {
 		Drive drive = b.build();
 		return drive;
 	}
-
-	public void listFiles(final Callback<File> callback) {
+	
+	public void getFile(final String id, final Callback<String> callback) {
 		new Thread(new Runnable() {
 			@Override
-			public void run() {
-				try {
+			public void run() {				
+				try {					
+					ByteArrayOutputStream baos=new ByteArrayOutputStream();					
+					Drive drive = _getDriveObject();					
+					com.google.api.services.drive.model.File meta = drive.files().get(id).execute();					
+					MediaHttpDownloader downloader = new MediaHttpDownloader(httpTransport, credential);
+					downloader.download(new GenericUrl(meta.getDownloadUrl()), baos);
+					String result = new String(baos.toByteArray(), StandardCharsets.UTF_8).intern();					
+					postRunnable(callback.with(result));
+				} catch (IOException | GeneralSecurityException e) {
+					postRunnable(callback.with(e));
+				}
+			}
+		}).start();
+	}
+	
+	public void getFileByTitle(final String title, final Callback<String> callback) {
+		final String[] id = new String[1];
+		final Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {				
+				try {					
+					ByteArrayOutputStream baos=new ByteArrayOutputStream();					
+					Drive drive = _getDriveObject();					
+					com.google.api.services.drive.model.File meta = drive.files().get(id[0]).execute();					
+					MediaHttpDownloader downloader = new MediaHttpDownloader(httpTransport, credential);
+					downloader.download(new GenericUrl(meta.getDownloadUrl()), baos);
+					String result = new String(baos.toByteArray(), StandardCharsets.UTF_8).intern();					
+					postRunnable(callback.with(result));
+				} catch (IOException | GeneralSecurityException e) {
+					postRunnable(callback.with(e));
+				}
+			}
+		});
+		
+		Callback<AppFiles> findFile=new Callback<AppFiles>() {			
+			@Override
+			public void success(AppFiles result) {
+				for (AppFile file: result.files) {
+					if (file.title.equals(title)) {
+						id[0]=file.id;
+						thread.start();
+						break;
+					}
+				}
+			}
+		};
+		
+		listFiles(findFile);
+	}
+
+	public void listFiles(final Callback<AppFiles> callback) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {				
+				try {					
+					AppFiles afs = new AppFiles();
 					Drive drive = _getDriveObject();
 					
-				} catch (GeneralSecurityException | IOException e) {
-					postRunnable(callback.withError(e));
-					return;
-				}
-				 postRunnable(callback);
-			}
-		}).start();
-	}
-
-	public void drive_list() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Drive drive = _getDriveObject();
-					Get api_about = drive.about().get();
-					About about = api_about.execute();
-					log("isCurrentAppInstalled: "
-							+ about.getIsCurrentAppInstalled());
-					// log("about: "+about.toPrettyString());
-
-					com.google.api.services.drive.Drive.Files.List listRequest = drive
-							.files().list();
-					listRequest.setQ("'appfolder' in parents");
-					FileList list = listRequest.execute();
-					for (com.google.api.services.drive.model.File item : list
-							.getItems()) {
-						log("file: " + item.getId() + " - " + item.getTitle());
+					Files.List request = drive.files().list();
+					request.setQ("'appfolder' in parents");
+					FileList fl = request.execute();
+					List<com.google.api.services.drive.model.File> items = fl.getItems();
+					for (com.google.api.services.drive.model.File item: items) {
+						AppFile af = new AppFile();
+						af.isAppData = item.getAppDataContents();
+						af.created = new Date(item.getCreatedDate().getValue());
+						af.id = item.getId();
+						af.lastModified = new Date(item.getModifiedDate().getValue());
+						af.title = item.getTitle();
+						afs.files.add(af);
 					}
-
-					com.google.api.services.drive.model.File meta = new com.google.api.services.drive.model.File();
-					meta.setParents(Arrays.asList(new ParentReference()
-							.setId("appfolder")));
-					meta.setTitle("Bound Pronouns - Active Cards - json");
-					meta.setDescription("This file is used to track your active cards.");
-					FileContent content = new FileContent("application/json",
-							MainScreen.getFolder(0)
-									.child(LearningSession.ActiveDeckJson)
-									.file());
-
-					Insert insert = drive.files().insert(meta, content);
-					insert.getMediaHttpUploader().setDirectUploadEnabled(true);
-					insert.getMediaHttpUploader().setProgressListener(
-							new MediaHttpUploaderProgressListener() {
-								@Override
-								public void progressChanged(
-										MediaHttpUploader uploader)
-										throws IOException {
-									log("uploaded: "
-											+ ((int) (uploader.getProgress() * 100))
-											+ "%");
-								}
-							});
-					insert.execute();
-
-				} catch (GeneralSecurityException | IOException e) {
-					e.printStackTrace();
-					// error.setData(e);
-					// postRunnable(error);
-					return;
+					postRunnable(callback.with(afs));
+				} catch (IOException | GeneralSecurityException e) {
+					postRunnable(callback.with(e));
 				}
-				// postRunnable(success);
 			}
 		}).start();
-
 	}
+
+//	public void drive_list() {
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					Drive drive = _getDriveObject();
+//					Get api_about = drive.about().get();
+//					About about = api_about.execute();
+//					log("isCurrentAppInstalled: "
+//							+ about.getIsCurrentAppInstalled());
+//					// log("about: "+about.toPrettyString());
+//
+//					com.google.api.services.drive.Drive.Files.List listRequest = drive
+//							.files().list();
+//					listRequest.setQ("'appfolder' in parents");
+//					FileList list = listRequest.execute();
+//					for (com.google.api.services.drive.model.File item : list
+//							.getItems()) {
+//						log("file: " + item.getId() + " - " + item.getTitle());
+//					}
+//
+//					com.google.api.services.drive.model.File meta = new com.google.api.services.drive.model.File();
+//					meta.setParents(Arrays.asList(new ParentReference()
+//							.setId("appfolder")));
+//					meta.setTitle("Bound Pronouns - Active Cards - json");
+//					meta.setDescription("This file is used to track your active cards.");
+//					FileContent content = new FileContent("application/json",
+//							MainScreen.getFolder(0)
+//									.child(LearningSession.ActiveDeckJson)
+//									.file());
+//
+//					Insert insert = drive.files().insert(meta, content);
+//					insert.getMediaHttpUploader().setDirectUploadEnabled(true);
+//					insert.getMediaHttpUploader().setProgressListener(
+//							new MediaHttpUploaderProgressListener() {
+//								@Override
+//								public void progressChanged(
+//										MediaHttpUploader uploader)
+//										throws IOException {
+//									log("uploaded: "
+//											+ ((int) (uploader.getProgress() * 100))
+//											+ "%");
+//								}
+//							});
+//					insert.execute();
+//
+//				} catch (GeneralSecurityException | IOException e) {
+//					e.printStackTrace();
+//					// error.setData(e);
+//					// postRunnable(error);
+//					return;
+//				}
+//				// postRunnable(success);
+//			}
+//		}).start();
+//
+//	}
 
 	private static void log(String msg) {
 		Gdx.app.log("DesktopGameServices", msg);
@@ -458,11 +534,10 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						results.list.add(a);
 					}
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				success.setData(results);
-				postRunnable(success);
+				postRunnable(success.with(results));
 			}
 		});
 	}

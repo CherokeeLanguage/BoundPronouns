@@ -71,12 +71,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	Callback<Void> noop_success = new Callback<Void>() {
 		@Override
-		public void run() {
-		}
-	};
-	Callback<Exception> noop_error = new Callback<Exception>() {
-		@Override
-		public void run() {
+		public void success(Void result) {
 		}
 	};
 

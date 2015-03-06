@@ -408,14 +408,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private Callback<Void> noop_success = new Callback<Void>() {
 		@Override
-		public void run() {
+		public void success(Void result) {
 			Gdx.app.log("LearningSession-Score Submit", "success");
-		}
-	};
-	private Callback<Exception> noop_error = new Callback<Exception>() {
-		@Override
-		public void run() {
-			Gdx.app.log("LearningSession-Score Submit", getData().getMessage());
 		}
 	};
 
@@ -488,7 +482,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						}
 						Callback<Void> submit_scores=new Callback<Void>() {
 							@Override
-							public void run() {
+							public void success(Void result) {
 								BoundPronouns.services.lb_submit(
 										ShowLeaderboards.BoardId, info.lastScore,
 										info.level.getEngrish(), noop_success);

@@ -1,10 +1,7 @@
 package com.cherokeelessons.bp.android;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -31,7 +28,6 @@ import android.webkit.WebViewClient;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.files.FileHandle;
-import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
@@ -329,17 +325,17 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					init();
 					Callback<Credential> callback = new Callback<Credential>() {
 						@Override
-						public void run() {
-							credential = getData();
+						public void success(Credential result) {							
+							credential = result;
 						}
 					};
 					codeReceiver.code = null;
 					credential = authorize(callback);
 				} catch (RuntimeException | IOException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		});
 	}
@@ -349,8 +345,8 @@ public class AndroidGameServices implements GooglePlayGameServices {
 
 		Callback<Credential> callback = new Callback<Credential>() {
 			@Override
-			public void run() {
-				credential = getData();
+			public void success(Credential result) {
+				credential = result;
 			}
 		};
 		credential = authorize(callback);
@@ -421,10 +417,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					flow = getFlow();
 					flow.getCredentialDataStore().clear();
 				} catch (IOException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		});
 	}
@@ -442,10 +438,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					submit.setScoreTag(tag);
 					submit.execute();
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		});
 	}
@@ -474,11 +470,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				success.setData(gscores);
-				postRunnable(success);
+				postRunnable(success.with(gscores));
 			}
 		});
 	}
@@ -502,9 +497,8 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
-					if (list == null) {
-						success.setData(gscores);
-						postRunnable(success);
+					if (list == null) {						
+						postRunnable(success.with(gscores));
 						return;
 					}
 					for (LeaderboardEntry e : list) {
@@ -519,11 +513,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				success.setData(gscores);
-				postRunnable(success);
+				postRunnable(success.with(gscores));
 			}
 		});
 	}
@@ -555,11 +548,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				success.setData(gscores);
-				postRunnable(success);
+				postRunnable(success.with(gscores));
 			}
 		});
 	}
@@ -584,10 +576,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.reveal(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		});
 	}
@@ -602,10 +594,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.unlock(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				postRunnable(success);
+				postRunnable(success.with());
 			}
 		});
 	}
@@ -629,11 +621,10 @@ public class AndroidGameServices implements GooglePlayGameServices {
 						results.list.add(a);
 					}
 				} catch (IOException | GeneralSecurityException e) {					
-					postRunnable(success.withError(e));
+					postRunnable(success.with(e));
 					return;
 				}
-				success.setData(results);
-				postRunnable(success);
+				postRunnable(success.with(results));
 			}
 		});
 	}
