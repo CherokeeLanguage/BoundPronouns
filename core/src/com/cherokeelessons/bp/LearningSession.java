@@ -491,13 +491,12 @@ public class LearningSession extends ChildScreen implements Screen {
 							public void run() {
 								BoundPronouns.services.lb_submit(
 										ShowLeaderboards.BoardId, info.lastScore,
-										info.level.getEngrish(), noop_success,
-										noop_error);
-								BoundPronouns.services.ach_unlocked(info.level.getId(),noop_success, noop_error);
-								BoundPronouns.services.ach_reveal(info.level.next().getId(),noop_success, noop_error);
+										info.level.getEngrish(), noop_success);
+								BoundPronouns.services.ach_unlocked(info.level.getId(),noop_success);
+								BoundPronouns.services.ach_reveal(info.level.next().getId(),noop_success);
 							}
 						};
-						BoundPronouns.services.login(submit_scores, noop_error);
+						BoundPronouns.services.login(submit_scores);
 					}
 				}
 

@@ -321,8 +321,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void login(final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void login(final Callback<Void> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -337,8 +336,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					codeReceiver.code = null;
 					credential = authorize(callback);
 				} catch (RuntimeException | IOException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -413,8 +411,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void logout(final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void logout(final Callback<Void> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -424,8 +421,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					flow = getFlow();
 					flow.getCredentialDataStore().clear();
 				} catch (IOException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -435,8 +431,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 
 	@Override
 	public void lb_submit(final String boardId, final long score,
-			final String label, final Callback<Void> success,
-			final Callback<Exception> error) {
+			final String label, final Callback<Void> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -447,7 +442,8 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					submit.setScoreTag(tag);
 					submit.execute();
 				} catch (IOException | GeneralSecurityException e) {
-					e.printStackTrace();
+					postRunnable(success.withError(e));
+					return;
 				}
 				postRunnable(success);
 			}
@@ -456,7 +452,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 
 	@Override
 	public void lb_getScoresFor(final String boardId,
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final Callback<GameScores> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -478,7 +474,8 @@ public class AndroidGameServices implements GooglePlayGameServices {
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {
-					e.printStackTrace();
+					postRunnable(success.withError(e));
+					return;
 				}
 				success.setData(gscores);
 				postRunnable(success);
@@ -489,7 +486,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	@Override
 	public void lb_getListFor(final String boardId,
 			final Collection collection, final TimeSpan ts,
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final Callback<GameScores> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -522,7 +519,8 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					e.printStackTrace();
+					postRunnable(success.withError(e));
+					return;
 				}
 				success.setData(gscores);
 				postRunnable(success);
@@ -533,7 +531,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	@Override
 	public void lb_getListWindowFor(final String boardId,
 			final Collection collection, final TimeSpan ts,
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final Callback<GameScores> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -557,8 +555,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				success.setData(gscores);
@@ -578,8 +575,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void ach_reveal(final String id, final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void ach_reveal(final String id, final Callback<Void> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -588,8 +584,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.reveal(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -598,8 +593,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void ach_unlocked(final String id, final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void ach_unlocked(final String id, final Callback<Void> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -608,8 +602,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.unlock(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -618,8 +611,7 @@ public class AndroidGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void ach_list(final Callback<GameAchievements> success,
-			final Callback<Exception> error) {
+	public void ach_list(final Callback<GameAchievements> success) {
 		runTask(new Runnable() {
 			@Override
 			public void run() {
@@ -636,9 +628,8 @@ public class AndroidGameServices implements GooglePlayGameServices {
 						a.state = pa.getAchievementState();
 						results.list.add(a);
 					}
-				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+				} catch (IOException | GeneralSecurityException e) {					
+					postRunnable(success.withError(e));
 					return;
 				}
 				success.setData(results);

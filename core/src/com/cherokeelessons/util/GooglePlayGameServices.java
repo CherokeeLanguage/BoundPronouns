@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface GooglePlayGameServices {
 	
-	public void login(Callback<Void> success, Callback<Exception> error);
-	public void logout(Callback<Void> success, Callback<Exception> error);
-	public void lb_submit(String boardId, long score, String label, Callback<Void> success, Callback<Exception> error);
-	public void lb_getScoresFor(String boardId, Callback<GameScores> success, Callback<Exception> error);
-	public void lb_getListFor(String boardId, Collection collection, TimeSpan ts, Callback<GameScores> success, Callback<Exception> error);
-	public void lb_getListWindowFor(String boardId, Collection collection, TimeSpan ts, Callback<GameScores> success, Callback<Exception> error);
-	public void ach_reveal(String id, Callback<Void> success, Callback<Exception> error);
-	public void ach_unlocked(String id, Callback<Void> success, Callback<Exception> error);
-	public void ach_list(Callback<GameAchievements> success, Callback<Exception> error);
+	public void login(Callback<Void> callback);
+	public void logout(Callback<Void> callback);
+	public void lb_submit(String boardId, long score, String label, Callback<Void> callback);
+	public void lb_getScoresFor(String boardId, Callback<GameScores> callback);
+	public void lb_getListFor(String boardId, Collection collection, TimeSpan ts, Callback<GameScores> callback);
+	public void lb_getListWindowFor(String boardId, Collection collection, TimeSpan ts, Callback<GameScores> callback);
+	public void ach_reveal(String id, Callback<Void> callback);
+	public void ach_unlocked(String id, Callback<Void> callback);
+	public void ach_list(Callback<GameAchievements> callback);
 	
 	public static abstract class Callback<T> implements Runnable {
 		private T data;
@@ -28,6 +28,23 @@ public interface GooglePlayGameServices {
 		}
 		@Override
 		public abstract void run();
+		
+		public Runnable withError(final Exception e) {
+			return new Runnable() {				
+				@Override
+				public void run() {
+					Callback.this.error(e);
+				}
+			};
+		}
+		
+		public Runnable with(final T data) {
+			setData(data);
+			return this;
+		}
+		
+		public void error(Exception exception) {
+		};
 	}
 	
 	public static enum Collection {

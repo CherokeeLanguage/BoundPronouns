@@ -220,6 +220,11 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						requestScores();
 						play_button.setText("Logout of Google Play");
 					}
+					@Override
+					public void error(Exception exception) {
+						login.hide();
+						success_out.run();
+					}
 				};
 				Callback<Void> success_out=new Callback<Void>() {							
 					@Override
@@ -231,10 +236,8 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						requestScores();
 						play_button.setText("Login to Google Play");
 					}
-				};
-				Callback<Exception> error=new Callback<Exception>() {
 					@Override
-					public void run() {
+					public void error(Exception exception) {
 						login.hide();
 						success_out.run();
 					}
@@ -244,10 +247,10 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						int pointer, int button) {
 					Preferences prefs = BoundPronouns.getPrefs();
 					if (prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
-						BoundPronouns.services.logout(success_out, error);
+						BoundPronouns.services.logout(success_out);
 					} else {
 						login.show(stage);
-						BoundPronouns.services.login(success_in, error);
+						BoundPronouns.services.login(success_in);
 					}
 					return true;
 				}
@@ -278,7 +281,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		if (BoundPronouns.getPrefs().getBoolean(BoundPronouns.GooglePlayLogginIn,
 				false)) {
 			BoundPronouns.services.lb_getListFor(BoardId, lb_collection, ts,
-					success_show_scores, noop_error);
+					success_show_scores);
 			message.setText("Loading ...");
 		} else {
 			success_show_scores.setData(new GameScores());

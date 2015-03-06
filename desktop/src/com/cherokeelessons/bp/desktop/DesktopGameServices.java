@@ -1,19 +1,19 @@
 package com.cherokeelessons.bp.desktop;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.cherokeelessons.bp.LearningSession;
+import com.cherokeelessons.bp.MainScreen;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
@@ -23,9 +23,18 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.googleapis.media.MediaHttpUploader;
+import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
+import com.google.api.client.http.FileContent;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.Drive.About.Get;
+import com.google.api.services.drive.Drive.Files.Insert;
+import com.google.api.services.drive.model.About;
+import com.google.api.services.drive.model.FileList;
+import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.games.Games;
 import com.google.api.services.games.Games.Achievements;
 import com.google.api.services.games.Games.Scores;
@@ -120,16 +129,14 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void login(final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void login(final Callback<Void> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					_login();
 				} catch (GeneralSecurityException | IOException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -145,8 +152,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void logout(final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void logout(final Callback<Void> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -156,8 +162,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					flow = getFlow();
 					flow.getCredentialDataStore().clear();
 				} catch (IOException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -167,8 +172,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 
 	@Override
 	public void lb_submit(final String boardId, final long score,
-			final String label, final Callback<Void> success,
-			final Callback<Exception> error) {
+			final String label, final Callback<Void> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -178,7 +182,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					String tag = URLEncoder.encode(label, "UTF-8");
 					submit.setScoreTag(tag);
 				} catch (IOException | GeneralSecurityException e) {
-					e.printStackTrace();
+					postRunnable(success.withError(e));
+					return;
 				}
 				postRunnable(success);
 			}
@@ -187,7 +192,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 
 	@Override
 	public void lb_getScoresFor(final String boardId,
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final Callback<GameScores> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -209,7 +214,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						gscores.list.add(gs);
 					}
 				} catch (IOException | GeneralSecurityException e) {
-					e.printStackTrace();
+					postRunnable(success.withError(e));
+					return;
 				}
 				success.setData(gscores);
 				postRunnable(success);
@@ -220,10 +226,11 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	@Override
 	public void lb_getListFor(final String boardId,
 			final Collection collection, final TimeSpan ts,
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final Callback<GameScores> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				drive_list();
 				GameScores gscores = new GameScores();
 				try {
 					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
@@ -253,7 +260,8 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					e.printStackTrace();
+					postRunnable(success.withError(e));
+					return;
 				}
 				success.setData(gscores);
 				postRunnable(success);
@@ -264,7 +272,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	@Override
 	public void lb_getListWindowFor(final String boardId,
 			final Collection collection, final TimeSpan ts,
-			final Callback<GameScores> success, final Callback<Exception> error) {
+			final Callback<GameScores> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -288,8 +296,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					gscores.collection = collection;
 					gscores.ts = ts;
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				success.setData(gscores);
@@ -309,8 +316,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void ach_reveal(final String id, final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void ach_reveal(final String id, final Callback<Void> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -319,8 +325,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.reveal(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -329,8 +334,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void ach_unlocked(final String id, final Callback<Void> success,
-			final Callback<Exception> error) {
+	public void ach_unlocked(final String id, final Callback<Void> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -339,8 +343,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 					Achievements ac = g.achievements();
 					ac.unlock(id).execute();
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				postRunnable(success);
@@ -348,9 +351,96 @@ public class DesktopGameServices implements GooglePlayGameServices {
 		}).start();
 	}
 
+	private Drive _getDriveObject() throws GeneralSecurityException,
+			IOException {
+		_login();
+		Drive.Builder b = new Drive.Builder(httpTransport, JSON_FACTORY,
+				credential);
+		b.setApplicationName("Cherokee Bound Pronouns/1.0");
+		Drive drive = b.build();
+		return drive;
+	}
+
+	public void listFiles(final Callback<File> callback) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Drive drive = _getDriveObject();
+					
+				} catch (GeneralSecurityException | IOException e) {
+					postRunnable(callback.withError(e));
+					return;
+				}
+				 postRunnable(callback);
+			}
+		}).start();
+	}
+
+	public void drive_list() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Drive drive = _getDriveObject();
+					Get api_about = drive.about().get();
+					About about = api_about.execute();
+					log("isCurrentAppInstalled: "
+							+ about.getIsCurrentAppInstalled());
+					// log("about: "+about.toPrettyString());
+
+					com.google.api.services.drive.Drive.Files.List listRequest = drive
+							.files().list();
+					listRequest.setQ("'appfolder' in parents");
+					FileList list = listRequest.execute();
+					for (com.google.api.services.drive.model.File item : list
+							.getItems()) {
+						log("file: " + item.getId() + " - " + item.getTitle());
+					}
+
+					com.google.api.services.drive.model.File meta = new com.google.api.services.drive.model.File();
+					meta.setParents(Arrays.asList(new ParentReference()
+							.setId("appfolder")));
+					meta.setTitle("Bound Pronouns - Active Cards - json");
+					meta.setDescription("This file is used to track your active cards.");
+					FileContent content = new FileContent("application/json",
+							MainScreen.getFolder(0)
+									.child(LearningSession.ActiveDeckJson)
+									.file());
+
+					Insert insert = drive.files().insert(meta, content);
+					insert.getMediaHttpUploader().setDirectUploadEnabled(true);
+					insert.getMediaHttpUploader().setProgressListener(
+							new MediaHttpUploaderProgressListener() {
+								@Override
+								public void progressChanged(
+										MediaHttpUploader uploader)
+										throws IOException {
+									log("uploaded: "
+											+ ((int) (uploader.getProgress() * 100))
+											+ "%");
+								}
+							});
+					insert.execute();
+
+				} catch (GeneralSecurityException | IOException e) {
+					e.printStackTrace();
+					// error.setData(e);
+					// postRunnable(error);
+					return;
+				}
+				// postRunnable(success);
+			}
+		}).start();
+
+	}
+
+	private static void log(String msg) {
+		Gdx.app.log("DesktopGameServices", msg);
+	}
+
 	@Override
-	public void ach_list(final Callback<GameAchievements> success,
-			final Callback<Exception> error) {
+	public void ach_list(final Callback<GameAchievements> success) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -368,8 +458,7 @@ public class DesktopGameServices implements GooglePlayGameServices {
 						results.list.add(a);
 					}
 				} catch (IOException | GeneralSecurityException e) {
-					error.setData(e);
-					postRunnable(error);
+					postRunnable(success.withError(e));
 					return;
 				}
 				success.setData(results);

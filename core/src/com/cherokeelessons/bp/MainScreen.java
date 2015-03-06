@@ -362,19 +362,8 @@ public class MainScreen implements Screen, InputProcessor {
 
 		for (int ix = 0; ix < 4; ix++) {
 			final FileHandle p0, infoFile;
-			String path0 = "BoundPronouns/slots/" + ix + "/";
-			p0 = Gdx.files.external(path0);
-			p0.mkdirs();
-			if (Gdx.app.getType().equals(ApplicationType.Android)) {
-				FileHandle px = Gdx.files.internal(path0);
-				if (px.exists()) {
-					game.log(this,
-							"Migrating from private storage to public storage...");
-					p0.deleteDirectory();
-					px.moveTo(p0);
-				}
-			}
-
+			p0 = getFolder(ix);
+			
 			boolean blank = true;
 			SlotInfo info = null;
 			infoFile = p0.child(BoundPronouns.INFO_JSON);
@@ -542,6 +531,18 @@ public class MainScreen implements Screen, InputProcessor {
 		game.click();
 	}
 
+	public static FileHandle getFolder(int ix) {
+		return getFolder(ix+"");
+	}
+	
+	public static FileHandle getFolder(String child) {
+		final FileHandle p0;
+		String path0 = "BoundPronouns/slots";
+		p0 = Gdx.files.external(path0);
+		p0.child(child).mkdirs();		
+		return p0.child(child);
+	}
+
 	private ClickListener viewPractice = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
@@ -685,7 +686,7 @@ public class MainScreen implements Screen, InputProcessor {
 		if (!loginDialogDone
 				&& prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
 			loginDialogDone = true;
-			BoundPronouns.services.login(noop_success, noop_error);
+			BoundPronouns.services.login(noop_success);
 		}
 	}
 
