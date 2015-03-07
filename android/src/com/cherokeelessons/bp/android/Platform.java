@@ -33,11 +33,12 @@ import com.google.api.client.http.HttpTransport;
 
 @SuppressLint("DefaultLocale")
 public class Platform implements PlatformInterface {
-	
+
 	public static AndroidApplication application;
 
-	private static class AndroidCodeReceiver implements VerificationCodeReceiver {
-		private String code = "";
+	private static class AndroidCodeReceiver implements
+			VerificationCodeReceiver {
+		private String code = null;
 
 		public String getCode() {
 			return code;
@@ -62,21 +63,20 @@ public class Platform implements PlatformInterface {
 		}
 
 	}
-	
+
 	final AndroidCodeReceiver codeReceiver;
+
 	public Platform() {
 		codeReceiver = new AndroidCodeReceiver();
 	}
 
 	@Override
-	public Credential getCredential(GoogleAuthorizationCodeFlow flow) throws IOException {		
-		return new AuthorizationCodeInstalledApp(
-				flow, codeReceiver) {
-
+	public Credential getCredential(GoogleAuthorizationCodeFlow flow)
+			throws IOException {
+		return new AuthorizationCodeInstalledApp(flow, codeReceiver) {
 			@Override
 			public Credential authorize(final String userId) throws IOException {
 				final AuthorizationCodeFlow flow = this.getFlow();
-				final VerificationCodeReceiver receiver = this.getReceiver();
 				try {
 					Credential credential = flow.loadCredential(userId);
 					if (credential != null
@@ -86,18 +86,20 @@ public class Platform implements PlatformInterface {
 					}
 					// open in webview
 					Gdx.app.log("AndroidGameServices", "Opening OAUTH Webview");
-					final String redirectUri = receiver.getRedirectUri();
+					final String redirectUri = codeReceiver.getRedirectUri();
 					AuthorizationCodeRequestUrl authorizationUrl = flow
 							.newAuthorizationUrl().setRedirectUri(redirectUri);
 					login(authorizationUrl.build());
 					long timeout = 1000l * 60l * 10l;// 10minutes;
 					String code = null;
+					Gdx.app.log("AndroidGameServices",
+							"Waiting For Authorization Code");
 					while (timeout > 0) {
-						code = receiver.waitForCode();
+						code = codeReceiver.waitForCode();
 						if (code == null) {
 							try {
-								Thread.sleep(50l);
-								timeout -= 50l;
+								Thread.sleep(250l);
+								timeout -= 250l;
 								continue;
 							} catch (InterruptedException e) {
 								Gdx.app.log("AndroidGameServices",
@@ -105,19 +107,21 @@ public class Platform implements PlatformInterface {
 								return null;
 							}
 						}
+						Gdx.app.log("AndroidGameServices",
+								"Received Authorization Code");
 						break;
 					}
-					code = receiver.waitForCode();
+					code = codeReceiver.waitForCode();
 					TokenResponse response = flow.newTokenRequest(code)
 							.setRedirectUri(redirectUri).execute();
 					return flow.createAndStoreCredential(response, userId);
 				} finally {
-					receiver.stop();
+					codeReceiver.stop();
 				}
 			}
-		}.authorize("user");		
+		}.authorize("user");
 	}
-	
+
 	@SuppressLint("SetJavaScriptEnabled")
 	private void login(final String url) {
 		Gdx.app.log("AndroidGameServices", "webViewLogin");
@@ -262,7 +266,7 @@ public class Platform implements PlatformInterface {
 					}
 				}.execute();
 			}
-		});		
+		});
 	}
 
 	@Override
