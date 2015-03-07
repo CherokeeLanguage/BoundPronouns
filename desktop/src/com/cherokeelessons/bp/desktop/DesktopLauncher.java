@@ -33,12 +33,12 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
-import com.google.api.services.drive.Drive;
+import com.cherokeelessons.play.GameServices;
 
 public class DesktopLauncher implements PlatformTextInput {
 
 	private static LwjglApplicationConfiguration config;
-	private static DesktopGameServices desktopGameServices;
+	private static GameServices gameServices;
 
 	public static void main(String[] arg) {
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment()
@@ -58,8 +58,8 @@ public class DesktopLauncher implements PlatformTextInput {
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
 		BoundPronouns.pInput = desktopLauncher;
 //		BoundPronouns.fb = desktopLauncher;
-		desktopGameServices = new DesktopGameServices();
-		BoundPronouns.services = desktopGameServices;
+		gameServices = new GameServices(new Platform());
+		BoundPronouns.services = gameServices;
 		new LwjglApplication(new BoundPronouns(), config);		 
 	}
 

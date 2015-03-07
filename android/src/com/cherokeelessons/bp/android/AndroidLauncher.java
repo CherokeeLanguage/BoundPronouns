@@ -6,13 +6,15 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
+import com.cherokeelessons.play.GameServices;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		BoundPronouns.services = new AndroidGameServices(this);
+		Platform.application=this;
+		BoundPronouns.services = new GameServices(new Platform());
 		BoundPronouns game = new BoundPronouns();
 		initialize(game, config);
 	}
