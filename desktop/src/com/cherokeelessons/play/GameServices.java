@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
@@ -50,17 +50,13 @@ import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 public class GameServices implements GooglePlayGameServices {
 	
 	public static interface PlatformInterface {
-
 		Credential getCredential(GoogleAuthorizationCodeFlow flow)
 				throws IOException;
-
 		HttpTransport getTransport() throws GeneralSecurityException, IOException;
-
-		void runTask(Runnable runnable);
-		
+		void runTask(Runnable runnable);		
 	}
 	
-	private java.io.File DATA_STORE_DIR;
+	private FileHandle DATA_STORE_DIR;
 	private Credential credential;
 	private FileDataStoreFactory dataStoreFactory;
 	private HttpTransport httpTransport;
@@ -96,11 +92,9 @@ public class GameServices implements GooglePlayGameServices {
 				p0 = Gdx.files.local(path0);
 			}
 			p0.mkdirs();
-			DATA_STORE_DIR = p0.file();
-
+			DATA_STORE_DIR = p0;
 			httpTransport = platform.getTransport();
-			dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR);
-
+			dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR.file());
 			initdone = true;
 		}
 	}
@@ -158,7 +152,6 @@ public class GameServices implements GooglePlayGameServices {
 
 	private void _login() throws GeneralSecurityException, IOException {
 		init();
-
 		Callback<Credential> callback = new Callback<Credential>() {
 			@Override
 			public void success(Credential result) {
@@ -600,21 +593,27 @@ public class GameServices implements GooglePlayGameServices {
 	 * @param callback
 	 */
 	@Override
-	public void drive_put(final java.io.File file,
+	public void drive_put(final FileHandle file,
 			final Callback<String> callback) {
-		drive_put(file, file.getName(), file.getName(), callback);
+		drive_put(file, file.file().getName(), file.file().getName(), callback);
+	}
+	
+	@Override
+	public void drive_replace(final FileHandle file, final String title,
+			final String description, final Callback<String> callback) {
+		
 	}
 
 	/**
 	 * Add file to 'appfolder'. Uses specified title and description for
-	 * metadata.
+	 * metadata. Will not replace any previous files with the same title.
 	 */
 	@Override
-	public void drive_put(final java.io.File file, final String title,
+	public void drive_put(final FileHandle file, final String title,
 			final String description, final Callback<String> callback) {
 		final String _title;
 		if (title == null || title.trim().length() == 0) {
-			_title = file.getName();
+			_title = file.file().getName();
 		} else {
 			_title = title;
 		}
@@ -629,7 +628,7 @@ public class GameServices implements GooglePlayGameServices {
 							.setId("appfolder")));
 					meta.setTitle(_title);
 					FileContent content = new FileContent(
-							"application/octet-stream", file);
+							"application/octet-stream", file.file());
 					Insert insert = drive.files().insert(meta, content);
 					File inserted = insert.execute();
 					postRunnable(callback.with(inserted.getId()));
@@ -669,14 +668,14 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void drive_getFileById(final String id, final java.io.File file,
+	public void drive_getFileById(final String id, final FileHandle file,
 			final Callback<Void> callback) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					Drive drive = _getDriveObject();
-					FileOutputStream fos = new FileOutputStream(file);
+					FileOutputStream fos = new FileOutputStream(file.file());
 					File meta = drive.files().get(id).execute();
 					MediaHttpDownloader downloader = new MediaHttpDownloader(
 							httpTransport, credential);
@@ -693,13 +692,13 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	@Override
-	public void drive_getFileByUrl(final String url, final java.io.File file,
+	public void drive_getFileByUrl(final String url, final FileHandle file,
 			final Callback<Void> callback) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					FileOutputStream fos = new FileOutputStream(file);
+					FileOutputStream fos = new FileOutputStream(file.file());
 					MediaHttpDownloader downloader = new MediaHttpDownloader(
 							httpTransport, credential);
 					downloader.download(new GenericUrl(url), fos);

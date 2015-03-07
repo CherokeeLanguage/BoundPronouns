@@ -1,12 +1,10 @@
 package com.cherokeelessons.util;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.cherokeelessons.util.GooglePlayGameServices.Callback;
-import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList;
+import com.badlogic.gdx.files.FileHandle;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
 
 
@@ -125,16 +123,18 @@ public interface GooglePlayGameServices {
 	}
 
 	void drive_getFileById(String id, Callback<String> callback);
-	void drive_getFileById(String id, File file, Callback<Void> callback);
-	void drive_getFileByUrl(String url, File file, Callback<Void> callback);
+	void drive_getFileById(String id, FileHandle file, Callback<Void> callback);
+	void drive_getFileByUrl(String url, FileHandle file, Callback<Void> callback);
 	void drive_getFileByUrl(String url, Callback<String> callback);
-	void drive_put(File file, String title, String description,
+	void drive_put(FileHandle file, String title, String description,
 			Callback<String> callback);
-	void drive_put(File file, Callback<String> callback);
+	void drive_put(FileHandle file, Callback<String> callback);
 	void drive_deleteByTitle(String title, Callback<Void> callback);
 	void drive_deleteById(String id, Callback<Void> callback);
 	void drive_list(Callback<FileMetaList> callback);
 	void drive_getFileMetaById(String id, Callback<FileMeta> callback);
 	void drive_getFileMetaByTitle(String title, Callback<FileMetaList> callback);
 	void drive_getFileByTitle(String title, Callback<String> callback);
+	void drive_replace(FileHandle file, String title, String description,
+			Callback<String> callback);
 }
