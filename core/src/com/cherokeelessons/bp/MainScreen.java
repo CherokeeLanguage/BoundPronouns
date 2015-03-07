@@ -461,14 +461,26 @@ public class MainScreen implements Screen, InputProcessor {
 			}
 
 			/*
-			 * TODO: sync dialog: [if not logged in] Prompt to login.
+			 * TODO: sync dialog:
 			 * 
-			 * [if logged in] Indicate sync in progress. * If local is blank,
-			 * pull from server, no prompting. Dismiss dialog. Reload slots. *
+			 * [if not logged in] Prompt to login.
+			 * 
+			 * [if logged in] Indicate sync in progress.
+			 * 
+			 * If local is blank, pull from server, no prompting. Dismiss
+			 * dialog. Dialog syncdone. Reload slots.
+			 * 
+			 * If remote does not have a copy to sync with, upload local copy
+			 * with new random signature, no prompting. Dialog syncdone. Reload
+			 * slots.
+			 * 
 			 * If local signature matches remote server, no prompting, sync to
 			 * highest card count + highest full score + highest last run time.
-			 * Reload slots. * If local signature !matches remote server, prompt
-			 * with: keep server copy, keep local copy, abort. Reload slots.
+			 * Dialog syncdone. Reload slots.
+			 * 
+			 * If local signature is blank or does not match remote server,
+			 * prompt with: use server copy, use local copy (with new random
+			 * signature), abort. Dialog syncdone. Reload slots.
 			 */
 
 			final String slotTxt = txt;
