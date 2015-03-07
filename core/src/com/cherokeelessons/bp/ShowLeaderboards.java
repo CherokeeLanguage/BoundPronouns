@@ -214,7 +214,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					@Override
 					public void error(Exception exception) {
 						login.hide();
-						success_out.with().run();
+						success_out.withNull().run();
 					}
 				};
 				Callback<Void> success_out=new Callback<Void>() {							
@@ -230,7 +230,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					@Override
 					public void error(Exception exception) {
 						login.hide();
-						success_out.with().run();
+						success_out.withNull().run();
 					}
 				};
 				@Override

@@ -4,6 +4,16 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
+	private String signature="";
+	
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+
 	private static final int StatsVersion = 15;
 	public static final int FULLY_LEARNED_BOX = 10;
 	public static final int PROFICIENT_BOX = 5;

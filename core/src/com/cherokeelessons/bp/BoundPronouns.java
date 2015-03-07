@@ -312,7 +312,7 @@ public class BoundPronouns extends Game {
 		}
 		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list.csv");
 		List<CSVRecord> records;
-		try (CSVParser parse = CSVParser.parse(csvlist.readString(),
+		try (CSVParser parse = CSVParser.parse(csvlist.readString("UTF-8"), 
 				CSVFormat.RFC4180)) {
 			records = parse.getRecords();
 		} catch (IOException e) {

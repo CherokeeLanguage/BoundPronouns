@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.TextInputListener;
