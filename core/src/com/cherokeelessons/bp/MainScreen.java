@@ -246,7 +246,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 		final TextButton ok = new TextButton("OK", tbs);
 		final TextButton cancel = new TextButton("CANCEL", tbs);
-//		final TextButton fb = new TextButton("SHARE STATS", tbs);
+		final TextButton sync = new TextButton("PLAY SYNC", tbs);
 
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
@@ -325,11 +325,9 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.add(whichCards).expand().fillX().left();
 
 		edit.button(ok, ok);
-		edit.button(cancel, cancel);
-//		if (BoundPronouns.fb != null && info.activeCards != 0) {
-//			edit.button(fb, fb);
-//		}
-
+		edit.button(cancel, cancel);		
+		edit.button(sync, sync);
+		
 		return edit;
 	};
 
