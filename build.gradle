@@ -102,6 +102,11 @@ project(":ios") {
         compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
+        
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.19.0' exclude module: 'httpclient'
+		compile 'com.google.api-client:google-api-client-android:1.19.0' exclude module: 'httpclient'		
+        compile 'com.google.apis:google-api-services-drive:v2-rev161-1.19.1' exclude module: 'httpclient'
+		compile 'com.google.apis:google-api-services-games:v1-rev93-1.19.1' exclude module: 'httpclient'
     }
 }
 

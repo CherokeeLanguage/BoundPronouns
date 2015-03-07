@@ -21,5 +21,5 @@ public class IOSLauncher extends IOSApplication.Delegate {
         NSAutoreleasePool pool = new NSAutoreleasePool();
         UIApplication.main(argv, null, IOSLauncher.class);
         pool.close();
-    }
+    }    
 }
