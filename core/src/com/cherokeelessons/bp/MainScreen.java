@@ -246,7 +246,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 		final TextButton ok = new TextButton("OK", tbs);
 		final TextButton cancel = new TextButton("CANCEL", tbs);
-		final TextButton sync = new TextButton("PLAY SYNC", tbs);
+		
 
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
@@ -326,7 +326,6 @@ public class MainScreen implements Screen, InputProcessor {
 
 		edit.button(ok, ok);
 		edit.button(cancel, cancel);		
-		edit.button(sync, sync);
 		
 		return edit;
 	};
@@ -435,16 +434,26 @@ public class MainScreen implements Screen, InputProcessor {
 			Table editControls = new Table();
 			editControls.center();
 			editControls.defaults().fill().expand().pad(0).space(0);
-			TextButton editb = new TextButton("SETTINGS", tbs);
-			editb.padTop(0);
-			editb.padBottom(0);
+			
+			TextButton syncb = new TextButton("SYNC", tbs);
+			syncb.padTop(0);
+			syncb.padBottom(0);			
+			editControls.row();
+			editControls.add(syncb).pad(0).space(0);
+			
 			TextButton deleteb = new TextButton("ERASE", tbs);
 			deleteb.padTop(0);
 			deleteb.padBottom(0);
+//			editControls.row();
+			editControls.add(deleteb).pad(0).space(0);
+			
+			TextButton editb = new TextButton("SETTINGS", tbs);
+			editb.padTop(0);
+			editb.padBottom(0);
 			editControls.row();
-			editControls.add(editb);
-			editControls.row();
-			editControls.add(deleteb);
+			editControls.add(editb).pad(0).space(0).colspan(2);
+			
+			
 			slots.add(editControls).fill().expandY();
 			if (blank) {
 				editb.setDisabled(true);
