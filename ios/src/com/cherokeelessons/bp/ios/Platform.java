@@ -1,6 +1,7 @@
 package com.cherokeelessons.bp.ios;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.robovm.apple.coregraphics.CGRect;
@@ -34,6 +35,8 @@ import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInsta
 import com.google.api.client.extensions.java6.auth.oauth2.VerificationCodeReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.LowLevelHttpRequest;
+import com.google.api.client.http.javanet.NetHttpTransport;
 
 
 @Library("Foundation")
@@ -322,7 +325,7 @@ public class Platform implements PlatformInterface {
 	}
 
 	@Override
-	public HttpTransport getTransport() {
-		return AndroidHttp.newCompatibleTransport();
+	public HttpTransport getTransport() throws GeneralSecurityException {
+		return new NetHttpTransport.Builder().build();
 	}
 }
