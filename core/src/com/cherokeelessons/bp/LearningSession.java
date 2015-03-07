@@ -403,7 +403,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final NewCardDialog newCardDialog;
 
-	private final Set<String> nodupes = new HashSet<>();
+	private final Set<String> nodupes = new HashSet<String>();
 	private final Random rand = new Random();
 
 	private Callback<Void> noop_success = new Callback<Void>() {

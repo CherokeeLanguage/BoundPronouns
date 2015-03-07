@@ -308,15 +308,22 @@ public class BoundPronouns extends Game {
 
 	public static List<DataSet> loadPronounRecords() {
 		if (pronouns.size() != 0) {
-			return new ArrayList<>(pronouns);
+			return new ArrayList<DataSet>(pronouns);
 		}
 		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list.csv");
 		List<CSVRecord> records;
-		try (CSVParser parse = CSVParser.parse(csvlist.readString("UTF-8"), 
-				CSVFormat.RFC4180)) {
+		CSVParser parse=null;
+		try {
+			parse = CSVParser.parse(csvlist.readString("UTF-8"), 
+					CSVFormat.RFC4180);
 			records = parse.getRecords();
 		} catch (IOException e) {
 			return null;
+		} finally {
+			try {
+				parse.close();
+			} catch (IOException e) {
+			}
 		}
 
 		Iterator<CSVRecord> ipro = records.iterator();
@@ -380,7 +387,7 @@ public class BoundPronouns extends Game {
 			prevLatin = latin;
 			prevChr = chr;
 		}
-		return new ArrayList<>(pronouns);
+		return new ArrayList<DataSet>(pronouns);
 	}
 
 	public static void glClearColor() {

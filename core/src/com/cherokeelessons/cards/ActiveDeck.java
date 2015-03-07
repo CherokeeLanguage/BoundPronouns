@@ -12,5 +12,5 @@ public class ActiveDeck {
 		this.signature = signature;
 	}
 	public long lastrun=0;
-	public List<ActiveCard> deck=new ArrayList<>();
+	public List<ActiveCard> deck=new ArrayList<ActiveCard>();
 }

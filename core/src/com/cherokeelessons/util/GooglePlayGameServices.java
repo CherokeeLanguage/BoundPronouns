@@ -96,7 +96,7 @@ public interface GooglePlayGameServices {
 			public String id;
 			public String state;
 		}
-		public List<GameAchievement> list =new ArrayList<>();		
+		public List<GameAchievement> list =new ArrayList<GameAchievement>();		
 	}
 	
 	public static class GameScores {
@@ -109,11 +109,11 @@ public interface GooglePlayGameServices {
 		}
 		public Collection collection;
 		public TimeSpan ts;
-		public List<GameScore> list=new ArrayList<>();
+		public List<GameScore> list=new ArrayList<GameScore>();
 	}
 	
 	public static class FileMetaList {
-		public List<FileMeta> files=new ArrayList<>();
+		public List<FileMeta> files=new ArrayList<FileMeta>();
 		public static class FileMeta {
 			public Boolean isAppData;
 			public Date created;

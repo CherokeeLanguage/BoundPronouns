@@ -6,10 +6,10 @@ import java.util.List;
 public class Deck {
 	public int version=-1;
 	public int size=0;
-	public List<Card> cards=new ArrayList<>();
+	public List<Card> cards=new ArrayList<Card>();
 	
-	private static final List<Long> pimsleur_intervals=new ArrayList<>();
-	private static final List<Long> sm2_intervals=new ArrayList<>();
+	private static final List<Long> pimsleur_intervals=new ArrayList<Long>();
+	private static final List<Long> sm2_intervals=new ArrayList<Long>();
 	
 	static {
 		/*

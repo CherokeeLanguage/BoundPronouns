@@ -84,7 +84,7 @@ public class ActiveCard {
 	/**
 	 * How many times has it been correct in a row? RECORDED PER ANSWER.
 	 */
-	private HashMap<String, Integer> correct_in_a_row = new HashMap<>();
+	private HashMap<String, Integer> correct_in_a_row = new HashMap<String, Integer>();
 
 	/**
 	 * What proficiency box is this assigned to? This is used to select which

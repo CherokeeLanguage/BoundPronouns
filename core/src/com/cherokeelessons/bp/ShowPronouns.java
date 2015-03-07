@@ -31,7 +31,7 @@ public class ShowPronouns extends ChildScreen {
 	private static final String SORT_BY_ENGLISH = "Sort by English";
 	private static final String SORT_BY_LATIN = "Sort by Latin";
 	private static final String SORT_BY_SYLLABARY = "Sort by Syllabary";
-	private final Array<DisplayRecord> drecs = new Array<>();
+	private final Array<DisplayRecord> drecs = new Array<DisplayRecord>();
 
 	private static class DisplayRecord implements Comparable<DisplayRecord> {
 		public static enum SortBy {

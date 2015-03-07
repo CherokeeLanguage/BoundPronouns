@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Answer {
 	public static class AnswerList {
-		public List<Answer> list = new ArrayList<>();
+		public List<Answer> list = new ArrayList<Answer>();
 		public AnswerList(AnswerList answerSetsFor) {
 			for (Answer answer: answerSetsFor.list) {
 				list.add(new Answer(answer));

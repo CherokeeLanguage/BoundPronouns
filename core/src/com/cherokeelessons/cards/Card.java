@@ -13,8 +13,8 @@ public class Card implements Serializable, Comparable<Card> {
 	private static final boolean debug = false;
 	public int id;
 
-	public List<String> challenge = new ArrayList<>();
-	public List<String> answer = new ArrayList<>();
+	public List<String> challenge = new ArrayList<String>();
+	public List<String> answer = new ArrayList<String>();
 	public String key;
 	public String pgroup;
 	public String vgroup;

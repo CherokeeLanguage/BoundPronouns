@@ -175,8 +175,8 @@ public class BuildDeck implements Runnable {
 		DataSet d = new DataSet();
 		StringBuilder vroot = new StringBuilder();
 		StringBuilder vroot_chr = new StringBuilder();
-		Set<String> vtypes = new HashSet<>();
-		Set<String> ptypes = new HashSet<>();
+		Set<String> vtypes = new HashSet<String>();
+		Set<String> ptypes = new HashSet<String>();
 		long tick = System.currentTimeMillis();
 		Iterator<CSVRecord> irec = challenges.iterator();
 		while (irec.hasNext()) {
@@ -908,12 +908,19 @@ public class BuildDeck implements Runnable {
 
 	private void init() {
 		FileHandle csv = Gdx.files.internal("csv/pronouns-list.csv");
-		try (CSVParser parse = CSVParser.parse(csv.readString("UTF-8"),
-				CSVFormat.RFC4180)) {
-			pronouns = parse.getRecords();
+		CSVParser parse_pronouns=null;
+		try {
+			parse_pronouns = CSVParser.parse(csv.readString("UTF-8"),
+					CSVFormat.RFC4180);
+			pronouns = parse_pronouns.getRecords();
 		} catch (IOException e) {
 			game.err(this, e.getMessage(), e);
 			return;
+		} finally {
+			try {
+				parse_pronouns.close();
+			} catch (IOException e) {
+			}
 		}
 		Iterator<CSVRecord> ipro = pronouns.iterator();
 		while (ipro.hasNext()) {
@@ -937,12 +944,19 @@ public class BuildDeck implements Runnable {
 			}
 		}
 		csv = Gdx.files.internal("csv/challenges.csv");
-		try (CSVParser parse = CSVParser.parse(csv.readString("UTF-8"),
-				CSVFormat.RFC4180)) {
-			challenges = parse.getRecords();
+		CSVParser parse_challenges=null;
+		try {
+			parse_challenges = CSVParser.parse(csv.readString("UTF-8"),
+					CSVFormat.RFC4180);
+			challenges = parse_challenges.getRecords();
 		} catch (IOException e) {
 			game.err(this, e.getMessage(), e);
 			return;
+		} finally {
+			try {
+				parse_challenges.close();
+			} catch (IOException e) {
+			}
 		}
 		Iterator<CSVRecord> ichallenge = challenges.iterator();
 		while (ichallenge.hasNext()) {

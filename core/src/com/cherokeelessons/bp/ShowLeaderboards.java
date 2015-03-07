@@ -139,7 +139,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			TextButtonStyle tbs = skin.get(TextButtonStyle.class);
 			tbs.font = game.getFont(Font.SerifSmall);
 
-			ButtonGroup<TextButton> bgroup = new ButtonGroup<>();
+			ButtonGroup<TextButton> bgroup = new ButtonGroup<TextButton>();
 			bgroup.setMaxCheckCount(1);
 			bgroup.setMinCheckCount(1);
 
