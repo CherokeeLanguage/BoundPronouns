@@ -437,7 +437,7 @@ public class MainScreen implements Screen, InputProcessor {
 			
 			TextButton syncb = new TextButton("SYNC", tbs);
 			syncb.padTop(0);
-			syncb.padBottom(0);			
+			syncb.padBottom(0);
 			editControls.row();
 			editControls.add(syncb).pad(0).space(0);
 			
@@ -453,7 +453,6 @@ public class MainScreen implements Screen, InputProcessor {
 			editControls.row();
 			editControls.add(editb).pad(0).space(0).colspan(2);
 			
-			
 			slots.add(editControls).fill().expandY();
 			if (blank) {
 				editb.setDisabled(true);
@@ -461,6 +460,7 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.setDisabled(true);
 				deleteb.setTouchable(Touchable.disabled);
 			}
+			
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
