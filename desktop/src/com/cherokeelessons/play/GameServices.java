@@ -586,6 +586,36 @@ public class GameServices implements GooglePlayGameServices {
 		drive_list(getTitles);
 	};
 
+	
+	@Override
+	public void drive_replace(final FileHandle file,
+			final Callback<String> callback) {
+		drive_replace(file, file.file().getName(), file.file().getName(), callback);
+	}
+	
+	@Override
+	public void drive_replace(final FileHandle file, final String title,
+			final String description, final Callback<String> callback) {
+		final FileMetaList[] toDelete = new FileMetaList[1]; 
+		final Callback<String> deleteOthers=new Callback<String>() {			
+			@Override
+			public void success(String result) {
+				for (FileMeta file: toDelete[0].files) {
+					drive_deleteById(file.id, noop);
+				}
+				postRunnable(callback.with(result));
+			}
+		};
+		final Callback<FileMetaList> list_callback=new Callback<FileMetaList>() {			
+			@Override
+			public void success(FileMetaList result) {
+				toDelete[0]=result;
+				drive_put(file, title, description, deleteOthers);				
+			}
+		};
+		drive_list(list_callback);
+	}
+	
 	/**
 	 * Add file to 'appfolder'. Uses source file name as destination "title"
 	 * 
@@ -596,12 +626,6 @@ public class GameServices implements GooglePlayGameServices {
 	public void drive_put(final FileHandle file,
 			final Callback<String> callback) {
 		drive_put(file, file.file().getName(), file.file().getName(), callback);
-	}
-	
-	@Override
-	public void drive_replace(final FileHandle file, final String title,
-			final String description, final Callback<String> callback) {
-		
 	}
 
 	/**

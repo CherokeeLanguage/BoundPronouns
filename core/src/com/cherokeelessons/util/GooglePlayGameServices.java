@@ -5,10 +5,17 @@ import java.util.Date;
 import java.util.List;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
 
 
 public interface GooglePlayGameServices {
+	
+	public Callback<Void> noop=new Callback<Void>() {
+		@Override
+		public void success(Void result) {
+		}
+	};
 	
 	public void login(Callback<Void> callback);
 	public void logout(Callback<Void> callback);
@@ -137,4 +144,5 @@ public interface GooglePlayGameServices {
 	void drive_getFileByTitle(String title, Callback<String> callback);
 	void drive_replace(FileHandle file, String title, String description,
 			Callback<String> callback);
+	void drive_replace(FileHandle file, Callback<String> callback);
 }
