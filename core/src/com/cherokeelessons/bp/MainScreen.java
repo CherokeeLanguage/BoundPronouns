@@ -475,8 +475,8 @@ public class MainScreen implements Screen, InputProcessor {
 			 * slots.
 			 * 
 			 * If local signature matches remote server, no prompting, sync to
-			 * highest card count + highest full score + highest last run time.
-			 * Dialog syncdone. Reload slots.
+			 * highest card count + highest full score + highest last run time +
+			 * upload count. Dialog syncdone. Reload slots.
 			 * 
 			 * If local signature is blank or does not match remote server,
 			 * prompt with: use server copy, use local copy (with new random
