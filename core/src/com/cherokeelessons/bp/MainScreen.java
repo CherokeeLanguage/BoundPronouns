@@ -246,7 +246,6 @@ public class MainScreen implements Screen, InputProcessor {
 
 		final TextButton ok = new TextButton("OK", tbs);
 		final TextButton cancel = new TextButton("CANCEL", tbs);
-		
 
 		final DialogX edit = new DialogX("Settings", skin) {
 			protected void result(Object object) {
@@ -257,31 +256,31 @@ public class MainScreen implements Screen, InputProcessor {
 					info.settings.name = name.getText();
 					json.toJson(info, p1);
 				}
-//				if (fb.equals(object)) {
-//					cancel();
-//					if (BoundPronouns.fb != null) {
-//						BoundPronouns.fb.fbshare(info);
-//					}
-//					if (BoundPronouns.services != null) {
-//						Callback<Void> noop_success = new Callback<Void>() {
-//							@Override
-//							public void run() {
-//								Gdx.app.log("lb submit", "success");
-//							}
-//						};
-//						Callback<Exception> noop_error = new Callback<Exception>() {
-//							@Override
-//							public void run() {
-//								Gdx.app.log("lb submit", getData().getMessage());
-//							}
-//						};
-//						BoundPronouns.services.lb_submit(
-//								ShowLeaderboards.BoardId, info.lastScore,
-//								info.level.getEngrish(), noop_success,
-//								noop_error);
-//					}
-//					return;
-//				}
+				// if (fb.equals(object)) {
+				// cancel();
+				// if (BoundPronouns.fb != null) {
+				// BoundPronouns.fb.fbshare(info);
+				// }
+				// if (BoundPronouns.services != null) {
+				// Callback<Void> noop_success = new Callback<Void>() {
+				// @Override
+				// public void run() {
+				// Gdx.app.log("lb submit", "success");
+				// }
+				// };
+				// Callback<Exception> noop_error = new Callback<Exception>() {
+				// @Override
+				// public void run() {
+				// Gdx.app.log("lb submit", getData().getMessage());
+				// }
+				// };
+				// BoundPronouns.services.lb_submit(
+				// ShowLeaderboards.BoardId, info.lastScore,
+				// info.level.getEngrish(), noop_success,
+				// noop_error);
+				// }
+				// return;
+				// }
 				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
@@ -325,8 +324,8 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.add(whichCards).expand().fillX().left();
 
 		edit.button(ok, ok);
-		edit.button(cancel, cancel);		
-		
+		edit.button(cancel, cancel);
+
 		return edit;
 	};
 
@@ -354,7 +353,7 @@ public class MainScreen implements Screen, InputProcessor {
 		for (int ix = 0; ix < 4; ix++) {
 			final FileHandle p0, infoFile;
 			p0 = getFolder(ix);
-			
+
 			boolean blank = true;
 			SlotInfo info = null;
 			infoFile = p0.child(BoundPronouns.INFO_JSON);
@@ -434,25 +433,25 @@ public class MainScreen implements Screen, InputProcessor {
 			Table editControls = new Table();
 			editControls.center();
 			editControls.defaults().fill().expand().pad(0).space(0);
-			
+
 			TextButton syncb = new TextButton("SYNC", tbs);
 			syncb.padTop(0);
 			syncb.padBottom(0);
 			editControls.row();
 			editControls.add(syncb).pad(0).space(0);
-			
+
 			TextButton deleteb = new TextButton("ERASE", tbs);
 			deleteb.padTop(0);
 			deleteb.padBottom(0);
-//			editControls.row();
+			// editControls.row();
 			editControls.add(deleteb).pad(0).space(0);
-			
+
 			TextButton editb = new TextButton("SETTINGS", tbs);
 			editb.padTop(0);
 			editb.padBottom(0);
 			editControls.row();
 			editControls.add(editb).pad(0).space(0).colspan(2);
-			
+
 			slots.add(editControls).fill().expandY();
 			if (blank) {
 				editb.setDisabled(true);
@@ -460,7 +459,18 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.setDisabled(true);
 				deleteb.setTouchable(Touchable.disabled);
 			}
-			
+
+			/*
+			 * TODO: sync dialog: [if not logged in] Prompt to login.
+			 * 
+			 * [if logged in] Indicate sync in progress. * If local is blank,
+			 * pull from server, no prompting. Dismiss dialog. Reload slots. *
+			 * If local signature matches remote server, no prompting, sync to
+			 * highest card count + highest full score + highest last run time.
+			 * Reload slots. * If local signature !matches remote server, prompt
+			 * with: keep server copy, keep local copy, abort. Reload slots.
+			 */
+
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
@@ -533,14 +543,14 @@ public class MainScreen implements Screen, InputProcessor {
 	}
 
 	public static FileHandle getFolder(int ix) {
-		return getFolder(ix+"");
+		return getFolder(ix + "");
 	}
-	
+
 	public static FileHandle getFolder(String child) {
 		final FileHandle p0;
 		String path0 = "BoundPronouns/slots";
 		p0 = Gdx.files.external(path0);
-		p0.child(child).mkdirs();		
+		p0.child(child).mkdirs();
 		return p0.child(child);
 	}
 
