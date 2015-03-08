@@ -23,7 +23,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 41;
+	public static int version = 42;
 
 	private JsonConverter json = new JsonConverter();
 	private List<CSVRecord> pronouns = null;
@@ -70,7 +70,7 @@ public class BuildDeck implements Runnable {
 			json.toJson(deck, dest);
 			if (done != null) {
 				Gdx.app.postRunnable(done);
-			}			
+			}
 		}
 	};
 
@@ -123,10 +123,14 @@ public class BuildDeck implements Runnable {
 				CSVRecord record = irec.next();
 				irec.remove();
 				String chr = record.get(1);
+				/*
+				 * Strip out "[" and "]" that are in the reflexive forms for
+				 * pronoun card challenges ...
+				 */
+				chr = chr.replace("[", "").replace("]", "");
 				setStatus("Create pronoun card for " + chr);
 				String latin = record.get(2);
 				String defin = record.get(3) + " + " + record.get(4);
-//				game.log(this, "Create pronoun card for " + chr + " - " + defin);
 				if (StringUtils.isBlank(record.get(3))) {
 					String tmp = record.get(4);
 					passive: {
@@ -163,7 +167,6 @@ public class BuildDeck implements Runnable {
 				prevChr = chr;
 				prevLatin = latin;
 				if (System.currentTimeMillis() - tick > 100) {
-//					game.log(this, "buildDeck#breathe");
 					break work;
 				}
 			}
@@ -184,7 +187,7 @@ public class BuildDeck implements Runnable {
 			 * Breathe...
 			 */
 			if (System.currentTimeMillis() - tick > 25) {
-//				game.log(this, "buildDeck#breathe-conjugating");
+				// game.log(this, "buildDeck#breathe-conjugating");
 				return;
 			}
 			CSVRecord challenge = irec.next();
@@ -340,12 +343,12 @@ public class BuildDeck implements Runnable {
 
 				if ((v_imp || v_inf) && aStem) {
 					if (d.chr.equals("Ꮨ̣²")) {
-//						game.log(this, "ti -> t");
+						// game.log(this, "ti -> t");
 						d.chr = "Ꮤ͓";
 						d.latin = "t";
 					}
 					if (d.chr.equals("Ꮧ̣²")) {
-//						game.log(this, "di -> d");
+						// game.log(this, "di -> d");
 						d.chr = "Ꮣ͓";
 						d.latin = "d";
 					}
@@ -908,7 +911,7 @@ public class BuildDeck implements Runnable {
 
 	private void init() {
 		FileHandle csv = Gdx.files.internal("csv/pronouns-list.csv");
-		CSVParser parse_pronouns=null;
+		CSVParser parse_pronouns = null;
 		try {
 			parse_pronouns = CSVParser.parse(csv.readString("UTF-8"),
 					CSVFormat.RFC4180);
@@ -928,23 +931,23 @@ public class BuildDeck implements Runnable {
 			String vtmode = StringUtils.strip(pronoun.get(0));
 			String syllabary = StringUtils.strip(pronoun.get(1));
 			if (StringUtils.isBlank(vtmode)) {
-//				game.log(this, "Skipping: "+vtmode+" - "+syllabary);
+				// game.log(this, "Skipping: "+vtmode+" - "+syllabary);
 				ipro.remove();
 				continue;
 			}
-			if (vtmode.startsWith("#")){
-//				game.log(this, "Skipping: "+vtmode+" - "+syllabary);
+			if (vtmode.startsWith("#")) {
+				// game.log(this, "Skipping: "+vtmode+" - "+syllabary);
 				ipro.remove();
 				continue;
 			}
-			if (syllabary.startsWith("#")){
-//				game.log(this, "Skipping: "+vtmode+" - "+syllabary);
+			if (syllabary.startsWith("#")) {
+				// game.log(this, "Skipping: "+vtmode+" - "+syllabary);
 				ipro.remove();
 				continue;
 			}
 		}
 		csv = Gdx.files.internal("csv/challenges.csv");
-		CSVParser parse_challenges=null;
+		CSVParser parse_challenges = null;
 		try {
 			parse_challenges = CSVParser.parse(csv.readString("UTF-8"),
 					CSVFormat.RFC4180);
@@ -963,12 +966,12 @@ public class BuildDeck implements Runnable {
 			CSVRecord challenge = ichallenge.next();
 			String vtmode = StringUtils.strip(challenge.get(0));
 			if (StringUtils.isBlank(vtmode)) {
-//				game.log(this, "Skipping: "+vtmode);
+				// game.log(this, "Skipping: "+vtmode);
 				ichallenge.remove();
 				continue;
 			}
-			if (vtmode.startsWith("#")){
-//				game.log(this, "Skipping: "+vtmode);
+			if (vtmode.startsWith("#")) {
+				// game.log(this, "Skipping: "+vtmode);
 				ichallenge.remove();
 				continue;
 			}
