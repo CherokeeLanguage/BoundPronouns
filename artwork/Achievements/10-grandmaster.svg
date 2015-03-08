@@ -17,9 +17,9 @@
    inkscape:version="0.91 r"
    sodipodi:docname="10-grandmaster.svg"
    viewBox="0 0 512 512"
-   inkscape:export-filename="10-grandmaster.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-filename="10-75.png"
+   inkscape:export-xdpi="13.183594"
+   inkscape:export-ydpi="13.183594">
   <defs
      id="defs4">
     <radialGradient
@@ -655,7 +655,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="-317.95766"
+     inkscape:cx="-682.62273"
      inkscape:cy="86.681106"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -675,7 +675,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

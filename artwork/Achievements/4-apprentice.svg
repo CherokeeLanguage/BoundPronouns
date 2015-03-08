@@ -273,7 +273,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="106.22171"
+     inkscape:cx="-151.63543"
      inkscape:cy="366.55812"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -292,7 +292,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -368,7 +368,10 @@
     </g>
     <g
        transform="matrix(4.1673449,0,0,4.1673449,-3118.7159,-902.37262)"
-       id="g5805-4">
+       id="g5805-4"
+       inkscape:export-filename="4-apprentice-75.png"
+       inkscape:export-xdpi="13.183594"
+       inkscape:export-ydpi="13.183594">
       <path
          transform="translate(122.59,215.6)"
          d="m 748.64,192.03 c 0,33.927 -27.503,61.43 -61.43,61.43 -33.927,0 -61.43,-27.503 -61.43,-61.43 0,-33.927 27.503,-61.43 61.43,-61.43 33.927,0 61.43,27.503 61.43,61.43 z"
@@ -437,7 +440,10 @@
        x="263.64981"
        y="891.67688"
        id="text3500"
-       sodipodi:linespacing="100%"><tspan
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="4-apprentice-75.png"
+       inkscape:export-xdpi="13.183594"
+       inkscape:export-ydpi="13.183594"><tspan
          sodipodi:role="line"
          id="tspan4146"
          x="263.64981"

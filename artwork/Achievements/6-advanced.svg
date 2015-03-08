@@ -17,9 +17,9 @@
    inkscape:version="0.91 r"
    sodipodi:docname="6-advanced.svg"
    viewBox="0 0 512 512"
-   inkscape:export-filename="5-intermediate.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-filename="6-advanced-75.png"
+   inkscape:export-xdpi="13.18"
+   inkscape:export-ydpi="13.18">
   <defs
      id="defs4">
     <radialGradient
@@ -655,7 +655,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="381.68969"
+     inkscape:cx="199.35716"
      inkscape:cy="247.11792"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -675,7 +675,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
