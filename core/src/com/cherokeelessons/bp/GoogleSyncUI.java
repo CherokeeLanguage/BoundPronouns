@@ -81,7 +81,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	public static void dispose_skin() {
-		skin.dispose();
+		if (skin!=null) {
+			skin.dispose();
+		}
 		skin = null;
 	}
 
