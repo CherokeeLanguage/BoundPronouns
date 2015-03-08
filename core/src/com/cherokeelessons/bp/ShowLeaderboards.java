@@ -136,7 +136,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		public void run() {
 			TextButton button;
 
-			TextButtonStyle tbs = skin.get(TextButtonStyle.class);
+			final TextButtonStyle tbs = skin.get(TextButtonStyle.class);
 			tbs.font = game.getFont(Font.SerifSmall);
 
 			ButtonGroup<TextButton> bgroup = new ButtonGroup<TextButton>();
@@ -199,11 +199,15 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			final TextButton play_button = button;
 			final Dialog login = new Dialog("Google Play Services", dws);
 			login.text(new Label("Connecting to Google Play Services ...", dls));
-			login.button(new TextButton("DISMISS", tbs));			
+			login.button(new TextButton("DISMISS", tbs));
+			
+			final Dialog[] error = new Dialog[1];
+			error[0]=new Dialog("", dws);
 			play_button.addListener(new ClickListener(){				
 				Callback<Void> success_in=new Callback<Void>() {							
 					@Override
 					public void success(Void result) {
+						error[0].hide();
 						login.hide();
 						Preferences prefs = BoundPronouns.getPrefs();
 						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
@@ -213,14 +217,19 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					}
 					@Override
 					public void error(Exception exception) {
-						exception.printStackTrace();
+						error[0].hide();
 						login.hide();
 						success_out.withNull().run();
+						error[0] = new Dialog("Google Play Services", dws);
+						error[0].button(new TextButton("OK", tbs));
+						error[0].text(new Label(exception.getMessage(), dls));
+						error[0].show(stage);
 					}
 				};
 				Callback<Void> success_out=new Callback<Void>() {							
 					@Override
 					public void success(Void result) {
+						error[0].hide();
 						login.hide();
 						Preferences prefs = BoundPronouns.getPrefs();
 						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
@@ -230,9 +239,13 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					}
 					@Override
 					public void error(Exception exception) {
-						exception.printStackTrace();
+						error[0].hide();
 						login.hide();
 						success_out.withNull().run();
+						error[0] = new Dialog("Google Play Services", dws);
+						error[0].button(new TextButton("OK", tbs));
+						error[0].text(new Label(exception.getMessage(), dls));
+						error[0].show(stage);
 					}
 				};
 				@Override

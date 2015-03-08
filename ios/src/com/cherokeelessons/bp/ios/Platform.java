@@ -34,11 +34,6 @@ public class Platform implements PlatformInterface {
 	private static class iOSCodeReceiver implements VerificationCodeReceiver {
 		private String code = null;
 
-		public void setCode(String code) {
-			Gdx.app.log("iOSCodeReceiver", "setCode:" + code);
-			this.code = code;
-		}
-
 		@Override
 		public String getRedirectUri() throws IOException {
 			return "urn:ietf:wg:oauth:2.0:oob:auto";
@@ -67,15 +62,15 @@ public class Platform implements PlatformInterface {
 		@Override
 		public void stop() {
 			Gdx.app.log("iOSCodeReceiver", "stop");
-			timeout = 0;
+			timeout = 0l;
 		}
 
 	}
 
-	final private iOSCodeReceiver codeReceiver;
+	private final iOSCodeReceiver codeReceiver;
 
 	public Platform() {
-		codeReceiver = new iOSCodeReceiver();
+		codeReceiver=new iOSCodeReceiver();
 	}
 
 	public static boolean isEmpty(CharSequence cs) {
@@ -140,6 +135,7 @@ public class Platform implements PlatformInterface {
 			String title = webView.evaluateJavaScript("document.title");
 			Gdx.app.log("iOSGameServices", "didFinishLoad: " + title);
 			if (title.toLowerCase().contains("error")) {
+				mostRecentError=title;
 				dismissViewControllerFor(webView);
 				return;
 			}
@@ -149,17 +145,16 @@ public class Platform implements PlatformInterface {
 					code = substringBefore(code, "&");
 				}
 				if (isBlank(code)) {
-					Gdx.app.log("iOSGameServices", "Did not receive a code.");
+					mostRecentError="Code Missing";
 					dismissViewControllerFor(webView);
 					return;
 				}
-				codeReceiver.setCode(code);
+				codeReceiver.code=code;
 				dismissViewControllerFor(webView);
 			}
 		}
 
 		private void dismissViewControllerFor(final UIWebView webView) {
-			codeReceiver.stop();
 			webView.stopLoading();
 			webView.loadRequest(new NSURLRequest(new NSURL("about:blank")));
 			UIWindow window = webView.getWindow();
@@ -176,19 +171,20 @@ public class Platform implements PlatformInterface {
 					mvc.getView().getWindow().makeKeyAndVisible();
 				}
 			});
+			codeReceiver.stop();
 			Gdx.app.log("dismissViewController#completion", "done");
 		}
 
 		@Override
 		public void didFailLoad(UIWebView webView, NSError error) {
+			mostRecentError="Internet Connection Error";
 			dismissViewControllerFor(webView);
 			UIApplication.getSharedApplication()
 					.setNetworkActivityIndicatorVisible(false);
-			Gdx.app.log("iOSGameServices", "didFailLoad: "
-					+ webView.getRequest().getURL().getAbsoluteString());
-			super.didFailLoad(webView, error);
 		}
 	}
+	
+	private String mostRecentError="Unknown Error - Try Again"; 
 
 	@Override
 	public Credential getCredential(GoogleAuthorizationCodeFlow flow)
@@ -204,6 +200,8 @@ public class Platform implements PlatformInterface {
 					return credential;
 				}
 				// open in webview
+				codeReceiver.code=null;
+				mostRecentError="Unknown Error - Try Again";
 				Gdx.app.log("iOSGameServices", "Opening OAUTH Webview");
 				final String redirectUri = codeReceiver.getRedirectUri();
 				AuthorizationCodeRequestUrl authorizationUrl = flow
@@ -212,7 +210,7 @@ public class Platform implements PlatformInterface {
 				Gdx.app.log("iOSGameServices", "Waiting For Authorization Code");
 				String waitForCode = codeReceiver.waitForCode();
 				if (waitForCode == null) {
-					throw new IOException("No authorization code received.");
+					throw new IOException(mostRecentError);
 				}
 				TokenResponse response = flow.newTokenRequest(waitForCode)
 						.setRedirectUri(redirectUri).execute();
