@@ -21,6 +21,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
 import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.TokenResponseException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.media.MediaHttpDownloader;
@@ -48,14 +49,17 @@ import com.google.api.services.games.model.PlayerLeaderboardScore;
 import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 
 public class GameServices implements GooglePlayGameServices {
-	
+
 	public static interface PlatformInterface {
 		Credential getCredential(GoogleAuthorizationCodeFlow flow)
 				throws IOException;
-		HttpTransport getTransport() throws GeneralSecurityException, IOException;
-		void runTask(Runnable runnable);		
+
+		HttpTransport getTransport() throws GeneralSecurityException,
+				IOException;
+
+		void runTask(Runnable runnable);
 	}
-	
+
 	private FileHandle DATA_STORE_DIR;
 	private Credential credential;
 	private FileDataStoreFactory dataStoreFactory;
@@ -86,8 +90,8 @@ public class GameServices implements GooglePlayGameServices {
 				return;
 			}
 			String path0 = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
-			if (Gdx.app.getType().equals(ApplicationType.Desktop)){
-				p0=Gdx.files.external(path0);
+			if (Gdx.app.getType().equals(ApplicationType.Desktop)) {
+				p0 = Gdx.files.external(path0);
 			} else {
 				p0 = Gdx.files.local(path0);
 			}
@@ -161,9 +165,16 @@ public class GameServices implements GooglePlayGameServices {
 		credential = authorize(callback);
 	}
 
-	private Credential authorize(final Callback<Credential> callback)
-			throws IOException {
-		return platform.getCredential(getFlow());
+	private Credential authorize(final Callback<Credential> callback) throws IOException {
+		try {
+			return platform.getCredential(getFlow());
+		} catch (IOException e) {
+			if (e instanceof TokenResponseException) {
+				throw new IOException("Authorization Failure", e);
+			} else {
+				throw e;
+			}
+		}
 	}
 
 	@Override
@@ -178,13 +189,32 @@ public class GameServices implements GooglePlayGameServices {
 					flow.getCredentialDataStore().clear();
 					postRunnable(success.withNull());
 				} catch (IOException e) {
-					postRunnable(success.with(e));
+					if (e instanceof TokenResponseException) {
+					} else {
+						postRunnable(success.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(success.with(e));
 				}
 			}
 		};
 		platform.runTask(runnable);
+	}
+
+	private void retry(final Runnable r) {
+		final Callback<Void> retry = new Callback<Void>() {
+			@Override
+			public void success(Void result) {
+				new Thread(r).start();
+			}
+		};
+		final Callback<Void> back_in = new Callback<Void>() {
+			@Override
+			public void success(Void result) {
+				login(retry);
+			}
+		};
+		logout(back_in);
 	}
 
 	@Override
@@ -201,7 +231,16 @@ public class GameServices implements GooglePlayGameServices {
 					submit.execute();
 					postRunnable(success.withNull());
 				} catch (IOException e) {
-					postRunnable(success.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								lb_submit(boardId, score, label, success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(success.with(e));
 				}
@@ -213,33 +252,42 @@ public class GameServices implements GooglePlayGameServices {
 	public void lb_getScoresFor(final String boardId,
 			final Callback<GameScores> success) {
 		final Runnable runnable = new Runnable() {
-					@Override
-					public void run() {
-						GameScores gscores = new GameScores();
-						try {
-							Games g = _getGamesObject();
-							Scores.Get scores = g.scores().get("me", boardId,
-									TimeSpan.ALL_TIME.name());
-							scores.setMaxResults(30);
-							PlayerLeaderboardScoreListResponse result = scores
-									.execute();
-							List<PlayerLeaderboardScore> list = result.getItems();
-							for (PlayerLeaderboardScore e : list) {
-								GameScore gs = new GameScore();
-								gs.rank = "";
-								gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
-								gs.value = e.getScoreString();
-								gs.user = "";
-								gscores.list.add(gs);
-							}
-							postRunnable(success.with(gscores));
-						} catch (IOException e) {
-							postRunnable(success.with(e));
-						} catch (GeneralSecurityException e) {
-							postRunnable(success.with(e));
-						}
+			@Override
+			public void run() {
+				GameScores gscores = new GameScores();
+				try {
+					Games g = _getGamesObject();
+					Scores.Get scores = g.scores().get("me", boardId,
+							TimeSpan.ALL_TIME.name());
+					scores.setMaxResults(30);
+					PlayerLeaderboardScoreListResponse result = scores
+							.execute();
+					List<PlayerLeaderboardScore> list = result.getItems();
+					for (PlayerLeaderboardScore e : list) {
+						GameScore gs = new GameScore();
+						gs.rank = "";
+						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
+						gs.value = e.getScoreString();
+						gs.user = "";
+						gscores.list.add(gs);
 					}
-				};
+					postRunnable(success.with(gscores));
+				} catch (IOException e) {
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								lb_getScoresFor(boardId, success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
+				} catch (GeneralSecurityException e) {
+					postRunnable(success.with(e));
+				}
+			}
+		};
 		platform.runTask(runnable);
 	}
 
@@ -248,43 +296,52 @@ public class GameServices implements GooglePlayGameServices {
 			final Collection collection, final TimeSpan ts,
 			final Callback<GameScores> success) {
 		final Runnable runnable = new Runnable() {
-					@Override
-					public void run() {
-						GameScores gscores = new GameScores();
-						try {
-							Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
-									+ collection.name() + " - " + ts.name() + " - "
-									+ boardId);
+			@Override
+			public void run() {
+				GameScores gscores = new GameScores();
+				try {
+					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
+							+ collection.name() + " - " + ts.name() + " - "
+							+ boardId);
 
-							Games g = _getGamesObject();
-							Scores.List scores = g.scores().list(boardId,
-									collection.name(), ts.toString());
-							scores.setMaxResults(30);
-							LeaderboardScores result = scores.execute();
-							List<LeaderboardEntry> list = result.getItems();
-							if (list == null) {
-								postRunnable(success.with(gscores));
-								return;
-							}
-							for (LeaderboardEntry e : list) {
-								GameScore gs = new GameScore();
-								gs.rank = e.getFormattedScoreRank();
-								gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
-								gs.value = e.getFormattedScore();
-								gs.user = e.getPlayer().getDisplayName();
-								gs.imgUrl = e.getPlayer().getAvatarImageUrl();
-								gscores.list.add(gs);
-							}
-							gscores.collection = collection;
-							gscores.ts = ts;
-							postRunnable(success.with(gscores));
-						} catch (IOException e) {
-							postRunnable(success.with(e));
-						} catch (GeneralSecurityException e) {
-							postRunnable(success.with(e));
-						}
+					Games g = _getGamesObject();
+					Scores.List scores = g.scores().list(boardId,
+							collection.name(), ts.toString());
+					scores.setMaxResults(30);
+					LeaderboardScores result = scores.execute();
+					List<LeaderboardEntry> list = result.getItems();
+					if (list == null) {
+						postRunnable(success.with(gscores));
+						return;
 					}
-				};
+					for (LeaderboardEntry e : list) {
+						GameScore gs = new GameScore();
+						gs.rank = e.getFormattedScoreRank();
+						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
+						gs.value = e.getFormattedScore();
+						gs.user = e.getPlayer().getDisplayName();
+						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
+						gscores.list.add(gs);
+					}
+					gscores.collection = collection;
+					gscores.ts = ts;
+					postRunnable(success.with(gscores));
+				} catch (IOException e) {
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								lb_getListFor(boardId, collection, ts, success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
+				} catch (GeneralSecurityException e) {
+					postRunnable(success.with(e));
+				}
+			}
+		};
 		platform.runTask(runnable);
 	}
 
@@ -293,35 +350,45 @@ public class GameServices implements GooglePlayGameServices {
 			final Collection collection, final TimeSpan ts,
 			final Callback<GameScores> success) {
 		final Runnable runnable = new Runnable() {
-					@Override
-					public void run() {
-						GameScores gscores = new GameScores();
-						try {
-							Games g = _getGamesObject();
-							Scores.ListWindow scores = g.scores().listWindow(boardId,
-									collection.name(), ts.name());
-							scores.setMaxResults(30);
-							LeaderboardScores result = scores.execute();
-							List<LeaderboardEntry> list = result.getItems();
-							for (LeaderboardEntry e : list) {
-								GameScore gs = new GameScore();
-								gs.rank = e.getFormattedScoreRank();
-								gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
-								gs.value = e.getFormattedScore();
-								gs.user = e.getPlayer().getDisplayName();
-								gs.imgUrl = e.getPlayer().getAvatarImageUrl();
-								gscores.list.add(gs);
-							}
-							gscores.collection = collection;
-							gscores.ts = ts;
-							postRunnable(success.with(gscores));
-						} catch (IOException e) {
-							postRunnable(success.with(e));
-						} catch (GeneralSecurityException e) {
-							postRunnable(success.with(e));
-						}
+			@Override
+			public void run() {
+				GameScores gscores = new GameScores();
+				try {
+					Games g = _getGamesObject();
+					Scores.ListWindow scores = g.scores().listWindow(boardId,
+							collection.name(), ts.name());
+					scores.setMaxResults(30);
+					LeaderboardScores result = scores.execute();
+					List<LeaderboardEntry> list = result.getItems();
+					for (LeaderboardEntry e : list) {
+						GameScore gs = new GameScore();
+						gs.rank = e.getFormattedScoreRank();
+						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
+						gs.value = e.getFormattedScore();
+						gs.user = e.getPlayer().getDisplayName();
+						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
+						gscores.list.add(gs);
 					}
-				};
+					gscores.collection = collection;
+					gscores.ts = ts;
+					postRunnable(success.with(gscores));
+				} catch (IOException e) {
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								lb_getListWindowFor(boardId, collection, ts,
+										success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
+				} catch (GeneralSecurityException e) {
+					postRunnable(success.with(e));
+				}
+			}
+		};
 		platform.runTask(runnable);
 	}
 
@@ -346,7 +413,16 @@ public class GameServices implements GooglePlayGameServices {
 					ac.reveal(id).execute();
 					postRunnable(success.withNull());
 				} catch (IOException e) {
-					postRunnable(success.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								ach_reveal(id, success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(success.with(e));
 				}
@@ -365,7 +441,16 @@ public class GameServices implements GooglePlayGameServices {
 					ac.unlock(id).execute();
 					postRunnable(success.withNull());
 				} catch (IOException e) {
-					postRunnable(success.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								ach_unlocked(id, success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(success.with(e));
 				}
@@ -393,7 +478,16 @@ public class GameServices implements GooglePlayGameServices {
 					}
 					postRunnable(success.with(results));
 				} catch (IOException e) {
-					postRunnable(success.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								ach_list(success);
+							}
+						});
+					} else {
+						postRunnable(success.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(success.with(e));
 				}
@@ -452,6 +546,7 @@ public class GameServices implements GooglePlayGameServices {
 				Iterator<FileMeta> iter = result.files.iterator();
 				while (iter.hasNext()) {
 					FileMeta file = iter.next();
+					Gdx.app.log("GameServices", file.title);
 					if (!file.title.equals(title)) {
 						iter.remove();
 						continue;
@@ -490,7 +585,16 @@ public class GameServices implements GooglePlayGameServices {
 					fm.url = meta.getDownloadUrl();
 					postRunnable(callback.with(fm));
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_getFileMetaById(id, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
 				}
@@ -527,7 +631,16 @@ public class GameServices implements GooglePlayGameServices {
 					}
 					postRunnable(callback.with(afs));
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_list(callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
 				}
@@ -555,7 +668,16 @@ public class GameServices implements GooglePlayGameServices {
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_deleteById(id, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				}
 			}
 		}).start();
@@ -586,45 +708,45 @@ public class GameServices implements GooglePlayGameServices {
 		drive_list(getTitles);
 	};
 
-	
 	@Override
 	public void drive_replace(final FileHandle file,
 			final Callback<String> callback) {
-		drive_replace(file, file.file().getName(), file.file().getName(), callback);
+		drive_replace(file, file.file().getName(), file.file().getName(),
+				callback);
 	}
-	
+
 	@Override
 	public void drive_replace(final FileHandle file, final String title,
 			final String description, final Callback<String> callback) {
-		Gdx.app.log("GameServices", "drive_replace: "+title);
+		Gdx.app.log("GameServices", "drive_replace: " + title);
 		final FileMetaList[] toDelete = new FileMetaList[1];
-		final Callback<String> deleteOthers=new Callback<String>() {			
+		final Callback<String> deleteOthers = new Callback<String>() {
 			@Override
 			public void success(String result) {
-				for (FileMeta file: toDelete[0].files) {
+				for (FileMeta file : toDelete[0].files) {
 					drive_deleteById(file.id, noop);
 				}
 				postRunnable(callback.with(result));
 			}
 		};
-		final Callback<FileMetaList> delete_list_callback=new Callback<FileMetaList>() {			
+		final Callback<FileMetaList> delete_list_callback = new Callback<FileMetaList>() {
 			@Override
 			public void success(FileMetaList result) {
-				toDelete[0]=result;
+				toDelete[0] = result;
 				Iterator<FileMeta> iter = result.files.iterator();
 				while (iter.hasNext()) {
 					FileMeta meta = iter.next();
-					if (!meta.title.equals(title)){
+					if (!meta.title.equals(title)) {
 						iter.remove();
 						continue;
 					}
 				}
-				drive_put(file, title, description, deleteOthers);				
+				drive_put(file, title, description, deleteOthers);
 			}
 		};
 		drive_list(delete_list_callback);
 	}
-	
+
 	/**
 	 * Add file to 'appfolder'. Uses source file name as destination "title"
 	 * 
@@ -632,8 +754,7 @@ public class GameServices implements GooglePlayGameServices {
 	 * @param callback
 	 */
 	@Override
-	public void drive_put(final FileHandle file,
-			final Callback<String> callback) {
+	public void drive_put(final FileHandle file, final Callback<String> callback) {
 		drive_put(file, file.file().getName(), file.file().getName(), callback);
 	}
 
@@ -666,7 +787,16 @@ public class GameServices implements GooglePlayGameServices {
 					File inserted = insert.execute();
 					postRunnable(callback.with(inserted.getId()));
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_put(file, _title, description, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
 				}
@@ -692,7 +822,16 @@ public class GameServices implements GooglePlayGameServices {
 							.intern();
 					postRunnable(callback.with(result));
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_getFileById(id, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
 				}
@@ -716,7 +855,16 @@ public class GameServices implements GooglePlayGameServices {
 							fos);
 					postRunnable(callback.withNull());
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_getFileById(id, file, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
 				}
@@ -737,7 +885,16 @@ public class GameServices implements GooglePlayGameServices {
 					downloader.download(new GenericUrl(url), fos);
 					postRunnable(callback.withNull());
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_getFileByUrl(url, file, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				}
 			}
 		}).start();
@@ -758,7 +915,16 @@ public class GameServices implements GooglePlayGameServices {
 							.intern();
 					postRunnable(callback.with(result));
 				} catch (IOException e) {
-					postRunnable(callback.with(e));
+					if (e instanceof TokenResponseException) {
+						retry(new Runnable() {
+							@Override
+							public void run() {
+								drive_getFileByUrl(url, callback);
+							}
+						});
+					} else {
+						postRunnable(callback.with(e));
+					}
 				}
 			}
 		}).start();

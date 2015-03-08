@@ -3,6 +3,7 @@ package com.cherokeelessons.bp;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.GdxRuntimeException;
@@ -492,8 +494,14 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			}
 		};
 		error.button(new TextButton("OK", tbs));
-		error.text(new Label(e.getMessage(), dls));
+		String msgtxt = e.getMessage();
+		msgtxt = WordUtils.wrap(msgtxt, 45, "\n", true);
+		Label label = new Label(msgtxt, dls);
+		label.setAlignment(Align.center);
+		error.text(label);
+		error.setKeepWithinStage(true);
 		error.show(stage);
+		e.printStackTrace();
 	}
 
 	private void askToLogin() {

@@ -1,5 +1,10 @@
 package com.cherokeelessons.bp;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
+import sun.swing.StringUIClientPropertyKey;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
@@ -202,7 +207,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			login.button(new TextButton("DISMISS", tbs));
 			
 			final Dialog[] error = new Dialog[1];
-			error[0]=new Dialog("", dws);
+			error[0]=errorDialog(new Exception(""), null);
 			play_button.addListener(new ClickListener(){				
 				Callback<Void> success_in=new Callback<Void>() {							
 					@Override
@@ -216,13 +221,11 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						play_button.setText("Logout of Google Play");
 					}
 					@Override
-					public void error(Exception exception) {
+					public void error(Exception e) {
 						error[0].hide();
 						login.hide();
 						success_out.withNull().run();
-						error[0] = new Dialog("Google Play Services", dws);
-						error[0].button(new TextButton("OK", tbs));
-						error[0].text(new Label(exception.getMessage(), dls));
+						error[0] = errorDialog(e, null);
 						error[0].show(stage);
 					}
 				};
@@ -242,9 +245,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						error[0].hide();
 						login.hide();
 						success_out.withNull().run();
-						error[0] = new Dialog("Google Play Services", dws);
-						error[0].button(new TextButton("OK", tbs));
-						error[0].text(new Label(exception.getMessage(), dls));
+						error[0] = errorDialog(exception, null);
 						error[0].show(stage);
 					}
 				};
@@ -292,5 +293,36 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		} else {
 			Gdx.app.postRunnable(success_show_scores.with(new GameScores()));
 		}
+	}
+	
+	private Dialog errorDialog(final Exception e, final Runnable done) {
+		WindowStyle dws;
+		LabelStyle dls;
+		TextButtonStyle tbs;
+		
+		dws = new WindowStyle(skin.get(WindowStyle.class));
+		dls = new LabelStyle(skin.get(LabelStyle.class));
+		dws.titleFont = game.getFont(Font.SerifLLarge);
+		dls.font = game.getFont(Font.SerifLarge);
+		tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		tbs.font = game.getFont(Font.SerifSmall);
+
+		Dialog error = new Dialog("Google Play Services", dws) {
+			@Override
+			protected void result(Object object) {
+				if (done!=null) {
+					Gdx.app.postRunnable(done);
+				}
+			}
+		};
+		error.button(new TextButton("OK", tbs));
+		String msgtxt = e.getMessage();
+		msgtxt = WordUtils.wrap(msgtxt, 45, "\n", true);
+		Label label = new Label(msgtxt, dls);
+		label.setAlignment(Align.center);
+		error.text(label);
+		error.setKeepWithinStage(true);
+		e.printStackTrace();
+		return error;
 	}
 }
