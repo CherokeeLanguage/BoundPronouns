@@ -259,32 +259,7 @@ public class MainScreen implements Screen, InputProcessor {
 				if (ok.equals(object)) {
 					info.settings.name = name.getText();
 					json.toJson(info, p1);
-				}
-				// if (fb.equals(object)) {
-				// cancel();
-				// if (BoundPronouns.fb != null) {
-				// BoundPronouns.fb.fbshare(info);
-				// }
-				// if (BoundPronouns.services != null) {
-				// Callback<Void> noop_success = new Callback<Void>() {
-				// @Override
-				// public void run() {
-				// Gdx.app.log("lb submit", "success");
-				// }
-				// };
-				// Callback<Exception> noop_error = new Callback<Exception>() {
-				// @Override
-				// public void run() {
-				// Gdx.app.log("lb submit", getData().getMessage());
-				// }
-				// };
-				// BoundPronouns.services.lb_submit(
-				// ShowLeaderboards.BoardId, info.lastScore,
-				// info.level.getEngrish(), noop_success,
-				// noop_error);
-				// }
-				// return;
-				// }
+				}				
 				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
@@ -478,32 +453,18 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.getImage().setColor(Color.CLEAR);
 			}
 			
-			/*
-			 * TODO: sync dialog:
-			 * 
-			 * [if not logged in] Prompt to login.
-			 * 
-			 * [if logged in] Indicate sync in progress.
-			 * 
-			 * If local is blank, pull from server, no prompting. Dismiss
-			 * dialog. Dialog syncdone. Reload slots.
-			 * 
-			 * If remote does not have a copy to sync with, upload local copy
-			 * with new random signature, no prompting. Dialog syncdone. Reload
-			 * slots.
-			 * 
-			 * If local signature matches remote server, no prompting, sync to
-			 * highest card count + highest full score + highest last run time +
-			 * upload count. Dialog syncdone. Reload slots.
-			 * 
-			 * If local signature is blank or does not match remote server,
-			 * prompt with: use server copy, use local copy (with new random
-			 * signature), abort. Dialog syncdone. Reload slots.
-			 */
-			final SlotInfo sync_info = info;
+			
 			syncb.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, sync_info, p0);
+					Gdx.app.log("MainScreen", p0.name());
+					Runnable whenDone=new Runnable() {					
+						@Override
+						public void run() {
+							chooseSlot.hide();
+							doSlotsDialog();
+						}
+					};
+					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, p0, whenDone);
 					game.click();
 					Gdx.app.postRunnable(gsync);
 					return true;
@@ -770,6 +731,7 @@ public class MainScreen implements Screen, InputProcessor {
 	@Override
 	public void dispose() {
 		stage.dispose();
+		GoogleSyncUI.dispose_skin();
 	}
 
 	@Override

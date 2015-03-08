@@ -452,7 +452,6 @@ public class GameServices implements GooglePlayGameServices {
 				Iterator<FileMeta> iter = result.files.iterator();
 				while (iter.hasNext()) {
 					FileMeta file = iter.next();
-					Gdx.app.log("GameServices", file.title);
 					if (!file.title.equals(title)) {
 						iter.remove();
 						continue;
