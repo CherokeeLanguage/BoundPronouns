@@ -34,32 +34,42 @@ import com.google.api.client.http.HttpTransport;
 @SuppressLint("DefaultLocale")
 public class Platform implements PlatformInterface {
 
+	private static final String TAG = "AndroidGameServices";
 	public static AndroidApplication application;
 
-	private static class AndroidCodeReceiver implements
-			VerificationCodeReceiver {
+	private static class AndroidCodeReceiver implements VerificationCodeReceiver {
+		private static final String TAG = "AndroidCodeReceiver";
 		private String code = null;
-
-		public String getCode() {
-			return code;
-		}
-
-		public void setCode(String code) {
-			this.code = code;
-		}
 
 		@Override
 		public String getRedirectUri() throws IOException {
 			return "urn:ietf:wg:oauth:2.0:oob:auto";
 		}
 
+		private long timeout;
+
 		@Override
 		public String waitForCode() throws IOException {
+			Gdx.app.log(TAG, "waitForCode");
+			timeout = 1000l * 60l * 10l;
+			while (code == null && timeout > 0l) {
+				try {
+					Thread.sleep(250l);
+					timeout -= 250l;
+					continue;
+				} catch (InterruptedException e) {
+					Gdx.app.log(TAG, "InterruptedException");
+					return code;
+				}
+			}
+			Gdx.app.log(TAG, "waitForCode:" + code);
 			return code;
 		}
 
 		@Override
-		public void stop() throws IOException {
+		public void stop() {
+			Gdx.app.log(TAG, "stop");
+			timeout = 0l;
 		}
 
 	}
@@ -69,62 +79,91 @@ public class Platform implements PlatformInterface {
 	public Platform() {
 		codeReceiver = new AndroidCodeReceiver();
 	}
+	
+	public static boolean isEmpty(CharSequence cs) {
+		return cs == null || cs.length() == 0;
+	}
 
+	public static String substringAfter(String str, String separator) {
+		if (isEmpty(str)) {
+			return str;
+		}
+		if (separator == null) {
+			return "";
+		}
+		int pos = str.indexOf(separator);
+		if (pos == -1) {
+			return "";
+		}
+		return str.substring(pos + separator.length());
+	}
+
+	public static boolean isBlank(CharSequence cs) {
+		int strLen;
+		if (cs == null || (strLen = cs.length()) == 0) {
+			return true;
+		}
+		for (int i = 0; i < strLen; i++) {
+			if (Character.isWhitespace(cs.charAt(i)) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static String substringBefore(String str, String separator) {
+		if (isEmpty(str) || separator == null) {
+			return str;
+		}
+		if (separator.length() == 0) {
+			return "";
+		}
+		int pos = str.indexOf(separator);
+		if (pos == -1) {
+			return str;
+		}
+		return str.substring(0, pos);
+	}
+
+	private String mostRecentError="Unknown Error - Try Again";
+	
 	@Override
 	public Credential getCredential(GoogleAuthorizationCodeFlow flow)
 			throws IOException {
 		return new AuthorizationCodeInstalledApp(flow, codeReceiver) {
+
 			@Override
 			public Credential authorize(final String userId) throws IOException {
 				final AuthorizationCodeFlow flow = this.getFlow();
-				try {
-					Credential credential = flow.loadCredential(userId);
-					if (credential != null
-							&& (credential.getRefreshToken() != null || credential
-									.getExpiresInSeconds() > 60)) {
-						return credential;
-					}
-					// open in webview
-					Gdx.app.log("AndroidGameServices", "Opening OAUTH Webview");
-					final String redirectUri = codeReceiver.getRedirectUri();
-					AuthorizationCodeRequestUrl authorizationUrl = flow
-							.newAuthorizationUrl().setRedirectUri(redirectUri);
-					login(authorizationUrl.build());
-					long timeout = 1000l * 60l * 10l;// 10minutes;
-					String code = null;
-					Gdx.app.log("AndroidGameServices",
-							"Waiting For Authorization Code");
-					while (timeout > 0) {
-						code = codeReceiver.waitForCode();
-						if (code == null) {
-							try {
-								Thread.sleep(250l);
-								timeout -= 250l;
-								continue;
-							} catch (InterruptedException e) {
-								Gdx.app.log("AndroidGameServices",
-										"Interrupted");
-								return null;
-							}
-						}
-						Gdx.app.log("AndroidGameServices",
-								"Received Authorization Code");
-						break;
-					}
-					code = codeReceiver.waitForCode();
-					TokenResponse response = flow.newTokenRequest(code)
-							.setRedirectUri(redirectUri).execute();
-					return flow.createAndStoreCredential(response, userId);
-				} finally {
-					codeReceiver.stop();
+				Credential credential = flow.loadCredential(userId);
+				if (credential != null
+						&& (credential.getRefreshToken() != null || credential
+								.getExpiresInSeconds() > 60)) {
+					return credential;
 				}
+				// open in webview
+				codeReceiver.code=null;
+				mostRecentError="Unknown Error - Try Again";
+				Gdx.app.log(TAG, "Opening OAUTH Webview");
+				final String redirectUri = codeReceiver.getRedirectUri();
+				AuthorizationCodeRequestUrl authorizationUrl = flow
+						.newAuthorizationUrl().setRedirectUri(redirectUri);
+				login(authorizationUrl.build());
+				Gdx.app.log(TAG, "Waiting For Authorization Code");
+				String waitForCode = codeReceiver.waitForCode();
+				if (waitForCode == null) {
+					throw new IOException(mostRecentError);
+				}
+				TokenResponse response = flow.newTokenRequest(waitForCode)
+						.setRedirectUri(redirectUri).execute();
+				return flow.createAndStoreCredential(response, userId);
 			}
 		}.authorize("user");
 	}
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void login(final String url) {
-		Gdx.app.log("AndroidGameServices", "webViewLogin");
+		Gdx.app.log(TAG, "webViewLogin");
 		application.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -136,6 +175,7 @@ public class Platform implements PlatformInterface {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								dialog.dismiss();
+								mostRecentError="User Canceled Authentication Dialog";
 							}
 						});
 				final WebView webView = new WebView(application) {
@@ -151,9 +191,7 @@ public class Platform implements PlatformInterface {
 					@Override
 					public void onDismiss(DialogInterface dialog) {
 						webView.loadUrl("about:blank");
-						if (codeReceiver.getCode() == null) {
-							codeReceiver.setCode("");
-						}
+						codeReceiver.stop();
 					}
 				};
 				adialog.setOnDismissListener(listener);
@@ -201,7 +239,8 @@ public class Platform implements PlatformInterface {
 										.getTitle());
 								if (title.toLowerCase().contains("denied")) {
 									adialog.dismiss();
-									codeReceiver.setCode("");
+									codeReceiver.stop();
+									mostRecentError=title;
 									return;
 								}
 								if (title.toLowerCase().contains("code=")) { // OAuth2ClientCredentials.OAUTH_CALLBACK_URL))
@@ -213,15 +252,12 @@ public class Platform implements PlatformInterface {
 												code, "&");
 									}
 									if (StringUtils.isBlank(code)) {
-										Gdx.app.log("AndroidGameServices",
-												"Did not receive a code.");
+										mostRecentError="Did not receive a code.";										
 										adialog.dismiss();
-										codeReceiver.setCode("");
+										codeReceiver.stop();
 										return;
 									}
-									codeReceiver.setCode(code);
-									Gdx.app.log("AndroidGameServices",
-											"Received code: " + code);
+									codeReceiver.code=code;
 									adialog.dismiss();
 								}
 							}
@@ -232,18 +268,14 @@ public class Platform implements PlatformInterface {
 									String failingUrl) {
 								super.onReceivedError(view, errorCode,
 										description, failingUrl);
-								Gdx.app.log(
-										"AndroidGameServices#onReceivedError",
-										"[" + errorCode + "] " + description);
+								mostRecentError=description;
 							}
 
 							@Override
 							public void onReceivedSslError(WebView view,
 									SslErrorHandler handler, SslError error) {
 								super.onReceivedSslError(view, handler, error);
-								Gdx.app.log(
-										"AndroidGameServices#onReceivedSslError",
-										error.toString());
+								mostRecentError=error.toString();
 							}
 						});
 						webView.loadUrl(url);
