@@ -452,6 +452,7 @@ public class GameServices implements GooglePlayGameServices {
 				Iterator<FileMeta> iter = result.files.iterator();
 				while (iter.hasNext()) {
 					FileMeta file = iter.next();
+					Gdx.app.log("GameServices", file.title);
 					if (!file.title.equals(title)) {
 						iter.remove();
 						continue;
@@ -596,7 +597,8 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void drive_replace(final FileHandle file, final String title,
 			final String description, final Callback<String> callback) {
-		final FileMetaList[] toDelete = new FileMetaList[1]; 
+		Gdx.app.log("GameServices", "drive_replace: "+title);
+		final FileMetaList[] toDelete = new FileMetaList[1];
 		final Callback<String> deleteOthers=new Callback<String>() {			
 			@Override
 			public void success(String result) {
@@ -606,14 +608,22 @@ public class GameServices implements GooglePlayGameServices {
 				postRunnable(callback.with(result));
 			}
 		};
-		final Callback<FileMetaList> list_callback=new Callback<FileMetaList>() {			
+		final Callback<FileMetaList> delete_list_callback=new Callback<FileMetaList>() {			
 			@Override
 			public void success(FileMetaList result) {
 				toDelete[0]=result;
+				Iterator<FileMeta> iter = result.files.iterator();
+				while (iter.hasNext()) {
+					FileMeta meta = iter.next();
+					if (!meta.title.equals(title)){
+						iter.remove();
+						continue;
+					}
+				}
 				drive_put(file, title, description, deleteOthers);				
 			}
 		};
-		drive_list(list_callback);
+		drive_list(delete_list_callback);
 	}
 	
 	/**
