@@ -44,6 +44,18 @@ import com.cherokeelessons.util.GooglePlayGameServices;
 
 public class BoundPronouns extends Game {
 	
+	@Override
+	public void pause() {
+		super.pause();
+		Gdx.app.log("BoundPronouns", "Pause");
+	}
+	
+	@Override
+	public void resume() {
+		super.resume();
+		Gdx.app.log("BoundPronouns", "Resume");
+	}
+	
 	public static interface PlatformTextInput {
 		public void getTextInput(final TextInputListener listener,
 				final String title, final String text, final String hint);
@@ -68,9 +80,9 @@ public class BoundPronouns extends Game {
 		FitViewport fitViewport = new FitViewport(surrounds.width,
 				surrounds.height, camera);
 		fitViewport.update((int) surrounds.width, (int) surrounds.height, true);
-//		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
-//				"Camera Size: " + (int) surrounds.getWidth() + "x"
-//						+ (int) surrounds.getHeight());
+		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
+				"Camera Size: " + (int) surrounds.getWidth() + "x"
+						+ (int) surrounds.getHeight());
 		return fitViewport;
 	}
 

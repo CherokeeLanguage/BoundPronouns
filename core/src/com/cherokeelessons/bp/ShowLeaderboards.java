@@ -213,6 +213,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					}
 					@Override
 					public void error(Exception exception) {
+						exception.printStackTrace();
 						login.hide();
 						success_out.withNull().run();
 					}
@@ -229,6 +230,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					}
 					@Override
 					public void error(Exception exception) {
+						exception.printStackTrace();
 						login.hide();
 						success_out.withNull().run();
 					}
