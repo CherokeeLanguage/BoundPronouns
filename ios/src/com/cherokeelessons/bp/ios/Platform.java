@@ -32,6 +32,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 public class Platform implements PlatformInterface {
 
 	private static class iOSCodeReceiver implements VerificationCodeReceiver {
+		private static final String TAG = "iOSCodeReceiver";
 		private String code = null;
 
 		@Override
@@ -43,7 +44,7 @@ public class Platform implements PlatformInterface {
 
 		@Override
 		public String waitForCode() throws IOException {
-			Gdx.app.log("iOSCodeReceiver", "waitForCode");
+			Gdx.app.log(TAG, "waitForCode");
 			timeout = 1000l * 60l * 10l;
 			while (code == null && timeout > 0l) {
 				try {
@@ -51,17 +52,17 @@ public class Platform implements PlatformInterface {
 					timeout -= 250l;
 					continue;
 				} catch (InterruptedException e) {
-					Gdx.app.log("iOSCodeReceiver", "InterruptedException");
+					Gdx.app.log(TAG, "InterruptedException");
 					return code;
 				}
 			}
-			Gdx.app.log("iOSCodeReceiver", "waitForCode:" + code);
+			Gdx.app.log(TAG, "waitForCode:" + code);
 			return code;
 		}
 
 		@Override
 		public void stop() {
-			Gdx.app.log("iOSCodeReceiver", "stop");
+			Gdx.app.log(TAG, "stop");
 			timeout = 0l;
 		}
 
