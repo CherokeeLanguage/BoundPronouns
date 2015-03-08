@@ -273,7 +273,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="106.22171"
+     inkscape:cx="-151.63543"
      inkscape:cy="252.27241"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -293,7 +293,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -412,7 +412,10 @@
     </g>
     <g
        transform="matrix(2.9194043,0,0,2.9194043,-2065.9033,-907.41845)"
-       id="g5761-8">
+       id="g5761-8"
+       inkscape:export-filename="5-intermediate-75.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          d="m 592.48,396.99 c -9.3947,8.9088 -95.599,20.226 -106.97,14.044 -11.376,-6.1819 -48.778,-84.669 -46.414,-97.399 2.364,-12.729 65.452,-72.555 78.289,-74.24 12.837,-1.6853 89.229,39.828 94.799,51.516 5.5696,11.688 -10.306,97.17 -19.7,106.08 z"
          transform="matrix(0.9921,0.12548,-0.12548,0.9921,311.76,195.31)"

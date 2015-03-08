@@ -123,6 +123,10 @@ public class BoundPronouns extends Game {
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
 	public static final String IMG_MAYAN_DIALOG = "images/MayanStoneSmall.png";
+	
+	public static final String IMG_SETTINGS = "images/gear.png";
+	public static final String IMG_ERASE = "images/trash.png";
+	public static final String IMG_SYNC = "images/refresh.png";	
 
 	public static final String SND_MENU = "audio/click.wav";
 	public static final String SND_COYOTE = "audio/coyote.wav";
@@ -192,10 +196,21 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_MAYAN_DIALOG, Texture.class, param);
 		manager.load(IMG_SCROLLBAR, Texture.class, param);
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
+		manager.load(IMG_SETTINGS, Texture.class, param);
+		manager.load(IMG_ERASE, Texture.class, param);
+		manager.load(IMG_SYNC, Texture.class, param);
 		manager.load(SKIN, Skin.class);
+		
+		for (int ix=0; ix<11; ix++) {
+			manager.load(levelImg(ix), Texture.class, param);
+		}
 
 		addFonts();
 
+	}
+	
+	public static String levelImg(int level) {
+		return "images/"+level+"-75.png";
 	}
 
 	private void addFonts() {

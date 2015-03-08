@@ -22,6 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -33,7 +35,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Scaling;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
@@ -384,6 +388,10 @@ public class MainScreen implements Screen, InputProcessor {
 			}
 			info.validate();
 			SlotInfo.Settings settings = info.settings;
+			
+			
+			
+			
 			String txt = "";
 			txt += info.level;
 			txt += " ";
@@ -404,6 +412,8 @@ public class MainScreen implements Screen, InputProcessor {
 			TextButton textb = new TextButton(txt, tbs);
 
 			slots.row();
+			Image levelImage = new Image(game.manager.get(BoundPronouns.levelImg(info.level.getLevel()), Texture.class));
+			slots.add(levelImage).pad(5).left();
 			slots.add(textb).pad(0).expand().fill().left();
 			final boolean isNewSession = blank;
 			textb.addListener(new ClickListener() {
@@ -432,34 +442,42 @@ public class MainScreen implements Screen, InputProcessor {
 			tbs.font = game.getFont(Font.SerifSmall);
 			Table editControls = new Table();
 			editControls.center();
-			editControls.defaults().fill().expand().pad(0).space(0);
+			editControls.defaults().pad(10);
 
-			TextButton syncb = new TextButton("SYNC", tbs);
-			syncb.padTop(0);
-			syncb.padBottom(0);
-			editControls.row();
-			editControls.add(syncb).pad(0).space(0);
+			Texture img_edit = game.manager.get(BoundPronouns.IMG_SETTINGS, Texture.class);
+			TextureRegionDrawable draw_edit = new TextureRegionDrawable(new TextureRegion(img_edit));
+			ImageButton editb = new ImageButton(draw_edit);
+			editb.setTransform(true);
+			editb.getImage().setScaling(Scaling.fit);
+			editb.getImage().setColor(Color.DARK_GRAY);			
+			editControls.add(editb).center();		
 
-			TextButton deleteb = new TextButton("ERASE", tbs);
-			deleteb.padTop(0);
-			deleteb.padBottom(0);
-			// editControls.row();
-			editControls.add(deleteb).pad(0).space(0);
+			Texture img_delete = game.manager.get(BoundPronouns.IMG_ERASE, Texture.class);
+			TextureRegionDrawable draw_delete = new TextureRegionDrawable(new TextureRegion(img_delete));
+			ImageButton deleteb = new ImageButton(draw_delete);
+			deleteb.setTransform(true);
+			deleteb.getImage().setScaling(Scaling.fit);
+			deleteb.getImage().setColor(Color.DARK_GRAY);
+			editControls.add(deleteb).center();
 
-			TextButton editb = new TextButton("SETTINGS", tbs);
-			editb.padTop(0);
-			editb.padBottom(0);
-			editControls.row();
-			editControls.add(editb).pad(0).space(0).colspan(2);
+			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
+			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
+			ImageButton syncb = new ImageButton(draw_sync);
+			syncb.setTransform(true);
+			syncb.getImage().setScaling(Scaling.fit);
+			syncb.getImage().setColor(Color.DARK_GRAY);
+			editControls.add(syncb).center();
 
-			slots.add(editControls).fill().expandY();
+			slots.add(editControls);
 			if (blank) {
 				editb.setDisabled(true);
 				editb.setTouchable(Touchable.disabled);
+				editb.getImage().setColor(Color.CLEAR);
 				deleteb.setDisabled(true);
 				deleteb.setTouchable(Touchable.disabled);
+				deleteb.getImage().setColor(Color.CLEAR);
 			}
-
+			
 			/*
 			 * TODO: sync dialog:
 			 * 
@@ -482,6 +500,15 @@ public class MainScreen implements Screen, InputProcessor {
 			 * prompt with: use server copy, use local copy (with new random
 			 * signature), abort. Dialog syncdone. Reload slots.
 			 */
+			final SlotInfo sync_info = info;
+			syncb.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, sync_info, p0);
+					game.click();
+					Gdx.app.postRunnable(gsync);
+					return true;
+				};
+			});
 
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {

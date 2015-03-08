@@ -273,7 +273,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="106.22171"
+     inkscape:cx="-151.63543"
      inkscape:cy="366.55812"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -292,7 +292,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -303,7 +303,10 @@
      transform="translate(0,-540.36218)">
     <g
        transform="matrix(4.1673449,0,0,4.1673449,-3118.7159,-902.37262)"
-       id="g5805">
+       id="g5805"
+       inkscape:export-filename="2-rookie-75.png"
+       inkscape:export-xdpi="13.18"
+       inkscape:export-ydpi="13.18">
       <path
          transform="translate(122.59,215.6)"
          d="m 748.64,192.03 c 0,33.927 -27.503,61.43 -61.43,61.43 -33.927,0 -61.43,-27.503 -61.43,-61.43 0,-33.927 27.503,-61.43 61.43,-61.43 33.927,0 61.43,27.503 61.43,61.43 z"
@@ -437,7 +440,10 @@
        x="263.64981"
        y="891.67688"
        id="text3500"
-       sodipodi:linespacing="100%"><tspan
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="2-rookie-75.png"
+       inkscape:export-xdpi="13.18"
+       inkscape:export-ydpi="13.18"><tspan
          sodipodi:role="line"
          id="tspan4146"
          x="263.64981"

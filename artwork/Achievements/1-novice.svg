@@ -273,8 +273,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="105.88776"
-     inkscape:cy="366.13883"
+     inkscape:cx="-151.96938"
+     inkscape:cy="363.28169"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -292,7 +292,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -347,7 +347,10 @@
     </g>
     <g
        transform="matrix(4.1515594,0,0,4.1515594,-2793.6774,-793.45229)"
-       id="g5870">
+       id="g5870"
+       inkscape:export-filename="1-novice-75.png"
+       inkscape:export-xdpi="13.108701"
+       inkscape:export-ydpi="13.108701">
       <path
          d="m -196.35,136.34 c -6.476,3.5824 -55.323,2.688 -61.663,-1.1291 -6.3405,-3.8171 -29.989,-46.567 -29.854,-53.966 0.13549,-7.3996 25.333,-49.255 31.809,-52.837 6.476,-3.5825 55.323,-2.688 61.663,1.1291 6.3405,3.8171 29.989,46.567 29.854,53.966 -0.13549,7.3996 -25.333,49.255 -31.809,52.837 z"
          transform="translate(960.79,300.57)"
@@ -437,7 +440,10 @@
        x="263.64981"
        y="891.67688"
        id="text3500"
-       sodipodi:linespacing="100%"><tspan
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="1-novice-75.png"
+       inkscape:export-xdpi="13.108701"
+       inkscape:export-ydpi="13.108701"><tspan
          sodipodi:role="line"
          id="tspan4146">ᏌᏊ</tspan></text>
   </g>
