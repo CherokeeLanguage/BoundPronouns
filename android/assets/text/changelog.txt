@@ -1,3 +1,7 @@
+1.70
+
+Cloud Sync between devices.
+
 1.66
 
 Bugfix for Leaderboard Login
