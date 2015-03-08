@@ -23,7 +23,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 42;
+	public static int version = 43;
 
 	private JsonConverter json = new JsonConverter();
 	private List<CSVRecord> pronouns = null;
@@ -123,13 +123,14 @@ public class BuildDeck implements Runnable {
 				CSVRecord record = irec.next();
 				irec.remove();
 				String chr = record.get(1);
+				String latin = record.get(2);
 				/*
 				 * Strip out "[" and "]" that are in the reflexive forms for
 				 * pronoun card challenges ...
 				 */
 				chr = chr.replace("[", "").replace("]", "");
+				latin = latin.replace("[", "").replace("]", "");				
 				setStatus("Create pronoun card for " + chr);
-				String latin = record.get(2);
 				String defin = record.get(3) + " + " + record.get(4);
 				if (StringUtils.isBlank(record.get(3))) {
 					String tmp = record.get(4);
