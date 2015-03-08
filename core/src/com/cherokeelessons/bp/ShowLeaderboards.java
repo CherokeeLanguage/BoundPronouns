@@ -319,7 +319,6 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		label.setAlignment(Align.center);
 		error.text(label);
 		error.setKeepWithinStage(true);
-		e.printStackTrace();
 		return error;
 	}
 }
