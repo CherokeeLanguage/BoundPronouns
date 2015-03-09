@@ -1,6 +1,7 @@
 1.73
 
 Fix backwards sync issue caused when "active cards" are removed because they no longer exists in the master deck.
+Fix other bugs in sync code.
 
 1.72
 
