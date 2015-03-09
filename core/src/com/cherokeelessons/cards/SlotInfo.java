@@ -278,6 +278,7 @@ public class SlotInfo implements Serializable {
 	public LevelName level;
 	public int lastScore;
 	public boolean perfect;
+	public long lastrun;
 
 	public SlotInfo() {
 	}

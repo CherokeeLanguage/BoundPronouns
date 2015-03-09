@@ -67,7 +67,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	private static final String SYNC_INFO_JSON = "sync-info.json";
 	private static final String ACTIVE_DECK_JSON = "ActiveDeck.json";
 	private static final String INFO_JSON = "info.json";
-	private SlotInfo device_info;
 	private final FileHandle p0;
 	private final Stage stage;
 	private final BoundPronouns game;
@@ -141,6 +140,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		SlotInfo cloud_info = json.fromJson(SlotInfo.class, p0.child(SYNC_INFO_JSON));
 		ActiveDeck deck = json.fromJson(ActiveDeck.class,
 				p0.child(SYNC_ACTIVE_DECK_JSON));
+		cloud_info.lastrun=deck.lastrun;
 		/*
 		 * Make sure we don't have active cards pointing to no longer
 		 * existing master deck cards
@@ -158,7 +158,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					+ active.pgroup + " - " + active.vgroup);
 		}
 		SlotInfo.calculateStats(cloud_info, deck);
-		json.toJson(device_info, p0.child(SYNC_INFO_JSON));
+		json.toJson(cloud_info, p0.child(SYNC_INFO_JSON));
 		if (save) {
 			json.toJson(deck, p0.child(SYNC_ACTIVE_DECK_JSON));
 		}
@@ -171,9 +171,12 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		if (!p0.child(ACTIVE_DECK_JSON).exists()) {
 			return;
 		}
+		SlotInfo device_info = json.fromJson(SlotInfo.class,
+				p0.child(INFO_JSON));
 		device_info = json.fromJson(SlotInfo.class, p0.child(INFO_JSON));
 		ActiveDeck deck = json.fromJson(ActiveDeck.class,
 				p0.child(ACTIVE_DECK_JSON));
+		device_info.lastrun=deck.lastrun;
 		/*
 		 * Make sure we don't have active cards pointing to no longer
 		 * existing master deck cards
@@ -212,7 +215,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private boolean abort = false;
 
-	private void doResolveConflict(final SlotInfo cloud_info) {
+	private void doResolveConflict(final SlotInfo cloud_info, final SlotInfo device_info) {
 		final String upload = "CLOUD COPY";
 		final String download = "DEVICE COPY";
 		final String cancel = "CANCEL";
@@ -355,9 +358,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private Dialog busy;
 
-	private void doSync() {
-
-		
+	private void doSync() {	
 		
 		final Callback<Void> cb_infofile = new Callback<Void>() {
 			@Override
@@ -368,39 +369,39 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				if (!p0.child(INFO_JSON).exists()){
 					download();
 					return;
-				}
-		
-				
+				}				
 				if (p0.child(INFO_JSON).readString("UTF-8")
 						.equals(p0.child(SYNC_INFO_JSON).readString("UTF-8"))) {
 					busy.hide();
 					dialogNothingToDo();
 					return;
-				}
-				
+				}				
 				recalculateDeviceStats();
-				recalculateCloudStats();
-				
+				recalculateCloudStats();				
 				SlotInfo cloud_info = json.fromJson(SlotInfo.class,
 						p0.child(SYNC_INFO_JSON));
-
+				SlotInfo device_info = json.fromJson(SlotInfo.class,
+						p0.child(INFO_JSON));
 				if (!cloud_info.getSignature().equals(
 						device_info.getSignature())) {
-					doResolveConflict(cloud_info);
+					doResolveConflict(cloud_info, device_info);
 					return;
 				}
 				if (cloud_info.activeCards > device_info.activeCards) {
 					download();
 					return;
 				}
-				if (cloud_info.fullScore > device_info.fullScore) {
+				
+				long cloud_time = json.fromJson(ActiveDeck.class,
+						p0.child(SYNC_ACTIVE_DECK_JSON)).lastrun;
+				long device_time = json.fromJson(ActiveDeck.class,
+						p0.child(ACTIVE_DECK_JSON)).lastrun;
+				
+				if (cloud_time>device_time) {
 					download();
 					return;
 				}
-				if (cloud_info.lastScore > device_info.lastScore) {
-					download();
-					return;
-				}
+				
 				upload();
 			}
 
@@ -488,6 +489,8 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			dialogNothingToDo();
 			return;
 		}
+		SlotInfo device_info = json.fromJson(SlotInfo.class,
+				p0.child(INFO_JSON));
 		final Dialog notice = new Dialog("Google Play Services", dws);
 		notice.button(new TextButton("OK", tbs));
 		notice.text(new Label("Uploading Device Copy to Cloud...", dls));
