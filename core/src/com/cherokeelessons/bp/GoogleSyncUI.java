@@ -1,5 +1,6 @@
 package com.cherokeelessons.bp;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +24,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
+import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
@@ -124,9 +127,41 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		};
 		busy.text(new Label("Retrieving Cloud Data ...", dls));
 		busy.button(new TextButton("CANCEL SYNC", tbs));
-		busy.show(stage);
-		recalculateDeviceStats();
+		busy.show(stage);		
 		doSync();
+	}
+	
+	private void recalculateCloudStats() {
+		if (!p0.child(SYNC_INFO_JSON).exists()) {
+			return;
+		}
+		if (!p0.child(SYNC_ACTIVE_DECK_JSON).exists()) {
+			return;
+		}
+		SlotInfo cloud_info = json.fromJson(SlotInfo.class, p0.child(SYNC_INFO_JSON));
+		ActiveDeck deck = json.fromJson(ActiveDeck.class,
+				p0.child(SYNC_ACTIVE_DECK_JSON));
+		/*
+		 * Make sure we don't have active cards pointing to no longer
+		 * existing master deck cards
+		 */
+		boolean save=false;
+		Iterator<ActiveCard> ipending = deck.deck.iterator();
+		while (ipending.hasNext()) {
+			ActiveCard active = ipending.next();
+			if (getCardById(active.pgroup, active.vgroup) != null) {
+				continue;
+			}
+			ipending.remove();
+			save=true;
+			game.log(this, "Removed no longer valid entry: "
+					+ active.pgroup + " - " + active.vgroup);
+		}
+		SlotInfo.calculateStats(cloud_info, deck);
+		json.toJson(device_info, p0.child(SYNC_INFO_JSON));
+		if (save) {
+			json.toJson(deck, p0.child(SYNC_ACTIVE_DECK_JSON));
+		}
 	}
 
 	private void recalculateDeviceStats() {
@@ -139,8 +174,40 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		device_info = json.fromJson(SlotInfo.class, p0.child(INFO_JSON));
 		ActiveDeck deck = json.fromJson(ActiveDeck.class,
 				p0.child(ACTIVE_DECK_JSON));
+		/*
+		 * Make sure we don't have active cards pointing to no longer
+		 * existing master deck cards
+		 */
+		boolean save=false;
+		Iterator<ActiveCard> ipending = deck.deck.iterator();
+		while (ipending.hasNext()) {
+			ActiveCard active = ipending.next();
+			if (getCardById(active.pgroup, active.vgroup) != null) {
+				continue;
+			}
+			ipending.remove();
+			save=true;
+			game.log(this, "Removed no longer valid entry: "
+					+ active.pgroup + " - " + active.vgroup);
+		}
 		SlotInfo.calculateStats(device_info, deck);
 		json.toJson(device_info, p0.child(INFO_JSON));
+		if (save) {
+			json.toJson(deck, p0.child(ACTIVE_DECK_JSON));
+		}
+	}
+	
+	private Card getCardById(String pgroup, String vgroup) {
+		for (Card card : game.deck.cards) {
+			if (!card.pgroup.equals(pgroup)) {
+				continue;
+			}
+			if (!card.vgroup.equals(vgroup)) {
+				continue;
+			}
+			return card;
+		}
+		return null;
 	}
 
 	private boolean abort = false;
@@ -290,6 +357,8 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private void doSync() {
 
+		
+		
 		final Callback<Void> cb_infofile = new Callback<Void>() {
 			@Override
 			public void success(Void result) {
@@ -300,17 +369,20 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					download();
 					return;
 				}
+		
+				
 				if (p0.child(INFO_JSON).readString("UTF-8")
 						.equals(p0.child(SYNC_INFO_JSON).readString("UTF-8"))) {
 					busy.hide();
 					dialogNothingToDo();
 					return;
 				}
+				
+				recalculateDeviceStats();
+				recalculateCloudStats();
+				
 				SlotInfo cloud_info = json.fromJson(SlotInfo.class,
 						p0.child(SYNC_INFO_JSON));
-				ActiveDeck cloud_deck = json.fromJson(ActiveDeck.class,
-						p0.child(SYNC_ACTIVE_DECK_JSON));
-				SlotInfo.calculateStats(cloud_info, cloud_deck);
 
 				if (!cloud_info.getSignature().equals(
 						device_info.getSignature())) {
