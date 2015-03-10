@@ -3,7 +3,6 @@ package com.cherokeelessons.bp;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -121,8 +120,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				table.add(new Label("", ls)).center();
 			}
 			
-			Preferences prefs = BoundPronouns.getPrefs();
-			if (!prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+			if (!BoundPronouns.isLoggedIn()) {
 				message.setText("You must login to Google Play for Leaderboard Support");
 			}
 		}
@@ -187,8 +185,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					Color.BLACK);
 			message = new Label("...", ls);
 
-			Preferences prefs = BoundPronouns.getPrefs();
-			if (!prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+			if (!BoundPronouns.isLoggedIn()) {
 				button = new TextButton("Login to Google Play", tbs);
 				message.setText("You must login to Google Play for Leaderboard Support");
 			} else {
@@ -211,9 +208,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					public void success(Void result) {
 						error[0].hide();
 						login.hide();
-						Preferences prefs = BoundPronouns.getPrefs();
-						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
-						prefs.flush();
+						BoundPronouns.isLoggedIn(true);
 						requestScores();
 						play_button.setText("Logout of Google Play");
 					}
@@ -231,9 +226,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					public void success(Void result) {
 						error[0].hide();
 						login.hide();
-						Preferences prefs = BoundPronouns.getPrefs();
-						prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
-						prefs.flush();
+						BoundPronouns.isLoggedIn(false);
 						requestScores();
 						play_button.setText("Login to Google Play");
 					}
@@ -248,9 +241,8 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				};
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					Preferences prefs = BoundPronouns.getPrefs();
-					if (prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+						int pointer, int button) {					
+					if (BoundPronouns.isLoggedIn()) {
 						BoundPronouns.services.logout(success_out);
 					} else {
 						login.show(stage);
@@ -282,8 +274,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	}
 
 	private void requestScores() {
-		if (BoundPronouns.getPrefs().getBoolean(BoundPronouns.GooglePlayLogginIn,
-				false)) {
+		if (BoundPronouns.isLoggedIn()) {
 			BoundPronouns.services.lb_getListFor(BoardId, lb_collection, ts,
 					success_show_scores);
 			message.setText("Loading ...");

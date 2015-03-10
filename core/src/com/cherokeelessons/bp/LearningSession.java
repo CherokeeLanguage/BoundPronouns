@@ -20,6 +20,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -28,15 +29,21 @@ import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Scaling;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.bp.LearningSession.SaveActiveDeckWithDialog.SaveParams;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.Answer;
@@ -406,21 +413,44 @@ public class LearningSession extends ChildScreen implements Screen {
 	private final Set<String> nodupes = new HashSet<String>();
 	private final Random rand = new Random();
 
-	private Callback<Void> noop_success = new Callback<Void>() {
+	private static Callback<Void> noop_success = new Callback<Void>() {
 		@Override
 		public void success(Void result) {
 			Gdx.app.log("LearningSession-Score Submit", "success");
 		}
 	};
 
-	private class SaveActiveDeckWithDialog implements Runnable {
+	public static class SaveActiveDeckWithDialog implements Runnable {
+		public static class SaveParams {
+			public ActiveDeck deck;
+			public float elapsed_secs;
+			public FileHandle slot;
+			public BoundPronouns game;
+			public Skin skin;
+			public boolean isExtraPractice;
+			public Screen caller;
+			public Stage stage;
+		}
+
+		private final SaveParams params;
+
+		public SaveActiveDeckWithDialog(SaveParams params) {
+			this.params = params;
+		}
+
 		@Override
 		public void run() {
-			ActiveDeck tosave = new ActiveDeck();
-			tosave.deck.addAll(current_active.deck);
-			tosave.deck.addAll(current_due.deck);
-			tosave.deck.addAll(current_discards.deck);
-			tosave.deck.addAll(current_done.deck);
+			ActiveDeck tosave = params.deck;
+			final float elapsed = params.elapsed_secs;
+			FileHandle slot = params.slot;
+			final BoundPronouns game = params.game;
+			final Skin skin = params.skin;
+			final boolean isExtraPractice = params.isExtraPractice;
+			final Screen caller = params.caller;
+			final Stage stage = params.stage;
+
+			JsonConverter json = new JsonConverter();
+
 			tosave.lastrun = System.currentTimeMillis() - ((long) elapsed)
 					* 1000l;
 			Collections.sort(tosave.deck, byShowTime);
@@ -439,12 +469,37 @@ public class LearningSession extends ChildScreen implements Screen {
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
 			tbs.font = game.getFont(Font.SerifMedium);
-			final TextButton fb = new TextButton("SHARE STATS", tbs);
+
+			final TextButton btn_ok = new TextButton("OK", tbs);
+			final TextButton btn_scores = new TextButton("Leaderboards", tbs);
+
+			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC,
+					Texture.class);
+			TextureRegionDrawable draw_sync = new TextureRegionDrawable(
+					new TextureRegion(img_sync));
+			final ImageButton syncb = new ImageButton(draw_sync);
+			syncb.setTransform(true);
+			syncb.getImage().setScaling(Scaling.fit);
+			syncb.getImage().setColor(Color.DARK_GRAY);
 			String dtitle = isExtraPractice ? "Extra Practice Results"
 					: "Practice Results";
-			Dialog bye = new Dialog(dtitle, skin) {
+			final WindowStyle dws = new WindowStyle(skin.get(WindowStyle.class));
+			dws.titleFont = game.getFont(Font.SerifLarge);
+			Dialog bye = new Dialog(dtitle, dws) {
+				final Dialog bye = this;
 				{
-					LabelStyle lstyle = skin.get(LabelStyle.class);
+					final Texture background = game.manager.get(
+							BoundPronouns.IMG_MAYAN, Texture.class);
+					final TextureRegion region = new TextureRegion(background);
+					final TiledDrawable tiled = new TiledDrawable(region);
+					tiled.setMinHeight(0);
+					tiled.setMinWidth(0);
+					tiled.setTopHeight(game.getFont(Font.SerifLarge)
+							.getCapHeight() + 20);
+					bye.background(tiled);
+
+					LabelStyle lstyle = new LabelStyle(
+							skin.get(LabelStyle.class));
 					lstyle.font = game.getFont(Font.SerifMedium);
 
 					StringBuilder sb = new StringBuilder();
@@ -468,39 +523,77 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ (seconds < 10 ? "0" : "") + seconds);
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
-					button("OK!");
+					button(btn_ok);
+
+					if (!isExtraPractice) {
+						button(btn_scores);
+					}
+
+					final GoogleSyncUI gsu = new GoogleSyncUI(game, stage,
+							params.slot, null);
+
+					final Callback<Void> submit_scores = new Callback<Void>() {
+						@Override
+						public void success(Void result) {
+							BoundPronouns.services.lb_submit(
+									ShowLeaderboards.BoardId, info.lastScore,
+									info.level.getEngrish(), noop_success);
+							BoundPronouns.services.ach_unlocked(
+									info.level.getId(), noop_success);
+							BoundPronouns.services.ach_reveal(info.level.next()
+									.getId(), noop_success);
+						}
+					};
+
 					google_submit: {
 						if (BoundPronouns.services == null) {
 							break google_submit;
 						}
+						button(syncb);
 						if (isExtraPractice) {
 							break google_submit;
 						}
-						if (!BoundPronouns.getPrefs().getBoolean(
-								BoundPronouns.GooglePlayLogginIn, false)) {
+						if (!BoundPronouns.isLoggedIn()) {
 							break google_submit;
 						}
-						Callback<Void> submit_scores=new Callback<Void>() {
-							@Override
-							public void success(Void result) {
-								BoundPronouns.services.lb_submit(
-										ShowLeaderboards.BoardId, info.lastScore,
-										info.level.getEngrish(), noop_success);
-								BoundPronouns.services.ach_unlocked(info.level.getId(),noop_success);
-								BoundPronouns.services.ach_reveal(info.level.next().getId(),noop_success);
-							}
-						};
 						BoundPronouns.services.login(submit_scores);
 					}
+					
+					btn_scores.addListener(new ClickListener(){
+						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+							bye.cancel();							
+							return true;
+						};
+					});
+
+					syncb.addListener(new ClickListener() {
+						public boolean touchDown(InputEvent event, float x,
+								float y, int pointer, int button) {
+							bye.cancel();
+							if (!BoundPronouns.isLoggedIn()) {
+								gsu.askToLoginForSync(new Runnable() {
+									@Override
+									public void run() {
+										gsu.upload();
+									}
+								});
+							} else {
+								gsu.upload();
+							}
+							return true;
+						};
+					});
 				}
 
 				protected void result(Object object) {
-					if (fb.equals(object)) {
+					if (syncb.equals(object)) {
 						cancel();
 						return;
 					}
-					game.setScreen(caller);
-					dispose();
+					if (caller != null && !caller.equals(game.getScreen())) {
+						game.getScreen().dispose();
+						game.setScreen(caller);
+					}
 				};
 			};
 			bye.show(stage);
@@ -523,8 +616,9 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private SaveActiveDeckWithDialog saveActiveDeckWithDialog = new SaveActiveDeckWithDialog() {
-	};
+	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
+
+	// = new SaveActiveDeckWithDialog() { };
 
 	/**
 	 * Calculates amount of ms needed to shift by to move deck to "0" point.
@@ -627,6 +721,21 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (elapsed > info.settings.sessionLength.getSeconds()) {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
+					SaveParams params = new SaveParams();
+					params.caller = LearningSession.this;
+					params.deck = new ActiveDeck();
+					params.deck.deck.addAll(current_active.deck);
+					params.deck.deck.addAll(current_due.deck);
+					params.deck.deck.addAll(current_discards.deck);
+					params.deck.deck.addAll(current_done.deck);
+					params.elapsed_secs = elapsed;
+					params.game = game;
+					params.isExtraPractice = isExtraPractice;
+					params.skin = skin;
+					params.slot = slot;
+					params.stage = stage;
+					saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(
+							params);
 					stage.addAction(Actions.run(saveActiveDeckWithDialog));
 					return;
 				}
@@ -725,7 +834,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final FileHandle slot;
 
-	protected Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
+	private static Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
 			if (o1.show_again_ms != o2.show_again_ms) {
@@ -735,7 +844,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 
-	protected Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
+	private static Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
 			long dif = o1.show_again_ms - o2.show_again_ms;

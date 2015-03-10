@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -74,7 +73,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	private final String gfile_info;
 	private final String gfile_deck;
 	private final JsonConverter json;
-	private Runnable whenDone;
+	private Runnable whenAutoSyncDone;
 
 	@Override
 	public void dispose() {
@@ -83,14 +82,14 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	public static void dispose_skin() {
-		if (skin!=null) {
+		if (skin != null) {
 			skin.dispose();
 		}
 		skin = null;
 	}
 
 	public GoogleSyncUI(BoundPronouns game, Stage stage, FileHandle p0,
-			Runnable whenDone) {
+			Runnable whenAutoSyncDone) {
 		if (skin == null) {
 			skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		}
@@ -102,20 +101,19 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		gfile_info = p0.name() + "-slotinfo.json";
 		gfile_deck = p0.name() + "-activedeck.json";
 		json = new JsonConverter();
-		this.whenDone = whenDone;
+		this.whenAutoSyncDone = whenAutoSyncDone;
 	}
 
 	private void done() {
-		if (whenDone != null) {
-			Gdx.app.postRunnable(whenDone);
+		if (whenAutoSyncDone != null) {
+			Gdx.app.postRunnable(whenAutoSyncDone);
 		}
 	}
 
 	@Override
 	public void run() {
-		if (!BoundPronouns.getPrefs().getBoolean(
-				BoundPronouns.GooglePlayLogginIn, false)) {
-			askToLogin();
+		if (!BoundPronouns.isLoggedIn()) {
+			askToLoginForSync();
 			return;
 		}
 		busy = new Dialog("Google Play Services", dws) {
@@ -126,10 +124,10 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		};
 		busy.text(new Label("Retrieving Cloud Data ...", dls));
 		busy.button(new TextButton("CANCEL SYNC", tbs));
-		busy.show(stage);		
+		busy.show(stage);
 		doSync();
 	}
-	
+
 	private void recalculateCloudStats() {
 		if (!p0.child(SYNC_INFO_JSON).exists()) {
 			return;
@@ -137,15 +135,16 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		if (!p0.child(SYNC_ACTIVE_DECK_JSON).exists()) {
 			return;
 		}
-		SlotInfo cloud_info = json.fromJson(SlotInfo.class, p0.child(SYNC_INFO_JSON));
+		SlotInfo cloud_info = json.fromJson(SlotInfo.class,
+				p0.child(SYNC_INFO_JSON));
 		ActiveDeck deck = json.fromJson(ActiveDeck.class,
 				p0.child(SYNC_ACTIVE_DECK_JSON));
-		cloud_info.lastrun=deck.lastrun;
+		cloud_info.lastrun = deck.lastrun;
 		/*
-		 * Make sure we don't have active cards pointing to no longer
-		 * existing master deck cards
+		 * Make sure we don't have active cards pointing to no longer existing
+		 * master deck cards
 		 */
-		boolean save=false;
+		boolean save = false;
 		Iterator<ActiveCard> ipending = deck.deck.iterator();
 		while (ipending.hasNext()) {
 			ActiveCard active = ipending.next();
@@ -153,9 +152,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				continue;
 			}
 			ipending.remove();
-			save=true;
-			game.log(this, "Removed no longer valid entry: "
-					+ active.pgroup + " - " + active.vgroup);
+			save = true;
+			game.log(this, "Removed no longer valid entry: " + active.pgroup
+					+ " - " + active.vgroup);
 		}
 		SlotInfo.calculateStats(cloud_info, deck);
 		json.toJson(cloud_info, p0.child(SYNC_INFO_JSON));
@@ -176,12 +175,12 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		device_info = json.fromJson(SlotInfo.class, p0.child(INFO_JSON));
 		ActiveDeck deck = json.fromJson(ActiveDeck.class,
 				p0.child(ACTIVE_DECK_JSON));
-		device_info.lastrun=deck.lastrun;
+		device_info.lastrun = deck.lastrun;
 		/*
-		 * Make sure we don't have active cards pointing to no longer
-		 * existing master deck cards
+		 * Make sure we don't have active cards pointing to no longer existing
+		 * master deck cards
 		 */
-		boolean save=false;
+		boolean save = false;
 		Iterator<ActiveCard> ipending = deck.deck.iterator();
 		while (ipending.hasNext()) {
 			ActiveCard active = ipending.next();
@@ -189,9 +188,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				continue;
 			}
 			ipending.remove();
-			save=true;
-			game.log(this, "Removed no longer valid entry: "
-					+ active.pgroup + " - " + active.vgroup);
+			save = true;
+			game.log(this, "Removed no longer valid entry: " + active.pgroup
+					+ " - " + active.vgroup);
 		}
 		SlotInfo.calculateStats(device_info, deck);
 		json.toJson(device_info, p0.child(INFO_JSON));
@@ -199,7 +198,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			json.toJson(deck, p0.child(ACTIVE_DECK_JSON));
 		}
 	}
-	
+
 	private Card getCardById(String pgroup, String vgroup) {
 		for (Card card : game.deck.cards) {
 			if (!card.pgroup.equals(pgroup)) {
@@ -215,14 +214,17 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private boolean abort = false;
 
-	private void doResolveConflict(final SlotInfo cloud_info, final SlotInfo device_info) {
+	private void doResolveConflict(final SlotInfo cloud_info,
+			final SlotInfo device_info) {
 		final String upload = "CLOUD COPY";
 		final String download = "DEVICE COPY";
 		final String cancel = "CANCEL";
 		if (abort) {
 			return;
 		}
-		busy.hide();
+		if (busy != null) {
+			busy.hide();
+		}
 
 		final Dialog notice = new Dialog("CONFLICT DETECTED", dws) {
 			@Override
@@ -319,23 +321,26 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		if (abort) {
 			return;
 		}
-		busy.hide();
+		if (busy != null) {
+			busy.hide();
+		}
 		Dialog notice = new Dialog("Google Play Services", dws);
 		notice.button(new TextButton("OK", tbs));
 		notice.text(new Label("Downloading Cloud Copy ...", dls));
 		notice.show(stage);
 		try {
 			if (p0.child(ACTIVE_DECK_JSON).exists()) {
-				p0.child(ACTIVE_DECK_JSON).copyTo(p0.child(BKUP_ACTIVE_DECK_JSON));
+				p0.child(ACTIVE_DECK_JSON).copyTo(
+						p0.child(BKUP_ACTIVE_DECK_JSON));
 			}
-			if (p0.child(INFO_JSON).exists()) { 
+			if (p0.child(INFO_JSON).exists()) {
 				p0.child(INFO_JSON).copyTo(p0.child(BKUP_INFO_JSON));
-			}			
+			}
 		} catch (GdxRuntimeException e) {
 			errorDialog(e);
 		}
 		try {
-			p0.child(SYNC_ACTIVE_DECK_JSON).copyTo(p0.child(ACTIVE_DECK_JSON));		
+			p0.child(SYNC_ACTIVE_DECK_JSON).copyTo(p0.child(ACTIVE_DECK_JSON));
 			p0.child(SYNC_INFO_JSON).copyTo(p0.child(INFO_JSON));
 		} catch (GdxRuntimeException e) {
 			errorDialog(e);
@@ -358,26 +363,28 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private Dialog busy;
 
-	private void doSync() {	
-		
+	private void doSync() {
+
 		final Callback<Void> cb_infofile = new Callback<Void>() {
 			@Override
 			public void success(Void result) {
 				if (abort) {
 					return;
 				}
-				if (!p0.child(INFO_JSON).exists()){
+				if (!p0.child(INFO_JSON).exists()) {
 					download();
 					return;
-				}				
+				}
 				if (p0.child(INFO_JSON).readString("UTF-8")
 						.equals(p0.child(SYNC_INFO_JSON).readString("UTF-8"))) {
-					busy.hide();
+					if (busy != null) {
+						busy.hide();
+					}
 					dialogNothingToDo();
 					return;
-				}				
+				}
 				recalculateDeviceStats();
-				recalculateCloudStats();				
+				recalculateCloudStats();
 				SlotInfo cloud_info = json.fromJson(SlotInfo.class,
 						p0.child(SYNC_INFO_JSON));
 				SlotInfo device_info = json.fromJson(SlotInfo.class,
@@ -391,17 +398,17 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					download();
 					return;
 				}
-				
+
 				long cloud_time = json.fromJson(ActiveDeck.class,
 						p0.child(SYNC_ACTIVE_DECK_JSON)).lastrun;
 				long device_time = json.fromJson(ActiveDeck.class,
 						p0.child(ACTIVE_DECK_JSON)).lastrun;
-				
-				if (cloud_time>device_time) {
+
+				if (cloud_time > device_time) {
 					download();
 					return;
 				}
-				
+
 				upload();
 			}
 
@@ -478,9 +485,15 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		notice.show(stage);
 	}
 
-	private void upload() {
+	public void upload() {
+		upload(null);
+	}
+	
+	public void upload(Runnable whenDone) {
 		Gdx.app.log("GoogleSyncUI", "upload");
-		busy.hide();
+		if (busy != null) {
+			busy.hide();
+		}
 		if (!p0.child(INFO_JSON).exists()) {
 			dialogNothingToDo();
 			return;
@@ -511,7 +524,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				notice.hide();
 				showDoneDialog();
 			}
-
+			
 			@Override
 			public void error(Exception exception) {
 				errorDialog(exception);
@@ -523,7 +536,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				gplay.drive_replace(p0.child(INFO_JSON), gfile_info,
 						gfile_info, upload_done);
 			}
-
+			
 			@Override
 			public void error(Exception exception) {
 				errorDialog(exception);
@@ -534,7 +547,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				upload_info);
 	}
 
-	private void doLogin() {
+	public void doLogin(final Runnable afterLogin) {
 		final Dialog login = new Dialog("Google Play Services", dws);
 		login.text(new Label("Connecting to Google Play Services ...", dls));
 		login.button(new TextButton("DISMISS", tbs));
@@ -542,19 +555,17 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			@Override
 			public void success(Void result) {
 				login.hide();
-				Preferences prefs = BoundPronouns.getPrefs();
-				prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, true);
-				prefs.flush();
-				Gdx.app.postRunnable(GoogleSyncUI.this);
+				BoundPronouns.isLoggedIn(true);
+				if (afterLogin != null) {
+					Gdx.app.postRunnable(afterLogin);
+				}
 			}
 
 			@Override
 			public void error(Exception exception) {
 				exception.printStackTrace();
 				login.hide();
-				Preferences prefs = BoundPronouns.getPrefs();
-				prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, false);
-				prefs.flush();
+				BoundPronouns.isLoggedIn(true);
 				errorDialog(exception);
 			}
 		};
@@ -563,7 +574,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	private void errorDialog(Exception e) {
-		busy.hide();
+		if (busy != null) {
+			busy.hide();
+		}
 		Dialog error = new Dialog("Google Play Services", dws) {
 			@Override
 			protected void result(Object object) {
@@ -581,21 +594,33 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		e.printStackTrace();
 	}
 
-	private void askToLogin() {
+	public void askToLoginForSync() {
+		askToLoginForSync(GoogleSyncUI.this);
+	}
+
+	public void askToLogin(final Callback<Void> afterLogin) {
+		askToLoginForSync(afterLogin.withNull());
+	}
+
+	public void askToLoginForSync(final Runnable afterLogin) {
+		String reasonMsg = "Syncing requires Google Play ...";
+		askToLoginFor(afterLogin, reasonMsg);
+	}
+	
+	public void askToLoginFor(final Runnable afterLogin, String reasonMsg) {
 		final Dialog login = new Dialog("Google Play Services", dws) {
 			@Override
 			protected void result(Object object) {
 				if (!Boolean.TRUE.equals(object)) {
 					return;
 				}
-				doLogin();
+				doLogin(afterLogin);
 			}
 		};
 		login.setKeepWithinStage(true);
 		Table contentTable = login.getContentTable();
 		contentTable.row();
-		contentTable.add(new Label(
-				"Cloud Sync between devices requires Google Play.", dls));
+		contentTable.add(new Label(reasonMsg, dls));
 		contentTable.row();
 		contentTable.add(new Label("Would you like to login now?", dls));
 		login.button(new TextButton("YES - LOGIN", tbs), Boolean.TRUE);

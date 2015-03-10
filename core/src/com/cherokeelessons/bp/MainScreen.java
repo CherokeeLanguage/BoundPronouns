@@ -39,6 +39,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.bp.LearningSession.SaveActiveDeckWithDialog.SaveParams;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
@@ -364,9 +365,6 @@ public class MainScreen implements Screen, InputProcessor {
 			info.validate();
 			SlotInfo.Settings settings = info.settings;
 			
-			
-			
-			
 			String txt = "";
 			txt += info.level;
 			txt += " ";
@@ -451,12 +449,25 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.setDisabled(true);
 				deleteb.setTouchable(Touchable.disabled);
 				deleteb.getImage().setColor(Color.CLEAR);
-			}
-			
-			
+			}			
 			syncb.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-					Gdx.app.log("MainScreen", p0.name());
+					Gdx.app.log("MainScreen", p0.name());					
+					if (p0.name().endsWith("3")) {
+						SaveParams params = new SaveParams();
+						params.caller=MainScreen.this;
+						params.deck=json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
+						params.elapsed_secs=(float)(System.currentTimeMillis()-params.deck.lastrun)/1000f;
+						params.game=MainScreen.this.game;
+						params.isExtraPractice=false;
+						params.skin=skin;
+						params.slot=p0;
+						params.stage=MainScreen.this.stage;
+						LearningSession.SaveActiveDeckWithDialog d;
+						d = new LearningSession.SaveActiveDeckWithDialog(params);
+						Gdx.app.postRunnable(d);
+						return true;
+					}
 					Runnable whenDone=new Runnable() {					
 						@Override
 						public void run() {
@@ -488,6 +499,7 @@ public class MainScreen implements Screen, InputProcessor {
 				}
 
 			});
+			
 			deleteb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
@@ -629,7 +641,7 @@ public class MainScreen implements Screen, InputProcessor {
 		boolean showLeaderboards = (BoundPronouns.services != null);
 
 		if (showLeaderboards) {
-			button = new TextButton("Leader Boards", bstyle);
+			button = new TextButton("Leaderboards", bstyle);
 			button.addListener(viewBoards);
 			button.setTouchable(Touchable.enabled);
 			if ((++column) % 2 == 0) {
@@ -695,7 +707,7 @@ public class MainScreen implements Screen, InputProcessor {
 			prefs.flush();
 		}
 		if (!loginDialogDone
-				&& prefs.getBoolean(BoundPronouns.GooglePlayLogginIn, false)) {
+				&& BoundPronouns.isLoggedIn()) {
 			loginDialogDone = true;
 			BoundPronouns.services.login(noop_success);
 		}
