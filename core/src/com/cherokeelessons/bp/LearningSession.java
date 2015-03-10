@@ -529,6 +529,10 @@ public class LearningSession extends ChildScreen implements Screen {
 					if (!isExtraPractice) {
 						button(btn_scores);
 					}
+					
+					if (BoundPronouns.services!=null) {
+						button(syncb);
+					}
 
 					final GoogleSyncUI gsu = new GoogleSyncUI(game, stage,
 							params.slot, null);
@@ -546,7 +550,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						public void run() {
 							BoundPronouns.services.lb_getListWindowFor(
 									ShowLeaderboards.BoardId,
-									Collection.PUBLIC, TimeSpan.DAILY,
+									Collection.SOCIAL, TimeSpan.DAILY,
 									showTodaysCircleResult);
 						}
 					};
