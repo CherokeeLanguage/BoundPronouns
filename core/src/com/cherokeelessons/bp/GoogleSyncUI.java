@@ -8,11 +8,15 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -20,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.cherokeelessons.bp.BoundPronouns.Font;
@@ -30,6 +35,8 @@ import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList;
+import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
+import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.cherokeelessons.util.JsonConverter;
 
 /**
@@ -66,6 +73,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	private static final String SYNC_INFO_JSON = "sync-info.json";
 	private static final String ACTIVE_DECK_JSON = "ActiveDeck.json";
 	private static final String INFO_JSON = "info.json";
+	private static final String TAG = "GoogleSyncUI";
 	private final FileHandle p0;
 	private final Stage stage;
 	private final BoundPronouns game;
@@ -350,6 +358,10 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	private void showDoneDialog() {
+		showDoneDialog("Sync Complete ...");
+	}
+	
+	public void showDoneDialog(String msg) {
 		Dialog notice = new Dialog("Google Play Services", dws) {
 			@Override
 			protected void result(Object object) {
@@ -357,7 +369,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			}
 		};
 		notice.button(new TextButton("OK", tbs));
-		notice.text(new Label("Sync Complete ...", dls));
+		notice.text(new Label(msg, dls));
 		notice.show(stage);
 	}
 
@@ -640,6 +652,82 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		dls.font = game.getFont(Font.SerifLarge);
 		tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifSmall);
+	}
+
+	public void showScores(String title, GameScores gamescores, final Runnable whenDone) {
+		setDialogStyles();
+		Dialog scores = new Dialog(title, dws) {
+			Dialog scores = this;
+			{
+				final Texture background = game.manager.get(
+						BoundPronouns.IMG_MAYAN, Texture.class);
+				final TextureRegion region = new TextureRegion(background);
+				final TiledDrawable tiled = new TiledDrawable(region);
+				tiled.setMinHeight(0);
+				tiled.setMinWidth(0);
+				tiled.setTopHeight(game.getFont(Font.SerifLarge)
+						.getCapHeight() + 20);
+				scores.background(tiled);
+
+				LabelStyle lstyle = new LabelStyle(
+						skin.get(LabelStyle.class));
+				lstyle.font = game.getFont(Font.SerifMedium);
+			}
+			@Override
+			protected void result(Object object) {
+				if (whenDone!=null) {
+					Gdx.app.postRunnable(whenDone);
+				}
+			}
+		};
+		scores.setFillParent(true);
+		
+		Table container = scores.getContentTable();
+		
+		Table table = new Table();
+		
+		table.clear();
+		table.defaults().expandX();
+		String text = "Rank";
+		table.add(new Label(text, dls)).padLeft(15).padRight(15).center();
+		text = "Score";
+		table.add(new Label(text, dls)).center();
+		text = "Skill Level";
+		table.add(new Label(text, dls)).center();
+		text = "Display Name";
+		table.add(new Label(text, dls)).center();
+		
+		for (GameScore score : gamescores.list) {
+			table.row();
+			table.add(new Label(score.rank, dls)).padLeft(15).padRight(15)
+					.center();
+			table.add(new Label(score.value, dls)).right().padRight(30);
+			table.add(new Label(score.tag, dls)).center();
+			table.add(new Label(score.user, dls)).center();
+		}
+		
+		for (int ix = gamescores.list.size(); ix < 5; ix++) {
+			Gdx.app.log(TAG, "ix: "+ix);
+			table.row();
+			table.add(new Label("", dls)).padLeft(15).padRight(15)
+					.center();
+			table.add(new Label("0", dls)).right().padRight(30);
+			table.add(new Label(SlotInfo.LevelName.Newbie.getEngrish(), dls)).center();
+			table.add(new Label("", dls)).center();
+		}
+		
+		scores.button(new TextButton("OK", tbs));
+		
+		ScrollPane scroll = new ScrollPane(table, skin);
+		scroll.setColor(Color.DARK_GRAY);
+		scroll.setFadeScrollBars(false);
+		scroll.setSmoothScrolling(true);
+		container.row();
+		container.add(scroll).expand().fill();
+		stage.setScrollFocus(scroll);
+		stage.setKeyboardFocus(scroll);
+		
+		scores.show(stage);
 	}
 
 }

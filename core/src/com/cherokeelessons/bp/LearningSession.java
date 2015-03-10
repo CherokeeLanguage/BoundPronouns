@@ -52,6 +52,9 @@ import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
+import com.cherokeelessons.util.GooglePlayGameServices.Collection;
+import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
+import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
@@ -335,7 +338,6 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ "Would you like to cancel and go back to main menu?";
 
 					LabelStyle lstyle = skin.get(LabelStyle.class);
-					// lstyle.font = game.getFont(Font.SansMedium);
 					lstyle.font = game.getFont(Font.SerifMedium);
 					Label label = new Label(text, lstyle);
 					label.setAlignment(Align.left, Align.left);
@@ -344,7 +346,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					getContentTable().add(label).fill().expand().left();
 					TextButtonStyle tbs = new TextButtonStyle(
 							skin.get(TextButtonStyle.class));
-					// tbs.font = game.getFont(Font.SansMedium);
 					tbs.font = game.getFont(Font.SerifMedium);
 					TextButton tb;
 					tb = new TextButton("DO A PRACTICE", tbs);
@@ -471,7 +472,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			tbs.font = game.getFont(Font.SerifMedium);
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
-			final TextButton btn_scores = new TextButton("Leaderboards", tbs);
+			final TextButton btn_scores = new TextButton("Submit Score", tbs);
 
 			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC,
 					Texture.class);
@@ -532,36 +533,69 @@ public class LearningSession extends ChildScreen implements Screen {
 					final GoogleSyncUI gsu = new GoogleSyncUI(game, stage,
 							params.slot, null);
 
+					final Callback<GameScores> showTodaysCircleResult = new Callback<GameScores>() {
+						@Override
+						public void success(GameScores result) {
+							gsu.showScores("Today's Circle Scores", result, null);
+						}
+					};
+					
+					final Runnable whenDone=new Runnable() {
+						@Override
+						public void run() {
+							BoundPronouns.services.lb_getListWindowFor(
+									ShowLeaderboards.BoardId,
+									Collection.PUBLIC, TimeSpan.DAILY,
+									showTodaysCircleResult);							
+						}						
+					};
+					
+					final Callback<GameScores> showTodaysResult = new Callback<GameScores>() {
+						@Override
+						public void success(GameScores result) {
+							gsu.showScores("Today's Public Scores", result, whenDone);
+						}
+					};
+
+					final Callback<Void> score_submitted = new Callback<Void>() {
+						@Override
+						public void success(Void result) {
+							BoundPronouns.services.lb_getListWindowFor(
+									ShowLeaderboards.BoardId,
+									Collection.PUBLIC, TimeSpan.DAILY,
+									showTodaysResult);
+						}
+					};
+
 					final Callback<Void> submit_scores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							BoundPronouns.services.lb_submit(
-									ShowLeaderboards.BoardId, info.lastScore,
-									info.level.getEngrish(), noop_success);
 							BoundPronouns.services.ach_unlocked(
 									info.level.getId(), noop_success);
 							BoundPronouns.services.ach_reveal(info.level.next()
 									.getId(), noop_success);
+							BoundPronouns.services.lb_submit(
+									ShowLeaderboards.BoardId, info.lastScore,
+									info.level.getEngrish(), score_submitted);
 						}
 					};
 
-					google_submit: {
-						if (BoundPronouns.services == null) {
-							break google_submit;
-						}
-						button(syncb);
-						if (isExtraPractice) {
-							break google_submit;
-						}
-						if (!BoundPronouns.isLoggedIn()) {
-							break google_submit;
-						}
-						BoundPronouns.services.login(submit_scores);
-					}
-					
-					btn_scores.addListener(new ClickListener(){
-						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-							bye.cancel();							
+					btn_scores.addListener(new ClickListener() {
+						public boolean touchDown(InputEvent event, float x,
+								float y, int pointer, int button) {
+							bye.cancel();
+							if (!BoundPronouns.isLoggedIn()) {
+								gsu.askToLoginFor(new Runnable() {
+									@Override
+									public void run() {
+										BoundPronouns.services
+												.login(submit_scores);
+									}
+								},
+										"To submit your score to the Leaderboard\nyou must log into Google Play ...");
+							} else {
+								BoundPronouns.services.login(submit_scores);
+							}
 							return true;
 						};
 					});
@@ -587,6 +621,10 @@ public class LearningSession extends ChildScreen implements Screen {
 
 				protected void result(Object object) {
 					if (syncb.equals(object)) {
+						cancel();
+						return;
+					}
+					if (btn_scores.equals(object)) {
 						cancel();
 						return;
 					}
@@ -617,8 +655,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
-
-	// = new SaveActiveDeckWithDialog() { };
 
 	/**
 	 * Calculates amount of ms needed to shift by to move deck to "0" point.
@@ -880,9 +916,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		stage.addActor(container);
 		stage.addAction(Actions.delay(.05f, Actions.run(loadDeck)));
 		json = new JsonConverter();
-		// json.setOutputType(OutputType.json);
-		// json.setTypeName(null);
-		// json.setIgnoreUnknownFields(true);
 
 		FileHandle infoFile = slot.child(INFO_JSON);
 		if (!infoFile.exists()) {
@@ -933,7 +966,6 @@ public class LearningSession extends ChildScreen implements Screen {
 				 */
 				_activeCard.showCount++;
 				_activeCard.showTime += challenge_elapsed;
-				// Card card = cards_by_id.get(_activeCard.getId());
 				this.clearActions();
 				this.setCheckVisible(false);
 				setTimer(0);
@@ -1188,7 +1220,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		 */
 		Deck tmp = new Deck();
 		tmp.cards.addAll(deck.cards);
-		// String challenge = getOneOf(card.challenge.get(0));
 		scanDeck: for (int distance = 1; distance < 100; distance++) {
 			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
@@ -1371,16 +1402,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 		Collections.shuffle(answers.list);
 		return answers;
-	}
-
-	@SuppressWarnings("unused")
-	private String getOneOf(String string) {
-		if (!string.contains(",")) {
-			return string;
-		}
-		String[] tmp = StringUtils.split(",");
-		string = tmp[rand.nextInt(tmp.length)];
-		return StringUtils.strip(string);
 	}
 
 	private ActiveCard getNextCard() {

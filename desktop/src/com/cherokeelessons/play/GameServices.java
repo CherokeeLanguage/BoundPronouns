@@ -358,7 +358,7 @@ public class GameServices implements GooglePlayGameServices {
 					Games g = _getGamesObject();
 					Scores.ListWindow scores = g.scores().listWindow(boardId,
 							collection.name(), ts.name());
-					scores.setMaxResults(30);
+					scores.setMaxResults(5);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
 					for (LeaderboardEntry e : list) {

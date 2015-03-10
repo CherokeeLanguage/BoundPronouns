@@ -67,12 +67,13 @@ public class GameServices implements GooglePlayGameServices {
 	private FileHandle p0;
 	private static final JacksonFactory JSON_FACTORY = JacksonFactory
 			.getDefaultInstance();
+	protected static final String TAG = "GameServices";
 
 	private Boolean initdone = false;
 
 	private static void postRunnable(Runnable runnable) {
 		if (runnable == null) {
-			Gdx.app.log("DesktopGameServices", "NULL CALLBACK!");
+			Gdx.app.log(TAG, "NULL CALLBACK!");
 			return;
 		}
 		Gdx.app.postRunnable(runnable);
@@ -300,7 +301,7 @@ public class GameServices implements GooglePlayGameServices {
 			public void run() {
 				GameScores gscores = new GameScores();
 				try {
-					Gdx.app.log("DesktopGameServices", "Loading Leaderboard: "
+					Gdx.app.log(TAG, "Loading Leaderboard: "
 							+ collection.name() + " - " + ts.name() + " - "
 							+ boardId);
 
@@ -319,7 +320,7 @@ public class GameServices implements GooglePlayGameServices {
 						gs.rank = e.getFormattedScoreRank();
 						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
 						gs.value = e.getFormattedScore();
-						gs.user = e.getPlayer().getDisplayName();
+						gs.user = e.getPlayer().getDisplayName();						
 						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
 						gscores.list.add(gs);
 					}
@@ -357,7 +358,7 @@ public class GameServices implements GooglePlayGameServices {
 					Games g = _getGamesObject();
 					Scores.ListWindow scores = g.scores().listWindow(boardId,
 							collection.name(), ts.name());
-					scores.setMaxResults(30);
+					scores.setMaxResults(5);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
 					for (LeaderboardEntry e : list) {
@@ -546,7 +547,7 @@ public class GameServices implements GooglePlayGameServices {
 				Iterator<FileMeta> iter = result.files.iterator();
 				while (iter.hasNext()) {
 					FileMeta file = iter.next();
-					Gdx.app.log("GameServices", file.title);
+					Gdx.app.log(TAG, file.title);
 					if (!file.title.equals(title)) {
 						iter.remove();
 						continue;
@@ -718,7 +719,7 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void drive_replace(final FileHandle file, final String title,
 			final String description, final Callback<String> callback) {
-		Gdx.app.log("GameServices", "drive_replace: " + title);
+		Gdx.app.log(TAG, "drive_replace: " + title);
 		final FileMetaList[] toDelete = new FileMetaList[1];
 		final Callback<String> deleteOthers = new Callback<String>() {
 			@Override
