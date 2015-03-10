@@ -536,24 +536,26 @@ public class LearningSession extends ChildScreen implements Screen {
 					final Callback<GameScores> showTodaysCircleResult = new Callback<GameScores>() {
 						@Override
 						public void success(GameScores result) {
-							gsu.showScores("Today's Circle Scores", result, null);
+							gsu.showScores("Today's Circle Scores", result,
+									null);
 						}
 					};
-					
-					final Runnable whenDone=new Runnable() {
+
+					final Runnable whenDone = new Runnable() {
 						@Override
 						public void run() {
 							BoundPronouns.services.lb_getListWindowFor(
 									ShowLeaderboards.BoardId,
 									Collection.PUBLIC, TimeSpan.DAILY,
-									showTodaysCircleResult);							
-						}						
+									showTodaysCircleResult);
+						}
 					};
-					
+
 					final Callback<GameScores> showTodaysResult = new Callback<GameScores>() {
 						@Override
 						public void success(GameScores result) {
-							gsu.showScores("Today's Public Scores", result, whenDone);
+							gsu.showScores("Today's Public Scores", result,
+									whenDone);
 						}
 					};
 
@@ -585,14 +587,15 @@ public class LearningSession extends ChildScreen implements Screen {
 								float y, int pointer, int button) {
 							bye.cancel();
 							if (!BoundPronouns.isLoggedIn()) {
+								String reasonMsg = "To submit your score to the Leaderboard\n"
+										+ "you must log into Google Play ...";
 								gsu.askToLoginFor(new Runnable() {
 									@Override
 									public void run() {
 										BoundPronouns.services
 												.login(submit_scores);
 									}
-								},
-										"To submit your score to the Leaderboard\nyou must log into Google Play ...");
+								}, reasonMsg);
 							} else {
 								BoundPronouns.services.login(submit_scores);
 							}
@@ -807,11 +810,9 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
-
 				activeCard.tries_remaining -= tracked_answers.correctCount();
 				challengeCardDialog.setAnswers(tracked_answers,
 						displayed_answers);
-
 				float duration = info.settings.timeLimit.getSeconds()
 						- (float) activeCard.box
 						- (float) activeCard.getMinCorrectInARow();
