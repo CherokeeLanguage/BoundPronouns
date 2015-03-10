@@ -453,21 +453,6 @@ public class MainScreen implements Screen, InputProcessor {
 			syncb.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					Gdx.app.log("MainScreen", p0.name());					
-//					if (p0.name().endsWith("3")) {
-//						SaveParams params = new SaveParams();
-//						params.caller=MainScreen.this;
-//						params.deck=json.fromJson(ActiveDeck.class, p0.child(LearningSession.ActiveDeckJson));
-//						params.elapsed_secs=(float)(System.currentTimeMillis()-params.deck.lastrun)/1000f;
-//						params.game=MainScreen.this.game;
-//						params.isExtraPractice=false;
-//						params.skin=skin;
-//						params.slot=p0;
-//						params.stage=MainScreen.this.stage;
-//						LearningSession.SaveActiveDeckWithDialog d;
-//						d = new LearningSession.SaveActiveDeckWithDialog(params);
-//						Gdx.app.postRunnable(d);
-//						return true;
-//					}
 					Runnable whenDone=new Runnable() {					
 						@Override
 						public void run() {
