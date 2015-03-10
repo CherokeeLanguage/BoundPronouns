@@ -58,6 +58,8 @@ import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
+	
+	private static final String TAG = "LearningSession";
 
 	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
 
@@ -233,6 +235,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * go!
 			 */
 			stage.addAction(Actions.run(showACard));
+			
+			Gdx.app.log(TAG, "Elapsed :"+elapsed);
 		}
 
 		private void resetScoring(ActiveDeck deck) {
@@ -383,6 +387,8 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	private class ActiveDeckLoader implements Runnable {
+		
+
 		@Override
 		public void run() {
 			game.log(this, "Loading Active Deck ...");
@@ -400,7 +406,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
-			stage.addAction(Actions.run(processActiveCards));
+			stage.addAction(Actions.run(processActiveCards));			
 		}
 	}
 
@@ -441,40 +447,31 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		@Override
 		public void run() {
-			ActiveDeck tosave = params.deck;
-			final float elapsed = params.elapsed_secs;
-			FileHandle slot = params.slot;
-			final BoundPronouns game = params.game;
-			final Skin skin = params.skin;
-			final boolean isExtraPractice = params.isExtraPractice;
-			final Screen caller = params.caller;
-			final Stage stage = params.stage;
-
 			JsonConverter json = new JsonConverter();
 
-			tosave.lastrun = System.currentTimeMillis() - ((long) elapsed)
+			params.deck.lastrun = System.currentTimeMillis() - ((long) params.elapsed_secs)
 					* 1000l;
-			Collections.sort(tosave.deck, byShowTime);
+			Collections.sort(params.deck.deck, byShowTime);
 
 			final SlotInfo info;
-			FileHandle infoFile = slot.child(INFO_JSON);
+			FileHandle infoFile = params.slot.child(INFO_JSON);
 			if (!infoFile.exists()) {
 				info = new SlotInfo();
 				info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
 			} else {
 				info = json.fromJson(SlotInfo.class, infoFile);
-				infoFile.copyTo(slot.child(INFO_JSON + ".bak"));
+				infoFile.copyTo(params.slot.child(INFO_JSON + ".bak"));
 			}
-			SlotInfo.calculateStats(info, tosave);
+			SlotInfo.calculateStats(info, params.deck);
 
 			TextButtonStyle tbs = new TextButtonStyle(
-					skin.get(TextButtonStyle.class));
-			tbs.font = game.getFont(Font.SerifMedium);
+					params.skin.get(TextButtonStyle.class));
+			tbs.font = params.game.getFont(Font.SerifMedium);
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
 			final TextButton btn_scores = new TextButton("Submit Score", tbs);
 
-			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC,
+			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC,
 					Texture.class);
 			TextureRegionDrawable draw_sync = new TextureRegionDrawable(
 					new TextureRegion(img_sync));
@@ -482,26 +479,26 @@ public class LearningSession extends ChildScreen implements Screen {
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
 			syncb.getImage().setColor(Color.DARK_GRAY);
-			String dtitle = isExtraPractice ? "Extra Practice Results"
+			String dtitle = params.isExtraPractice ? "Extra Practice Results"
 					: "Practice Results";
-			final WindowStyle dws = new WindowStyle(skin.get(WindowStyle.class));
-			dws.titleFont = game.getFont(Font.SerifLarge);
+			final WindowStyle dws = new WindowStyle(params.skin.get(WindowStyle.class));
+			dws.titleFont = params.game.getFont(Font.SerifLarge);
 			Dialog bye = new Dialog(dtitle, dws) {
 				final Dialog bye = this;
 				{
-					final Texture background = game.manager.get(
+					final Texture background = params.game.manager.get(
 							BoundPronouns.IMG_MAYAN, Texture.class);
 					final TextureRegion region = new TextureRegion(background);
 					final TiledDrawable tiled = new TiledDrawable(region);
 					tiled.setMinHeight(0);
 					tiled.setMinWidth(0);
-					tiled.setTopHeight(game.getFont(Font.SerifLarge)
+					tiled.setTopHeight(params.game.getFont(Font.SerifLarge)
 							.getCapHeight() + 20);
 					bye.background(tiled);
 
 					LabelStyle lstyle = new LabelStyle(
-							skin.get(LabelStyle.class));
-					lstyle.font = game.getFont(Font.SerifMedium);
+							params.skin.get(LabelStyle.class));
+					lstyle.font = params.game.getFont(Font.SerifMedium);
 
 					StringBuilder sb = new StringBuilder();
 					sb.append("Level: ");
@@ -518,26 +515,25 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					sb.append(info.longTerm + " long term memorized");
 					sb.append("\n");
-					int minutes = (int) (elapsed / 60f);
-					int seconds = (int) (elapsed - minutes * 60f);
+					int minutes = (int) (params.elapsed_secs / 60f);
+					int seconds = (int) (params.elapsed_secs - minutes * 60f);
 					sb.append("Total actual challenge time: " + minutes + ":"
 							+ (seconds < 10 ? "0" : "") + seconds);
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
-					button(btn_ok);
-
-					if (!isExtraPractice) {
-						button(btn_scores);
-					}
+					button(btn_ok, btn_ok);
 					
 					if (BoundPronouns.services!=null) {
-						button(syncb);
+						if (!params.isExtraPractice) {
+							button(btn_scores, btn_scores);
+						}
+						button(syncb, syncb);
 					}
 
-					final GoogleSyncUI gsu = new GoogleSyncUI(game, stage,
+					final GoogleSyncUI gsu = new GoogleSyncUI(params.game, params.stage,
 							params.slot, null);
 
-					final Callback<GameScores> showTodaysCircleResult = new Callback<GameScores>() {
+					final Callback<GameScores> showCircleScores = new Callback<GameScores>() {
 						@Override
 						public void success(GameScores result) {
 							gsu.showScores("Today's Circle Scores", result,
@@ -545,31 +541,31 @@ public class LearningSession extends ChildScreen implements Screen {
 						}
 					};
 
-					final Runnable whenDone = new Runnable() {
+					final Runnable getCircleScores = new Runnable() {
 						@Override
 						public void run() {
 							BoundPronouns.services.lb_getListWindowFor(
 									ShowLeaderboards.BoardId,
 									Collection.SOCIAL, TimeSpan.DAILY,
-									showTodaysCircleResult);
+									showCircleScores);
 						}
 					};
 
-					final Callback<GameScores> showTodaysResult = new Callback<GameScores>() {
+					final Callback<GameScores> showPublicScores = new Callback<GameScores>() {
 						@Override
 						public void success(GameScores result) {
 							gsu.showScores("Today's Public Scores", result,
-									whenDone);
+									getCircleScores);
 						}
 					};
 
-					final Callback<Void> score_submitted = new Callback<Void>() {
+					final Callback<Void> getPublicScores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
 							BoundPronouns.services.lb_getListWindowFor(
 									ShowLeaderboards.BoardId,
 									Collection.PUBLIC, TimeSpan.DAILY,
-									showTodaysResult);
+									showPublicScores);
 						}
 					};
 
@@ -582,14 +578,13 @@ public class LearningSession extends ChildScreen implements Screen {
 									.getId(), noop_success);
 							BoundPronouns.services.lb_submit(
 									ShowLeaderboards.BoardId, info.lastScore,
-									info.level.getEngrish(), score_submitted);
+									info.level.getEngrish(), getPublicScores);
 						}
 					};
 
 					btn_scores.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x,
 								float y, int pointer, int button) {
-							bye.cancel();
 							if (!BoundPronouns.isLoggedIn()) {
 								String reasonMsg = "To submit your score to the Leaderboard\n"
 										+ "you must log into Google Play ...";
@@ -610,7 +605,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					syncb.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x,
 								float y, int pointer, int button) {
-							bye.cancel();
 							if (!BoundPronouns.isLoggedIn()) {
 								gsu.askToLoginForSync(new Runnable() {
 									@Override
@@ -635,28 +629,29 @@ public class LearningSession extends ChildScreen implements Screen {
 						cancel();
 						return;
 					}
-					if (caller != null && !caller.equals(game.getScreen())) {
-						game.getScreen().dispose();
-						game.setScreen(caller);
+					Screen current = params.game.getScreen();
+					if (params.caller != null && !params.caller.equals(current)) {
+						params.game.setScreen(params.caller);
+						current.dispose();
 					}
 				};
 			};
-			bye.show(stage);
+			bye.show(params.stage);
 			bye.setModal(true);
 			bye.setFillParent(true);
 
-			if (isExtraPractice) {
-				game.log(this, "Extra Practice Session - NOT SAVING!");
+			if (params.isExtraPractice) {
+				params.game.log(this, "Extra Practice Session - NOT SAVING!");
 				return;
 			}
 
-			FileHandle tmp = slot.child(ActiveDeckJson + ".tmp");
-			json.toJson(tosave, tmp);
-			tmp.moveTo(slot.child(ActiveDeckJson));
+			FileHandle tmp = params.slot.child(ActiveDeckJson + ".tmp");
+			json.toJson(params.deck, tmp);
+			tmp.moveTo(params.slot.child(ActiveDeckJson));
 			tmp.delete();
-			tmp = slot.child(INFO_JSON + ".tmp");
+			tmp = params.slot.child(INFO_JSON + ".tmp");
 			json.toJson(info, tmp);
-			tmp.moveTo(slot.child(INFO_JSON));
+			tmp.moveTo(params.slot.child(INFO_JSON));
 			tmp.delete();
 		}
 	}
@@ -765,7 +760,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					elapsed_tick_on = false;
 					game.log(this, "no cards remaining");
 					SaveParams params = new SaveParams();
-					params.caller = LearningSession.this;
+					params.caller = LearningSession.this.caller;
 					params.deck = new ActiveDeck();
 					params.deck.deck.addAll(current_active.deck);
 					params.deck.deck.addAll(current_due.deck);
