@@ -45,7 +45,6 @@ build/
 
 ## OS Specific
 .DS_Store
-/assets/
 /.project
 /skin-editor/
 /.settings/

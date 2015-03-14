@@ -45,8 +45,9 @@ public class DesktopLauncher implements PlatformTextInput {
 				.getDefaultScreenDevice();
 		int width = (75 * gd.getDisplayMode().getWidth()) / 100;
 		int height = (75 * gd.getDisplayMode().getHeight()) / 100;
-		// int width=1280;
-		// int height=720;
+		//iphone 4s
+		height=640;
+		width=960;
 		config = new LwjglApplicationConfiguration();
 		config.allowSoftwareMode = true;
 		config.forceExit = true;
