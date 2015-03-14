@@ -80,7 +80,7 @@ public interface GooglePlayGameServices {
 	}
 	
 	public static enum TimeSpan {
-		ALL_TIME("Alltime Best"), WEEKLY("This Week's Best"), DAILY("Today's Best");
+		DAILY("Today's Best"), WEEKLY("This Week's Best"), ALL_TIME("Alltime Best");
 		private TimeSpan(String engrish) {
 			this.engrish=engrish;
 		}

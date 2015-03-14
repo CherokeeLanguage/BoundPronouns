@@ -45,9 +45,6 @@ public class DesktopLauncher implements PlatformTextInput {
 				.getDefaultScreenDevice();
 		int width = (75 * gd.getDisplayMode().getWidth()) / 100;
 		int height = (75 * gd.getDisplayMode().getHeight()) / 100;
-		//iphone 4s
-		height=ScreenSize._4s.getHeight();
-		width=ScreenSize._4s.getWidth();
 		config = new LwjglApplicationConfiguration();
 		config.allowSoftwareMode = true;
 		config.forceExit = true;
@@ -58,7 +55,6 @@ public class DesktopLauncher implements PlatformTextInput {
 		config.addIcon("icons/icon-16.png", FileType.Internal);
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
 		BoundPronouns.pInput = desktopLauncher;
-//		BoundPronouns.fb = desktopLauncher;
 		gameServices = new GameServices(new Platform());
 		BoundPronouns.services = gameServices;
 		new LwjglApplication(new BoundPronouns(), config);		 

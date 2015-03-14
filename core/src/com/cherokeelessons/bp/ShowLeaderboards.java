@@ -59,7 +59,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		return new TiledDrawable(new TextureRegion(texture));
 	}
 
-	private TimeSpan ts = TimeSpan.WEEKLY;
+	private TimeSpan ts = TimeSpan.DAILY;
 	public FileHandle p0;
 
 	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th",
