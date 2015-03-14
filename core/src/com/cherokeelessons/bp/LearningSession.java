@@ -77,9 +77,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final int SendToNextSessionThreshold = 4;
 
-	private static final int InitialDeckSize = 3;
+	private static final int InitialDeckSize = 5;
 
-	private static final int IncrementDeckBySize = 1;
+	private static final int IncrementDeckBySize = 3;
 
 	private static final long ONE_SECOND_ms = 1000l;
 
