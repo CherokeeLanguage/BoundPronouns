@@ -148,7 +148,7 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum SessionLength {
-		Brief("Brief: about 5-8 minutes", 5f), Standard(
+		XBrief("XBrief: about 2-4 minutes", 2f), Brief("Brief: about 5-8 minutes", 5f), Standard(
 				"Standard: about 10-15 minutes", 10f), Long(
 				"Long: about 15-20 minutes", 15f), BrainNumbing(
 				"Brain Numbing: very long", 60f);

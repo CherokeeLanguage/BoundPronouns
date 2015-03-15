@@ -224,8 +224,8 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private void doResolveConflict(final SlotInfo cloud_info,
 			final SlotInfo device_info) {
-		final String upload = "CLOUD COPY";
-		final String download = "DEVICE COPY";
+		final String download = "CLOUD COPY";
+		final String upload = "DEVICE COPY";
 		final String cancel = "CANCEL";
 		if (abort) {
 			return;
