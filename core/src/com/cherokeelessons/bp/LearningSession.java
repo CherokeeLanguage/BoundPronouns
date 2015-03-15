@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -58,7 +59,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
-	
+
 	private static final String TAG = "LearningSession";
 
 	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
@@ -235,8 +236,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * go!
 			 */
 			stage.addAction(Actions.run(showACard));
-			
-			Gdx.app.log(TAG, "Elapsed :"+elapsed);
+
+			Gdx.app.log(TAG, "Elapsed :" + elapsed);
 		}
 
 		private void resetScoring(ActiveDeck deck) {
@@ -341,7 +342,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ "Would you like to jump forward by a full day?\n\n"
 							+ "Would you like to cancel and go back to main menu?";
 
-					LabelStyle lstyle = skin.get(LabelStyle.class);
+					LabelStyle lstyle = new LabelStyle(skin.get(LabelStyle.class));
 					lstyle.font = game.getFont(Font.SerifMedium);
 					Label label = new Label(text, lstyle);
 					label.setAlignment(Align.left, Align.left);
@@ -387,7 +388,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	};
 
 	private class ActiveDeckLoader implements Runnable {
-		
 
 		@Override
 		public void run() {
@@ -406,7 +406,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				Gdx.app.postRunnable(tooSoon);
 				return;
 			}
-			stage.addAction(Actions.run(processActiveCards));			
+			stage.addAction(Actions.run(processActiveCards));
 		}
 	}
 
@@ -449,8 +449,8 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			JsonConverter json = new JsonConverter();
 
-			params.deck.lastrun = System.currentTimeMillis() - ((long) params.elapsed_secs)
-					* 1000l;
+			params.deck.lastrun = System.currentTimeMillis()
+					- ((long) params.elapsed_secs) * 1000l;
 			Collections.sort(params.deck.deck, byShowTime);
 
 			final SlotInfo info;
@@ -481,7 +481,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			syncb.getImage().setColor(Color.DARK_GRAY);
 			String dtitle = params.isExtraPractice ? "Extra Practice Results"
 					: "Practice Results";
-			final WindowStyle dws = new WindowStyle(params.skin.get(WindowStyle.class));
+			final WindowStyle dws = new WindowStyle(
+					params.skin.get(WindowStyle.class));
 			dws.titleFont = params.game.getFont(Font.SerifLarge);
 			Dialog bye = new Dialog(dtitle, dws) {
 				final Dialog bye = this;
@@ -522,16 +523,16 @@ public class LearningSession extends ChildScreen implements Screen {
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button(btn_ok, btn_ok);
-					
-					if (BoundPronouns.services!=null) {
+
+					if (BoundPronouns.services != null) {
 						if (!params.isExtraPractice) {
 							button(btn_scores, btn_scores);
 						}
 						button(syncb, syncb);
 					}
 
-					final GoogleSyncUI gsu = new GoogleSyncUI(params.game, params.stage,
-							params.slot, null);
+					final GoogleSyncUI gsu = new GoogleSyncUI(params.game,
+							params.stage, params.slot, null);
 
 					final Callback<GameScores> showCircleScores = new Callback<GameScores>() {
 						@Override
@@ -928,8 +929,23 @@ public class LearningSession extends ChildScreen implements Screen {
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
 			protected void showMainMenu() {
-				game.setScreen(LearningSession.this.caller);
-				LearningSession.this.dispose();
+				Runnable yes=new Runnable() {					
+					@Override
+					public void run() {
+						game.setScreen(LearningSession.this.caller);
+						LearningSession.this.dispose();
+					}
+				};
+				Runnable no=new Runnable() {					
+					@Override
+					public void run() {
+					}
+				};
+				Dialog dialog = dialogYN(
+						"Please Confirm Exit",
+						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
+						yes, no);
+				dialog.show(stage);				
 			}
 
 			@Override
@@ -945,17 +961,38 @@ public class LearningSession extends ChildScreen implements Screen {
 		};
 
 		challengeCardDialog = new ChallengeCardDialog(game, skin) {
+			
 			Runnable hideThisCard = new Runnable() {
 				@Override
 				public void run() {
 					hide();
 				}
 			};
+			
+			
 
 			@Override
 			protected void showMainMenu() {
-				game.setScreen(LearningSession.this.caller);
-				LearningSession.this.dispose();
+				final boolean wasPaused = challengeCardDialog.paused;				
+				Runnable yes=new Runnable() {					
+					@Override
+					public void run() {
+						game.setScreen(LearningSession.this.caller);
+						LearningSession.this.dispose();
+					}
+				};
+				Runnable no=new Runnable() {					
+					@Override
+					public void run() {
+						challengeCardDialog.paused=wasPaused;
+					}
+				};
+				Dialog dialog = dialogYN(
+						"Please Confirm Exit",
+						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
+						yes, no);
+				dialog.show(stage);				
+				challengeCardDialog.paused=true;
 			}
 
 			@Override
@@ -1164,6 +1201,10 @@ public class LearningSession extends ChildScreen implements Screen {
 		game.manager.unload(BoundPronouns.SND_BUZZ);
 		game.manager.unload(BoundPronouns.SND_COW);
 		game.manager.unload(BoundPronouns.SND_TICKTOCK);
+		if (dskin!=null) {
+			dskin.dispose();
+			dskin=null;
+		}
 	}
 
 	private AnswerList getAnswerSetsForBySimilarChallenge(
@@ -1538,5 +1579,42 @@ public class LearningSession extends ChildScreen implements Screen {
 			return card;
 		}
 		return null;
+	}
+
+	private Skin dskin=null;
+	
+	private Dialog dialogYN(String title, String message, final Runnable yes,
+			final Runnable no) {
+		if (dskin==null) {
+			dskin=new Skin(Gdx.files.internal(BoundPronouns.SKIN));
+		}
+		WindowStyle ws = new WindowStyle(dskin.get(WindowStyle.class));
+		ws.titleFont = game.getFont(Font.SerifLLarge);
+		LabelStyle ls = new LabelStyle(dskin.get(LabelStyle.class));
+		message = WordUtils.wrap(message, 70);
+		ls.font = game.getFont(Font.SerifLarge);
+		Label msg = new Label(message, ls);
+		msg.setAlignment(Align.center);
+		TextButtonStyle tbs = new TextButtonStyle(
+				dskin.get(TextButtonStyle.class));
+		tbs.font = game.getFont(Font.SerifLarge);
+		final TextButton btn_yes = new TextButton("YES", tbs);
+		final TextButton btn_no = new TextButton("NO", tbs);
+		Dialog dialog = new Dialog(title, ws) {
+			@Override
+			protected void result(Object object) {
+				super.result(object);
+				if (btn_yes.equals(object)) {
+					Gdx.app.postRunnable(yes);
+				}
+				if (btn_no.equals(object)) {
+					Gdx.app.postRunnable(no);
+				}
+			}
+		};
+		dialog.text(msg);
+		dialog.button(btn_yes, btn_yes);
+		dialog.button(btn_no, btn_no);
+		return dialog;
 	}
 }

@@ -39,7 +39,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Scaling;
 import com.cherokeelessons.bp.BoundPronouns.Font;
-import com.cherokeelessons.bp.LearningSession.SaveActiveDeckWithDialog.SaveParams;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
