@@ -49,6 +49,7 @@ import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.Answer;
 import com.cherokeelessons.cards.Answer.AnswerList;
+import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
@@ -402,9 +403,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			current_due.lastrun = tmp.lastrun;
 			Collections.sort(current_due.deck, byShowTime);
 
-			if (System.currentTimeMillis() - current_due.lastrun < 16 * ONE_HOUR_ms) {
-				Gdx.app.postRunnable(tooSoon);
-				return;
+			if (!info.settings.sessionLength.equals(SessionLength.XBrief)) {
+				if (System.currentTimeMillis() - current_due.lastrun < 16 * ONE_HOUR_ms) {
+					Gdx.app.postRunnable(tooSoon);
+					return;
+				}
 			}
 			stage.addAction(Actions.run(processActiveCards));
 		}
