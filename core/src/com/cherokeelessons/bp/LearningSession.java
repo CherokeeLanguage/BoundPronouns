@@ -153,7 +153,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 			game.log(this, due + " cards previous cards are due.");
-
+		
 			/*
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
@@ -902,11 +902,15 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
+		
+		int totalCards = game.deck.cards.size();
+		current_active.deck = new ArrayList<ActiveCard>(totalCards);
+		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
+		current_done.deck = new ArrayList<ActiveCard>(totalCards);
+		current_due.deck = new ArrayList<ActiveCard>(totalCards);
+		
 		this.slot = slot;
 		slot.mkdirs();
-		if (slot.child("deck.json").exists()) {
-			slot.child("deck.json").delete();
-		}
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
