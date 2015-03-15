@@ -5,7 +5,7 @@ Fix it so it is no longer possible to pause the game when a challenge is "invisi
 
 1.73
 
-Fix backwards sync issue caused when "active cards" are removed because they no longer exists in the master deck.
+Fix backwards sync issue caused when "active cards" are removed because they no longer exist in the master deck.
 Fix other bugs in sync code.
 
 1.72
