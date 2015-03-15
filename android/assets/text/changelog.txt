@@ -1,3 +1,8 @@
+1.75
+
+Updated to libGDX 1.5.5.
+Fix it so it is no longer possible to pause the game when a challenge is "invisible" on the practice screen.
+
 1.73
 
 Fix backwards sync issue caused when "active cards" are removed because they no longer exists in the master deck.
