@@ -1,11 +1,16 @@
 package com.cherokeelessons.bp;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
+
 import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -160,5 +165,19 @@ public abstract class NewCardDialog extends Dialog {
 	public void setCounter(int cardcount) {
 		setTitle(title+" ["+cardcount+"]");
 	}
+	
+	@Override
+	public void hide() {
+		super.hide(null);
+	}
 
+	@Override
+	public Dialog show(Stage stage) {
+		show(stage,
+				sequence(Actions.alpha(0),
+						Actions.fadeIn(0.4f, Interpolation.fade)));
+		setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
+				Math.round((stage.getHeight() - getHeight()) / 2));
+		return this;
+	}
 }
