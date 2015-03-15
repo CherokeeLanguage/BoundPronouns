@@ -1,7 +1,7 @@
 1.76
 
 New XBrief session added by special request.
-Add "Confirm Quit Session" when "Main Menu" hit on learning screen. 
+Add "Confirm Quit Session" when "Main Menu" hit on learning screen.
 
 1.75
 
