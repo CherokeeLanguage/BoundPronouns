@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,6 +18,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.AlphaAction;
+import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -305,9 +310,9 @@ public abstract class ChallengeCardDialog extends Dialog {
 		setObject(check, null);
 		btable.add(check).colspan(2).fillX().expandX();
 		btable.row();
-//		check.setVisible(true);
-//		check.setDisabled(false);
-//		check.setTouchable(Touchable.enabled);
+		// check.setVisible(true);
+		// check.setDisabled(false);
+		// check.setTouchable(Touchable.enabled);
 	}
 
 	public void setCheckVisible(boolean visible) {
@@ -323,7 +328,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 	public void updateSettings() {
 		updateMuteButtonText();
 	}
-	
+
 	public void hide() {
 		hide(null);
 	}
@@ -345,8 +350,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 		disableCard.run();
 		super.hide(action);
 	}
-	
-	private Runnable disableCard = new Runnable(){
+
+	private Runnable disableCard = new Runnable() {
 		public void run() {
 			check.setDisabled(true);
 			check.setVisible(true);
@@ -354,8 +359,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 			navEnable(false);
 		};
 	};
-	
-	private Runnable enableCard = new Runnable(){
+
+	private Runnable enableCard = new Runnable() {
 		public void run() {
 			check.setDisabled(false);
 			check.setVisible(true);
@@ -366,11 +371,19 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	@Override
 	public Dialog show(Stage stage) {
-		paused=false;
+		DelayAction delay;
+		if (Gdx.input.isTouched()) {
+			delay = Actions.delay(.4f);
+		} else {
+			delay = Actions.delay(.0f);
+		}
+		paused = false;
 		disableCard.run();
-		show(stage,
-				sequence(Actions.alpha(0),
-						Actions.fadeIn(0.4f, Interpolation.fade), Actions.run(enableCard)));
+		AlphaAction alpha0 = Actions.alpha(0);
+		AlphaAction fadeIn = Actions.fadeIn(0.4f, Interpolation.fade);
+		RunnableAction enable = Actions.run(enableCard);
+		SequenceAction sequence = sequence(alpha0, delay, fadeIn, enable);
+		show(stage, sequence);
 		setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
 				Math.round((stage.getHeight() - getHeight()) / 2));
 		return this;
