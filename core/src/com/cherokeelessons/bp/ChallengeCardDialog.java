@@ -6,8 +6,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -30,6 +33,8 @@ import com.cherokeelessons.cards.SlotInfo;
 
 public abstract class ChallengeCardDialog extends Dialog {
 
+	public static final String TAG = "ChallengeCardDialog";
+
 	public SlotInfo.Settings settings = new SlotInfo.Settings();
 
 	public void setCounter(int cardcount) {
@@ -48,6 +53,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 	private TextButton mute;
 
 	private final Skin skin;
+
+	private final TextButton pause;
+	
+	private final TextButton main;
 
 	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
@@ -77,14 +86,14 @@ public abstract class ChallengeCardDialog extends Dialog {
 				skin.get(TextButtonStyle.class));
 		// navStyle.font = game.getFont(Font.SansMedium);
 		navStyle.font = game.getFont(Font.SerifMedium);
-		TextButton main = new TextButton("Main Menu", navStyle);
+		main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();
 		appNavBar.add(main).left();
 		main.addListener(new ClickListener() {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				doNav();
+				showMainMenu();
 				return true;
 			}
 		});
@@ -104,7 +113,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 			}
 		});
 
-		final TextButton pause = new TextButton("Unpause", navStyle);
+		pause = new TextButton("Unpause", navStyle);
 		c = appNavBar.add(pause).left().fillX();
 		tmp = c.getPrefWidth();
 		c.width(tmp);
@@ -113,7 +122,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				if (pause.isChecked()) {
+				paused = !paused;
+				if (!paused) {
 					// being unchecked
 					paused = false;
 					getButtonTable().setVisible(true);
@@ -157,7 +167,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		timer.setText(z);
 	}
 
-	protected abstract void doNav();
+	protected abstract void showMainMenu();
 
 	private Table appNavBar;
 
@@ -198,7 +208,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 		TextButtonStyle chr_san_large = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
-		// chr_san_large.font = game.getFont(Font.SansXLarge);
 		chr_san_large.font = game.getFont(Font.SerifXLarge);
 
 		TextButton challenge_top = new TextButton("", chr_san_large);
@@ -214,15 +223,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 		}
 		Label msg;
 		if (!StringUtils.isBlank(syllabary)) {
-			// LabelStyle san_style = new
-			// LabelStyle(game.getFont(Font.SansXLarge),
-			// chr_san_large.fontColor);
 			LabelStyle san_style = new LabelStyle(
 					game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
 			if (shrink) {
 				game.log(this, syllabary.length() + "");
-				// san_style = new LabelStyle(game.getFont(Font.SansLLarge),
-				// chr_san_large.fontColor);
 				san_style = new LabelStyle(game.getFont(Font.SerifLLarge),
 						chr_san_large.fontColor);
 			}
@@ -253,18 +257,13 @@ public abstract class ChallengeCardDialog extends Dialog {
 		TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
-		// background.setTopHeight(game.getFont(Font.SansLarge).getCapHeight() +
-		// 20);
-		background
-				.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
+		BitmapFont font = game.getFont(Font.SerifLarge);
+		background.setTopHeight(font.getCapHeight() + 20);
 		return background;
 	}
 
-//	final AnswerList selected = new AnswerList();
-
 	public void setAnswers(AnswerList tracked_answers,
 			AnswerList displayed_answers) {
-//		selected.list.clear();
 		Table btable = getButtonTable();
 		btable.clearChildren();
 		boolean odd = true;
@@ -274,7 +273,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 			if (odd) {
 				btable.row();
 			}
-			final TextButton a = new TextButton(displayed_answer.answer, answer_style);
+			final TextButton a = new TextButton(displayed_answer.answer,
+					answer_style);
 			a.getLabel().setWrap(true);
 			a.setUserObject(tracked_answer);
 			a.addListener(new ClickListener() {
@@ -284,11 +284,9 @@ public abstract class ChallengeCardDialog extends Dialog {
 					if (a.isChecked()) {
 						// we are being unchecked
 						a.setColor(Color.WHITE);
-//						selected.list.remove(tracked_answer);
 					} else {
 						// we are being checked
 						a.setColor(Color.GREEN);
-//						selected.list.add(tracked_answer);
 					}
 					return true;
 				}
@@ -319,6 +317,33 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	public void updateSettings() {
 		updateMuteButtonText();
+	}
+
+	@Override
+	public void hide() {
+		navEnable(false);
+		super.hide();
+	}
+
+	protected void navEnable(boolean enabled) {
+		pause.setVisible(enabled);
+		pause.setTouchable(enabled?Touchable.enabled:Touchable.disabled);
+		main.setVisible(enabled);
+		main.setTouchable(enabled?Touchable.enabled:Touchable.disabled);
+		mute.setVisible(enabled);
+		mute.setTouchable(enabled?Touchable.enabled:Touchable.disabled);
+	}
+
+	@Override
+	public void hide(Action action) {
+		navEnable(false);
+		super.hide(action);
+	}
+
+	@Override
+	public Dialog show(Stage stage) {
+		navEnable(true);
+		return super.show(stage);
 	}
 
 }

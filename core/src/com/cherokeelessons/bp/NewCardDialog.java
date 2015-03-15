@@ -93,7 +93,7 @@ public abstract class NewCardDialog extends Dialog {
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y,
 					int pointer, int button) {
-				doNav();
+				showMainMenu();
 				return true;
 			}
 		});
@@ -113,7 +113,7 @@ public abstract class NewCardDialog extends Dialog {
 		super.act(delta);
 	}
 	
-	protected abstract void  doNav();
+	protected abstract void  showMainMenu();
 
 	private Table appNavBar;
 	

@@ -927,7 +927,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
-			protected void doNav() {
+			protected void showMainMenu() {
 				game.setScreen(LearningSession.this.caller);
 				LearningSession.this.dispose();
 			}
@@ -953,13 +953,14 @@ public class LearningSession extends ChildScreen implements Screen {
 			};
 
 			@Override
-			protected void doNav() {
+			protected void showMainMenu() {
 				game.setScreen(LearningSession.this.caller);
 				LearningSession.this.dispose();
 			}
 
 			@Override
 			protected void result(Object object) {
+				this.navEnable(false);
 				/*
 				 * bump show count and add in elapsed display time for later
 				 * scoring ...
