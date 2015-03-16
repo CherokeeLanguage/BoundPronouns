@@ -1,6 +1,5 @@
 package com.cherokeelessons.bp;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import java.util.Iterator;
@@ -18,10 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.AlphaAction;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -368,12 +365,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	@Override
 	public Dialog show(Stage stage) {
-		long now = System.currentTimeMillis();
 		paused = false;
 		Gdx.app.postRunnable(disableCard);
 		RunnableAction enable = Actions.run(enableCard);
 		if (Gdx.input.isTouched()) {
-			Gdx.app.log(TAG, "Gdx.input.isTouched: true");
 			DelayAction delay = Actions.delay(.2f);
 			show(stage, sequence(Actions.alpha(0), delay, Actions.fadeIn(0.4f, Interpolation.fade), enable));
 		} else {
