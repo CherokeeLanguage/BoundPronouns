@@ -1,6 +1,7 @@
 package com.cherokeelessons.bp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -154,7 +155,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 			game.log(this, due + " cards previous cards are due.");
-		
+
 			/*
 			 * Make sure we don't have active cards pointing to no longer
 			 * existing master deck cards
@@ -343,7 +344,8 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ "Would you like to jump forward by a full day?\n\n"
 							+ "Would you like to cancel and go back to main menu?";
 
-					LabelStyle lstyle = new LabelStyle(skin.get(LabelStyle.class));
+					LabelStyle lstyle = new LabelStyle(
+							skin.get(LabelStyle.class));
 					lstyle.font = game.getFont(Font.SerifMedium);
 					Label label = new Label(text, lstyle);
 					label.setAlignment(Align.left, Align.left);
@@ -804,14 +806,15 @@ public class LearningSession extends ChildScreen implements Screen {
 				challengeCardDialog.setCard(activeCard, deckCard);
 				Gdx.app.log(TAG, "challengeCardDialog:show");
 				challengeCardDialog.show(stage);
-				
+
 				AnswerList tracked_answers;
 				if (rand.nextBoolean()) {
 					Gdx.app.log(TAG, "challengeCardDialog:getAnswerSetsFor");
 					tracked_answers = getAnswerSetsFor(activeCard, deckCard,
 							game.deck);
 				} else {
-					Gdx.app.log(TAG, "challengeCardDialog:getAnswerSetsForBySimilarChallenge");
+					Gdx.app.log(TAG,
+							"challengeCardDialog:getAnswerSetsForBySimilarChallenge");
 					tracked_answers = getAnswerSetsForBySimilarChallenge(
 							activeCard, deckCard, game.deck);
 				}
@@ -910,13 +913,13 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
-		
+
 		int totalCards = game.deck.cards.size();
 		current_active.deck = new ArrayList<ActiveCard>(totalCards);
 		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
 		current_done.deck = new ArrayList<ActiveCard>(totalCards);
 		current_due.deck = new ArrayList<ActiveCard>(totalCards);
-		
+
 		this.slot = slot;
 		slot.mkdirs();
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
@@ -941,14 +944,14 @@ public class LearningSession extends ChildScreen implements Screen {
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
 			protected void showMainMenu() {
-				Runnable yes=new Runnable() {					
+				Runnable yes = new Runnable() {
 					@Override
 					public void run() {
 						game.setScreen(LearningSession.this.caller);
 						LearningSession.this.dispose();
 					}
 				};
-				Runnable no=new Runnable() {					
+				Runnable no = new Runnable() {
 					@Override
 					public void run() {
 					}
@@ -957,7 +960,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						"Please Confirm Exit",
 						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
 						yes, no);
-				dialog.show(stage);				
+				dialog.show(stage);
 			}
 
 			@Override
@@ -973,38 +976,36 @@ public class LearningSession extends ChildScreen implements Screen {
 		};
 
 		challengeCardDialog = new ChallengeCardDialog(game, skin) {
-			
+
 			Runnable hideThisCard = new Runnable() {
 				@Override
 				public void run() {
 					hide();
 				}
 			};
-			
-			
 
 			@Override
 			protected void showMainMenu() {
-				final boolean wasPaused = challengeCardDialog.paused;				
-				Runnable yes=new Runnable() {					
+				final boolean wasPaused = challengeCardDialog.paused;
+				Runnable yes = new Runnable() {
 					@Override
 					public void run() {
 						game.setScreen(LearningSession.this.caller);
 						LearningSession.this.dispose();
 					}
 				};
-				Runnable no=new Runnable() {					
+				Runnable no = new Runnable() {
 					@Override
 					public void run() {
-						challengeCardDialog.paused=wasPaused;
+						challengeCardDialog.paused = wasPaused;
 					}
 				};
 				Dialog dialog = dialogYN(
 						"Please Confirm Exit",
 						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
 						yes, no);
-				dialog.show(stage);				
-				challengeCardDialog.paused=true;
+				dialog.show(stage);
+				challengeCardDialog.paused = true;
 			}
 
 			@Override
@@ -1213,9 +1214,9 @@ public class LearningSession extends ChildScreen implements Screen {
 		game.manager.unload(BoundPronouns.SND_BUZZ);
 		game.manager.unload(BoundPronouns.SND_COW);
 		game.manager.unload(BoundPronouns.SND_TICKTOCK);
-		if (dskin!=null) {
+		if (dskin != null) {
 			dskin.dispose();
-			dskin=null;
+			dskin = null;
 		}
 	}
 
@@ -1273,7 +1274,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * look for "similar" looking challenges
 		 */
 		Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 5; distance < 100; distance+=5) {
+		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
 			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
 				/*
@@ -1306,7 +1307,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (already.contains(tmp_challenge)) {
 					continue;
 				}
-				int ldistance = StringUtils.getLevenshteinDistance(challenge,
+				int ldistance = getLevenshteinDistance(challenge,
 						tmp_challenge, distance);
 				if (ldistance < 1) {
 					continue;
@@ -1388,7 +1389,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * master deck
 		 */
 		Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 10; distance < 100; distance+=5) {
+		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
 			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
 				/*
@@ -1416,13 +1417,13 @@ public class LearningSession extends ChildScreen implements Screen {
 				/*
 				 * select a random correct answer
 				 */
-				String correct_answer = challengeCard.answer.get(rand
-						.nextInt(challengeCard.answer.size())).intern();
+				String correct_answer = challengeCard.answer.get(
+						rand.nextInt(challengeCard.answer.size())).intern();
 				/*
 				 * select a random wrong answer
 				 */
-				String wrong_answer = deckCard.answer.get(rand
-						.nextInt(deckCard.answer.size())).intern();
+				String wrong_answer = deckCard.answer.get(
+						rand.nextInt(deckCard.answer.size())).intern();
 				if (already.contains(wrong_answer)) {
 					continue;
 				}
@@ -1432,7 +1433,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * on and check next card
 				 */
 
-				int ldistance = StringUtils.getLevenshteinDistance(
+				int ldistance = getLevenshteinDistance(
 						correct_answer, wrong_answer, distance);
 				if (ldistance < 1) {
 					continue;
@@ -1451,7 +1452,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			answers.list.subList(maxAnswers, answers.list.size()).clear();
 		}
 		Collections.shuffle(answers.list);
-		Gdx.app.log(TAG, "getAnswerSetsFor already set size: "+already.size());
+		Gdx.app.log(TAG, "getAnswerSetsFor already set size: " + already.size());
 		return answers;
 	}
 
@@ -1590,12 +1591,12 @@ public class LearningSession extends ChildScreen implements Screen {
 		return null;
 	}
 
-	private Skin dskin=null;
-	
+	private Skin dskin = null;
+
 	private Dialog dialogYN(String title, String message, final Runnable yes,
 			final Runnable no) {
-		if (dskin==null) {
-			dskin=new Skin(Gdx.files.internal(BoundPronouns.SKIN));
+		if (dskin == null) {
+			dskin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		}
 		WindowStyle ws = new WindowStyle(dskin.get(WindowStyle.class));
 		ws.titleFont = game.getFont(Font.SerifLLarge);
@@ -1625,5 +1626,195 @@ public class LearningSession extends ChildScreen implements Screen {
 		dialog.button(btn_yes, btn_yes);
 		dialog.button(btn_no, btn_no);
 		return dialog;
+	}
+
+	/**
+	 * <p>
+	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
+	 * to preven GC issues on Android.
+	 * </p>
+	 * <p>
+	 * Find the Levenshtein distance between two Strings if it's less than or
+	 * equal to a given threshold.
+	 * </p>
+	 *
+	 * <p>
+	 * This is the number of changes needed to change one String into another,
+	 * where each change is a single character modification (deletion, insertion
+	 * or substitution).
+	 * </p>
+	 *
+	 * <p>
+	 * This implementation follows from Algorithms on Strings, Trees and
+	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
+	 * Levenshtein distance algorithm from <a
+	 * href="http://www.merriampark.com/ld.htm"
+	 * >http://www.merriampark.com/ld.htm</a>
+	 * </p>
+	 *
+	 * <pre>
+	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
+	 * </pre>
+	 *
+	 * @param s
+	 *            the first String, must not be null
+	 * @param t
+	 *            the second String, must not be null
+	 * @param threshold
+	 *            the target threshold, must not be negative
+	 * @return result distance, or {@code -1} if the distance would be greater
+	 *         than the threshold
+	 * @throws IllegalArgumentException
+	 *             if either String input {@code null} or negative threshold
+	 */
+	private static int lv_p[] = new int[1024]; // 'previous' cost array, horizontally
+	private static int lv_d[] = new int[1024]; // cost array, horizontally
+	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t,
+			int threshold) {
+		if (s == null || t == null) {
+			throw new IllegalArgumentException("Strings must not be null");
+		}
+		if (threshold < 0) {
+			throw new IllegalArgumentException("Threshold must not be negative");
+		}
+
+		/*
+		 * This implementation only computes the distance if it's less than or
+		 * equal to the threshold value, returning -1 if it's greater. The
+		 * advantage is performance: unbounded distance is O(nm), but a bound of
+		 * k allows us to reduce it to O(km) time by only computing a diagonal
+		 * stripe of width 2k + 1 of the cost table. It is also possible to use
+		 * this to compute the unbounded Levenshtein distance by starting the
+		 * threshold at 1 and doubling each time until the distance is found;
+		 * this is O(dm), where d is the distance.
+		 * 
+		 * One subtlety comes from needing to ignore entries on the border of
+		 * our stripe eg. p[] = |#|#|#|* d[] = *|#|#|#| We must ignore the entry
+		 * to the left of the leftmost member We must ignore the entry above the
+		 * rightmost member
+		 * 
+		 * Another subtlety comes from our stripe running off the matrix if the
+		 * strings aren't of the same size. Since string s is always swapped to
+		 * be the shorter of the two, the stripe will always run off to the
+		 * upper right instead of the lower left of the matrix.
+		 * 
+		 * As a concrete example, suppose s is of length 5, t is of length 7,
+		 * and our threshold is 1. In this case we're going to walk a stripe of
+		 * length 3. The matrix would look like so:
+		 * 
+		 * 1 2 3 4 5 1 |#|#| | | | 2 |#|#|#| | | 3 | |#|#|#| | 4 | | |#|#|#| 5 |
+		 * | | |#|#| 6 | | | | |#| 7 | | | | | |
+		 * 
+		 * Note how the stripe leads off the table as there is no possible way
+		 * to turn a string of length 5 into one of length 7 in edit distance of
+		 * 1.
+		 * 
+		 * Additionally, this implementation decreases memory usage by using two
+		 * single-dimensional arrays and swapping them back and forth instead of
+		 * allocating an entire n by m matrix. This requires a few minor
+		 * changes, such as immediately returning when it's detected that the
+		 * stripe has run off the matrix and initially filling the arrays with
+		 * large values so that entries we don't compute are ignored.
+		 * 
+		 * See Algorithms on Strings, Trees and Sequences by Dan Gusfield for
+		 * some discussion.
+		 */
+
+		int n = s.length(); // length of s
+		int m = t.length(); // length of t
+
+		// if one string is empty, the edit distance is necessarily the length
+		// of the other
+		if (n == 0) {
+			return m <= threshold ? m : -1;
+		} else if (m == 0) {
+			return n <= threshold ? n : -1;
+		}
+
+		if (n > m) {
+			// swap the two strings to consume less memory
+			CharSequence tmp = s;
+			s = t;
+			t = tmp;
+			n = m;
+			m = t.length();
+		}
+
+//		int lv_p[] = new int[n + 1]; // 'previous' cost array, horizontally
+//		int lv_d[] = new int[n + 1]; // cost array, horizontally
+		if (lv_p.length < n+1) {
+			lv_p = new int[n + 1];
+		}
+		if (lv_d.length < n+1) {
+			lv_d = new int[n + 1];
+		}
+		int _d[]; // placeholder to assist in swapping p and d
+
+		// fill in starting table values
+		int boundary = Math.min(n, threshold) + 1;
+		for (int i = 0; i < boundary; i++) {
+			lv_p[i] = i;
+		}
+		// these fills ensure that the value above the rightmost entry of our
+		// stripe will be ignored in following loop iterations
+		Arrays.fill(lv_p, boundary, lv_p.length, Integer.MAX_VALUE);
+		Arrays.fill(lv_d, Integer.MAX_VALUE);
+
+		// iterates through t
+		for (int j = 1; j <= m; j++) {
+			char t_j = t.charAt(j - 1); // jth character of t
+			lv_d[0] = j;
+
+			// compute stripe indices, constrain to array size
+			int min = Math.max(1, j - threshold);
+			int max = Math.min(n, j + threshold);
+
+			// the stripe may lead off of the table if s and t are of different
+			// sizes
+			if (min > max) {
+				return -1;
+			}
+
+			// ignore entry left of leftmost
+			if (min > 1) {
+				lv_d[min - 1] = Integer.MAX_VALUE;
+			}
+
+			// iterates through [min, max] in s
+			for (int i = min; i <= max; i++) {
+				if (s.charAt(i - 1) == t_j) {
+					// diagonally left and up
+					lv_d[i] = lv_p[i - 1];
+				} else {
+					// 1 + minimum of cell to the left, to the top, diagonally
+					// left and up
+					lv_d[i] = 1 + Math.min(Math.min(lv_d[i - 1], lv_p[i]), lv_p[i - 1]);
+				}
+			}
+
+			// copy current distance counts to 'previous row' distance counts
+			_d = lv_p;
+			lv_p = lv_d;
+			lv_d = _d;
+		}
+
+		// if p[n] is greater than the threshold, there's no guarantee on it
+		// being the correct
+		// distance
+		if (lv_p[n] <= threshold) {
+			return lv_p[n];
+		} else {
+			return -1;
+		}
 	}
 }
