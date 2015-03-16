@@ -310,9 +310,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 		setObject(check, null);
 		btable.add(check).colspan(2).fillX().expandX();
 		btable.row();
-		// check.setVisible(true);
-		// check.setDisabled(false);
-		// check.setTouchable(Touchable.enabled);
 	}
 
 	public void setCheckVisible(boolean visible) {
@@ -334,13 +331,13 @@ public abstract class ChallengeCardDialog extends Dialog {
 	}
 
 	protected void navEnable(boolean enabled) {
-		pause.setVisible(enabled);
+		pause.setVisible(true);
 		pause.setDisabled(!enabled);
 		pause.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
-		main.setVisible(enabled);
+		main.setVisible(true);
 		main.setDisabled(!enabled);
 		main.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
-		mute.setVisible(enabled);
+		mute.setVisible(true);
 		mute.setDisabled(!enabled);
 		mute.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
 	}
@@ -371,19 +368,17 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	@Override
 	public Dialog show(Stage stage) {
-		DelayAction delay;
-		if (Gdx.input.isTouched()) {
-			delay = Actions.delay(.4f);
-		} else {
-			delay = Actions.delay(.0f);
-		}
+		long now = System.currentTimeMillis();
 		paused = false;
-		disableCard.run();
-		AlphaAction alpha0 = Actions.alpha(0);
-		AlphaAction fadeIn = Actions.fadeIn(0.4f, Interpolation.fade);
+		Gdx.app.postRunnable(disableCard);
 		RunnableAction enable = Actions.run(enableCard);
-		SequenceAction sequence = sequence(alpha0, delay, fadeIn, enable);
-		show(stage, sequence);
+		if (Gdx.input.isTouched()) {
+			Gdx.app.log(TAG, "Gdx.input.isTouched: true");
+			DelayAction delay = Actions.delay(.2f);
+			show(stage, sequence(Actions.alpha(0), delay, Actions.fadeIn(0.4f, Interpolation.fade), enable));
+		} else {
+			show(stage, sequence(Actions.alpha(0), Actions.fadeIn(0.4f, Interpolation.fade), enable));
+		}
 		setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
 				Math.round((stage.getHeight() - getHeight()) / 2));
 		return this;

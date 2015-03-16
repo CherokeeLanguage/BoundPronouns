@@ -800,20 +800,25 @@ public class LearningSession extends ChildScreen implements Screen {
 				elapsed_tick_on = true;
 				ticktock_id = ticktock.loop(0f);
 				challengeCardDialog.setCounter(cardcount++);
+				Gdx.app.log(TAG, "challengeCardDialog:setCard");
 				challengeCardDialog.setCard(activeCard, deckCard);
+				Gdx.app.log(TAG, "challengeCardDialog:show");
 				challengeCardDialog.show(stage);
-
+				
 				AnswerList tracked_answers;
 				if (rand.nextBoolean()) {
+					Gdx.app.log(TAG, "challengeCardDialog:getAnswerSetsFor");
 					tracked_answers = getAnswerSetsFor(activeCard, deckCard,
 							game.deck);
 				} else {
+					Gdx.app.log(TAG, "challengeCardDialog:getAnswerSetsForBySimilarChallenge");
 					tracked_answers = getAnswerSetsForBySimilarChallenge(
 							activeCard, deckCard, game.deck);
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 				activeCard.tries_remaining -= tracked_answers.correctCount();
+				Gdx.app.log(TAG, "challengeCardDialog:setAnswers");
 				challengeCardDialog.setAnswers(tracked_answers,
 						displayed_answers);
 				float duration = info.settings.timeLimit.getSeconds()
@@ -1222,7 +1227,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * contains copies of used answers, vgroups, and pgroups to prevent
 		 * duplicates
 		 */
-		Set<String> already = new HashSet<String>();
+		Set<String> already = new HashSet<String>(16);
 		already.add(card.pgroup);
 		already.add(card.vgroup);
 		already.addAll(card.answer);
@@ -1232,7 +1237,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * for temporary manipulation of list data so we don't mess with master
 		 * copies in cards, etc.
 		 */
-		List<String> tmp_correct = new ArrayList<String>();
+		List<String> tmp_correct = new ArrayList<String>(16);
 		tmp_correct.clear();
 		tmp_correct.addAll(card.answer);
 
@@ -1267,9 +1272,8 @@ public class LearningSession extends ChildScreen implements Screen {
 		/*
 		 * look for "similar" looking challenges
 		 */
-		Deck tmp = new Deck();
-		tmp.cards.addAll(deck.cards);
-		scanDeck: for (int distance = 1; distance < 100; distance++) {
+		Deck tmp = new Deck(deck);
+		scanDeck: for (int distance = 5; distance < 100; distance+=5) {
 			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
 				/*
@@ -1332,12 +1336,12 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private AnswerList getAnswerSetsFor(final ActiveCard active,
 			final Card challengeCard, Deck deck) {
+		Set<String> already = new HashSet<String>(16);
 		AnswerList answers = new AnswerList();
 		/*
 		 * contains copies of used answers, vgroups, and pgroups to prevent
 		 * duplicates
 		 */
-		Set<String> already = new HashSet<String>();
 		already.add(challengeCard.pgroup);
 		already.add(challengeCard.vgroup);
 		/*
@@ -1350,8 +1354,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * for temporary manipulation of list data so we don't mess with master
 		 * copies in cards, etc.
 		 */
-		List<String> tmp_correct = new ArrayList<String>();
-		tmp_correct.clear();
+		List<String> tmp_correct = new ArrayList<String>(16);
 		tmp_correct.addAll(challengeCard.answer);
 
 		/**
@@ -1384,10 +1387,8 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * answer and comparing to one random wrong answer per card in the
 		 * master deck
 		 */
-		Deck tmp = new Deck();
-		tmp.cards.addAll(deck.cards);
-		// String challenge = getOneOf(card.challenge.get(0));
-		scanDeck: for (int distance = 1; distance < 100; distance++) {
+		Deck tmp = new Deck(deck);
+		scanDeck: for (int distance = 10; distance < 100; distance+=5) {
 			Collections.shuffle(tmp.cards);
 			for (Card deckCard : tmp.cards) {
 				/*
@@ -1416,12 +1417,12 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * select a random correct answer
 				 */
 				String correct_answer = challengeCard.answer.get(rand
-						.nextInt(challengeCard.answer.size()));
+						.nextInt(challengeCard.answer.size())).intern();
 				/*
 				 * select a random wrong answer
 				 */
 				String wrong_answer = deckCard.answer.get(rand
-						.nextInt(deckCard.answer.size()));
+						.nextInt(deckCard.answer.size())).intern();
 				if (already.contains(wrong_answer)) {
 					continue;
 				}
@@ -1450,6 +1451,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			answers.list.subList(maxAnswers, answers.list.size()).clear();
 		}
 		Collections.shuffle(answers.list);
+		Gdx.app.log(TAG, "getAnswerSetsFor already set size: "+already.size());
 		return answers;
 	}
 

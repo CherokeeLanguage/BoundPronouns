@@ -6,7 +6,7 @@ import java.util.List;
 public class Deck {
 	public int version=-1;
 	public int size=0;
-	public List<Card> cards=new ArrayList<Card>();
+	public List<Card> cards;
 	
 	private static final List<Long> pimsleur_intervals=new ArrayList<Long>();
 	private static final List<Long> sm2_intervals=new ArrayList<Long>();
@@ -30,6 +30,14 @@ public class Deck {
 			sm2_intervals.add((long) (ms_day*days));
 			days*=1.7f;
 		}		
+	}
+	public Deck() {
+		cards=new ArrayList<Card>(2048);
+	}
+	public Deck(Deck deck) {
+		cards=new ArrayList<Card>(deck.cards);
+		version=deck.version;
+		size=cards.size();
 	}
 	/**
 	 * Pimsleur staggered intervals (powers of 5) seconds as ms
