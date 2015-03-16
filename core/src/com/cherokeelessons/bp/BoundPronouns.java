@@ -45,12 +45,12 @@ import com.cherokeelessons.util.GooglePlayGameServices;
 public class BoundPronouns extends Game {
 	
 	public static boolean isLoggedIn() {
-		return BoundPronouns.getPrefs().getBoolean(
+		return getPrefs().getBoolean(
 				BoundPronouns.GooglePlayLogginIn, false);
 	};
 	
 	public static void isLoggedIn(boolean state) {
-		Preferences prefs = BoundPronouns.getPrefs();
+		Preferences prefs = getPrefs();
 		prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, state);
 		prefs.flush();
 	}
