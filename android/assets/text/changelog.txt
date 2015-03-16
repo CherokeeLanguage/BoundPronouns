@@ -1,10 +1,11 @@
 1.76
 
-New XBrief session added by special request.
-Add "Confirm Quit Session" when "Main Menu" hit on learning screen.
-UI adjustments for "Challenge Cards".
+Greatly reduce "delayed challenge display" caused by getAnswerSetsFor taking too long to run because of triggered System.gc caused by levenstein stuff.
 Added brief delay of challenge card if a touch down is detected at "show" time.
 Added brief disablement of 'check' button to try and reduce 'click-through'.
+Add "Confirm Quit Session" when "Main Menu" hit on learning screen.
+UI adjustments for "Challenge Cards".
+New XBrief session added by special request.
 
 1.75
 
