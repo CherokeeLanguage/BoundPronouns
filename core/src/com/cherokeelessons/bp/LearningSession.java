@@ -62,80 +62,84 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class LearningSession extends ChildScreen implements Screen {
 
-	private static final String TAG = "LearningSession";
+	private class ActiveDeckLoader implements Runnable {
 
-	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
-
-	private static final long ONE_MINUTE_ms = 60l * 1000l;
-
-	private static final long ONE_DAY_ms = 24l * 60l * ONE_MINUTE_ms;
-
-	private static final long ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
-
-	public static final String ActiveDeckJson = "ActiveDeck.json";
-
-	private static final int maxAnswers = 6;
-
-	private static final int maxCorrect = 6;
-
-	private static final int SendToNextSessionThreshold = 4;
-
-	private static final int InitialDeckSize = 5;
-
-	private static final int IncrementDeckBySize = 3;
-
-	private static final long ONE_SECOND_ms = 1000l;
-
-	private Sound buzzer;
-	/**
-	 * Sort answers by edit distance so the list can be trimmed to size easily.
-	 * The sort only considers edit distance and does not factor in actual
-	 * String values - this is intentional.
-	 */
-	private Comparator<Answer> byDistance = new Comparator<Answer>() {
 		@Override
-		public int compare(Answer o1, Answer o2) {
-			if (o1.correct != o2.correct && o1.correct) {
-				return -1;
+		public void run() {
+			game.log(this, "Loading Active Deck ...");
+
+			if (!slot.child(ActiveDeckJson).exists()) {
+				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
 			}
-			if (o2.correct) {
-				return 1;
+			ActiveDeck tmp = json.fromJson(ActiveDeck.class,
+					slot.child(ActiveDeckJson));
+			current_due.deck = tmp.deck;
+			current_due.lastrun = tmp.lastrun;
+			Collections.sort(current_due.deck, byShowTime);
+
+			if (!info.settings.sessionLength.equals(SessionLength.XBrief)) {
+				if (System.currentTimeMillis() - current_due.lastrun < 16 * ONE_HOUR_ms) {
+					Gdx.app.postRunnable(tooSoon);
+					return;
+				}
 			}
-			if (o1.distance < o2.distance) {
-				return -1;
-			}
-			if (o1.distance > o2.distance) {
-				return 1;
-			}
-			return 0;
+			stage.addAction(Actions.run(processActiveCards));
 		}
-	};
-	private int cardcount = 0;
-	private final ChallengeCardDialog challengeCardDialog;
-	private Table container;
-	private Sound cow;
+	}
 
-	/**
-	 * currently being looped through for display
-	 */
-	private final ActiveDeck current_active = new ActiveDeck();
-	/**
-	 * holding area for cards that have just been displayed or are not scheduled
-	 * yet for display
-	 */
-	private final ActiveDeck current_discards = new ActiveDeck();
-	/**
-	 * holding area for cards that are "due" but deck size says don't show yet
-	 */
-	private final ActiveDeck current_due = new ActiveDeck();
-	/**
-	 * holding area for cards that should not be shown any more this session
-	 */
-	private final ActiveDeck current_done = new ActiveDeck();
+	private class LoadMasterDeck implements Runnable {
+		@Override
+		public void run() {
+			game.log(this, "Loading Master Deck...");
+			stage.addAction(Actions.run(activeDeckLoader));
 
-	private Sound ding;
+			game.log(this, "Loaded " + info.settings.deck.name() + " "
+					+ game.deck.cards.size() + " master cards.");
+		}
+	}
 
 	private class ProcessActiveCards implements Runnable {
+		private void markAllNoErrors(ActiveDeck deck) {
+			for (ActiveCard card : deck.deck) {
+				card.noErrors = true;
+			}
+		}
+
+		private void onlyPositiveBoxValues(ActiveDeck deck) {
+			for (ActiveCard card : deck.deck) {
+				if (card.box < 0) {
+					card.box = 0;
+					continue;
+				}
+			}
+
+		}
+
+		private void resetScoring(ActiveDeck deck) {
+			for (ActiveCard card : deck.deck) {
+				card.showCount = 0;
+				card.showTime = 0f;
+			}
+		}
+
+		private void retireNotYetCards(ActiveDeck current_pending) {
+			Iterator<ActiveCard> icard = current_pending.deck.iterator();
+			while (icard.hasNext()) {
+				ActiveCard card = icard.next();
+				if (card.show_again_ms < ONE_HOUR_ms
+						&& card.box < SlotInfo.PROFICIENT_BOX) {
+					continue;
+				}
+				current_done.deck.add(card);
+				icard.remove();
+			}
+			game.log(
+					this,
+					"Moved "
+							+ current_done.deck.size()
+							+ " future pending or fully learned cards into the 'done' deck.");
+		}
+
 		@Override
 		public void run() {
 			nodupes.clear();
@@ -242,205 +246,23 @@ public class LearningSession extends ChildScreen implements Screen {
 			Gdx.app.log(TAG, "Elapsed :" + elapsed);
 		}
 
-		private void resetScoring(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
-				card.showCount = 0;
-				card.showTime = 0f;
-			}
-		}
-
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
 			for (ActiveCard card : deck) {
 				card.show_again_ms = (60l * 1000l)
 						* (card.show_again_ms / (1000l * 60l));
 			}
 		}
-
-		private void retireNotYetCards(ActiveDeck current_pending) {
-			Iterator<ActiveCard> icard = current_pending.deck.iterator();
-			while (icard.hasNext()) {
-				ActiveCard card = icard.next();
-				if (card.show_again_ms < ONE_HOUR_ms
-						&& card.box < SlotInfo.PROFICIENT_BOX) {
-					continue;
-				}
-				current_done.deck.add(card);
-				icard.remove();
-			}
-			game.log(
-					this,
-					"Moved "
-							+ current_done.deck.size()
-							+ " future pending or fully learned cards into the 'done' deck.");
-		}
-
-		private void onlyPositiveBoxValues(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
-				if (card.box < 0) {
-					card.box = 0;
-					continue;
-				}
-			}
-
-		}
-
-		private void markAllNoErrors(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
-				card.noErrors = true;
-			}
-		}
 	}
-
-	private ProcessActiveCards processActiveCards = new ProcessActiveCards() {
-	};
-
-	private void resetCorrectInARow(ActiveDeck current_pending) {
-		for (ActiveCard card : current_pending.deck) {
-			resetCorrectInARow(card);
-		}
-	}
-
-	protected void resetRetriesCount(ActiveDeck deck) {
-		for (ActiveCard card : deck.deck) {
-			Card dcard = getCardById(card.pgroup, card.vgroup);
-			card.tries_remaining = SendToNextSessionThreshold
-					* dcard.answer.size();
-		}
-	}
-
-	public void resetCorrectInARow(ActiveCard card) {
-		Card dcard = getCardById(card.pgroup, card.vgroup);
-		if (dcard == null) {
-			card.resetCorrectInARow(new ArrayList<String>());
-			return;
-		}
-		card.resetCorrectInARow(dcard.answer);
-	}
-
-	private final JsonConverter json;
-
-	private class LoadMasterDeck implements Runnable {
-		@Override
-		public void run() {
-			game.log(this, "Loading Master Deck...");
-			stage.addAction(Actions.run(activeDeckLoader));
-
-			game.log(this, "Loaded " + info.settings.deck.name() + " "
-					+ game.deck.cards.size() + " master cards.");
-		}
-	}
-
-	private LoadMasterDeck loadDeck = new LoadMasterDeck() {
-	};
-
-	private class TooSoonDialog implements Runnable {
-		@Override
-		public void run() {
-			Dialog whichMode = new Dialog(
-					"It's too soon for a regular session.", skin) {
-				{
-					String text = "Please select an option:\n\n"
-							+ "Would you like to practice your existing challenges?\n\n"
-							+ "Would you like to jump forward by a full day?\n\n"
-							+ "Would you like to cancel and go back to main menu?";
-
-					LabelStyle lstyle = new LabelStyle(
-							skin.get(LabelStyle.class));
-					lstyle.font = game.getFont(Font.SerifMedium);
-					Label label = new Label(text, lstyle);
-					label.setAlignment(Align.left, Align.left);
-					label.setWrap(true);
-					getContentTable().clearChildren();
-					getContentTable().add(label).fill().expand().left();
-					TextButtonStyle tbs = new TextButtonStyle(
-							skin.get(TextButtonStyle.class));
-					tbs.font = game.getFont(Font.SerifMedium);
-					TextButton tb;
-					tb = new TextButton("DO A PRACTICE", tbs);
-					button(tb, "A");
-					tb = new TextButton("JUMP A DAY", tbs);
-					button(tb, "B");
-					tb = new TextButton("CANCEL", tbs);
-					button(tb, "C");
-					setFillParent(true);
-				}
-
-				protected void result(Object object) {
-					if (object == null) {
-						return;
-					}
-					if (object.toString().equals("A")) {
-						LearningSession.this.isExtraPractice = true;
-					}
-					if (object.toString().equals("B")) {
-						LearningSession.this.isExtraPractice = false;
-					}
-					if (object.toString().equals("C")) {
-						game.setScreen(caller);
-						LearningSession.this.dispose();
-						return;
-					}
-					stage.addAction(Actions.run(processActiveCards));
-				};
-			};
-			whichMode.show(stage);
-		}
-	}
-
-	private TooSoonDialog tooSoon = new TooSoonDialog() {
-	};
-
-	private class ActiveDeckLoader implements Runnable {
-
-		@Override
-		public void run() {
-			game.log(this, "Loading Active Deck ...");
-
-			if (!slot.child(ActiveDeckJson).exists()) {
-				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
-			}
-			ActiveDeck tmp = json.fromJson(ActiveDeck.class,
-					slot.child(ActiveDeckJson));
-			current_due.deck = tmp.deck;
-			current_due.lastrun = tmp.lastrun;
-			Collections.sort(current_due.deck, byShowTime);
-
-			if (!info.settings.sessionLength.equals(SessionLength.XBrief)) {
-				if (System.currentTimeMillis() - current_due.lastrun < 16 * ONE_HOUR_ms) {
-					Gdx.app.postRunnable(tooSoon);
-					return;
-				}
-			}
-			stage.addAction(Actions.run(processActiveCards));
-		}
-	}
-
-	private ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader() {
-	};
-
-	private boolean isExtraPractice = false;
-
-	private final NewCardDialog newCardDialog;
-
-	private final Set<String> nodupes = new HashSet<String>();
-	private final Random rand = new Random();
-
-	private static Callback<Void> noop_success = new Callback<Void>() {
-		@Override
-		public void success(Void result) {
-			Gdx.app.log("LearningSession-Score Submit", "success");
-		}
-	};
 
 	public static class SaveActiveDeckWithDialog implements Runnable {
 		public static class SaveParams {
+			public Screen caller;
 			public ActiveDeck deck;
 			public float elapsed_secs;
-			public FileHandle slot;
 			public BoundPronouns game;
-			public Skin skin;
 			public boolean isExtraPractice;
-			public Screen caller;
+			public Skin skin;
+			public FileHandle slot;
 			public Stage stage;
 		}
 
@@ -662,59 +484,26 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
-
-	/**
-	 * Calculates amount of ms needed to shift by to move deck to "0" point.
-	 * 
-	 * @param current_pending
-	 * @return
-	 */
-	private long getMinShiftTimeOf(ActiveDeck current_pending) {
-		if (current_pending.deck.size() == 0) {
-			return 0;
-		}
-		long by = Long.MAX_VALUE;
-		Iterator<ActiveCard> icard = current_pending.deck.iterator();
-		while (icard.hasNext()) {
-			ActiveCard card = icard.next();
-			if (card.tries_remaining < 1) {
-				continue;
-			}
-			if (by > card.show_again_ms) {
-				by = card.show_again_ms;
-			}
-		}
-		if (by == Long.MAX_VALUE) {
-			by = ONE_MINUTE_ms;
-		}
-		return by;
-	}
-
-	/**
-	 * used for logging periodic messages
-	 */
-	private float notice_elapsed = 0f;
-	/**
-	 * total challenge time accumulated
-	 */
-	private float elapsed = 0f;
-	/**
-	 * time since last "shuffle"
-	 */
-	private float sinceLastNextCard_elapsed = 0f;
-	/**
-	 * Whether elapsed time should be accumulated or not
-	 */
-	private boolean elapsed_tick_on = false;
-	/**
-	 * How long this challenge has been displayed.
-	 */
-	private float challenge_elapsed;
-
 	private class ShowACard implements Runnable {
 
 		private ActiveCard previousCard;
+
+		Random r = new Random();
+
+		private void randomizeSexes(AnswerList answers) {
+			for (Answer answer : answers.list) {
+				if (r.nextBoolean() && answer.answer.contains("himself")) {
+					answer.answer = answer.answer.replace("He ", "She ");
+					answer.answer = answer.answer.replace(" him", " her");
+				}
+				if (r.nextBoolean() && !answer.answer.contains("himself")) {
+					answer.answer = answer.answer.replace("He ", "She ");
+				}
+				if (r.nextBoolean() && !answer.answer.contains("himself")) {
+					answer.answer = answer.answer.replace(" him", " her");
+				}
+			}
+		}
 
 		@Override
 		public void run() {
@@ -856,31 +645,63 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 		}
+	}
 
-		Random r = new Random();
+	private class TooSoonDialog implements Runnable {
+		@Override
+		public void run() {
+			Dialog whichMode = new Dialog(
+					"It's too soon for a regular session.", skin) {
+				{
+					String text = "Please select an option:\n\n"
+							+ "Would you like to practice your existing challenges?\n\n"
+							+ "Would you like to jump forward by a full day?\n\n"
+							+ "Would you like to cancel and go back to main menu?";
 
-		private void randomizeSexes(AnswerList answers) {
-			for (Answer answer : answers.list) {
-				if (r.nextBoolean() && answer.answer.contains("himself")) {
-					answer.answer = answer.answer.replace("He ", "She ");
-					answer.answer = answer.answer.replace(" him", " her");
+					LabelStyle lstyle = new LabelStyle(
+							skin.get(LabelStyle.class));
+					lstyle.font = game.getFont(Font.SerifMedium);
+					Label label = new Label(text, lstyle);
+					label.setAlignment(Align.left, Align.left);
+					label.setWrap(true);
+					getContentTable().clearChildren();
+					getContentTable().add(label).fill().expand().left();
+					TextButtonStyle tbs = new TextButtonStyle(
+							skin.get(TextButtonStyle.class));
+					tbs.font = game.getFont(Font.SerifMedium);
+					TextButton tb;
+					tb = new TextButton("DO A PRACTICE", tbs);
+					button(tb, "A");
+					tb = new TextButton("JUMP A DAY", tbs);
+					button(tb, "B");
+					tb = new TextButton("CANCEL", tbs);
+					button(tb, "C");
+					setFillParent(true);
 				}
-				if (r.nextBoolean() && !answer.answer.contains("himself")) {
-					answer.answer = answer.answer.replace("He ", "She ");
-				}
-				if (r.nextBoolean() && !answer.answer.contains("himself")) {
-					answer.answer = answer.answer.replace(" him", " her");
-				}
-			}
+
+				protected void result(Object object) {
+					if (object == null) {
+						return;
+					}
+					if (object.toString().equals("A")) {
+						LearningSession.this.isExtraPractice = true;
+					}
+					if (object.toString().equals("B")) {
+						LearningSession.this.isExtraPractice = false;
+					}
+					if (object.toString().equals("C")) {
+						game.setScreen(caller);
+						LearningSession.this.dispose();
+						return;
+					}
+					stage.addAction(Actions.run(processActiveCards));
+				};
+			};
+			whichMode.show(stage);
 		}
 	}
 
-	private ShowACard showACard = new ShowACard() {
-	};
-
-	private final Skin skin;
-
-	private final FileHandle slot;
+	public static final String ActiveDeckJson = "ActiveDeck.json";
 
 	private static Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
 		@Override
@@ -905,729 +726,13 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 
-	private Sound ticktock;
+	private static final int IncrementDeckBySize = 3;
 
-	private long ticktock_id;
+	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
 
-	final private SlotInfo info;
+	private static final int InitialDeckSize = 5;
 
-	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
-		super(_game, caller);
-
-		int totalCards = game.deck.cards.size();
-		current_active.deck = new ArrayList<ActiveCard>(totalCards);
-		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
-		current_done.deck = new ArrayList<ActiveCard>(totalCards);
-		current_due.deck = new ArrayList<ActiveCard>(totalCards);
-
-		this.slot = slot;
-		slot.mkdirs();
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
-		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
-		container = new Table(skin);
-		container.setBackground(d);
-		container.setFillParent(true);
-		stage.addActor(container);
-		stage.addAction(Actions.delay(.05f, Actions.run(loadDeck)));
-		json = new JsonConverter();
-
-		FileHandle infoFile = slot.child(INFO_JSON);
-		if (!infoFile.exists()) {
-			info = new SlotInfo();
-			info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
-		} else {
-			info = json.fromJson(SlotInfo.class, infoFile);
-		}
-
-		newCardDialog = new NewCardDialog(game, skin) {
-			@Override
-			protected void showMainMenu() {
-				Runnable yes = new Runnable() {
-					@Override
-					public void run() {
-						game.setScreen(LearningSession.this.caller);
-						LearningSession.this.dispose();
-					}
-				};
-				Runnable no = new Runnable() {
-					@Override
-					public void run() {
-					}
-				};
-				Dialog dialog = dialogYN(
-						"Please Confirm Exit",
-						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
-						yes, no);
-				dialog.show(stage);
-			}
-
-			@Override
-			protected void result(Object object) {
-				this.clearActions();
-				stage.addAction(Actions.run(showACard));
-			}
-
-			@Override
-			public Dialog show(Stage stage) {
-				return super.show(stage);
-			}
-		};
-
-		challengeCardDialog = new ChallengeCardDialog(game, skin) {
-
-			Runnable hideThisCard = new Runnable() {
-				@Override
-				public void run() {
-					hide();
-				}
-			};
-
-			@Override
-			protected void showMainMenu() {
-				final boolean wasPaused = challengeCardDialog.paused;
-				Runnable yes = new Runnable() {
-					@Override
-					public void run() {
-						game.setScreen(LearningSession.this.caller);
-						LearningSession.this.dispose();
-					}
-				};
-				Runnable no = new Runnable() {
-					@Override
-					public void run() {
-						challengeCardDialog.paused = wasPaused;
-					}
-				};
-				Dialog dialog = dialogYN(
-						"Please Confirm Exit",
-						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
-						yes, no);
-				dialog.show(stage);
-				challengeCardDialog.paused = true;
-			}
-
-			@Override
-			protected void result(Object object) {
-				this.navEnable(false);
-				/*
-				 * bump show count and add in elapsed display time for later
-				 * scoring ...
-				 */
-				_activeCard.showCount++;
-				_activeCard.showTime += challenge_elapsed;
-				this.clearActions();
-				this.setCheckVisible(false);
-				setTimer(0);
-				ticktock.setVolume(ticktock_id, 0f);
-				ticktock.stop(ticktock_id);
-				cancel();
-				/**
-				 * set when any wrong
-				 */
-				boolean doBuzzer = false;
-				/**
-				 * worst case scenario, all wrong ones marked and no right ones
-				 * marked, gets set to false if ANY combination of
-				 * checked/unchecked is valid
-				 */
-				boolean doCow = true;
-				for (Actor b : getButtonTable().getChildren()) {
-					if (b instanceof Button) {
-						((Button) b).setDisabled(true);
-						((Button) b).setTouchable(Touchable.disabled);
-					}
-					if (b instanceof TextButton) {
-						TextButton tb = (TextButton) b;
-						if (tb.getUserObject() != null
-								&& tb.getUserObject() instanceof Answer) {
-							Answer tracked_answer = (Answer) tb.getUserObject();
-							if (!tb.isChecked() && !tracked_answer.correct) {
-								tb.addAction(Actions.fadeOut(.2f));
-								doCow = false;
-							}
-							if (tb.isChecked() && !tracked_answer.correct) {
-								ColorAction toRed = Actions.color(Color.RED,
-										.4f);
-								tb.addAction(toRed);
-								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
-										+ tb.getText());
-								doBuzzer = true;
-								resetCorrectInARow(_activeCard);
-								_activeCard.noErrors = false;
-							}
-							if (!tb.isChecked() && tracked_answer.correct) {
-								ColorAction toGreen = Actions.color(
-										Color.GREEN, .4f);
-								ColorAction toClear = Actions.color(
-										Color.CLEAR, .2f);
-								SequenceAction sequence = Actions.sequence(
-										toClear, toGreen);
-								tb.addAction(Actions.repeat(2, sequence));
-								tb.setText(BoundPronouns.RIGHT_ARROW + " "
-										+ tb.getText());
-								doBuzzer = true;
-								resetCorrectInARow(_activeCard);
-								_activeCard.noErrors = false;
-							}
-							if (tb.isChecked() && tracked_answer.correct) {
-								ColorAction toGreen = Actions.color(
-										Color.GREEN, .2f);
-								tb.addAction(toGreen);
-								doCow = false;
-								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
-										+ tb.getText());
-								_activeCard.markCorrect(tracked_answer.answer);
-							}
-						}
-					}
-				}
-
-				if (doCow) {
-					if (!challengeCardDialog.settings.muted) {
-						cow.play();
-					}
-				}
-				if (doBuzzer && !doCow) {
-					if (!challengeCardDialog.settings.muted) {
-						buzzer.play();
-					}
-				}
-				if (!doCow && !doBuzzer) {
-					if (!challengeCardDialog.settings.muted) {
-						ding.play();
-					}
-				}
-				_activeCard.show_again_ms = Deck.getNextInterval(_activeCard
-						.getMinCorrectInARow());
-				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
-						Actions.run(hideThisCard)));
-				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
-						Actions.run(showACard)));
-			}
-		};
-
-		newCardDialog.settings = info.settings;
-		challengeCardDialog.settings = info.settings;
-		challengeCardDialog.updateMuteButtonText();
-	}
-
-	/**
-	 * add this many cards to the Current Active Deck first from the current
-	 * Active Deck then from the master Deck set
-	 * 
-	 * @param needed
-	 * @param active
-	 */
-	public void addCards(int needed, ActiveDeck active) {
-		int startingSize = active.deck.size();
-		/**
-		 * look for previous cards to load first, if their delay time is up
-		 */
-		Iterator<ActiveCard> ipending = current_due.deck.iterator();
-		while (needed > 0 && ipending.hasNext()) {
-			ActiveCard next = ipending.next();
-			if (next.box >= SlotInfo.FULLY_LEARNED_BOX) {
-				continue;
-			}
-			if (next.show_again_ms > 0) {
-				continue;
-			}
-			active.deck.add(next);
-			needed--;
-			ipending.remove();
-		}
-		game.log(this, "Added " + (active.deck.size() - startingSize)
-				+ " previous cards.");
-
-		if (needed <= 0) {
-			return;
-		}
-
-		/**
-		 * not enough already seen cards, add new never seen cards
-		 */
-		startingSize = active.deck.size();
-		Iterator<Card> ideck = game.deck.cards.iterator();
-		while (needed > 0 && ideck.hasNext()) {
-			Card next = ideck.next();
-			switch (info.settings.deck) {
-			case Both:
-				break;
-			case Conjugations:
-				if (StringUtils.isBlank(next.vgroup)) {
-					continue;
-				}
-				break;
-			case Pronouns:
-				if (!StringUtils.isBlank(next.vgroup)) {
-					continue;
-				}
-				break;
-			default:
-				break;
-			}
-			String unique_id = next.pgroup + "+" + next.vgroup;
-			if (nodupes.contains(unique_id)) {
-				continue;
-			}
-			ActiveCard activeCard = new ActiveCard();
-			activeCard.box = 0;
-			activeCard.noErrors = true;
-			activeCard.newCard = true;
-			activeCard.pgroup = next.pgroup;
-			activeCard.show_again_ms = 0;
-			activeCard.vgroup = next.vgroup;
-			resetCorrectInARow(activeCard);
-			activeCard.tries_remaining = SendToNextSessionThreshold
-					* next.answer.size();
-			active.deck.add(activeCard);
-			needed--;
-			nodupes.add(unique_id);
-		}
-		game.log(this, "Added " + (active.deck.size() - startingSize)
-				+ " new cards.");
-
-		if (needed <= 0) {
-			return;
-		}
-
-		/**
-		 * yikes! They processed ALL the cards!
-		 */
-
-	}
-
-	@Override
-	public void dispose() {
-		super.dispose();
-		buzzer.stop();
-		cow.stop();
-		ding.stop();
-		ticktock.stop();
-		buzzer = null;
-		cow = null;
-		ding = null;
-		ticktock = null;
-		game.manager.unload(BoundPronouns.SND_DING);
-		game.manager.unload(BoundPronouns.SND_BUZZ);
-		game.manager.unload(BoundPronouns.SND_COW);
-		game.manager.unload(BoundPronouns.SND_TICKTOCK);
-		if (dskin != null) {
-			dskin.dispose();
-			dskin = null;
-		}
-	}
-
-	private AnswerList getAnswerSetsForBySimilarChallenge(
-			final ActiveCard active, final Card card, Deck deck) {
-		AnswerList answers = new AnswerList();
-		String challenge = card.challenge.get(0);
-		/**
-		 * contains copies of used answers, vgroups, and pgroups to prevent
-		 * duplicates
-		 */
-		Set<String> already = new HashSet<String>(16);
-		already.add(card.pgroup);
-		already.add(card.vgroup);
-		already.addAll(card.answer);
-		already.add(challenge);
-
-		/**
-		 * for temporary manipulation of list data so we don't mess with master
-		 * copies in cards, etc.
-		 */
-		List<String> tmp_correct = new ArrayList<String>(16);
-		tmp_correct.clear();
-		tmp_correct.addAll(card.answer);
-
-		/**
-		 * sort answers from least known to most known
-		 */
-		Collections.sort(tmp_correct, new Comparator<String>() {
-			@Override
-			public int compare(String o1, String o2) {
-				Integer i1 = active.getCorrectInARowFor(o1);
-				Integer i2 = active.getCorrectInARowFor(o2);
-				i1 = (i1 == null ? 0 : i1);
-				i2 = (i2 == null ? 0 : i2);
-				if (i1 < i2) {
-					return -1;
-				}
-				if (i1 > i2) {
-					return 1;
-				}
-				return o1.compareTo(o2);
-			}
-		});
-		/*
-		 * Add a random count of correct answers. Least known first.
-		 */
-		int r = rand.nextInt(tmp_correct.size()) + 1;
-		for (int i = 0; i < r && i < maxCorrect; i++) {
-			String answer = tmp_correct.get(i);
-			answers.list.add(0, new Answer(true, answer, 0));
-		}
-
-		/*
-		 * look for "similar" looking challenges
-		 */
-		Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
-			Collections.shuffle(tmp.cards);
-			for (Card deckCard : tmp.cards) {
-				/*
-				 * make sure we have unique pronouns for each wrong answer
-				 */
-				if (already.contains(deckCard.pgroup)) {
-					continue;
-				}
-				/*
-				 * make sure we keep bare pronouns with bare pronouns and
-				 * vice-versa
-				 */
-				if (StringUtils.isBlank(card.vgroup) != StringUtils
-						.isBlank(deckCard.vgroup)) {
-					continue;
-				}
-				/*
-				 * keep verbs unique as well
-				 */
-				if (!StringUtils.isBlank(deckCard.vgroup)) {
-					if (already.contains(deckCard.vgroup)) {
-						continue;
-					}
-				}
-				/**
-				 * if edit distance is close enough, add it, then add pgroup,
-				 * vgroup and selected answer to already used list
-				 */
-				String tmp_challenge = deckCard.challenge.get(0);
-				if (already.contains(tmp_challenge)) {
-					continue;
-				}
-				int ldistance = getLevenshteinDistance(challenge,
-						tmp_challenge, distance);
-				if (ldistance < 1) {
-					continue;
-				}
-				/*
-				 * select a random wrong answer
-				 */
-				String wrong_answer = deckCard.answer.get(rand
-						.nextInt(deckCard.answer.size()));
-				if (already.contains(wrong_answer)) {
-					continue;
-				}
-				already.add(wrong_answer);
-				answers.list.add(new Answer(false, wrong_answer, ldistance));
-				if (answers.list.size() >= maxAnswers) {
-					break scanDeck;
-				}
-			}
-		}
-		Collections.sort(answers.list, byDistance);
-		if (answers.list.size() > maxAnswers) {
-			answers.list.subList(maxAnswers, answers.list.size()).clear();
-		}
-		Collections.shuffle(answers.list);
-		return answers;
-	}
-
-	private AnswerList getAnswerSetsFor(final ActiveCard active,
-			final Card challengeCard, Deck deck) {
-		Set<String> already = new HashSet<String>(16);
-		AnswerList answers = new AnswerList();
-		/*
-		 * contains copies of used answers, vgroups, and pgroups to prevent
-		 * duplicates
-		 */
-		already.add(challengeCard.pgroup);
-		already.add(challengeCard.vgroup);
-		/*
-		 * make sure all correct answers are in the "black list" for potential
-		 * wrong answers
-		 */
-		already.addAll(challengeCard.answer);
-
-		/*
-		 * for temporary manipulation of list data so we don't mess with master
-		 * copies in cards, etc.
-		 */
-		List<String> tmp_correct = new ArrayList<String>(16);
-		tmp_correct.addAll(challengeCard.answer);
-
-		/**
-		 * sort answers from least known to most known
-		 */
-		Collections.sort(tmp_correct, new Comparator<String>() {
-			@Override
-			public int compare(String o1, String o2) {
-				Integer i1 = active.getCorrectInARowFor(o1);
-				Integer i2 = active.getCorrectInARowFor(o2);
-				i1 = (i1 == null ? 0 : i1);
-				i2 = (i2 == null ? 0 : i2);
-				if (i1 < i2) {
-					return -1;
-				}
-				if (i1 > i2) {
-					return 1;
-				}
-				return o1.compareTo(o2);
-			}
-		});
-		int r = rand.nextInt(tmp_correct.size()) + 1;
-		for (int i = 0; i < r && i < maxCorrect; i++) {
-			String answer = tmp_correct.get(i);
-			answers.list.add(0, new Answer(true, answer, 0));
-		}
-
-		/*
-		 * look for "similar" looking answers by picking one random correct
-		 * answer and comparing to one random wrong answer per card in the
-		 * master deck
-		 */
-		Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
-			Collections.shuffle(tmp.cards);
-			for (Card deckCard : tmp.cards) {
-				/*
-				 * make sure we have unique pronouns for each wrong answer
-				 */
-				if (already.contains(deckCard.pgroup)) {
-					continue;
-				}
-				/*
-				 * make sure we keep bare pronouns with bare pronouns and
-				 * vice-versa
-				 */
-				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils
-						.isBlank(deckCard.vgroup)) {
-					continue;
-				}
-				/*
-				 * keep verbs unique as well
-				 */
-				if (!StringUtils.isBlank(deckCard.vgroup)) {
-					if (already.contains(deckCard.vgroup)) {
-						continue;
-					}
-				}
-				/*
-				 * select a random correct answer
-				 */
-				String correct_answer = challengeCard.answer.get(
-						rand.nextInt(challengeCard.answer.size())).intern();
-				/*
-				 * select a random wrong answer
-				 */
-				String wrong_answer = deckCard.answer.get(
-						rand.nextInt(deckCard.answer.size())).intern();
-				if (already.contains(wrong_answer)) {
-					continue;
-				}
-				/*
-				 * if edit distance is close enough, add it, then add pgroup,
-				 * vgroup and selected answer to already used list otherwise go
-				 * on and check next card
-				 */
-
-				int ldistance = getLevenshteinDistance(
-						correct_answer, wrong_answer, distance);
-				if (ldistance < 1) {
-					continue;
-				}
-				answers.list.add(new Answer(false, wrong_answer, ldistance));
-				already.add(deckCard.pgroup);
-				already.add(deckCard.vgroup);
-				already.add(wrong_answer);
-				if (answers.list.size() >= maxAnswers) {
-					break scanDeck;
-				}
-			}
-		}
-		Collections.sort(answers.list, byDistance);
-		if (answers.list.size() > maxAnswers) {
-			answers.list.subList(maxAnswers, answers.list.size()).clear();
-		}
-		Collections.shuffle(answers.list);
-		Gdx.app.log(TAG, "getAnswerSetsFor already set size: " + already.size());
-		return answers;
-	}
-
-	private ActiveCard getNextCard() {
-		if (current_active.deck.size() == 0) {
-			updateTime(current_discards,
-					(long) (sinceLastNextCard_elapsed * 1000f));
-			sinceLastNextCard_elapsed = 0;
-			Iterator<ActiveCard> itmp = current_discards.deck.iterator();
-			while (itmp.hasNext()) {
-				ActiveCard tmp = itmp.next();
-				if (tmp.noErrors
-						&& tmp.isAllCorrectInARow(SendToNextSessionThreshold)) {
-					tmp.box++;
-					current_done.deck.add(tmp);
-					tmp.show_again_ms = tmp.show_again_ms
-							+ Deck.getNextSessionInterval(tmp.box);
-					itmp.remove();
-					game.log(this, "Bumped Card: " + tmp.pgroup + " "
-							+ tmp.vgroup);
-					return getNextCard();
-				}
-				if (tmp.tries_remaining < 0) {
-					tmp.box--;
-					current_done.deck.add(tmp);
-					tmp.show_again_ms = tmp.show_again_ms
-							+ Deck.getNextSessionInterval(tmp.box);
-					itmp.remove();
-					game.log(this, "Retired Card: " + tmp.pgroup + " "
-							+ tmp.vgroup);
-					return getNextCard();
-				}
-				if (tmp.show_again_ms > 0) {
-					continue;
-				}
-				current_active.deck.add(tmp);
-				itmp.remove();
-			}
-			if (current_active.deck.size() == 0) {
-				return null;
-			}
-			Collections.shuffle(current_active.deck);
-			Collections.sort(current_active.deck, byShowTimeChunks);
-		}
-		ActiveCard card = current_active.deck.get(0);
-		current_active.deck.remove(0);
-		current_discards.deck.add(card);
-		return card;
-	}
-
-	/**
-	 * record all cards currently "in-play" so that when cards are retrieved
-	 * from the master deck they are new cards
-	 * 
-	 * @param activeDeck
-	 */
-	public void recordAlreadySeen(ActiveDeck activeDeck) {
-		Iterator<ActiveCard> istat = activeDeck.deck.iterator();
-		while (istat.hasNext()) {
-			ActiveCard next = istat.next();
-			String unique_id = next.pgroup + "+" + next.vgroup;
-			nodupes.add(unique_id);
-		}
-	}
-
-	private void reInsertCard(ActiveCard card) {
-		if (current_active.deck.size() < 2) {
-			current_active.deck.add(card);
-		} else {
-			current_active.deck.add(1, card);
-		}
-		current_discards.deck.remove(card);
-	}
-
-	@Override
-	public void render(float delta) {
-		if (challengeCardDialog.paused) {
-			BoundPronouns.glClearColor();
-			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			stage.draw();
-			ticktock.setVolume(ticktock_id, 0f);
-			return;
-		}
-		if (elapsed_tick_on) {
-			challenge_elapsed += delta;
-			sinceLastNextCard_elapsed += delta;
-			elapsed += delta;
-			notice_elapsed += delta;
-			if (notice_elapsed > 60f) {
-				notice_elapsed = 0f;
-				int mins = (int) (elapsed / 60);
-				int secs = (int) (elapsed - mins * 60f);
-				game.log(this, mins + ":" + (secs < 10 ? "0" : "") + secs);
-			}
-		}
-		super.render(delta);
-	}
-
-	@Override
-	public void show() {
-		super.show();
-		game.manager.load(BoundPronouns.SND_DING, Sound.class);
-		game.manager.load(BoundPronouns.SND_BUZZ, Sound.class);
-		game.manager.load(BoundPronouns.SND_COW, Sound.class);
-		game.manager.load(BoundPronouns.SND_TICKTOCK, Sound.class);
-		game.manager.finishLoading();
-		ding = game.manager.get(BoundPronouns.SND_DING, Sound.class);
-		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
-		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
-		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
-	}
-
-	/**
-	 * time-shift all cards by time since last recorded run.
-	 * 
-	 * @param currentDeck
-	 */
-	public void updateTime(ActiveDeck currentDeck, long ms) {
-		Iterator<ActiveCard> istat = currentDeck.deck.iterator();
-		while (istat.hasNext()) {
-			ActiveCard next = istat.next();
-			next.show_again_ms -= ms;
-		}
-	}
-
-	private Card getCardById(String pgroup, String vgroup) {
-		for (Card card : game.deck.cards) {
-			if (!card.pgroup.equals(pgroup)) {
-				continue;
-			}
-			if (!card.vgroup.equals(vgroup)) {
-				continue;
-			}
-			return card;
-		}
-		return null;
-	}
-
-	private Skin dskin = null;
-
-	private Dialog dialogYN(String title, String message, final Runnable yes,
-			final Runnable no) {
-		if (dskin == null) {
-			dskin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
-		}
-		WindowStyle ws = new WindowStyle(dskin.get(WindowStyle.class));
-		ws.titleFont = game.getFont(Font.SerifLLarge);
-		LabelStyle ls = new LabelStyle(dskin.get(LabelStyle.class));
-		message = WordUtils.wrap(message, 70);
-		ls.font = game.getFont(Font.SerifLarge);
-		Label msg = new Label(message, ls);
-		msg.setAlignment(Align.center);
-		TextButtonStyle tbs = new TextButtonStyle(
-				dskin.get(TextButtonStyle.class));
-		tbs.font = game.getFont(Font.SerifLarge);
-		final TextButton btn_yes = new TextButton("YES", tbs);
-		final TextButton btn_no = new TextButton("NO", tbs);
-		Dialog dialog = new Dialog(title, ws) {
-			@Override
-			protected void result(Object object) {
-				super.result(object);
-				if (btn_yes.equals(object)) {
-					Gdx.app.postRunnable(yes);
-				}
-				if (btn_no.equals(object)) {
-					Gdx.app.postRunnable(no);
-				}
-			}
-		};
-		dialog.text(msg);
-		dialog.button(btn_yes, btn_yes);
-		dialog.button(btn_no, btn_no);
-		return dialog;
-	}
-
+	private static int lv_d[] = new int[1024]; // cost array, horizontally
 	/**
 	 * <p>
 	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
@@ -1678,7 +783,28 @@ public class LearningSession extends ChildScreen implements Screen {
 	 *             if either String input {@code null} or negative threshold
 	 */
 	private static int lv_p[] = new int[1024]; // 'previous' cost array, horizontally
-	private static int lv_d[] = new int[1024]; // cost array, horizontally
+	private static final int maxAnswers = 6;
+	private static final int maxCorrect = 6;
+	private static Callback<Void> noop_success = new Callback<Void>() {
+		@Override
+		public void success(Void result) {
+			Gdx.app.log("LearningSession-Score Submit", "success");
+		}
+	};
+	private static final long ONE_DAY_ms;
+	private static final long ONE_HOUR_ms;
+	private static final long ONE_MINUTE_ms;
+	private static final long ONE_SECOND_ms;
+	static {
+		ONE_SECOND_ms = 1000l;
+		ONE_MINUTE_ms = 60l * ONE_SECOND_ms;
+		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
+		ONE_DAY_ms = 24l * ONE_HOUR_ms;
+	}
+	private static final int SendToNextSessionThreshold = 4;
+
+	private static final String TAG = "LearningSession";
+
 	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t,
 			int threshold) {
 		if (s == null || t == null) {
@@ -1815,6 +941,885 @@ public class LearningSession extends ChildScreen implements Screen {
 			return lv_p[n];
 		} else {
 			return -1;
+		}
+	}
+
+	private ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader() {
+	};
+
+	private Sound buzzer;
+
+	/**
+	 * Sort answers by edit distance so the list can be trimmed to size easily.
+	 * The sort only considers edit distance and does not factor in actual
+	 * String values - this is intentional.
+	 */
+	private Comparator<Answer> byDistance = new Comparator<Answer>() {
+		@Override
+		public int compare(Answer o1, Answer o2) {
+			if (o1.correct != o2.correct && o1.correct) {
+				return -1;
+			}
+			if (o2.correct) {
+				return 1;
+			}
+			if (o1.distance < o2.distance) {
+				return -1;
+			}
+			if (o1.distance > o2.distance) {
+				return 1;
+			}
+			return 0;
+		}
+	};
+
+	private int cardcount = 0;
+
+	/**
+	 * How long this challenge has been displayed.
+	 */
+	private float challenge_elapsed;
+
+	private final ChallengeCardDialog challengeCardDialog;
+
+	private Table container;
+
+	private Sound cow;
+
+	/**
+	 * currently being looped through for display
+	 */
+	private final ActiveDeck current_active = new ActiveDeck();
+
+	/**
+	 * holding area for cards that have just been displayed or are not scheduled
+	 * yet for display
+	 */
+	private final ActiveDeck current_discards = new ActiveDeck();
+
+	/**
+	 * holding area for cards that should not be shown any more this session
+	 */
+	private final ActiveDeck current_done = new ActiveDeck();
+
+	/**
+	 * holding area for cards that are "due" but deck size says don't show yet
+	 */
+	private final ActiveDeck current_due = new ActiveDeck();
+
+	private Sound ding;
+
+	private Skin dskin = null;
+	/**
+	 * total challenge time accumulated
+	 */
+	private float elapsed = 0f;
+
+	/**
+	 * Whether elapsed time should be accumulated or not
+	 */
+	private boolean elapsed_tick_on = false;
+
+	final private SlotInfo info;
+
+	private boolean isExtraPractice = false;
+
+	private final JsonConverter json;
+
+	private LoadMasterDeck loadDeck = new LoadMasterDeck() {
+	};
+	private final NewCardDialog newCardDialog;
+	private final Set<String> nodupes = new HashSet<String>();
+	/**
+	 * used for logging periodic messages
+	 */
+	private float notice_elapsed = 0f;
+	private ProcessActiveCards processActiveCards = new ProcessActiveCards() {
+	};
+
+	private final Random rand = new Random();
+
+	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
+
+	private ShowACard showACard = new ShowACard() {
+	};
+
+	/**
+	 * time since last "shuffle"
+	 */
+	private float sinceLastNextCard_elapsed = 0f;
+
+	private final Skin skin;
+
+	private final FileHandle slot;
+
+	private Sound ticktock;
+
+	private long ticktock_id;
+
+	private TooSoonDialog tooSoon = new TooSoonDialog() {
+	};
+
+	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
+		super(_game, caller);
+
+		int totalCards = game.deck.cards.size();
+		current_active.deck = new ArrayList<ActiveCard>(totalCards);
+		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
+		current_done.deck = new ArrayList<ActiveCard>(totalCards);
+		current_due.deck = new ArrayList<ActiveCard>(totalCards);
+
+		this.slot = slot;
+		slot.mkdirs();
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
+				Texture.class);
+		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
+		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
+		container = new Table(skin);
+		container.setBackground(d);
+		container.setFillParent(true);
+		stage.addActor(container);
+		stage.addAction(Actions.delay(.05f, Actions.run(loadDeck)));
+		json = new JsonConverter();
+
+		FileHandle infoFile = slot.child(INFO_JSON);
+		if (!infoFile.exists()) {
+			info = new SlotInfo();
+			info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
+		} else {
+			info = json.fromJson(SlotInfo.class, infoFile);
+		}
+
+		newCardDialog = new NewCardDialog(game, skin) {
+			@Override
+			protected void result(Object object) {
+				this.clearActions();
+				stage.addAction(Actions.run(showACard));
+			}
+
+			@Override
+			public Dialog show(Stage stage) {
+				return super.show(stage);
+			}
+
+			@Override
+			protected void showMainMenu() {
+				Runnable yes = new Runnable() {
+					@Override
+					public void run() {
+						game.setScreen(LearningSession.this.caller);
+						LearningSession.this.dispose();
+					}
+				};
+				Runnable no = new Runnable() {
+					@Override
+					public void run() {
+					}
+				};
+				Dialog dialog = dialogYN(
+						"Please Confirm Exit",
+						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
+						yes, no);
+				dialog.show(stage);
+			}
+		};
+
+		challengeCardDialog = new ChallengeCardDialog(game, skin) {
+
+			Runnable hideThisCard = new Runnable() {
+				@Override
+				public void run() {
+					hide();
+				}
+			};
+
+			@Override
+			protected void result(Object object) {
+				this.navEnable(false);
+				/*
+				 * bump show count and add in elapsed display time for later
+				 * scoring ...
+				 */
+				_activeCard.showCount++;
+				_activeCard.showTime += challenge_elapsed;
+				this.clearActions();
+				this.setCheckVisible(false);
+				setTimer(0);
+				ticktock.setVolume(ticktock_id, 0f);
+				ticktock.stop(ticktock_id);
+				cancel();
+				/**
+				 * set when any wrong
+				 */
+				boolean doBuzzer = false;
+				/**
+				 * worst case scenario, all wrong ones marked and no right ones
+				 * marked, gets set to false if ANY combination of
+				 * checked/unchecked is valid
+				 */
+				boolean doCow = true;
+				for (Actor b : getButtonTable().getChildren()) {
+					if (b instanceof Button) {
+						((Button) b).setDisabled(true);
+						((Button) b).setTouchable(Touchable.disabled);
+					}
+					if (b instanceof TextButton) {
+						TextButton tb = (TextButton) b;
+						if (tb.getUserObject() != null
+								&& tb.getUserObject() instanceof Answer) {
+							Answer tracked_answer = (Answer) tb.getUserObject();
+							if (!tb.isChecked() && !tracked_answer.correct) {
+								tb.addAction(Actions.fadeOut(.2f));
+								doCow = false;
+							}
+							if (tb.isChecked() && !tracked_answer.correct) {
+								ColorAction toRed = Actions.color(Color.RED,
+										.4f);
+								tb.addAction(toRed);
+								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
+										+ tb.getText());
+								doBuzzer = true;
+								resetCorrectInARow(_activeCard);
+								_activeCard.noErrors = false;
+							}
+							if (!tb.isChecked() && tracked_answer.correct) {
+								ColorAction toGreen = Actions.color(
+										Color.GREEN, .4f);
+								ColorAction toClear = Actions.color(
+										Color.CLEAR, .2f);
+								SequenceAction sequence = Actions.sequence(
+										toClear, toGreen);
+								tb.addAction(Actions.repeat(2, sequence));
+								tb.setText(BoundPronouns.RIGHT_ARROW + " "
+										+ tb.getText());
+								doBuzzer = true;
+								resetCorrectInARow(_activeCard);
+								_activeCard.noErrors = false;
+							}
+							if (tb.isChecked() && tracked_answer.correct) {
+								ColorAction toGreen = Actions.color(
+										Color.GREEN, .2f);
+								tb.addAction(toGreen);
+								doCow = false;
+								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
+										+ tb.getText());
+								_activeCard.markCorrect(tracked_answer.answer);
+							}
+						}
+					}
+				}
+
+				if (doCow) {
+					if (!challengeCardDialog.settings.muted) {
+						cow.play();
+					}
+				}
+				if (doBuzzer && !doCow) {
+					if (!challengeCardDialog.settings.muted) {
+						buzzer.play();
+					}
+				}
+				if (!doCow && !doBuzzer) {
+					if (!challengeCardDialog.settings.muted) {
+						ding.play();
+					}
+				}
+				_activeCard.show_again_ms = Deck.getNextInterval(_activeCard
+						.getMinCorrectInARow());
+				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
+						Actions.run(hideThisCard)));
+				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
+						Actions.run(showACard)));
+			}
+
+			@Override
+			protected void showMainMenu() {
+				final boolean wasPaused = challengeCardDialog.paused;
+				Runnable yes = new Runnable() {
+					@Override
+					public void run() {
+						game.setScreen(LearningSession.this.caller);
+						LearningSession.this.dispose();
+					}
+				};
+				Runnable no = new Runnable() {
+					@Override
+					public void run() {
+						challengeCardDialog.paused = wasPaused;
+					}
+				};
+				Dialog dialog = dialogYN(
+						"Please Confirm Exit",
+						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
+						yes, no);
+				dialog.show(stage);
+				challengeCardDialog.paused = true;
+			}
+		};
+
+		newCardDialog.settings = info.settings;
+		challengeCardDialog.settings = info.settings;
+		challengeCardDialog.updateMuteButtonText();
+	}
+
+	/**
+	 * add this many cards to the Current Active Deck first from the current
+	 * Active Deck then from the master Deck set
+	 * 
+	 * @param needed
+	 * @param active
+	 */
+	public void addCards(int needed, ActiveDeck active) {
+		int startingSize = active.deck.size();
+		/**
+		 * look for previous cards to load first, if their delay time is up
+		 */
+		Iterator<ActiveCard> ipending = current_due.deck.iterator();
+		while (needed > 0 && ipending.hasNext()) {
+			ActiveCard next = ipending.next();
+			if (next.box >= SlotInfo.FULLY_LEARNED_BOX) {
+				continue;
+			}
+			if (next.show_again_ms > 0) {
+				continue;
+			}
+			active.deck.add(next);
+			needed--;
+			ipending.remove();
+		}
+		game.log(this, "Added " + (active.deck.size() - startingSize)
+				+ " previous cards.");
+
+		if (needed <= 0) {
+			return;
+		}
+
+		/**
+		 * not enough already seen cards, add new never seen cards
+		 */
+		startingSize = active.deck.size();
+		Iterator<Card> ideck = game.deck.cards.iterator();
+		while (needed > 0 && ideck.hasNext()) {
+			Card next = ideck.next();
+			switch (info.settings.deck) {
+			case Both:
+				break;
+			case Conjugations:
+				if (StringUtils.isBlank(next.vgroup)) {
+					continue;
+				}
+				break;
+			case Pronouns:
+				if (!StringUtils.isBlank(next.vgroup)) {
+					continue;
+				}
+				break;
+			default:
+				break;
+			}
+			String unique_id = next.pgroup + "+" + next.vgroup;
+			if (nodupes.contains(unique_id)) {
+				continue;
+			}
+			ActiveCard activeCard = new ActiveCard();
+			activeCard.box = 0;
+			activeCard.noErrors = true;
+			activeCard.newCard = true;
+			activeCard.pgroup = next.pgroup;
+			activeCard.show_again_ms = 0;
+			activeCard.vgroup = next.vgroup;
+			resetCorrectInARow(activeCard);
+			activeCard.tries_remaining = SendToNextSessionThreshold
+					* next.answer.size();
+			active.deck.add(activeCard);
+			needed--;
+			nodupes.add(unique_id);
+		}
+		game.log(this, "Added " + (active.deck.size() - startingSize)
+				+ " new cards.");
+
+		if (needed <= 0) {
+			return;
+		}
+
+		/**
+		 * yikes! They processed ALL the cards!
+		 */
+
+	}
+
+	private Dialog dialogYN(String title, String message, final Runnable yes,
+			final Runnable no) {
+		if (dskin == null) {
+			dskin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
+		}
+		WindowStyle ws = new WindowStyle(dskin.get(WindowStyle.class));
+		ws.titleFont = game.getFont(Font.SerifLLarge);
+		LabelStyle ls = new LabelStyle(dskin.get(LabelStyle.class));
+		message = WordUtils.wrap(message, 70);
+		ls.font = game.getFont(Font.SerifLarge);
+		Label msg = new Label(message, ls);
+		msg.setAlignment(Align.center);
+		TextButtonStyle tbs = new TextButtonStyle(
+				dskin.get(TextButtonStyle.class));
+		tbs.font = game.getFont(Font.SerifLarge);
+		final TextButton btn_yes = new TextButton("YES", tbs);
+		final TextButton btn_no = new TextButton("NO", tbs);
+		Dialog dialog = new Dialog(title, ws) {
+			@Override
+			protected void result(Object object) {
+				super.result(object);
+				if (btn_yes.equals(object)) {
+					Gdx.app.postRunnable(yes);
+				}
+				if (btn_no.equals(object)) {
+					Gdx.app.postRunnable(no);
+				}
+			}
+		};
+		dialog.text(msg);
+		dialog.button(btn_yes, btn_yes);
+		dialog.button(btn_no, btn_no);
+		return dialog;
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		buzzer.stop();
+		cow.stop();
+		ding.stop();
+		ticktock.stop();
+		buzzer = null;
+		cow = null;
+		ding = null;
+		ticktock = null;
+		game.manager.unload(BoundPronouns.SND_DING);
+		game.manager.unload(BoundPronouns.SND_BUZZ);
+		game.manager.unload(BoundPronouns.SND_COW);
+		game.manager.unload(BoundPronouns.SND_TICKTOCK);
+		if (dskin != null) {
+			dskin.dispose();
+			dskin = null;
+		}
+	}
+
+	private AnswerList getAnswerSetsFor(final ActiveCard active,
+			final Card challengeCard, Deck deck) {
+		Set<String> already = new HashSet<String>(16);
+		AnswerList answers = new AnswerList();
+		/*
+		 * contains copies of used answers, vgroups, and pgroups to prevent
+		 * duplicates
+		 */
+		already.add(challengeCard.pgroup);
+		already.add(challengeCard.vgroup);
+		/*
+		 * make sure all correct answers are in the "black list" for potential
+		 * wrong answers
+		 */
+		already.addAll(challengeCard.answer);
+
+		/*
+		 * for temporary manipulation of list data so we don't mess with master
+		 * copies in cards, etc.
+		 */
+		List<String> tmp_correct = new ArrayList<String>(16);
+		tmp_correct.addAll(challengeCard.answer);
+
+		/**
+		 * sort answers from least known to most known
+		 */
+		Collections.sort(tmp_correct, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				Integer i1 = active.getCorrectInARowFor(o1);
+				Integer i2 = active.getCorrectInARowFor(o2);
+				i1 = (i1 == null ? 0 : i1);
+				i2 = (i2 == null ? 0 : i2);
+				if (i1 < i2) {
+					return -1;
+				}
+				if (i1 > i2) {
+					return 1;
+				}
+				return o1.compareTo(o2);
+			}
+		});
+		int r = rand.nextInt(tmp_correct.size()) + 1;
+		for (int i = 0; i < r && i < maxCorrect; i++) {
+			String answer = tmp_correct.get(i);
+			answers.list.add(0, new Answer(true, answer, 0));
+		}
+
+		/*
+		 * look for "similar" looking answers by picking one random correct
+		 * answer and comparing to one random wrong answer per card in the
+		 * master deck
+		 */
+		Deck tmp = new Deck(deck);
+		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
+			Collections.shuffle(tmp.cards);
+			for (Card deckCard : tmp.cards) {
+				/*
+				 * make sure we have unique pronouns for each wrong answer
+				 */
+				if (already.contains(deckCard.pgroup)) {
+					continue;
+				}
+				/*
+				 * make sure we keep bare pronouns with bare pronouns and
+				 * vice-versa
+				 */
+				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils
+						.isBlank(deckCard.vgroup)) {
+					continue;
+				}
+				/*
+				 * keep verbs unique as well
+				 */
+				if (!StringUtils.isBlank(deckCard.vgroup)) {
+					if (already.contains(deckCard.vgroup)) {
+						continue;
+					}
+				}
+				/*
+				 * select a random correct answer
+				 */
+				String correct_answer = challengeCard.answer.get(
+						rand.nextInt(challengeCard.answer.size())).intern();
+				/*
+				 * select a random wrong answer
+				 */
+				String wrong_answer = deckCard.answer.get(
+						rand.nextInt(deckCard.answer.size())).intern();
+				if (already.contains(wrong_answer)) {
+					continue;
+				}
+				/*
+				 * if edit distance is close enough, add it, then add pgroup,
+				 * vgroup and selected answer to already used list otherwise go
+				 * on and check next card
+				 */
+
+				int ldistance = getLevenshteinDistance(
+						correct_answer, wrong_answer, distance);
+				if (ldistance < 1) {
+					continue;
+				}
+				answers.list.add(new Answer(false, wrong_answer, ldistance));
+				already.add(deckCard.pgroup);
+				already.add(deckCard.vgroup);
+				already.add(wrong_answer);
+				if (answers.list.size() >= maxAnswers) {
+					break scanDeck;
+				}
+			}
+		}
+		Collections.sort(answers.list, byDistance);
+		if (answers.list.size() > maxAnswers) {
+			answers.list.subList(maxAnswers, answers.list.size()).clear();
+		}
+		Collections.shuffle(answers.list);
+		Gdx.app.log(TAG, "getAnswerSetsFor already set size: " + already.size());
+		return answers;
+	}
+
+	private AnswerList getAnswerSetsForBySimilarChallenge(
+			final ActiveCard active, final Card card, Deck deck) {
+		AnswerList answers = new AnswerList();
+		String challenge = card.challenge.get(0);
+		/**
+		 * contains copies of used answers, vgroups, and pgroups to prevent
+		 * duplicates
+		 */
+		Set<String> already = new HashSet<String>(16);
+		already.add(card.pgroup);
+		already.add(card.vgroup);
+		already.addAll(card.answer);
+		already.add(challenge);
+
+		/**
+		 * for temporary manipulation of list data so we don't mess with master
+		 * copies in cards, etc.
+		 */
+		List<String> tmp_correct = new ArrayList<String>(16);
+		tmp_correct.clear();
+		tmp_correct.addAll(card.answer);
+
+		/**
+		 * sort answers from least known to most known
+		 */
+		Collections.sort(tmp_correct, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				Integer i1 = active.getCorrectInARowFor(o1);
+				Integer i2 = active.getCorrectInARowFor(o2);
+				i1 = (i1 == null ? 0 : i1);
+				i2 = (i2 == null ? 0 : i2);
+				if (i1 < i2) {
+					return -1;
+				}
+				if (i1 > i2) {
+					return 1;
+				}
+				return o1.compareTo(o2);
+			}
+		});
+		/*
+		 * Add a random count of correct answers. Least known first.
+		 */
+		int r = rand.nextInt(tmp_correct.size()) + 1;
+		for (int i = 0; i < r && i < maxCorrect; i++) {
+			String answer = tmp_correct.get(i);
+			answers.list.add(0, new Answer(true, answer, 0));
+		}
+
+		/*
+		 * look for "similar" looking challenges
+		 */
+		Deck tmp = new Deck(deck);
+		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
+			Collections.shuffle(tmp.cards);
+			for (Card deckCard : tmp.cards) {
+				/*
+				 * make sure we have unique pronouns for each wrong answer
+				 */
+				if (already.contains(deckCard.pgroup)) {
+					continue;
+				}
+				/*
+				 * make sure we keep bare pronouns with bare pronouns and
+				 * vice-versa
+				 */
+				if (StringUtils.isBlank(card.vgroup) != StringUtils
+						.isBlank(deckCard.vgroup)) {
+					continue;
+				}
+				/*
+				 * keep verbs unique as well
+				 */
+				if (!StringUtils.isBlank(deckCard.vgroup)) {
+					if (already.contains(deckCard.vgroup)) {
+						continue;
+					}
+				}
+				/**
+				 * if edit distance is close enough, add it, then add pgroup,
+				 * vgroup and selected answer to already used list
+				 */
+				String tmp_challenge = deckCard.challenge.get(0);
+				if (already.contains(tmp_challenge)) {
+					continue;
+				}
+				int ldistance = getLevenshteinDistance(challenge,
+						tmp_challenge, distance);
+				if (ldistance < 1) {
+					continue;
+				}
+				/*
+				 * select a random wrong answer
+				 */
+				String wrong_answer = deckCard.answer.get(rand
+						.nextInt(deckCard.answer.size()));
+				if (already.contains(wrong_answer)) {
+					continue;
+				}
+				already.add(wrong_answer);
+				answers.list.add(new Answer(false, wrong_answer, ldistance));
+				if (answers.list.size() >= maxAnswers) {
+					break scanDeck;
+				}
+			}
+		}
+		Collections.sort(answers.list, byDistance);
+		if (answers.list.size() > maxAnswers) {
+			answers.list.subList(maxAnswers, answers.list.size()).clear();
+		}
+		Collections.shuffle(answers.list);
+		return answers;
+	}
+
+	private Card getCardById(String pgroup, String vgroup) {
+		for (Card card : game.deck.cards) {
+			if (!card.pgroup.equals(pgroup)) {
+				continue;
+			}
+			if (!card.vgroup.equals(vgroup)) {
+				continue;
+			}
+			return card;
+		}
+		return null;
+	}
+
+	/**
+	 * Calculates amount of ms needed to shift by to move deck to "0" point.
+	 * 
+	 * @param current_pending
+	 * @return
+	 */
+	private long getMinShiftTimeOf(ActiveDeck current_pending) {
+		if (current_pending.deck.size() == 0) {
+			return 0;
+		}
+		long by = Long.MAX_VALUE;
+		Iterator<ActiveCard> icard = current_pending.deck.iterator();
+		while (icard.hasNext()) {
+			ActiveCard card = icard.next();
+			if (card.tries_remaining < 1) {
+				continue;
+			}
+			if (by > card.show_again_ms) {
+				by = card.show_again_ms;
+			}
+		}
+		if (by == Long.MAX_VALUE) {
+			by = ONE_MINUTE_ms;
+		}
+		return by;
+	}
+
+	private ActiveCard getNextCard() {
+		if (current_active.deck.size() == 0) {
+			updateTime(current_discards,
+					(long) (sinceLastNextCard_elapsed * 1000f));
+			sinceLastNextCard_elapsed = 0;
+			Iterator<ActiveCard> itmp = current_discards.deck.iterator();
+			while (itmp.hasNext()) {
+				ActiveCard tmp = itmp.next();
+				if (tmp.noErrors
+						&& tmp.isAllCorrectInARow(SendToNextSessionThreshold)) {
+					tmp.box++;
+					current_done.deck.add(tmp);
+					tmp.show_again_ms = tmp.show_again_ms
+							+ Deck.getNextSessionInterval(tmp.box);
+					itmp.remove();
+					game.log(this, "Bumped Card: " + tmp.pgroup + " "
+							+ tmp.vgroup);
+					return getNextCard();
+				}
+				if (tmp.tries_remaining < 0) {
+					tmp.box--;
+					current_done.deck.add(tmp);
+					tmp.show_again_ms = tmp.show_again_ms
+							+ Deck.getNextSessionInterval(tmp.box);
+					itmp.remove();
+					game.log(this, "Retired Card: " + tmp.pgroup + " "
+							+ tmp.vgroup);
+					return getNextCard();
+				}
+				if (tmp.show_again_ms > 0) {
+					continue;
+				}
+				current_active.deck.add(tmp);
+				itmp.remove();
+			}
+			if (current_active.deck.size() == 0) {
+				return null;
+			}
+			Collections.shuffle(current_active.deck);
+			Collections.sort(current_active.deck, byShowTimeChunks);
+		}
+		ActiveCard card = current_active.deck.get(0);
+		current_active.deck.remove(0);
+		current_discards.deck.add(card);
+		return card;
+	}
+
+	/**
+	 * record all cards currently "in-play" so that when cards are retrieved
+	 * from the master deck they are new cards
+	 * 
+	 * @param activeDeck
+	 */
+	public void recordAlreadySeen(ActiveDeck activeDeck) {
+		Iterator<ActiveCard> istat = activeDeck.deck.iterator();
+		while (istat.hasNext()) {
+			ActiveCard next = istat.next();
+			String unique_id = next.pgroup + "+" + next.vgroup;
+			nodupes.add(unique_id);
+		}
+	}
+
+	private void reInsertCard(ActiveCard card) {
+		if (current_active.deck.size() < 2) {
+			current_active.deck.add(card);
+		} else {
+			current_active.deck.add(1, card);
+		}
+		current_discards.deck.remove(card);
+	}
+
+	@Override
+	public void render(float delta) {
+		if (challengeCardDialog.paused) {
+			BoundPronouns.glClearColor();
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			stage.draw();
+			ticktock.setVolume(ticktock_id, 0f);
+			return;
+		}
+		if (elapsed_tick_on) {
+			challenge_elapsed += delta;
+			sinceLastNextCard_elapsed += delta;
+			elapsed += delta;
+			notice_elapsed += delta;
+			if (notice_elapsed > 60f) {
+				notice_elapsed = 0f;
+				int mins = (int) (elapsed / 60);
+				int secs = (int) (elapsed - mins * 60f);
+				game.log(this, mins + ":" + (secs < 10 ? "0" : "") + secs);
+			}
+		}
+		super.render(delta);
+	}
+
+	public void resetCorrectInARow(ActiveCard card) {
+		Card dcard = getCardById(card.pgroup, card.vgroup);
+		if (dcard == null) {
+			card.resetCorrectInARow(new ArrayList<String>());
+			return;
+		}
+		card.resetCorrectInARow(dcard.answer);
+	}
+
+	private void resetCorrectInARow(ActiveDeck current_pending) {
+		for (ActiveCard card : current_pending.deck) {
+			resetCorrectInARow(card);
+		}
+	}
+
+	protected void resetRetriesCount(ActiveDeck deck) {
+		for (ActiveCard card : deck.deck) {
+			Card dcard = getCardById(card.pgroup, card.vgroup);
+			card.tries_remaining = SendToNextSessionThreshold
+					* dcard.answer.size();
+		}
+	}
+	@Override
+	public void show() {
+		super.show();
+		game.manager.load(BoundPronouns.SND_DING, Sound.class);
+		game.manager.load(BoundPronouns.SND_BUZZ, Sound.class);
+		game.manager.load(BoundPronouns.SND_COW, Sound.class);
+		game.manager.load(BoundPronouns.SND_TICKTOCK, Sound.class);
+		game.manager.finishLoading();
+		ding = game.manager.get(BoundPronouns.SND_DING, Sound.class);
+		buzzer = game.manager.get(BoundPronouns.SND_BUZZ, Sound.class);
+		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
+		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
+	}
+	/**
+	 * time-shift all cards by time since last recorded run.
+	 * 
+	 * @param currentDeck
+	 */
+	public void updateTime(ActiveDeck currentDeck, long ms) {
+		Iterator<ActiveCard> istat = currentDeck.deck.iterator();
+		while (istat.hasNext()) {
+			ActiveCard next = istat.next();
+			next.show_again_ms -= ms;
 		}
 	}
 }
