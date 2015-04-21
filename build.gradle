@@ -44,8 +44,8 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"       
+        // compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
+        // compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"       
         compile 'com.google.apis:google-api-services-games:v1-rev92-1.19.1'
         compile 'com.google.apis:google-api-services-drive:v2-rev161-1.19.1'
         compile 'com.google.oauth-client:google-oauth-client-jetty:1.19.0'
@@ -68,8 +68,8 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
+        // compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        // compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
         compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
@@ -116,7 +116,7 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        // compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
