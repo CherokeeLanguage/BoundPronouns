@@ -58,6 +58,8 @@ public interface GooglePlayGameServices {
 		}
 		
 		public void error(Exception exception) {
+			exception.printStackTrace();
+			System.err.flush();
 		};
 		
 		public abstract void success(T result);

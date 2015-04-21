@@ -47,7 +47,7 @@ public abstract class NewCardDialog extends Dialog {
 		setFillParent(true);
 		
 		title="New Vocabulary Card";
-		setTitle(title);
+		getTitleLabel().setText(title);
 		
 		challenge_top=new TextButton("", skin);
 		challenge_top.setDisabled(true);
@@ -163,7 +163,7 @@ public abstract class NewCardDialog extends Dialog {
 	}
 
 	public void setCounter(int cardcount) {
-		setTitle(title+" ["+cardcount+"]");
+		getTitleLabel().setText(title+" ["+cardcount+"]");
 	}
 	
 	@Override

@@ -9,6 +9,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFont.BitmapFontData;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -19,9 +20,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
@@ -219,8 +220,11 @@ public class ShowPronouns extends ChildScreen {
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		BitmapFont font_base = game.getFont(Font.SerifSmall);
-		BitmapFont font = new BitmapFont(font_base.getData(), font_base.getRegions(), true);
-		font.setMarkupEnabled(true);
+		
+		BitmapFontData font_data = font_base.getData();
+		font_data.markupEnabled=true;
+		
+		BitmapFont font = new BitmapFont(font_data, font_base.getRegions(), true);
 		
 		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		bstyle.font=font;

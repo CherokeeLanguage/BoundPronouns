@@ -28,9 +28,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.Answer;
@@ -45,7 +45,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 	public SlotInfo.Settings settings = new SlotInfo.Settings();
 
 	public void setCounter(int cardcount) {
-		setTitle(title + " [" + cardcount + "]");
+		getTitleLabel().setText(title + " [" + cardcount + "]");
 	}
 
 	private String title = "";
