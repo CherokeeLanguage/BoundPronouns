@@ -197,6 +197,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			dls.font=game.getFont(Font.SerifLarge);
 			final TextButton play_button = button;
 			final Dialog login = new Dialog("Google Play Services", dws);
+			login.getTitleLabel().setAlignment(Align.center);
 			login.text(new Label("Connecting to Google Play Services ...", dls));
 			login.button(new TextButton("DISMISS", tbs));
 			

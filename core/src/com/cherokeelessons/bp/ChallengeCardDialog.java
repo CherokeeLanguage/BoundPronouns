@@ -46,6 +46,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	public void setCounter(int cardcount) {
 		getTitleLabel().setText(title + " [" + cardcount + "]");
+		getTitleLabel().setAlignment(Align.center);
 	}
 
 	private String title = "";

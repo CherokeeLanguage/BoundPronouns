@@ -21,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.SlotInfo;
@@ -48,6 +49,7 @@ public abstract class NewCardDialog extends Dialog {
 		
 		title="New Vocabulary Card";
 		getTitleLabel().setText(title);
+		getTitleLabel().setAlignment(Align.center);
 		
 		challenge_top=new TextButton("", skin);
 		challenge_top.setDisabled(true);
