@@ -146,4 +146,5 @@ public interface GooglePlayGameServices {
 	void drive_replace(FileHandle file, String title, String description,
 			Callback<String> callback);
 	void drive_replace(FileHandle file, Callback<String> callback);
+	boolean isLoggedIn();
 }

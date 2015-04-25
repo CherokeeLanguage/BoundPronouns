@@ -34,6 +34,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
 import com.cherokeelessons.play.GameServices;
+import com.cherokeelessons.play.Platform;
 
 public class DesktopLauncher implements PlatformTextInput {
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.play.GameServices;
+import com.cherokeelessons.play.Platform;
 
 public class IOSLauncher extends IOSApplication.Delegate {
 	Platform platform;

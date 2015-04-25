@@ -1,4 +1,4 @@
-package com.cherokeelessons.bp.ios;
+package com.cherokeelessons.play;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -217,7 +217,7 @@ public class Platform implements PlatformInterface {
 						.setRedirectUri(redirectUri).execute();
 				return flow.createAndStoreCredential(response, userId);
 			}
-		}.authorize("user");
+		}.authorize(PlatformInterface.USER);
 	}
 
 	private void login(final String url) {

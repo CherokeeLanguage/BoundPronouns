@@ -44,17 +44,6 @@ import com.cherokeelessons.util.GooglePlayGameServices;
 
 public class BoundPronouns extends Game {
 	
-	public static boolean isLoggedIn() {
-		return getPrefs().getBoolean(
-				BoundPronouns.GooglePlayLogginIn, false);
-	};
-	
-	public static void isLoggedIn(boolean state) {
-		Preferences prefs = getPrefs();
-		prefs.putBoolean(BoundPronouns.GooglePlayLogginIn, state);
-		prefs.flush();
-	}
-	
 	@Override
 	public void pause() {
 		super.pause();

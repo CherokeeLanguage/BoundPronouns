@@ -685,16 +685,6 @@ public class MainScreen implements Screen, InputProcessor {
 		multi.addProcessor(this);
 		multi.addProcessor(stage);
 		Gdx.input.setInputProcessor(stage);
-		final Preferences prefs = BoundPronouns.getPrefs();
-		if (!prefs.contains("CherokeeBoundPronouns")) {
-			prefs.putString("CherokeeBoundPronouns", new Date().toString());
-			prefs.flush();
-		}
-		if (!loginDialogDone
-				&& BoundPronouns.isLoggedIn()) {
-			loginDialogDone = true;
-			BoundPronouns.services.login(noop_success);
-		}
 	}
 
 	@Override

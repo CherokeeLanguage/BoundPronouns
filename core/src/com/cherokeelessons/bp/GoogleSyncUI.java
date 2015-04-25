@@ -120,7 +120,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	@Override
 	public void run() {
-		if (!BoundPronouns.isLoggedIn()) {
+		if (!gplay.isLoggedIn()) {
 			askToLoginForSync();
 			return;
 		}
@@ -567,7 +567,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			@Override
 			public void success(Void result) {
 				login.hide();
-				BoundPronouns.isLoggedIn(true);
 				if (afterLogin != null) {
 					Gdx.app.postRunnable(afterLogin);
 				}
@@ -577,7 +576,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			public void error(Exception exception) {
 				exception.printStackTrace();
 				login.hide();
-				BoundPronouns.isLoggedIn(true);
 				errorDialog(exception);
 			}
 		};

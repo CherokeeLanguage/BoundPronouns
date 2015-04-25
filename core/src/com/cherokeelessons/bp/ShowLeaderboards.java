@@ -68,7 +68,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	public Callback<GameScores> success_show_scores = new Callback<GameScores>() {
 		@Override
 		public void success(GameScores data) {
-			Gdx.app.log("success_show_scores", "Scores received.");
+			Gdx.app.log(this.getClass().getName(), "Scores received.");
 			if (data==null) {
 				message.setText("You must login to Google Play for Leaderboard Support");
 				return;
@@ -120,7 +120,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				table.add(new Label("", ls)).center();
 			}
 			
-			if (!BoundPronouns.isLoggedIn()) {
+			if (!BoundPronouns.services.isLoggedIn()) {
 				message.setText("You must login to Google Play for Leaderboard Support");
 			}
 		}
@@ -185,7 +185,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					Color.BLACK);
 			message = new Label("...", ls);
 
-			if (!BoundPronouns.isLoggedIn()) {
+			if (!BoundPronouns.services.isLoggedIn()) {
 				button = new TextButton("Login to Google Play", tbs);
 				message.setText("You must login to Google Play for Leaderboard Support");
 			} else {
@@ -210,7 +210,6 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					public void success(Void result) {
 						error[0].hide();
 						login.hide();
-						BoundPronouns.isLoggedIn(true);
 						requestScores();
 						play_button.setText("Logout of Google Play");
 					}
@@ -228,7 +227,6 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					public void success(Void result) {
 						error[0].hide();
 						login.hide();
-						BoundPronouns.isLoggedIn(false);
 						requestScores();
 						play_button.setText("Login to Google Play");
 					}
@@ -244,7 +242,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {					
-					if (BoundPronouns.isLoggedIn()) {
+					if (BoundPronouns.services.isLoggedIn()) {
 						BoundPronouns.services.logout(success_out);
 					} else {
 						login.show(stage);
@@ -276,7 +274,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	}
 
 	private void requestScores() {
-		if (BoundPronouns.isLoggedIn()) {
+		if (BoundPronouns.services.isLoggedIn()) {
 			BoundPronouns.services.lb_getListFor(BoardId, lb_collection, ts,
 					success_show_scores);
 			message.setText("Loading ...");

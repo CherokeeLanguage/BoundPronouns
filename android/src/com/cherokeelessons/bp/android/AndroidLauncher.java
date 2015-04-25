@@ -7,6 +7,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.play.GameServices;
+import com.cherokeelessons.play.Platform;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

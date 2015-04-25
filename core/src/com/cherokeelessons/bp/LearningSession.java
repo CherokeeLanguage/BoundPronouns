@@ -413,7 +413,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					btn_scores.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x,
 								float y, int pointer, int button) {
-							if (!BoundPronouns.isLoggedIn()) {
+							if (!BoundPronouns.services.isLoggedIn()) {
 								String reasonMsg = "To submit your score to the Leaderboard\n"
 										+ "you must log into Google Play ...";
 								gsu.askToLoginFor(new Runnable() {
@@ -433,7 +433,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					syncb.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x,
 								float y, int pointer, int button) {
-							if (!BoundPronouns.isLoggedIn()) {
+							if (!BoundPronouns.services.isLoggedIn()) {
 								gsu.askToLoginForSync(new Runnable() {
 									@Override
 									public void run() {
