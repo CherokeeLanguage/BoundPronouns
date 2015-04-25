@@ -191,6 +191,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			} else {
 				button = new TextButton("Logout of Google Play", tbs);
 			}
+			
 			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
 			final LabelStyle dls=new LabelStyle(skin.get(LabelStyle.class));
 			dws.titleFont=game.getFont(Font.SerifLLarge);

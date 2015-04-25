@@ -55,7 +55,7 @@ public class DesktopLauncher implements PlatformTextInput {
 		config.addIcon("icons/icon-16.png", FileType.Internal);
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
 		BoundPronouns.pInput = desktopLauncher;
-		gameServices = new GameServices(new Platform());
+		gameServices = new GameServices(BoundPronouns.CredentialsFolder, new Platform());
 		BoundPronouns.services = gameServices;
 		new LwjglApplication(new BoundPronouns(), config);		 
 	}

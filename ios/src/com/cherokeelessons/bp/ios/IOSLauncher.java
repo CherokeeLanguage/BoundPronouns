@@ -14,7 +14,7 @@ public class IOSLauncher extends IOSApplication.Delegate {
     @Override
     protected IOSApplication createApplication() {
     		platform = new Platform();
-		BoundPronouns.services=new GameServices(platform);
+		BoundPronouns.services=new GameServices(BoundPronouns.CredentialsFolder, new Platform());
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
         config.allowIpod=true;
         config.orientationLandscape=true;

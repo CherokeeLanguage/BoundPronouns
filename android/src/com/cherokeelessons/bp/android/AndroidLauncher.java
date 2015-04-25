@@ -14,7 +14,7 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		Platform.application=this;
-		BoundPronouns.services = new GameServices(new Platform());
+		BoundPronouns.services = new GameServices(BoundPronouns.CredentialsFolder, new Platform());
 		BoundPronouns game = new BoundPronouns();
 		initialize(game, config);
 	}

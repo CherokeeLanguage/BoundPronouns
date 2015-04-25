@@ -51,13 +51,13 @@ import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 public class GameServices implements GooglePlayGameServices {
 
 	public static interface PlatformInterface {
-		Credential getCredential(GoogleAuthorizationCodeFlow flow)
+		public Credential getCredential(GoogleAuthorizationCodeFlow flow)
 				throws IOException;
 
-		HttpTransport getTransport() throws GeneralSecurityException,
+		public HttpTransport getTransport() throws GeneralSecurityException,
 				IOException;
 
-		void runTask(Runnable runnable);
+		public void runTask(Runnable runnable);
 	}
 
 	private FileHandle DATA_STORE_DIR;
@@ -80,9 +80,11 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	private final PlatformInterface platform;
+	private final String googlePlayServicesFolder;
 
-	public GameServices(PlatformInterface platform) {
+	public GameServices(String credentialsFolder, PlatformInterface platform) {
 		this.platform = platform;
+		this.googlePlayServicesFolder = credentialsFolder;
 	}
 
 	private void init() throws GeneralSecurityException, IOException {
@@ -90,11 +92,10 @@ public class GameServices implements GooglePlayGameServices {
 			if (initdone) {
 				return;
 			}
-			String path0 = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
 			if (Gdx.app.getType().equals(ApplicationType.Desktop)) {
-				p0 = Gdx.files.external(path0);
+				p0 = Gdx.files.external(googlePlayServicesFolder);
 			} else {
-				p0 = Gdx.files.local(path0);
+				p0 = Gdx.files.local(googlePlayServicesFolder);
 			}
 			p0.mkdirs();
 			DATA_STORE_DIR = p0;
@@ -137,11 +138,7 @@ public class GameServices implements GooglePlayGameServices {
 					init();
 					credential = authorize();
 					postRunnable(success.withNull());
-				} catch (RuntimeException e) {
-					postRunnable(success.with(e));
-				} catch (IOException e) {
-					postRunnable(success.with(e));
-				} catch (GeneralSecurityException e) {
+				} catch (Exception e) {
 					postRunnable(success.with(e));
 				}
 			}
@@ -157,12 +154,8 @@ public class GameServices implements GooglePlayGameServices {
 	private Credential authorize() throws IOException {
 		try {
 			return platform.getCredential(getFlow());
-		} catch (IOException e) {
-			if (e instanceof TokenResponseException) {
-				throw new IOException("Authorization Failure", e);
-			} else {
-				throw e;
-			}
+		} catch (Exception e) {
+			throw new IOException("Authorization Failure", e);
 		}
 	}
 
@@ -177,12 +170,7 @@ public class GameServices implements GooglePlayGameServices {
 					flow = getFlow();
 					flow.getCredentialDataStore().clear();
 					postRunnable(success.withNull());
-				} catch (IOException e) {
-					if (e instanceof TokenResponseException) {
-					} else {
-						postRunnable(success.with(e));
-					}
-				} catch (GeneralSecurityException e) {
+				} catch (Exception e) {
 					postRunnable(success.with(e));
 				}
 			}
@@ -226,11 +214,11 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
-				}
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
+				}  
 			} 
 		};
 		platform.runTask(runnable);
@@ -238,7 +226,7 @@ public class GameServices implements GooglePlayGameServices {
 
 	@Override
 	public void lb_getScoresFor(final String boardId,
-			final Callback<GameScores> success) {
+			final Callback<GameScores> callback) {
 		final Runnable runnable = new Runnable() {
 			private final Runnable _self=this;
 			@Override
@@ -260,17 +248,15 @@ public class GameServices implements GooglePlayGameServices {
 						gs.user = "";
 						gscores.list.add(gs);
 					}
-					postRunnable(success.with(gscores));
+					postRunnable(callback.with(gscores));
 				} catch (IOException e) {
 					if (e instanceof TokenResponseException) {
 						retry(_self);
 					} else {
-						postRunnable(success.with(e));
+						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(success.with(e));
-				}  catch (NullPointerException e) {
-					retry(_self);
+				}  catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		};
@@ -314,15 +300,16 @@ public class GameServices implements GooglePlayGameServices {
 					gscores.ts = ts;
 					postRunnable(callback.with(gscores));
 				} catch (IOException e) {
+					Gdx.app.log(this.getClass().getSimpleName(),e.getMessage());
 					if (e instanceof TokenResponseException) {
 						retry(_self);
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
 				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		};
@@ -363,10 +350,10 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		};
@@ -400,10 +387,10 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
 				}  catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -426,10 +413,10 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -461,10 +448,10 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
 				}  catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		};
@@ -499,6 +486,8 @@ public class GameServices implements GooglePlayGameServices {
 							postRunnable(callback.with(e));
 						} catch (NullPointerException e) {
 							retry(_self);
+						}  catch (Exception e) {
+							postRunnable(callback.with(e));
 						}
 					}
 				});
@@ -569,11 +558,11 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
-				}
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
+				} 
 			}
 		});
 	}
@@ -613,10 +602,10 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				} catch (GeneralSecurityException e) {
-					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -648,9 +637,11 @@ public class GameServices implements GooglePlayGameServices {
 					} else {
 						postRunnable(callback.with(e));
 					}
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
-				}
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
+				}				
 			}
 		});
 	}
@@ -767,8 +758,10 @@ public class GameServices implements GooglePlayGameServices {
 					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -800,8 +793,10 @@ public class GameServices implements GooglePlayGameServices {
 					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -831,8 +826,10 @@ public class GameServices implements GooglePlayGameServices {
 					}
 				} catch (GeneralSecurityException e) {
 					postRunnable(callback.with(e));
-				}  catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -859,6 +856,8 @@ public class GameServices implements GooglePlayGameServices {
 					}
 				} catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
@@ -887,6 +886,8 @@ public class GameServices implements GooglePlayGameServices {
 					}
 				}  catch (NullPointerException e) {
 					retry(_self);
+				} catch (Exception e) {
+					postRunnable(callback.with(e));
 				}
 			}
 		});
