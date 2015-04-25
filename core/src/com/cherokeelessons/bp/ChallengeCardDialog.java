@@ -71,6 +71,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		this.skin = skin;
 		this.title = "Challenge Card";
 		this.game = game;
+		this.getTitleLabel().setAlignment(Align.center);
 		// getStyle().titleFont = game.getFont(Font.SansLarge);
 		getStyle().titleFont = game.getFont(Font.SerifLarge);
 		getStyle().background = getDialogBackground();

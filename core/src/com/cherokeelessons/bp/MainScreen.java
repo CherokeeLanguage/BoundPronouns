@@ -37,6 +37,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.cards.ActiveDeck;
@@ -110,6 +111,7 @@ public class MainScreen implements Screen, InputProcessor {
 			tiled.setMinHeight(0);
 			tiled.setMinWidth(0);
 			tiled.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
+			this.getTitleLabel().setAlignment(Align.center);
 		}
 	}
 
@@ -493,6 +495,7 @@ public class MainScreen implements Screen, InputProcessor {
 									.get(WindowStyle.class));
 							ws.titleFont = game.getFont(Font.SerifLarge);
 							setStyle(ws);
+							this.getTitleLabel().setAlignment(Align.center);
 						}
 
 						protected void result(Object object) {
@@ -677,8 +680,6 @@ public class MainScreen implements Screen, InputProcessor {
 	}
 
 	private final InputMultiplexer multi;
-
-	private boolean loginDialogDone = false;
 
 	@Override
 	public void show() {

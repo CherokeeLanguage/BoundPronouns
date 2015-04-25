@@ -130,6 +130,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				abort = true;
 			}
 		};
+		busy.getTitleLabel().setAlignment(Align.center);
 		busy.text(new Label("Retrieving Cloud Data ...", dls));
 		busy.button(new TextButton("CANCEL SYNC", tbs));
 		busy.show(stage);
@@ -247,6 +248,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				}
 			}
 		};
+		notice.getTitleLabel().setAlignment(Align.center);
 
 		Table content = notice.getContentTable();
 		content.row();
@@ -335,6 +337,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		Dialog notice = new Dialog("Google Play Services", dws);
 		notice.button(new TextButton("OK", tbs));
 		notice.text(new Label("Downloading Cloud Copy ...", dls));
+		notice.getTitleLabel().setAlignment(Align.center);
 		notice.show(stage);
 		try {
 			if (p0.child(ACTIVE_DECK_JSON).exists()) {
@@ -370,6 +373,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		};
 		notice.button(new TextButton("OK", tbs));
 		notice.text(new Label(msg, dls));
+		notice.getTitleLabel().setAlignment(Align.center);
 		notice.show(stage);
 	}
 
@@ -494,6 +498,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Dialog notice = new Dialog("Google Play Services", dws);
 		notice.button(new TextButton("OK", tbs));
 		notice.text(new Label("Nothing to Sync...", dls));
+		notice.getTitleLabel().setAlignment(Align.center);
 		notice.show(stage);
 	}
 
@@ -517,6 +522,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		SlotInfo device_info = json.fromJson(SlotInfo.class,
 				p0.child(INFO_JSON));
 		final Dialog notice = new Dialog("Google Play Services", dws);
+		notice.getTitleLabel().setAlignment(Align.center);
 		notice.button(new TextButton("OK", tbs));
 		notice.text(new Label("Uploading Device Copy to Cloud...", dls));
 		notice.show(stage);
@@ -561,6 +567,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	public void doLogin(final Runnable afterLogin) {
 		final Dialog login = new Dialog("Google Play Services", dws);
+		login.getTitleLabel().setAlignment(Align.center);
 		login.text(new Label("Connecting to Google Play Services ...", dls));
 		login.button(new TextButton("DISMISS", tbs));
 		Callback<Void> success_in = new Callback<Void>() {
@@ -593,6 +600,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				done();
 			}
 		};
+		error.getTitleLabel().setAlignment(Align.center);
 		error.button(new TextButton("OK", tbs));
 		String msgtxt = e.getMessage();
 		msgtxt = WordUtils.wrap(msgtxt, 45, "\n", true);
@@ -627,6 +635,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				doLogin(afterLogin);
 			}
 		};
+		login.getTitleLabel().setAlignment(Align.center);
 		login.setKeepWithinStage(true);
 		Table contentTable = login.getContentTable();
 		contentTable.row();
@@ -678,6 +687,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				}
 			}
 		};
+		scores.getTitleLabel().setAlignment(Align.center);
 		scores.setFillParent(true);
 		
 		Table container = scores.getContentTable();

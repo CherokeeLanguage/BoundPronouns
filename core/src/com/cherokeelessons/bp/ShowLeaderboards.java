@@ -201,6 +201,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			login.getTitleLabel().setAlignment(Align.center);
 			login.text(new Label("Connecting to Google Play Services ...", dls));
 			login.button(new TextButton("DISMISS", tbs));
+			login.getTitleLabel().setAlignment(Align.center);
 			
 			final Dialog[] error = new Dialog[1];
 			error[0]=errorDialog(new Exception(""), null);
@@ -303,6 +304,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				}
 			}
 		};
+		error.getTitleLabel().setAlignment(Align.center);
 		error.button(new TextButton("OK", tbs));
 		String msgtxt = e.getMessage();
 		msgtxt = WordUtils.wrap(msgtxt, 45, "\n", true);

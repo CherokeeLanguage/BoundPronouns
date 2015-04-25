@@ -314,6 +314,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Dialog bye = new Dialog(dtitle, dws) {
 				final Dialog bye = this;
 				{
+					this.getTitleLabel().setAlignment(Align.center);
 					final Texture background = params.game.manager.get(
 							BoundPronouns.IMG_MAYAN, Texture.class);
 					final TextureRegion region = new TextureRegion(background);
@@ -677,6 +678,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					tb = new TextButton("CANCEL", tbs);
 					button(tb, "C");
 					setFillParent(true);
+					this.getTitleLabel().setAlignment(Align.center);
 				}
 
 				protected void result(Object object) {
@@ -1120,6 +1122,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						"Please Confirm Exit",
 						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
 						yes, no);
+				dialog.getTitleLabel().setAlignment(Align.center);
 				dialog.show(stage);
 			}
 		};
@@ -1377,6 +1380,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 		};
+		dialog.getTitleLabel().setAlignment(Align.center);
 		dialog.text(msg);
 		dialog.button(btn_yes, btn_yes);
 		dialog.button(btn_no, btn_no);
