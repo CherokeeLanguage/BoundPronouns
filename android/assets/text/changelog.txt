@@ -1,3 +1,7 @@
+1.77
+
+LibGDX 1.56. Various fixes related to Google Play Services. Enforce centering of titles on dialogs. Upgraded to RoboVM 1.10.
+
 1.76
 
 Import Levenstein routing from Apache StringUtils and fix to use static arrays in a synchronized static function to stop serious GC issues for Android/iOS.
