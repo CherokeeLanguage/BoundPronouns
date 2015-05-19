@@ -128,12 +128,12 @@ public class BoundPronouns extends Game {
 	public static final String IMG_ERASE = "images/trash.png";
 	public static final String IMG_SYNC = "images/refresh.png";	
 
-	public static final String SND_MENU = "audio/click.wav";
-	public static final String SND_COYOTE = "audio/coyote.wav";
-	public static final String SND_BUZZ = "audio/buzzer2.wav";
-	public static final String SND_COW = "audio/cow1.wav";
-	public static final String SND_TICKTOCK = "audio/ticktock.wav";
-	public static final String SND_DING = "audio/ding.wav";
+	public static final String SND_MENU = "audio/click.mp3";
+	public static final String SND_COYOTE = "audio/coyote.mp3";
+	public static final String SND_BUZZ = "audio/buzzer2.mp3";
+	public static final String SND_COW = "audio/cow1.mp3";
+	public static final String SND_TICKTOCK = "audio/ticktock.mp3";
+	public static final String SND_DING = "audio/ding.mp3";
 
 	public static final float BACK_WIDTH = 168f;
 	static {
