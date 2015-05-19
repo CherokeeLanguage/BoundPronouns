@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cherokeelessons.bp.android"
-    android:versionCode="177"
-    android:versionName="1.77" >
+    android:versionCode="178"
+    android:versionName="1.78" >
 
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="21" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+
 
     <application
         android:allowBackup="true"
