@@ -968,6 +968,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				continue;
 			}
 			card.newCard=true;
+			Gdx.app.log(this.getClass().getSimpleName(), "Resetting as new: "+getCardById(card.pgroup, card.vgroup).challenge.toString());
 		}
 	}
 
