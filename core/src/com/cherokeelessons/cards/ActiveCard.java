@@ -8,6 +8,10 @@ public class ActiveCard {
 
 	public boolean noErrors = false;
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getMinCorrectInARow() {
 		int min = 3;
 		for (String key : correct_in_a_row.keySet()) {

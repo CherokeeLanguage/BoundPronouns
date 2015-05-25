@@ -1,6 +1,14 @@
+1.79
+
+libGDX 1.6.1. Reset card at "box level 0" that have errors for reintroduction as new cards.
+
+1.78
+
+libGDX 1.6.0
+
 1.77
 
-LibGDX 1.56. Various fixes related to Google Play Services. Enforce centering of titles on dialogs. Upgraded to RoboVM 1.10.
+libGDX 1.56. Various fixes related to Google Play Services. Enforce centering of titles on dialogs. Upgraded to RoboVM 1.10.
 
 1.76
 
