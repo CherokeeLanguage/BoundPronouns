@@ -1,3 +1,7 @@
+1.80
+
+Fix incorrectly sized "hisgi" icon
+
 1.79
 
 libGDX 1.6.1. Reset card at "box level 0" that have errors for reintroduction as new cards.
