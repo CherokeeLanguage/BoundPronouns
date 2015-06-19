@@ -12,30 +12,47 @@ import com.cherokeelessons.play.Platform;
 
 public class IOSLauncher extends IOSApplication.Delegate {
 	Platform platform;
-    @Override
-    protected IOSApplication createApplication() {
-    		platform = new Platform();
-		BoundPronouns.services=new GameServices(BoundPronouns.CredentialsFolder, new Platform());
-        IOSApplicationConfiguration config = new IOSApplicationConfiguration();
-        config.allowIpod=true;
-        config.orientationLandscape=true;
-        config.orientationPortrait=false;
-        config.displayScaleLargeScreenIfNonRetina=1.0f;
-        config.displayScaleLargeScreenIfRetina=1.0f;
-        config.displayScaleSmallScreenIfNonRetina=1.0f;
-        config.displayScaleSmallScreenIfRetina=1.0f;
-        return new IOSApplication(new BoundPronouns(), config);
-    }
 
-    public static void main(String[] argv) {
-        NSAutoreleasePool pool = new NSAutoreleasePool();
-        UIApplication.main(argv, null, IOSLauncher.class);
-        pool.close();
-    }
-    
-    @Override
-    public void didBecomeActive(UIApplication application) {
-    		Gdx.app.log("", "didBecomeActive");
-    		super.didBecomeActive(application);
-    }
+	@Override
+	protected IOSApplication createApplication() {
+		try {
+			System.out.println("BoundPronouns#platform");
+			platform = new Platform();
+			System.out.println("BoundPronouns#services");
+			BoundPronouns.services = new GameServices(
+					BoundPronouns.CredentialsFolder, new Platform());
+			System.out.println("BoundPronouns#config");
+			IOSApplicationConfiguration config = new IOSApplicationConfiguration();
+			config.allowIpod = true;
+			config.orientationLandscape = true;
+			config.orientationPortrait = false;
+			config.displayScaleLargeScreenIfNonRetina = 1.0f;
+			config.displayScaleLargeScreenIfRetina = 1.0f;
+			config.displayScaleSmallScreenIfNonRetina = 1.0f;
+			config.displayScaleSmallScreenIfRetina = 1.0f;
+			System.out.println("BoundPronouns#IOSApplication");
+			return new IOSApplication(new BoundPronouns(), config);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static void main(String[] argv) {
+		try {
+			System.out.println("BoundPronouns#main");
+			NSAutoreleasePool pool = new NSAutoreleasePool();
+			UIApplication.main(argv, null, IOSLauncher.class);
+			pool.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public void didBecomeActive(UIApplication application) {
+		Gdx.app.log("", "didBecomeActive");
+		super.didBecomeActive(application);
+	}
 }
