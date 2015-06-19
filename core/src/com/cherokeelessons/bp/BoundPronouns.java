@@ -43,19 +43,23 @@ import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.util.GooglePlayGameServices;
 
 public class BoundPronouns extends Game {
-	
+
+	public BoundPronouns() {
+		Gdx.app.log("BoundPronouns", "instance");
+	}
+
 	@Override
 	public void pause() {
 		super.pause();
 		Gdx.app.log("BoundPronouns", "Pause");
 	}
-	
+
 	@Override
 	public void resume() {
 		super.resume();
 		Gdx.app.log("BoundPronouns", "Resume");
 	}
-	
+
 	public static interface PlatformTextInput {
 		public void getTextInput(final TextInputListener listener,
 				final String title, final String text, final String hint);
@@ -123,10 +127,10 @@ public class BoundPronouns extends Game {
 	public static final String IMG_PAPER1 = "images/parchment.png";
 	public static final String IMG_MAYAN = "images/MayanStone.png";
 	public static final String IMG_MAYAN_DIALOG = "images/MayanStoneSmall.png";
-	
+
 	public static final String IMG_SETTINGS = "images/gear.png";
 	public static final String IMG_ERASE = "images/trash.png";
-	public static final String IMG_SYNC = "images/refresh.png";	
+	public static final String IMG_SYNC = "images/refresh.png";
 
 	public static final String SND_MENU = "audio/click.mp3";
 	public static final String SND_COYOTE = "audio/coyote.mp3";
@@ -157,38 +161,49 @@ public class BoundPronouns extends Game {
 
 	@Override
 	public void create() {
+		Gdx.app.log("BoundPronouns", "create");
 		manager = new AssetManager();
 		initManager();
 		this.setScreen(new LoadingScreen(this));
-		Gdx.input.setCatchBackKey(true);		
+		Gdx.input.setCatchBackKey(true);
 		prefs = Gdx.app.getPreferences(this.getClass().getName());
 	}
 
 	@Override
 	public void setScreen(Screen screen) {
+		Gdx.app.log("BoundPronouns#setScreen", screen.getClass()
+				.getSimpleName());
 		super.setScreen(screen);
 	}
 
 	private void initManager() {
 
+		Gdx.app.log("BoundPronouns#initManager", "start");
+
 		FileHandleResolver resolver = new InternalFileHandleResolver();
+		Gdx.app.log("BoundPronouns#initManager", "setloader:freetype");
 		manager.setLoader(FreeTypeFontGenerator.class,
 				new FreeTypeFontGeneratorLoader(resolver));
+		Gdx.app.log("BoundPronouns#initManager", "setloader:bitmapfont.ttf");
 		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(
 				resolver));
+		Gdx.app.log("BoundPronouns#initManager", "setload:bitmapfont.otf");
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(
 				resolver));
 
 		MusicParameter mus_param = new MusicParameter();
+		Gdx.app.log("BoundPronouns#initManager", SND_COYOTE);
 		manager.load(SND_COYOTE, Music.class, mus_param);
 
 		SoundParameter snd_param = new SoundParameter();
+		Gdx.app.log("BoundPronouns#initManager", SND_MENU);
 		manager.load(SND_MENU, Sound.class, snd_param);
 
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Linear;
 		param.minFilter = TextureFilter.Linear;
 
+		Gdx.app.log("BoundPronouns#initManager", "textures");
 		manager.load(IMG_LOADING, Texture.class, param);
 		manager.load(IMG_PIXEL, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
@@ -199,21 +214,25 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_SETTINGS, Texture.class, param);
 		manager.load(IMG_ERASE, Texture.class, param);
 		manager.load(IMG_SYNC, Texture.class, param);
+
+		Gdx.app.log("BoundPronouns#initManager", "skin");
 		manager.load(SKIN, Skin.class);
-		
-		for (int ix=0; ix<11; ix++) {
+
+		Gdx.app.log("BoundPronouns#initManager", "loading screen");
+		for (int ix = 0; ix < 11; ix++) {
 			manager.load(levelImg(ix), Texture.class, param);
 		}
 
 		addFonts();
 
 	}
-	
+
 	public static String levelImg(int level) {
-		return "images/"+level+"-75.png";
+		return "images/" + level + "-75.png";
 	}
 
 	private void addFonts() {
+		Gdx.app.log("BoundPronouns#initManager", "addFonts");
 		addFreeSerifFor(36, Font.SerifSmall);
 		addFreeSerifFor(42, Font.SerifMedium);
 		addFreeSerifFor(58, Font.SerifLarge);
@@ -262,6 +281,8 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFreeSerifFor(int size, Font fontname) {
+		Gdx.app.log("BoundPronouns#addFreeSerifFor",
+				size + "|" + fontname.name());
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			String valueOf = String.valueOf(c);
@@ -334,14 +355,15 @@ public class BoundPronouns extends Game {
 	public static final String CredentialsFolder = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
 
 	public static List<DataSet> loadPronounRecords() {
+		Gdx.app.log("BoundPronouns", "loadPronounRecords");
 		if (pronouns.size() != 0) {
 			return new ArrayList<DataSet>(pronouns);
 		}
 		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list.csv");
 		List<CSVRecord> records;
-		CSVParser parse=null;
+		CSVParser parse = null;
 		try {
-			parse = CSVParser.parse(csvlist.readString("UTF-8"), 
+			parse = CSVParser.parse(csvlist.readString("UTF-8"),
 					CSVFormat.RFC4180);
 			records = parse.getRecords();
 		} catch (IOException e) {
@@ -414,6 +436,7 @@ public class BoundPronouns extends Game {
 			prevLatin = latin;
 			prevChr = chr;
 		}
+		Gdx.app.log("BoundPronouns", "loadPronounRecords: " + pronouns.size());
 		return new ArrayList<DataSet>(pronouns);
 	}
 

@@ -20,6 +20,7 @@ public class LoadingScreen implements Screen {
 	private final Table table;
 
 	public LoadingScreen(BoundPronouns boundPronouns) {
+		Gdx.app.log("Screen: ", this.getClass().getSimpleName());
 		this.game = boundPronouns;
 		stage = new Stage();
 		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
@@ -39,11 +40,11 @@ public class LoadingScreen implements Screen {
 		stage.act();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
-		if (game.manager.update()) 
+		if (game.manager.update())
 			nextscreen: {
 				if (howl != null && !Gdx.input.isTouched() && howl.isPlaying()) {
 					break nextscreen;
-				}				
+				}
 				game.setScreen(new BuildDeckScreen(game, null));
 				dispose();
 				return;
@@ -93,12 +94,24 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		stage.dispose();
-		if (howl != null) {
-			howl.stop();
-		}
-		game.manager.unload(BoundPronouns.SND_COYOTE);
-		game.manager.unload(BoundPronouns.IMG_LOADING);
-	}
+		Gdx.app.postRunnable(new Runnable() {
+			Runnable _self = this;
+			int count = 10;
 
+			@Override
+			public void run() {
+				if (howl != null) {
+					howl.stop();
+					howl = null;
+				}
+				if (count-- > 0) {
+					Gdx.app.postRunnable(_self);
+					return;
+				}
+				stage.dispose();
+				game.manager.unload(BoundPronouns.SND_COYOTE);
+				game.manager.unload(BoundPronouns.IMG_LOADING);
+			}
+		});
+	}
 }

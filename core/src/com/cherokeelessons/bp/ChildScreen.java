@@ -33,7 +33,8 @@ public class ChildScreen implements Screen, InputProcessor {
 		};
 	};
 	
-	public ChildScreen(BoundPronouns game, Screen caller) {		
+	public ChildScreen(BoundPronouns game, Screen caller) {
+		Gdx.app.log("Screen: ", this.getClass().getSimpleName());
 		this.game=game;
 		this.caller=caller;
 		this.multi=new InputMultiplexer();
