@@ -5,7 +5,6 @@
   <arch>thumbv7</arch>
   <target>ios</target>
   <iosInfoPList>Info.plist.xml</iosInfoPList>
-  <treeShaker>none</treeShaker>
   <resources>
     <resource>
       <directory>../android/assets</directory>
@@ -34,7 +33,7 @@
     <pattern>org.apache.harmony.security.provider.cert.DRLCertFactory</pattern>
     <pattern>org.apache.harmony.security.provider.crypto.CryptoProvider</pattern>
   </forceLinkClasses>
-	<libs>
+  <libs>
       <lib>z</lib>   
   </libs>
   <frameworks>

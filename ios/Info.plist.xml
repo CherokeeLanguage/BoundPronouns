@@ -47,7 +47,7 @@
     <key>CFBundleIcons</key>
     <dict>
         <key>CFBundlePrimaryIcon</key>
-        <dict>
+       <dict>
             <key>CFBundleIconFiles</key>
             <array>
                 <string>Icon</string>
