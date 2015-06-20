@@ -81,14 +81,6 @@ project(":ios") {
     apply plugin: "java"
     apply plugin: "robovm"
     
-    robovm {
-	iosSignIdentity = "9CD239D45C8710A1A437CFB010AD91A6EB1CAFCF"
-	iosProvisioningProfile = "bb4faef1-36e8-4a94-afc5-3826fef9bb3b"
-	iosSkipSigning = false
-	stdoutFifo = ""
-	stderrFifo = ""
-}
-
     configurations { natives }
 
     dependencies {

@@ -31,7 +31,9 @@ public class IOSLauncher extends IOSApplication.Delegate {
 			config.displayScaleSmallScreenIfNonRetina = 1.0f;
 			config.displayScaleSmallScreenIfRetina = 1.0f;
 			System.out.println("BoundPronouns#IOSApplication");
-			return new IOSApplication(new BoundPronouns(), config);
+			IOSApplication app = new IOSApplication(new BoundPronouns(), config);
+			System.out.println("BoundPronouns#IOSApplication#return");
+			return app;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
