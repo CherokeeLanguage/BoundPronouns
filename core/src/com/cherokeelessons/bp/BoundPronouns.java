@@ -45,7 +45,7 @@ import com.cherokeelessons.util.GooglePlayGameServices;
 public class BoundPronouns extends Game {
 
 	public BoundPronouns() {
-		Gdx.app.log("BoundPronouns", "instance");
+		System.out.println("BoundPronouns#instance");
 	}
 
 	@Override
