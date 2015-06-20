@@ -50,3 +50,5 @@ build/
 /.settings/
 
 /local.properties
+/ios.save/
+/FIX/
