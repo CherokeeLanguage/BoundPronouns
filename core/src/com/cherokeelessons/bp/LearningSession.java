@@ -194,6 +194,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * RESET tries max count
 			 */
 			resetRetriesCount(current_due);
+			
+			/*
+			 * REDUCE retries max count based on knowledge level of card
+			 */
+			adjustRetriesCount(current_due);
 
 			/*
 			 * ALWAYS start off as being eligible for "bump"
@@ -250,6 +255,16 @@ public class LearningSession extends ChildScreen implements Screen {
 			stage.addAction(Actions.run(showACard));
 
 			Gdx.app.log(TAG, "Elapsed :" + elapsed);
+		}
+
+		private void adjustRetriesCount(ActiveDeck deck) {
+			for (ActiveCard card : deck.deck) {
+				Card dcard = getCardById(card.pgroup, card.vgroup);
+				card.tries_remaining -= card.box * dcard.answer.size();
+				if (card.tries_remaining<1) {
+					card.tries_remaining=1;
+				}
+			}
 		}
 
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
