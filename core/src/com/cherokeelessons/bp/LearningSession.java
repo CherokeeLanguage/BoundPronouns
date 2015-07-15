@@ -196,11 +196,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			resetRetriesCount(current_due);
 			
 			/*
-			 * REDUCE retries max count based on knowledge level of card
-			 */
-			adjustRetriesCount(current_due);
-
-			/*
 			 * ALWAYS start off as being eligible for "bump"
 			 */
 			markAllNoErrors(current_due);
@@ -255,16 +250,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			stage.addAction(Actions.run(showACard));
 
 			Gdx.app.log(TAG, "Elapsed :" + elapsed);
-		}
-
-		private void adjustRetriesCount(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
-				Card dcard = getCardById(card.pgroup, card.vgroup);
-				card.tries_remaining -= card.box * dcard.answer.size();
-				if (card.tries_remaining<1) {
-					card.tries_remaining=1;
-				}
-			}
 		}
 
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
@@ -1373,7 +1358,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			activeCard.show_again_ms = 0;
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
-			activeCard.tries_remaining = (SendToNextSessionThreshold-activeCard.box)
+			activeCard.tries_remaining = (SendToNextSessionThreshold-activeCard.box*2)
 					* next.answer.size();
 			if (activeCard.tries_remaining<1) {
 				activeCard.tries_remaining=1;
@@ -1841,7 +1826,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	protected void resetRetriesCount(ActiveDeck deck) {
 		for (ActiveCard card : deck.deck) {
 			Card dcard = getCardById(card.pgroup, card.vgroup);
-			card.tries_remaining = (SendToNextSessionThreshold-card.box)
+			card.tries_remaining = (SendToNextSessionThreshold-card.box*2)
 					* dcard.answer.size();
 			if (card.tries_remaining<1) {
 				card.tries_remaining=1;

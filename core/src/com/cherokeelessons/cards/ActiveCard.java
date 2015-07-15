@@ -36,7 +36,7 @@ public class ActiveCard {
 	}
 
 	public boolean isAllCorrectInARow(int threshold) {
-		threshold-=box;
+		threshold-=(box*2);
 		if (threshold<1) {
 			threshold=1;
 		}
