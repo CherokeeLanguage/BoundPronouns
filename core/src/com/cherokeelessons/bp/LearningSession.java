@@ -1373,8 +1373,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			activeCard.show_again_ms = 0;
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
-			activeCard.tries_remaining = SendToNextSessionThreshold
+			activeCard.tries_remaining = (SendToNextSessionThreshold-activeCard.box)
 					* next.answer.size();
+			if (activeCard.tries_remaining<1) {
+				activeCard.tries_remaining=1;
+			}
 			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
@@ -1838,8 +1841,11 @@ public class LearningSession extends ChildScreen implements Screen {
 	protected void resetRetriesCount(ActiveDeck deck) {
 		for (ActiveCard card : deck.deck) {
 			Card dcard = getCardById(card.pgroup, card.vgroup);
-			card.tries_remaining = SendToNextSessionThreshold
+			card.tries_remaining = (SendToNextSessionThreshold-card.box)
 					* dcard.answer.size();
+			if (card.tries_remaining<1) {
+				card.tries_remaining=1;
+			}
 		}
 	}
 	@Override
