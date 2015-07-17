@@ -43,10 +43,11 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-        compile 'com.google.apis:google-api-services-games:v1-rev92-1.19.1'
-        compile 'com.google.apis:google-api-services-drive:v2-rev161-1.19.1'
-        compile 'com.google.oauth-client:google-oauth-client-jetty:1.19.0'
-        compile 'com.google.oauth-client:google-oauth-client-java6:1.19.0'
+		//FOR DESKTOP GOOGLE API
+        compile 'com.google.apis:google-api-services-games:v1-rev112-1.20.0'
+        compile 'com.google.apis:google-api-services-drive:v2-rev177-1.20.0'
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0'
+        compile 'com.google.oauth-client:google-oauth-client-jetty:1.20.0'
     }
 }
 
@@ -70,10 +71,11 @@ project(":android") {
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
-        compile 'com.google.oauth-client:google-oauth-client-java6:1.19.0' exclude module: 'httpclient'
-		compile 'com.google.api-client:google-api-client-android:1.19.0' exclude module: 'httpclient'		
-        compile 'com.google.apis:google-api-services-drive:v2-rev161-1.19.1' exclude module: 'httpclient'
-		compile 'com.google.apis:google-api-services-games:v1-rev93-1.19.1' exclude module: 'httpclient'
+        //FOR ANDROID GOOGLE API
+        compile 'com.google.apis:google-api-services-games:v1-rev112-1.20.0' exclude module: 'httpclient'
+        compile 'com.google.apis:google-api-services-drive:v2-rev177-1.20.0' exclude module: 'httpclient'
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0' exclude module: 'httpclient'
+		compile 'com.google.api-client:google-api-client-android:1.20.0' exclude module: 'httpclient'
     }
 }
 
@@ -95,10 +97,11 @@ project(":ios") {
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
-        compile 'com.google.oauth-client:google-oauth-client-java6:1.19.0' exclude module: 'httpclient'
-		compile 'com.google.api-client:google-api-client-android:1.19.0' exclude module: 'httpclient'		
-        compile 'com.google.apis:google-api-services-drive:v2-rev161-1.19.1' exclude module: 'httpclient'
-		compile 'com.google.apis:google-api-services-games:v1-rev93-1.19.1' exclude module: 'httpclient'
+        //FOR GOOGLE API
+        compile 'com.google.apis:google-api-services-games:v1-rev112-1.20.0' exclude module: 'httpclient'
+        compile 'com.google.apis:google-api-services-drive:v2-rev177-1.20.0' exclude module: 'httpclient'
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0' exclude module: 'httpclient'
+		compile 'com.google.api-client:google-api-client-android:1.20.0' exclude module: 'httpclient'
     }
 }
 
