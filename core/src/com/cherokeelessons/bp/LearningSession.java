@@ -464,9 +464,14 @@ public class LearningSession extends ChildScreen implements Screen {
 
 					if (BoundPronouns.services != null) {
 						if (BoundPronouns.services.isLoggedIn()) {
-							submit_scores.success(null);
 							syncb.setVisible(false);
-							gsu.uploadHidden();
+							submit_scores.success(null);
+							gsu.uploadHidden(new Runnable() {
+								@Override
+								public void run() {
+									syncb.setVisible(true);									
+								}
+							});
 						} else {
 							syncb.setVisible(true);
 						}
