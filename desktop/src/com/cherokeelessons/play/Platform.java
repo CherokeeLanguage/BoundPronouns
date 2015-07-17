@@ -21,7 +21,7 @@ public class Platform implements PlatformInterface {
 			throws IOException {
 		LocalServerReceiver jettyServlet = new LocalServerReceiver();
 		return new AuthorizationCodeInstalledApp(flow, jettyServlet)
-				.authorize(PlatformInterface.USER);
+				.authorize(USER);
 	}
 
 	@Override

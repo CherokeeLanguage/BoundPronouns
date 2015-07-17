@@ -53,7 +53,6 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
-import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
@@ -394,6 +393,22 @@ public class LearningSession extends ChildScreen implements Screen {
 						public void success(GameScores result) {
 							gsu.showScores("Today's Public Scores", result,
 									null);
+							Callback<Void> do_ach_reveal = new Callback<Void>() {
+								@Override
+								public void success(Void result) {
+									Gdx.app.log(
+											this.getClass().getSimpleName(),
+											"Doing ach_reveal: "
+													+ info.level.name());
+									BoundPronouns.services.ach_reveal(
+											info.level.next().getId(),
+											noop_success);
+								}
+							};
+							Gdx.app.log(this.getClass().getSimpleName(),
+									"Doing ach_unlock: " + info.level.getId());
+							BoundPronouns.services.ach_unlocked(
+									info.level.getId(), do_ach_reveal);
 						}
 					};
 
@@ -410,10 +425,11 @@ public class LearningSession extends ChildScreen implements Screen {
 					final Callback<Void> submit_scores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							BoundPronouns.services.ach_unlocked(
-									info.level.getId(), noop_success);
-							BoundPronouns.services.ach_reveal(info.level.next()
-									.getId(), noop_success);
+							Gdx.app.log(this.getClass().getSimpleName(),
+									"Doing lb_submit: "
+											+ ShowLeaderboards.BoardId + ", "
+											+ info.lastScore + ", "
+											+ info.level.getEngrish());
 							BoundPronouns.services.lb_submit(
 									ShowLeaderboards.BoardId, info.lastScore,
 									info.level.getEngrish(), getPublicScores);
@@ -454,8 +470,9 @@ public class LearningSession extends ChildScreen implements Screen {
 							return true;
 						};
 					});
-					
-					if (BoundPronouns.services != null&&BoundPronouns.services.isLoggedIn()) {
+
+					if (BoundPronouns.services != null
+							&& BoundPronouns.services.isLoggedIn()) {
 						submit_scores.success(null);
 					}
 				}
