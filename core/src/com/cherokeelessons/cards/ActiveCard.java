@@ -36,6 +36,10 @@ public class ActiveCard {
 	}
 
 	public boolean isAllCorrectInARow(int threshold) {
+		threshold-=(box*2);
+		if (threshold<1) {
+			threshold=1;
+		}
 		for (String key : correct_in_a_row.keySet()) {
 			if (correct_in_a_row.get(key) == null) {
 				return false;
