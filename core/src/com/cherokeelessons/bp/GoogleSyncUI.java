@@ -506,6 +506,53 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		upload(null);
 	}
 	
+	public void uploadHidden(final Runnable whenDone){
+		if (!p0.child(INFO_JSON).exists()) {
+			return;
+		}
+		if (!p0.child(ACTIVE_DECK_JSON).exists()) {
+			return;
+		}
+		SlotInfo device_info = json.fromJson(SlotInfo.class,
+				p0.child(INFO_JSON));
+		if (device_info.getSignature() == null
+				|| device_info.getSignature().length() == 0) {
+			String s1 = Long.toString(System.currentTimeMillis(),
+					Character.MAX_RADIX);
+			String s2 = Integer.toString(
+					new Random().nextInt(Integer.MAX_VALUE),
+					Character.MAX_RADIX);
+			device_info.setSignature(s1 + "-" + s2);
+			json.toJson(device_info, p0.child(INFO_JSON));
+		}
+		final Callback<String> upload_done = new Callback<String>() {
+			@Override
+			public void success(String result) {
+				if (whenDone!=null) {
+					Gdx.app.postRunnable(whenDone);
+				}
+			}
+			
+			@Override
+			public void error(Exception exception) {
+				errorDialog(exception);
+			}
+		};
+		final Callback<String> upload_info = new Callback<String>() {
+			@Override
+			public void success(String result) {
+				gplay.drive_replace(p0.child(INFO_JSON), gfile_info,
+						gfile_info, upload_done);
+			}
+			@Override
+			public void error(Exception exception) {
+				errorDialog(exception);
+			}
+		};
+		gplay.drive_replace(p0.child(ACTIVE_DECK_JSON), gfile_deck, gfile_deck,
+				upload_info);
+	}
+	
 	public void upload(Runnable whenDone) {
 		Gdx.app.log("GoogleSyncUI", "upload");
 		if (busy != null) {

@@ -315,6 +315,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
 			syncb.getImage().setColor(Color.DARK_GRAY);
+			
 			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
 			// : "Practice Results";
 			String dtitle = "Practice Results";
@@ -461,10 +462,16 @@ public class LearningSession extends ChildScreen implements Screen {
 						};
 					});
 
-					if (BoundPronouns.services != null
-							&& BoundPronouns.services.isLoggedIn()) {
-						submit_scores.success(null);
+					if (BoundPronouns.services != null) {
+						if (BoundPronouns.services.isLoggedIn()) {
+							submit_scores.success(null);
+							syncb.setVisible(false);
+							gsu.uploadHidden();
+						} else {
+							syncb.setVisible(true);
+						}
 					}
+					
 				}
 
 				protected void result(Object object) {
