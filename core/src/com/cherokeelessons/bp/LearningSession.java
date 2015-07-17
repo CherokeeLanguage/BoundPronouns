@@ -426,21 +426,25 @@ public class LearningSession extends ChildScreen implements Screen {
 					final Callback<Void> submit_scores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							Gdx.app.log(this.getClass().getSimpleName(),
-									"Doing lb_submit: "
-											+ ShowLeaderboards.BoardId + ", "
-											+ info.lastScore + ", "
-											+ info.level.getEngrish());
 							BoundPronouns.services.lb_submit(
 									ShowLeaderboards.BoardId, info.lastScore,
 									info.level.getEngrish(), getPublicScores);
 						}
 					};
-
+					
 					btn_scores.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x,
 								float y, int pointer, int button) {
-							getPublicScores.success(null);
+							if (!BoundPronouns.services.isLoggedIn()) {
+								gsu.askToLoginFor(new Runnable() {
+									@Override
+									public void run() {
+										submit_scores.success(null);
+									}
+								}, "High Scores requires Google Play");
+							} else {
+								getPublicScores.success(null);
+							}
 							return true;
 						};
 					});
@@ -465,13 +469,30 @@ public class LearningSession extends ChildScreen implements Screen {
 					if (BoundPronouns.services != null) {
 						if (BoundPronouns.services.isLoggedIn()) {
 							syncb.setVisible(false);
-							submit_scores.success(null);
 							gsu.uploadHidden(new Runnable() {
 								@Override
 								public void run() {
 									syncb.setVisible(true);									
 								}
 							});
+							final Callback<Void> do_unlock=new Callback<Void>() {
+								@Override
+								public void success(Void result) {
+									BoundPronouns.services.ach_unlocked(
+											info.level.getId(), noop_success);
+								}
+							};
+							final Callback<Void> do_reveal=new Callback<Void>() {
+								@Override
+								public void success(Void result) {
+									BoundPronouns.services.ach_reveal(
+											info.level.next().getId(),
+											do_unlock);
+								}
+							};
+							BoundPronouns.services.lb_submit(
+									ShowLeaderboards.BoardId, info.lastScore,
+									info.level.getEngrish(), do_reveal);
 						} else {
 							syncb.setVisible(true);
 						}
