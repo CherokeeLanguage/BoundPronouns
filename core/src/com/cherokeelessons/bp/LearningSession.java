@@ -53,6 +53,7 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
+import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
@@ -76,12 +77,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			current_due.lastrun = tmp.lastrun;
 			Collections.sort(current_due.deck, byShowTime);
 
-//			if (!info.settings.sessionLength.equals(SessionLength.XBrief)) {
-//				if (System.currentTimeMillis() - current_due.lastrun < 16 * ONE_HOUR_ms) {
-//					Gdx.app.postRunnable(tooSoon);
-//					return;
-//				}
-//			}
+			// if (!info.settings.sessionLength.equals(SessionLength.XBrief)) {
+			// if (System.currentTimeMillis() - current_due.lastrun < 16 *
+			// ONE_HOUR_ms) {
+			// Gdx.app.postRunnable(tooSoon);
+			// return;
+			// }
+			// }
 			stage.addAction(Actions.run(processActiveCards));
 		}
 	}
@@ -173,12 +175,12 @@ public class LearningSession extends ChildScreen implements Screen {
 				game.log(this, "Removed no longer valid entry: "
 						+ active.pgroup + " - " + active.vgroup);
 			}
-			
+
 			/*
 			 * Reset as new cards that are at box 0 and were wrong alot
 			 */
 			resetAsNew(current_due);
-			
+
 			/*
 			 * Reset 'scoring' related values for all cards
 			 */
@@ -193,7 +195,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * RESET tries max count
 			 */
 			resetRetriesCount(current_due);
-			
+
 			/*
 			 * ALWAYS start off as being eligible for "bump"
 			 */
@@ -208,9 +210,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * time-shift all cards by an additional seven days to pull in more
 			 * cards if this is an extra practice session
 			 */
-//			if (isExtraPractice) {
-//				updateTime(current_due, ONE_DAY_ms * 7l);
-//			}
+			// if (isExtraPractice) {
+			// updateTime(current_due, ONE_DAY_ms * 7l);
+			// }
 
 			/*
 			 * mark cards already in the active deck
@@ -265,7 +267,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			public ActiveDeck deck;
 			public float elapsed_secs;
 			public BoundPronouns game;
-//			public boolean isExtraPractice;
+			// public boolean isExtraPractice;
 			public Skin skin;
 			public FileHandle slot;
 			public Stage stage;
@@ -302,6 +304,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
 			final TextButton btn_scores = new TextButton("Submit Score", tbs);
+			if (BoundPronouns.services.isLoggedIn()) {
+				btn_scores.setText("View High Scores");
+			}
 
 			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC,
 					Texture.class);
@@ -311,8 +316,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
 			syncb.getImage().setColor(Color.DARK_GRAY);
-//			String dtitle = params.isExtraPractice ? "Extra Practice Results"
-//					: "Practice Results";
+			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
+			// : "Practice Results";
 			String dtitle = "Practice Results";
 			final WindowStyle dws = new WindowStyle(
 					params.skin.get(WindowStyle.class));
@@ -359,9 +364,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					button(btn_ok, btn_ok);
 
 					if (BoundPronouns.services != null) {
-//						if (!params.isExtraPractice) {
-							button(btn_scores, btn_scores);
-//						}
+						button(btn_scores, btn_scores);
 						button(syncb, syncb);
 					}
 
@@ -390,7 +393,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						@Override
 						public void success(GameScores result) {
 							gsu.showScores("Today's Public Scores", result,
-									getCircleScores);
+									null);
 						}
 					};
 
@@ -430,8 +433,6 @@ public class LearningSession extends ChildScreen implements Screen {
 												.login(submit_scores);
 									}
 								}, reasonMsg);
-							} else {
-								submit_scores.success(null);
 							}
 							return true;
 						};
@@ -453,6 +454,10 @@ public class LearningSession extends ChildScreen implements Screen {
 							return true;
 						};
 					});
+					
+					if (BoundPronouns.services != null&&BoundPronouns.services.isLoggedIn()) {
+						submit_scores.success(null);
+					}
 				}
 
 				protected void result(Object object) {
@@ -475,10 +480,10 @@ public class LearningSession extends ChildScreen implements Screen {
 			bye.setModal(true);
 			bye.setFillParent(true);
 
-//			if (params.isExtraPractice) {
-//				params.game.log(this, "Extra Practice Session - NOT SAVING!");
-//				return;
-//			}
+			// if (params.isExtraPractice) {
+			// params.game.log(this, "Extra Practice Session - NOT SAVING!");
+			// return;
+			// }
 
 			FileHandle tmp = params.slot.child(ActiveDeckJson + ".tmp");
 			json.toJson(params.deck, tmp);
@@ -534,7 +539,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			if (activeCard == null) {
 				if (elapsed < info.settings.sessionLength.getSeconds()) {
-					if (current_discards.deck.size()<IncrementDeckBySize) {
+					if (current_discards.deck.size() < IncrementDeckBySize) {
 						game.log(this, "not enough discards remaining...");
 						addCards(IncrementDeckBySize, current_active);
 						Gdx.app.postRunnable(showACard);
@@ -576,7 +581,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					params.deck.deck.addAll(current_done.deck);
 					params.elapsed_secs = elapsed;
 					params.game = game;
-//					params.isExtraPractice = isExtraPractice;
+					// params.isExtraPractice = isExtraPractice;
 					params.skin = skin;
 					params.slot = slot;
 					params.stage = stage;
@@ -660,60 +665,60 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-//	private class TooSoonDialog implements Runnable {
-//		@Override
-//		public void run() {
-//			Dialog whichMode = new Dialog(
-//					"It's too soon for a regular session.", skin) {
-//				{
-//					String text = "Please select an option:\n\n"
-//							+ "Would you like to practice your existing challenges?\n\n"
-//							+ "Would you like to jump forward by a full day?\n\n"
-//							+ "Would you like to cancel and go back to main menu?";
-//
-//					LabelStyle lstyle = new LabelStyle(
-//							skin.get(LabelStyle.class));
-//					lstyle.font = game.getFont(Font.SerifMedium);
-//					Label label = new Label(text, lstyle);
-//					label.setAlignment(Align.left, Align.left);
-//					label.setWrap(true);
-//					getContentTable().clearChildren();
-//					getContentTable().add(label).fill().expand().left();
-//					TextButtonStyle tbs = new TextButtonStyle(
-//							skin.get(TextButtonStyle.class));
-//					tbs.font = game.getFont(Font.SerifMedium);
-//					TextButton tb;
-//					tb = new TextButton("DO A PRACTICE", tbs);
-//					button(tb, "A");
-//					tb = new TextButton("JUMP A DAY", tbs);
-//					button(tb, "B");
-//					tb = new TextButton("CANCEL", tbs);
-//					button(tb, "C");
-//					setFillParent(true);
-//					this.getTitleLabel().setAlignment(Align.center);
-//				}
-//
-//				protected void result(Object object) {
-//					if (object == null) {
-//						return;
-//					}
-//					if (object.toString().equals("A")) {
-//						LearningSession.this.isExtraPractice = true;
-//					}
-//					if (object.toString().equals("B")) {
-//						LearningSession.this.isExtraPractice = false;
-//					}
-//					if (object.toString().equals("C")) {
-//						game.setScreen(caller);
-//						LearningSession.this.dispose();
-//						return;
-//					}
-//					stage.addAction(Actions.run(processActiveCards));
-//				};
-//			};
-//			whichMode.show(stage);
-//		}
-//	}
+	// private class TooSoonDialog implements Runnable {
+	// @Override
+	// public void run() {
+	// Dialog whichMode = new Dialog(
+	// "It's too soon for a regular session.", skin) {
+	// {
+	// String text = "Please select an option:\n\n"
+	// + "Would you like to practice your existing challenges?\n\n"
+	// + "Would you like to jump forward by a full day?\n\n"
+	// + "Would you like to cancel and go back to main menu?";
+	//
+	// LabelStyle lstyle = new LabelStyle(
+	// skin.get(LabelStyle.class));
+	// lstyle.font = game.getFont(Font.SerifMedium);
+	// Label label = new Label(text, lstyle);
+	// label.setAlignment(Align.left, Align.left);
+	// label.setWrap(true);
+	// getContentTable().clearChildren();
+	// getContentTable().add(label).fill().expand().left();
+	// TextButtonStyle tbs = new TextButtonStyle(
+	// skin.get(TextButtonStyle.class));
+	// tbs.font = game.getFont(Font.SerifMedium);
+	// TextButton tb;
+	// tb = new TextButton("DO A PRACTICE", tbs);
+	// button(tb, "A");
+	// tb = new TextButton("JUMP A DAY", tbs);
+	// button(tb, "B");
+	// tb = new TextButton("CANCEL", tbs);
+	// button(tb, "C");
+	// setFillParent(true);
+	// this.getTitleLabel().setAlignment(Align.center);
+	// }
+	//
+	// protected void result(Object object) {
+	// if (object == null) {
+	// return;
+	// }
+	// if (object.toString().equals("A")) {
+	// LearningSession.this.isExtraPractice = true;
+	// }
+	// if (object.toString().equals("B")) {
+	// LearningSession.this.isExtraPractice = false;
+	// }
+	// if (object.toString().equals("C")) {
+	// game.setScreen(caller);
+	// LearningSession.this.dispose();
+	// return;
+	// }
+	// stage.addAction(Actions.run(processActiveCards));
+	// };
+	// };
+	// whichMode.show(stage);
+	// }
+	// }
 
 	public static final String ActiveDeckJson = "ActiveDeck.json";
 
@@ -796,7 +801,8 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * @throws IllegalArgumentException
 	 *             if either String input {@code null} or negative threshold
 	 */
-	private static int lv_p[] = new int[1024]; // 'previous' cost array, horizontally
+	private static int lv_p[] = new int[1024]; // 'previous' cost array,
+												// horizontally
 	private static final int maxAnswers = 4;
 	private static final int maxCorrect = 4;
 	private static Callback<Void> noop_success = new Callback<Void>() {
@@ -819,8 +825,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private static final String TAG = "LearningSession";
 
-	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t,
-			int threshold) {
+	public static synchronized int getLevenshteinDistance(CharSequence s,
+			CharSequence t, int threshold) {
 		if (s == null || t == null) {
 			throw new IllegalArgumentException("Strings must not be null");
 		}
@@ -890,12 +896,12 @@ public class LearningSession extends ChildScreen implements Screen {
 			m = t.length();
 		}
 
-//		int lv_p[] = new int[n + 1]; // 'previous' cost array, horizontally
-//		int lv_d[] = new int[n + 1]; // cost array, horizontally
-		if (lv_p.length < n+1) {
+		// int lv_p[] = new int[n + 1]; // 'previous' cost array, horizontally
+		// int lv_d[] = new int[n + 1]; // cost array, horizontally
+		if (lv_p.length < n + 1) {
 			lv_p = new int[n + 1];
 		}
-		if (lv_d.length < n+1) {
+		if (lv_d.length < n + 1) {
 			lv_d = new int[n + 1];
 		}
 		int _d[]; // placeholder to assist in swapping p and d
@@ -938,7 +944,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				} else {
 					// 1 + minimum of cell to the left, to the top, diagonally
 					// left and up
-					lv_d[i] = 1 + Math.min(Math.min(lv_d[i - 1], lv_p[i]), lv_p[i - 1]);
+					lv_d[i] = 1 + Math.min(Math.min(lv_d[i - 1], lv_p[i]),
+							lv_p[i - 1]);
 				}
 			}
 
@@ -959,21 +966,25 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private void resetAsNew(ActiveDeck current_due) {
-		for (ActiveCard card: current_due.deck){
+		for (ActiveCard card : current_due.deck) {
 			if (card.noErrors) {
 				continue;
 			}
 			if (card.noErrors) {
 				continue;
 			}
-			if (card.box>0) {
+			if (card.box > 0) {
 				continue;
 			}
-			if (card.getMinCorrectInARow()>2) {
+			if (card.getMinCorrectInARow() > 2) {
 				continue;
 			}
-			card.newCard=true;
-			Gdx.app.log(this.getClass().getSimpleName(), "Resetting as new: "+getCardById(card.pgroup, card.vgroup).challenge.toString());
+			card.newCard = true;
+			Gdx.app.log(
+					this.getClass().getSimpleName(),
+					"Resetting as new: "
+							+ getCardById(card.pgroup, card.vgroup).challenge
+									.toString());
 		}
 	}
 
@@ -1055,7 +1066,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	final private SlotInfo info;
 
-//	private boolean isExtraPractice = false;
+	// private boolean isExtraPractice = false;
 
 	private final JsonConverter json;
 
@@ -1090,8 +1101,8 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private long ticktock_id;
 
-//	private TooSoonDialog tooSoon = new TooSoonDialog() {
-//	};
+	// private TooSoonDialog tooSoon = new TooSoonDialog() {
+	// };
 
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
@@ -1363,10 +1374,10 @@ public class LearningSession extends ChildScreen implements Screen {
 			activeCard.show_again_ms = 0;
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
-			activeCard.tries_remaining = (SendToNextSessionThreshold-activeCard.box*2)
+			activeCard.tries_remaining = (SendToNextSessionThreshold - activeCard.box * 2)
 					* next.answer.size();
-			if (activeCard.tries_remaining<1) {
-				activeCard.tries_remaining=1;
+			if (activeCard.tries_remaining < 1) {
+				activeCard.tries_remaining = 1;
 			}
 			active.deck.add(activeCard);
 			needed--;
@@ -1540,8 +1551,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * on and check next card
 				 */
 
-				int ldistance = getLevenshteinDistance(
-						correct_answer, wrong_answer, distance);
+				int ldistance = getLevenshteinDistance(correct_answer,
+						wrong_answer, distance);
 				if (ldistance < 1) {
 					continue;
 				}
@@ -1831,13 +1842,14 @@ public class LearningSession extends ChildScreen implements Screen {
 	protected void resetRetriesCount(ActiveDeck deck) {
 		for (ActiveCard card : deck.deck) {
 			Card dcard = getCardById(card.pgroup, card.vgroup);
-			card.tries_remaining = (SendToNextSessionThreshold-card.box*2)
+			card.tries_remaining = (SendToNextSessionThreshold - card.box * 2)
 					* dcard.answer.size();
-			if (card.tries_remaining<1) {
-				card.tries_remaining=1;
+			if (card.tries_remaining < 1) {
+				card.tries_remaining = 1;
 			}
 		}
 	}
+
 	@Override
 	public void show() {
 		super.show();
@@ -1851,6 +1863,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		cow = game.manager.get(BoundPronouns.SND_COW, Sound.class);
 		ticktock = game.manager.get(BoundPronouns.SND_TICKTOCK, Sound.class);
 	}
+
 	/**
 	 * time-shift all cards by time since last recorded run.
 	 * 
