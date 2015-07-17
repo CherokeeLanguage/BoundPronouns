@@ -535,6 +535,12 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			if (activeCard == null) {
 				if (elapsed < info.settings.sessionLength.getSeconds()) {
+					if (current_discards.deck.size()<IncrementDeckBySize) {
+						game.log(this, "not enough discards remaining...");
+						addCards(IncrementDeckBySize, current_active);
+						Gdx.app.postRunnable(showACard);
+						return;
+					}
 					game.log(this, "session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
 					game.log(this, "shifting discards to zero point: "
@@ -792,8 +798,8 @@ public class LearningSession extends ChildScreen implements Screen {
 	 *             if either String input {@code null} or negative threshold
 	 */
 	private static int lv_p[] = new int[1024]; // 'previous' cost array, horizontally
-	private static final int maxAnswers = 6;
-	private static final int maxCorrect = 6;
+	private static final int maxAnswers = 4;
+	private static final int maxCorrect = 4;
 	private static Callback<Void> noop_success = new Callback<Void>() {
 		@Override
 		public void success(Void result) {
