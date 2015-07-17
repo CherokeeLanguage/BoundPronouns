@@ -53,7 +53,6 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
-import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
@@ -432,7 +431,7 @@ public class LearningSession extends ChildScreen implements Screen {
 									}
 								}, reasonMsg);
 							} else {
-								BoundPronouns.services.login(submit_scores);
+								submit_scores.success(null);
 							}
 							return true;
 						};
