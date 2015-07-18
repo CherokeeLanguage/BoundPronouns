@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
-	private String signature="";
-	
+	private String signature = "";
+
 	public String getSignature() {
 		return signature;
 	}
@@ -29,15 +29,15 @@ public class SlotInfo implements Serializable {
 				"CgkIy7GTtc0TEAIQDQ"), Expert("Expert", 8, "CgkIy7GTtc0TEAIQDg"), Master(
 				"Master", 9, "CgkIy7GTtc0TEAIQDw"), GrandMaster("Grandmaster",
 				10, "CgkIy7GTtc0TEAIQEA");
-		
+
 		public LevelName next() {
 			LevelName[] values = LevelName.values();
-			int ix=(ordinal()+1)%(values.length);
+			int ix = (ordinal() + 1) % (values.length);
 			return values[ix];
 		}
 
 		private final int level;
-		private final String engrish;
+		private final String english;
 		private final String id;
 
 		public static LevelName getById(String id) {
@@ -65,8 +65,8 @@ public class SlotInfo implements Serializable {
 			return (level + 1) * 5;
 		}
 
-		private LevelName(String engrish, int level, String id) {
-			this.engrish = engrish;
+		private LevelName(String english, int level, String id) {
+			this.english = english;
 			this.level = level;
 			this.id = id;
 		}
@@ -88,13 +88,13 @@ public class SlotInfo implements Serializable {
 			return level;
 		}
 
-		public String getEngrish() {
-			return engrish;
+		public String getEnglish() {
+			return english;
 		}
 
 		@Override
 		public String toString() {
-			return getEngrish();
+			return getEnglish();
 		}
 
 	}
@@ -102,14 +102,14 @@ public class SlotInfo implements Serializable {
 	public static enum DisplayMode {
 		Syllabary("Only show Syllabary"), Latin("Only show Latin"), Both(
 				"Show both Syllabary and Latin");
-		private DisplayMode(String engrish) {
-			this.engrish = engrish.intern();
+		private DisplayMode(String english) {
+			this.english = english.intern();
 		}
 
-		private String engrish;
+		private String english;
 
 		public String toString() {
-			return engrish;
+			return english;
 		};
 
 		public static DisplayMode getNext(DisplayMode mode) {
@@ -127,14 +127,14 @@ public class SlotInfo implements Serializable {
 				"Only the bound pronoun prefixes"), Conjugations(
 				"Only the conjugated forms");
 
-		private DeckMode(String engrish) {
-			this.engrish = engrish.intern();
+		private DeckMode(String english) {
+			this.english = english.intern();
 		}
 
-		private String engrish;
+		private String english;
 
 		public String toString() {
-			return engrish;
+			return english;
 		};
 
 		public static DeckMode getNext(DeckMode mode) {
@@ -148,16 +148,15 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum SessionLength {
-		XBrief("XBrief: about 2-4 minutes", 2f), Brief("Brief: about 5-8 minutes", 5f), Standard(
-				"Standard: about 10-15 minutes", 10f), Long(
-				"Long: about 15-20 minutes", 15f), BrainNumbing(
+		XBrief("XBrief: 2 minutes", 2f), Brief("Brief: 5 minutes", 5f), Standard(
+				"Standard: 10 minutes", 10f), Long("Long: 15 minutes", 15f), BrainNumbing(
 				"Brain Numbing: very long", 60f);
 
 		final private float seconds;
-		final private String engrish;
+		final private String english;
 
-		private SessionLength(String engrish, float minutes) {
-			this.engrish = engrish.intern();
+		private SessionLength(String english, float minutes) {
+			this.english = english.intern();
 			this.seconds = minutes * 60f;
 		}
 
@@ -166,7 +165,7 @@ public class SlotInfo implements Serializable {
 		}
 
 		public String toString() {
-			return engrish;
+			return english;
 		};
 
 		public static SessionLength getNext(SessionLength mode) {
@@ -188,11 +187,11 @@ public class SlotInfo implements Serializable {
 	public static enum TimeLimit {
 		Expert("Expert: Max 10 seconds", 10f), Standard(
 				"Standard: Max 15 seconds", 15f), Novice(
-				"Novice: Max 30 seconds", 30f), Newbie("Newbie: Max 1 hour",
+				"Novice: Max 60 seconds", 60f), Newbie("Newbie: Max 1 hour",
 				60f * 60f);
 
-		private TimeLimit(String engrish, float seconds) {
-			this.engrish = engrish.intern();
+		private TimeLimit(String english, float seconds) {
+			this.english = english.intern();
 			this.seconds = seconds;
 		}
 
@@ -202,10 +201,10 @@ public class SlotInfo implements Serializable {
 			return seconds;
 		}
 
-		final private String engrish;
+		final private String english;
 
 		public String toString() {
-			return engrish;
+			return english;
 		};
 
 		public static TimeLimit getNext(TimeLimit mode) {
@@ -221,16 +220,16 @@ public class SlotInfo implements Serializable {
 	public static class Settings {
 		public String name = "";
 		public DisplayMode display = DisplayMode.Both;
-		public DeckMode deck = DeckMode.Both;
+		public DeckMode deck = DeckMode.Conjugations;
 		public boolean muted = false;
 		/**
 		 * Time limit per session.
 		 */
-		public SessionLength sessionLength = SessionLength.Standard;
+		public SessionLength sessionLength = SessionLength.Brief;
 		/**
 		 * Time limit per card.
 		 */
-		public TimeLimit timeLimit = TimeLimit.Standard;
+		public TimeLimit timeLimit = TimeLimit.Novice;
 
 		public Settings() {
 		}
@@ -249,13 +248,13 @@ public class SlotInfo implements Serializable {
 				display = DisplayMode.Both;
 			}
 			if (deck == null) {
-				deck = DeckMode.Both;
+				deck = DeckMode.Conjugations;
 			}
 			if (sessionLength == null) {
-				sessionLength = SessionLength.Standard;
+				sessionLength = SessionLength.Brief;
 			}
 			if (timeLimit == null) {
-				timeLimit = TimeLimit.Standard;
+				timeLimit = TimeLimit.Novice;
 			}
 		}
 	}
@@ -338,36 +337,36 @@ public class SlotInfo implements Serializable {
 			boxsum += card.box;
 		}
 		info.fullScore = boxsum;
-		
+
 		/*
 		 * Set last score based on timings of most recent session. Cards with
 		 * errors count as "-1" each. Apply "boxlevel" values as bonus points.
 		 */
 		float maxCardScore = SlotInfo.TimeLimit.Standard.getSeconds();
 		float score = 0f;
-		boolean perfect=true;
+		boolean perfect = true;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.showCount == 0) {
 				continue;
 			}
 			if (!card.noErrors) {
 				score -= maxCardScore;
-				perfect=false;
+				perfect = false;
 			}
 			double avgShowTime = card.showTime / (float) card.showCount;
 			double cardScore = maxCardScore - avgShowTime;
-			score += (cardScore*10f + card.box*10f);
+			score += (cardScore * 10f + card.box * 10f);
 		}
 		if (perfect) {
 			score *= 1.1f;
 		}
 		info.lastScore = (int) Math.ceil(score);
-		info.perfect=perfect;
+		info.perfect = perfect;
 		/*
 		 * How many are "fully learned" out of the active deck?
 		 */
-		
-		info.longTerm=0;
+
+		info.longTerm = 0;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= FULLY_LEARNED_BOX) {
 				info.longTerm++;
@@ -383,7 +382,7 @@ public class SlotInfo implements Serializable {
 		 * How many are "well known" out of the active deck? (excluding full
 		 * learned ones)
 		 */
-		info.mediumTerm=0;		
+		info.mediumTerm = 0;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= PROFICIENT_BOX && card.box < FULLY_LEARNED_BOX) {
 				info.mediumTerm++;
@@ -394,7 +393,7 @@ public class SlotInfo implements Serializable {
 		 * How many are "short term known" out of the active deck? (excluding
 		 * full learned ones)
 		 */
-		info.shortTerm=0;
+		info.shortTerm = 0;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= JUST_LEARNED_BOX && card.box < PROFICIENT_BOX) {
 				info.shortTerm++;

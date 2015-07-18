@@ -767,7 +767,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			table.add(new Label("", dls)).padLeft(15).padRight(15)
 					.center();
 			table.add(new Label("0", dls)).right().padRight(30);
-			table.add(new Label(SlotInfo.LevelName.Newbie.getEngrish(), dls)).center();
+			table.add(new Label(SlotInfo.LevelName.Newbie.getEnglish(), dls)).center();
 			table.add(new Label("", dls)).center();
 		}
 		

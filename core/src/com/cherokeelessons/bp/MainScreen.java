@@ -41,6 +41,8 @@ import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
+import com.cherokeelessons.cards.SlotInfo.SessionLength;
+import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 
@@ -338,6 +340,9 @@ public class MainScreen implements Screen, InputProcessor {
 				blank = (info == null);
 				if (info == null) {
 					info = new SlotInfo();
+					info.settings.sessionLength = SessionLength.Brief;
+					info.settings.timeLimit = TimeLimit.Novice;
+					info.settings.deck = DeckMode.Conjugations;
 				}
 				if (!info.updatedVersion()) {
 					FileHandle activeDeckFile = p0
@@ -357,6 +362,9 @@ public class MainScreen implements Screen, InputProcessor {
 			if (blank) {
 				info = new SlotInfo();
 				info.settings.name = "*** NEW SESSION ***";
+				info.settings.sessionLength = SessionLength.Brief;
+				info.settings.timeLimit = TimeLimit.Novice;
+				info.settings.deck = DeckMode.Conjugations;
 			}
 			info.validate();
 			SlotInfo.Settings settings = info.settings;

@@ -53,6 +53,7 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
+import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
@@ -423,7 +424,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						public void success(Void result) {
 							BoundPronouns.services.lb_submit(
 									ShowLeaderboards.BoardId, info.lastScore,
-									info.level.getEngrish(), getPublicScores);
+									info.level.getEnglish(), getPublicScores);
 						}
 					};
 
@@ -487,7 +488,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							};
 							BoundPronouns.services.lb_submit(
 									ShowLeaderboards.BoardId, info.lastScore,
-									info.level.getEngrish(), do_reveal);
+									info.level.getEnglish(), do_reveal);
 						} else {
 							syncb.setVisible(true);
 						}
@@ -1164,11 +1165,12 @@ public class LearningSession extends ChildScreen implements Screen {
 			info = new SlotInfo();
 			info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
 			info.settings.sessionLength = SessionLength.Brief;
-			info.settings.timeLimit = TimeLimit.Standard;
+			info.settings.timeLimit = TimeLimit.Novice;
+			info.settings.deck = DeckMode.Conjugations;
 		} else {
 			info = json.fromJson(SlotInfo.class, infoFile);
 			info.settings.sessionLength = SessionLength.Brief;
-			info.settings.timeLimit = TimeLimit.Standard;
+			info.settings.timeLimit = TimeLimit.Novice;
 		}
 
 		newCardDialog = new NewCardDialog(game, skin) {
