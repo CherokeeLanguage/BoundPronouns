@@ -315,7 +315,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
 			syncb.getImage().setColor(Color.DARK_GRAY);
-			
+
 			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
 			// : "Practice Results";
 			String dtitle = "Practice Results";
@@ -431,7 +431,7 @@ public class LearningSession extends ChildScreen implements Screen {
 									info.level.getEngrish(), getPublicScores);
 						}
 					};
-					
+
 					btn_scores.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x,
 								float y, int pointer, int button) {
@@ -472,17 +472,17 @@ public class LearningSession extends ChildScreen implements Screen {
 							gsu.uploadHidden(new Runnable() {
 								@Override
 								public void run() {
-									syncb.setVisible(true);									
+									syncb.setVisible(true);
 								}
 							});
-							final Callback<Void> do_unlock=new Callback<Void>() {
+							final Callback<Void> do_unlock = new Callback<Void>() {
 								@Override
 								public void success(Void result) {
 									BoundPronouns.services.ach_unlocked(
 											info.level.getId(), noop_success);
 								}
 							};
-							final Callback<Void> do_reveal=new Callback<Void>() {
+							final Callback<Void> do_reveal = new Callback<Void>() {
 								@Override
 								public void success(Void result) {
 									BoundPronouns.services.ach_reveal(
@@ -497,7 +497,7 @@ public class LearningSession extends ChildScreen implements Screen {
 							syncb.setVisible(true);
 						}
 					}
-					
+
 				}
 
 				protected void result(Object object) {
@@ -861,7 +861,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
 		ONE_DAY_ms = 24l * ONE_HOUR_ms;
 	}
-	
+
 	private static final String TAG = "LearningSession";
 
 	public static synchronized int getLevenshteinDistance(CharSequence s,
@@ -1278,6 +1278,16 @@ public class LearningSession extends ChildScreen implements Screen {
 										+ tb.getText());
 								doBuzzer = true;
 								resetCorrectInARow(_activeCard);
+								if (_activeCard.noErrors
+										&& _activeCard.tries_remaining < 1) {
+									/*
+									 * set for at leat one more show if the
+									 * first time a card is incorrectly answered
+									 * there are no shows remaining
+									 */
+									_activeCard.tries_remaining = _activeCard
+											.getAnswerCount();
+								}
 								_activeCard.noErrors = false;
 							}
 							if (tb.isChecked() && tracked_answer.correct) {
@@ -1772,8 +1782,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Iterator<ActiveCard> itmp = current_discards.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
-				if (tmp.noErrors
-						&& tmp.isAllCorrectInARow()) {
+				if (tmp.noErrors && tmp.isAllCorrectInARow()) {
 					tmp.box++;
 					current_done.deck.add(tmp);
 					tmp.show_again_ms = tmp.show_again_ms
