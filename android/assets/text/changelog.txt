@@ -1,6 +1,6 @@
 1.84
 
-if learning box == 0 tries per card is 7
+if learning box == 0 tries per card is 4
 if learning box == 1 tries per card is 3
 if learning box == 2 tries per card is 2
 if learning box  > 2 tries per card is 1
