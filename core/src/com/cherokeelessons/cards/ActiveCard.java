@@ -35,7 +35,8 @@ public class ActiveCard {
 		correct_in_a_row.put(answer, c != null ? c + 1 : 1);
 	}
 
-	public boolean isAllCorrectInARow(int threshold) {
+	public boolean isAllCorrectInARow() {
+		int threshold=SendToNextSessionThreshold;
 		threshold-=(box*2);
 		if (threshold<1) {
 			threshold=1;
@@ -133,5 +134,21 @@ public class ActiveCard {
 		}
 		ActiveCard other = (ActiveCard) obj;
 		return vgroup.equals(other.vgroup) && pgroup.equals(other.pgroup);
+	}
+	
+	public static final int SendToNextSessionThreshold = 4;
+	
+	public void resetRetriesCount(){
+		int size = correct_in_a_row.size();
+		tries_remaining = (SendToNextSessionThreshold * size);
+		if (box==1) {
+			tries_remaining = (3 * size);
+		}
+		if (box==2) {
+			tries_remaining = (2 * size);
+		}
+		if (box>2) {
+			tries_remaining = size;
+		}	
 	}
 }
