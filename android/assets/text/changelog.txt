@@ -5,6 +5,7 @@ if learning box == 1 tries per card is 3
 if learning box == 2 tries per card is 2
 if learning box  > 2 tries per card is 1
 
+Remove settable options for time limits and session lengths because of new learning box logic.
 
 1.83
 
