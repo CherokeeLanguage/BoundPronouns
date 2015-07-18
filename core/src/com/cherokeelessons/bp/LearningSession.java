@@ -53,6 +53,8 @@ import com.cherokeelessons.cards.Answer.AnswerList;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.cards.SlotInfo;
+import com.cherokeelessons.cards.SlotInfo.SessionLength;
+import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
@@ -76,13 +78,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			current_due.lastrun = tmp.lastrun;
 			Collections.sort(current_due.deck, byShowTime);
 
-			// if (!info.settings.sessionLength.equals(SessionLength.XBrief)) {
-			// if (System.currentTimeMillis() - current_due.lastrun < 16 *
-			// ONE_HOUR_ms) {
-			// Gdx.app.postRunnable(tooSoon);
-			// return;
-			// }
-			// }
 			stage.addAction(Actions.run(processActiveCards));
 		}
 	}
@@ -559,6 +554,26 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		@Override
 		public void run() {
+			if (elapsed > info.settings.sessionLength.getSeconds()) {
+				elapsed_tick_on = false;
+				game.log(this, "No time remaining...");
+				SaveParams params = new SaveParams();
+				params.caller = LearningSession.this.caller;
+				params.deck = new ActiveDeck();
+				params.deck.deck.addAll(current_active.deck);
+				params.deck.deck.addAll(current_due.deck);
+				params.deck.deck.addAll(current_discards.deck);
+				params.deck.deck.addAll(current_done.deck);
+				params.elapsed_secs = elapsed;
+				params.game = game;
+				params.skin = skin;
+				params.slot = slot;
+				params.stage = stage;
+				saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(
+						params);
+				stage.addAction(Actions.run(saveActiveDeckWithDialog));
+				return;
+			}
 			ActiveCard activeCard;
 			do {
 				activeCard = getNextCard();
@@ -607,27 +622,6 @@ public class LearningSession extends ChildScreen implements Screen {
 							+ (shift_by_ms / ONE_SECOND_ms));
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
-					return;
-				}
-				if (elapsed > info.settings.sessionLength.getSeconds()) {
-					elapsed_tick_on = false;
-					game.log(this, "no cards remaining");
-					SaveParams params = new SaveParams();
-					params.caller = LearningSession.this.caller;
-					params.deck = new ActiveDeck();
-					params.deck.deck.addAll(current_active.deck);
-					params.deck.deck.addAll(current_due.deck);
-					params.deck.deck.addAll(current_discards.deck);
-					params.deck.deck.addAll(current_done.deck);
-					params.elapsed_secs = elapsed;
-					params.game = game;
-					// params.isExtraPractice = isExtraPractice;
-					params.skin = skin;
-					params.slot = slot;
-					params.stage = stage;
-					saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(
-							params);
-					stage.addAction(Actions.run(saveActiveDeckWithDialog));
 					return;
 				}
 			}
@@ -1169,8 +1163,12 @@ public class LearningSession extends ChildScreen implements Screen {
 		if (!infoFile.exists()) {
 			info = new SlotInfo();
 			info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
+			info.settings.sessionLength = SessionLength.Brief;
+			info.settings.timeLimit = TimeLimit.Standard;
 		} else {
 			info = json.fromJson(SlotInfo.class, infoFile);
+			info.settings.sessionLength = SessionLength.Brief;
+			info.settings.timeLimit = TimeLimit.Standard;
 		}
 
 		newCardDialog = new NewCardDialog(game, skin) {

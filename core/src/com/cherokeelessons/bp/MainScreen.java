@@ -1,7 +1,5 @@
 package com.cherokeelessons.bp;
 
-import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -9,7 +7,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -44,8 +41,6 @@ import com.cherokeelessons.cards.ActiveDeck;
 import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
-import com.cherokeelessons.cards.SlotInfo.SessionLength;
-import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 
@@ -199,30 +194,30 @@ public class MainScreen implements Screen, InputProcessor {
 				return true;
 			}
 		});
-		final TextButton sessionLength = new TextButton(
-				info.settings.sessionLength.toString(), tbs);
-		sessionLength.addListener(new ClickListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				info.settings.sessionLength = SessionLength
-						.getNext(info.settings.sessionLength);
-				sessionLength.setText(info.settings.sessionLength.toString());
-				return true;
-			}
-		});
-		final TextButton timeLimit = new TextButton(
-				info.settings.timeLimit.toString(), tbs);
-		timeLimit.addListener(new ClickListener() {
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				info.settings.timeLimit = TimeLimit
-						.getNext(info.settings.timeLimit);
-				timeLimit.setText(info.settings.timeLimit.toString());
-				return true;
-			}
-		});
+//		final TextButton sessionLength = new TextButton(
+//				info.settings.sessionLength.toString(), tbs);
+//		sessionLength.addListener(new ClickListener() {
+//			@Override
+//			public boolean touchDown(InputEvent event, float x, float y,
+//					int pointer, int button) {
+//				info.settings.sessionLength = SessionLength
+//						.getNext(info.settings.sessionLength);
+//				sessionLength.setText(info.settings.sessionLength.toString());
+//				return true;
+//			}
+//		});
+//		final TextButton timeLimit = new TextButton(
+//				info.settings.timeLimit.toString(), tbs);
+//		timeLimit.addListener(new ClickListener() {
+//			@Override
+//			public boolean touchDown(InputEvent event, float x, float y,
+//					int pointer, int button) {
+//				info.settings.timeLimit = TimeLimit
+//						.getNext(info.settings.timeLimit);
+//				timeLimit.setText(info.settings.timeLimit.toString());
+//				return true;
+//			}
+//		});
 		final TextButton muted = new TextButton(info.settings.muted ? "Yes"
 				: "No", tbs);
 		muted.addListener(new ClickListener() {
@@ -289,13 +284,13 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.add(new Label("Display: ", ls)).left().fillX();
 		contentTable.add(mode).expand().fillX().left();
 
-		contentTable.row();
-		contentTable.add(new Label("Session Length: ", ls)).left().fillX();
-		contentTable.add(sessionLength).expand().fillX().left();
+//		contentTable.row();
+//		contentTable.add(new Label("Session Length: ", ls)).left().fillX();
+//		contentTable.add(sessionLength).expand().fillX().left();
 
-		contentTable.row();
-		contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
-		contentTable.add(timeLimit).expand().fillX().left();
+//		contentTable.row();
+//		contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
+//		contentTable.add(timeLimit).expand().fillX().left();
 
 		contentTable.row();
 		contentTable.add(new Label("Mute by default: ", ls)).left().fillX();
