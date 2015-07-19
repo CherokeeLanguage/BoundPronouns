@@ -200,6 +200,13 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * Make sure no boxes out of range
 			 */
 			onlyPositiveBoxValues(current_due);
+			
+			/*
+			 * Reset tries count after box clamping done
+			 */
+			for (ActiveCard card: current_due.deck) {
+				card.resetRetriesCount();
+			}
 
 			/*
 			 * time-shift all cards by an additional seven days to pull in more
@@ -1004,9 +1011,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (card.noErrors) {
 				continue;
 			}
-			if (card.noErrors) {
-				continue;
-			}
 			if (card.box > 0) {
 				continue;
 			}
@@ -1377,6 +1381,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (next.show_again_ms > 0) {
 				continue;
 			}
+			next.resetRetriesCount();
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -1438,6 +1443,25 @@ public class LearningSession extends ChildScreen implements Screen {
 		/**
 		 * yikes! They processed ALL the cards!
 		 */
+		ipending = current_due.deck.iterator();
+		while (needed > 0 && ipending.hasNext()) {
+			ActiveCard next = ipending.next();
+			if (next.box < SlotInfo.FULLY_LEARNED_BOX) {
+				continue;
+			}
+			next.resetRetriesCount();
+			active.deck.add(next);
+			needed--;
+			ipending.remove();
+		}
+		ipending = current_due.deck.iterator();
+		while (needed > 0 && ipending.hasNext()) {
+			ActiveCard next = ipending.next();
+			next.resetRetriesCount();
+			active.deck.add(next);
+			needed--;
+			ipending.remove();
+		}
 
 	}
 
