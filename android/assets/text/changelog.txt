@@ -1,3 +1,7 @@
+1.85
+
+Fix bug introduced in last update with scheduling.
+
 1.84
 
 if learning box == 0 tries per card is 4
