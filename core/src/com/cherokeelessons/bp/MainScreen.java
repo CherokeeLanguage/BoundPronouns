@@ -196,30 +196,30 @@ public class MainScreen implements Screen, InputProcessor {
 				return true;
 			}
 		});
-//		final TextButton sessionLength = new TextButton(
-//				info.settings.sessionLength.toString(), tbs);
-//		sessionLength.addListener(new ClickListener() {
-//			@Override
-//			public boolean touchDown(InputEvent event, float x, float y,
-//					int pointer, int button) {
-//				info.settings.sessionLength = SessionLength
-//						.getNext(info.settings.sessionLength);
-//				sessionLength.setText(info.settings.sessionLength.toString());
-//				return true;
-//			}
-//		});
-//		final TextButton timeLimit = new TextButton(
-//				info.settings.timeLimit.toString(), tbs);
-//		timeLimit.addListener(new ClickListener() {
-//			@Override
-//			public boolean touchDown(InputEvent event, float x, float y,
-//					int pointer, int button) {
-//				info.settings.timeLimit = TimeLimit
-//						.getNext(info.settings.timeLimit);
-//				timeLimit.setText(info.settings.timeLimit.toString());
-//				return true;
-//			}
-//		});
+		// final TextButton sessionLength = new TextButton(
+		// info.settings.sessionLength.toString(), tbs);
+		// sessionLength.addListener(new ClickListener() {
+		// @Override
+		// public boolean touchDown(InputEvent event, float x, float y,
+		// int pointer, int button) {
+		// info.settings.sessionLength = SessionLength
+		// .getNext(info.settings.sessionLength);
+		// sessionLength.setText(info.settings.sessionLength.toString());
+		// return true;
+		// }
+		// });
+		// final TextButton timeLimit = new TextButton(
+		// info.settings.timeLimit.toString(), tbs);
+		// timeLimit.addListener(new ClickListener() {
+		// @Override
+		// public boolean touchDown(InputEvent event, float x, float y,
+		// int pointer, int button) {
+		// info.settings.timeLimit = TimeLimit
+		// .getNext(info.settings.timeLimit);
+		// timeLimit.setText(info.settings.timeLimit.toString());
+		// return true;
+		// }
+		// });
 		final TextButton muted = new TextButton(info.settings.muted ? "Yes"
 				: "No", tbs);
 		muted.addListener(new ClickListener() {
@@ -258,7 +258,7 @@ public class MainScreen implements Screen, InputProcessor {
 				if (ok.equals(object)) {
 					info.settings.name = name.getText();
 					json.toJson(info, p1);
-				}				
+				}
 				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
@@ -286,13 +286,13 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.add(new Label("Display: ", ls)).left().fillX();
 		contentTable.add(mode).expand().fillX().left();
 
-//		contentTable.row();
-//		contentTable.add(new Label("Session Length: ", ls)).left().fillX();
-//		contentTable.add(sessionLength).expand().fillX().left();
+		// contentTable.row();
+		// contentTable.add(new Label("Session Length: ", ls)).left().fillX();
+		// contentTable.add(sessionLength).expand().fillX().left();
 
-//		contentTable.row();
-//		contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
-//		contentTable.add(timeLimit).expand().fillX().left();
+		// contentTable.row();
+		// contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
+		// contentTable.add(timeLimit).expand().fillX().left();
 
 		contentTable.row();
 		contentTable.add(new Label("Mute by default: ", ls)).left().fillX();
@@ -368,7 +368,7 @@ public class MainScreen implements Screen, InputProcessor {
 			}
 			info.validate();
 			SlotInfo.Settings settings = info.settings;
-			
+
 			String txt = "";
 			txt += info.level;
 			txt += " ";
@@ -383,13 +383,20 @@ public class MainScreen implements Screen, InputProcessor {
 			txt += ", " + info.mediumTerm + " medium";
 			txt += ", " + info.longTerm + " long";
 
+			if (p0.child(BoundPronouns.INFO_JSON + ".lb_submit").exists()) {
+				BoundPronouns.services.lb_submit(ShowLeaderboards.BoardId,
+						info.lastScore, info.level.getEnglish(), noop_success);
+			}
+
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
 			tbs.font = game.getFont(Font.SerifMedium);
 			TextButton textb = new TextButton(txt, tbs);
 
 			slots.row();
-			Image levelImage = new Image(game.manager.get(BoundPronouns.levelImg(info.level.getLevel()), Texture.class));
+			Image levelImage = new Image(game.manager.get(
+					BoundPronouns.levelImg(info.level.getLevel()),
+					Texture.class));
 			slots.add(levelImage).pad(5).left();
 			slots.add(textb).pad(0).expand().fill().left();
 			final boolean isNewSession = blank;
@@ -421,24 +428,30 @@ public class MainScreen implements Screen, InputProcessor {
 			editControls.center();
 			editControls.defaults().pad(10);
 
-			Texture img_edit = game.manager.get(BoundPronouns.IMG_SETTINGS, Texture.class);
-			TextureRegionDrawable draw_edit = new TextureRegionDrawable(new TextureRegion(img_edit));
+			Texture img_edit = game.manager.get(BoundPronouns.IMG_SETTINGS,
+					Texture.class);
+			TextureRegionDrawable draw_edit = new TextureRegionDrawable(
+					new TextureRegion(img_edit));
 			ImageButton editb = new ImageButton(draw_edit);
 			editb.setTransform(true);
 			editb.getImage().setScaling(Scaling.fit);
-			editb.getImage().setColor(Color.DARK_GRAY);			
-			editControls.add(editb).center();		
+			editb.getImage().setColor(Color.DARK_GRAY);
+			editControls.add(editb).center();
 
-			Texture img_delete = game.manager.get(BoundPronouns.IMG_ERASE, Texture.class);
-			TextureRegionDrawable draw_delete = new TextureRegionDrawable(new TextureRegion(img_delete));
+			Texture img_delete = game.manager.get(BoundPronouns.IMG_ERASE,
+					Texture.class);
+			TextureRegionDrawable draw_delete = new TextureRegionDrawable(
+					new TextureRegion(img_delete));
 			ImageButton deleteb = new ImageButton(draw_delete);
 			deleteb.setTransform(true);
 			deleteb.getImage().setScaling(Scaling.fit);
 			deleteb.getImage().setColor(Color.DARK_GRAY);
 			editControls.add(deleteb).center();
 
-			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
-			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
+			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC,
+					Texture.class);
+			TextureRegionDrawable draw_sync = new TextureRegionDrawable(
+					new TextureRegion(img_sync));
 			ImageButton syncb = new ImageButton(draw_sync);
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
@@ -453,18 +466,20 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.setDisabled(true);
 				deleteb.setTouchable(Touchable.disabled);
 				deleteb.getImage().setColor(Color.CLEAR);
-			}			
-			syncb.addListener(new ClickListener(){
-				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-					Gdx.app.log("MainScreen", p0.name());					
-					Runnable whenDone=new Runnable() {					
+			}
+			syncb.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					Gdx.app.log("MainScreen", p0.name());
+					Runnable whenDone = new Runnable() {
 						@Override
 						public void run() {
 							chooseSlot.hide();
 							doSlotsDialog();
 						}
 					};
-					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, p0, whenDone);
+					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, p0,
+							whenDone);
 					game.click();
 					Gdx.app.postRunnable(gsync);
 					return true;
@@ -488,7 +503,7 @@ public class MainScreen implements Screen, InputProcessor {
 				}
 
 			});
-			
+
 			deleteb.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent event, float x, float y,
 						int pointer, int button) {
