@@ -265,7 +265,7 @@ public class GameServices implements GooglePlayGameServices {
 							GameScore gs = new GameScore();
 							gs.rank = "";
 							gs.tag = URLDecoder
-									.decode(e.getScoreTag(), "UTF-8");
+									.decode(StringUtils.defaultString(e.getScoreTag()), "UTF-8");
 							gs.value = e.getScoreString();
 							gs.user = "";
 							gscores.list.add(gs);
@@ -351,7 +351,7 @@ public class GameServices implements GooglePlayGameServices {
 							GameScore gs = new GameScore();
 							gs.rank = e.getFormattedScoreRank();
 							gs.tag = URLDecoder
-									.decode(e.getScoreTag(), "UTF-8");
+									.decode(StringUtils.defaultString(e.getScoreTag()), "UTF-8");
 							gs.value = e.getFormattedScore();
 							gs.user = e.getPlayer().getDisplayName();
 							gs.imgUrl = e.getPlayer().getAvatarImageUrl();
