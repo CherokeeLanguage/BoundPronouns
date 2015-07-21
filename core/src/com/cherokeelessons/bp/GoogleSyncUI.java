@@ -396,7 +396,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					if (busy != null) {
 						busy.hide();
 					}
-					dialogNothingToDo();
+//					dialogNothingToDo();
 					return;
 				}
 				recalculateDeviceStats();
@@ -559,19 +559,19 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			busy.hide();
 		}
 		if (!p0.child(INFO_JSON).exists()) {
-			dialogNothingToDo();
+//			dialogNothingToDo();
 			return;
 		}
 		if (!p0.child(ACTIVE_DECK_JSON).exists()) {
-			dialogNothingToDo();
+//			dialogNothingToDo();
 			return;
 		}
 		SlotInfo device_info = json.fromJson(SlotInfo.class,
 				p0.child(INFO_JSON));
 		final Dialog notice = new Dialog("Google Play Services", dws);
 		notice.getTitleLabel().setAlignment(Align.center);
-		notice.button(new TextButton("OK", tbs));
-		notice.text(new Label("Uploading Device Copy to Cloud...", dls));
+//		notice.button(new TextButton("OK", tbs));
+		notice.text(new Label("Uploading...", dls));
 		notice.show(stage);
 		if (device_info.getSignature() == null
 				|| device_info.getSignature().length() == 0) {
@@ -587,7 +587,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			@Override
 			public void success(String result) {
 				notice.hide();
-				showDoneDialog();
+//				showDoneDialog();
 			}
 			
 			@Override
