@@ -4,14 +4,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -49,13 +53,17 @@ import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 
 public class GameServices implements GooglePlayGameServices {
 
-	public static String APP_NAME = "ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ/1.0";
+	public static String APP_NAME = "ᏣᎳᎩ-ᎦᏬᏂᎯᏍᏗ/1.0";
+
 	public static interface PlatformInterface {
 		public static final String USER = "user";
+
 		public Credential getCredential(GoogleAuthorizationCodeFlow flow)
 				throws IOException;
+
 		public HttpTransport getTransport() throws GeneralSecurityException,
 				IOException;
+
 		public void runTask(Runnable runnable);
 	}
 
@@ -103,16 +111,25 @@ public class GameServices implements GooglePlayGameServices {
 			initdone = true;
 		}
 	}
-	
+
 	@Override
 	public boolean isLoggedIn() {
 		try {
 			init();
 			GoogleAuthorizationCodeFlow flow = getFlow();
-			if (flow==null) {
+			if (flow == null) {
 				return false;
 			}
-			return flow.loadCredential(PlatformInterface.USER)!=null;
+			final Credential loadCredential = flow
+					.loadCredential(PlatformInterface.USER);
+			if (loadCredential == null) {
+				return false;
+			}
+			try {
+				return loadCredential.refreshToken();
+			} catch (Exception e) {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -120,24 +137,19 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
-
 		GoogleClientSecrets clientSecrets = null;
-
 		String json = Gdx.files.internal("google.json").readString();
-
 		StringReader sr = new StringReader(json);
 		clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, sr);
-
-		ArrayList<String> scopes = new ArrayList<String>();
-		scopes.add(GamesScopes.DRIVE_APPDATA);
-		scopes.add(GamesScopes.GAMES);
-		scopes.add(GamesScopes.PLUS_LOGIN);
-
+		Set<String> scopes = new HashSet<>(GamesScopes.all());
+		scopes.add("https://www.googleapis.com/auth/plus.me");
 		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
 				httpTransport, JSON_FACTORY, clientSecrets, scopes);
-		builder.setScopes(scopes);
-		return builder.setAccessType("offline")
-				.setDataStoreFactory(dataStoreFactory).build();
+		builder.setApprovalPrompt("force");
+		builder.setAccessType("offline");
+		builder.setDataStoreFactory(dataStoreFactory);
+		GoogleAuthorizationCodeFlow flow = builder.build();
+		return flow;
 	}
 
 	@Override
@@ -179,12 +191,15 @@ public class GameServices implements GooglePlayGameServices {
 				try {
 					Gdx.app.log(this.getClass().getName(), "logout:init");
 					init();
+
 					Gdx.app.log(this.getClass().getName(), "logout:getflow");
 					GoogleAuthorizationCodeFlow flow = getFlow();
+
 					Gdx.app.log(this.getClass().getName(), "logout:flow#clear");
 					flow.getCredentialDataStore().clear();
+
 					Gdx.app.log(this.getClass().getName(), "credential=null");
-					credential=null;
+					credential = null;
 					postRunnable(success.withNull());
 				} catch (Exception e) {
 					postRunnable(success.with(e));
@@ -214,7 +229,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void lb_submit(final String boardId, final long score,
 			final String label, final Callback<Void> callback) {
 		final Runnable runnable = new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -222,13 +238,14 @@ public class GameServices implements GooglePlayGameServices {
 					Submit submit = g.scores().submit(boardId, score);
 					String tag = URLEncoder.encode(label, "UTF-8");
 					submit.setScoreTag(tag);
+					submit.setScore(score);
 					submit.execute();
 					postRunnable(callback.withNull());
 				} catch (Exception e) {
 					e.printStackTrace();
 					retry(_self);
 				}
-			} 
+			}
 		};
 		platform.runTask(runnable);
 	}
@@ -237,7 +254,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void lb_getScoresFor(final String boardId,
 			final Callback<GameScores> callback) {
 		final Runnable runnable = new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				GameScores gscores = new GameScores();
@@ -249,14 +267,17 @@ public class GameServices implements GooglePlayGameServices {
 					PlayerLeaderboardScoreListResponse result = scores
 							.execute();
 					List<PlayerLeaderboardScore> list = result.getItems();
-					if (list!=null) for (PlayerLeaderboardScore e : list) {
-						GameScore gs = new GameScore();
-						gs.rank = "";
-						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
-						gs.value = e.getScoreString();
-						gs.user = "";
-						gscores.list.add(gs);
-					}
+					if (list != null)
+						for (PlayerLeaderboardScore e : list) {
+							GameScore gs = new GameScore();
+							gs.rank = "";
+							gs.tag = URLDecoder.decode(
+									StringUtils.defaultString(e.getScoreTag()),
+									"UTF-8");
+							gs.value = e.getScoreString();
+							gs.user = "";
+							gscores.list.add(gs);
+						}
 					postRunnable(callback.with(gscores));
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -273,29 +294,42 @@ public class GameServices implements GooglePlayGameServices {
 			final Callback<GameScores> callback) {
 		final Runnable runnable = new Runnable() {
 			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				GameScores gscores = new GameScores();
 				try {
-					Gdx.app.log(TAG,
-							"Loading Leaderboard: " + collection.name() + " - "
-									+ ts.name() + " - " + boardId);
-
 					Games g = _getGamesObject();
 					Scores.List scores = g.scores().list(boardId,
 							collection.name(), ts.toString());
 					scores.setMaxResults(30);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
-					if (list!=null) for (LeaderboardEntry e : list) {
-						GameScore gs = new GameScore();
-						gs.rank = e.getFormattedScoreRank();
-						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
-						gs.value = e.getFormattedScore();
-						gs.user = e.getPlayer().getDisplayName();
-						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
-						gscores.list.add(gs);
-					}
+					if (list != null)
+						for (LeaderboardEntry e : list) {
+							GameScore gs = new GameScore();
+							gs.rank = StringUtils.defaultString(e
+									.getFormattedScoreRank());
+							try {
+								try {
+									gs.tag = URLDecoder.decode(StringUtils
+											.defaultString(e.getScoreTag()),
+											"UTF-8");
+								} catch (UnsupportedEncodingException e1) {
+									e1.printStackTrace();
+									gs.tag = "Unknown";
+								}
+								gs.value = StringUtils.defaultString(e
+										.getFormattedScore());
+								gs.user = StringUtils.defaultString(e
+										.getPlayer().getDisplayName());
+								gs.imgUrl = StringUtils.defaultString(e
+										.getPlayer().getAvatarImageUrl());
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+							gscores.list.add(gs);
+						}
 					gscores.collection = collection;
 					gscores.ts = ts;
 					postRunnable(callback.with(gscores));
@@ -314,6 +348,7 @@ public class GameServices implements GooglePlayGameServices {
 			final Callback<GameScores> callback) {
 		final Runnable runnable = new Runnable() {
 			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				GameScores gscores = new GameScores();
@@ -324,15 +359,18 @@ public class GameServices implements GooglePlayGameServices {
 					scores.setMaxResults(5);
 					LeaderboardScores result = scores.execute();
 					List<LeaderboardEntry> list = result.getItems();
-					if (list!=null) for (LeaderboardEntry e : list) {
-						GameScore gs = new GameScore();
-						gs.rank = e.getFormattedScoreRank();
-						gs.tag = URLDecoder.decode(e.getScoreTag(), "UTF-8");
-						gs.value = e.getFormattedScore();
-						gs.user = e.getPlayer().getDisplayName();
-						gs.imgUrl = e.getPlayer().getAvatarImageUrl();
-						gscores.list.add(gs);
-					}
+					if (list != null)
+						for (LeaderboardEntry e : list) {
+							GameScore gs = new GameScore();
+							gs.rank = e.getFormattedScoreRank();
+							gs.tag = URLDecoder.decode(
+									StringUtils.defaultString(e.getScoreTag()),
+									"UTF-8");
+							gs.value = e.getFormattedScore();
+							gs.user = e.getPlayer().getDisplayName();
+							gs.imgUrl = e.getPlayer().getAvatarImageUrl();
+							gscores.list.add(gs);
+						}
 					gscores.collection = collection;
 					gscores.ts = ts;
 					postRunnable(callback.with(gscores));
@@ -358,7 +396,8 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void ach_reveal(final String id, final Callback<Void> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -377,7 +416,8 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void ach_unlocked(final String id, final Callback<Void> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -396,7 +436,8 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void ach_list(final Callback<GameAchievements> callback) {
 		final Runnable runnable = new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				GameAchievements results = new GameAchievements();
@@ -406,12 +447,13 @@ public class GameServices implements GooglePlayGameServices {
 					PlayerAchievementListResponse response = ac.list("me")
 							.execute();
 					List<PlayerAchievement> list = response.getItems();
-					if (list!=null) for (PlayerAchievement pa : list) {
-						GameAchievement a = new GameAchievement();
-						a.id = pa.getId();
-						a.state = pa.getAchievementState();
-						results.list.add(a);
-					}
+					if (list != null)
+						for (PlayerAchievement pa : list) {
+							GameAchievement a = new GameAchievement();
+							a.id = pa.getId();
+							a.state = pa.getAchievementState();
+							results.list.add(a);
+						}
 					postRunnable(callback.with(results));
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -429,7 +471,8 @@ public class GameServices implements GooglePlayGameServices {
 			@Override
 			public void success(final FileMetaList result) {
 				platform.runTask(new Runnable() {
-					private final Runnable _self=this;
+					private final Runnable _self = this;
+
 					@Override
 					public void run() {
 						if (result.files.size() == 0) {
@@ -498,7 +541,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void drive_getFileMetaById(final String id,
 			final Callback<FileMeta> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -516,7 +560,7 @@ public class GameServices implements GooglePlayGameServices {
 				} catch (Exception e) {
 					e.printStackTrace();
 					retry(_self);
-				} 
+				}
 			}
 		});
 	}
@@ -527,7 +571,8 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void drive_list(final Callback<FileMetaList> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -538,17 +583,19 @@ public class GameServices implements GooglePlayGameServices {
 					request.setQ("'appfolder' in parents");
 					FileList fl = request.execute();
 					List<File> items = fl.getItems();
-					if (items!=null) for (File item : items) {
-						FileMeta af = new FileMeta();
-						af.isAppData = item.getAppDataContents();
-						af.created = new Date(item.getCreatedDate().getValue());
-						af.id = item.getId();
-						af.lastModified = new Date(item.getModifiedDate()
-								.getValue());
-						af.title = item.getTitle();
-						af.url = item.getDownloadUrl();
-						afs.files.add(af);
-					}
+					if (items != null)
+						for (File item : items) {
+							FileMeta af = new FileMeta();
+							af.isAppData = item.getAppDataContents();
+							af.created = new Date(item.getCreatedDate()
+									.getValue());
+							af.id = item.getId();
+							af.lastModified = new Date(item.getModifiedDate()
+									.getValue());
+							af.title = item.getTitle();
+							af.url = item.getDownloadUrl();
+							afs.files.add(af);
+						}
 					postRunnable(callback.with(afs));
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -569,7 +616,8 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void drive_deleteById(final String id, final Callback<Void> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -579,7 +627,7 @@ public class GameServices implements GooglePlayGameServices {
 				} catch (Exception e) {
 					e.printStackTrace();
 					retry(_self);
-				}				
+				}
 			}
 		});
 	}
@@ -598,11 +646,12 @@ public class GameServices implements GooglePlayGameServices {
 		Callback<FileMetaList> getTitles = new Callback<FileMetaList>() {
 			@Override
 			public void success(FileMetaList result) {
-				if (result.files!=null) for (FileMeta file : result.files) {
-					if (file.title.equals(title)) {
-						drive_deleteById(file.id, noop);
+				if (result.files != null)
+					for (FileMeta file : result.files) {
+						if (file.title.equals(title)) {
+							drive_deleteById(file.id, noop);
+						}
 					}
-				}
 				postRunnable(callback.withNull());
 			}
 		};
@@ -674,7 +723,8 @@ public class GameServices implements GooglePlayGameServices {
 		}
 
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -700,7 +750,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void drive_getFileById(final String id,
 			final Callback<String> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -726,7 +777,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void drive_getFileById(final String id, final FileHandle file,
 			final Callback<Void> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -750,7 +802,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void drive_getFileByUrl(final String url, final FileHandle file,
 			final Callback<Void> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
@@ -771,7 +824,8 @@ public class GameServices implements GooglePlayGameServices {
 	public void drive_getFileByUrl(final String url,
 			final Callback<String> callback) {
 		platform.runTask(new Runnable() {
-			private final Runnable _self=this;
+			private final Runnable _self = this;
+
 			@Override
 			public void run() {
 				try {
