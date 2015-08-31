@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
@@ -61,14 +62,18 @@ import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.JsonConverter;
+import com.cherokeelessons.util.Log;
 
 public class LearningSession extends ChildScreen implements Screen {
+
+	private static final Logger log = Log.getLogger(LearningSession.class
+			.getName());
 
 	private class ActiveDeckLoader implements Runnable {
 
 		@Override
 		public void run() {
-			game.log(this, "Loading Active Deck ...");
+			log.info("Loading Active Deck ...");
 
 			if (!slot.child(ActiveDeckJson).exists()) {
 				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
@@ -86,10 +91,10 @@ public class LearningSession extends ChildScreen implements Screen {
 	private class LoadMasterDeck implements Runnable {
 		@Override
 		public void run() {
-			game.log(this, "Loading Master Deck...");
+			log.info("Loading Master Deck...");
 			stage.addAction(Actions.run(activeDeckLoader));
 
-			game.log(this, "Loaded " + info.settings.deck.name() + " "
+			log.info("Loaded " + info.settings.deck.name() + " "
 					+ game.deck.cards.size() + " master cards.");
 		}
 	}
@@ -123,7 +128,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			while (icard.hasNext()) {
 				ActiveCard card = icard.next();
 				if (card.show_again_ms < ONE_HOUR_ms
-						&& card.box < SlotInfo.PROFICIENT_BOX) {
+						&& card.box < SlotInfo.FULLY_LEARNED_BOX) {
 					continue;
 				}
 				current_done.deck.add(card);
@@ -139,7 +144,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		@Override
 		public void run() {
 			nodupes.clear();
-			game.log(this, "Processing Active Cards ...");
+			log.info("Processing Active Cards ...");
 
 			int needed = InitialDeckSize;
 
@@ -154,7 +159,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					due++;
 				}
 			}
-			game.log(this, due + " cards previous cards are due.");
+			log.info(due + " cards previous cards are due.");
 
 			/*
 			 * Make sure we don't have active cards pointing to no longer
@@ -167,8 +172,8 @@ public class LearningSession extends ChildScreen implements Screen {
 					continue;
 				}
 				ipending.remove();
-				game.log(this, "Removed no longer valid entry: "
-						+ active.pgroup + " - " + active.vgroup);
+				log.info("Removed no longer valid entry: " + active.pgroup
+						+ " - " + active.vgroup);
 			}
 
 			/*
@@ -200,11 +205,11 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * Make sure no boxes out of range
 			 */
 			onlyPositiveBoxValues(current_due);
-			
+
 			/*
 			 * Reset tries count after box clamping done
 			 */
-			for (ActiveCard card: current_due.deck) {
+			for (ActiveCard card : current_due.deck) {
 				card.resetRetriesCount();
 			}
 
@@ -252,7 +257,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			 */
 			stage.addAction(Actions.run(showACard));
 
-			Gdx.app.log(TAG, "Elapsed :" + elapsed);
+			log.info("Elapsed :" + elapsed);
 		}
 
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
@@ -374,24 +379,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					final GoogleSyncUI gsu = new GoogleSyncUI(params.game,
 							params.stage, params.slot, null);
 
-					final Callback<GameScores> showCircleScores = new Callback<GameScores>() {
-						@Override
-						public void success(GameScores result) {
-							gsu.showScores("Today's Circle Scores", result,
-									null);
-						}
-					};
-
-					final Runnable getCircleScores = new Runnable() {
-						@Override
-						public void run() {
-							BoundPronouns.services.lb_getListWindowFor(
-									ShowLeaderboards.BoardId,
-									Collection.SOCIAL, TimeSpan.DAILY,
-									showCircleScores);
-						}
-					};
-
 					final Callback<GameScores> showPublicScores = new Callback<GameScores>() {
 						@Override
 						public void success(GameScores result) {
@@ -400,17 +387,14 @@ public class LearningSession extends ChildScreen implements Screen {
 							Callback<Void> do_ach_reveal = new Callback<Void>() {
 								@Override
 								public void success(Void result) {
-									Gdx.app.log(
-											this.getClass().getSimpleName(),
-											"Doing ach_reveal: "
-													+ info.level.name());
+									log.info("Doing ach_reveal: "
+											+ info.level.name());
 									BoundPronouns.services.ach_reveal(
 											info.level.next().getId(),
 											noop_success);
 								}
 							};
-							Gdx.app.log(this.getClass().getSimpleName(),
-									"Doing ach_unlock: " + info.level.getId());
+							log.info("Doing ach_unlock: " + info.level.getId());
 							BoundPronouns.services.ach_unlocked(
 									info.level.getId(), do_ach_reveal);
 						}
@@ -523,11 +507,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			bye.setModal(true);
 			bye.setFillParent(true);
 
-			// if (params.isExtraPractice) {
-			// params.game.log(this, "Extra Practice Session - NOT SAVING!");
-			// return;
-			// }
-
 			FileHandle tmp = params.slot.child(ActiveDeckJson + ".tmp");
 			json.toJson(params.deck, tmp);
 			tmp.moveTo(params.slot.child(ActiveDeckJson));
@@ -564,7 +543,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			if (elapsed > info.settings.sessionLength.getSeconds()) {
 				elapsed_tick_on = false;
-				game.log(this, "No time remaining...");
+				log.info("No time remaining...");
 				SaveParams params = new SaveParams();
 				params.caller = LearningSession.this.caller;
 				params.deck = new ActiveDeck();
@@ -577,8 +556,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				params.skin = skin;
 				params.slot = slot;
 				params.stage = stage;
-				saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(
-						params);
+				saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(params);
 				stage.addAction(Actions.run(saveActiveDeckWithDialog));
 				return;
 			}
@@ -603,14 +581,14 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (activeCard == null) {
 				if (elapsed < info.settings.sessionLength.getSeconds()) {
 					if (current_discards.deck.size() < IncrementDeckBySize) {
-						game.log(this, "not enough discards remaining...");
+						log.info("not enough discards remaining...");
 						addCards(IncrementDeckBySize, current_active);
 						Gdx.app.postRunnable(showACard);
 						return;
 					}
-					game.log(this, "session time is not up");
+					log.info("session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					game.log(this, "shifting discards to zero point: "
+					log.info("shifting discards to zero point: "
 							+ (shift_by_ms / ONE_SECOND_ms));
 					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
 						addCards(IncrementDeckBySize, current_active);
@@ -626,7 +604,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (elapsed > info.settings.sessionLength.getSeconds()
 						&& current_discards.deck.size() > 0) {
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					game.log(this, "shifting discards to zero point: "
+					log.info("shifting discards to zero point: "
 							+ (shift_by_ms / ONE_SECOND_ms));
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
@@ -651,26 +629,25 @@ public class LearningSession extends ChildScreen implements Screen {
 				elapsed_tick_on = true;
 				ticktock_id = ticktock.loop(0f);
 				challengeCardDialog.setCounter(cardcount++);
-				Gdx.app.log(TAG, "challengeCardDialog:setCard");
+				log.info("challengeCardDialog:setCard");
 				challengeCardDialog.setCard(activeCard, deckCard);
-				Gdx.app.log(TAG, "challengeCardDialog:show");
+				log.info("challengeCardDialog:show");
 				challengeCardDialog.show(stage);
 
 				AnswerList tracked_answers;
 				if (rand.nextBoolean()) {
-					Gdx.app.log(TAG, "challengeCardDialog:getAnswerSetsFor");
+					log.info("challengeCardDialog:getAnswerSetsFor");
 					tracked_answers = getAnswerSetsFor(activeCard, deckCard,
 							game.deck);
 				} else {
-					Gdx.app.log(TAG,
-							"challengeCardDialog:getAnswerSetsForBySimilarChallenge");
+					log.info("challengeCardDialog:getAnswerSetsForBySimilarChallenge");
 					tracked_answers = getAnswerSetsForBySimilarChallenge(
 							activeCard, deckCard, game.deck);
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 				activeCard.tries_remaining -= tracked_answers.correctCount();
-				Gdx.app.log(TAG, "challengeCardDialog:setAnswers");
+				log.info("challengeCardDialog:setAnswers");
 				challengeCardDialog.setAnswers(tracked_answers,
 						displayed_answers);
 				float duration = info.settings.timeLimit.getSeconds()
@@ -850,7 +827,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	private static Callback<Void> noop_success = new Callback<Void>() {
 		@Override
 		public void success(Void result) {
-			Gdx.app.log("LearningSession-Score Submit", "success");
+			log.info("LearningSession-Score Submit: " + "success");
 		}
 	};
 	private static final long ONE_DAY_ms;
@@ -863,8 +840,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
 		ONE_DAY_ms = 24l * ONE_HOUR_ms;
 	}
-
-	private static final String TAG = "LearningSession";
 
 	public static synchronized int getLevenshteinDistance(CharSequence s,
 			CharSequence t, int threshold) {
@@ -1018,11 +993,9 @@ public class LearningSession extends ChildScreen implements Screen {
 				continue;
 			}
 			card.newCard = true;
-			Gdx.app.log(
-					this.getClass().getSimpleName(),
-					"Resetting as new: "
-							+ getCardById(card.pgroup, card.vgroup).challenge
-									.toString());
+			log.info("Resetting as new: "
+					+ getCardById(card.pgroup, card.vgroup).challenge
+							.toString());
 		}
 	}
 
@@ -1386,7 +1359,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			ipending.remove();
 		}
-		game.log(this, "Added " + (active.deck.size() - startingSize)
+		log.info("Added " + (active.deck.size() - startingSize)
 				+ " previous cards.");
 
 		if (needed <= 0) {
@@ -1433,8 +1406,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			nodupes.add(unique_id);
 		}
-		game.log(this, "Added " + (active.deck.size() - startingSize)
-				+ " new cards.");
+		log.info("Added " + (active.deck.size() - startingSize) + " new cards.");
 
 		if (needed <= 0) {
 			return;
@@ -1639,7 +1611,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			answers.list.subList(maxAnswers, answers.list.size()).clear();
 		}
 		Collections.shuffle(answers.list);
-		Gdx.app.log(TAG, "getAnswerSetsFor already set size: " + already.size());
+		log.info("getAnswerSetsFor already set size: " + already.size());
 		return answers;
 	}
 
@@ -1812,8 +1784,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					tmp.show_again_ms = tmp.show_again_ms
 							+ Deck.getNextSessionInterval(tmp.box);
 					itmp.remove();
-					game.log(this, "Bumped Card: " + tmp.pgroup + " "
-							+ tmp.vgroup);
+					log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
 					return getNextCard();
 				}
 				if (tmp.tries_remaining < 0) {
@@ -1822,8 +1793,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					tmp.show_again_ms = tmp.show_again_ms
 							+ Deck.getNextSessionInterval(tmp.box);
 					itmp.remove();
-					game.log(this, "Retired Card: " + tmp.pgroup + " "
-							+ tmp.vgroup);
+					log.info("Retired Card: " + tmp.pgroup + " " + tmp.vgroup);
 					return getNextCard();
 				}
 				if (tmp.show_again_ms > 0) {
@@ -1886,7 +1856,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				notice_elapsed = 0f;
 				int mins = (int) (elapsed / 60);
 				int secs = (int) (elapsed - mins * 60f);
-				game.log(this, mins + ":" + (secs < 10 ? "0" : "") + secs);
+				log.info(mins + ":" + (secs < 10 ? "0" : "") + secs);
 			}
 		}
 		super.render(delta);
