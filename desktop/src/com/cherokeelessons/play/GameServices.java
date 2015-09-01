@@ -14,6 +14,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -52,6 +56,39 @@ import com.google.api.services.games.model.PlayerLeaderboardScore;
 import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 
 public class GameServices implements GooglePlayGameServices {
+	
+	private static void appendSourceClassName(StringBuilder sb, LogRecord record) {
+		String sourceClassName = record.getSourceClassName();
+		if (sourceClassName != null) {
+			sb.append(" ");
+			sb.append(sourceClassName);
+		}
+	}
+	
+	private static final Formatter f1 = new Formatter() {
+		@Override
+		public String format(LogRecord record) {
+			StringBuilder sb = new StringBuilder(256);
+			sb.append("[GameServices] ");
+			sb.append(new java.util.Date(record.getMillis()));
+			appendSourceClassName(sb, record);
+			sb.append(", ");
+			sb.append(record.getMessage());
+			sb.append("\n");
+			return sb.toString();
+		}
+
+	};
+	
+	private final static Logger log;
+	static {
+		ConsoleHandler handler = new ConsoleHandler();
+		log = Logger.getLogger(GameServices.class.getName());
+		handler.setFormatter(f1);
+		log.setUseParentHandlers(false);
+		log.addHandler(handler);
+	}
+	
 
 	public static String APP_NAME = "ᏣᎳᎩ-ᎦᏬᏂᎯᏍᏗ/1.0";
 
@@ -99,6 +136,7 @@ public class GameServices implements GooglePlayGameServices {
 			if (initdone) {
 				return;
 			}
+			log.info("init");
 			if (Gdx.app.getType().equals(ApplicationType.Desktop)) {
 				p0 = Gdx.files.external(googlePlayServicesFolder);
 			} else {
@@ -137,6 +175,7 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
+		log.info("getFlow");
 		GoogleClientSecrets clientSecrets = null;
 		String json = Gdx.files.internal("google.json").readString();
 		StringReader sr = new StringReader(json);
@@ -145,7 +184,7 @@ public class GameServices implements GooglePlayGameServices {
 		scopes.add("https://www.googleapis.com/auth/plus.me");
 		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
 				httpTransport, JSON_FACTORY, clientSecrets, scopes);
-		builder.setApprovalPrompt("force");
+		builder.setApprovalPrompt("auto");
 		builder.setAccessType("offline");
 		builder.setDataStoreFactory(dataStoreFactory);
 		GoogleAuthorizationCodeFlow flow = builder.build();
@@ -154,6 +193,7 @@ public class GameServices implements GooglePlayGameServices {
 
 	@Override
 	public void login(final Callback<Void> callback) {
+		log.info("login");
 		final Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
@@ -177,6 +217,7 @@ public class GameServices implements GooglePlayGameServices {
 
 	private Credential authorize() throws IOException {
 		try {
+			log.info("authorize");
 			return platform.getCredential(getFlow());
 		} catch (Exception e) {
 			throw new IOException("Authorization Failure", e);
