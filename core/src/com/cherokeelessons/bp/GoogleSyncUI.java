@@ -113,6 +113,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	private void done() {
+		if (busy != null) {
+			busy.hide();
+		}
 		if (whenAutoSyncDone != null) {
 			Gdx.app.postRunnable(whenAutoSyncDone);
 		}
@@ -127,7 +130,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		busy = new Dialog("Google Play Services", dws) {
 			@Override
 			protected void result(Object object) {
-				abort = true;
+				done();
 			}
 		};
 		busy.getTitleLabel().setAlignment(Align.center);
@@ -221,16 +224,11 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		return null;
 	}
 
-	private boolean abort = false;
-
 	private void doResolveConflict(final SlotInfo cloud_info,
 			final SlotInfo device_info) {
 		final String download = "CLOUD COPY";
 		final String upload = "DEVICE COPY";
 		final String cancel = "CANCEL";
-		if (abort) {
-			return;
-		}
 		if (busy != null) {
 			busy.hide();
 		}
@@ -328,9 +326,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 	private void download() {
 		Gdx.app.log("GoogleSyncUI", "download");
-		if (abort) {
-			return;
-		}
 		if (busy != null) {
 			busy.hide();
 		}
@@ -360,11 +355,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Callback<Void> cb_infofile = new Callback<Void>() {
 			@Override
 			public void success(Void result) {
-				if (abort) {
-					return;
-				}
 				if (!p0.child(INFO_JSON).exists()) {
 					download();
+					done();
 					return;
 				}
 				if (p0.child(INFO_JSON).readString("UTF-8")
@@ -372,7 +365,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					if (busy != null) {
 						busy.hide();
 					}
-//					dialogNothingToDo();
+					done();
 					return;
 				}
 				recalculateDeviceStats();
@@ -413,9 +406,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Callback<FileMetaList> cb_info = new Callback<FileMetaList>() {
 			@Override
 			public void success(FileMetaList result) {
-				if (abort) {
-					return;
-				}
 				if (result.files.size() == 0) {
 					upload();
 					return;
@@ -433,9 +423,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Callback<Void> cb_infometa = new Callback<Void>() {
 			@Override
 			public void success(Void result) {
-				if (abort) {
-					return;
-				}
 				gplay.drive_getFileMetaByTitle(gfile_info, cb_info);
 			}
 
@@ -448,9 +435,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Callback<FileMetaList> cb_deck = new Callback<FileMetaList>() {
 			@Override
 			public void success(FileMetaList result) {
-				if (abort) {
-					return;
-				}
 				if (result.files.size() == 0) {
 					Gdx.app.log("GoogleSyncUI", "No active deck in cloud... "
 							+ gfile_deck);
@@ -473,8 +457,8 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	public void upload() {
 		upload(null);
 	}
-	
-	public void uploadHidden(final Runnable whenDone){
+
+	public void uploadHidden(final Runnable whenDone) {
 		if (!p0.child(INFO_JSON).exists()) {
 			return;
 		}
@@ -496,11 +480,11 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Callback<String> upload_done = new Callback<String>() {
 			@Override
 			public void success(String result) {
-				if (whenDone!=null) {
+				if (whenDone != null) {
 					Gdx.app.postRunnable(whenDone);
 				}
 			}
-			
+
 			@Override
 			public void error(Exception exception) {
 				errorDialog(exception);
@@ -512,6 +496,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				gplay.drive_replace(p0.child(INFO_JSON), gfile_info,
 						gfile_info, upload_done);
 			}
+
 			@Override
 			public void error(Exception exception) {
 				errorDialog(exception);
@@ -520,19 +505,15 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		gplay.drive_replace(p0.child(ACTIVE_DECK_JSON), gfile_deck, gfile_deck,
 				upload_info);
 	}
-	
+
 	public void upload(Runnable whenDone) {
 		Gdx.app.log("GoogleSyncUI", "upload");
 		if (!p0.child(INFO_JSON).exists()) {
-			if (busy != null) {
-				busy.hide();
-			}
+			done();
 			return;
 		}
 		if (!p0.child(ACTIVE_DECK_JSON).exists()) {
-			if (busy != null) {
-				busy.hide();
-			}
+			done();
 			return;
 		}
 		SlotInfo device_info = json.fromJson(SlotInfo.class,
@@ -550,11 +531,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final Callback<String> upload_done = new Callback<String>() {
 			@Override
 			public void success(String result) {
-				if (busy != null) {
-					busy.hide();
-				}
+				done();
 			}
-			
+
 			@Override
 			public void error(Exception exception) {
 				errorDialog(exception);
@@ -566,12 +545,10 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				gplay.drive_replace(p0.child(INFO_JSON), gfile_info,
 						gfile_info, upload_done);
 			}
-			
+
 			@Override
 			public void error(Exception exception) {
-				if (busy != null) {
-					busy.hide();
-				}
+				done();
 				errorDialog(exception);
 			}
 		};
@@ -638,12 +615,13 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		String reasonMsg = "Syncing requires Google Play ...";
 		askToLoginFor(afterLogin, reasonMsg);
 	}
-	
+
 	public void askToLoginFor(final Runnable afterLogin, String reasonMsg) {
 		final Dialog login = new Dialog("Google Play Services", dws) {
 			@Override
 			protected void result(Object object) {
 				if (!Boolean.TRUE.equals(object)) {
+					done();
 					return;
 				}
 				doLogin(afterLogin);
@@ -675,7 +653,8 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		tbs.font = game.getFont(Font.SerifSmall);
 	}
 
-	public void showScores(String title, GameScores gamescores, final Runnable whenDone) {
+	public void showScores(String title, GameScores gamescores,
+			final Runnable whenDone) {
 		setDialogStyles();
 		Dialog scores = new Dialog(title, dws) {
 			Dialog scores = this;
@@ -686,28 +665,27 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				final TiledDrawable tiled = new TiledDrawable(region);
 				tiled.setMinHeight(0);
 				tiled.setMinWidth(0);
-				tiled.setTopHeight(game.getFont(Font.SerifLarge)
-						.getCapHeight() + 20);
+				tiled.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
 				scores.background(tiled);
 
-				LabelStyle lstyle = new LabelStyle(
-						skin.get(LabelStyle.class));
+				LabelStyle lstyle = new LabelStyle(skin.get(LabelStyle.class));
 				lstyle.font = game.getFont(Font.SerifMedium);
 			}
+
 			@Override
 			protected void result(Object object) {
-				if (whenDone!=null) {
+				if (whenDone != null) {
 					Gdx.app.postRunnable(whenDone);
 				}
 			}
 		};
 		scores.getTitleLabel().setAlignment(Align.center);
 		scores.setFillParent(true);
-		
+
 		Table container = scores.getContentTable();
-		
+
 		Table table = new Table();
-		
+
 		table.clear();
 		table.defaults().expandX();
 		String text = "Rank";
@@ -718,7 +696,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		table.add(new Label(text, dls)).center();
 		text = "Display Name";
 		table.add(new Label(text, dls)).center();
-		
+
 		for (GameScore score : gamescores.list) {
 			table.row();
 			table.add(new Label(score.rank, dls)).padLeft(15).padRight(15)
@@ -727,19 +705,19 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			table.add(new Label(score.tag, dls)).center();
 			table.add(new Label(score.user, dls)).center();
 		}
-		
+
 		for (int ix = gamescores.list.size(); ix < 5; ix++) {
-			Gdx.app.log(TAG, "ix: "+ix);
+			Gdx.app.log(TAG, "ix: " + ix);
 			table.row();
-			table.add(new Label("", dls)).padLeft(15).padRight(15)
-					.center();
+			table.add(new Label("", dls)).padLeft(15).padRight(15).center();
 			table.add(new Label("0", dls)).right().padRight(30);
-			table.add(new Label(SlotInfo.LevelName.Newbie.getEnglish(), dls)).center();
+			table.add(new Label(SlotInfo.LevelName.Newbie.getEnglish(), dls))
+					.center();
 			table.add(new Label("", dls)).center();
 		}
-		
+
 		scores.button(new TextButton("OK", tbs));
-		
+
 		ScrollPane scroll = new ScrollPane(table, skin);
 		scroll.setColor(Color.DARK_GRAY);
 		scroll.setFadeScrollBars(false);
@@ -748,7 +726,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		container.add(scroll).expand().fill();
 		stage.setScrollFocus(scroll);
 		stage.setKeyboardFocus(scroll);
-		
+
 		scores.show(stage);
 	}
 
