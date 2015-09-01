@@ -184,6 +184,9 @@ public class Platform implements PlatformInterface {
 						return true;
 					}
 				};
+				webView.setMinimumHeight(600);
+				webView.setMinimumWidth(1024);
+				webView.setInitialScale(150);
 				alert.setView(webView);
 				alert.setCancelable(true);
 				final AlertDialog adialog = alert.show();
@@ -196,7 +199,7 @@ public class Platform implements PlatformInterface {
 				};
 				adialog.setOnDismissListener(listener);
 				webView.loadUrl("about:blank");
-
+				
 				application.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
