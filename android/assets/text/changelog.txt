@@ -2,6 +2,7 @@
 
 Adjust scoring to prevent unrealistic high scores.
 Remove "card lockout threshold", it only seems to cause issues by hiding cards that should be repeated unoften.
+Font size adjustments.
 
 1.86
 
