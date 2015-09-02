@@ -45,7 +45,7 @@ public class ShowAbout extends ChildScreen {
 	private Runnable initView = new Runnable() {
 		public void run() {
 		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=game.getFont(Font.SerifMedium);
+		ls.font=game.getFont(Font.SerifSmall);
 		ls.background=null;
 		
 		container.row();

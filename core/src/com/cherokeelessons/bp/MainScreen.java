@@ -144,10 +144,10 @@ public class MainScreen implements Screen, InputProcessor {
 		info.validate();
 		TextButtonStyle tbs = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
-		tbs.font = game.getFont(Font.SerifMedium);
+		tbs.font = game.getFont(Font.SerifSmall);
 		// Slot display name
 		TextFieldStyle tfs = new TextFieldStyle(skin.get(TextFieldStyle.class));
-		tfs.font = game.getFont(Font.SerifMedium);
+		tfs.font = game.getFont(Font.SerifSmall);
 
 		if (!newSession) {
 			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ"
@@ -196,30 +196,7 @@ public class MainScreen implements Screen, InputProcessor {
 				return true;
 			}
 		});
-		// final TextButton sessionLength = new TextButton(
-		// info.settings.sessionLength.toString(), tbs);
-		// sessionLength.addListener(new ClickListener() {
-		// @Override
-		// public boolean touchDown(InputEvent event, float x, float y,
-		// int pointer, int button) {
-		// info.settings.sessionLength = SessionLength
-		// .getNext(info.settings.sessionLength);
-		// sessionLength.setText(info.settings.sessionLength.toString());
-		// return true;
-		// }
-		// });
-		// final TextButton timeLimit = new TextButton(
-		// info.settings.timeLimit.toString(), tbs);
-		// timeLimit.addListener(new ClickListener() {
-		// @Override
-		// public boolean touchDown(InputEvent event, float x, float y,
-		// int pointer, int button) {
-		// info.settings.timeLimit = TimeLimit
-		// .getNext(info.settings.timeLimit);
-		// timeLimit.setText(info.settings.timeLimit.toString());
-		// return true;
-		// }
-		// });
+		
 		final TextButton muted = new TextButton(info.settings.muted ? "Yes"
 				: "No", tbs);
 		muted.addListener(new ClickListener() {
@@ -378,19 +355,15 @@ public class MainScreen implements Screen, InputProcessor {
 			txt += "Score: " + info.lastScore;
 			txt += "\n";
 			txt += info.activeCards + " cards";
-			txt += ": ";
-			txt += info.shortTerm + " short";
-			txt += ", " + info.mediumTerm + " medium";
-			txt += ", " + info.longTerm + " long";
-
-			if (p0.child(BoundPronouns.INFO_JSON + ".lb_submit").exists()) {
-				BoundPronouns.services.lb_submit(ShowLeaderboards.BoardId,
-						info.lastScore, info.level.getEnglish(), noop_success);
-			}
+			// txt += ": ";
+			// txt += info.shortTerm + " short";
+			// txt += ", " + info.mediumTerm + " medium";
+			// txt += ", " + info.longTerm + " long";
+			txt += " with a " + info.proficiency + "% proficiency";
 
 			TextButtonStyle tbs = new TextButtonStyle(
 					skin.get(TextButtonStyle.class));
-			tbs.font = game.getFont(Font.SerifMedium);
+			tbs.font = game.getFont(Font.SerifSmall);
 			TextButton textb = new TextButton(txt, tbs);
 
 			slots.row();
@@ -552,7 +525,7 @@ public class MainScreen implements Screen, InputProcessor {
 		});
 
 		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, skin);
-		back.getStyle().font = game.getFont(Font.SerifLarge);
+		back.getStyle().font = game.getFont(Font.SerifMedium);
 		back.setStyle(back.getStyle());
 		chooseSlot.button(back);
 		chooseSlot.show(stage).addAction(focus);

@@ -219,7 +219,7 @@ public class ShowPronouns extends ChildScreen {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
-		BitmapFont font_base = game.getFont(Font.SerifSmall);
+		BitmapFont font_base = game.getFont(Font.SerifXSmall);
 		
 		BitmapFontData font_data = font_base.getData();
 		font_data.markupEnabled=true;

@@ -88,7 +88,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 			Table table = scrolltable;
 
-			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifLarge),
+			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifMedium),
 					Color.BLACK);
 
 			table.clear();
@@ -137,7 +137,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			TextButton button;
 
 			final TextButtonStyle tbs = skin.get(TextButtonStyle.class);
-			tbs.font = game.getFont(Font.SerifSmall);
+			tbs.font = game.getFont(Font.SerifXSmall);
 
 			ButtonGroup<TextButton> bgroup = new ButtonGroup<TextButton>();
 			bgroup.setMaxCheckCount(1);
@@ -153,21 +153,21 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			container.add(button).center().top().expandX().fillX();
 			final TextButton ts_button = button;
 
-			button = new TextButton("Show "+lb_collection.next().getEnglish(), tbs);
-			button.setChecked(true);
-			container.add(button).center().top().expandX().fillX();
-			bgroup.add(button);
-			final TextButton lb_button = button;
-			lb_button.addListener(new ClickListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					lb_collection = lb_collection.next();
-					lb_button.setText("Show "+lb_collection.next().getEnglish());
-					requestScores();
-					return true;
-				}
-			});
+//			button = new TextButton("Show "+lb_collection.next().getEnglish(), tbs);
+//			button.setChecked(true);
+//			container.add(button).center().top().expandX().fillX();
+//			bgroup.add(button);
+//			final TextButton lb_button = button;
+//			lb_button.addListener(new ClickListener() {
+//				@Override
+//				public boolean touchDown(InputEvent event, float x, float y,
+//						int pointer, int button) {
+//					lb_collection = lb_collection.next();
+//					lb_button.setText("Show "+lb_collection.next().getEnglish());
+//					requestScores();
+//					return true;
+//				}
+//			});
 			ts_button.addListener(new ClickListener() {
 				@Override
 				public boolean touchDown(InputEvent event, float x, float y,
@@ -181,21 +181,21 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				}
 			});
 			
-			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifSmall),
+			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifXSmall),
 					Color.BLACK);
 			message = new Label("...", ls);
 
 			if (!BoundPronouns.services.isLoggedIn()) {
-				button = new TextButton("Login to Google Play", tbs);
+				button = new TextButton("Login to Play", tbs);
 				message.setText("You must login to Google Play for Leaderboard Support");
 			} else {
-				button = new TextButton("Logout of Google Play", tbs);
+				button = new TextButton("Logout of Play", tbs);
 			}
 			
 			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
 			final LabelStyle dls=new LabelStyle(skin.get(LabelStyle.class));
-			dws.titleFont=game.getFont(Font.SerifLLarge);
-			dls.font=game.getFont(Font.SerifLarge);
+			dws.titleFont=game.getFont(Font.SerifLarge);
+			dls.font=game.getFont(Font.SerifMedium);
 			final TextButton play_button = button;
 			final Dialog login = new Dialog("Google Play Services", dws);
 			login.getTitleLabel().setAlignment(Align.center);
@@ -212,7 +212,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						error[0].hide();
 						login.hide();
 						requestScores();
-						play_button.setText("Logout of Google Play");
+						play_button.setText("Logout of Play");
 					}
 					@Override
 					public void error(Exception e) {
@@ -291,10 +291,10 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		
 		dws = new WindowStyle(skin.get(WindowStyle.class));
 		dls = new LabelStyle(skin.get(LabelStyle.class));
-		dws.titleFont = game.getFont(Font.SerifLLarge);
-		dls.font = game.getFont(Font.SerifLarge);
+		dws.titleFont = game.getFont(Font.SerifLarge);
+		dls.font = game.getFont(Font.SerifMedium);
 		tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
-		tbs.font = game.getFont(Font.SerifSmall);
+		tbs.font = game.getFont(Font.SerifXSmall);
 
 		Dialog error = new Dialog("Google Play Services", dws) {
 			@Override

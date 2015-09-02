@@ -356,12 +356,14 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					sb.append(info.activeCards + " active cards");
 					sb.append("\n");
-					sb.append(info.shortTerm + " short term memorized");
+					sb.append("You currently have a "+info.activeCards + "% proficiency level");
 					sb.append("\n");
-					sb.append(info.mediumTerm + " medium term memorized");
-					sb.append("\n");
-					sb.append(info.longTerm + " long term memorized");
-					sb.append("\n");
+//					sb.append(info.shortTerm + " short term memorized");
+//					sb.append("\n");
+//					sb.append(info.mediumTerm + " medium term memorized");
+//					sb.append("\n");
+//					sb.append(info.longTerm + " long term memorized");
+//					sb.append("\n");
 					int minutes = (int) (params.elapsed_secs / 60f);
 					int seconds = (int) (params.elapsed_secs - minutes * 60f);
 					sb.append("Total actual challenge time: " + minutes + ":"

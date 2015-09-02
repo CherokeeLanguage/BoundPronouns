@@ -233,15 +233,16 @@ public class BoundPronouns extends Game {
 
 	private void addFonts() {
 		Gdx.app.log("BoundPronouns#initManager", "addFonts");
-		addFreeSerifFor(36, Font.SerifSmall);
-		addFreeSerifFor(42, Font.SerifMedium);
-		addFreeSerifFor(58, Font.SerifLarge);
-		addFreeSerifFor(62, Font.SerifLLarge);
-		addFreeSerifFor(72, Font.SerifXLarge);
+		addFreeSerifFor(40, Font.SerifXSmall);
+		addFreeSerifFor(46, Font.SerifSmall);
+		addFreeSerifFor(54, Font.SerifMedium);
+		addFreeSerifFor(62, Font.SerifLarge);
+		addFreeSerifFor(72, Font.SerifLLarge);
+		addFreeSerifFor(84, Font.SerifXLarge);
 	}
 
 	public static enum Font {
-		xSerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, xSerifMediumLarge, SerifLLarge;
+		SerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, xSerifMediumLarge, SerifLLarge;
 	}
 
 	public BitmapFont getFont(Font font) {

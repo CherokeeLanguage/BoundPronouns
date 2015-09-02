@@ -14,7 +14,7 @@ public class SlotInfo implements Serializable {
 		this.signature = signature;
 	}
 
-	private static final int StatsVersion = 15;
+	private static final int StatsVersion = 17;
 	public static final int FULLY_LEARNED_BOX = 10;
 	public static final int PROFICIENT_BOX = 5;
 	public static final int JUST_LEARNED_BOX = 1;
@@ -272,6 +272,7 @@ public class SlotInfo implements Serializable {
 	public int shortTerm = 0;
 	public int mediumTerm = 0;
 	public int longTerm = 0;
+	public int proficiency = 0;
 	public Settings settings = new Settings();
 	private int version;
 	public LevelName level;
@@ -342,7 +343,7 @@ public class SlotInfo implements Serializable {
 		 * Set last score based on timings of most recent session. Cards with
 		 * errors count as "-1" each. Apply "boxlevel" values as bonus points.
 		 */
-		float maxCardScore = SlotInfo.TimeLimit.Standard.getSeconds();
+		float maxCardScore = SlotInfo.TimeLimit.Novice.getSeconds();
 		float score = 0f;
 		boolean perfect = true;
 		for (ActiveCard card : activeDeck.deck) {
@@ -365,6 +366,19 @@ public class SlotInfo implements Serializable {
 		}
 		info.lastScore = (int) Math.ceil(score);
 		info.perfect = perfect;
+		/*
+		 * Calculate total profiency with active cards (based on 'fully learned' box value)
+		 */
+		if (activeDeck.deck.size()>0) {
+			int boxSum = 0;
+			for (ActiveCard card : activeDeck.deck) {
+				boxSum+=Math.min(card.box>0?card.box:0, FULLY_LEARNED_BOX);
+			}
+			info.proficiency=(100*boxSum/(FULLY_LEARNED_BOX*activeDeck.deck.size()));
+		} else {
+			info.proficiency=0;
+		}
+		
 		/*
 		 * How many are "fully learned" out of the active deck?
 		 */

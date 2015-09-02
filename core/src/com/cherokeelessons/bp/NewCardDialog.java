@@ -60,18 +60,20 @@ public abstract class NewCardDialog extends Dialog {
 		answer.setTouchable(Touchable.disabled);
 		
 		TextButtonStyle chr_san_large = new TextButtonStyle(challenge_top.getStyle());		
-		chr_san_large.font=game.getFont(Font.SerifXLarge);
+		chr_san_large.font=game.getFont(Font.SerifLarge);
 		challenge_top.setStyle(chr_san_large);
 		
 		LabelStyle pronounce_large = new LabelStyle(challenge_bottom.getStyle());
-		pronounce_large.font=game.getFont(Font.SerifLarge);
-		challenge_bottom.setStyle(pronounce_large);		
+		pronounce_large.font=game.getFont(Font.SerifMedium);
+		challenge_bottom.setStyle(pronounce_large);
+		challenge_bottom.setAlignment(Align.bottom, Align.center);
 		
 		TextButtonStyle answerStyle = new TextButtonStyle(answer.getStyle());		
-		answerStyle.font=game.getFont(Font.SerifMedium);
+		answerStyle.font=game.getFont(Font.SerifSmall);
 		answer.setStyle(answerStyle);
+		answer.align(Align.bottom);
 		
-		challenge_top.add(challenge_bottom).pad(0).top();
+		challenge_top.add(challenge_bottom);
 		
 		Table ctable = getContentTable();
 		ctable.row();
