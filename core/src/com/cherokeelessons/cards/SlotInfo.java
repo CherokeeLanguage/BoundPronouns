@@ -355,7 +355,10 @@ public class SlotInfo implements Serializable {
 			}
 			double avgShowTime = card.showTime / (float) card.showCount;
 			double cardScore = maxCardScore - avgShowTime;
-			score += (cardScore * 10f + card.box * 10f);
+			if (cardScore<1) {
+				cardScore=1;
+			}
+			score += (cardScore + card.box);
 		}
 		if (perfect) {
 			score *= 1.1f;

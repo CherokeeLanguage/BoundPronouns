@@ -127,8 +127,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Iterator<ActiveCard> icard = current_pending.deck.iterator();
 			while (icard.hasNext()) {
 				ActiveCard card = icard.next();
-				if (card.show_again_ms < ONE_HOUR_ms
-						&& card.box < SlotInfo.FULLY_LEARNED_BOX) {
+				if (card.show_again_ms < ONE_HOUR_ms) {
 					continue;
 				}
 				current_done.deck.add(card);
