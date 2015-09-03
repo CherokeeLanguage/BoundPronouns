@@ -1,13 +1,18 @@
+1.88
+
+Fix proficiency reporting on session completion report.
+
 1.87
 
+Font size adjustments.
+Provide new "proficiency" indicator.
 Adjust scoring to prevent unrealistic high scores.
 Remove "card lockout threshold", it only seems to cause issues by hiding cards that should be repeated unoften.
-Font size adjustments.
 
 1.86
 
 Update to RoboVM 1.6.0
-Update to LibGdx 1.6.5
+Update to libGDX 1.6.5
 
 
 1.85
