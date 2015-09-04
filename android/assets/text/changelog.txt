@@ -1,3 +1,7 @@
+1.89
+
+Screen refresh fix for slots screen when sync results in download.
+
 1.88
 
 Fix proficiency reporting on session completion report.
