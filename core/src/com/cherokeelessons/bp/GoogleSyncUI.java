@@ -230,7 +230,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		final String upload = "DEVICE COPY";
 		final String cancel = "CANCEL";
 		if (busy != null) {
-			busy.hide();
+			done();
 		}
 
 		final Dialog notice = new Dialog("CONFLICT DETECTED", dws) {
@@ -238,10 +238,12 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			protected void result(Object object) {
 				if (upload.equals(object)) {
 					upload();
+					done();
 					return;
 				}
 				if (download.equals(object)) {
 					download();
+					done();
 					return;
 				}
 			}
@@ -282,6 +284,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					int pointer, int button) {
 				notice.hide();
 				download();
+				done();
 				return true;
 			}
 		});
@@ -313,6 +316,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 					int pointer, int button) {
 				notice.hide();
 				upload();
+				done();
 				return true;
 			}
 		});
@@ -381,6 +385,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 				}
 				if (cloud_info.activeCards > device_info.activeCards) {
 					download();
+					done();
 					return;
 				}
 
@@ -391,6 +396,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 
 				if (cloud_time > device_time) {
 					download();
+					done();
 					return;
 				}
 
