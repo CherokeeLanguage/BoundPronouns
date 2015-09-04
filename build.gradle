@@ -16,7 +16,7 @@ eclipse {
        downloadSources=true
     }
 }
-    version = '1.88'
+    version = '1.89'
     ext {
         appName = 'BoundPronouns'
         gdxVersion = '1.6.5'
