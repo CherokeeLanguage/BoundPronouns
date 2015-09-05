@@ -659,7 +659,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
-				activeCard.tries_remaining -= tracked_answers.correctCount();
+				activeCard.tries_remaining--;
 				log.info("challengeCardDialog:setAnswers");
 				challengeCardDialog.setAnswers(tracked_answers,
 						displayed_answers);
@@ -1275,8 +1275,7 @@ public class LearningSession extends ChildScreen implements Screen {
 									 * first time a card is incorrectly answered
 									 * there are no shows remaining
 									 */
-									_activeCard.tries_remaining = _activeCard
-											.getAnswerCount();
+									_activeCard.tries_remaining++;
 								}
 								_activeCard.noErrors = false;
 							}
@@ -1800,7 +1799,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
 					return getNextCard();
 				}
-				if (tmp.tries_remaining < 0) {
+				if (tmp.tries_remaining < 1) {
 					tmp.box--;
 					current_done.deck.add(tmp);
 					tmp.show_again_ms = tmp.show_again_ms
