@@ -36,16 +36,11 @@ public class ActiveCard {
 	}
 
 	public boolean isAllCorrectInARow() {
-		int threshold=SendToNextSessionThreshold;
-		threshold-=(box*2);
-		if (threshold<1) {
-			threshold=1;
-		}
 		for (String key : correct_in_a_row.keySet()) {
 			if (correct_in_a_row.get(key) == null) {
 				return false;
 			}
-			if (correct_in_a_row.get(key) < threshold) {
+			if (correct_in_a_row.get(key) < 1) {
 				return false;
 			}
 		}
@@ -105,18 +100,18 @@ public class ActiveCard {
 	 * How long before this card should be tried again?
 	 */
 	public long show_again_ms;
-	
+
 	/*
 	 * For "scoring" for leaderboards
 	 */
 	/**
 	 * total elapsed time card has been displayed
 	 */
-	public float showTime=0f;
+	public float showTime = 0f;
 	/**
 	 * total times user was challenged with card
 	 */
-	public int showCount=0;
+	public int showCount = 0;
 
 	public int getAnswerCount() {
 		int i = correct_in_a_row.size();
@@ -135,20 +130,21 @@ public class ActiveCard {
 		ActiveCard other = (ActiveCard) obj;
 		return vgroup.equals(other.vgroup) && pgroup.equals(other.pgroup);
 	}
-	
-	public static final int SendToNextSessionThreshold = 4;
-	
-	public void resetRetriesCount(){
-		int size = correct_in_a_row.size();
-		tries_remaining = (SendToNextSessionThreshold * size);
-		if (box==1) {
-			tries_remaining = (3 * size);
+
+	private int getMyNextSessionThreshold() {
+		if (box > 2) {
+			return 1;
 		}
-		if (box==2) {
-			tries_remaining = (2 * size);
+		if (box == 2) {
+			return 2;
 		}
-		if (box>2) {
-			tries_remaining = size;
-		}	
+		if (box == 1) {
+			return 3;
+		}
+		return 4;
+	};
+
+	public void resetRetriesCount() {
+		tries_remaining = getMyNextSessionThreshold();
 	}
 }

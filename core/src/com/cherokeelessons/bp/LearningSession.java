@@ -545,6 +545,18 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (elapsed > info.settings.sessionLength.getSeconds()) {
 				elapsed_tick_on = false;
 				log.info("No time remaining...");
+				/**
+				 * scan current discards for cards that should get "bumped"
+				 */
+				for (ActiveCard tmp: current_discards.deck) {
+					if (tmp.noErrors && tmp.tries_remaining < 1) {
+						tmp.box++;
+						tmp.show_again_ms = tmp.show_again_ms
+								+ Deck.getNextSessionInterval(tmp.box);
+						log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
+					}
+				}
+				
 				SaveParams params = new SaveParams();
 				params.caller = LearningSession.this.caller;
 				params.deck = new ActiveDeck();
@@ -1779,7 +1791,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Iterator<ActiveCard> itmp = current_discards.deck.iterator();
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
-				if (tmp.noErrors && tmp.isAllCorrectInARow()) {
+				if (tmp.noErrors && tmp.tries_remaining < 1) {
 					tmp.box++;
 					current_done.deck.add(tmp);
 					tmp.show_again_ms = tmp.show_again_ms

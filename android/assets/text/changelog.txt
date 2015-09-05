@@ -1,6 +1,7 @@
 1.89
 
 Screen refresh fix for slots screen when sync results in download.
+Fix issue with certain cards (like ᎨᏍᏗ-) becoming stock in "box 0"
 
 1.88
 
