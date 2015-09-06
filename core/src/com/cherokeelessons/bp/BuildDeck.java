@@ -23,7 +23,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 45;
+	public static int version = 46;
 
 	private JsonConverter json = new JsonConverter();
 	private List<CSVRecord> pronouns = null;
@@ -480,7 +480,10 @@ public class BuildDeck implements Runnable {
 				}
 
 				if (v_imp && !vtypes.contains("xwi")) {
-					if (!isOnlyYou(subj, obj)) {
+//					if (!isOnlyYou(subj, obj)) {
+//						addWiPrefix(d);
+//					}
+					if (!isIncludesYou(subj, obj)) {
 						addWiPrefix(d);
 					}
 				}
@@ -719,6 +722,14 @@ public class BuildDeck implements Runnable {
 			return true;
 		}
 		return false;
+	}
+	
+	private boolean isIncludesYou(String subj, String obj) {
+		if (StringUtils.isBlank(subj)) {
+			subj = obj;
+		}
+		subj = subj.toLowerCase();
+		return subj.matches(".*\\byou\\b.*");
 	}
 
 	public boolean isPluralSubj(String subj) {
