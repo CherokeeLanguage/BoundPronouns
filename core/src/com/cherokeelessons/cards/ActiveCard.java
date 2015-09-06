@@ -104,6 +104,14 @@ public class ActiveCard {
 		return vgroup.equals(other.vgroup) && pgroup.equals(other.pgroup);
 	}
 
+	/**
+	 * How many times are card must be shown in the session. <br/>
+	 * The value's pimsleur value must not exceed the sesson length or else the
+	 * card will never be successfully marked as known! <br/>
+	 * 5 minutes sessions can not have a value > 3!
+	 * 
+	 * @return
+	 */
 	private int getMyNextSessionThreshold() {
 		if (box > 2) {
 			return 1;
@@ -114,7 +122,7 @@ public class ActiveCard {
 		if (box == 1) {
 			return 3;
 		}
-		return 4;
+		return 3;
 	};
 
 	public void resetTriesRemaining() {

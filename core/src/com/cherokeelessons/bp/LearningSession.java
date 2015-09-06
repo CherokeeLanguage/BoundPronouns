@@ -356,14 +356,15 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					sb.append(info.activeCards + " active cards");
 					sb.append("\n");
-					sb.append("You currently have a "+info.proficiency + "% proficiency level");
+					sb.append("You currently have a " + info.proficiency
+							+ "% proficiency level");
 					sb.append("\n");
-//					sb.append(info.shortTerm + " short term memorized");
-//					sb.append("\n");
-//					sb.append(info.mediumTerm + " medium term memorized");
-//					sb.append("\n");
-//					sb.append(info.longTerm + " long term memorized");
-//					sb.append("\n");
+					// sb.append(info.shortTerm + " short term memorized");
+					// sb.append("\n");
+					// sb.append(info.mediumTerm + " medium term memorized");
+					// sb.append("\n");
+					// sb.append(info.longTerm + " long term memorized");
+					// sb.append("\n");
 					int minutes = (int) (params.elapsed_secs / 60f);
 					int seconds = (int) (params.elapsed_secs - minutes * 60f);
 					sb.append("Total actual challenge time: " + minutes + ":"
@@ -546,17 +547,26 @@ public class LearningSession extends ChildScreen implements Screen {
 				elapsed_tick_on = false;
 				log.info("No time remaining...");
 				/**
-				 * scan current discards for cards that should get "bumped"
+				 * scan current discards for cards that are "close enough" to go
+				 * ahead and get "bumped"
 				 */
-				for (ActiveCard tmp: current_discards.deck) {
-					if (tmp.noErrors && tmp.tries_remaining < 1) {
+				for (ActiveCard tmp : current_discards.deck) {
+					if (!tmp.noErrors) {
+						continue;
+					}
+					if (tmp.tries_remaining > 1) {
+						continue;
+					}
+					
+					if (tmp.tries_remaining < 1) {
 						tmp.box++;
 						tmp.show_again_ms = tmp.show_again_ms
 								+ Deck.getNextSessionInterval(tmp.box);
-						log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
+						log.info("Bumped Card: " + tmp.pgroup + " "
+								+ tmp.vgroup);
 					}
 				}
-				
+
 				SaveParams params = new SaveParams();
 				params.caller = LearningSession.this.caller;
 				params.deck = new ActiveDeck();
