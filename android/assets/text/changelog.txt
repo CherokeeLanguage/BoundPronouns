@@ -4,6 +4,7 @@ Fix issue with certain cards (like ᎨᏍᏗ-) becoming stock in "box 0"
 Correct "imperative forms" that have any reference of "you" to not to auto add the "Ꮻ-" prefix. 
 Adjust some pronouns English definitions to try and improve retention.
 Screen refresh fix for slots screen when sync results in download.
+Set initial card repeat count to "3" so that the pimsleur timings let the card fit within the session.
 
 1.88
 
