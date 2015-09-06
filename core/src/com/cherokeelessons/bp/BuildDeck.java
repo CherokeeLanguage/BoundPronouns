@@ -707,6 +707,7 @@ public class BuildDeck implements Runnable {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isOnlyYou(String subj, String obj) {
 		if (StringUtils.isBlank(subj)) {
 			subj = obj;
