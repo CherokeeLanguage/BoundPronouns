@@ -2,16 +2,11 @@ package com.cherokeelessons.cards;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class ActiveCard {
 
 	public boolean noErrors = false;
 
-	/**
-	 * 
-	 * @return
-	 */
 	public int getMinCorrectInARow() {
 		int min = 3;
 		for (String key : correct_in_a_row.keySet()) {
@@ -35,18 +30,6 @@ public class ActiveCard {
 		correct_in_a_row.put(answer, c != null ? c + 1 : 1);
 	}
 
-	public boolean isAllCorrectInARow() {
-		for (String key : correct_in_a_row.keySet()) {
-			if (correct_in_a_row.get(key) == null) {
-				return false;
-			}
-			if (correct_in_a_row.get(key) < 1) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public void resetCorrectInARow(Collection<String> answers) {
 		if (answers.size() == 0) {
 			throw new RuntimeException("EMPTY ANSWER LIST ?!?! [" + pgroup
@@ -58,16 +41,6 @@ public class ActiveCard {
 		}
 	}
 
-	public void resetCorrectInARow() {
-		resetCorrectInARow(new HashSet<String>(correct_in_a_row.keySet()));
-	}
-
-	/**
-	 * id of card in main deck based on pgroup/vgroup combinations
-	 */
-	// public String getId(){
-	// return pgroup + "+" + vgroup;
-	// };
 	/**
 	 * verb group for this card
 	 */
@@ -144,7 +117,7 @@ public class ActiveCard {
 		return 4;
 	};
 
-	public void resetRetriesCount() {
+	public void resetTriesRemaining() {
 		tries_remaining = getMyNextSessionThreshold();
 	}
 }

@@ -209,7 +209,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			 * Reset tries count after box clamping done
 			 */
 			for (ActiveCard card : current_due.deck) {
-				card.resetRetriesCount();
+				card.resetTriesRemaining();
 			}
 
 			/*
@@ -1366,7 +1366,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (next.show_again_ms > 0) {
 				continue;
 			}
-			next.resetRetriesCount();
+			next.resetTriesRemaining();
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -1413,7 +1413,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			activeCard.show_again_ms = 0;
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
-			activeCard.resetRetriesCount();
+			activeCard.resetTriesRemaining();
 			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
@@ -1433,7 +1433,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (next.box < SlotInfo.FULLY_LEARNED_BOX) {
 				continue;
 			}
-			next.resetRetriesCount();
+			next.resetTriesRemaining();
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -1441,7 +1441,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		ipending = current_due.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
 			ActiveCard next = ipending.next();
-			next.resetRetriesCount();
+			next.resetTriesRemaining();
 			active.deck.add(next);
 			needed--;
 			ipending.remove();
@@ -1891,7 +1891,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	protected void resetRetriesCount(ActiveDeck deck) {
 		for (ActiveCard card : deck.deck) {
-			card.resetRetriesCount();
+			card.resetTriesRemaining();
 		}
 	}
 
