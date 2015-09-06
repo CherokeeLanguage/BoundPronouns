@@ -1,8 +1,9 @@
 1.89
 
 Fix issue with certain cards (like ᎨᏍᏗ-) becoming stock in "box 0"
-Screen refresh fix for slots screen when sync results in download.
+Correct "imperative forms" that have any reference of "you" to not to auto add the "Ꮻ-" prefix. 
 Adjust some pronouns English definitions to try and improve retention.
+Screen refresh fix for slots screen when sync results in download.
 
 1.88
 
