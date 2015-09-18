@@ -70,7 +70,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		public void success(GameScores data) {
 			Gdx.app.log(this.getClass().getName(), "Scores received.");
 			if (data==null) {
-				message.setText("You must login to Google Play for Leaderboard Support");
+				message.setText("You must login for Leaderboards");
 				return;
 			}
 			if (data.collection==null) {
@@ -121,7 +121,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			}
 			
 			if (!BoundPronouns.services.isLoggedIn()) {
-				message.setText("You must login to Google Play for Leaderboard Support");
+				message.setText("You must login for Leaderboards");
 			}
 		}
 	};
@@ -186,10 +186,10 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			message = new Label("...", ls);
 
 			if (!BoundPronouns.services.isLoggedIn()) {
-				button = new TextButton("Login to Play", tbs);
-				message.setText("You must login to Google Play for Leaderboard Support");
+				button = new TextButton("Login", tbs);
+				message.setText("You must login for Leaderboards");
 			} else {
-				button = new TextButton("Logout of Play", tbs);
+				button = new TextButton("Logout", tbs);
 			}
 			
 			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
@@ -197,9 +197,9 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			dws.titleFont=game.getFont(Font.SerifLarge);
 			dls.font=game.getFont(Font.SerifMedium);
 			final TextButton play_button = button;
-			final Dialog login = new Dialog("Google Play Services", dws);
+			final Dialog login = new Dialog("Leaderboard Service", dws);
 			login.getTitleLabel().setAlignment(Align.center);
-			login.text(new Label("Connecting to Google Play Services ...", dls));
+			login.text(new Label("Connecting to Leaderboard Service ...", dls));
 			login.button(new TextButton("DISMISS", tbs));
 			login.getTitleLabel().setAlignment(Align.center);
 			
@@ -212,7 +212,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						error[0].hide();
 						login.hide();
 						requestScores();
-						play_button.setText("Logout of Play");
+						play_button.setText("Logout");
 					}
 					@Override
 					public void error(Exception e) {
@@ -229,7 +229,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						error[0].hide();
 						login.hide();
 						requestScores();
-						play_button.setText("Login to Google Play");
+						play_button.setText("Login");
 					}
 					@Override
 					public void error(Exception exception) {
@@ -296,7 +296,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifXSmall);
 
-		Dialog error = new Dialog("Google Play Services", dws) {
+		Dialog error = new Dialog("Leaderboard Service", dws) {
 			@Override
 			protected void result(Object object) {
 				if (done!=null) {

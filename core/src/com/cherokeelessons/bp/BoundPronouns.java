@@ -351,8 +351,6 @@ public class BoundPronouns extends Game {
 
 	public static final String INFO_JSON = "info.json";
 
-	public static final String GooglePlayLogginIn = "GooglePlayEnabled";
-
 	public static final String CredentialsFolder = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
 
 	public static List<DataSet> loadPronounRecords() {

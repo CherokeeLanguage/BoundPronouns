@@ -127,7 +127,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			askToLoginForSync();
 			return;
 		}
-		busy = new Dialog("Google Play Services", dws) {
+		busy = new Dialog("Leaderboard Service", dws) {
 			@Override
 			protected void result(Object object) {
 				done();
@@ -563,9 +563,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	public void doLogin(final Runnable afterLogin) {
-		final Dialog login = new Dialog("Google Play Services", dws);
+		final Dialog login = new Dialog("Leaderboard Service", dws);
 		login.getTitleLabel().setAlignment(Align.center);
-		login.text(new Label("Connecting to Google Play Services ...", dls));
+		login.text(new Label("Connecting to Leaderboard Service ...", dls));
 		login.button(new TextButton("DISMISS", tbs));
 		Callback<Void> success_in = new Callback<Void>() {
 			@Override
@@ -591,7 +591,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		if (busy != null) {
 			busy.hide();
 		}
-		Dialog error = new Dialog("Google Play Services", dws) {
+		Dialog error = new Dialog("Leaderboard Service", dws) {
 			@Override
 			protected void result(Object object) {
 				done();
@@ -618,12 +618,12 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	public void askToLoginForSync(final Runnable afterLogin) {
-		String reasonMsg = "Syncing requires Google Play ...";
+		String reasonMsg = "Syncing requires login ...";
 		askToLoginFor(afterLogin, reasonMsg);
 	}
 
 	public void askToLoginFor(final Runnable afterLogin, String reasonMsg) {
-		final Dialog login = new Dialog("Google Play Services", dws) {
+		final Dialog login = new Dialog("Leaderboard Service", dws) {
 			@Override
 			protected void result(Object object) {
 				if (!Boolean.TRUE.equals(object)) {

@@ -430,7 +430,7 @@ public class LearningSession extends ChildScreen implements Screen {
 									public void run() {
 										submit_scores.success(null);
 									}
-								}, "High Scores requires Google Play");
+								}, "High Scores requires Leaderboard Login");
 							} else {
 								getPublicScores.success(null);
 							}
