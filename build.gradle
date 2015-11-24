@@ -8,16 +8,9 @@ buildscript {
     }
 }
 
-sourceCompatibility = 1.7
-
-def RTJAR = '/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar';
-if (new File(RTJAR).exists()) {
-	compileJava.options.bootClasspath=RTJAR
-}
-
 allprojects {
     apply plugin: "eclipse"
-    apply plugin: "idea"
+    //apply plugin: "idea"
 	eclipse {
 	    classpath {
 	       downloadSources=true
@@ -40,6 +33,13 @@ allprojects {
     }
 }
 
+/*
+def RTJAR = '/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar';
+	if (new File(RTJAR).exists()) {
+		compileJava.options.bootClasspath=RTJAR
+	}
+	*/
+
 project(":desktop") {
     apply plugin: "java"
 	sourceCompatibility = 1.7
@@ -56,6 +56,32 @@ project(":desktop") {
         compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0'
         compile 'com.google.oauth-client:google-oauth-client-jetty:1.20.0'
     }
+    eclipseJdt << {
+	    File f = file('.settings/org.eclipse.core.resources.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('encoding/<project>=utf-8')
+	    f = file('.settings/org.eclipse.core.runtime.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('line.separator=\\n\n')
+	}
+	project.afterEvaluate {
+	// use jre lib matching version used by project, not the workspace default
+	if (sourceCompatibility != null) {
+		def target = project.sourceCompatibility.toString()
+		def containerPrefix = "org.eclipse.jdt.launching.JRE_CONTAINER"
+		def containerSuffix
+		if (target =~ /1.[4-5]/) {
+			containerSuffix = '/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-' + target
+		} else if (target =~ /1.[6-8]/) {
+			containerSuffix = '/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-' + target
+		}
+		if (containerSuffix != null) {
+			project.eclipse.classpath {
+				containers.removeAll { it.startsWith(containerPrefix) }
+				containers.add(containerPrefix + containerSuffix)
+			}
+		}
+	}}
 }
 
 project(":android") {
@@ -94,6 +120,32 @@ project(":android") {
         compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0' exclude module: 'httpclient'
 		compile 'com.google.api-client:google-api-client-android:1.20.0' exclude module: 'httpclient'
     }
+    eclipseJdt << {
+	    File f = file('.settings/org.eclipse.core.resources.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('encoding/<project>=utf-8')
+	    f = file('.settings/org.eclipse.core.runtime.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('line.separator=\\n\n')
+	}
+	project.afterEvaluate {
+	// use jre lib matching version used by project, not the workspace default
+	if (sourceCompatibility != null) {
+		def target = project.sourceCompatibility.toString()
+		def containerPrefix = "org.eclipse.jdt.launching.JRE_CONTAINER"
+		def containerSuffix
+		if (target =~ /1.[4-5]/) {
+			containerSuffix = '/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-' + target
+		} else if (target =~ /1.[6-8]/) {
+			containerSuffix = '/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-' + target
+		}
+		if (containerSuffix != null) {
+			project.eclipse.classpath {
+				containers.removeAll { it.startsWith(containerPrefix) }
+				containers.add(containerPrefix + containerSuffix)
+			}
+		}
+	}}
 }
 
 project(":ios") {
@@ -141,35 +193,16 @@ project(":ios") {
     		stderrFifo = ""
     		archs = "thumbv7:arm64"
     }
-}
-
-project(":core") {
-    apply plugin: "java"
-	sourceCompatibility = 1.7
-    dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        
-        compile 'org.apache.commons:commons-csv:1.1'
-        compile 'org.apache.commons:commons-lang3:3.1'
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
-    }
-}
-
-tasks.eclipse.doLast {
-    delete ".project"
-}
-
-eclipseJdt << {
-    File f = file('.settings/org.eclipse.core.resources.prefs')
-    f.write('eclipse.preferences.version=1\n')
-    f.append('encoding/<project>=utf-8')
-    f = file('.settings/org.eclipse.core.runtime.prefs')
-    f.write('eclipse.preferences.version=1\n')
-    f.append('line.separator=\\n\n')
-}
-
-project.afterEvaluate {
+    
+    eclipseJdt << {
+	    File f = file('.settings/org.eclipse.core.resources.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('encoding/<project>=utf-8')
+	    f = file('.settings/org.eclipse.core.runtime.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('line.separator=\\n\n')
+	}
+	project.afterEvaluate {
 	// use jre lib matching version used by project, not the workspace default
 	if (sourceCompatibility != null) {
 		def target = project.sourceCompatibility.toString()
@@ -186,5 +219,48 @@ project.afterEvaluate {
 				containers.add(containerPrefix + containerSuffix)
 			}
 		}
+	}}
+}
+
+project(":core") {
+    apply plugin: "java"
+	sourceCompatibility = 1.7
+    dependencies {
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        
+        compile 'org.apache.commons:commons-csv:1.1'
+        compile 'org.apache.commons:commons-lang3:3.1'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+    }
+    eclipseJdt << {
+	    File f = file('.settings/org.eclipse.core.resources.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('encoding/<project>=utf-8')
+	    f = file('.settings/org.eclipse.core.runtime.prefs')
+	    f.write('eclipse.preferences.version=1\n')
+	    f.append('line.separator=\\n\n')
 	}
+	project.afterEvaluate {
+	// use jre lib matching version used by project, not the workspace default
+	if (sourceCompatibility != null) {
+		def target = project.sourceCompatibility.toString()
+		def containerPrefix = "org.eclipse.jdt.launching.JRE_CONTAINER"
+		def containerSuffix
+		if (target =~ /1.[4-5]/) {
+			containerSuffix = '/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-' + target
+		} else if (target =~ /1.[6-8]/) {
+			containerSuffix = '/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-' + target
+		}
+		if (containerSuffix != null) {
+			project.eclipse.classpath {
+				containers.removeAll { it.startsWith(containerPrefix) }
+				containers.add(containerPrefix + containerSuffix)
+			}
+		}
+	}}
+}
+
+tasks.eclipse.doLast {
+    delete ".project"
 }
