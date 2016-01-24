@@ -16,7 +16,7 @@ allprojects {
 	       downloadSources=true
 	    }
 	}
-    version = '1.91'
+    version = '1.92'
     ext {
         appName = 'BoundPronouns'
         gdxVersion = '1.7.1'
@@ -51,10 +51,10 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
 		//FOR DESKTOP GOOGLE API
-        compile 'com.google.apis:google-api-services-games:v1-rev125-1.20.0'
-        compile 'com.google.apis:google-api-services-drive:v2-rev183-1.20.0'
-        compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0'
-        compile 'com.google.oauth-client:google-oauth-client-jetty:1.20.0'
+        compile 'com.google.apis:google-api-services-games:v1-rev155-1.21.0'
+        compile 'com.google.apis:google-api-services-drive:v3-rev6-1.21.0'
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.21.0'
+        compile 'com.google.oauth-client:google-oauth-client-jetty:1.21.0'
     }
     eclipseJdt << {
 	    File f = file('.settings/org.eclipse.core.resources.prefs')
@@ -105,20 +105,20 @@ project(":android") {
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
         //FOR ANDROID GOOGLE API
-        compile ('com.google.apis:google-api-services-games:v1-rev125-1.20.0') {
+        compile ('com.google.apis:google-api-services-games:v1-rev155-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
 			exclude module: 'junit'
 			exclude module: 'android'
 		}
-        compile ('com.google.apis:google-api-services-drive:v2-rev183-1.20.0') {
+        compile ('com.google.apis:google-api-services-drive:v3-rev6-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
 			exclude module: 'junit'
 			exclude module: 'android'
 		}
-        compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0' exclude module: 'httpclient'
-		compile 'com.google.api-client:google-api-client-android:1.20.0' exclude module: 'httpclient'
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.21.0' exclude module: 'httpclient'
+		compile 'com.google.api-client:google-api-client-android:1.21.0' exclude module: 'httpclient'
     }
     eclipseJdt << {
 	    File f = file('.settings/org.eclipse.core.resources.prefs')
@@ -167,20 +167,20 @@ project(":ios") {
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
         //FOR IOS GOOGLE API
-         compile ('com.google.apis:google-api-services-games:v1-rev125-1.20.0') {
+         compile ('com.google.apis:google-api-services-games:v1-rev155-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
 			exclude module: 'junit'
 			exclude module: 'android'
 		}
-        compile ('com.google.apis:google-api-services-drive:v2-rev183-1.20.0') {
+        compile ('com.google.apis:google-api-services-drive:v3-rev6-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
 			exclude module: 'junit'
 			exclude module: 'android'
 		}
-        compile 'com.google.oauth-client:google-oauth-client-java6:1.20.0' exclude module: 'httpclient'
-		compile 'com.google.api-client:google-api-client-android:1.20.0' exclude module: 'httpclient'
+        compile 'com.google.oauth-client:google-oauth-client-java6:1.21.0' exclude module: 'httpclient'
+		compile 'com.google.api-client:google-api-client-android:1.21.0' exclude module: 'httpclient'
     }
     
     robovm {
