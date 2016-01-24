@@ -31,18 +31,16 @@ import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.media.MediaHttpDownloader;
 import com.google.api.client.http.FileContent;
-import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.DateTime;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.Drive.Files;
-import com.google.api.services.drive.Drive.Files.Insert;
+import com.google.api.services.drive.Drive.Files.Create;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
-import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.games.Games;
 import com.google.api.services.games.Games.Achievements;
 import com.google.api.services.games.Games.Scores;
@@ -57,6 +55,8 @@ import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 
 public class GameServices implements GooglePlayGameServices {
 	
+	private static final String APP_DATA_FOLDER = "appDataFolder";
+
 	private static void appendSourceClassName(StringBuilder sb, LogRecord record) {
 		String sourceClassName = record.getSourceClassName();
 		if (sourceClassName != null) {
@@ -136,7 +136,6 @@ public class GameServices implements GooglePlayGameServices {
 			if (initdone) {
 				return;
 			}
-			log.info("init");
 			if (Gdx.app.getType().equals(ApplicationType.Desktop)) {
 				p0 = Gdx.files.external(googlePlayServicesFolder);
 			} else {
@@ -175,13 +174,24 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
-		log.info("getFlow");
 		GoogleClientSecrets clientSecrets = null;
 		String json = Gdx.files.internal("google.json").readString();
 		StringReader sr = new StringReader(json);
 		clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, sr);
 		Set<String> scopes = new HashSet<>(GamesScopes.all());
+		
+		//games
+		scopes.add("https://www.googleapis.com/auth/games");
+		scopes.add("https://www.googleapis.com/auth/drive.appdata");
+		scopes.add("https://www.googleapis.com/auth/plus.login");
+		
+		//profile
 		scopes.add("https://www.googleapis.com/auth/plus.me");
+		scopes.add("https://www.googleapis.com/auth/userinfo.profile");
+		
+		//v3 drive appdata
+		scopes.add("https://www.googleapis.com/auth/drive.appfolder");
+		
 		GoogleAuthorizationCodeFlow.Builder builder = new GoogleAuthorizationCodeFlow.Builder(
 				httpTransport, JSON_FACTORY, clientSecrets, scopes);
 		builder.setApprovalPrompt("auto");
@@ -193,7 +203,6 @@ public class GameServices implements GooglePlayGameServices {
 
 	@Override
 	public void login(final Callback<Void> callback) {
-		log.info("login");
 		final Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
@@ -217,7 +226,6 @@ public class GameServices implements GooglePlayGameServices {
 
 	private Credential authorize() throws IOException {
 		try {
-			log.info("authorize");
 			return platform.getCredential(getFlow());
 		} catch (Exception e) {
 			throw new IOException("Authorization Failure", e);
@@ -230,16 +238,9 @@ public class GameServices implements GooglePlayGameServices {
 			@Override
 			public void run() {
 				try {
-					Gdx.app.log(this.getClass().getName(), "logout:init");
 					init();
-
-					Gdx.app.log(this.getClass().getName(), "logout:getflow");
 					GoogleAuthorizationCodeFlow flow = getFlow();
-
-					Gdx.app.log(this.getClass().getName(), "logout:flow#clear");
 					flow.getCredentialDataStore().clear();
-
-					Gdx.app.log(this.getClass().getName(), "credential=null");
 					credential = null;
 					postRunnable(success.withNull());
 				} catch (Exception e) {
@@ -522,11 +523,8 @@ public class GameServices implements GooglePlayGameServices {
 						}
 						try {
 							ByteArrayOutputStream baos = new ByteArrayOutputStream();
-							MediaHttpDownloader downloader = new MediaHttpDownloader(
-									httpTransport, credential);
-							downloader.download(
-									new GenericUrl(result.files.get(0).url),
-									baos);
+							Drive drive = _getDriveObject();
+							drive.files().get(result.files.get(0).id).executeAndDownloadTo(baos);
 							String result = new String(baos.toByteArray(),
 									"UTF-8").intern();
 							postRunnable(callback.with(result));
@@ -558,7 +556,6 @@ public class GameServices implements GooglePlayGameServices {
 				Iterator<FileMeta> iter = result.files.iterator();
 				while (iter.hasNext()) {
 					FileMeta file = iter.next();
-					Gdx.app.log(TAG, file.title);
 					if (!file.title.equals(title)) {
 						iter.remove();
 						continue;
@@ -590,13 +587,13 @@ public class GameServices implements GooglePlayGameServices {
 					Drive drive = _getDriveObject();
 					File meta = drive.files().get(id).execute();
 					FileMeta fm = new FileMeta();
-					fm.created = new Date(meta.getCreatedDate().getValue());
+					DateTime createdTime = meta.getCreatedTime();
+					DateTime modifiedTime = meta.getModifiedTime();
+					fm.created = new Date(createdTime!=null?createdTime.getValue():0);
+					fm.lastModified = new Date(modifiedTime!=null?modifiedTime.getValue():0);
 					fm.id = meta.getId();
-					fm.isAppData = meta.getAppDataContents();
-					fm.lastModified = new Date(meta.getModifiedDate()
-							.getValue());
-					fm.title = meta.getTitle();
-					fm.url = meta.getDownloadUrl();
+					fm.title = meta.getName();
+					fm.url = meta.getWebContentLink();
 					postRunnable(callback.with(fm));
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -607,7 +604,7 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	/**
-	 * Lists all files in 'appfolder'
+	 * Lists all files in APP_DATA_FOLDER
 	 */
 	@Override
 	public void drive_list(final Callback<FileMetaList> callback) {
@@ -619,22 +616,19 @@ public class GameServices implements GooglePlayGameServices {
 				try {
 					FileMetaList afs = new FileMetaList();
 					Drive drive = _getDriveObject();
-
-					Files.List request = drive.files().list();
-					request.setQ("'appfolder' in parents");
+					Files.List request = drive.files().list().setSpaces(APP_DATA_FOLDER);
 					FileList fl = request.execute();
-					List<File> items = fl.getItems();
+					List<File> items = fl.getFiles();
 					if (items != null)
 						for (File item : items) {
 							FileMeta af = new FileMeta();
-							af.isAppData = item.getAppDataContents();
-							af.created = new Date(item.getCreatedDate()
-									.getValue());
+							DateTime createdTime = item.getCreatedTime();
+							DateTime modifiedTime = item.getModifiedTime();
+							af.created = new Date(createdTime!=null?createdTime.getValue():0);
+							af.lastModified = new Date(modifiedTime!=null?modifiedTime.getValue():0);
 							af.id = item.getId();
-							af.lastModified = new Date(item.getModifiedDate()
-									.getValue());
-							af.title = item.getTitle();
-							af.url = item.getDownloadUrl();
+							af.title = item.getName();
+							af.url = item.getWebContentLink();// getDownloadUrl();
 							afs.files.add(af);
 						}
 					postRunnable(callback.with(afs));
@@ -709,7 +703,6 @@ public class GameServices implements GooglePlayGameServices {
 	@Override
 	public void drive_replace(final FileHandle file, final String title,
 			final String description, final Callback<String> callback) {
-		Gdx.app.log(TAG, "drive_replace: " + title);
 		final FileMetaList[] toDelete = new FileMetaList[1];
 		final Callback<String> deleteOthers = new Callback<String>() {
 			@Override
@@ -739,7 +732,7 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	/**
-	 * Add file to 'appfolder'. Uses source file name as destination "title"
+	 * Add file to APP_DATA_FOLDER. Uses source file name as destination "title"
 	 * 
 	 * @param file
 	 * @param callback
@@ -750,7 +743,7 @@ public class GameServices implements GooglePlayGameServices {
 	}
 
 	/**
-	 * Add file to 'appfolder'. Uses specified title and description for
+	 * Add file to APP_DATA_FOLDER. Uses specified title and description for
 	 * metadata. Will not replace any previous files with the same title.
 	 */
 	@Override
@@ -771,12 +764,11 @@ public class GameServices implements GooglePlayGameServices {
 				try {
 					Drive drive = _getDriveObject();
 					File meta = new File();
-					meta.setParents(Arrays.asList(new ParentReference()
-							.setId("appfolder")));
-					meta.setTitle(_title);
+					meta.setParents(Arrays.asList(APP_DATA_FOLDER));
+					meta.setName(_title);
 					FileContent content = new FileContent(
 							"application/octet-stream", file.file());
-					Insert insert = drive.files().insert(meta, content);
+					Create insert = drive.files().create(meta, content);
 					File inserted = insert.execute();
 					postRunnable(callback.with(inserted.getId()));
 				} catch (Exception e) {
@@ -798,11 +790,7 @@ public class GameServices implements GooglePlayGameServices {
 				try {
 					Drive drive = _getDriveObject();
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					File meta = drive.files().get(id).execute();
-					MediaHttpDownloader downloader = new MediaHttpDownloader(
-							httpTransport, credential);
-					downloader.download(new GenericUrl(meta.getDownloadUrl()),
-							baos);
+					drive.files().get(id).executeAndDownloadTo(baos);
 					String result = new String(baos.toByteArray(), "UTF-8")
 							.intern();
 					postRunnable(callback.with(result));
@@ -825,58 +813,8 @@ public class GameServices implements GooglePlayGameServices {
 				try {
 					Drive drive = _getDriveObject();
 					FileOutputStream fos = new FileOutputStream(file.file());
-					File meta = drive.files().get(id).execute();
-					MediaHttpDownloader downloader = new MediaHttpDownloader(
-							httpTransport, credential);
-					downloader.download(new GenericUrl(meta.getDownloadUrl()),
-							fos);
+					drive.files().get(id).executeMediaAndDownloadTo(fos);
 					postRunnable(callback.withNull());
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		});
-	}
-
-	@Override
-	public void drive_getFileByUrl(final String url, final FileHandle file,
-			final Callback<Void> callback) {
-		platform.runTask(new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				try {
-					FileOutputStream fos = new FileOutputStream(file.file());
-					MediaHttpDownloader downloader = new MediaHttpDownloader(
-							httpTransport, credential);
-					downloader.download(new GenericUrl(url), fos);
-					postRunnable(callback.withNull());
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		});
-	}
-
-	@Override
-	public void drive_getFileByUrl(final String url,
-			final Callback<String> callback) {
-		platform.runTask(new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				try {
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					MediaHttpDownloader downloader = new MediaHttpDownloader(
-							httpTransport, credential);
-					downloader.download(new GenericUrl(url), baos);
-					String result = new String(baos.toByteArray(), "UTF-8")
-							.intern();
-					postRunnable(callback.with(result));
 				} catch (Exception e) {
 					e.printStackTrace();
 					retry(_self);

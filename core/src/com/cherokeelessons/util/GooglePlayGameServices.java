@@ -121,7 +121,7 @@ public interface GooglePlayGameServices {
 	public static class FileMetaList {
 		public List<FileMeta> files=new ArrayList<FileMeta>();
 		public static class FileMeta {
-			public Boolean isAppData;
+//			public Boolean isAppData;
 			public Date created;
 			public String id;
 			public Date lastModified;			
@@ -132,8 +132,8 @@ public interface GooglePlayGameServices {
 
 	void drive_getFileById(String id, Callback<String> callback);
 	void drive_getFileById(String id, FileHandle file, Callback<Void> callback);
-	void drive_getFileByUrl(String url, FileHandle file, Callback<Void> callback);
-	void drive_getFileByUrl(String url, Callback<String> callback);
+//	void drive_getFileByUrl(String url, FileHandle file, Callback<Void> callback);
+//	void drive_getFileByUrl(String url, Callback<String> callback);
 	void drive_put(FileHandle file, String title, String description,
 			Callback<String> callback);
 	void drive_put(FileHandle file, Callback<String> callback);
