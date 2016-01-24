@@ -10,7 +10,7 @@ buildscript {
 
 allprojects {
     apply plugin: "eclipse"
-    //apply plugin: "idea"
+    apply plugin: "idea"
 	eclipse {
 	    classpath {
 	       downloadSources=true
