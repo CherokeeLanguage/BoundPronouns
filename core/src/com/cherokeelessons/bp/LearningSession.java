@@ -551,14 +551,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * ahead and get "bumped"
 				 */
 				for (ActiveCard tmp : current_discards.deck) {
-					if (!tmp.noErrors) {
-						continue;
-					}
-					if (tmp.tries_remaining > 1) {
-						continue;
-					}
-					
-					if (tmp.tries_remaining < 1) {
+					if (tmp.noErrors && tmp.tries_remaining < 1) {
 						tmp.box++;
 						tmp.show_again_ms = tmp.show_again_ms
 								+ Deck.getNextSessionInterval(tmp.box);
@@ -686,7 +679,7 @@ public class LearningSession extends ChildScreen implements Screen {
 								challengeCardDialog.result(null);
 							}
 						})));
-				for (float x = duration; x >= 0; x -= .1f) {
+				for (float x = duration; x >= 0; x -= .25f) {
 					final float timer = duration - x;
 					final float volume = x / duration;
 					DelayAction updater = Actions.delay(x - .05f,
@@ -1797,27 +1790,39 @@ public class LearningSession extends ChildScreen implements Screen {
 			updateTime(current_discards,
 					(long) (sinceLastNextCard_elapsed * 1000f));
 			sinceLastNextCard_elapsed = 0;
-			Iterator<ActiveCard> itmp = current_discards.deck.iterator();
+			Iterator<ActiveCard> itmp;
+			itmp = current_discards.deck.iterator();
+			/**
+			 * remove from active session any cards with no tries left
+			 */
 			while (itmp.hasNext()) {
 				ActiveCard tmp = itmp.next();
-				if (tmp.noErrors && tmp.tries_remaining < 1) {
+				if (tmp.tries_remaining>0) {
+					continue;
+				}
+				if (tmp.noErrors) {
 					tmp.box++;
 					current_done.deck.add(tmp);
 					tmp.show_again_ms = tmp.show_again_ms
 							+ Deck.getNextSessionInterval(tmp.box);
 					itmp.remove();
 					log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
-					return getNextCard();
+					continue;
 				}
-				if (tmp.tries_remaining < 1) {
-					tmp.box--;
-					current_done.deck.add(tmp);
-					tmp.show_again_ms = tmp.show_again_ms
-							+ Deck.getNextSessionInterval(tmp.box);
-					itmp.remove();
-					log.info("Retired Card: " + tmp.pgroup + " " + tmp.vgroup);
-					return getNextCard();
-				}
+				tmp.box--;
+				current_done.deck.add(tmp);
+				tmp.show_again_ms = tmp.show_again_ms
+						+ Deck.getNextSessionInterval(tmp.box);
+				itmp.remove();
+				log.info("Retired Card: " + tmp.pgroup + " " + tmp.vgroup);
+				return getNextCard();
+			}
+			itmp = current_discards.deck.iterator();
+			/**
+			 * Find all cards in active session ready for display by time
+			 */
+			while (itmp.hasNext()) {
+				ActiveCard tmp = itmp.next();
 				if (tmp.show_again_ms > 0) {
 					continue;
 				}
