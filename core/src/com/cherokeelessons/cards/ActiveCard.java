@@ -13,9 +13,7 @@ public class ActiveCard {
 			if (correct_in_a_row.get(key) == null) {
 				continue;
 			}
-			if (correct_in_a_row.get(key) < min) {
-				min = correct_in_a_row.get(key);
-			}
+			min=Math.min(min, correct_in_a_row.get(key));
 		}
 		return min;
 	}
@@ -105,7 +103,7 @@ public class ActiveCard {
 	}
 
 	/**
-	 * How many times are card must be shown in the session. <br/>
+	 * How many times a card must be shown in the session. <br/>
 	 * The value's pimsleur value must not exceed the sesson length or else the
 	 * card will never be successfully marked as known! <br/>
 	 * 5 minutes sessions can not have a value > 3!

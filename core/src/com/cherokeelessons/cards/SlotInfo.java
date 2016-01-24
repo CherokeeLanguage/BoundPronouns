@@ -14,7 +14,7 @@ public class SlotInfo implements Serializable {
 		this.signature = signature;
 	}
 
-	private static final int StatsVersion = 17;
+	private static final int StatsVersion = 20;
 	public static final int FULLY_LEARNED_BOX = 10;
 	public static final int PROFICIENT_BOX = 5;
 	public static final int JUST_LEARNED_BOX = 1;
@@ -264,7 +264,7 @@ public class SlotInfo implements Serializable {
 	 */
 	public int fullScore = 0;
 	/**
-	 * The summbed "box" values for the most recent learning session
+	 * The summed "box" values for the most recent learning session
 	 */
 	public int sessionScore = 0;
 
@@ -331,7 +331,7 @@ public class SlotInfo implements Serializable {
 		info.level = LevelName.forLevel((int) Math.ceil((double) (boxsum)
 				/ (double) activeDeck.deck.size()));
 		/*
-		 * Set "fullScore" to sum of all box values found in actice deck
+		 * Set "fullScore" to sum of all box values found in active deck
 		 */
 		boxsum = 0;
 		for (ActiveCard card : activeDeck.deck) {
@@ -367,22 +367,37 @@ public class SlotInfo implements Serializable {
 		info.lastScore = (int) Math.ceil(score);
 		info.perfect = perfect;
 		/*
-		 * Calculate total profiency with active cards (based on 'fully learned' box value)
+		 * Calculate total proficiency with active cards (based on most recent noErrors flag)
 		 */
-		if (activeDeck.deck.size()>0) {
-			int boxSum = 0;
-			for (ActiveCard card : activeDeck.deck) {
-				boxSum+=Math.min(card.box>0?card.box:0, FULLY_LEARNED_BOX);
+		int totalCards = activeDeck.deck.size();
+		int correctCount = 0;
+		for (ActiveCard card: activeDeck.deck) {
+			if (card.noErrors) {
+				correctCount++;
 			}
-			info.proficiency=(100*boxSum/(FULLY_LEARNED_BOX*activeDeck.deck.size()));
-		} else {
-			info.proficiency=0;
+			info.proficiency=((100*correctCount)/totalCards);
 		}
+		/*
+		 * What is the total percentange of cards learned out of the master deck?
+		 */
+		
+//		int maxBox = 1;
+//		for (ActiveCard card : activeDeck.deck) {
+//			maxBox=Math.max(maxBox, card.box);
+//		}
+//		if (activeDeck.deck.size()>0) {
+//			int boxSum = 0;
+//			for (ActiveCard card : activeDeck.deck) {
+//				boxSum+=Math.min(card.box>0?card.box:0, maxBox);
+//			}
+//			info.proficiency=(100*boxSum/(maxBox*activeDeck.deck.size()));
+//		} else {
+//			info.proficiency=0;
+//		}
 		
 		/*
 		 * How many are "fully learned" out of the active deck?
 		 */
-
 		info.longTerm = 0;
 		for (ActiveCard card : activeDeck.deck) {
 			if (card.box >= FULLY_LEARNED_BOX) {
