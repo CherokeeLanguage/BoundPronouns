@@ -111,14 +111,11 @@ public class ActiveCard {
 	 * @return
 	 */
 	private int getMyNextSessionThreshold() {
-		if (box > 2) {
+		if (box > 1) {
 			return 1;
 		}
-		if (box == 2) {
-			return 2;
-		}
 		if (box == 1) {
-			return 3;
+			return 2;
 		}
 		return 3;
 	};
