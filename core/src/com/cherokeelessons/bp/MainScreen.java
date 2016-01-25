@@ -335,7 +335,9 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
-					String tag = info.level.getEnglish()+"\t"+info.settings.name;
+					String name = (StringUtils.isBlank(info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
+							: info.settings.name;
+					String tag = info.level.getEnglish()+"\t"+name;
 					new LocalLeaderboard(BoundPronouns.getPrefs()).lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, noop_success);
 				}
 			}

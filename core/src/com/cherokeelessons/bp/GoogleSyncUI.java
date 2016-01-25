@@ -127,7 +127,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 			askToLoginForSync();
 			return;
 		}
-		busy = new Dialog("Leaderboard Service", dws) {
+		busy = new Dialog("Sync Service", dws) {
 			@Override
 			protected void result(Object object) {
 				done();
@@ -563,9 +563,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	public void doLogin(final Runnable afterLogin) {
-		final Dialog login = new Dialog("Leaderboard Service", dws);
+		final Dialog login = new Dialog("Sync Service", dws);
 		login.getTitleLabel().setAlignment(Align.center);
-		login.text(new Label("Connecting to Leaderboard Service ...", dls));
+		login.text(new Label("Connecting to Sync Service ...", dls));
 		login.button(new TextButton("DISMISS", tbs));
 		Callback<Void> success_in = new Callback<Void>() {
 			@Override
@@ -591,7 +591,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		if (busy != null) {
 			busy.hide();
 		}
-		Dialog error = new Dialog("Leaderboard Service", dws) {
+		Dialog error = new Dialog("Sync Service", dws) {
 			@Override
 			protected void result(Object object) {
 				done();
@@ -623,7 +623,7 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	}
 
 	public void askToLoginFor(final Runnable afterLogin, String reasonMsg) {
-		final Dialog login = new Dialog("Leaderboard Service", dws) {
+		final Dialog login = new Dialog("Sync Service", dws) {
 			@Override
 			protected void result(Object object) {
 				if (!Boolean.TRUE.equals(object)) {

@@ -190,10 +190,10 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			message = new Label("...", ls);
 
 			if (!BoundPronouns.services.isLoggedIn()) {
-				button = new TextButton("Login", tbs);
+				button = new TextButton("Login to Sync", tbs);
 //				message.setText("You must login for Leaderboards");
 			} else {
-				button = new TextButton("Logout", tbs);
+				button = new TextButton("Logout of Sync", tbs);
 			}
 			
 			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
@@ -201,9 +201,9 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			dws.titleFont=game.getFont(Font.SerifLarge);
 			dls.font=game.getFont(Font.SerifMedium);
 			final TextButton play_button = button;
-			final Dialog login = new Dialog("Leaderboard Service", dws);
+			final Dialog login = new Dialog("Sync Service", dws);
 			login.getTitleLabel().setAlignment(Align.center);
-			login.text(new Label("Connecting to Leaderboard Service ...", dls));
+			login.text(new Label("Connecting to Sync Service ...", dls));
 			login.button(new TextButton("DISMISS", tbs));
 			login.getTitleLabel().setAlignment(Align.center);
 			
@@ -216,7 +216,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						error[0].hide();
 						login.hide();
 						requestScores();
-						play_button.setText("Logout");
+						play_button.setText("Logout of Sync");
 					}
 					@Override
 					public void error(Exception e) {
@@ -233,7 +233,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 						error[0].hide();
 						login.hide();
 						requestScores();
-						play_button.setText("Login");
+						play_button.setText("Login to Sync");
 					}
 					@Override
 					public void error(Exception exception) {
@@ -304,7 +304,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifXSmall);
 
-		Dialog error = new Dialog("Leaderboard Service", dws) {
+		Dialog error = new Dialog("Sync Service", dws) {
 			@Override
 			protected void result(Object object) {
 				if (done!=null) {

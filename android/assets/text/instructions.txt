@@ -11,13 +11,11 @@ Your stats:
 
 When you complete a session your statistics will be displayed.
 
-Your level is based on your average proficency with all your cards and ranges from "Newbie" to "Grandmaster". Short term cards are those with a rating of 1 to 4. Medium term cards are those with a rating of 5 to 9. Long term cards are those with a rating of 10 or higher. Your score is based on a combination of how long it takes you to answer correctly and how well you know the cards. The faster you answer correctly the better your score. Perfect sessions get a 10% score bonus.
-
-Note: If you take longer than 15 seconds to answer a card correctly you get penalized.
+Your level is based on your long term demonstrated knowledge of your active cards and ranges from "Newbie" to "Grandmaster". The proficiency value is an indicator of how well you have been performing with the cards in your practice set. The score is based on how fast you answer each challenge correctly.
 
 Leaderboards:
 
-Scores from different people are visible based on each person's Google+ settings. To participate and view scores you must log into Google+. You can control who can see your game activity in your Google+ settings. To make changes you need to visit Google+ then look for "Settings" => "Apps & activities".
+Leaderboard scores are only for the local device.
 
 Practicing:
 
@@ -93,4 +91,4 @@ Keep in mind:
 
 • This program is for learning the bound pronouns in both their “bare” and “conjugated” forms.
 • This program is NOT for learning about general grammar, various verb stems and tenses, or for general vocabulary building.
-• This program uses “C.E.D.” spellings and pronunciation markings. This is not changable. 
+• This program uses “C.E.D.” spellings and pronunciation markings. 
