@@ -29,6 +29,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
+import com.cherokeelessons.util.LocalLeaderboard;
 
 public class ShowLeaderboards extends ChildScreen implements Screen {
 
@@ -37,6 +38,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	private ScrollPane scroll;
 	private Table scrolltable;
 	private Label message;
+	private final LocalLeaderboard lb;
 
 	public ShowLeaderboards(BoundPronouns game, Screen caller) {
 		super(game, caller);
@@ -45,6 +47,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		container.setBackground(d());
 		container.setFillParent(true);
 		stage.addActor(container);
+		this.lb = new LocalLeaderboard(BoundPronouns.getPrefs());
 	}
 
 	@Override
@@ -70,7 +73,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		public void success(GameScores data) {
 			Gdx.app.log(this.getClass().getName(), "Scores received.");
 			if (data==null) {
-				message.setText("You must login for Leaderboards");
+				message.setText("No scores for display");
 				return;
 			}
 			if (data.collection==null) {
@@ -79,12 +82,13 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			if (data.ts==null) {
 				data.ts=ts;
 			}
-			if (data.collection.equals(Collection.PUBLIC)) {
-				message.setText(data.ts.getEngrish() + " Top Public Scores");
-			}
-			if (data.collection.equals(Collection.SOCIAL)) {
-				message.setText(data.ts.getEngrish() + " Top Circle Scores");
-			}
+//			if (data.collection.equals(Collection.PUBLIC)) {
+//				message.setText(data.ts.getEngrish() + " Top Public Scores");
+//			}
+//			if (data.collection.equals(Collection.SOCIAL)) {
+//				message.setText(data.ts.getEngrish() + " Top Circle Scores");
+//			}
+			message.setText("Top Local Scores");
 
 			Table table = scrolltable;
 
@@ -121,12 +125,12 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			}
 			
 			if (!BoundPronouns.services.isLoggedIn()) {
-				message.setText("You must login for Leaderboards");
+//				message.setText("You must login for Leaderboards");
 			}
 		}
 	};
 
-	public static final String BoardId = "CgkIy7GTtc0TEAIQAw";
+	public static final String LeaderBoardId = "CgkI4pfA4J4KEAIQDA";
 
 	public Collection lb_collection = Collection.PUBLIC;
 
@@ -187,7 +191,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 			if (!BoundPronouns.services.isLoggedIn()) {
 				button = new TextButton("Login", tbs);
-				message.setText("You must login for Leaderboards");
+//				message.setText("You must login for Leaderboards");
 			} else {
 				button = new TextButton("Logout", tbs);
 			}
@@ -275,8 +279,12 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	}
 
 	private void requestScores() {
+		if (lb!=null) {
+			lb.lb_getListFor(LeaderBoardId, lb_collection, ts, success_show_scores);
+			return;
+		}
 		if (BoundPronouns.services.isLoggedIn()) {
-			BoundPronouns.services.lb_getListFor(BoardId, lb_collection, ts,
+			BoundPronouns.services.lb_getListFor(LeaderBoardId, lb_collection, ts,
 					success_show_scores);
 			message.setText("Loading ...");
 		} else {

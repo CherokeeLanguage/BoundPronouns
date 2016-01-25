@@ -90,10 +90,10 @@ public class GameServices implements GooglePlayGameServices {
 	}
 	
 
-	public static String APP_NAME = "ᏣᎳᎩ-ᎦᏬᏂᎯᏍᏗ/1.0";
+	public static String APP_NAME = "CherokeeBoundPronouns/1.92";
 
 	public static interface PlatformInterface {
-		public static final String USER = "user";
+		public static final String USER = "cherokee-bound-pronouns-332095-restapi";
 
 		public Credential getCredential(GoogleAuthorizationCodeFlow flow)
 				throws IOException;
@@ -176,6 +176,7 @@ public class GameServices implements GooglePlayGameServices {
 	public GoogleAuthorizationCodeFlow getFlow() throws IOException {
 		GoogleClientSecrets clientSecrets = null;
 		String json = Gdx.files.internal("google.json").readString();
+		
 		StringReader sr = new StringReader(json);
 		clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, sr);
 		Set<String> scopes = new HashSet<>(GamesScopes.all());

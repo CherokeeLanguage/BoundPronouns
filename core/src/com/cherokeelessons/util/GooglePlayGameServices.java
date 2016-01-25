@@ -8,7 +8,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
 
 
-public interface GooglePlayGameServices {
+public interface GooglePlayGameServices extends LeaderboardClient, AchievementsClient {
 	
 	public Callback<Void> noop=new Callback<Void>() {
 		@Override
@@ -18,13 +18,6 @@ public interface GooglePlayGameServices {
 	
 	public void login(Callback<Void> callback);
 	public void logout(Callback<Void> callback);
-	public void lb_submit(String boardId, long score, String label, Callback<Void> callback);
-	public void lb_getScoresFor(String boardId, Callback<GameScores> callback);
-	public void lb_getListFor(String boardId, Collection collection, TimeSpan ts, Callback<GameScores> callback);
-	public void lb_getListWindowFor(String boardId, Collection collection, TimeSpan ts, Callback<GameScores> callback);
-	public void ach_reveal(String id, Callback<Void> callback);
-	public void ach_unlocked(String id, Callback<Void> callback);
-	public void ach_list(Callback<GameAchievements> callback);
 	
 	public static abstract class Callback<T> {
 		public Callback() {

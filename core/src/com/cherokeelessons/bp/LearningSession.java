@@ -62,6 +62,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.JsonConverter;
+import com.cherokeelessons.util.LocalLeaderboard;
 import com.cherokeelessons.util.Log;
 
 public class LearningSession extends ChildScreen implements Screen {
@@ -405,19 +406,32 @@ public class LearningSession extends ChildScreen implements Screen {
 					final Callback<Void> getPublicScores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							BoundPronouns.services.lb_getListWindowFor(
-									ShowLeaderboards.BoardId,
-									Collection.PUBLIC, TimeSpan.DAILY,
-									showPublicScores);
+							if (lb!=null) {
+								lb.lb_getListWindowFor(
+										ShowLeaderboards.LeaderBoardId,
+										Collection.PUBLIC, TimeSpan.DAILY,
+										showPublicScores);
+							} else {
+								BoundPronouns.services.lb_getListWindowFor(
+										ShowLeaderboards.LeaderBoardId,
+										Collection.PUBLIC, TimeSpan.DAILY,
+										showPublicScores);
+							}
 						}
 					};
 
 					final Callback<Void> submit_scores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							BoundPronouns.services.lb_submit(
-									ShowLeaderboards.BoardId, info.lastScore,
-									info.level.getEnglish(), getPublicScores);
+							if (lb!=null) {
+								String tag = info.level.getEnglish()+"\t"+info.settings.name;
+								lb.lb_submit(
+										ShowLeaderboards.LeaderBoardId, info.lastScore, tag, getPublicScores);
+							} else {
+								BoundPronouns.services.lb_submit(
+										ShowLeaderboards.LeaderBoardId, info.lastScore,
+										info.level.getEnglish(), getPublicScores);
+							}
 						}
 					};
 
@@ -479,9 +493,14 @@ public class LearningSession extends ChildScreen implements Screen {
 											do_unlock);
 								}
 							};
-							BoundPronouns.services.lb_submit(
-									ShowLeaderboards.BoardId, info.lastScore,
-									info.level.getEnglish(), do_reveal);
+							if (lb!=null) {
+								String tag = info.level.getEnglish()+"\t"+info.settings.name;
+								lb.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, noop_success);
+							} else {
+								BoundPronouns.services.lb_submit(
+										ShowLeaderboards.LeaderBoardId, info.lastScore,
+										info.level.getEnglish(), do_reveal);
+							}
 						} else {
 							syncb.setVisible(true);
 						}
@@ -1139,12 +1158,19 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private long ticktock_id;
 
+	private final static LocalLeaderboard lb;
+	
+	static {
+		lb=new LocalLeaderboard(BoundPronouns.getPrefs());
+	}
+
 	// private TooSoonDialog tooSoon = new TooSoonDialog() {
 	// };
 
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
 
+		
 		int totalCards = game.deck.cards.size();
 		current_active.deck = new ArrayList<ActiveCard>(totalCards);
 		current_discards.deck = new ArrayList<ActiveCard>(totalCards);

@@ -14,21 +14,21 @@ public class SlotInfo implements Serializable {
 		this.signature = signature;
 	}
 
-	private static final int StatsVersion = 20;
+	private static final int StatsVersion = 24;
 	public static final int FULLY_LEARNED_BOX = 10;
 	public static final int PROFICIENT_BOX = 5;
 	public static final int JUST_LEARNED_BOX = 1;
 
 	public static enum LevelName {
-		Newbie("Newbie", 0, "CgkIy7GTtc0TEAIQBg"), Novice("Novice", 1,
-				"CgkIy7GTtc0TEAIQBw"), Rookie("Rookie", 2, "CgkIy7GTtc0TEAIQCA"), Beginner(
-				"Beginner", 3, "CgkIy7GTtc0TEAIQCQ"), Apprentice("Apprentice",
-				4, "CgkIy7GTtc0TEAIQCg"), Intermediate("Intermediate", 5,
-				"CgkIy7GTtc0TEAIQCw"), Advanced("Advanced", 6,
-				"CgkIy7GTtc0TEAIQDA"), Proficient("Proficient", 7,
-				"CgkIy7GTtc0TEAIQDQ"), Expert("Expert", 8, "CgkIy7GTtc0TEAIQDg"), Master(
-				"Master", 9, "CgkIy7GTtc0TEAIQDw"), GrandMaster("Grandmaster",
-				10, "CgkIy7GTtc0TEAIQEA");
+		Newbie("Newbie", 0, "CgkI4pfA4J4KEAIQAQ"), Novice("Novice", 1,
+				"CgkI4pfA4J4KEAIQAg"), Rookie("Rookie", 2, "CgkI4pfA4J4KEAIQAw"), Beginner(
+				"Beginner", 3, "CgkI4pfA4J4KEAIQBA"), Apprentice("Apprentice",
+				4, "CgkI4pfA4J4KEAIQBQ"), Intermediate("Intermediate", 5,
+				"CgkI4pfA4J4KEAIQBg"), Advanced("Advanced", 6,
+				"CgkI4pfA4J4KEAIQBw"), Proficient("Proficient", 7,
+				"CgkI4pfA4J4KEAIQCA"), Expert("Expert", 8, "CgkI4pfA4J4KEAIQCQ"), Master(
+				"Master", 9, "CgkI4pfA4J4KEAIQCg"), GrandMaster("Grandmaster",
+				10, "CgkI4pfA4J4KEAIQCw");
 
 		public LevelName next() {
 			LevelName[] values = LevelName.values();

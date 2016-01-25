@@ -45,6 +45,7 @@ import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
+import com.cherokeelessons.util.LocalLeaderboard;
 
 public class MainScreen implements Screen, InputProcessor {
 
@@ -334,6 +335,8 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
+					String tag = info.level.getEnglish()+"\t"+info.settings.name;
+					new LocalLeaderboard(BoundPronouns.getPrefs()).lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, noop_success);
 				}
 			}
 			if (blank) {
