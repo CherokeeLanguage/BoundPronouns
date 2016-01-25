@@ -90,7 +90,7 @@ public class GameServices implements GooglePlayGameServices {
 	}
 	
 
-	public static String APP_NAME = "CherokeeBoundPronouns/1.92";
+	public static String APP_NAME = "CherokeeBoundPronouns/332095";
 
 	public static interface PlatformInterface {
 		public static final String USER = "cherokee-bound-pronouns-332095-restapi";
