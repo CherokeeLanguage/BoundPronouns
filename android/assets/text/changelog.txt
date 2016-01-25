@@ -1,3 +1,8 @@
+1.92
+
+Switch to local only leaderboard as the leaderboard service that was being used doesn't work correctly.
+Misc bug fixes.
+
 1.91
 
 libGDX 1.7.1
