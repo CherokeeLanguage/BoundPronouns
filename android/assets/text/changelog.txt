@@ -1,6 +1,6 @@
 2.01
 
-Removed plural "climbing" cards as not needed for pronoun learning.
+Removed plural object "climbing" cards as not needed for pronoun learning.
 Removed incorrect usage of any verb ending in ᎡᏍᏗ for immeidate stem. They aren't really immediate stems.
 Fixed definitions to correctly match literal meaning of commands that end with the suffix ᎡᏍᏗ.
 
