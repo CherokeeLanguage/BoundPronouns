@@ -1,6 +1,8 @@
 package com.cherokeelessons.bp;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -8,9 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -23,11 +22,11 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 46;
+	public static int version = 50;
 
 	private JsonConverter json = new JsonConverter();
-	private List<CSVRecord> pronouns = null;
-	private List<CSVRecord> challenges = null;
+	private List<String[]> pronouns = null;
+	private final List<String[]> challenges = new ArrayList<>();
 	private final Deck deck;
 	private String prevLatin = "";
 	private String prevChr = "";
@@ -105,8 +104,13 @@ public class BuildDeck implements Runnable {
 				}
 				dest.delete();
 			}
-			if (pronouns == null) {
-				init();
+			if (pronouns==null) {
+				try {
+					init();
+				} catch (IOException e) {
+					e.printStackTrace();
+					throw new RuntimeException(e);
+				}
 				break work;
 			}
 			if (challenges.size() != 0) {
@@ -118,12 +122,12 @@ public class BuildDeck implements Runnable {
 				Gdx.app.postRunnable(save);
 				return;
 			}
-			Iterator<CSVRecord> irec = pronouns.iterator();
-			while (irec.hasNext()) {
-				CSVRecord record = irec.next();
-				irec.remove();
-				String chr = record.get(1);
-				String latin = record.get(2);
+			Iterator<String[]> ipronoun = pronouns.iterator();
+			while (ipronoun.hasNext()) {
+				String[] pronounRecord = ipronoun.next();
+				ipronoun.remove();
+				String chr = pronounRecord[1];
+				String latin = pronounRecord[2];
 				/*
 				 * Strip out "[" and "]" that are in the reflexive forms for
 				 * pronoun card challenges ...
@@ -131,9 +135,9 @@ public class BuildDeck implements Runnable {
 				chr = chr.replace("[", "").replace("]", "");
 				latin = latin.replace("[", "").replace("]", "");				
 				setStatus("Create pronoun card for " + chr);
-				String defin = record.get(3) + " + " + record.get(4);
-				if (StringUtils.isBlank(record.get(3))) {
-					String tmp = record.get(4);
+				String defin = pronounRecord[3] + " + " + pronounRecord[4];
+				if (StringUtils.isBlank(pronounRecord[3])) {
+					String tmp = pronounRecord[4];
 					passive: {
 						defin = tmp;
 						if (tmp.equalsIgnoreCase("he")) {
@@ -182,8 +186,8 @@ public class BuildDeck implements Runnable {
 		Set<String> vtypes = new HashSet<String>();
 		Set<String> ptypes = new HashSet<String>();
 		long tick = System.currentTimeMillis();
-		Iterator<CSVRecord> irec = challenges.iterator();
-		while (irec.hasNext()) {
+		final Iterator<String[]> ichallenge = challenges.iterator();
+		while (ichallenge.hasNext()) {
 			/*
 			 * Breathe...
 			 */
@@ -191,10 +195,10 @@ public class BuildDeck implements Runnable {
 				// game.log(this, "buildDeck#breathe-conjugating");
 				return;
 			}
-			CSVRecord challenge = irec.next();
-			irec.remove();
+			String[] challenge = ichallenge.next();
+			ichallenge.remove();
 			vtypes.clear();
-			vtypes.addAll(Arrays.asList(challenge.get(0).split(",\\s*")));
+			vtypes.addAll(Arrays.asList(challenge[0].split(",\\s*")));
 			boolean v_g3rd = false;
 			if (vtypes.contains("g")) {
 				v_g3rd = true;
@@ -204,14 +208,14 @@ public class BuildDeck implements Runnable {
 				vtypes.remove("xde");
 				vtypes.add("xdi");
 			}
-			boolean vSetB = challenge.get(3).startsWith("u")
-					|| challenge.get(3).startsWith("ụ")
-					|| challenge.get(3).startsWith("j");
-			String vroot_set = challenge.get(4);
-			String vroot_chr_set = challenge.get(2);
-			String vdef_active = challenge.get(5);
-			String vdef_passive = challenge.get(6);
-			String vdef_objects = challenge.get(7);
+			boolean vSetB = challenge[3].startsWith("u")
+					|| challenge[3].startsWith("ụ")
+					|| challenge[3].startsWith("j");
+			String vroot_set = challenge[4];
+			String vroot_chr_set = challenge[2];
+			String vdef_active = challenge[5];
+			String vdef_passive = challenge[6];
+			String vdef_objects = challenge[7];
 			String vroot_h = StringUtils.substringBefore(vroot_set, ",")
 					.intern();
 			String vroot_h_chr = StringUtils
@@ -246,19 +250,19 @@ public class BuildDeck implements Runnable {
 			String vgroup = vroot_h_chr;
 
 			setStatus("Conjugating: " + vroot_h);
-			Iterator<CSVRecord> ipro = pronouns.iterator();
+			final Iterator<String[]> ipro = pronouns.iterator();
 			while (ipro.hasNext()) {
-				CSVRecord pronoun = ipro.next();
-				boolean pSetB = pronoun.get(5).equalsIgnoreCase("b");
-				boolean pSetA = pronoun.get(5).equalsIgnoreCase("a");
+				String[] pronoun = ipro.next();
+				boolean pSetB = pronoun[5].equalsIgnoreCase("b");
+				boolean pSetA = pronoun[5].equalsIgnoreCase("a");
 				if (pSetB && !vSetB) {
 					continue;
 				}
 				if (pSetA && vSetB) {
 					continue;
 				}
-				String vtmode = pronoun.get(0);
-				String syllabary = pronoun.get(1);
+				String vtmode = pronoun[0];
+				String syllabary = pronoun[1];
 				ptypes.clear();
 				ptypes.addAll(Arrays.asList(vtmode.split(",\\s*")));
 
@@ -282,15 +286,15 @@ public class BuildDeck implements Runnable {
 				}
 
 				d.chr = syllabary;
-				d.latin = pronoun.get(2);
+				d.latin = pronoun[2];
 				d.def = "";
 
 				String pgroup = d.chr;
 
 				if (v_imp || v_inf) {
-					if (!StringUtils.isBlank(pronoun.get(6))) {
-						d.chr = pronoun.get(6);
-						d.latin = pronoun.get(7);
+					if (!StringUtils.isBlank(pronoun[6])) {
+						d.chr = pronoun[6];
+						d.latin = pronoun[7];
 					}
 				}
 
@@ -456,8 +460,8 @@ public class BuildDeck implements Runnable {
 				doSyllabaryConsonentVowelFixes(d);
 
 				d.latin = d.latin.toLowerCase().intern();
-				String subj = pronoun.get(3);
-				String obj = pronoun.get(4);
+				String subj = pronoun[3];
+				String obj = pronoun[4];
 
 				if (!StringUtils.isBlank(subj) && isPluralSubj(subj)) {
 					if (vtypes.contains("xde")) {
@@ -504,7 +508,7 @@ public class BuildDeck implements Runnable {
 					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
 						d.def = d.def.replaceFirst("^[hH]e ",
-								pronoun.get(3) + " ").intern();
+								pronoun[3] + " ").intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
@@ -922,27 +926,23 @@ public class BuildDeck implements Runnable {
 
 	}
 
-	private void init() {
-		FileHandle csv = Gdx.files.internal("csv/pronouns-list.csv");
-		CSVParser parse_pronouns = null;
-		try {
-			parse_pronouns = CSVParser.parse(csv.readString("UTF-8"),
-					CSVFormat.RFC4180);
-			pronouns = parse_pronouns.getRecords();
-		} catch (IOException e) {
-			game.err(this, e.getMessage(), e);
-			return;
-		} finally {
-			try {
-				parse_pronouns.close();
-			} catch (IOException e) {
+	private void init() throws IOException {
+		pronouns=new ArrayList<>();
+		FileHandle csv = Gdx.files.internal("csv/pronouns-list-tab.csv");
+		try (BufferedReader reader = csv.reader(16*1024,"UTF-8")) {
+			for (String line=reader.readLine(); line!=null; line = reader.readLine()) {
+				String[] copyOf = Arrays.copyOf(line.split("\t"), 8);
+				for (int i=0; i<copyOf.length; i++) {
+					copyOf[i]=(copyOf[i]==null)?"":copyOf[i];
+				}
+				pronouns.add(copyOf);
 			}
 		}
-		Iterator<CSVRecord> ipro = pronouns.iterator();
+		Iterator<String[]> ipro=pronouns.iterator();
 		while (ipro.hasNext()) {
-			CSVRecord pronoun = ipro.next();
-			String vtmode = StringUtils.strip(pronoun.get(0));
-			String syllabary = StringUtils.strip(pronoun.get(1));
+			String[] pronoun=ipro.next();
+			String vtmode = StringUtils.strip(pronoun[0]);
+			String syllabary = StringUtils.strip(pronoun[1]);
 			if (StringUtils.isBlank(vtmode)) {
 				// game.log(this, "Skipping: "+vtmode+" - "+syllabary);
 				ipro.remove();
@@ -959,25 +959,21 @@ public class BuildDeck implements Runnable {
 				continue;
 			}
 		}
-		csv = Gdx.files.internal("csv/challenges.csv");
-		CSVParser parse_challenges = null;
-		try {
-			parse_challenges = CSVParser.parse(csv.readString("UTF-8"),
-					CSVFormat.RFC4180);
-			challenges = parse_challenges.getRecords();
-		} catch (IOException e) {
-			game.err(this, e.getMessage(), e);
-			return;
-		} finally {
-			try {
-				parse_challenges.close();
-			} catch (IOException e) {
+		csv = Gdx.files.internal("csv/challenges-tab.csv");
+		try (BufferedReader reader = csv.reader(16*1024,"UTF-8")) {
+			for (String line=reader.readLine(); line!=null; line = reader.readLine()) {
+				String[] copyOf = Arrays.copyOf(line.split("\t"),9);
+				for (int i=0; i<copyOf.length; i++) {
+					copyOf[i]=(copyOf[i]==null)?"":copyOf[i];
+				}
+				challenges.add(copyOf);
 			}
 		}
-		Iterator<CSVRecord> ichallenge = challenges.iterator();
+		
+		Iterator<String[]> ichallenge = challenges.iterator();
 		while (ichallenge.hasNext()) {
-			CSVRecord challenge = ichallenge.next();
-			String vtmode = StringUtils.strip(challenge.get(0));
+			String[] challenge = ichallenge.next();
+			String vtmode = StringUtils.strip(challenge[0]);
 			if (StringUtils.isBlank(vtmode)) {
 				// game.log(this, "Skipping: "+vtmode);
 				ichallenge.remove();

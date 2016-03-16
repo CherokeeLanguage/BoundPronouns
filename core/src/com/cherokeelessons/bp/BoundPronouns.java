@@ -1,14 +1,12 @@
 package com.cherokeelessons.bp;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Game;
@@ -358,27 +356,22 @@ public class BoundPronouns extends Game {
 		if (pronouns.size() != 0) {
 			return new ArrayList<DataSet>(pronouns);
 		}
-		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list.csv");
-		List<CSVRecord> records;
-		CSVParser parse = null;
-		try {
-			parse = CSVParser.parse(csvlist.readString("UTF-8"),
-					CSVFormat.RFC4180);
-			records = parse.getRecords();
-		} catch (IOException e) {
-			return null;
-		} finally {
-			try {
-				parse.close();
-			} catch (IOException e) {
+		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list-tab.csv");
+		List<String[]> records=new ArrayList<>();
+		try (BufferedReader reader=csvlist.reader(1024, "UTF-8")) {
+			for (String line=reader.readLine(); line!=null; line=reader.readLine()) {
+				records.add(line.split("\t"));
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 
-		Iterator<CSVRecord> ipro = records.iterator();
+		Iterator<String[]> ipro = records.iterator();
 		while (ipro.hasNext()) {
-			CSVRecord pronoun = ipro.next();
-			String vtmode = StringUtils.strip(pronoun.get(0));
-			String syllabary = StringUtils.strip(pronoun.get(1));
+			String[] pronoun = ipro.next();
+			String vtmode = StringUtils.strip(pronoun[0]);
+			String syllabary = StringUtils.strip(pronoun[1]);
 			if (StringUtils.isBlank(vtmode)) {
 				ipro.remove();
 				continue;
@@ -395,19 +388,19 @@ public class BoundPronouns extends Game {
 
 		String prevLatin = "";
 		String prevChr = "";
-		for (CSVRecord record : records) {
-			String vtmode = record.get(0);
+		for (String[] record : records) {
+			String vtmode = record[0];
 			if (StringUtils.isBlank(vtmode)) {
 				continue;
 			}
-			String chr = record.get(1);
+			String chr = record[1];
 			if (chr.startsWith("#")) {
 				continue;
 			}
-			String latin = record.get(2);
-			String defin = record.get(3) + " + " + record.get(4);
-			if (StringUtils.isBlank(record.get(3))) {
-				String tmp = record.get(4);
+			String latin = record[2];
+			String defin = record[3] + " + " + record[4];
+			if (StringUtils.isBlank(record[3])) {
+				String tmp = record[4];
 				passive: {
 					if (tmp.equalsIgnoreCase("he")) {
 						defin = tmp + " (being)";

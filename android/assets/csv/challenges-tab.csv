@@ -1,0 +1,76 @@
+vi, a	ᎠᏗᎭ	Ꭰ¹Ꮧ̣²Ꭽ, Ꭰ¹Ꮧ̣²Ꭽ	a¹dị²ha	ạ²dị²ha, ạ²di³ɂa	he is saying		
+	ᎦᏗᎠ	Ꭰ¹Ꮧ̣²Ꭽ	gạ²di³ɂa	ạ²di³ɂa	I am saying		
+vi, u	ᎤᏛᏅᎢ	Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ, Ꭰ̣²Ꮫ¹Ꮕ²³Ꭲ	u¹dv²hnv²³ɂi	ạ²dv²hnv²³ɂi, ạ²dv¹hnv²³ɂi	he said a while ago		
+vi, a	ᎠᏗᏍᎪᎢ	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	a¹di²³sgo³ɂi	ạ²di²³sgo³ɂi	he is often saying		
+vi, imp, a	ᎭᏓ	Ꭰ̣²Ꮣ	hạ²da	ạ²da	let him say		
+vi, a	ᎭᏓ²	Ꭰ̣²Ꮣ²	hạ²da²	ạ²da²	he said recently		
+vi, u, inf	ᎤᏘᏗ	Ꭰ̣Ꮨ͓²Ꮧ	ut²di	ạt²di	for him to say it		
+vti, a	ᎠᎩᎠ	Ꭹ̣³Ꭰ	a¹gị³ɂa	gị³ɂa	he is eating x		a solid food, solid foods
+	ᏥᎩᎠ	Ꭹ̣³Ꭰ	jị²gị³ɂa	gị³ɂa	I am eating x		a solid food, solid foods
+vti, u	ᎤᎬᎢ	Ꭼ²³Ꭲ	u¹gv²³ɂi	gv²³ɂi	he ate x a while ago		a solid food, solid foods
+vti, a	ᎠᎩᏍᎪᎢ	Ꭹ³ᏍᎪ³Ꭲ	a¹gi³sgo³ɂi	gi³sgo³ɂi	he often is eating x		a solid food, solid foods
+vti, imp	ᎯᎦ	Ꭶ	hị²ga	ga	let him eat x		a solid food, solid foods
+vti, a	ᎯᎦ	Ꭶ²	hị²ga²	ga²	he ate x recently		a solid food, solid foods
+vti, u, inf	ᎤᎩᏍᏗ	Ꭹ¹ᏍᏗ	u²gi¹sdi	gi¹sdi	for him to eat x		a solid food, solid foods
+vti, vta, a	ᎠᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	a¹gowh²tị³ha	gowh²tị³ha	he is seeing x	He is being seen	
+	ᏥᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	ji²gowh¹tị³ha	gowh¹tị³ha	I am seeing x	I am being seen	
+vti, vta, u	ᎤᎪᎲᎢ	Ꭺ²Ꮂ²³Ꭲ	u¹go²hv²³ɂi	go²hv²³ɂi	he saw x a while ago	He was seen a while ago	
+vti, vta, a	ᎠᎪᏩᏘᏍᎪᎢ	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	a¹gowh²ti²³sgọ³ɂi	gowh²ti²³sgọ³ɂi	he is often seeing x	He is often seen	
+vti, vta, imp, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ	hi²go¹wah²ta	go¹wah²ta	let him see x	Let him be seen	
+vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he saw x recently	he was seen recently	
+vti, vta, u, inf	ᎤᎪᏩᏛᏗ	ᎪᏩ͓²Ꮫ³Ꮧ	u²gowh²tvh³di	gowh²tvh³di	for him to see x	For him to be seen	
+vti, vta, u	ᎤᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	u¹du²lị³ha	ạ²du²lị³ha	He is wanting x	He is wanted	
+	ᎠᏆᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	a¹gwạ²du²lị³ha	ạ²du²lị³ha	I am wanting x	I am wanted	
+vti, vta, u	ᎤᏚᎸᎲᎢ	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	u¹du²lv²hv²³ɂi	ạ²du²lv²hv²³ɂi	He wanted x a while ago	He was wanted a while ago	
+vti, vta, u	ᎤᏚᎵᏍᎪᎢ	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	u¹du²li²³sgọ³ɂi	ạ²du²li²³sgọ³ɂi	He often is wanting x	He is often wanted	
+vti, vta, imp, u	ᏣᏚᎳ	Ꭰ̣²Ꮪ²³Ꮃ	jạ²du²³la	ạ²du²³la	Let him want x	Let him be wanted	
+vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he wanted x recently	he was wanted recently	
+vti, vta, u, inf	ᎤᏚᎸᏗ	Ꭰ̣²ᏚᎸ͓²Ꮧ	u²duhl²di	ạ²duhl²di	For him to want x	For him to be wanted	
+vi, a	ᎡᎦ	Ꭱ³Ꭶ	e³ga	e³ga	he is going		
+	ᎨᎦ	Ꭱ³Ꭶ	ge³ga	e³ga	I am going		
+vi, u	ᎤᏪᏅᏒᎢ	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	u¹we²nv³sv²³ɂi	e²nv³sv²³ɂi	He went a while ago		
+vi, a	ᎡᎪᎢ	Ꭱ³Ꭺ̣³Ꭲ	e³gọ³ɂi	e³gọ³ɂi	He often is going		
+vi, imp, a	ᎮᎾ	Ꭱ¹Ꮎ	he¹na	e¹na	Let him go		
+vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he went recently		
+vi, u, inf	ᎤᏪᏅᏍᏗ	Ꭱ²Ꮕ¹ᏍᏗ	ụ²we²nv¹sdi	e²nv¹sdi	For him to go		
+vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		a solid object, solid objects
+	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		a solid object, solid objects
+vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		a solid object, solid objects
+vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He often has x		a solid object, solid objects
+vti, imp, u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	Let him have x		a solid object, solid objects
+vti, u	ᏣᎮᏍᏓ	Ꭾ³ᏍᏓ²	jạ²he³sda²	he³sda²	he had x recently		a solid object, solid objects
+vi, xde, u	ᎤᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	u¹yo³sị²ha	yo³sị²ha	He is hungry		
+	ᎠᎩᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	a¹gị²yo³sị²ha	yo³sị²ha	I am hungry		
+vi, xde, u	ᎤᏲᏏᏍᎬᎢ	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	u¹yo³si²sgv²³ɂi	yo³si²sgv²³ɂi	He was hungry a while ago		
+vi, xde, u	ᎤᏲᏏᏍᎪᎢ	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	u¹yo³si²sgo³ɂi	yo³si²sgo³ɂi	He often is hungry		
+vi, xdi, imp, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ	jạ²yo¹si²³sa	yo¹si²³sa	Let him be hungry		
+vi, xde, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ²	jạ²yo¹si²³sa²	yo¹si²³sa²	he was hungry recently		
+vi, xdi, u, inf	ᎤᏲᏏᏐᏗ	Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ	u²yo¹si²³soh³di	yo¹si²³soh³di	For him to be hungry		
+vi, xde, u	ᎤᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	u¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	He is thirsty		
+	ᎠᎩᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	ak¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	I am thirsty		
+vi, xde, u	ᎤᏔᏕᎦᏅᎢ	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	u¹tạ²de²ga³²nv²³ɂi	tạ²de²ga³²nv²³ɂi	He was thirsty a while ago		
+vi, xde, u	ᎤᏔᏕᎩᏍᎪᎢ	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	u¹tạ²de²gi³sgo³ɂi	tạ²de²gi³sgo³ɂi	He is often thirsty		
+vi, xdi, imp, u	ᏣᏔᏕᎬᎦ	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ	tstạ²de²gv¹ga	tạ²de²gv¹ga	Let him be thirsty		
+vi, xde, u	ᏣᏔᏕᎬᎦ²	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	tstạ²de²gv¹ga²	tạ²de²gv¹ga²	he was thirsty recently		
+vi, xdi, u, inf	ᎤᏔᏕᎪᏗ	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	u²tạ²de²³go³²di	tạ²de²³go³²di	For him to be thirsty		
+vi, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he understand[s] x	He is being understood	
+	ᎪᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	go²li¹ga	o²li¹ga	I understand[s] x	I am being understood	
+vi, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago	
+vi, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often understand[s] x	He is often being understood	
+vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood	
+vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he understood x recently	He was understood recently	
+vi, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood	
+vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he recognize[s] x	He is being recognized	
+	ᏣᏲᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	ji²yo²li¹ga	o²li¹ga	I recognize[s] x	I am being recognized	
+vta, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he recognized x a while ago	He was recognized a while ago	
+vta, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often recognize[s] x	He is often recognized	
+vta, g, imp	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hi²yo²li¹gi	ohl²gi, o²li¹gi	let him recognize x	Let him be recognized	
+vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recognized x recently	He was recognized recently	
+vta, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to recognize x	For him to be recognized	
+vti, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x		
+	ᏥᎴᎦ	³Ꮄ¹Ꭶ	jịɂ³le¹ga	ɂ³le¹ga	I am climbing x		
+vti, u	ᎤᎸᏒᎢ	Ꮈ³²Ꮢ²³Ꭲ	u¹lv³²sv²³ɂi	lv³²sv²³ɂi	he climbed x a while ago		
+vti, g	ᎦᎴᎪᎢ	³Ꮄ¹Ꭺ³Ꭲ	gạɂ³le¹go³ɂi	ɂ³le¹go³ɂi	he often is climbing x		
+vti, g, imp	ᎯᎷᎦ	²Ꮇ¹Ꭶ	hịɂ²lu¹ga	ɂ²lu¹ga	let him climb x		
+vti, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he climbed x recently		
+vti, u, inf	ᎤᎸᏍᏗ	Ꮈ¹ᏍᏗ	u²lv¹sdi	lv¹sdi	for him to climb x		

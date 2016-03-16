@@ -16,7 +16,7 @@ allprojects {
 	       downloadSources=true
 	    }
 	}
-    version = '1.92'
+    version = '2.00'
     ext {
         appName = 'BoundPronouns'
         gdxVersion = '1.7.1'
@@ -100,7 +100,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         
-        compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
@@ -162,7 +161,6 @@ project(":ios") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
         
-        compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
@@ -229,7 +227,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         
-        compile 'org.apache.commons:commons-csv:1.1'
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
     }

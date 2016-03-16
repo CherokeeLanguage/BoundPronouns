@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deck {
-	public int version=389;
+	public int version=390;
 	public int size=0;
 	public List<Card> cards;
 	
