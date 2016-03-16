@@ -20,9 +20,9 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
 
-	private static final boolean forceRebuild = false;
+	private static final boolean forceRebuild = true;
 
-	public static int version = 54;
+	public static int version = 60;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -749,6 +749,10 @@ public class BuildDeck implements Runnable {
 	public void definitionEnglishFixer(DataSet d) {
 		d.def = StringUtils.left(d.def, 1).toUpperCase()
 				+ StringUtils.substring(d.def, 1);
+		
+		d.def = d.def.replaceAll("(We .*?\\ ) is ", "$1 are ").intern();
+		d.def = d.def.replaceAll("(We .*?\\ ) was ", "$1 were ").intern();
+		
 		d.def = d.def.replace("and I is", "and I are").intern();
 		d.def = d.def.replace("I is", "I am").intern();
 		d.def = d.def.replace("You one is", "You one are").intern();
@@ -787,24 +791,37 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {
+			
+			d.def = d.def.replace("For we (he ", "For us (him ").intern();
+			d.def = d.def.replace("For we (they ", "For us (them ").intern();
+			d.def = d.def.replace("For we (you ", "For us (you ").intern();
+			
 			d.def = d.def.replace("For he ", "For him ").intern();
 			d.def = d.def.replace("For He ", "For him ").intern();
-			d.def = d.def.replace("For I ", "For me ").intern();
 			d.def = d.def.replace("For they ", "For them ").intern();
 			d.def = d.def.replace("For They ", "For them ").intern();
+			d.def = d.def.replace("For I ", "For me ").intern();
 			d.def = d.def.replace("and I ", "and me ").intern();
 			d.def = d.def.replace("For You ", "For you ").intern();
 		}
 
 		if (d.def.startsWith("Let")) {
+			
+			d.def = d.def.replace("Let we (he ", "Let us (him ").intern();
+			d.def = d.def.replace("Let we (they ", "Let us (them ").intern();
+			d.def = d.def.replace("Let we (you ", "Let us (you ").intern();
+			
 			d.def = d.def.replace("Let he ", "Let him ").intern();
 			d.def = d.def.replace("Let He ", "Let him ").intern();
-			d.def = d.def.replace("Let I ", "Let me ").intern();
 			d.def = d.def.replace("Let they ", "Let them ").intern();
+			d.def = d.def.replace("Let You ", "Let you ").intern();
+			d.def = d.def.replace("Let I ", "Let me ").intern();
 			d.def = d.def.replace("Let They ", "Let them ").intern();
 			d.def = d.def.replace("and I ", "and me ").intern();
 			d.def = d.def.replace("Let You ", "Let you ").intern();
 		}
+		
+		d.def = d.def.replaceAll("([Uu]s \\(.*? and) I\\)", "$1 me)").intern();
 	}
 
 	private void addDiPrefix(DataSet d, boolean aStem) {
