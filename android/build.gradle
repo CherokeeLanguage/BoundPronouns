@@ -1,5 +1,5 @@
 android {
-    buildToolsVersion "21.1.2"
+    buildToolsVersion "23.0.2"
     compileSdkVersion 21
     sourceSets {
         main {
@@ -19,7 +19,19 @@ android {
 	    exclude 'META-INF/LICENSE'
 	    exclude 'META-INF/NOTICE'
 	  }
-    
+    signingConfigs {
+        release {
+            storeFile file("/home/mjoyner/Keystore")
+            storePassword "Wayawaya359"
+            keyAlias "cherokeelessons.apk"
+            keyPassword "Wayawaya359"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 // needed to add JNI shared libraries to APK when compiling on CLI
