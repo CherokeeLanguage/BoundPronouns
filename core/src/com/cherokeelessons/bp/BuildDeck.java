@@ -791,6 +791,7 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {
+			d.def = d.def.replace("For We ", "For we ").intern();
 			
 			d.def = d.def.replace("For we (he ", "For us (him ").intern();
 			d.def = d.def.replace("For we (they ", "For us (them ").intern();
@@ -806,6 +807,7 @@ public class BuildDeck implements Runnable {
 		}
 
 		if (d.def.startsWith("Let")) {
+			d.def = d.def.replace("Let We ", "Let we ").intern();
 			
 			d.def = d.def.replace("Let we (he ", "Let us (him ").intern();
 			d.def = d.def.replace("Let we (they ", "Let us (them ").intern();
