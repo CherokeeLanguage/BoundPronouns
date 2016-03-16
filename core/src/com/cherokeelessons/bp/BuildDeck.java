@@ -20,7 +20,7 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
 
-	private static final boolean forceRebuild = true;
+	private static final boolean forceRebuild = false;
 
 	public static int version = 60;
 
