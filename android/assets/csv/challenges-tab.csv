@@ -38,7 +38,6 @@ vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		a solid object, solid objects
 vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		a solid object, solid objects
 vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He often has x		a solid object, solid objects
 vti,  u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		a solid object, solid objects
-vti, u	ᏣᎮᏍᏓ	Ꭾ³ᏍᏓ²	jạ²he³sda²	he³sda²	he had x recently		a solid object, solid objects
 vi, xde, u	ᎤᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	u¹yo³sị²ha	yo³sị²ha	He is hungry		
 	ᎠᎩᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	a¹gị²yo³sị²ha	yo³sị²ha	I am hungry		
 vi, xde, u	ᎤᏲᏏᏍᎬᎢ	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	u¹yo³si²sgv²³ɂi	yo³si²sgv²³ɂi	He was hungry a while ago		
@@ -67,10 +66,10 @@ vta, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go
 vta, g, imp	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hi²yo²li¹gi	ohl²gi, o²li¹gi	let him recognize x	Let him be recognized	
 vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recognized x recently	He was recognized recently	
 vta, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to recognize x	For him to be recognized	
-vti, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x		
+vi, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x		
 	ᏥᎴᎦ	³Ꮄ¹Ꭶ	jịɂ³le¹ga	ɂ³le¹ga	I am climbing x		
-vti, u	ᎤᎸᏒᎢ	Ꮈ³²Ꮢ²³Ꭲ	u¹lv³²sv²³ɂi	lv³²sv²³ɂi	he climbed x a while ago		
-vti, g	ᎦᎴᎪᎢ	³Ꮄ¹Ꭺ³Ꭲ	gạɂ³le¹go³ɂi	ɂ³le¹go³ɂi	he often is climbing x		
-vti, g, imp	ᎯᎷᎦ	²Ꮇ¹Ꭶ	hịɂ²lu¹ga	ɂ²lu¹ga	let him climb x		
-vti, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he climbed x recently		
-vti, u, inf	ᎤᎸᏍᏗ	Ꮈ¹ᏍᏗ	u²lv¹sdi	lv¹sdi	for him to climb x		
+vi, u	ᎤᎸᏒᎢ	Ꮈ³²Ꮢ²³Ꭲ	u¹lv³²sv²³ɂi	lv³²sv²³ɂi	he climbed x a while ago		
+vi, g	ᎦᎴᎪᎢ	³Ꮄ¹Ꭺ³Ꭲ	gạɂ³le¹go³ɂi	ɂ³le¹go³ɂi	he often is climbing x		
+vi, g, imp	ᎯᎷᎦ	²Ꮇ¹Ꭶ	hịɂ²lu¹ga	ɂ²lu¹ga	let him climb x		
+vi, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he climbed x recently		
+vi, u, inf	ᎤᎸᏍᏗ	Ꮈ¹ᏍᏗ	u²lv¹sdi	lv¹sdi	for him to climb x		
