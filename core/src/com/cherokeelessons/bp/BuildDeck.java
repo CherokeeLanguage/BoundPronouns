@@ -20,7 +20,7 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
 
-	private static final boolean forceRebuild = false;
+	private static final boolean forceRebuild = true;
 
 	public static int version = 62;
 
@@ -199,6 +199,27 @@ public class BuildDeck implements Runnable {
 			ichallenge.remove();
 			vtypes.clear();
 			vtypes.addAll(Arrays.asList(challenge[0].split(",\\s*")));
+			
+			if (vtypes.contains("n")){
+				String term = challenge[2];
+				setStatus("Adding non-conjugated term: " + term);
+				Card c = getCardByChallenge(term, deck);
+				if (c == null) {
+					c = new Card();
+					deck.cards.add(c);
+				}
+				c.vgroup = term;
+				c.pgroup = "";
+				//chr
+				c.challenge.add(term);
+				//latin
+				c.challenge.add(challenge[3]);
+				for (String def: challenge[5].split(",")){
+					c.answer.add(StringUtils.strip(def));
+				}
+				continue;
+			}
+			
 			boolean v_g3rd = false;
 			if (vtypes.contains("g")) {
 				v_g3rd = true;
@@ -422,39 +443,43 @@ public class BuildDeck implements Runnable {
 					}
 
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					//d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
-							.intern();
+					//d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 				}
 
 				if (aStem) {
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					//d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
-							.intern();
+					//d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 
 				}
 
 				if (eStem) {
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					//d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
-							.intern();
+					//d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 				}
 
 				if (vStem) {
 					d.chr += vroot_chr;
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					//d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 
 					d.latin += vroot;
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "")
-							.intern();
+					//d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 				}
 
 				doSyllabaryConsonentVowelFixes(d);
