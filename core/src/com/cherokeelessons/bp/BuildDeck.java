@@ -352,7 +352,7 @@ public class BuildDeck implements Runnable {
 					d.latin = StringUtils.substringBefore(d.latin, "-")
 							.intern();
 					d.latin = StringUtils.strip(d.latin).intern();
-
+					
 				} else {
 					/*
 					 * select consonent stem pronoun
@@ -414,6 +414,10 @@ public class BuildDeck implements Runnable {
 					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
 				}
 				if (vStem) {
+					if (d.chr.equals("Ꭴ¹Ꮹ͓")){
+						vroot.setCharAt(0, 'a');
+						vroot_chr.setCharAt(0, 'Ꭰ');
+					}
 					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
 					d.chr = d.chr.replace("Ꮣ͓Ꭵ", "Ꮫ").intern();
 					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
@@ -520,6 +524,22 @@ public class BuildDeck implements Runnable {
 				d.def = null;
 				if (!StringUtils.isEmpty(subj)) {
 					d.def = vdef_active;
+					if (d.def.startsWith("Himself") || d.def.startsWith("himself")) {
+						d.def = d.def.replaceFirst("^[Hh]im",
+								pronoun[3]+"-").intern();
+						d.def = d.def.replace("I-self", "Myself");
+						d.def = d.def.replace("You one-self", "Yourself");
+						d.def = d.def.replace("He-self", "Himself");
+						d.def = d.def.replace("We (you one and I)-self", "Ourselves (yourself and myself)");
+						d.def = d.def.replace("We (he and I)-self", "Ourselves (himself and myself)");
+						d.def = d.def.replace("We (you all and I)-self", "Ourselves (your all selves and myself)");
+						d.def = d.def.replace("We (they and I)-self", "Ourselves (themselves and myself)");
+						d.def = d.def.replace("We (they and I)-self", "Ourselves (themselves and myself)");
+						d.def = d.def.replace("You two-self", "Your two selves");
+						d.def = d.def.replace("You all-self", "Your all selves");
+						d.def = d.def.replace("They-self", "Themselves");
+						d.def = d.def.replace("They-self", "Themselves");
+					}
 					if (subj.contains("I")) {
 						d.def = d.def.replace("[s]", "").intern();
 					}
