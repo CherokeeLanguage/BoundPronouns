@@ -20,9 +20,9 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
 
-	private static final boolean forceRebuild = true;
+	private static final boolean forceRebuild = false;
 
-	public static int version = 62;
+	public static int version = 63;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;

@@ -1,3 +1,8 @@
+2.0.4
+
+Added: ᏂᎯ, ᎠᏴ, ᎯᎠ, ᎥᏍᎩᎾ, ᎤᏩ²³Ꮜ, ᎤᏩ⁴Ꮜ, ᎠᎴ ᎤᏤᎵᎢ to flashcards for training.
+Fixed issue where tone marks were being removed erronously for certain flashcards.
+
 2.0.3
 
 Fix errors in English sentence generation.
