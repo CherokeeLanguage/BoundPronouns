@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 63;
+	public static int version = 65;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -418,11 +418,6 @@ public class BuildDeck implements Runnable {
 					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
 				}
 				if (vStem) {
-					if (d.chr.equals("Ꭴ¹Ꮹ͓")){
-						d.chr="Ꭴ̣²Ꮹ͓";
-						vroot.setCharAt(0, 'a');
-						vroot_chr.setCharAt(0, 'Ꭰ');
-					}
 					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
 					d.chr = d.chr.replace("Ꮣ͓Ꭵ", "Ꮫ").intern();
 					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
@@ -461,14 +456,27 @@ public class BuildDeck implements Runnable {
 				}
 
 				if (aStem) {
-					d.chr += vroot_chr;
-					//d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+					u_check: {
+						if (d.chr.equals("Ꭴ¹Ꮹ͓")) {
+							d.chr = "Ꭴ" + vroot_chr.substring(1);
+							d.latin = "u" + vroot.substring(1);
+							break u_check;
+						}
+						if (d.chr.equals("Ꮷ²Ꮹ͓")) {
+							d.chr = "Ꮷ" + vroot_chr.substring(1);
+							d.latin = "ju" + vroot.substring(1);
+							break u_check;
+						}
+						if (d.chr.equals("Ꮪ²Ꮹ͓")) {
+							d.chr = "Ꮪ" + vroot_chr.substring(1);
+							d.latin = "du" + vroot.substring(1);
+							break u_check;
+						}
+						d.chr += vroot_chr;
+						d.latin += vroot;
+					}
 					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-
-					d.latin += vroot;
-					//d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-
 				}
 
 				if (eStem||iStem||oStem||uStem) {
@@ -482,12 +490,32 @@ public class BuildDeck implements Runnable {
 				}
 
 				if (vStem) {
+					u_check: {
+					if (d.chr.equals("Ꭴ¹Ꮹ͓")){
+						d.chr = "Ꭴ̣²Ꮹ" + vroot_chr.substring(1);
+						d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+						d.latin = "ụ²wa" + vroot.substring(1);
+						d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+						break u_check;
+					}
+					if (d.chr.equals("Ꮷ²Ꮹ͓")){
+						d.chr = "Ꮷ̣²Ꮹ" + vroot_chr.substring(1);
+						d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+						d.latin = "jụ²wa" + vroot.substring(1);
+						d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+						break u_check;
+					}
+					if (d.chr.equals("Ꮪ²Ꮹ͓")){
+						d.chr = "Ꮪ̣²Ꮹ" + vroot_chr.substring(1);
+						d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+						d.latin = "dụ²wa" + vroot.substring(1);
+						d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+						break u_check;
+					}
 					d.chr += vroot_chr;
-					//d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-
 					d.latin += vroot;
-					//d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
+				}
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
 				}
 
@@ -658,6 +686,9 @@ public class BuildDeck implements Runnable {
 		if (!d.chr.matches(".*" + x + "[ᎠᎡᎢᎣᎤᎥ].*")) {
 			return;
 		}
+		//special case for u + v => uwa
+		d.chr = d.chr.replace("Ꭴ¹Ꮹ͓Ꭵ", "Ꭴ̣²Ꮹ").intern();
+		
 		String set;
 		set = "[Ꭰ-Ꭵ]";
 		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭰ").intern();
