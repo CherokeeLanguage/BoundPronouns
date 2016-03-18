@@ -833,8 +833,8 @@ public class BuildDeck implements Runnable {
 		d.def = StringUtils.left(d.def, 1).toUpperCase()
 				+ StringUtils.substring(d.def, 1);
 		
-		d.def = d.def.replaceAll("(We .*?\\ ) is ", "$1 are ").intern();
-		d.def = d.def.replaceAll("(We .*?\\ ) was ", "$1 were ").intern();
+		d.def = d.def.replaceAll("(We .*?\\)) is ", "$1 are ").intern();
+		d.def = d.def.replaceAll("(We .*?\\)) was ", "$1 were ").intern();
 		
 		d.def = d.def.replace("and I is", "and I are").intern();
 		d.def = d.def.replace("I is", "I am").intern();
