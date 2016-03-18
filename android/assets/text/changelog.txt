@@ -1,3 +1,7 @@
+2.0.5
+
+Fix We/is => We are ...
+
 2.0.4
 
 Added: ᏂᎯ, ᎠᏴ, ᎯᎠ, ᎥᏍᎩᎾ, ᎤᏩ²³Ꮜ, ᎤᏩ⁴Ꮜ, ᎠᎴ ᎤᏤᎵᎢ to flashcards for training.
