@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 65;
+	public static int version = 66;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
