@@ -545,6 +545,9 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		Random r = new Random();
 
+		/*
+		 * genderizer
+		 */
 		private void randomizeSexes(AnswerList answers) {
 			for (Answer answer : answers.list) {
 				if (r.nextBoolean() && answer.answer.contains("himself")) {
@@ -695,6 +698,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
+				removexmarks(displayed_answers);
 				activeCard.tries_remaining--;
 				log.info("challengeCardDialog:setAnswers");
 				challengeCardDialog.setAnswers(tracked_answers,
@@ -729,6 +733,15 @@ public class LearningSession extends ChildScreen implements Screen {
 							}));
 					challengeCardDialog.addAction(updater);
 				}
+			}
+		}
+
+		private void removexmarks(AnswerList displayed_answers) {
+			for (Answer answer: displayed_answers.list) {
+				if (!answer.answer.contains("x")){
+					continue;
+				}
+				answer.answer=answer.answer.replaceAll("\\bx([A-Z].*?)\\b", "$1");
 			}
 		}
 	}

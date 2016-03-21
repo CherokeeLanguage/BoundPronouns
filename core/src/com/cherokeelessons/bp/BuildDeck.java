@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 66;
+	public static int version = 68;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -214,7 +214,7 @@ public class BuildDeck implements Runnable {
 				c.challenge.add(term);
 				//latin
 				c.challenge.add(challenge[3]);
-				for (String def: challenge[5].split(",")){
+				for (String def: challenge[5].split(";")){
 					c.answer.add(StringUtils.strip(def));
 				}
 				continue;

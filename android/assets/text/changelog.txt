@@ -1,3 +1,8 @@
+2.0.6
+
+Added "friend" to train for "reciprocal" usage of bound pronouns.
+Added "mother" and "father" to train for "relationship" usage of bound pronouns.
+
 2.0.5
 
 Fix We/is => We are ...
