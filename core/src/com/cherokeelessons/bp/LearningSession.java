@@ -907,6 +907,14 @@ public class LearningSession extends ChildScreen implements Screen {
 		ONE_DAY_ms = 24l * ONE_HOUR_ms;
 	}
 
+	public static synchronized int getLevenshteinDistanceIgnoreCase(CharSequence s,
+			CharSequence t, int threshold) {
+		return getLevenshteinDistanceIgnoreCase(String.valueOf(s), String.valueOf(t), threshold);
+	}
+	public static synchronized int getLevenshteinDistanceIgnoreCase(String s,
+			String t, int threshold) {
+		return getLevenshteinDistance(s!=null?s.toLowerCase():"",t!=null?t.toLowerCase():"", threshold);
+	}
 	public static synchronized int getLevenshteinDistance(CharSequence s,
 			CharSequence t, int threshold) {
 		if (s == null || t == null) {
@@ -1664,7 +1672,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * on and check next card
 				 */
 
-				int ldistance = getLevenshteinDistance(correct_answer,
+				int ldistance = getLevenshteinDistanceIgnoreCase(correct_answer,
 						wrong_answer, distance);
 				if (ldistance < 1) {
 					continue;
@@ -1774,7 +1782,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (already.contains(tmp_challenge)) {
 					continue;
 				}
-				int ldistance = getLevenshteinDistance(challenge,
+				int ldistance = getLevenshteinDistanceIgnoreCase(challenge,
 						tmp_challenge, distance);
 				if (ldistance < 1) {
 					continue;
