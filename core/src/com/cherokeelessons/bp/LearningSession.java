@@ -554,8 +554,12 @@ public class LearningSession extends ChildScreen implements Screen {
 					answer.answer = answer.answer.replace("He ", "She ");
 					answer.answer = answer.answer.replace(" him", " her");
 				}
+				if (r.nextBoolean() && answer.answer.contains("Himself")) {
+					answer.answer = answer.answer.replace("He ", "She ");
+					answer.answer = answer.answer.replace("Him", "Her");
+				}
 				if (r.nextBoolean() && answer.answer.matches(".*\\b[Hh]is\\b.*")) {
-					answer.answer = answer.answer.replaceFirst("\\b([Hh])is\\b", "$1ers");
+					answer.answer = answer.answer.replaceFirst("\\b([Hh])is\\b", "$1er");
 				}
 				if (r.nextBoolean() && !answer.answer.contains("himself")) {
 					answer.answer = answer.answer.replace("He ", "She ");
