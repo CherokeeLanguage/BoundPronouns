@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 75;
+	public static int version = 76;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -34,7 +34,7 @@ public class BuildDeck implements Runnable {
 
 	private Card getCardByChallenge(String chr, Deck deck) {
 		for (Card card : deck.cards) {
-			if (card.challenge.get(0).equals(chr)) {
+			if (card.challenge.get(0).equalsIgnoreCase(chr)) {
 				return card;
 			}
 		}
@@ -191,7 +191,7 @@ public class BuildDeck implements Runnable {
 			/*
 			 * Breathe...
 			 */
-			if (System.currentTimeMillis() - tick > 25) {
+			if (System.currentTimeMillis() - tick > 100) {
 				// game.log(this, "buildDeck#breathe-conjugating");
 				return;
 			}
