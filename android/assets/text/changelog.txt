@@ -1,3 +1,7 @@
+2.0.9
+
+Card fixes. Change correct/incorrect picker to ignore case.
+
 2.0.8
 
 More English fixes.
