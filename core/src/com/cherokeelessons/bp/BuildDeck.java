@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 69;
+	public static int version = 75;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -557,7 +557,11 @@ public class BuildDeck implements Runnable {
 				d.def = null;
 				if (!StringUtils.isEmpty(subj)) {
 					d.def = vdef_active;
-					if (d.def.startsWith("Himself") || d.def.startsWith("himself")) {
+					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
+						d.def = d.def.replaceFirst("^[hH]e ",
+								pronoun[3] + " ").intern();
+					}
+					if (d.def.contains("self")) {
 						d.def = d.def.replaceFirst("^[Hh]im",
 								pronoun[3]+"-").intern();
 						d.def = d.def.replace("I-self", "Myself");
@@ -568,6 +572,7 @@ public class BuildDeck implements Runnable {
 						d.def = d.def.replace("You two-self", "Your two selves");
 						d.def = d.def.replace("You all-self", "Your all selves");
 						d.def = d.def.replace("They-self", "Themselves");
+						d.def = d.def.replace("our-self", "ourselves");
 					}
 					if (d.def.matches("^His\\b.*")) {
 						String replaceFirst = d.def.replaceFirst("^His\\b", "");
@@ -583,10 +588,6 @@ public class BuildDeck implements Runnable {
 						d.def = d.def.replace("[s]", "").intern();
 					} else {
 						d.def = d.def.replace("[s]", "s").intern();
-					}
-					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ",
-								pronoun[3] + " ").intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
@@ -618,6 +619,10 @@ public class BuildDeck implements Runnable {
 
 				} else {
 					d.def = vdef_passive;
+					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
+						d.def = d.def.replaceFirst("^[hH]e ", obj + " ")
+								.intern();
+					}
 					if (obj.contains("I")) {
 						d.def = d.def.replace("[s]", "").intern();
 					}
@@ -625,10 +630,6 @@ public class BuildDeck implements Runnable {
 						d.def = d.def.replace("[s]", "").intern();
 					} else {
 						d.def = d.def.replace("[s]", "s").intern();
-					}
-					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ", obj + " ")
-								.intern();
 					}
 					if (d.def.startsWith("for him ")
 							|| d.def.startsWith("For him ")) {
@@ -831,8 +832,9 @@ public class BuildDeck implements Runnable {
 		d.def = StringUtils.left(d.def, 1).toUpperCase()
 				+ StringUtils.substring(d.def, 1);
 		
-		d.def = d.def.replaceAll("(We .*?\\)) is ", "$1 are ").intern();
-		d.def = d.def.replaceAll("(We .*?\\)) was ", "$1 were ").intern();
+		d.def = d.def.replace("we is ", "we are ").intern();
+		d.def = d.def.replace("we was ", "we were ").intern();
+		d.def = d.def.replace("we has ", "we have ").intern();
 		
 		d.def = d.def.replace("and I is", "and I are").intern();
 		d.def = d.def.replace("I is", "I am").intern();
@@ -872,12 +874,7 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {
-			d.def = d.def.replace("For We ", "For we ").intern();
-			
-			d.def = d.def.replace("For we (he ", "For us (him ").intern();
-			d.def = d.def.replace("For we (they ", "For us (them ").intern();
-			d.def = d.def.replace("For we (you ", "For us (you ").intern();
-			
+			d.def = d.def.replaceAll("\\bwe\\b", "us").intern();
 			d.def = d.def.replace("For he ", "For him ").intern();
 			d.def = d.def.replace("For He ", "For him ").intern();
 			d.def = d.def.replace("For they ", "For them ").intern();
@@ -888,23 +885,16 @@ public class BuildDeck implements Runnable {
 		}
 
 		if (d.def.startsWith("Let")) {
-			d.def = d.def.replace("Let We ", "Let we ").intern();
-			
-			d.def = d.def.replace("Let we (he ", "Let us (him ").intern();
-			d.def = d.def.replace("Let we (they ", "Let us (them ").intern();
-			d.def = d.def.replace("Let we (you ", "Let us (you ").intern();
-			
-			d.def = d.def.replace("Let he ", "Let him ").intern();
-			d.def = d.def.replace("Let He ", "Let him ").intern();
-			d.def = d.def.replace("Let they ", "Let them ").intern();
-			d.def = d.def.replace("Let You ", "Let you ").intern();
-			d.def = d.def.replace("Let I ", "Let me ").intern();
-			d.def = d.def.replace("Let They ", "Let them ").intern();
-			d.def = d.def.replace("and I ", "and me ").intern();
-			d.def = d.def.replace("Let You ", "Let you ").intern();
+			d.def = d.def.replaceAll("Let he\\b", "Let him").intern();
+			d.def = d.def.replaceAll("Let He\\b", "Let him ").intern();
+			d.def = d.def.replaceAll("Let they\\b", "Let them").intern();
+			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
+			d.def = d.def.replaceAll("Let I\\b", "Let me").intern();
+			d.def = d.def.replaceAll("Let They\\b", "Let them").intern();
+			d.def = d.def.replaceAll("and I\\b", "and me").intern();
+			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
+			d.def = d.def.replaceAll("Let (.*?), we\\b", "Let us, $1,").intern();
 		}
-		
-		d.def = d.def.replaceAll("([Uu]s \\(.*? and) I\\)", "$1 me)").intern();
 	}
 
 	private void addDiPrefix(DataSet d, boolean aStem) {
