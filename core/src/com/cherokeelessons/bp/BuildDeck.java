@@ -563,10 +563,8 @@ public class BuildDeck implements Runnable {
 						d.def = d.def.replace("I-self", "Myself");
 						d.def = d.def.replace("You one-self", "Your one self");
 						d.def = d.def.replace("He-self", "Himself");
-						d.def = d.def.replace("We (you one and I)-self", "Ourselves (your one self and myself)");
-						d.def = d.def.replace("We (he and I)-self", "Ourselves (himself and myself)");
-						d.def = d.def.replace("We (you all and I)-self", "Ourselves (your all selves and myself)");
-						d.def = d.def.replace("We (they and I)-self", "Ourselves (themselves and myself)");
+						d.def = d.def.replace("We-self", "Ourselves");
+						d.def = d.def.replace("we-self", "ourselves");
 						d.def = d.def.replace("You two-self", "Your two selves");
 						d.def = d.def.replace("You all-self", "Your all selves");
 						d.def = d.def.replace("They-self", "Themselves");
