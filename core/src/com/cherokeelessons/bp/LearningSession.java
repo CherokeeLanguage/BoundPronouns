@@ -67,8 +67,7 @@ import com.cherokeelessons.util.Log;
 
 public class LearningSession extends ChildScreen implements Screen {
 
-	private static final Logger log = Log.getLogger(LearningSession.class
-			.getName());
+	private static final Logger log = Log.getLogger(LearningSession.class.getName());
 
 	private class ActiveDeckLoader implements Runnable {
 
@@ -79,8 +78,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			if (!slot.child(ActiveDeckJson).exists()) {
 				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
 			}
-			ActiveDeck tmp = json.fromJson(ActiveDeck.class,
-					slot.child(ActiveDeckJson));
+			ActiveDeck tmp = json.fromJson(ActiveDeck.class, slot.child(ActiveDeckJson));
 			current_due.deck = tmp.deck;
 			current_due.lastrun = tmp.lastrun;
 			Collections.sort(current_due.deck, byShowTime);
@@ -95,8 +93,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			log.info("Loading Master Deck...");
 			stage.addAction(Actions.run(activeDeckLoader));
 
-			log.info("Loaded " + info.settings.deck.name() + " "
-					+ game.deck.cards.size() + " master cards.");
+			log.info("Loaded " + info.settings.deck.name() + " " + game.deck.cards.size() + " master cards.");
 		}
 	}
 
@@ -134,11 +131,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				current_done.deck.add(card);
 				icard.remove();
 			}
-			game.log(
-					this,
-					"Moved "
-							+ current_done.deck.size()
-							+ " future pending or fully learned cards into the 'done' deck.");
+			game.log(this, "Moved " + current_done.deck.size()
+					+ " future pending or fully learned cards into the 'done' deck.");
 		}
 
 		@Override
@@ -172,8 +166,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					continue;
 				}
 				ipending.remove();
-				log.info("Removed no longer valid entry: " + active.pgroup
-						+ " - " + active.vgroup);
+				log.info("Removed no longer valid entry: " + active.pgroup + " - " + active.vgroup);
 			}
 
 			/*
@@ -262,8 +255,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
 			for (ActiveCard card : deck) {
-				card.show_again_ms = (60l * 1000l)
-						* (card.show_again_ms / (1000l * 60l));
+				card.show_again_ms = (60l * 1000l) * (card.show_again_ms / (1000l * 60l));
 			}
 		}
 	}
@@ -290,8 +282,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			JsonConverter json = new JsonConverter();
 
-			params.deck.lastrun = System.currentTimeMillis()
-					- ((long) params.elapsed_secs) * 1000l;
+			params.deck.lastrun = System.currentTimeMillis() - ((long) params.elapsed_secs) * 1000l;
 			Collections.sort(params.deck.deck, byShowTime);
 
 			final SlotInfo info;
@@ -305,8 +296,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			SlotInfo.calculateStats(info, params.deck);
 
-			TextButtonStyle tbs = new TextButtonStyle(
-					params.skin.get(TextButtonStyle.class));
+			TextButtonStyle tbs = new TextButtonStyle(params.skin.get(TextButtonStyle.class));
 			tbs.font = params.game.getFont(Font.SerifMedium);
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
@@ -315,10 +305,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				btn_scores.setText("View High Scores");
 			}
 
-			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC,
-					Texture.class);
-			TextureRegionDrawable draw_sync = new TextureRegionDrawable(
-					new TextureRegion(img_sync));
+			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
+			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
 			final ImageButton syncb = new ImageButton(draw_sync);
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
@@ -327,25 +315,21 @@ public class LearningSession extends ChildScreen implements Screen {
 			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
 			// : "Practice Results";
 			String dtitle = "Practice Results";
-			final WindowStyle dws = new WindowStyle(
-					params.skin.get(WindowStyle.class));
+			final WindowStyle dws = new WindowStyle(params.skin.get(WindowStyle.class));
 			dws.titleFont = params.game.getFont(Font.SerifLarge);
 			Dialog bye = new Dialog(dtitle, dws) {
 				final Dialog bye = this;
 				{
 					this.getTitleLabel().setAlignment(Align.center);
-					final Texture background = params.game.manager.get(
-							BoundPronouns.IMG_MAYAN, Texture.class);
+					final Texture background = params.game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 					final TextureRegion region = new TextureRegion(background);
 					final TiledDrawable tiled = new TiledDrawable(region);
 					tiled.setMinHeight(0);
 					tiled.setMinWidth(0);
-					tiled.setTopHeight(params.game.getFont(Font.SerifLarge)
-							.getCapHeight() + 20);
+					tiled.setTopHeight(params.game.getFont(Font.SerifLarge).getCapHeight() + 20);
 					bye.background(tiled);
 
-					LabelStyle lstyle = new LabelStyle(
-							params.skin.get(LabelStyle.class));
+					LabelStyle lstyle = new LabelStyle(params.skin.get(LabelStyle.class));
 					lstyle.font = params.game.getFont(Font.SerifMedium);
 
 					StringBuilder sb = new StringBuilder();
@@ -357,8 +341,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					sb.append(info.activeCards + " active cards");
 					sb.append("\n");
-					sb.append("You currently have a " + info.proficiency
-							+ "% proficiency level");
+					sb.append("You currently have a " + info.proficiency + "% proficiency level");
 					sb.append("\n");
 					// sb.append(info.shortTerm + " short term memorized");
 					// sb.append("\n");
@@ -368,8 +351,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					// sb.append("\n");
 					int minutes = (int) (params.elapsed_secs / 60f);
 					int seconds = (int) (params.elapsed_secs - minutes * 60f);
-					sb.append("Total actual challenge time: " + minutes + ":"
-							+ (seconds < 10 ? "0" : "") + seconds);
+					sb.append("Total actual challenge time: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button(btn_ok, btn_ok);
@@ -379,43 +361,33 @@ public class LearningSession extends ChildScreen implements Screen {
 						button(syncb, syncb);
 					}
 
-					final GoogleSyncUI gsu = new GoogleSyncUI(params.game,
-							params.stage, params.slot, null);
+					final GoogleSyncUI gsu = new GoogleSyncUI(params.game, params.stage, params.slot, null);
 
 					final Callback<GameScores> showPublicScores = new Callback<GameScores>() {
 						@Override
 						public void success(GameScores result) {
-							gsu.showScores("Today's Public Scores", result,
-									null);
+							gsu.showScores("Today's Public Scores", result, null);
 							Callback<Void> do_ach_reveal = new Callback<Void>() {
 								@Override
 								public void success(Void result) {
-									log.info("Doing ach_reveal: "
-											+ info.level.name());
-									BoundPronouns.services.ach_reveal(
-											info.level.next().getId(),
-											noop_success);
+									log.info("Doing ach_reveal: " + info.level.name());
+									BoundPronouns.services.ach_reveal(info.level.next().getId(), noop_success);
 								}
 							};
 							log.info("Doing ach_unlock: " + info.level.getId());
-							BoundPronouns.services.ach_unlocked(
-									info.level.getId(), do_ach_reveal);
+							BoundPronouns.services.ach_unlocked(info.level.getId(), do_ach_reveal);
 						}
 					};
 
 					final Callback<Void> getPublicScores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							if (lb!=null) {
-								lb.lb_getListWindowFor(
-										ShowLeaderboards.LeaderBoardId,
-										Collection.PUBLIC, TimeSpan.DAILY,
-										showPublicScores);
+							if (lb != null) {
+								lb.lb_getListWindowFor(ShowLeaderboards.LeaderBoardId, Collection.PUBLIC,
+										TimeSpan.DAILY, showPublicScores);
 							} else {
-								BoundPronouns.services.lb_getListWindowFor(
-										ShowLeaderboards.LeaderBoardId,
-										Collection.PUBLIC, TimeSpan.DAILY,
-										showPublicScores);
+								BoundPronouns.services.lb_getListWindowFor(ShowLeaderboards.LeaderBoardId,
+										Collection.PUBLIC, TimeSpan.DAILY, showPublicScores);
 							}
 						}
 					};
@@ -423,21 +395,18 @@ public class LearningSession extends ChildScreen implements Screen {
 					final Callback<Void> submit_scores = new Callback<Void>() {
 						@Override
 						public void success(Void result) {
-							if (lb!=null) {
-								String tag = info.level.getEnglish()+"\t"+info.settings.name;
-								lb.lb_submit(
-										ShowLeaderboards.LeaderBoardId, info.lastScore, tag, getPublicScores);
+							if (lb != null) {
+								String tag = info.level.getEnglish() + "\t" + info.settings.name;
+								lb.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, getPublicScores);
 							} else {
-								BoundPronouns.services.lb_submit(
-										ShowLeaderboards.LeaderBoardId, info.lastScore,
+								BoundPronouns.services.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore,
 										info.level.getEnglish(), getPublicScores);
 							}
 						}
 					};
 
 					btn_scores.addListener(new ClickListener() {
-						public boolean touchDown(InputEvent event, float x,
-								float y, int pointer, int button) {
+						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 							if (!BoundPronouns.services.isLoggedIn()) {
 								gsu.askToLoginFor(new Runnable() {
 									@Override
@@ -453,8 +422,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					});
 
 					syncb.addListener(new ClickListener() {
-						public boolean touchDown(InputEvent event, float x,
-								float y, int pointer, int button) {
+						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 							if (!BoundPronouns.services.isLoggedIn()) {
 								gsu.askToLoginForSync(new Runnable() {
 									@Override
@@ -481,24 +449,20 @@ public class LearningSession extends ChildScreen implements Screen {
 							final Callback<Void> do_unlock = new Callback<Void>() {
 								@Override
 								public void success(Void result) {
-									BoundPronouns.services.ach_unlocked(
-											info.level.getId(), noop_success);
+									BoundPronouns.services.ach_unlocked(info.level.getId(), noop_success);
 								}
 							};
 							final Callback<Void> do_reveal = new Callback<Void>() {
 								@Override
 								public void success(Void result) {
-									BoundPronouns.services.ach_reveal(
-											info.level.next().getId(),
-											do_unlock);
+									BoundPronouns.services.ach_reveal(info.level.next().getId(), do_unlock);
 								}
 							};
-							if (lb!=null) {
-								String tag = info.level.getEnglish()+"\t"+info.settings.name;
+							if (lb != null) {
+								String tag = info.level.getEnglish() + "\t" + info.settings.name;
 								lb.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, noop_success);
 							} else {
-								BoundPronouns.services.lb_submit(
-										ShowLeaderboards.LeaderBoardId, info.lastScore,
+								BoundPronouns.services.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore,
 										info.level.getEnglish(), do_reveal);
 							}
 						} else {
@@ -581,10 +545,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				for (ActiveCard tmp : current_discards.deck) {
 					if (tmp.noErrors && tmp.tries_remaining < 1) {
 						tmp.box++;
-						tmp.show_again_ms = tmp.show_again_ms
-								+ Deck.getNextSessionInterval(tmp.box);
-						log.info("Bumped Card: " + tmp.pgroup + " "
-								+ tmp.vgroup);
+						tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
+						log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
 					}
 				}
 				/**
@@ -593,10 +555,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				for (ActiveCard tmp : current_discards.deck) {
 					if (!tmp.noErrors && tmp.tries_remaining < 1) {
 						tmp.box--;
-						tmp.show_again_ms = tmp.show_again_ms
-								+ Deck.getNextSessionInterval(tmp.box);
-						log.info("Retired Card: " + tmp.pgroup + " "
-								+ tmp.vgroup);
+						tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
+						log.info("Retired Card: " + tmp.pgroup + " " + tmp.vgroup);
 					}
 				}
 
@@ -625,12 +585,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (!activeCard.equals(previousCard)) {
 					break;
 				}
-				if (current_discards.deck.size() == 0
-						&& current_active.deck.size() == 0) {
+				if (current_discards.deck.size() == 0 && current_active.deck.size() == 0) {
 					break;
 				}
-				activeCard.show_again_ms = Deck.getNextInterval(activeCard
-						.getMinCorrectInARow() + 1);
+				activeCard.show_again_ms = Deck.getNextInterval(activeCard.getMinCorrectInARow() + 1);
 				previousCard = null;
 			} while (true);
 
@@ -644,8 +602,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 					log.info("session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					log.info("shifting discards to zero point: "
-							+ (shift_by_ms / ONE_SECOND_ms));
+					log.info("shifting discards to zero point: " + (shift_by_ms / ONE_SECOND_ms));
 					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
 						addCards(IncrementDeckBySize, current_active);
 					}
@@ -657,19 +614,16 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * Session time is up, force time shift cards into active show
 				 * range...
 				 */
-				if (elapsed > info.settings.sessionLength.getSeconds()
-						&& current_discards.deck.size() > 0) {
+				if (elapsed > info.settings.sessionLength.getSeconds() && current_discards.deck.size() > 0) {
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					log.info("shifting discards to zero point: "
-							+ (shift_by_ms / ONE_SECOND_ms));
+					log.info("shifting discards to zero point: " + (shift_by_ms / ONE_SECOND_ms));
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
 			}
 			previousCard = activeCard;
-			final Card deckCard = new Card(getCardById(activeCard.pgroup,
-					activeCard.vgroup));
+			final Card deckCard = new Card(getCardById(activeCard.pgroup, activeCard.vgroup));
 			if (activeCard.newCard) {
 				elapsed_tick_on = false;
 				ticktock.stop(ticktock_id);
@@ -685,70 +639,59 @@ public class LearningSession extends ChildScreen implements Screen {
 				elapsed_tick_on = true;
 				ticktock_id = ticktock.loop(0f);
 				challengeCardDialog.setCounter(cardcount++);
-				log.info("challengeCardDialog:setCard");
 				challengeCardDialog.setCard(activeCard, deckCard);
-				log.info("challengeCardDialog:show");
 				challengeCardDialog.show(stage);
 
 				AnswerList tracked_answers;
 				if (rand.nextBoolean()) {
-					log.info("challengeCardDialog:getAnswerSetsFor");
-					tracked_answers = getAnswerSetsFor(activeCard, deckCard,
-							game.deck);
+					tracked_answers = getAnswerSetsFor(activeCard, deckCard, game.deck);
 				} else {
-					log.info("challengeCardDialog:getAnswerSetsForBySimilarChallenge");
-					tracked_answers = getAnswerSetsForBySimilarChallenge(
-							activeCard, deckCard, game.deck);
+					tracked_answers = getAnswerSetsForBySimilarChallenge(activeCard, deckCard, game.deck);
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 				removexmarks(displayed_answers);
 				activeCard.tries_remaining--;
-				log.info("challengeCardDialog:setAnswers");
-				challengeCardDialog.setAnswers(tracked_answers,
-						displayed_answers);
-				float duration = info.settings.timeLimit.getSeconds()
-						- (float) activeCard.box
+				challengeCardDialog.setAnswers(tracked_answers, displayed_answers);
+				float duration = info.settings.timeLimit.getSeconds() - (float) activeCard.box
 						- (float) activeCard.getMinCorrectInARow();
 				if (duration < 4) {
 					duration = 4f;
 				}
-				challengeCardDialog.addAction(Actions.delay(duration,
-						Actions.run(new Runnable() {
-							@Override
-							public void run() {
-								challengeCardDialog.result(null);
-							}
-						})));
+				challengeCardDialog.addAction(Actions.delay(duration, Actions.run(new Runnable() {
+					@Override
+					public void run() {
+						challengeCardDialog.result(null);
+					}
+				})));
 				for (float x = duration; x >= 0; x -= .25f) {
 					final float timer = duration - x;
 					final float volume = x / duration;
-					DelayAction updater = Actions.delay(x - .05f,
-							Actions.run(new Runnable() {
-								@Override
-								public void run() {
-									if (challengeCardDialog.settings.muted) {
-										ticktock.setVolume(ticktock_id, 0f);
-									} else {
-										ticktock.setVolume(ticktock_id, volume);
-									}
-									challengeCardDialog.setTimer(timer);
-								}
-							}));
+					DelayAction updater = Actions.delay(x - .05f, Actions.run(new Runnable() {
+						@Override
+						public void run() {
+							if (challengeCardDialog.settings.muted) {
+								ticktock.setVolume(ticktock_id, 0f);
+							} else {
+								ticktock.setVolume(ticktock_id, volume);
+							}
+							challengeCardDialog.setTimer(timer);
+						}
+					}));
 					challengeCardDialog.addAction(updater);
 				}
 			}
 		}
 
 		private void removexmarks(AnswerList displayed_answers) {
-			for (Answer answer: displayed_answers.list) {
-				if (!answer.answer.contains("x")){
+			for (Answer answer : displayed_answers.list) {
+				if (!answer.answer.contains("x")) {
 					continue;
 				}
-				answer.answer=answer.answer.replace("xHe", "He");
-				answer.answer=answer.answer.replace("xShe", "She");
-				answer.answer=answer.answer.replace("xhe", "he");
-				answer.answer=answer.answer.replace("xshe", "she");
+				answer.answer = answer.answer.replace("xHe", "He");
+				answer.answer = answer.answer.replace("xShe", "She");
+				answer.answer = answer.answer.replace("xhe", "he");
+				answer.answer = answer.answer.replace("xshe", "she");
 			}
 		}
 	}
@@ -859,9 +802,9 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * <p>
 	 * This implementation follows from Algorithms on Strings, Trees and
 	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
-	 * Levenshtein distance algorithm from <a
-	 * href="http://www.merriampark.com/ld.htm"
-	 * >http://www.merriampark.com/ld.htm</a>
+	 * Levenshtein distance algorithm from
+	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
+	 * ld.htm</a>
 	 * </p>
 	 *
 	 * <pre>
@@ -910,16 +853,15 @@ public class LearningSession extends ChildScreen implements Screen {
 		ONE_DAY_ms = 24l * ONE_HOUR_ms;
 	}
 
-	public static synchronized int getLevenshteinDistanceIgnoreCase(CharSequence s,
-			CharSequence t, int threshold) {
+	public static synchronized int getLevenshteinDistanceIgnoreCase(CharSequence s, CharSequence t, int threshold) {
 		return getLevenshteinDistanceIgnoreCase(String.valueOf(s), String.valueOf(t), threshold);
 	}
-	public static synchronized int getLevenshteinDistanceIgnoreCase(String s,
-			String t, int threshold) {
-		return getLevenshteinDistance(s!=null?s.toLowerCase():"",t!=null?t.toLowerCase():"", threshold);
+
+	public static synchronized int getLevenshteinDistanceIgnoreCase(String s, String t, int threshold) {
+		return getLevenshteinDistance(s != null ? s.toLowerCase() : "", t != null ? t.toLowerCase() : "", threshold);
 	}
-	public static synchronized int getLevenshteinDistance(CharSequence s,
-			CharSequence t, int threshold) {
+
+	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t, int threshold) {
 		if (s == null || t == null) {
 			throw new IllegalArgumentException("Strings must not be null");
 		}
@@ -1037,8 +979,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				} else {
 					// 1 + minimum of cell to the left, to the top, diagonally
 					// left and up
-					lv_d[i] = 1 + Math.min(Math.min(lv_d[i - 1], lv_p[i]),
-							lv_p[i - 1]);
+					lv_d[i] = 1 + Math.min(Math.min(lv_d[i - 1], lv_p[i]), lv_p[i - 1]);
 				}
 			}
 
@@ -1070,9 +1011,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				continue;
 			}
 			card.newCard = true;
-			log.info("Resetting as new: "
-					+ getCardById(card.pgroup, card.vgroup).challenge
-							.toString());
+			log.info("Resetting as new: " + getCardById(card.pgroup, card.vgroup).challenge.toString());
 		}
 	}
 
@@ -1190,9 +1129,9 @@ public class LearningSession extends ChildScreen implements Screen {
 	private long ticktock_id;
 
 	private final static LocalLeaderboard lb;
-	
+
 	static {
-		lb=new LocalLeaderboard(BoundPronouns.getPrefs());
+		lb = new LocalLeaderboard(BoundPronouns.getPrefs());
 	}
 
 	// private TooSoonDialog tooSoon = new TooSoonDialog() {
@@ -1201,7 +1140,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
 
-		
 		int totalCards = game.deck.cards.size();
 		current_active.deck = new ArrayList<ActiveCard>(totalCards);
 		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
@@ -1210,8 +1148,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		this.slot = slot;
 		slot.mkdirs();
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		container = new Table(skin);
@@ -1260,27 +1197,44 @@ public class LearningSession extends ChildScreen implements Screen {
 					public void run() {
 					}
 				};
-				Dialog dialog = dialogYN(
-						"Please Confirm Exit",
-						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
-						yes, no);
+				Dialog dialog = dialogYN("Please Confirm Exit",
+						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)", yes,
+						no);
 				dialog.getTitleLabel().setAlignment(Align.center);
 				dialog.show(stage);
 			}
 		};
 
 		challengeCardDialog = new ChallengeCardDialog(game, skin) {
+			
+			private static final String CONTINUE = "CONTINUE";
+			private static final String CHECK = "CHECK!";
 
 			Runnable hideThisCard = new Runnable() {
 				@Override
 				public void run() {
+					check.setVisible(false);
+					check.setText(CHECK);
 					hide();
 				}
 			};
 
+			DelayAction delayHideThisCard;
+			DelayAction delayShowNextCard;
+			
 			@Override
 			protected void result(Object object) {
 				this.navEnable(false);
+				if (CONTINUE.equals(object)){
+					check.setTouchable(Touchable.disabled);
+					check.setDisabled(true);
+					stage.getRoot().removeAction(delayHideThisCard);
+					stage.getRoot().removeAction(delayShowNextCard);
+					stage.addAction(Actions.delay(.1f, Actions.run(hideThisCard)));
+					stage.addAction(Actions.delay(.2f, Actions.run(showACard)));
+					cancel();
+					return;
+				}
 				/*
 				 * bump show count and add in elapsed display time for later
 				 * scoring ...
@@ -1303,6 +1257,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * checked/unchecked is valid
 				 */
 				boolean doCow = true;
+				int wrong = 0;
 				for (Actor b : getButtonTable().getChildren()) {
 					if (b instanceof Button) {
 						((Button) b).setDisabled(true);
@@ -1310,37 +1265,31 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 					if (b instanceof TextButton) {
 						TextButton tb = (TextButton) b;
-						if (tb.getUserObject() != null
-								&& tb.getUserObject() instanceof Answer) {
-							Answer tracked_answer = (Answer) tb.getUserObject();
+						Object userObject = tb.getUserObject();
+						if (userObject != null && userObject instanceof Answer) {
+							Answer tracked_answer = (Answer) userObject;
 							if (!tb.isChecked() && !tracked_answer.correct) {
 								tb.addAction(Actions.fadeOut(.2f));
 								doCow = false;
 							}
 							if (tb.isChecked() && !tracked_answer.correct) {
-								ColorAction toRed = Actions.color(Color.RED,
-										.4f);
+								ColorAction toRed = Actions.color(Color.RED, .4f);
 								tb.addAction(toRed);
-								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " "
-										+ tb.getText());
+								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " " + tb.getText());
 								doBuzzer = true;
 								resetCorrectInARow(_activeCard);
 								_activeCard.noErrors = false;
+								wrong++;
 							}
 							if (!tb.isChecked() && tracked_answer.correct) {
-								ColorAction toGreen = Actions.color(
-										Color.GREEN, .4f);
-								ColorAction toClear = Actions.color(
-										Color.CLEAR, .2f);
-								SequenceAction sequence = Actions.sequence(
-										toClear, toGreen);
+								ColorAction toGreen = Actions.color(Color.GREEN, .4f);
+								ColorAction toClear = Actions.color(Color.CLEAR, .2f);
+								SequenceAction sequence = Actions.sequence(toClear, toGreen);
 								tb.addAction(Actions.repeat(2, sequence));
-								tb.setText(BoundPronouns.RIGHT_ARROW + " "
-										+ tb.getText());
+								tb.setText(BoundPronouns.RIGHT_ARROW + " " + tb.getText());
 								doBuzzer = true;
 								resetCorrectInARow(_activeCard);
-								if (_activeCard.noErrors
-										&& _activeCard.tries_remaining < 1) {
+								if (_activeCard.noErrors && _activeCard.tries_remaining < 1) {
 									/*
 									 * set for at leat one more show if the
 									 * first time a card is incorrectly answered
@@ -1351,18 +1300,18 @@ public class LearningSession extends ChildScreen implements Screen {
 								_activeCard.noErrors = false;
 							}
 							if (tb.isChecked() && tracked_answer.correct) {
-								ColorAction toGreen = Actions.color(
-										Color.GREEN, .2f);
+								ColorAction toGreen = Actions.color(Color.GREEN, .2f);
 								tb.addAction(toGreen);
 								doCow = false;
-								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " "
-										+ tb.getText());
+								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " " + tb.getText());
 								_activeCard.markCorrect(tracked_answer.answer);
 							}
 						}
 					}
 				}
-
+				if (wrong>2) {
+					doCow=true;
+				}
 				if (doCow) {
 					if (!challengeCardDialog.settings.muted) {
 						cow.play();
@@ -1378,12 +1327,19 @@ public class LearningSession extends ChildScreen implements Screen {
 						ding.play();
 					}
 				}
-				_activeCard.show_again_ms = Deck.getNextInterval(_activeCard
-						.getMinCorrectInARow());
-				stage.addAction(Actions.delay(doBuzzer ? 5.9f : .9f,
-						Actions.run(hideThisCard)));
-				stage.addAction(Actions.delay(doBuzzer ? 6f : 1f,
-						Actions.run(showACard)));
+				_activeCard.show_again_ms = Deck.getNextInterval(_activeCard.getMinCorrectInARow());
+				delayHideThisCard = Actions.delay(doBuzzer ? 5.9f : .9f, Actions.run(hideThisCard));
+				delayShowNextCard = Actions.delay(doBuzzer ? 6f : 1f, Actions.run(showACard));
+				stage.addAction(delayHideThisCard);
+				stage.addAction(delayShowNextCard);
+				
+				setObject(check, CONTINUE);
+				if (doBuzzer) {
+					check.setText(CONTINUE);
+					check.setVisible(true);
+					check.setDisabled(false);
+					check.setTouchable(Touchable.enabled);
+				}
 			}
 
 			@Override
@@ -1402,10 +1358,9 @@ public class LearningSession extends ChildScreen implements Screen {
 						challengeCardDialog.paused = wasPaused;
 					}
 				};
-				Dialog dialog = dialogYN(
-						"Please Confirm Exit",
-						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)",
-						yes, no);
+				Dialog dialog = dialogYN("Please Confirm Exit",
+						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)", yes,
+						no);
 				dialog.show(stage);
 				challengeCardDialog.paused = true;
 			}
@@ -1442,8 +1397,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			needed--;
 			ipending.remove();
 		}
-		log.info("Added " + (active.deck.size() - startingSize)
-				+ " previous cards.");
+		log.info("Added " + (active.deck.size() - startingSize) + " previous cards.");
 
 		if (needed <= 0) {
 			return;
@@ -1520,8 +1474,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	}
 
-	private Dialog dialogYN(String title, String message, final Runnable yes,
-			final Runnable no) {
+	private Dialog dialogYN(String title, String message, final Runnable yes, final Runnable no) {
 		if (dskin == null) {
 			dskin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		}
@@ -1532,8 +1485,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		ls.font = game.getFont(Font.SerifLarge);
 		Label msg = new Label(message, ls);
 		msg.setAlignment(Align.center);
-		TextButtonStyle tbs = new TextButtonStyle(
-				dskin.get(TextButtonStyle.class));
+		TextButtonStyle tbs = new TextButtonStyle(dskin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifLarge);
 		final TextButton btn_yes = new TextButton("YES", tbs);
 		final TextButton btn_no = new TextButton("NO", tbs);
@@ -1577,8 +1529,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private AnswerList getAnswerSetsFor(final ActiveCard active,
-			final Card challengeCard, Deck deck) {
+	private AnswerList getAnswerSetsFor(final ActiveCard active, final Card challengeCard, Deck deck) {
 		Set<String> already = new HashSet<String>(16);
 		AnswerList answers = new AnswerList();
 		/*
@@ -1644,8 +1595,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * make sure we keep bare pronouns with bare pronouns and
 				 * vice-versa
 				 */
-				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils
-						.isBlank(deckCard.vgroup)) {
+				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils.isBlank(deckCard.vgroup)) {
 					continue;
 				}
 				/*
@@ -1659,13 +1609,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				/*
 				 * select a random correct answer
 				 */
-				String correct_answer = challengeCard.answer.get(
-						rand.nextInt(challengeCard.answer.size())).intern();
+				String correct_answer = challengeCard.answer.get(rand.nextInt(challengeCard.answer.size())).intern();
 				/*
 				 * select a random wrong answer
 				 */
-				String wrong_answer = deckCard.answer.get(
-						rand.nextInt(deckCard.answer.size())).intern();
+				String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size())).intern();
 				if (already.contains(wrong_answer)) {
 					continue;
 				}
@@ -1675,8 +1623,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * on and check next card
 				 */
 
-				int ldistance = getLevenshteinDistanceIgnoreCase(correct_answer,
-						wrong_answer, distance);
+				int ldistance = getLevenshteinDistanceIgnoreCase(correct_answer, wrong_answer, distance);
 				if (ldistance < 1) {
 					continue;
 				}
@@ -1698,8 +1645,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		return answers;
 	}
 
-	private AnswerList getAnswerSetsForBySimilarChallenge(
-			final ActiveCard active, final Card card, Deck deck) {
+	private AnswerList getAnswerSetsForBySimilarChallenge(final ActiveCard active, final Card card, Deck deck) {
 		AnswerList answers = new AnswerList();
 		String challenge = card.challenge.get(0);
 		/**
@@ -1765,8 +1711,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 * make sure we keep bare pronouns with bare pronouns and
 				 * vice-versa
 				 */
-				if (StringUtils.isBlank(card.vgroup) != StringUtils
-						.isBlank(deckCard.vgroup)) {
+				if (StringUtils.isBlank(card.vgroup) != StringUtils.isBlank(deckCard.vgroup)) {
 					continue;
 				}
 				/*
@@ -1785,16 +1730,14 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (already.contains(tmp_challenge)) {
 					continue;
 				}
-				int ldistance = getLevenshteinDistanceIgnoreCase(challenge,
-						tmp_challenge, distance);
+				int ldistance = getLevenshteinDistanceIgnoreCase(challenge, tmp_challenge, distance);
 				if (ldistance < 1) {
 					continue;
 				}
 				/*
 				 * select a random wrong answer
 				 */
-				String wrong_answer = deckCard.answer.get(rand
-						.nextInt(deckCard.answer.size()));
+				String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
 				if (already.contains(wrong_answer)) {
 					continue;
 				}
@@ -1855,8 +1798,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private ActiveCard getNextCard() {
 		if (current_active.deck.size() == 0) {
-			updateTime(current_discards,
-					(long) (sinceLastNextCard_elapsed * 1000f));
+			updateTime(current_discards, (long) (sinceLastNextCard_elapsed * 1000f));
 			sinceLastNextCard_elapsed = 0;
 			Iterator<ActiveCard> discards;
 			discards = current_discards.deck.iterator();
@@ -1865,22 +1807,20 @@ public class LearningSession extends ChildScreen implements Screen {
 			 */
 			while (discards.hasNext()) {
 				ActiveCard discard = discards.next();
-				if (discard.tries_remaining>0) {
+				if (discard.tries_remaining > 0) {
 					continue;
 				}
 				if (discard.noErrors) {
 					discard.box++;
 					current_done.deck.add(discard);
-					discard.show_again_ms = discard.show_again_ms
-							+ Deck.getNextSessionInterval(discard.box);
+					discard.show_again_ms = discard.show_again_ms + Deck.getNextSessionInterval(discard.box);
 					discards.remove();
 					log.info("Bumped Card: " + discard.pgroup + " " + discard.vgroup);
 					continue;
 				}
 				discard.box--;
 				current_done.deck.add(discard);
-				discard.show_again_ms = discard.show_again_ms
-						+ Deck.getNextSessionInterval(discard.box);
+				discard.show_again_ms = discard.show_again_ms + Deck.getNextSessionInterval(discard.box);
 				discards.remove();
 				log.info("Retired Card: " + discard.pgroup + " " + discard.vgroup);
 				return getNextCard();

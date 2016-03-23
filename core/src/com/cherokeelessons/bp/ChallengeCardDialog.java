@@ -50,7 +50,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	private Table appNavBar;
 
-	private final TextButton check;
+	protected final TextButton check;
 
 	private Runnable disableCard = new Runnable() {
 		public void run() {
