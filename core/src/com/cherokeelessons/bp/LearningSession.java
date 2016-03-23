@@ -745,7 +745,10 @@ public class LearningSession extends ChildScreen implements Screen {
 				if (!answer.answer.contains("x")){
 					continue;
 				}
-				answer.answer=answer.answer.replaceAll("\\bx([A-Z].*?)\\b", "$1");
+				answer.answer=answer.answer.replace("xHe", "He");
+				answer.answer=answer.answer.replace("xShe", "She");
+				answer.answer=answer.answer.replace("xhe", "he");
+				answer.answer=answer.answer.replace("xshe", "she");
 			}
 		}
 	}
