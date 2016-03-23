@@ -42,29 +42,51 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	public static final String TAG = "ChallengeCardDialog";
 
-	public SlotInfo.Settings settings = new SlotInfo.Settings();
+	protected ActiveCard _activeCard;
 
-	public void setCounter(int cardcount) {
-		getTitleLabel().setText(title + " [" + cardcount + "]");
-		getTitleLabel().setAlignment(Align.center);
-	}
+	protected Card _deckCard;
 
-	private String title = "";
+	private final TextButtonStyle answer_style;
+
+	private Table appNavBar;
+
+	private final TextButton check;
+
+	private Runnable disableCard = new Runnable() {
+		public void run() {
+			check.setDisabled(true);
+			check.setVisible(true);
+			check.setTouchable(Touchable.disabled);
+			navEnable(false);
+		};
+	};
+
+	private Runnable enableCard = new Runnable() {
+		public void run() {
+			check.setDisabled(false);
+			check.setVisible(true);
+			check.setTouchable(Touchable.enabled);
+			navEnable(true);
+		};
+	};
 
 	private final BoundPronouns game;
 
-	@Override
-	protected void result(Object object) {
-		super.result(object);
-	}
+	private final TextButton main;
 
 	private TextButton mute;
 
-	private final Skin skin;
-
 	private final TextButton pause;
 
-	private final TextButton main;
+	public boolean paused = false;
+
+	public SlotInfo.Settings settings = new SlotInfo.Settings();
+
+	private final Skin skin;
+
+	private Label timer;
+
+	private String title = "";
 
 	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
@@ -72,7 +94,6 @@ public abstract class ChallengeCardDialog extends Dialog {
 		this.title = "Challenge Card";
 		this.game = game;
 		this.getTitleLabel().setAlignment(Align.center);
-		// getStyle().titleFont = game.getFont(Font.SansLarge);
 		getStyle().titleFont = game.getFont(Font.SerifLarge);
 		getStyle().background = getDialogBackground();
 		setStyle(getStyle());
@@ -91,9 +112,9 @@ public abstract class ChallengeCardDialog extends Dialog {
 		row();
 		add(appNavBar = new Table(skin)).expandX().fillX().bottom();
 		appNavBar.defaults().space(6);
+		
 		TextButtonStyle navStyle = new TextButtonStyle(
 				skin.get(TextButtonStyle.class));
-		// navStyle.font = game.getFont(Font.SansMedium);
 		navStyle.font = game.getFont(Font.SerifMedium);
 		main = new TextButton("Main Menu", navStyle);
 		appNavBar.row();
@@ -148,14 +169,12 @@ public abstract class ChallengeCardDialog extends Dialog {
 		});
 
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
-		// ls.font = game.getFont(Font.SansMedium);
 		ls.font = game.getFont(Font.SerifMedium);
 		timer = new Label("--", ls);
 		appNavBar.add(timer).right().expandX();
 
 		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default",
 				TextButtonStyle.class));
-		// tbs_check.font = game.getFont(Font.SansLarge);
 		tbs_check.font = game.getFont(Font.SerifLarge);
 		check = new TextButton("CHECK!", tbs_check);
 
@@ -164,25 +183,84 @@ public abstract class ChallengeCardDialog extends Dialog {
 		answer_style.font = game.getFont(Font.SerifMedium);
 	}
 
-	public boolean paused = false;
-
-	private final TextButtonStyle answer_style;
-
-	private Label timer;
-
-	public void setTimer(float time) {
-		int x = (int) time;
-		String z = (x < 10 ? "0" : "") + x;
-		timer.setText(z);
+	private TiledDrawable getDialogBackground() {
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
+				Texture.class);
+		TextureRegion region = new TextureRegion(texture);
+		TiledDrawable background = new TiledDrawable(region);
+		background.setMinHeight(0);
+		background.setMinWidth(0);
+		BitmapFont font = game.getFont(Font.SerifLarge);
+		background.setTopHeight(font.getCapHeight() + 20);
+		return background;
 	}
 
-	protected abstract void showMainMenu();
+	public void hide() {
+		hide(null);
+	}
 
-	private Table appNavBar;
+	@Override
+	public void hide(Action action) {
+		disableCard.run();
+		super.hide(action);
+	}
 
-	protected Card _deckCard;
+	protected void navEnable(boolean enabled) {
+		pause.setVisible(true);
+		pause.setDisabled(!enabled);
+		pause.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
+		main.setVisible(true);
+		main.setDisabled(!enabled);
+		main.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
+		mute.setVisible(true);
+		mute.setDisabled(!enabled);
+		mute.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
+	}
 
-	protected ActiveCard _activeCard;
+	@Override
+	protected void result(Object object) {
+		super.result(object);
+	}
+
+	public void setAnswers(AnswerList tracked_answers,
+			AnswerList displayed_answers) {
+		Table btable = getButtonTable();
+		btable.clearChildren();
+		boolean odd = true;
+		for (int ix = 0; ix < tracked_answers.list.size(); ix++) {
+			final Answer tracked_answer = tracked_answers.list.get(ix);
+			Answer displayed_answer = displayed_answers.list.get(ix);
+			if (odd) {
+				btable.row();
+			}
+			final TextButton a = new TextButton(displayed_answer.answer,
+					answer_style);
+			a.getLabel().setWrap(true);
+			a.setUserObject(tracked_answer);
+			a.addListener(new ClickListener() {
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y,
+						int pointer, int button) {
+					if (a.isChecked()) {
+						// we are being unchecked
+						a.setColor(Color.WHITE);
+					} else {
+						// we are being checked
+						a.setColor(Color.GREEN);
+					}
+					return true;
+				}
+			});
+			a.setColor(Color.WHITE);
+			Value percentWidth = Value.percentWidth(.49f, btable);
+			btable.add(a).fillX().width(percentWidth).pad(0).space(0);
+			odd = !odd;
+		}
+		btable.row();
+		setObject(check, null);
+		btable.add(check).colspan(2).fillX().expandX();
+		btable.row();
+	}
 
 	/**
 	 * It is assumed that the Syllabary is entry #0 and the Latin is entry #1
@@ -259,111 +337,20 @@ public abstract class ChallengeCardDialog extends Dialog {
 		}
 	}
 
-	private TiledDrawable getDialogBackground() {
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
-		TextureRegion region = new TextureRegion(texture);
-		TiledDrawable background = new TiledDrawable(region);
-		background.setMinHeight(0);
-		background.setMinWidth(0);
-		BitmapFont font = game.getFont(Font.SerifLarge);
-		background.setTopHeight(font.getCapHeight() + 20);
-		return background;
-	}
-
-	public void setAnswers(AnswerList tracked_answers,
-			AnswerList displayed_answers) {
-		Table btable = getButtonTable();
-		btable.clearChildren();
-		boolean odd = true;
-		for (int ix = 0; ix < tracked_answers.list.size(); ix++) {
-			final Answer tracked_answer = tracked_answers.list.get(ix);
-			Answer displayed_answer = displayed_answers.list.get(ix);
-			if (odd) {
-				btable.row();
-			}
-			final TextButton a = new TextButton(displayed_answer.answer,
-					answer_style);
-			a.getLabel().setWrap(true);
-			a.setUserObject(tracked_answer);
-			a.addListener(new ClickListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					if (a.isChecked()) {
-						// we are being unchecked
-						a.setColor(Color.WHITE);
-					} else {
-						// we are being checked
-						a.setColor(Color.GREEN);
-					}
-					return true;
-				}
-			});
-			a.setColor(Color.WHITE);
-			Value percentWidth = Value.percentWidth(.49f, btable);
-			btable.add(a).fillX().width(percentWidth).pad(0).space(0);
-			odd = !odd;
-		}
-		btable.row();
-		setObject(check, null);
-		btable.add(check).colspan(2).fillX().expandX();
-		btable.row();
-	}
-
 	public void setCheckVisible(boolean visible) {
 		check.setVisible(visible);
 	}
 
-	public void updateMuteButtonText() {
-		mute.setText(settings.muted ? "Unmute" : "Mute");
+	public void setCounter(int cardcount) {
+		getTitleLabel().setText(title + " [" + cardcount + "]");
+		getTitleLabel().setAlignment(Align.center);
 	}
 
-	private final TextButton check;
-
-	public void updateSettings() {
-		updateMuteButtonText();
+	public void setTimer(float time) {
+		int x = (int) time;
+		String z = (x < 10 ? "0" : "") + x;
+		timer.setText(z);
 	}
-
-	public void hide() {
-		hide(null);
-	}
-
-	protected void navEnable(boolean enabled) {
-		pause.setVisible(true);
-		pause.setDisabled(!enabled);
-		pause.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
-		main.setVisible(true);
-		main.setDisabled(!enabled);
-		main.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
-		mute.setVisible(true);
-		mute.setDisabled(!enabled);
-		mute.setTouchable(enabled ? Touchable.enabled : Touchable.disabled);
-	}
-
-	@Override
-	public void hide(Action action) {
-		disableCard.run();
-		super.hide(action);
-	}
-
-	private Runnable disableCard = new Runnable() {
-		public void run() {
-			check.setDisabled(true);
-			check.setVisible(true);
-			check.setTouchable(Touchable.disabled);
-			navEnable(false);
-		};
-	};
-
-	private Runnable enableCard = new Runnable() {
-		public void run() {
-			check.setDisabled(false);
-			check.setVisible(true);
-			check.setTouchable(Touchable.enabled);
-			navEnable(true);
-		};
-	};
 
 	@Override
 	public Dialog show(Stage stage) {
@@ -379,6 +366,16 @@ public abstract class ChallengeCardDialog extends Dialog {
 		setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
 				Math.round((stage.getHeight() - getHeight()) / 2));
 		return this;
+	}
+
+	protected abstract void showMainMenu();
+
+	public void updateMuteButtonText() {
+		mute.setText(settings.muted ? "Unmute" : "Mute");
+	}
+
+	public void updateSettings() {
+		updateMuteButtonText();
 	}
 
 }

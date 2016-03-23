@@ -2,8 +2,14 @@ package com.cherokeelessons.bp;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
@@ -19,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -28,18 +35,25 @@ import com.cherokeelessons.cards.SlotInfo;
 
 public abstract class NewCardDialog extends Dialog {
 	
+	private final TextButton answer;
+	
+	private Table appNavBar;
+
+	private final BoundPronouns game;
+	
 	public SlotInfo.Settings settings=new SlotInfo.Settings();
 	
-	private final BoundPronouns game;
-
-	private final TextButton challenge_top;
-
 	private String title="";
+
+	private final Skin skin;
 	
 	public NewCardDialog(BoundPronouns game, Skin skin) {
-		super("New Vocabulary Card", skin);
-		this.game=game;
+		super("New Vocabulary", skin);
 		
+		this.title = "New Vocabulary";
+		this.skin=skin;
+		this.game = game;
+		this.getTitleLabel().setAlignment(Align.center);
 		getStyle().titleFont=game.getFont(Font.SerifLarge);
 		getStyle().background=getDialogBackground();
 		setStyle(getStyle());
@@ -47,37 +61,20 @@ public abstract class NewCardDialog extends Dialog {
 		setModal(true);
 		setFillParent(true);
 		
-		title="New Vocabulary Card";
 		getTitleLabel().setText(title);
 		getTitleLabel().setAlignment(Align.center);
 		
-		challenge_top=new TextButton("", skin);
-		challenge_top.setDisabled(true);
-		challenge_top.setTouchable(Touchable.disabled);
-		challenge_bottom=new Label("", skin);
 		answer=new TextButton("", skin);
 		answer.setDisabled(true);
 		answer.setTouchable(Touchable.disabled);
-		
-		TextButtonStyle chr_san_large = new TextButtonStyle(challenge_top.getStyle());		
-		chr_san_large.font=game.getFont(Font.SerifLarge);
-		challenge_top.setStyle(chr_san_large);
-		
-		LabelStyle pronounce_large = new LabelStyle(challenge_bottom.getStyle());
-		pronounce_large.font=game.getFont(Font.SerifMedium);
-		challenge_bottom.setStyle(pronounce_large);
-		challenge_bottom.setAlignment(Align.bottom, Align.center);
 		
 		TextButtonStyle answerStyle = new TextButtonStyle(answer.getStyle());		
 		answerStyle.font=game.getFont(Font.SerifSmall);
 		answer.setStyle(answerStyle);
 		answer.align(Align.bottom);
 		
-		challenge_top.add(challenge_bottom);
-		
 		Table ctable = getContentTable();
 		ctable.row();
-		ctable.add(challenge_top).fill().expand();
 		ctable.row();
 		ctable.add(answer).fill().expand();
 		
@@ -115,6 +112,10 @@ public abstract class NewCardDialog extends Dialog {
 		TextButton a = new TextButton("READY!", tbs_check);
 		btable.add(a).fill().expandX().bottom();
 		setObject(a, null);
+		
+		answer_style = new TextButtonStyle(skin.get("default",
+				TextButtonStyle.class));
+		answer_style.font = game.getFont(Font.SerifMedium);
 	}
 	
 	@Override
@@ -122,40 +123,6 @@ public abstract class NewCardDialog extends Dialog {
 		super.act(delta);
 	}
 	
-	protected abstract void  showMainMenu();
-
-	private Table appNavBar;
-	
-	private final Label challenge_bottom;
-	
-	private final TextButton answer;
-	
-	final private StringBuilder showCardSb = new StringBuilder();
-	public void setCard(Card the_card) {
-		Iterator<String> i = the_card.challenge.iterator();
-		if (settings.display.equals(SlotInfo.DisplayMode.Latin)){
-			//skip the Syllabary entry
-			i.next();
-		}
-		challenge_top.setText(i.next());
-		showCardSb.setLength(0);
-		while (i.hasNext()) {
-			showCardSb.append(i.next());
-			showCardSb.append("\n");
-		}
-		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)){
-			//dont' add the latin
-			showCardSb.setLength(0);
-		}
-		challenge_bottom.setText(showCardSb.toString());
-		showCardSb.setLength(0);
-		for (String a: the_card.answer) {
-			showCardSb.append(a);
-			showCardSb.append("\n");
-		}
-		answer.setText(showCardSb.toString());		
-	}
-
 	private TiledDrawable getDialogBackground() {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		TextureRegion region = new TextureRegion(texture);
@@ -165,16 +132,117 @@ public abstract class NewCardDialog extends Dialog {
 		background.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight()+20);
 		return background;
 	}
+	@Override
+	public void hide() {
+		super.hide(null);
+	}
+	
+	private final TextButtonStyle answer_style;
+	
+	protected void setAnswers(Card the_card) {
+		Table ctable = getContentTable();
+		boolean odd = true;
+		List<String> answers = new ArrayList<>(the_card.answer);
+		Collections.sort(answers);
+		for (String answer: answers) {
+			if (odd) {
+				ctable.row();
+			}
+			final TextButton a = new TextButton(answer, answer_style);
+			a.getLabel().setWrap(true);
+			a.setColor(Color.WHITE);
+			a.setTouchable(Touchable.disabled);
+			a.setDisabled(true);
+			Value percentWidth = Value.percentWidth(.49f, ctable);
+			ctable.add(a).fillX().width(percentWidth).pad(0).space(0);
+			odd = !odd;
+		}
+		if (!odd && answers.size()!=1) {
+			final TextButton a = new TextButton("", answer_style);
+			a.getLabel().setWrap(true);
+			a.setColor(Color.WHITE);
+			a.setTouchable(Touchable.disabled);
+			a.setDisabled(true);
+			Value percentWidth = Value.percentWidth(.49f, ctable);
+			ctable.add(a).fillX().width(percentWidth).pad(0).space(0);
+		}
+		ctable.row();
+	}
+
+	public void setCard(Card the_card) {
+		String syllabary = "";
+		String latin = "";
+		Iterator<String> i = the_card.challenge.iterator();
+		if (i.hasNext()) {
+			syllabary = i.next();
+		}
+		if (i.hasNext()) {
+			latin = i.next();
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.Latin)) {
+			syllabary = "";
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)) {
+			latin = "";
+		}
+		
+		Table ctable = getContentTable();
+		ctable.clearChildren();
+		ctable.row();
+
+		TextButtonStyle chr_san_large = new TextButtonStyle(
+				skin.get(TextButtonStyle.class));
+		chr_san_large.font = game.getFont(Font.SerifXLarge);
+
+		TextButton challenge_top = new TextButton("", chr_san_large);
+		challenge_top.setDisabled(true);
+		challenge_top.setTouchable(Touchable.disabled);
+		challenge_top.clearChildren();
+
+		Cell<TextButton> challenge = ctable.add(challenge_top).fill().expand().align(Align.center);
+		if (the_card.answer.size()!=1) {
+			challenge.colspan(2);
+		}
+
+		boolean shrink = false;
+		if (syllabary.length() + latin.length() > 32) {
+			shrink = true;
+		}
+		
+		Label msg;
+		if (!StringUtils.isBlank(syllabary)) {
+			LabelStyle san_style = new LabelStyle(
+					game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
+			if (shrink) {
+				game.log(this, syllabary.length() + "");
+				san_style = new LabelStyle(game.getFont(Font.SerifLLarge),
+						chr_san_large.fontColor);
+			}
+			msg = new Label(syllabary, san_style);
+			msg.setAlignment(Align.center);
+			msg.setWrap(true);
+			challenge_top.add(msg).fill().expand();
+		}
+		if (!StringUtils.isBlank(latin)) {
+			LabelStyle serif_style = new LabelStyle(
+					game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
+			if (shrink) {
+				game.log(this, latin.length() + "");
+				serif_style = new LabelStyle(game.getFont(Font.SerifLLarge),
+						chr_san_large.fontColor);
+			}
+			msg = new Label(latin, serif_style);
+			msg.setAlignment(Align.center);
+			msg.setWrap(true);
+			challenge_top.add(msg).fill().expand();
+		}
+		setAnswers(the_card);
+	}
 
 	public void setCounter(int cardcount) {
 		getTitleLabel().setText(title+" ["+cardcount+"]");
 	}
 	
-	@Override
-	public void hide() {
-		super.hide(null);
-	}
-
 	@Override
 	public Dialog show(Stage stage) {
 		show(stage,
@@ -184,4 +252,6 @@ public abstract class NewCardDialog extends Dialog {
 				Math.round((stage.getHeight() - getHeight()) / 2));
 		return this;
 	}
+
+	protected abstract void  showMainMenu();
 }
