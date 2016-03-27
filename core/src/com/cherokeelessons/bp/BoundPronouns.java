@@ -59,8 +59,8 @@ public class BoundPronouns extends Game {
 	}
 
 	public static interface PlatformTextInput {
-		public void getTextInput(final TextInputListener listener,
-				final String title, final String text, final String hint);
+		public void getTextInput(final TextInputListener listener, final String title, final String text,
+				final String hint);
 	}
 
 	public static PlatformTextInput pInput = null;
@@ -79,12 +79,10 @@ public class BoundPronouns extends Game {
 
 	public static FitViewport getFitViewport(Camera camera) {
 		Rectangle surrounds = fittedSize();
-		FitViewport fitViewport = new FitViewport(surrounds.width,
-				surrounds.height, camera);
+		FitViewport fitViewport = new FitViewport(surrounds.width, surrounds.height, camera);
 		fitViewport.update((int) surrounds.width, (int) surrounds.height, true);
 		Gdx.app.log("com.cherokeelessons.bp.BoundPronouns",
-				"Camera Size: " + (int) surrounds.getWidth() + "x"
-						+ (int) surrounds.getHeight());
+				"Camera Size: " + (int) surrounds.getWidth() + "x" + (int) surrounds.getHeight());
 		return fitViewport;
 	}
 
@@ -139,13 +137,11 @@ public class BoundPronouns extends Game {
 
 	public static final float BACK_WIDTH = 168f;
 	static {
-		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU
-				+ UNDERCIRCLE + UNDERCUBE + UNDERDOT + UNDERLINE + UNDERX
-				+ BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC
-				+ HEAVY_BALLOT_X + HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW
-				+ DOT + LDQUOTE + RDQUOTE;
-		ClearColor = new Color((float) 0xb3 / (float) 0xff, (float) 0xb3
-				/ (float) 0xff, (float) 0xb1 / (float) 0xff, 1);
+		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU + UNDERCIRCLE + UNDERCUBE + UNDERDOT
+				+ UNDERLINE + UNDERX + BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC + HEAVY_BALLOT_X
+				+ HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW + DOT + LDQUOTE + RDQUOTE;
+		ClearColor = new Color((float) 0xb3 / (float) 0xff, (float) 0xb3 / (float) 0xff, (float) 0xb1 / (float) 0xff,
+				1);
 	}
 
 	public SpriteBatch batch;
@@ -169,8 +165,11 @@ public class BoundPronouns extends Game {
 
 	@Override
 	public void setScreen(Screen screen) {
-		Gdx.app.log("BoundPronouns#setScreen", screen.getClass()
-				.getSimpleName());
+		if (screen != null) {
+			Gdx.app.log("BoundPronouns#setScreen", screen.getClass().getSimpleName());
+		} else {
+			Gdx.app.log("BoundPronouns#setScreen", "(null)");
+		}
 		super.setScreen(screen);
 	}
 
@@ -180,14 +179,11 @@ public class BoundPronouns extends Game {
 
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		Gdx.app.log("BoundPronouns#initManager", "setloader:freetype");
-		manager.setLoader(FreeTypeFontGenerator.class,
-				new FreeTypeFontGeneratorLoader(resolver));
+		manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
 		Gdx.app.log("BoundPronouns#initManager", "setloader:bitmapfont.ttf");
-		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(
-				resolver));
+		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
 		Gdx.app.log("BoundPronouns#initManager", "setload:bitmapfont.otf");
-		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(
-				resolver));
+		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
 		MusicParameter mus_param = new MusicParameter();
 		Gdx.app.log("BoundPronouns#initManager", SND_COYOTE);
@@ -280,8 +276,7 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFreeSerifFor(int size, Font fontname) {
-		Gdx.app.log("BoundPronouns#addFreeSerifFor",
-				size + "|" + fontname.name());
+		Gdx.app.log("BoundPronouns#addFreeSerifFor", size + "|" + fontname.name());
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			String valueOf = String.valueOf(c);
@@ -328,8 +323,7 @@ public class BoundPronouns extends Game {
 	}
 
 	public void err(Object parent, Exception exception) {
-		Gdx.app.log(parent.getClass().getName(), exception.getMessage(),
-				exception);
+		Gdx.app.log(parent.getClass().getName(), exception.getMessage(), exception);
 	}
 
 	public void err(Object parent, String message, Exception exception) {
@@ -357,9 +351,9 @@ public class BoundPronouns extends Game {
 			return new ArrayList<DataSet>(pronouns);
 		}
 		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list-tab.csv");
-		List<String[]> records=new ArrayList<>();
-		try (BufferedReader reader=csvlist.reader(1024, "UTF-8")) {
-			for (String line=reader.readLine(); line!=null; line=reader.readLine()) {
+		List<String[]> records = new ArrayList<>();
+		try (BufferedReader reader = csvlist.reader(1024, "UTF-8")) {
+			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				records.add(line.split("\t"));
 			}
 		} catch (IOException e) {
@@ -433,7 +427,6 @@ public class BoundPronouns extends Game {
 	}
 
 	public static void glClearColor() {
-		Gdx.gl.glClearColor(ClearColor.r, ClearColor.g, ClearColor.b,
-				ClearColor.a);
+		Gdx.gl.glClearColor(ClearColor.r, ClearColor.g, ClearColor.b, ClearColor.a);
 	}
 }
