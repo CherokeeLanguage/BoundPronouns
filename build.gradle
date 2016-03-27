@@ -16,7 +16,7 @@ allprojects {
 	       downloadSources=true
 	    }
 	}
-    version = '2.12'
+    version = '2.13'
     ext {
         appName = 'BoundPronouns'
         gdxVersion = '1.9.2'
