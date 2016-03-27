@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 77;
+	public static int version = 78;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -443,6 +443,18 @@ public class BuildDeck implements Runnable {
 						if (d.latin.equalsIgnoreCase("I¹ji²")) {
 							d.latin = "i¹jch";
 							d.chr = "Ꭲ¹Ꮵ͓";
+						}
+					}
+					
+					if (vroot.length() > 1) {
+						char vroot_0 = vroot.charAt(0);
+						char vroot_1 = vroot.charAt(1);
+						if (vroot_0 == 'ɂ' && // glottal stop followed by tone marking
+								(vroot_1 == '¹' || vroot_1 == '²' || vroot_1 == '³' || vroot_1 == '⁴')) {
+							d.chr = d.chr.replaceAll("[¹²³⁴]+$", "");
+							if (!d.chr.endsWith(BoundPronouns.UNDERDOT)){
+								d.chr += BoundPronouns.UNDERDOT;
+							}
 						}
 					}
 

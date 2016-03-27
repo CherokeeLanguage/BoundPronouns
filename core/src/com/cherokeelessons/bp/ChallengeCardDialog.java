@@ -221,6 +221,14 @@ public abstract class ChallengeCardDialog extends Dialog {
 	protected void result(Object object) {
 		super.result(object);
 	}
+	
+	private String removexmarks(String answer) {
+		answer = answer.replace("xHe", "He");
+		answer = answer.replace("xShe", "She");
+		answer = answer.replace("xhe", "he");
+		answer = answer.replace("xshe", "she");
+		return answer;
+	}
 
 	public void setAnswers(AnswerList tracked_answers,
 			AnswerList displayed_answers) {
@@ -229,11 +237,11 @@ public abstract class ChallengeCardDialog extends Dialog {
 		boolean odd = true;
 		for (int ix = 0; ix < tracked_answers.list.size(); ix++) {
 			final Answer tracked_answer = tracked_answers.list.get(ix);
-			Answer displayed_answer = displayed_answers.list.get(ix);
+			final Answer displayed_answer = displayed_answers.list.get(ix);
 			if (odd) {
 				btable.row();
 			}
-			final TextButton a = new TextButton(displayed_answer.answer,
+			final TextButton a = new TextButton(removexmarks(displayed_answer.answer),
 					answer_style);
 			a.getLabel().setWrap(true);
 			a.setUserObject(tracked_answer);

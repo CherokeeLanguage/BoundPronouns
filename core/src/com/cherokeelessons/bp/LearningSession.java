@@ -650,7 +650,6 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 				AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
-				removexmarks(displayed_answers);
 				activeCard.tries_remaining--;
 				challengeCardDialog.setAnswers(tracked_answers, displayed_answers);
 				float duration = info.settings.timeLimit.getSeconds() - (float) activeCard.box
@@ -682,20 +681,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				}
 			}
 		}
-
-		private void removexmarks(AnswerList displayed_answers) {
-			for (Answer answer : displayed_answers.list) {
-				if (!answer.answer.contains("x")) {
-					continue;
-				}
-				answer.answer = answer.answer.replace("xHe", "He");
-				answer.answer = answer.answer.replace("xShe", "She");
-				answer.answer = answer.answer.replace("xhe", "he");
-				answer.answer = answer.answer.replace("xshe", "she");
-			}
-		}
 	}
-
+	
 	// private class TooSoonDialog implements Runnable {
 	// @Override
 	// public void run() {
