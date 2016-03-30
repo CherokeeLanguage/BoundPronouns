@@ -45,7 +45,7 @@ import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
-import com.cherokeelessons.util.LocalLeaderboard;
+import com.cherokeelessons.util.DreamLo;
 
 public class MainScreen implements Screen, InputProcessor {
 
@@ -54,8 +54,7 @@ public class MainScreen implements Screen, InputProcessor {
 	private final Skin skin;
 	private ClickListener viewPronouns = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			game.click();
 			game.setScreen(new ShowPronouns(game, MainScreen.this));
 			return true;
@@ -63,8 +62,7 @@ public class MainScreen implements Screen, InputProcessor {
 	};
 	private ClickListener viewInstructions = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			game.click();
 			game.setScreen(new ShowInstructions(game, MainScreen.this));
 			return true;
@@ -79,8 +77,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	private ClickListener viewAbout = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			game.click();
 			game.setScreen(new ShowAbout(game, MainScreen.this));
 			return true;
@@ -89,8 +86,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	private ClickListener viewBoards = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			game.click();
 			game.setScreen(new ShowLeaderboards(game, MainScreen.this));
 			return true;
@@ -102,8 +98,7 @@ public class MainScreen implements Screen, InputProcessor {
 	public class DialogX extends Dialog {
 		public DialogX(String title, Skin skin) {
 			super(title, skin);
-			final Texture background = game.manager.get(
-					BoundPronouns.IMG_MAYAN, Texture.class);
+			final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 			final TextureRegion region = new TextureRegion(background);
 			final TiledDrawable tiled = new TiledDrawable(region);
 			tiled.setMinHeight(0);
@@ -121,10 +116,8 @@ public class MainScreen implements Screen, InputProcessor {
 		});
 	}
 
-	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession,
-			final Runnable onResult) {
-		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+	public DialogX getEditDialogFor(final FileHandle p1, boolean newSession, final Runnable onResult) {
+		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		final TextureRegion region = new TextureRegion(background);
 		final TiledDrawable tiled = new TiledDrawable(region);
 		tiled.setMinHeight(0);
@@ -143,24 +136,21 @@ public class MainScreen implements Screen, InputProcessor {
 			info = new SlotInfo();
 		}
 		info.validate();
-		TextButtonStyle tbs = new TextButtonStyle(
-				skin.get(TextButtonStyle.class));
+		TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifSmall);
 		// Slot display name
 		TextFieldStyle tfs = new TextFieldStyle(skin.get(TextFieldStyle.class));
 		tfs.font = game.getFont(Font.SerifSmall);
 
 		if (!newSession) {
-			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ"
-					: info.settings.name;
+			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ" : info.settings.name;
 		}
 		final TextField name = new TextField(info.settings.name, tfs);
 		name.setDisabled(true);
 		name.setTouchable(Touchable.enabled);
 		name.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				name.setTouchable(Touchable.disabled);
 				TextInputListener listener = new TextInputListener() {
 					@Override
@@ -175,46 +165,37 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 				};
 				if (BoundPronouns.pInput == null) {
-					Gdx.input.getTextInput(listener, "Profile Name?",
-							name.getText(), "");
+					Gdx.input.getTextInput(listener, "Profile Name?", name.getText(), "");
 				} else {
-					BoundPronouns.pInput.getTextInput(listener,
-							"Profile Name?", name.getText(), "");
+					BoundPronouns.pInput.getTextInput(listener, "Profile Name?", name.getText(), "");
 				}
 				return true;
 			}
 		});
 
-		final TextButton mode = new TextButton(
-				info.settings.display.toString(), tbs);
+		final TextButton mode = new TextButton(info.settings.display.toString(), tbs);
 		mode.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				info.settings.display = DisplayMode
-						.getNext(info.settings.display);
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				info.settings.display = DisplayMode.getNext(info.settings.display);
 				mode.setText(info.settings.display.toString());
 				return true;
 			}
 		});
-		
-		final TextButton muted = new TextButton(info.settings.muted ? "Yes"
-				: "No", tbs);
+
+		final TextButton muted = new TextButton(info.settings.muted ? "Yes" : "No", tbs);
 		muted.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				info.settings.muted = !info.settings.muted;
 				muted.setText(info.settings.muted ? "Yes" : "No");
 				return true;
 			}
 		});
-		final TextButton whichCards = new TextButton(
-				info.settings.deck.toString(), tbs);
+		final TextButton whichCards = new TextButton(info.settings.deck.toString(), tbs);
 		whichCards.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				info.settings.deck = DeckMode.getNext(info.settings.deck);
 				whichCards.setText(info.settings.deck.toString());
 				return true;
@@ -286,14 +267,12 @@ public class MainScreen implements Screen, InputProcessor {
 	};
 
 	public void doSlotsDialog() {
-		final SlotDialog chooseSlot = new SlotDialog("Select Session", skin,
-				game, game.getFont(Font.SerifLarge));
+		final SlotDialog chooseSlot = new SlotDialog("Select Session", skin, game, game.getFont(Font.SerifLarge));
 		chooseSlot.setKeepWithinStage(true);
 		chooseSlot.setModal(true);
 		chooseSlot.setFillParent(true);
 
-		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		final TextureRegion region = new TextureRegion(background);
 		final TiledDrawable tiled = new TiledDrawable(region);
 		tiled.setMinHeight(0);
@@ -323,22 +302,20 @@ public class MainScreen implements Screen, InputProcessor {
 					info.settings.deck = DeckMode.Conjugations;
 				}
 				if (!info.updatedVersion()) {
-					FileHandle activeDeckFile = p0
-							.child(LearningSession.ActiveDeckJson);
+					FileHandle activeDeckFile = p0.child(LearningSession.ActiveDeckJson);
 					ActiveDeck activeDeck = null;
 					if (activeDeckFile.exists()) {
-						activeDeck = json.fromJson(ActiveDeck.class,
-								activeDeckFile);
+						activeDeck = json.fromJson(ActiveDeck.class, activeDeckFile);
 					}
 					if (activeDeck == null) {
 						activeDeck = new ActiveDeck();
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
-					String name = (StringUtils.isBlank(info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
-							: info.settings.name;
-					String tag = info.level.getEnglish()+"\t"+name;
-					new LocalLeaderboard(BoundPronouns.getPrefs()).lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, noop_success);
+					String name = (StringUtils.isBlank(info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!" : info.settings.name;
+					String tag = info.level.getEnglish() + "!!!" + name;
+					new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.lastScore, tag,
+							noop_success);
 				}
 			}
 			if (blank) {
@@ -354,8 +331,7 @@ public class MainScreen implements Screen, InputProcessor {
 			String txt = "";
 			txt += info.level;
 			txt += " ";
-			txt += (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
-					: settings.name;
+			txt += (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!" : settings.name;
 			txt += " - ";
 			txt += "Score: " + info.lastScore;
 			txt += "\n";
@@ -366,33 +342,28 @@ public class MainScreen implements Screen, InputProcessor {
 			// txt += ", " + info.longTerm + " long";
 			txt += " with a " + info.proficiency + "% proficiency";
 
-			TextButtonStyle tbs = new TextButtonStyle(
-					skin.get(TextButtonStyle.class));
+			TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
 			tbs.font = game.getFont(Font.SerifSmall);
 			TextButton textb = new TextButton(txt, tbs);
 
 			slots.row();
-			Image levelImage = new Image(game.manager.get(
-					BoundPronouns.levelImg(info.level.getLevel()),
-					Texture.class));
+			Image levelImage = new Image(
+					game.manager.get(BoundPronouns.levelImg(info.level.getLevel()), Texture.class));
 			slots.add(levelImage).pad(5).left();
 			slots.add(textb).pad(0).expand().fill().left();
 			final boolean isNewSession = blank;
 			textb.addListener(new ClickListener() {
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					final Runnable startSession = new Runnable() {
 						@Override
 						public void run() {
 							chooseSlot.hide(null);
 							game.log(this, p0.path());
-							game.setScreen(new LearningSession(game,
-									MainScreen.this, p0));
+							game.setScreen(new LearningSession(game, MainScreen.this, p0));
 						}
 					};
 					if (isNewSession) {
-						DialogX d = getEditDialogFor(infoFile, isNewSession,
-								startSession);
+						DialogX d = getEditDialogFor(infoFile, isNewSession, startSession);
 						d.show(stage);
 						return true;
 					}
@@ -406,30 +377,24 @@ public class MainScreen implements Screen, InputProcessor {
 			editControls.center();
 			editControls.defaults().pad(10);
 
-			Texture img_edit = game.manager.get(BoundPronouns.IMG_SETTINGS,
-					Texture.class);
-			TextureRegionDrawable draw_edit = new TextureRegionDrawable(
-					new TextureRegion(img_edit));
+			Texture img_edit = game.manager.get(BoundPronouns.IMG_SETTINGS, Texture.class);
+			TextureRegionDrawable draw_edit = new TextureRegionDrawable(new TextureRegion(img_edit));
 			ImageButton editb = new ImageButton(draw_edit);
 			editb.setTransform(true);
 			editb.getImage().setScaling(Scaling.fit);
 			editb.getImage().setColor(Color.DARK_GRAY);
 			editControls.add(editb).center();
 
-			Texture img_delete = game.manager.get(BoundPronouns.IMG_ERASE,
-					Texture.class);
-			TextureRegionDrawable draw_delete = new TextureRegionDrawable(
-					new TextureRegion(img_delete));
+			Texture img_delete = game.manager.get(BoundPronouns.IMG_ERASE, Texture.class);
+			TextureRegionDrawable draw_delete = new TextureRegionDrawable(new TextureRegion(img_delete));
 			ImageButton deleteb = new ImageButton(draw_delete);
 			deleteb.setTransform(true);
 			deleteb.getImage().setScaling(Scaling.fit);
 			deleteb.getImage().setColor(Color.DARK_GRAY);
 			editControls.add(deleteb).center();
 
-			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC,
-					Texture.class);
-			TextureRegionDrawable draw_sync = new TextureRegionDrawable(
-					new TextureRegion(img_sync));
+			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
+			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
 			ImageButton syncb = new ImageButton(draw_sync);
 			syncb.setTransform(true);
 			syncb.getImage().setScaling(Scaling.fit);
@@ -446,8 +411,7 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.getImage().setColor(Color.CLEAR);
 			}
 			syncb.addListener(new ClickListener() {
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					Gdx.app.log("MainScreen", p0.name());
 					Runnable whenDone = new Runnable() {
 						@Override
@@ -456,8 +420,7 @@ public class MainScreen implements Screen, InputProcessor {
 							doSlotsDialog();
 						}
 					};
-					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, p0,
-							whenDone);
+					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, p0, whenDone);
 					game.click();
 					Gdx.app.postRunnable(gsync);
 					return true;
@@ -466,16 +429,14 @@ public class MainScreen implements Screen, InputProcessor {
 
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					DialogX edit = getEditDialogFor(infoFile, false,
-							new Runnable() {
-								@Override
-								public void run() {
-									chooseSlot.hide();
-									doSlotsDialog();
-								}
-							});
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+					DialogX edit = getEditDialogFor(infoFile, false, new Runnable() {
+						@Override
+						public void run() {
+							chooseSlot.hide();
+							doSlotsDialog();
+						}
+					});
 					edit.show(stage);
 					return true;
 				}
@@ -483,12 +444,10 @@ public class MainScreen implements Screen, InputProcessor {
 			});
 
 			deleteb.addListener(new ClickListener() {
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					Dialog confirm = new Dialog("Erase?", skin) {
 						{
-							WindowStyle ws = new WindowStyle(skin
-									.get(WindowStyle.class));
+							WindowStyle ws = new WindowStyle(skin.get(WindowStyle.class));
 							ws.titleFont = game.getFont(Font.SerifLarge);
 							setStyle(ws);
 							this.getTitleLabel().setAlignment(Align.center);
@@ -551,8 +510,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	private ClickListener viewPractice = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			doSlotsDialog();
 			return true;
 		}
@@ -560,8 +518,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	private ClickListener viewQuit = new ClickListener() {
 		@Override
-		public boolean touchDown(InputEvent event, float x, float y,
-				int pointer, int button) {
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			game.click();
 			game.setScreen(new GoodByeScreen(game, MainScreen.this));
 			dispose();
@@ -585,8 +542,7 @@ public class MainScreen implements Screen, InputProcessor {
 		container.setFillParent(true);
 		stage.addActor(container);
 
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		container.setBackground(d);
 
@@ -596,8 +552,7 @@ public class MainScreen implements Screen, InputProcessor {
 		bstyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		bstyle.font = game.getFont(Font.SerifXLarge);
 
-		button = new TextButton("Cherokee Language\nBound Pronouns Practice",
-				bstyle);
+		button = new TextButton("Cherokee Language\nBound Pronouns Practice", bstyle);
 		button.setDisabled(true);
 		button.setTouchable(Touchable.disabled);
 
@@ -618,8 +573,7 @@ public class MainScreen implements Screen, InputProcessor {
 			container.row();
 			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill()
-				.width(Value.percentWidth(.5f, container));
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		boolean showLeaderboards = (BoundPronouns.services != null);
 
@@ -631,8 +585,7 @@ public class MainScreen implements Screen, InputProcessor {
 				container.row();
 				column = 0;
 			}
-			container.add(button).padBottom(padBottom).expand().fill()
-					.width(Value.percentWidth(.5f, container));
+			container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 		}
 
 		button = new TextButton("Instructions", bstyle);
@@ -642,8 +595,7 @@ public class MainScreen implements Screen, InputProcessor {
 			container.row();
 			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill()
-				.width(Value.percentWidth(.5f, container));
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
@@ -652,8 +604,7 @@ public class MainScreen implements Screen, InputProcessor {
 			container.row();
 			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill()
-				.width(Value.percentWidth(.5f, container));
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
@@ -662,8 +613,7 @@ public class MainScreen implements Screen, InputProcessor {
 			container.row();
 			column = 0;
 		}
-		container.add(button).padBottom(padBottom).expand().fill()
-				.width(Value.percentWidth(.5f, container));
+		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);

@@ -24,12 +24,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
-import com.cherokeelessons.util.LocalLeaderboard;
 
 public class ShowLeaderboards extends ChildScreen implements Screen {
 
@@ -38,7 +38,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	private ScrollPane scroll;
 	private Table scrolltable;
 	private Label message;
-	private final LocalLeaderboard lb;
+	private final DreamLo lb;
 
 	public ShowLeaderboards(BoundPronouns game, Screen caller) {
 		super(game, caller);
@@ -47,7 +47,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		container.setBackground(d());
 		container.setFillParent(true);
 		stage.addActor(container);
-		this.lb = new LocalLeaderboard(BoundPronouns.getPrefs());
+		this.lb = new DreamLo(BoundPronouns.getPrefs());
 	}
 
 	@Override

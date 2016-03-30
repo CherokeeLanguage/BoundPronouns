@@ -14,7 +14,7 @@ public class SlotInfo implements Serializable {
 		this.signature = signature;
 	}
 
-	private static final int StatsVersion = 25;
+	private static final int StatsVersion = 33;
 	public static final int FULLY_LEARNED_BOX = 10;
 	public static final int PROFICIENT_BOX = 5;
 	public static final int JUST_LEARNED_BOX = 1;
@@ -279,6 +279,7 @@ public class SlotInfo implements Serializable {
 	public int lastScore;
 	public boolean perfect;
 	public long lastrun;
+	public String slot;
 
 	public SlotInfo() {
 	}

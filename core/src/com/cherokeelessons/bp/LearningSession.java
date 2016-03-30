@@ -62,7 +62,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.JsonConverter;
-import com.cherokeelessons.util.LocalLeaderboard;
+import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.Log;
 
 public class LearningSession extends ChildScreen implements Screen {
@@ -74,7 +74,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		@Override
 		public void run() {
 			log.info("Loading Active Deck ...");
-
 			if (!slot.child(ActiveDeckJson).exists()) {
 				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
 			}
@@ -343,12 +342,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					sb.append("\n");
 					sb.append("You currently have a " + info.proficiency + "% proficiency level");
 					sb.append("\n");
-					// sb.append(info.shortTerm + " short term memorized");
-					// sb.append("\n");
-					// sb.append(info.mediumTerm + " medium term memorized");
-					// sb.append("\n");
-					// sb.append(info.longTerm + " long term memorized");
-					// sb.append("\n");
 					int minutes = (int) (params.elapsed_secs / 60f);
 					int seconds = (int) (params.elapsed_secs - minutes * 60f);
 					sb.append("Total actual challenge time: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
@@ -396,10 +389,10 @@ public class LearningSession extends ChildScreen implements Screen {
 						@Override
 						public void success(Void result) {
 							if (lb != null) {
-								String tag = info.level.getEnglish() + "\t" + info.settings.name;
-								lb.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, getPublicScores);
+								String tag = info.level.getEnglish() + "!!!" + info.settings.name;
+								lb.lb_submit(info.slot, info.lastScore, tag, getPublicScores);
 							} else {
-								BoundPronouns.services.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore,
+								BoundPronouns.services.lb_submit(info.slot, info.lastScore,
 										info.level.getEnglish(), getPublicScores);
 							}
 						}
@@ -459,10 +452,10 @@ public class LearningSession extends ChildScreen implements Screen {
 								}
 							};
 							if (lb != null) {
-								String tag = info.level.getEnglish() + "\t" + info.settings.name;
-								lb.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore, tag, noop_success);
+								String tag = info.level.getEnglish() + "!!!" + info.settings.name;
+								lb.lb_submit(info.slot, info.lastScore, tag, noop_success);
 							} else {
-								BoundPronouns.services.lb_submit(ShowLeaderboards.LeaderBoardId, info.lastScore,
+								BoundPronouns.services.lb_submit(info.slot, info.lastScore,
 										info.level.getEnglish(), do_reveal);
 							}
 						} else {
@@ -1115,10 +1108,10 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private long ticktock_id;
 
-	private final static LocalLeaderboard lb;
+	private final static DreamLo lb;
 
 	static {
-		lb = new LocalLeaderboard(BoundPronouns.getPrefs());
+		lb = new DreamLo(BoundPronouns.getPrefs());
 	}
 
 	// private TooSoonDialog tooSoon = new TooSoonDialog() {
@@ -1126,7 +1119,6 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
-
 		int totalCards = game.deck.cards.size();
 		current_active.deck = new ArrayList<ActiveCard>(totalCards);
 		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
@@ -1157,6 +1149,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			info.settings.sessionLength = SessionLength.Brief;
 			info.settings.timeLimit = TimeLimit.Novice;
 		}
+		info.slot=slot.nameWithoutExtension();
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
