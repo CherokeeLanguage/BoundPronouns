@@ -314,8 +314,10 @@ public class MainScreen implements Screen, InputProcessor {
 					json.toJson(info, infoFile);
 					String name = (StringUtils.isBlank(info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!" : info.settings.name;
 					String tag = info.level.getEnglish() + "!!!" + name;
-					new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.lastScore, tag,
-							noop_success);
+					if (info.activeCards!=0 && info.lastScore!=0) {
+						new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.lastScore, tag,
+								noop_success);
+					}
 				}
 			}
 			if (blank) {

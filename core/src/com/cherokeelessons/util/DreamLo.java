@@ -196,30 +196,24 @@ public class DreamLo implements LeaderboardClient {
 					gs.value = s[1].trim();
 					String decoded_tag;
 					try {
-						decoded_tag = URLDecoder.decode(s[3], "UTF-8");
+						decoded_tag = URLDecoder.decode(s[3], "UTF-8").trim();
 					} catch (UnsupportedEncodingException e) {
-						decoded_tag = s[3].replace("+", " ");
+						decoded_tag = s[3].replace("+", " ").trim();
 					}
 					gs.tag = StringUtils.substringBefore(decoded_tag, "!!!");
-					String decoded_other_name;
-					try {
-						decoded_other_name = URLDecoder.decode(s[3], "UTF-8");
-					} catch (UnsupportedEncodingException e) {
-						decoded_other_name = s[3].replace("+", " ");
-					}
-					decoded_other_name = StringUtils.substringAfter(decoded_other_name, "!!!");
+					String decoded_other_name = StringUtils.substringAfter(decoded_tag, "!!!");
 					String decoded;
 					try {
-						decoded = URLDecoder.decode(s[0], "UTF-8");
+						decoded = URLDecoder.decode(s[0], "UTF-8").trim();
 					} catch (UnsupportedEncodingException e) {
-						decoded = s[0].replace("+", " ");
+						decoded = s[0].replace("+", " ").trim();
 					}
 					gs.user = decoded;
 					if (gs.user.startsWith(myId)) {
-						gs.user = decoded_other_name + " (" + gs.user.replace(myId, "") + ")";
+						gs.user = decoded_other_name + " [" + gs.user.replace(myId, "") + "]";
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = decoded_other_name + " (" + StringUtils.substringAfterLast(gs.user, "-") + ")";
+							gs.user = decoded_other_name + " [" + StringUtils.substringAfterLast(gs.user, "-") + "]";
 						}
 					}
 					gss.list.add(gs);
