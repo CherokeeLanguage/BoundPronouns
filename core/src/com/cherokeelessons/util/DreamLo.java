@@ -37,7 +37,7 @@ public class DreamLo implements LeaderboardClient {
 	}
 
 	private boolean registeredWithBoard() {
-		if (prefs.getString(DREAMLO_USERID, "").length()==0) {
+		if (prefs.getString(DREAMLO_USERID, "").length() == 0) {
 			if (!registeredListenerPending) {
 				Gdx.app.log("DreamLo", "registeredWithBoard: false");
 				registeredListenerPending = true;
@@ -73,11 +73,11 @@ public class DreamLo implements LeaderboardClient {
 			Gdx.app.log("DreamLo", "registerWithBoard");
 			HttpRequest httpRequest = new HttpRequest("GET");
 			httpRequest.setUrl(readUrl + "/pipe");
-			Gdx.app.log("DreamLo", "URL: '"+httpRequest.getUrl()+"'");
+			Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
 			HttpResponseListener httpResponseListener = new HttpResponseListener() {
 				@Override
 				public void handleHttpResponse(HttpResponse httpResponse) {
-					Gdx.app.log("DreamLo", "registerWithBoard: "+httpResponse.getResultAsString());
+					Gdx.app.log("DreamLo", "registerWithBoard: " + httpResponse.getResultAsString());
 					String str_scores = httpResponse.getResultAsString();
 					String[] scores = str_scores.split("\n");
 					Random r = new Random();
@@ -94,9 +94,9 @@ public class DreamLo implements LeaderboardClient {
 					HttpRequest httpRequest = new HttpRequest("GET");
 					httpRequest.setTimeOut(10000);
 					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/New+Player");
-					Gdx.app.log("DreamLo", "URL: '"+httpRequest.getUrl()+"'");
+					Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
 					Gdx.net.sendHttpRequest(httpRequest, registeredListener);
-					prefs.putString(DREAMLO_USERID, id+"");
+					prefs.putString(DREAMLO_USERID, id + "");
 					prefs.flush();
 				}
 
@@ -133,22 +133,23 @@ public class DreamLo implements LeaderboardClient {
 		}
 		HttpRequest httpRequest = new HttpRequest("GET");
 		httpRequest.setTimeOut(10000);
-		String url = writeUrl + "/add/" + prefs.getString(DREAMLO_USERID, "") + "-"+boardId+"/"+score+"/0/"+encoded;
+		String url = writeUrl + "/add/" + prefs.getString(DREAMLO_USERID, "") + "-" + boardId + "/" + score + "/0/"
+				+ encoded;
 		httpRequest.setUrl(url);
-		Gdx.app.log("DreamLo", "URL: '"+httpRequest.getUrl()+"'");
+		Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
-				Gdx.app.log("DreamLo", "lb_sumbit: "+httpResponse.getResultAsString());
+				Gdx.app.log("DreamLo", "lb_sumbit: " + httpResponse.getResultAsString());
 				callback.success(null);
 			}
-			
+
 			@Override
 			public void failed(Throwable t) {
 				Gdx.app.log("DreamLo", "lb_submit", t);
 				callback.error(new RuntimeException(t));
 			}
-			
+
 			@Override
 			public void cancelled() {
 				Gdx.app.log("DreamLo", "lb_submit: timed out");
@@ -170,11 +171,11 @@ public class DreamLo implements LeaderboardClient {
 		HttpRequest httpRequest = new HttpRequest("GET");
 		httpRequest.setTimeOut(10000);
 		httpRequest.setUrl(readUrl + "/pipe");
-		Gdx.app.log("DreamLo", "URL: '"+httpRequest.getUrl()+"'");
+		Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
-				String myId=prefs.getString(DREAMLO_USERID, "")+"-";
+				String myId = prefs.getString(DREAMLO_USERID, "") + "-";
 				Gdx.app.log("DreamLo", "lb_getScoresFor: success");
 				List<String> scores = new ArrayList<>(Arrays.asList(httpResponse.getResultAsString().split("\n")));
 				final GameScores gss = new GameScores();
@@ -182,53 +183,44 @@ public class DreamLo implements LeaderboardClient {
 				gss.list = new ArrayList<>();
 				gss.ts = TimeSpan.WEEKLY;
 				for (String score : scores) {
-					if (score==null||score.length()==0) {
+					if (score == null || score.length() == 0) {
 						continue;
 					}
 					String[] s = score.split("\\|");
-					if (s == null || s.length == 0) {
+					if (s == null || s.length < 4) {
 						continue;
 					}
 					/*
-					 * 0: username
-					 * 1: score
-					 * 2: time
-					 * 3: tag
-					 * 4: date 
-					 * 5: index
+					 * 0: username 1: score 2: time 3: tag 4: date 5: index
 					 */
 					GameScore gs = new GameScore();
 					gs.value = s[1].trim();
-					if (s.length > 2) {
-						String decoded_tag;
-						try {
-							decoded_tag = URLDecoder.decode(s[3], "UTF-8");
-						} catch (UnsupportedEncodingException e) {
-							decoded_tag = s[3].replace("+", " ");
-						}
-						gs.tag = StringUtils.substringBefore(decoded_tag, "!!!");
+					String decoded_tag;
+					try {
+						decoded_tag = URLDecoder.decode(s[3], "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						decoded_tag = s[3].replace("+", " ");
 					}
-					if (s.length > 2) {
-						String decoded_other_name;
-						try {
-							decoded_other_name = URLDecoder.decode(s[3], "UTF-8");
-						} catch (UnsupportedEncodingException e) {
-							decoded_other_name = s[3].replace("+", " ");
-						}
-						decoded_other_name=StringUtils.substringAfter(decoded_other_name, "!!!");
-						String decoded;
-						try {
-							decoded = URLDecoder.decode(s[0], "UTF-8");
-						} catch (UnsupportedEncodingException e) {
-							decoded = s[0].replace("+", " ");
-						}
-						gs.user = decoded;
-						if (gs.user.startsWith(myId)) {
-							gs.user=decoded_other_name+" ("+gs.user.replace(myId, "")+")";
-						} else {
-							if (!decoded_other_name.matches(".*?[a-zA-Z].*?")){
-								gs.user=decoded_other_name+" ("+StringUtils.substringAfterLast(gs.user, "-")+")";
-							}
+					gs.tag = StringUtils.substringBefore(decoded_tag, "!!!");
+					String decoded_other_name;
+					try {
+						decoded_other_name = URLDecoder.decode(s[3], "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						decoded_other_name = s[3].replace("+", " ");
+					}
+					decoded_other_name = StringUtils.substringAfter(decoded_other_name, "!!!");
+					String decoded;
+					try {
+						decoded = URLDecoder.decode(s[0], "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						decoded = s[0].replace("+", " ");
+					}
+					gs.user = decoded;
+					if (gs.user.startsWith(myId)) {
+						gs.user = decoded_other_name + " (" + gs.user.replace(myId, "") + ")";
+					} else {
+						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
+							gs.user = decoded_other_name + " (" + StringUtils.substringAfterLast(gs.user, "-") + ")";
 						}
 					}
 					gss.list.add(gs);
@@ -263,7 +255,7 @@ public class DreamLo implements LeaderboardClient {
 				Collections.sort(gss.list, descending);
 				for (int ix = 0; ix < gss.list.size(); ix++) {
 					GameScore tmp = gss.list.get(ix);
-					switch (ix+1) {
+					switch (ix + 1) {
 					case 1:
 						tmp.rank = "1st";
 						break;
@@ -274,19 +266,19 @@ public class DreamLo implements LeaderboardClient {
 						tmp.rank = "3rd";
 						break;
 					default:
-						tmp.rank = (ix+1) + "th";
+						tmp.rank = (ix + 1) + "th";
 						break;
 					}
 				}
 				callback.success(gss);
 			}
-			
+
 			@Override
 			public void failed(Throwable t) {
 				Gdx.app.log("DreamLo", "lb_getScoresFor:", t);
 				callback.error(new RuntimeException(t));
 			}
-			
+
 			@Override
 			public void cancelled() {
 				Gdx.app.log("DreamLo", "lb_getScoresFor: timed out");
