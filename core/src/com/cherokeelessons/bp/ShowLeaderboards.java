@@ -87,11 +87,14 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			text = "Display Name";
 			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 
-			if (data.list.size()>50) {
-				data.list.subList(50, data.list.size()).clear();
+			if (data.list.size()>20) {
+				data.list.subList(20, data.list.size()).clear();
 			}
 			
+			int c=0;
 			for (GameScore score : data.list) {
+				c++;
+				Gdx.app.log(this.getClass().getSimpleName(), "doing label for score: "+c);
 				table.row();
 				table.add(new Label(score.rank, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK)))
 						.padLeft(15).padRight(15).center();
@@ -258,7 +261,11 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			super.render(delta);
 		} catch (Exception e) {
 			e.printStackTrace();
+			scrolltable.clear();
+			scrolltable.remove();
 			container.clear();
+			container.remove();
+			stage.clear();
 			doExit.run();
 		}
 	}
