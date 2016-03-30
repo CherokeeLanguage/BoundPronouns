@@ -20,8 +20,8 @@ import com.badlogic.gdx.Preferences;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
-import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
+import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 
 public class DreamLo implements LeaderboardClient {
 	private static final String DREAMLO_USERID = "dreamlo-userid";
@@ -36,6 +36,43 @@ public class DreamLo implements LeaderboardClient {
 		this.prefs = prefs;
 	}
 
+	private Callback<Void> noop=new Callback<Void>() {
+		@Override
+		public void success(Void result) {
+		}
+	};
+	private Callback<Void> delete_old_board=new Callback<Void>() {
+		@Override
+		public void success(Void result) {
+			prefs.remove("leaderboard");
+			prefs.flush();
+		}
+	};
+	private static boolean migration_pending=false;
+	private Runnable migrate=new Runnable() {
+		@Override
+		public void run() {
+			if (migration_pending) {
+				return;
+			}
+			migration_pending=true;
+			String[] old = prefs.getString("leaderboard", "").split("\n");
+			for (int c =0; c<old.length; c++) {
+				if (old[c]==null||!old[c].contains("\t")){
+					continue;
+				}
+				String[] field = old[c].split("\t");
+				if (field==null||field.length<3) {
+					continue;
+				}
+				try {
+					Long score = Long.valueOf(field[0]);
+					lb_submit(""+(c+4), score, field[1]+"!!!"+field[2], delete_old_board);
+				} catch (NumberFormatException e) {
+				}
+			}
+		}
+	};
 	public boolean registerWithDreamLoBoard() {
 		if (prefs.getString(DREAMLO_USERID, "").length() == 0) {
 			if (!registeredListenerPending) {
@@ -45,6 +82,7 @@ public class DreamLo implements LeaderboardClient {
 			}
 			return false;
 		}
+		Gdx.app.postRunnable(migrate);
 		return true;
 	}
 
@@ -97,6 +135,7 @@ public class DreamLo implements LeaderboardClient {
 					Gdx.net.sendHttpRequest(httpRequest, registeredListener);
 					prefs.putString(DREAMLO_USERID, id + "");
 					prefs.flush();
+					Gdx.app.postRunnable(migrate);
 				}
 
 				@Override

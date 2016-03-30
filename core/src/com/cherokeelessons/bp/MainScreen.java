@@ -43,9 +43,9 @@ import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
 import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
+import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
-import com.cherokeelessons.util.DreamLo;
 
 public class MainScreen implements Screen, InputProcessor {
 
@@ -338,10 +338,6 @@ public class MainScreen implements Screen, InputProcessor {
 			txt += "Score: " + info.lastScore;
 			txt += "\n";
 			txt += info.activeCards + " cards";
-			// txt += ": ";
-			// txt += info.shortTerm + " short";
-			// txt += ", " + info.mediumTerm + " medium";
-			// txt += ", " + info.longTerm + " long";
 			txt += " with a " + info.proficiency + "% proficiency";
 
 			TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));
