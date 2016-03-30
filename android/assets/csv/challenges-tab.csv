@@ -134,8 +134,8 @@ n		Ꭿ²Ꮩ²Ꮣ	hi²do²da	hi²do²da	You one, his father
 n		ᏍᎩ̣²Ꮒ²Ꮩ²Ꮣ	sgị²ni²do²da	sgị²ni²do²da	You one, his and my father		
 n		Ꭲ¹ᏍᎩ²Ꮩ²Ꮣ	i¹sgi²do²da	i¹sgi²do²da	You one, their and my father		
 n		Ꭶ²Ꭿ²Ꮩ²Ꮣ	gạ²hi²do²da	gạ²hi²do²da	You one, their father		
-n		Ꭰ̣²Ꭹ̣²Ꮩ²Ꮣ	ạ²gị²do²da	ạ²gị²do²da	My father		
-n		Ꮳ̣²Ꮩ²Ꮣ	jạ²do²da	jạ²do²da	Your one's father		
+n		Ꭰ̣²Ꭹ̣²Ꮩ²Ꮣ	ạ²gị²do²da	ạ²gị²do²da	xHe, my father		
+n		Ꮳ̣²Ꮩ²Ꮣ	jạ²do²da	jạ²do²da	xHe, your one's father		
 n		Ꭴ²Ꮩ²Ꮣ	u²do²da	u²do²da	His father		
 n		Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	gị²ni²do²da	gị²ni²do²da	Your one's and my father		
 n		Ꭲ¹Ꭹ²Ꮩ²Ꮣ	i¹gi²do²da	i¹gi²do²da	Your all's and my father		
@@ -144,25 +144,25 @@ n		Ꭳ²Ꭹ²Ꮩ²Ꮣ	o²gi²do²da	o²gi²do²da	Their and my father
 n		ᏍᏗ²Ꮩ²Ꮣ	sdi²do²da	sdi²do²da	Your two's father		
 n		Ꭲ¹Ꮵ²Ꮩ²Ꮣ	i¹ji²do²da	i¹ji²do²da	Your all's father		
 n		Ꭴ²Ꮒ²Ꮩ²Ꮣ	u²ni²do²da	u²ni²do²da	Their father		
-n		Ꮧ̣²Ꭸ²Ꮒ²Ꮩ²Ꮣ	dị²ge²ni²do²da	dị²ge²ni²do²da	You one and I, their fathers		
-n		Ꮧ̣²Ꭸ²Ꮧ²Ꮩ²Ꮣ	dị²ge²di²do²da	dị²ge²di²do²da	You all and I, their fathers		
-n		Ꮧ̣²ᏍᏛ²Ꮩ²Ꮣ	dị²sdv²do²da	dị²sdv²do²da	xHe and I, your two's fathers		
-n		Ꮧ¹Ꮸ²Ꮩ²Ꮣ	di¹jv²do²da	di¹jv²do²da	xHe and I, your all's fathers		
-n		Ꮶ²ᏍᏗ²Ꮩ²Ꮣ	jo²sdi²do²da	jo²sdi²do²da	xHe and I, their fathers		
-n		Ꮧ¹Ꮸ²Ꮩ²Ꮣ	di¹jv²do²da	di¹jv²do²da	They and I, your all's fathers		
-n		Ꮶ²Ꮵ²Ꮩ²Ꮣ	jo²ji²do²da	jo²ji²do²da	They and I, their fathers		
-n		Ꮧ̣²ᏍᎩ̣²Ꮒ²Ꮩ²Ꮣ	dị²sgị²ni²do²da	dị²sgị²ni²do²da	You two, his and my fathers		
-n		Ꮧ¹ᏍᎩ²Ꮩ²Ꮣ	di¹sgi²do²da	di¹sgi²do²da	You two, their and my fathers		
-n		Ꮧ̣²ᏍᏗ²Ꮩ²Ꮣ	dị²sdi²do²da	dị²sdi²do²da	You two, their fathers		
-n		Ꮧ¹ᏍᎩ²Ꮩ²Ꮣ	di¹sgi²do²da	di¹sgi²do²da	You all, their and my fathers		
-n		Ꮧ¹Ꮵ²Ꮩ²Ꮣ	di¹ji²do²da	di¹ji²do²da	You all, their fathers		
-n		Ꮧ̣²Ꭸ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	dị²ge²gị²ni²do²da	dị²ge²gị²ni²do²da	They, your one and my fathers		
-n		Ꮧ̣²Ꭸ²Ꭹ²Ꮩ²Ꮣ	dị²ge²gi²do²da	dị²ge²gi²do²da	They, your all's and my fathers		
-n		Ꮧ̣²Ꭺ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	dị²go²gị²ni²do²da	dị²go²gị²ni²do²da	They, his and my fathers		
-n		Ꮧ̣²Ꭺ²Ꭹ²Ꮩ²Ꮣ	dị²go²gi²do²da	dị²go²gi²do²da	They, their and my fathers		
-n		Ꮧ̣²Ꭸ²ᏍᏗ²Ꮩ²Ꮣ	dị²ge²sdi²do²da	dị²ge²sdi²do²da	They, your two fathers		
-n		Ꮧ̣²Ꭸ²Ꮵ²Ꮩ²Ꮣ	dị²ge²ji²do²da	dị²ge²ji²do²da	They, your all's fathers		
-n		Ꮧ̣²Ꭼ²Ꮹ̣²Ꮒ²Ꮩ²Ꮣ	dị²gv²wạ²ni²do²da	dị²gv²wạ²ni²do²da	They, their fathers		
+n		Ꮧ̣²Ꭸ²Ꮒ²Ꮩ²Ꮣ	dị²ge²ni²do²da	dị²ge²ni²do²da	You one and I, their mutual fathers		
+n		Ꮧ̣²Ꭸ²Ꮧ²Ꮩ²Ꮣ	dị²ge²di²do²da	dị²ge²di²do²da	You all and I, their mutual fathers		
+n		Ꮧ̣²ᏍᏛ²Ꮩ²Ꮣ	dị²sdv²do²da	dị²sdv²do²da	xHe and I, your two's mutual fathers		
+n		Ꮧ¹Ꮸ²Ꮩ²Ꮣ	di¹jv²do²da	di¹jv²do²da	xHe and I, your all's mutual fathers		
+n		Ꮶ²ᏍᏗ²Ꮩ²Ꮣ	jo²sdi²do²da	jo²sdi²do²da	xHe and I, their mutual fathers		
+n		Ꮧ¹Ꮸ²Ꮩ²Ꮣ	di¹jv²do²da	di¹jv²do²da	They and I, your all's mutual fathers		
+n		Ꮶ²Ꮵ²Ꮩ²Ꮣ	jo²ji²do²da	jo²ji²do²da	They and I, their mutual fathers		
+n		Ꮧ̣²ᏍᎩ̣²Ꮒ²Ꮩ²Ꮣ	dị²sgị²ni²do²da	dị²sgị²ni²do²da	You two, his and my mutual fathers		
+n		Ꮧ¹ᏍᎩ²Ꮩ²Ꮣ	di¹sgi²do²da	di¹sgi²do²da	You two, their and my mutual fathers		
+n		Ꮧ̣²ᏍᏗ²Ꮩ²Ꮣ	dị²sdi²do²da	dị²sdi²do²da	You two, their mutual fathers		
+n		Ꮧ¹ᏍᎩ²Ꮩ²Ꮣ	di¹sgi²do²da	di¹sgi²do²da	You all, their and my mutual fathers		
+n		Ꮧ¹Ꮵ²Ꮩ²Ꮣ	di¹ji²do²da	di¹ji²do²da	You all, their mutual fathers		
+n		Ꮧ̣²Ꭸ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	dị²ge²gị²ni²do²da	dị²ge²gị²ni²do²da	They, your one and my mutual fathers		
+n		Ꮧ̣²Ꭸ²Ꭹ²Ꮩ²Ꮣ	dị²ge²gi²do²da	dị²ge²gi²do²da	They, your all's and my mutual fathers		
+n		Ꮧ̣²Ꭺ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	dị²go²gị²ni²do²da	dị²go²gị²ni²do²da	They, his and my mutual fathers		
+n		Ꮧ̣²Ꭺ²Ꭹ²Ꮩ²Ꮣ	dị²go²gi²do²da	dị²go²gi²do²da	They, their and my mutual fathers		
+n		Ꮧ̣²Ꭸ²ᏍᏗ²Ꮩ²Ꮣ	dị²ge²sdi²do²da	dị²ge²sdi²do²da	They, your two mutual fathers		
+n		Ꮧ̣²Ꭸ²Ꮵ²Ꮩ²Ꮣ	dị²ge²ji²do²da	dị²ge²ji²do²da	They, your all's mutual fathers		
+n		Ꮧ̣²Ꭼ²Ꮹ̣²Ꮒ²Ꮩ²Ꮣ	dị²gv²wạ²ni²do²da	dị²gv²wạ²ni²do²da	They, their mutual fathers		
 							
 n		Ꭱ²Ꮵ	e²ji	e²ji	Mother		
 n		Ꭼ²Ꮵ	gv²ji	gv²ji	I, your mother		
@@ -175,8 +175,8 @@ n		Ꭿ²Ꮵ	hi²ji	hi²ji	You one, his mother
 n		ᏍᎩ̣²Ꮒ²Ꮵ	sgị²ni²ji	sgị²ni²ji	You one, his and my mother		
 n		Ꭲ¹ᏍᎩ²Ꮵ	i¹sgi²ji	i¹sgi²ji	You one, their and my mother		
 n		Ꭶ²Ꭿ²Ꮵ	gạ²hi²ji	gạ²hi²ji	You one, their mother		
-n		Ꭰ̣²Ꭹ̣²Ꮵ	ạ²gị²ji	ạ²gị²ji	My mother		
-n		Ꮳ̣²Ꮵ	jạ²ji	jạ²ji	Your one's mother		
+n		Ꭰ̣²Ꭹ̣²Ꮵ	ạ²gị²ji	ạ²gị²ji	xShe, my mother		
+n		Ꮳ̣²Ꮵ	jạ²ji	jạ²ji	xShe, your one's mother		
 n		Ꭴ²Ꮵ	u²ji	u²ji	His mother		
 n		Ꭹ̣²Ꮒ²Ꮵ	gị²ni²ji	gị²ni²ji	Your one's and my mother		
 n		Ꭲ¹Ꭹ²Ꮵ	i¹gi²ji	i¹gi²ji	Your all's and my mother		
@@ -185,22 +185,22 @@ n		Ꭳ²Ꭹ²Ꮵ	o²gi²ji	o²gi²ji	Their and my mother
 n		ᏍᏗ²Ꮵ	sdi²ji	sdi²ji	Your two's mother		
 n		Ꭲ¹Ꮵ²Ꮵ	i¹ji²ji	i¹ji²ji	Your all's mother		
 n		Ꭴ²Ꮒ²Ꮵ	u²ni²ji	u²ni²ji	Their mother		
-n		Ꮧ̣²Ꭸ²Ꮒ²Ꮵ	dị²ge²ni²ji	dị²ge²ni²ji	You one and I, their mothers		
-n		Ꮧ̣²Ꭸ²Ꮧ²Ꮵ	dị²ge²di²ji	dị²ge²di²ji	You all and I, their mothers		
-n		Ꮧ̣²ᏍᏛ²Ꮵ	dị²sdv²ji	dị²sdv²ji	xShe and I, your two's mothers		
-n		Ꮧ¹Ꮸ²Ꮵ	di¹jv²ji	di¹jv²ji	xShe and I, your all's mothers		
-n		Ꮶ²ᏍᏗ²Ꮵ	jo²sdi²ji	jo²sdi²ji	xShe and I, their mothers		
-n		Ꮧ¹Ꮸ²Ꮵ	di¹jv²ji	di¹jv²ji	They and I, your all's mothers		
-n		Ꮶ²Ꮵ²Ꮵ	jo²ji²ji	jo²ji²ji	They and I, their mothers		
-n		Ꮧ̣²ᏍᎩ̣²Ꮒ²Ꮵ	dị²sgị²ni²ji	dị²sgị²ni²ji	You two, his and my mothers		
-n		Ꮧ¹ᏍᎩ²Ꮵ	di¹sgi²ji	di¹sgi²ji	You two, their and my mothers		
-n		Ꮧ̣²ᏍᏗ²Ꮵ	dị²sdi²ji	dị²sdi²ji	You two, their mothers		
-n		Ꮧ¹ᏍᎩ²Ꮵ	di¹sgi²ji	di¹sgi²ji	You all, their and my mothers		
-n		Ꮧ¹Ꮵ²Ꮵ	di¹ji²ji	di¹ji²ji	You all, their mothers		
-n		Ꮧ̣²Ꭸ²Ꭹ̣²Ꮒ²Ꮵ	dị²ge²gị²ni²ji	dị²ge²gị²ni²ji	They, your one and my mothers		
-n		Ꮧ̣²Ꭸ²Ꭹ²Ꮵ	dị²ge²gi²ji	dị²ge²gi²ji	They, your all's and my mothers		
-n		Ꮧ̣²Ꭺ²Ꭹ̣²Ꮒ²Ꮵ	dị²go²gị²ni²ji	dị²go²gị²ni²ji	They, his and my mothers		
-n		Ꮧ̣²Ꭺ²Ꭹ²Ꮵ	dị²go²gi²ji	dị²go²gi²ji	They, their and my mothers		
-n		Ꮧ̣²Ꭸ²ᏍᏗ²Ꮵ	dị²ge²sdi²ji	dị²ge²sdi²ji	They, your two mothers		
-n		Ꮧ̣²Ꭸ²Ꮵ²Ꮵ	dị²ge²ji²ji	dị²ge²ji²ji	They, your all's mothers		
-n		Ꮧ̣²Ꭼ²Ꮹ̣²Ꮒ²Ꮵ	dị²gv²wạ²ni²ji	dị²gv²wạ²ni²ji	They, their mothers		
+n		Ꮧ̣²Ꭸ²Ꮒ²Ꮵ	dị²ge²ni²ji	dị²ge²ni²ji	You one and I, their mutual mothers		
+n		Ꮧ̣²Ꭸ²Ꮧ²Ꮵ	dị²ge²di²ji	dị²ge²di²ji	You all and I, their mutual mothers		
+n		Ꮧ̣²ᏍᏛ²Ꮵ	dị²sdv²ji	dị²sdv²ji	xShe and I, your two's mutual mothers		
+n		Ꮧ¹Ꮸ²Ꮵ	di¹jv²ji	di¹jv²ji	xShe and I, your all's mutual mothers		
+n		Ꮶ²ᏍᏗ²Ꮵ	jo²sdi²ji	jo²sdi²ji	xShe and I, their mutual mothers		
+n		Ꮧ¹Ꮸ²Ꮵ	di¹jv²ji	di¹jv²ji	They and I, your all's mutual mothers		
+n		Ꮶ²Ꮵ²Ꮵ	jo²ji²ji	jo²ji²ji	They and I, their mutual mothers		
+n		Ꮧ̣²ᏍᎩ̣²Ꮒ²Ꮵ	dị²sgị²ni²ji	dị²sgị²ni²ji	You two, his and my mutual mothers		
+n		Ꮧ¹ᏍᎩ²Ꮵ	di¹sgi²ji	di¹sgi²ji	You two, their and my mutual mothers		
+n		Ꮧ̣²ᏍᏗ²Ꮵ	dị²sdi²ji	dị²sdi²ji	You two, their mutual mothers		
+n		Ꮧ¹ᏍᎩ²Ꮵ	di¹sgi²ji	di¹sgi²ji	You all, their and my mutual mothers		
+n		Ꮧ¹Ꮵ²Ꮵ	di¹ji²ji	di¹ji²ji	You all, their mutual mothers		
+n		Ꮧ̣²Ꭸ²Ꭹ̣²Ꮒ²Ꮵ	dị²ge²gị²ni²ji	dị²ge²gị²ni²ji	They, your one and my mutual mothers		
+n		Ꮧ̣²Ꭸ²Ꭹ²Ꮵ	dị²ge²gi²ji	dị²ge²gi²ji	They, your all's and my mutual mothers		
+n		Ꮧ̣²Ꭺ²Ꭹ̣²Ꮒ²Ꮵ	dị²go²gị²ni²ji	dị²go²gị²ni²ji	They, his and my mutual mothers		
+n		Ꮧ̣²Ꭺ²Ꭹ²Ꮵ	dị²go²gi²ji	dị²go²gi²ji	They, their and my mutual mothers		
+n		Ꮧ̣²Ꭸ²ᏍᏗ²Ꮵ	dị²ge²sdi²ji	dị²ge²sdi²ji	They, your two mutual mothers		
+n		Ꮧ̣²Ꭸ²Ꮵ²Ꮵ	dị²ge²ji²ji	dị²ge²ji²ji	They, your all's mutual mothers		
+n		Ꮧ̣²Ꭼ²Ꮹ̣²Ꮒ²Ꮵ	dị²gv²wạ²ni²ji	dị²gv²wạ²ni²ji	They, their mutual mothers		
