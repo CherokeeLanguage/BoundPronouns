@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 78;
+	public static int version = 84;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -844,9 +844,11 @@ public class BuildDeck implements Runnable {
 		d.def = StringUtils.left(d.def, 1).toUpperCase()
 				+ StringUtils.substring(d.def, 1);
 		
-		d.def = d.def.replace("we is ", "we are ").intern();
-		d.def = d.def.replace("we was ", "we were ").intern();
-		d.def = d.def.replace("we has ", "we have ").intern();
+		d.def = d.def.replaceAll("\\b(us)(, .*?)( recently)", "$1$3$2");
+		
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1 are ").intern();
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1 were ").intern();
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1 have ").intern();
 		
 		d.def = d.def.replace("and I is", "and I are").intern();
 		d.def = d.def.replace("I is", "I am").intern();
@@ -886,7 +888,7 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {
-			d.def = d.def.replaceAll("\\bwe\\b", "us").intern();
+			d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For us, $1,").intern();
 			d.def = d.def.replace("For he ", "For him ").intern();
 			d.def = d.def.replace("For He ", "For him ").intern();
 			d.def = d.def.replace("For they ", "For them ").intern();
