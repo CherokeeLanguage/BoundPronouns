@@ -57,12 +57,10 @@ import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
-import com.cherokeelessons.util.GooglePlayGameServices.Callback;
-import com.cherokeelessons.util.GooglePlayGameServices.Collection;
-import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
-import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
-import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.DreamLo;
+import com.cherokeelessons.util.GooglePlayGameServices.Callback;
+import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
+import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.Log;
 
 public class LearningSession extends ChildScreen implements Screen {
@@ -300,9 +298,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
 			final TextButton btn_scores = new TextButton("Submit Score", tbs);
-			if (BoundPronouns.services.isLoggedIn()) {
-				btn_scores.setText("View High Scores");
-			}
+			btn_scores.setText("View High Scores");
 
 			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
 			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
@@ -349,8 +345,11 @@ public class LearningSession extends ChildScreen implements Screen {
 					text(label);
 					button(btn_ok, btn_ok);
 
-					if (BoundPronouns.services != null) {
+					if (lb != null) {
 						button(btn_scores, btn_scores);
+					}
+
+					if (BoundPronouns.services != null) {
 						button(syncb, syncb);
 					}
 
@@ -360,15 +359,6 @@ public class LearningSession extends ChildScreen implements Screen {
 						@Override
 						public void success(GameScores result) {
 							gsu.showScores("Today's Public Scores", result, null);
-							Callback<Void> do_ach_reveal = new Callback<Void>() {
-								@Override
-								public void success(Void result) {
-									log.info("Doing ach_reveal: " + info.level.name());
-									BoundPronouns.services.ach_reveal(info.level.next().getId(), noop_success);
-								}
-							};
-							log.info("Doing ach_unlock: " + info.level.getId());
-							BoundPronouns.services.ach_unlocked(info.level.getId(), do_ach_reveal);
 						}
 					};
 
@@ -376,40 +366,14 @@ public class LearningSession extends ChildScreen implements Screen {
 						@Override
 						public void success(Void result) {
 							if (lb != null) {
-								lb.lb_getListWindowFor(ShowLeaderboards.LeaderBoardId, Collection.PUBLIC,
-										TimeSpan.DAILY, showPublicScores);
-							} else {
-								BoundPronouns.services.lb_getListWindowFor(ShowLeaderboards.LeaderBoardId,
-										Collection.PUBLIC, TimeSpan.DAILY, showPublicScores);
-							}
-						}
-					};
-
-					final Callback<Void> submit_scores = new Callback<Void>() {
-						@Override
-						public void success(Void result) {
-							if (lb != null) {
-								String tag = info.level.getEnglish() + "!!!" + info.settings.name;
-								lb.lb_submit(info.slot, info.lastScore, tag, getPublicScores);
-							} else {
-								BoundPronouns.services.lb_submit(info.slot, info.lastScore,
-										info.level.getEnglish(), getPublicScores);
+								lb.lb_getScoresFor(null, showPublicScores);
 							}
 						}
 					};
 
 					btn_scores.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-							if (!BoundPronouns.services.isLoggedIn()) {
-								gsu.askToLoginFor(new Runnable() {
-									@Override
-									public void run() {
-										submit_scores.success(null);
-									}
-								}, "High Scores requires Leaderboard Login");
-							} else {
-								getPublicScores.success(null);
-							}
+							getPublicScores.success(null);
 							return true;
 						};
 					});
@@ -429,6 +393,11 @@ public class LearningSession extends ChildScreen implements Screen {
 							return true;
 						};
 					});
+					
+					if (lb != null) {
+						String tag = info.level.getEnglish() + "!!!" + info.settings.name;
+						lb.lb_submit(info.slot, info.lastScore, tag, noop_success);
+					}
 
 					if (BoundPronouns.services != null) {
 						if (BoundPronouns.services.isLoggedIn()) {
@@ -439,30 +408,10 @@ public class LearningSession extends ChildScreen implements Screen {
 									syncb.setVisible(true);
 								}
 							});
-							final Callback<Void> do_unlock = new Callback<Void>() {
-								@Override
-								public void success(Void result) {
-									BoundPronouns.services.ach_unlocked(info.level.getId(), noop_success);
-								}
-							};
-							final Callback<Void> do_reveal = new Callback<Void>() {
-								@Override
-								public void success(Void result) {
-									BoundPronouns.services.ach_reveal(info.level.next().getId(), do_unlock);
-								}
-							};
-							if (lb != null) {
-								String tag = info.level.getEnglish() + "!!!" + info.settings.name;
-								lb.lb_submit(info.slot, info.lastScore, tag, noop_success);
-							} else {
-								BoundPronouns.services.lb_submit(info.slot, info.lastScore,
-										info.level.getEnglish(), do_reveal);
-							}
 						} else {
 							syncb.setVisible(true);
 						}
 					}
-
 				}
 
 				protected void result(Object object) {
@@ -675,7 +624,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 		}
 	}
-	
+
 	// private class TooSoonDialog implements Runnable {
 	// @Override
 	// public void run() {
@@ -1149,7 +1098,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			info.settings.sessionLength = SessionLength.Brief;
 			info.settings.timeLimit = TimeLimit.Novice;
 		}
-		info.slot=slot.nameWithoutExtension();
+		info.slot = slot.nameWithoutExtension();
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
@@ -1186,7 +1135,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		};
 
 		challengeCardDialog = new ChallengeCardDialog(game, skin) {
-			
+
 			private static final String CONTINUE = "CONTINUE";
 			private static final String CHECK = "CHECK!";
 
@@ -1201,11 +1150,11 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			DelayAction delayHideThisCard;
 			DelayAction delayShowNextCard;
-			
+
 			@Override
 			protected void result(Object object) {
 				this.navEnable(false);
-				if (CONTINUE.equals(object)){
+				if (CONTINUE.equals(object)) {
 					check.setTouchable(Touchable.disabled);
 					check.setDisabled(true);
 					stage.getRoot().removeAction(delayHideThisCard);
@@ -1289,8 +1238,8 @@ public class LearningSession extends ChildScreen implements Screen {
 						}
 					}
 				}
-				if (wrong>2) {
-					doCow=true;
+				if (wrong > 2) {
+					doCow = true;
 				}
 				if (doCow) {
 					if (!challengeCardDialog.settings.muted) {
@@ -1312,7 +1261,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				delayShowNextCard = Actions.delay(doBuzzer ? 6f : 1f, Actions.run(showACard));
 				stage.addAction(delayHideThisCard);
 				stage.addAction(delayShowNextCard);
-				
+
 				setObject(check, CONTINUE);
 				if (doBuzzer) {
 					check.setText(CONTINUE);

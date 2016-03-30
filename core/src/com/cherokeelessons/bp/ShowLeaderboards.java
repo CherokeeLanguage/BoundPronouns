@@ -26,10 +26,8 @@ import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
-import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
-import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 
 public class ShowLeaderboards extends ChildScreen implements Screen {
 
@@ -62,7 +60,6 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		return new TiledDrawable(new TextureRegion(texture));
 	}
 
-	private TimeSpan ts = TimeSpan.DAILY;
 	public FileHandle p0;
 
 	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th",
@@ -76,19 +73,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				message.setText("No scores for display");
 				return;
 			}
-			if (data.collection==null) {
-				data.collection=lb_collection;
-			}
-			if (data.ts==null) {
-				data.ts=ts;
-			}
-//			if (data.collection.equals(Collection.PUBLIC)) {
-//				message.setText(data.ts.getEngrish() + " Top Public Scores");
-//			}
-//			if (data.collection.equals(Collection.SOCIAL)) {
-//				message.setText(data.ts.getEngrish() + " Top Circle Scores");
-//			}
-			message.setText("Top Local Scores");
+			message.setText("Top Scores");
 
 			Table table = scrolltable;
 
@@ -123,23 +108,13 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 				table.add(new Label("Newbie", ls)).center();
 				table.add(new Label("", ls)).center();
 			}
-			
-			if (!BoundPronouns.services.isLoggedIn()) {
-//				message.setText("You must login for Leaderboards");
-			}
 		}
 	};
-
-	public static final String LeaderBoardId = "CgkI4pfA4J4KEAIQDA";
-
-	public Collection lb_collection = Collection.PUBLIC;
 
 	private static final float bwidth = 84f;
 	private class InitView implements Runnable {
 		@Override
 		public void run() {
-			TextButton button;
-
 			final TextButtonStyle tbs = skin.get(TextButtonStyle.class);
 			tbs.font = game.getFont(Font.SerifXSmall);
 
@@ -147,60 +122,23 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			bgroup.setMaxCheckCount(1);
 			bgroup.setMinCheckCount(1);
 
-			button = new TextButton(BoundPronouns.BACK_ARROW, tbs);
-			container.add(button).center().top()
-					.width(bwidth);
-			button.addListener(exit);
+			final TextButton back_button = new TextButton(BoundPronouns.BACK_ARROW, tbs);
+			back_button.addListener(exit);
 
-			button = new TextButton("Show "+ts.next().getEngrish(), tbs);
-			button.setChecked(false);
-			container.add(button).center().top().expandX().fillX();
-			final TextButton ts_button = button;
-
-//			button = new TextButton("Show "+lb_collection.next().getEnglish(), tbs);
-//			button.setChecked(true);
-//			container.add(button).center().top().expandX().fillX();
-//			bgroup.add(button);
-//			final TextButton lb_button = button;
-//			lb_button.addListener(new ClickListener() {
-//				@Override
-//				public boolean touchDown(InputEvent event, float x, float y,
-//						int pointer, int button) {
-//					lb_collection = lb_collection.next();
-//					lb_button.setText("Show "+lb_collection.next().getEnglish());
-//					requestScores();
-//					return true;
-//				}
-//			});
-			ts_button.addListener(new ClickListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
-					ts = ts.next();
-					float width = ts_button.getLabel().getWidth();
-					ts_button.setText("Show "+ts.next().getEngrish());
-					ts_button.getLabel().setWidth(width);
-					requestScores();
-					return true;
-				}
-			});
-			
 			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifXSmall),
 					Color.BLACK);
-			message = new Label("...", ls);
 
+			final TextButton sync_button;
 			if (!BoundPronouns.services.isLoggedIn()) {
-				button = new TextButton("Login to Sync", tbs);
-//				message.setText("You must login for Leaderboards");
+				sync_button = new TextButton("Login to Sync", tbs);
 			} else {
-				button = new TextButton("Logout of Sync", tbs);
+				sync_button = new TextButton("Logout of Sync", tbs);
 			}
 			
 			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
 			final LabelStyle dls=new LabelStyle(skin.get(LabelStyle.class));
 			dws.titleFont=game.getFont(Font.SerifLarge);
 			dls.font=game.getFont(Font.SerifMedium);
-			final TextButton play_button = button;
 			final Dialog login = new Dialog("Sync Service", dws);
 			login.getTitleLabel().setAlignment(Align.center);
 			login.text(new Label("Connecting to Sync Service ...", dls));
@@ -209,14 +147,13 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			
 			final Dialog[] error = new Dialog[1];
 			error[0]=errorDialog(new Exception(""), null);
-			play_button.addListener(new ClickListener(){				
+			sync_button.addListener(new ClickListener(){				
 				Callback<Void> success_in=new Callback<Void>() {							
 					@Override
 					public void success(Void result) {
 						error[0].hide();
 						login.hide();
-						requestScores();
-						play_button.setText("Logout of Sync");
+						sync_button.setText("Logout of Sync");
 					}
 					@Override
 					public void error(Exception e) {
@@ -232,8 +169,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					public void success(Void result) {
 						error[0].hide();
 						login.hide();
-						requestScores();
-						play_button.setText("Login to Sync");
+						sync_button.setText("Login to Sync");
 					}
 					@Override
 					public void error(Exception exception) {
@@ -256,20 +192,21 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 					return true;
 				}
 			});
-			container.add(button).center().top().expandX().fillX();
-
-			final int c = container.getCell(button).getColumn() + 1;
-
-			container.row();
+			
+			message = new Label("...", ls);
 			message.setAlignment(Align.center);
-			container.add(message).expandX().fillX().colspan(c).center();
-
+			
+			container.add(back_button).left().top().width(bwidth);
+			container.add(message).expandX().fillX().center();
+			container.add(sync_button).right().top();
+			container.row();
+			
+			int c = container.getColumns();
 			scrolltable = new Table();
 			scroll = new ScrollPane(scrolltable, skin);
 			scroll.setColor(Color.DARK_GRAY);
 			scroll.setFadeScrollBars(false);
 			scroll.setSmoothScrolling(true);
-			container.row();
 			container.add(scroll).expand().fill().colspan(c);
 			stage.setScrollFocus(scroll);
 			stage.setKeyboardFocus(scroll);
@@ -280,15 +217,8 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 	private void requestScores() {
 		if (lb!=null) {
-			lb.lb_getListFor(LeaderBoardId, lb_collection, ts, success_show_scores);
-			return;
-		}
-		if (BoundPronouns.services.isLoggedIn()) {
-			BoundPronouns.services.lb_getListFor(LeaderBoardId, lb_collection, ts,
-					success_show_scores);
 			message.setText("Loading ...");
-		} else {
-			Gdx.app.postRunnable(success_show_scores.with(new GameScores()));
+			lb.lb_getListFor(null, null, null, success_show_scores);
 		}
 	}
 	

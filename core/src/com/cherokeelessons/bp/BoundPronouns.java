@@ -38,6 +38,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
+import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices;
 
 public class BoundPronouns extends Game {
@@ -161,6 +162,7 @@ public class BoundPronouns extends Game {
 		this.setScreen(new LoadingScreen(this));
 		Gdx.input.setCatchBackKey(true);
 		prefs = Gdx.app.getPreferences(this.getClass().getName());
+		new DreamLo(prefs).registerWithDreamLoBoard();
 	}
 
 	@Override

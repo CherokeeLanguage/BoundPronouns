@@ -222,7 +222,6 @@ public class ShowPronouns extends ChildScreen {
 		BitmapFont font_base = game.getFont(Font.SerifXSmall);
 		
 		BitmapFontData font_data = font_base.getData();
-		font_data.markupEnabled=true;
 		
 		BitmapFont font = new BitmapFont(font_data, font_base.getRegions(), true);
 		
@@ -324,23 +323,21 @@ public class ShowPronouns extends ChildScreen {
 
 	private String getIndicator(
 			com.cherokeelessons.bp.ShowPronouns.DisplayRecord.SortBy by) {
-		final String trans = "[#00000000]";
 		if (!DisplayRecord.by.equals(by)) {
-			return trans + " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";
+			return "   ";
 		}
 		switch (DisplayRecord.order) {
 		case Ascending:
-			return " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";
+			return " " + BoundPronouns.TRIANGLE_ASC + " ";
 		case Descending:
-			return " " + BoundPronouns.TRIANGLE_DESC + trans + BoundPronouns.DIAMOND + "[]";
+			return " " + BoundPronouns.TRIANGLE_DESC + " ";
 		case SplitAscending:
-			return " " + BoundPronouns.TRIANGLE_ASC + BoundPronouns.DIAMOND + "[]";
+			return " " + BoundPronouns.TRIANGLE_ASC + BoundPronouns.DIAMOND;
 		case SplitDescending:
-			return " " + BoundPronouns.TRIANGLE_DESC + BoundPronouns.DIAMOND + "[]";
+			return " " + BoundPronouns.TRIANGLE_DESC + BoundPronouns.DIAMOND;
 		}
-		return trans + " " + BoundPronouns.TRIANGLE_ASC + trans + BoundPronouns.DIAMOND + "[]";
+		return "   ";
 	}
-
 
 	@Override
 	public void dispose() {
