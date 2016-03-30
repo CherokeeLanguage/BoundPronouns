@@ -1,3 +1,7 @@
+2.15
+
+Initial ANONYMOUS leaderboard powered by DreamLo added.
+
 2.14
 
 Misc English fixes.
