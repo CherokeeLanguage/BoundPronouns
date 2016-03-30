@@ -5,8 +5,8 @@
     android:versionName="2.17" >
 
     <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="8"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -33,7 +33,6 @@
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
