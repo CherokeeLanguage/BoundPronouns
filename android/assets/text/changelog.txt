@@ -1,3 +1,7 @@
+2.14
+
+Misc English fixes.
+
 2.12
 
 Fixed issue with extra tone marks for "climb".
