@@ -1,3 +1,8 @@
+2.16
+
+Multiple fixes for leaderboard related items.
+Try and migrate local leaderboard scores into global public leaderboard.
+
 2.15
 
 Initial ANONYMOUS leaderboard powered by DreamLo added.
