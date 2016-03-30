@@ -20,7 +20,7 @@ public class ChildScreen implements Screen, InputProcessor {
 	protected final ClickListener exit = new ClickListener() {
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
-			doExit.run();;
+			doExit.run();
 			return true;
 		};
 	};

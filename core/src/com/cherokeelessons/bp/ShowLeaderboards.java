@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -51,25 +50,24 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	@Override
 	public void show() {
 		super.show();
-		container.addAction(Actions.delay(.1f, Actions.run(new InitView())));
+		initView();
 	}
 
 	private TiledDrawable d() {
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		return new TiledDrawable(new TextureRegion(texture));
 	}
 
 	public FileHandle p0;
 
-	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th",
-			"8th", "9th", "10th" };
+	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th" };
 
 	public Callback<GameScores> success_show_scores = new Callback<GameScores>() {
 		@Override
 		public void success(GameScores data) {
 			Gdx.app.log(this.getClass().getName(), "Scores received.");
-			if (data==null) {
+
+			if (data == null) {
 				message.setText("No scores for display");
 				return;
 			}
@@ -77,156 +75,153 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 			Table table = scrolltable;
 
-			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifMedium),
-					Color.BLACK);
-
 			table.clear();
 			table.defaults().expandX();
 			String text = "Rank";
-			table.add(new Label(text, ls)).padLeft(15).padRight(15).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).padLeft(15)
+					.padRight(15).center();
 			text = "Score";
-			table.add(new Label(text, ls)).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 			text = "Skill Level";
-			table.add(new Label(text, ls)).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 			text = "Display Name";
-			table.add(new Label(text, ls)).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 
 			for (GameScore score : data.list) {
 				table.row();
-				table.add(new Label(score.rank, ls)).padLeft(15).padRight(15)
-						.center();
-				table.add(new Label(score.value, ls)).right().padRight(30);
-				table.add(new Label(score.tag, ls)).center();
-				table.add(new Label(score.user, ls)).center();
+				table.add(new Label(score.rank, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK)))
+						.padLeft(15).padRight(15).center();
+				table.add(new Label(score.value, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).right()
+						.padRight(30);
+				table.add(new Label(score.tag, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+				table.add(new Label(score.user, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 			}
 
 			for (int ix = data.list.size(); ix < ranks.length; ix++) {
 				table.row();
-				table.add(new Label(ranks[ix], ls)).padLeft(15).padRight(15)
-						.center();
-				table.add(new Label("0", ls)).right().padRight(30);
-				table.add(new Label("Newbie", ls)).center();
-				table.add(new Label("", ls)).center();
+				table.add(new Label(ranks[ix], new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).padLeft(15)
+						.padRight(15).center();
+				table.add(new Label("0", new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).right()
+						.padRight(30);
+				table.add(new Label("Newbie", new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+				table.add(new Label("", new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 			}
 		}
 	};
 
 	private static final float bwidth = 84f;
-	private class InitView implements Runnable {
-		@Override
-		public void run() {
-			final TextButtonStyle tbs = skin.get(TextButtonStyle.class);
-			tbs.font = game.getFont(Font.SerifXSmall);
 
-			ButtonGroup<TextButton> bgroup = new ButtonGroup<TextButton>();
-			bgroup.setMaxCheckCount(1);
-			bgroup.setMinCheckCount(1);
+	private void initView() {
+		final TextButtonStyle tbs = skin.get(TextButtonStyle.class);
+		tbs.font = game.getFont(Font.SerifXSmall);
 
-			final TextButton back_button = new TextButton(BoundPronouns.BACK_ARROW, tbs);
-			back_button.addListener(exit);
+		ButtonGroup<TextButton> bgroup = new ButtonGroup<TextButton>();
+		bgroup.setMaxCheckCount(1);
+		bgroup.setMinCheckCount(1);
 
-			LabelStyle ls = new LabelStyle(game.getFont(Font.SerifXSmall),
-					Color.BLACK);
+		final TextButton back_button = new TextButton(BoundPronouns.BACK_ARROW, tbs);
+		back_button.addListener(exit);
 
-			final TextButton sync_button;
-			if (!BoundPronouns.services.isLoggedIn()) {
-				sync_button = new TextButton("Login to Sync", tbs);
-			} else {
-				sync_button = new TextButton("Logout of Sync", tbs);
-			}
-			
-			final WindowStyle dws=new WindowStyle(skin.get(WindowStyle.class));
-			final LabelStyle dls=new LabelStyle(skin.get(LabelStyle.class));
-			dws.titleFont=game.getFont(Font.SerifLarge);
-			dls.font=game.getFont(Font.SerifMedium);
-			final Dialog login = new Dialog("Sync Service", dws);
-			login.getTitleLabel().setAlignment(Align.center);
-			login.text(new Label("Connecting to Sync Service ...", dls));
-			login.button(new TextButton("DISMISS", tbs));
-			login.getTitleLabel().setAlignment(Align.center);
-			
-			final Dialog[] error = new Dialog[1];
-			error[0]=errorDialog(new Exception(""), null);
-			sync_button.addListener(new ClickListener(){				
-				Callback<Void> success_in=new Callback<Void>() {							
-					@Override
-					public void success(Void result) {
-						error[0].hide();
-						login.hide();
-						sync_button.setText("Logout of Sync");
-					}
-					@Override
-					public void error(Exception e) {
-						error[0].hide();
-						login.hide();
-						success_out.withNull().run();
-						error[0] = errorDialog(e, null);
-						error[0].show(stage);
-					}
-				};
-				Callback<Void> success_out=new Callback<Void>() {							
-					@Override
-					public void success(Void result) {
-						error[0].hide();
-						login.hide();
-						sync_button.setText("Login to Sync");
-					}
-					@Override
-					public void error(Exception exception) {
-						error[0].hide();
-						login.hide();
-						success_out.withNull().run();
-						error[0] = errorDialog(exception, null);
-						error[0].show(stage);
-					}
-				};
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {					
-					if (BoundPronouns.services.isLoggedIn()) {
-						BoundPronouns.services.logout(success_out);
-					} else {
-						login.show(stage);
-						BoundPronouns.services.login(success_in);
-					}
-					return true;
-				}
-			});
-			
-			message = new Label("...", ls);
-			message.setAlignment(Align.center);
-			
-			container.add(back_button).left().top().width(bwidth);
-			container.add(message).expandX().fillX().center();
-			container.add(sync_button).right().top();
-			container.row();
-			
-			int c = container.getColumns();
-			scrolltable = new Table();
-			scroll = new ScrollPane(scrolltable, skin);
-			scroll.setColor(Color.DARK_GRAY);
-			scroll.setFadeScrollBars(false);
-			scroll.setSmoothScrolling(true);
-			container.add(scroll).expand().fill().colspan(c);
-			stage.setScrollFocus(scroll);
-			stage.setKeyboardFocus(scroll);
-			requestScores();
+		final TextButton sync_button;
+		if (!BoundPronouns.services.isLoggedIn()) {
+			sync_button = new TextButton("Login to Sync", tbs);
+		} else {
+			sync_button = new TextButton("Logout of Sync", tbs);
 		}
 
+		final WindowStyle dws = new WindowStyle(skin.get(WindowStyle.class));
+		final LabelStyle dls = new LabelStyle(skin.get(LabelStyle.class));
+		dws.titleFont = game.getFont(Font.SerifLarge);
+		dls.font = game.getFont(Font.SerifMedium);
+		final Dialog login = new Dialog("Sync Service", dws);
+		login.getTitleLabel().setAlignment(Align.center);
+		login.text(new Label("Connecting to Sync Service ...", dls));
+		login.button(new TextButton("DISMISS", tbs));
+		login.getTitleLabel().setAlignment(Align.center);
+
+		final Dialog[] error = new Dialog[1];
+		error[0] = errorDialog(new Exception(""), null);
+		sync_button.addListener(new ClickListener() {
+			Callback<Void> success_in = new Callback<Void>() {
+				@Override
+				public void success(Void result) {
+					error[0].hide();
+					login.hide();
+					sync_button.setText("Logout of Sync");
+				}
+
+				@Override
+				public void error(Exception e) {
+					error[0].hide();
+					login.hide();
+					success_out.withNull().run();
+					error[0] = errorDialog(e, null);
+					error[0].show(stage);
+				}
+			};
+			Callback<Void> success_out = new Callback<Void>() {
+				@Override
+				public void success(Void result) {
+					error[0].hide();
+					login.hide();
+					sync_button.setText("Login to Sync");
+				}
+
+				@Override
+				public void error(Exception exception) {
+					error[0].hide();
+					login.hide();
+					success_out.withNull().run();
+					error[0] = errorDialog(exception, null);
+					error[0].show(stage);
+				}
+			};
+
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				if (BoundPronouns.services.isLoggedIn()) {
+					BoundPronouns.services.logout(success_out);
+				} else {
+					login.show(stage);
+					BoundPronouns.services.login(success_in);
+				}
+				return true;
+			}
+		});
+
+		LabelStyle ls = new LabelStyle(game.getFont(Font.SerifXSmall), Color.BLACK);
+		message = new Label("...", ls);
+		message.setAlignment(Align.center);
+
+		container.add(back_button).left().top().width(bwidth);
+		container.add(message).expandX().fillX().center();
+		container.add(sync_button).right().top();
+		container.row();
+
+		int c = container.getColumns();
+		scrolltable = new Table();
+		scroll = new ScrollPane(scrolltable, skin);
+		scroll.setColor(Color.DARK_GRAY);
+		scroll.setFadeScrollBars(false);
+		scroll.setSmoothScrolling(true);
+		container.add(scroll).expand().fill().colspan(c);
+		stage.setScrollFocus(scroll);
+		stage.setKeyboardFocus(scroll);
+		requestScores();
 	}
 
 	private void requestScores() {
-		if (lb!=null) {
+		if (lb != null) {
 			message.setText("Loading ...");
 			lb.lb_getListFor(null, null, null, success_show_scores);
 		}
 	}
-	
+
 	private Dialog errorDialog(final Exception e, final Runnable done) {
 		WindowStyle dws;
 		LabelStyle dls;
 		TextButtonStyle tbs;
-		
+
 		dws = new WindowStyle(skin.get(WindowStyle.class));
 		dls = new LabelStyle(skin.get(LabelStyle.class));
 		dws.titleFont = game.getFont(Font.SerifLarge);
@@ -237,7 +232,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		Dialog error = new Dialog("Sync Service", dws) {
 			@Override
 			protected void result(Object object) {
-				if (done!=null) {
+				if (done != null) {
 					Gdx.app.postRunnable(done);
 				}
 			}
@@ -251,5 +246,16 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 		error.text(label);
 		error.setKeepWithinStage(true);
 		return error;
+	}
+
+	@Override
+	public void render(float delta) {
+		try {
+			super.render(delta);
+		} catch (Exception e) {
+			e.printStackTrace();
+			container.clear();
+			doExit.run();
+		}
 	}
 }
