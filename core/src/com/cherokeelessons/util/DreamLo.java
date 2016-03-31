@@ -252,9 +252,10 @@ public class DreamLo implements LeaderboardClient {
 						gs.user = decoded_other_name;
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = StringUtils.left(decoded_other_name,12)+"#"+StringUtils.left(decoded, 4);
+							gs.user = StringUtils.left(decoded_other_name,12)+"#"+decoded;
 						}
 					}
+					gs.user = StringUtils.left(gs.user, 17);
 					gss.list.add(gs);
 				}
 				Comparator<GameScore> descending = new Comparator<GooglePlayGameServices.GameScores.GameScore>() {
