@@ -241,18 +241,18 @@ public class DreamLo implements LeaderboardClient {
 					}
 					gs.tag = StringUtils.substringBefore(decoded_tag, "!!!");
 					String decoded_other_name = StringUtils.substringAfter(decoded_tag, "!!!");
-					String decoded;
+					String userId;
 					try {
-						decoded = URLDecoder.decode(s[0], "UTF-8").trim();
+						userId = URLDecoder.decode(s[0], "UTF-8").trim();
 					} catch (UnsupportedEncodingException e) {
-						decoded = s[0].replace("+", " ").trim();
+						userId = s[0].replace("+", " ").trim();
 					}
-					gs.user = decoded;
+					gs.user = userId;
 					if (gs.user.startsWith(myId)) {
 						gs.user = decoded_other_name;
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = StringUtils.left(decoded_other_name,12)+"#"+decoded;
+							gs.user = StringUtils.left(decoded_other_name,14)+"#"+userId;
 						}
 					}
 					gs.user = StringUtils.left(gs.user, 17);
