@@ -252,7 +252,7 @@ public class DreamLo implements LeaderboardClient {
 						gs.user = decoded_other_name;
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = decoded_other_name+"#"+StringUtils.left(decoded, 6);
+							gs.user = StringUtils.left(decoded_other_name,12)+"#"+StringUtils.left(decoded, 4);
 						}
 					}
 					gss.list.add(gs);
