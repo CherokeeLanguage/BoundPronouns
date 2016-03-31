@@ -279,7 +279,6 @@ public class SlotInfo implements Serializable {
 	public int lastScore;
 	public boolean perfect;
 	public long lastrun;
-	public String slot;
 
 	public SlotInfo() {
 	}

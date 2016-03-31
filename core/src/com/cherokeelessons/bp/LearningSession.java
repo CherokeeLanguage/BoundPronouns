@@ -396,7 +396,8 @@ public class LearningSession extends ChildScreen implements Screen {
 					
 					if (lb != null) {
 						String tag = info.level.getEnglish() + "!!!" + info.settings.name;
-						lb.lb_submit(info.slot, info.lastScore, tag, noop_success);
+						String slot = params.slot.nameWithoutExtension();
+						lb.lb_submit(slot!=null?slot:"", info.lastScore, tag, noop_success);
 					}
 
 					if (BoundPronouns.services != null) {
@@ -1098,7 +1099,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			info.settings.sessionLength = SessionLength.Brief;
 			info.settings.timeLimit = TimeLimit.Novice;
 		}
-		info.slot = slot.nameWithoutExtension();
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
