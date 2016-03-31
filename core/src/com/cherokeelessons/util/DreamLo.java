@@ -249,10 +249,10 @@ public class DreamLo implements LeaderboardClient {
 					}
 					gs.user = decoded;
 					if (gs.user.startsWith(myId)) {
-						gs.user = decoded_other_name + " [" + gs.user.replace(myId, "") + "]";
+						gs.user = decoded_other_name;
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = decoded_other_name + " [" + StringUtils.substringAfterLast(gs.user, "-") + "]";
+							gs.user = decoded_other_name+"#"+StringUtils.left(decoded, 6);
 						}
 					}
 					gss.list.add(gs);
