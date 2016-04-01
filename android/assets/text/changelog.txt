@@ -1,3 +1,7 @@
+2.21
+
+Change leaderboards to show and rank by using total count of cards a player has reached successfully. 
+
 2.20
 
 Fix scoreboard system crashes. Minor font adjustments.
