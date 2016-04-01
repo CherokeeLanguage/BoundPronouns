@@ -1,7 +1,6 @@
 package com.cherokeelessons.util;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +22,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 
-public class DreamLo implements LeaderboardClient {
+public class DreamLo {
 	private static final String DREAMLO_USERID = "dreamlo-userid";
 	private static final String writeUrl = "http://dreamlo.com/lb/" + "1KLmiETsgkKwjRY-BUVjogsht9ozTZpUWLMmilJeSB-Q";
 	private static final String readUrl = "http://dreamlo.com/lb/" + "56fb26656e51b603cc253197/pipe";
@@ -31,16 +30,20 @@ public class DreamLo implements LeaderboardClient {
 	 * boardId = "animal-slot#-timstamp-random";
 	 */
 	private final Preferences prefs;
+	
+	@SuppressWarnings("deprecation")
+	private static String encode(String string) {
+		try {
+			return URLEncoder.encode(string, "UTF-8").replaceAll("\\+", "%20");
+		} catch (UnsupportedEncodingException e) {
+			return URLEncoder.encode(string).replaceAll("\\+", "%20");
+		}
+	}
 
 	public DreamLo(Preferences prefs) {
 		this.prefs = prefs;
 	}
 
-//	private Callback<Void> noop=new Callback<Void>() {
-//		@Override
-//		public void success(Void result) {
-//		}
-//	};
 	private Callback<Void> delete_old_board=new Callback<Void>() {
 		@Override
 		public void success(Void result) {
@@ -67,7 +70,7 @@ public class DreamLo implements LeaderboardClient {
 				}
 				try {
 					Long score = Long.valueOf(field[0]);
-					lb_submit(""+(c+4), score, field[1]+"!!!"+field[2], delete_old_board);
+					lb_submit(""+(c+4), score, 0, field[1]+"!!!"+field[2], delete_old_board);
 				} catch (NumberFormatException e) {
 				}
 			}
@@ -131,7 +134,6 @@ public class DreamLo implements LeaderboardClient {
 					HttpRequest httpRequest = new HttpRequest("GET");
 					httpRequest.setTimeOut(10000);
 					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/ᎩᎶ%20ᎢᏤ");
-					Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
 					Gdx.net.sendHttpRequest(httpRequest, registeredListener);
 					prefs.putString(DREAMLO_USERID, id + "");
 					prefs.flush();
@@ -152,51 +154,6 @@ public class DreamLo implements LeaderboardClient {
 		}
 	};
 
-	@Override
-	public void lb_submit(final String boardId, final long score, final String label, final Callback<Void> callback) {
-		if (!registerWithDreamLoBoard()) {
-			Gdx.app.postRunnable(new Runnable() {
-				@Override
-				public void run() {
-					DreamLo.this.lb_submit(boardId, score, label, callback);
-				}
-			});
-			return;
-		}
-		String encoded;
-		try {
-			encoded = URLEncoder.encode(label, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			encoded = label.replaceAll("[^a-zA-Z0-9]", "+");
-		}
-		HttpRequest httpRequest = new HttpRequest("GET");
-		httpRequest.setTimeOut(10000);
-		String url = writeUrl + "/add/" + prefs.getString(DREAMLO_USERID, "") + "-" + boardId + "/" + score + "/0/"
-				+ encoded;
-		httpRequest.setUrl(url);
-		Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
-		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
-			@Override
-			public void handleHttpResponse(HttpResponse httpResponse) {
-				Gdx.app.log("DreamLo", "lb_sumbit: " + httpResponse.getResultAsString());
-				Gdx.app.postRunnable(callback.withNull());
-			}
-
-			@Override
-			public void failed(Throwable t) {
-				Gdx.app.log("DreamLo", "lb_submit", t);
-				Gdx.app.postRunnable(callback.with(new RuntimeException(t)));
-			}
-
-			@Override
-			public void cancelled() {
-				Gdx.app.log("DreamLo", "lb_submit: timed out");
-				Gdx.app.postRunnable(callback.with(new RuntimeException("TIMED OUT")));
-			}
-		});
-	}
-
-	@Override
 	public void lb_getScoresFor(final String boardId, final Callback<GameScores> callback) {
 		if (!registerWithDreamLoBoard()) {
 			Gdx.app.postRunnable(new Runnable() {
@@ -209,22 +166,18 @@ public class DreamLo implements LeaderboardClient {
 		HttpRequest httpRequest = new HttpRequest("GET");
 		httpRequest.setTimeOut(10000);
 		httpRequest.setUrl(readUrl + "/pipe");
-		Gdx.app.log("DreamLo", "URL: '" + httpRequest.getUrl() + "'");
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
 				String myId = prefs.getString(DREAMLO_USERID, "") + "-";
-				Gdx.app.log("DreamLo", "lb_getScoresFor: success");
-				List<String> scores = new ArrayList<>(Arrays.asList(httpResponse.getResultAsString().split("\n")));
+				List<String> records = new ArrayList<>(Arrays.asList(httpResponse.getResultAsString().split("\n")));
 				final GameScores gss = new GameScores();
-				gss.collection = Collection.PUBLIC;
 				gss.list = new ArrayList<>();
-				gss.ts = TimeSpan.WEEKLY;
-				for (String score : scores) {
-					if (score == null || score.length() == 0) {
+				for (String score_record : records) {
+					if (score_record == null || score_record.length() == 0) {
 						continue;
 					}
-					String[] s = score.split("\\|");
+					String[] s = score_record.split("\\|");
 					if (s == null || s.length < 4) {
 						continue;
 					}
@@ -232,30 +185,27 @@ public class DreamLo implements LeaderboardClient {
 					 * 0: username 1: score 2: time 3: tag 4: date 5: index
 					 */
 					GameScore gs = new GameScore();
-					gs.value = s[1].trim();
-					String decoded_tag;
-					try {
-						decoded_tag = URLDecoder.decode(s[3], "UTF-8").trim();
-					} catch (UnsupportedEncodingException e) {
-						decoded_tag = s[3].replace("+", " ").trim();
-					}
-					gs.tag = StringUtils.substringBefore(decoded_tag, "!!!");
-					String decoded_other_name = StringUtils.substringAfter(decoded_tag, "!!!");
-					String userId;
-					try {
-						userId = URLDecoder.decode(s[0], "UTF-8").trim();
-					} catch (UnsupportedEncodingException e) {
-						userId = s[0].replace("+", " ").trim();
-					}
-					gs.user = userId;
+					gs.score = StringUtils.defaultString(s[2]).trim();
+					gs.score=StringUtils.reverse(gs.score).replaceAll("(\\d{3})", "$1,");
+					gs.score=StringUtils.reverse(gs.score);
+					gs.score=StringUtils.strip(gs.score, ",");
+					String label = StringUtils.defaultString(s[3]).trim();
+					gs.tag = StringUtils.substringBefore(label, "!!!");
+					String decoded_other_name = StringUtils.substringAfter(label, "!!!");
+					String dreamLoId=StringUtils.defaultString(s[0]).trim();
+					gs.user = dreamLoId;
 					if (gs.user.startsWith(myId)) {
 						gs.user = decoded_other_name;
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = StringUtils.left(decoded_other_name,14)+"#"+userId;
+							gs.user = StringUtils.left(decoded_other_name,14)+" #"+dreamLoId;
 						}
 					}
 					gs.user = StringUtils.left(gs.user, 17);
+					gs.activeCards = StringUtils.defaultString(s[1]).trim();
+					gs.activeCards=StringUtils.reverse(gs.activeCards).replaceAll("(\\d{3})", "$1,");
+					gs.activeCards=StringUtils.reverse(gs.activeCards);
+					gs.activeCards=StringUtils.strip(gs.activeCards, ",");
 					gss.list.add(gs);
 				}
 				Comparator<GameScore> descending = new Comparator<GooglePlayGameServices.GameScores.GameScore>() {
@@ -270,15 +220,31 @@ public class DreamLo implements LeaderboardClient {
 						if (o1 == null) {
 							return 1;
 						}
+						if (StringUtils.isBlank(o1.tag)!=StringUtils.isBlank(o2.tag)) {
+							return StringUtils.isBlank(o1.tag)?1:-1;
+						}
 						long v1;
 						long v2;
 						try {
-							v1 = Long.valueOf(o1.value);
+							v1 = Long.valueOf(o1.activeCards.replace(",", ""));
 						} catch (NumberFormatException e) {
 							v1 = 0;
 						}
 						try {
-							v2 = Long.valueOf(o2.value);
+							v2 = Long.valueOf(o2.activeCards.replace(",", ""));
+						} catch (NumberFormatException e) {
+							v2 = 0;
+						}
+						if (v1!=v2) {
+							return v1 < v2 ? 1 : -1;
+						}
+						try {
+							v1 = Long.valueOf(o1.score.replace(",", ""));
+						} catch (NumberFormatException e) {
+							v1 = 0;
+						}
+						try {
+							v2 = Long.valueOf(o2.score.replace(",", ""));
 						} catch (NumberFormatException e) {
 							v2 = 0;
 						}
@@ -320,7 +286,6 @@ public class DreamLo implements LeaderboardClient {
 		});
 	}
 
-	@Override
 	public void lb_getListFor(final String boardId, Collection collection, TimeSpan ts,
 			final Callback<GameScores> callback) {
 		Gdx.app.postRunnable(new Runnable() {
@@ -330,12 +295,37 @@ public class DreamLo implements LeaderboardClient {
 		});
 	}
 
-	@Override
-	public void lb_getListWindowFor(final String boardId, Collection collection, TimeSpan ts,
-			final Callback<GameScores> callback) {
-		Gdx.app.postRunnable(new Runnable() {
-			public void run() {
-				DreamLo.this.lb_getScoresFor(boardId, callback);
+	public void lb_submit(final String boardId, final long cards, final long score, final String label, final Callback<Void> callback) {
+		if (!registerWithDreamLoBoard()) {
+			Gdx.app.postRunnable(new Runnable() {
+				@Override
+				public void run() {
+					DreamLo.this.lb_submit(boardId, cards, score, label, callback);
+				}
+			});
+			return;
+		}
+		HttpRequest httpRequest = new HttpRequest("GET");
+		httpRequest.setTimeOut(10000);
+		String url = writeUrl + "/add/" + prefs.getString(DREAMLO_USERID, "") + "-" + boardId + "/" + cards + "/"+score+"/"
+				+ encode(label);
+		httpRequest.setUrl(url);
+		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
+			@Override
+			public void handleHttpResponse(HttpResponse httpResponse) {
+				Gdx.app.postRunnable(callback.withNull());
+			}
+
+			@Override
+			public void failed(Throwable t) {
+				Gdx.app.log("DreamLo", "lb_submit", t);
+				Gdx.app.postRunnable(callback.with(new RuntimeException(t)));
+			}
+
+			@Override
+			public void cancelled() {
+				Gdx.app.log("DreamLo", "lb_submit: timed out");
+				Gdx.app.postRunnable(callback.with(new RuntimeException("TIMED OUT")));
 			}
 		});
 	}

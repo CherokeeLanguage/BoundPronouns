@@ -225,7 +225,7 @@ public class BoundPronouns extends Game {
 	}
 
 	public static enum Font {
-		SerifXSmall(40), SerifSmall(46), SerifMedium(52), SerifLarge(60), SerifXLarge(78), SerifLLarge(68);
+		SerifXSmall(38), SerifSmall(46), SerifMedium(52), SerifLarge(60), SerifXLarge(78), SerifLLarge(68);
 		private final int size;
 		public int getSize() {
 			return size;

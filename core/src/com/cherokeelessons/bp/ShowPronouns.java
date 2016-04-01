@@ -221,12 +221,8 @@ public class ShowPronouns extends ChildScreen {
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		BitmapFont font_base = game.getFont(Font.SerifXSmall);
 		
-		BitmapFontData font_data = font_base.getData();
-		
-		BitmapFont font = new BitmapFont(font_data, font_base.getRegions(), true);
-		
 		TextButtonStyle bstyle = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bstyle.font=font;
+		bstyle.font=font_base;
 		container.row();
 		TextButtonStyle bls=new TextButtonStyle(bstyle);
 		bls.fontColor=Color.BLUE;

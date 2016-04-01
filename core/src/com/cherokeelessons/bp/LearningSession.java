@@ -89,7 +89,6 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			log.info("Loading Master Deck...");
 			stage.addAction(Actions.run(activeDeckLoader));
-
 			log.info("Loaded " + info.settings.deck.name() + " " + game.deck.cards.size() + " master cards.");
 		}
 	}
@@ -108,7 +107,6 @@ public class LearningSession extends ChildScreen implements Screen {
 					continue;
 				}
 			}
-
 		}
 
 		private void resetScoring(ActiveDeck deck) {
@@ -393,11 +391,11 @@ public class LearningSession extends ChildScreen implements Screen {
 							return true;
 						};
 					});
-					
+
 					if (lb != null) {
 						String tag = info.level.getEnglish() + "!!!" + info.settings.name;
 						String slot = params.slot.nameWithoutExtension();
-						lb.lb_submit(slot!=null?slot:"", info.lastScore, tag, noop_success);
+						lb.lb_submit(slot != null ? slot : "", info.lastScore, info.activeCards, tag, noop_success);
 					}
 
 					if (BoundPronouns.services != null) {

@@ -4,9 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Date;
@@ -19,15 +16,12 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.cherokeelessons.util.GamesScopes;
 import com.cherokeelessons.util.GooglePlayGameServices;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
-import com.cherokeelessons.util.GooglePlayGameServices.GameAchievements.GameAchievement;
-import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
@@ -41,17 +35,6 @@ import com.google.api.services.drive.Drive.Files;
 import com.google.api.services.drive.Drive.Files.Create;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
-import com.google.api.services.games.Games;
-import com.google.api.services.games.Games.Achievements;
-import com.google.api.services.games.Games.Scores;
-import com.google.api.services.games.Games.Scores.Submit;
-import com.google.api.services.games.GamesScopes;
-import com.google.api.services.games.model.LeaderboardEntry;
-import com.google.api.services.games.model.LeaderboardScores;
-import com.google.api.services.games.model.PlayerAchievement;
-import com.google.api.services.games.model.PlayerAchievementListResponse;
-import com.google.api.services.games.model.PlayerLeaderboardScore;
-import com.google.api.services.games.model.PlayerLeaderboardScoreListResponse;
 
 public class GameServices implements GooglePlayGameServices {
 	
@@ -268,244 +251,244 @@ public class GameServices implements GooglePlayGameServices {
 		logout(back_in);
 	}
 
-	@Override
-	public void lb_submit(final String boardId, final long score,
-			final String label, final Callback<Void> callback) {
-		final Runnable runnable = new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				try {
-					Games g = _getGamesObject();
-					Submit submit = g.scores().submit(boardId, score);
-					String tag = URLEncoder.encode(label, "UTF-8");
-					submit.setScoreTag(tag);
-					submit.setScore(score);
-					submit.execute();
-					postRunnable(callback.withNull());
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		};
-		platform.runTask(runnable);
-	}
-
-	@Override
-	public void lb_getScoresFor(final String boardId,
-			final Callback<GameScores> callback) {
-		final Runnable runnable = new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				GameScores gscores = new GameScores();
-				try {
-					Games g = _getGamesObject();
-					Scores.Get scores = g.scores().get("me", boardId,
-							TimeSpan.ALL_TIME.name());
-					scores.setMaxResults(30);
-					PlayerLeaderboardScoreListResponse result = scores
-							.execute();
-					List<PlayerLeaderboardScore> list = result.getItems();
-					if (list != null)
-						for (PlayerLeaderboardScore e : list) {
-							GameScore gs = new GameScore();
-							gs.rank = "";
-							gs.tag = URLDecoder.decode(
-									StringUtils.defaultString(e.getScoreTag()),
-									"UTF-8");
-							gs.value = e.getScoreString();
-							gs.user = "";
-							gscores.list.add(gs);
-						}
-					postRunnable(callback.with(gscores));
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		};
-		platform.runTask(runnable);
-	}
-
-	@Override
-	public void lb_getListFor(final String boardId,
-			final Collection collection, final TimeSpan ts,
-			final Callback<GameScores> callback) {
-		final Runnable runnable = new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				GameScores gscores = new GameScores();
-				try {
-					Games g = _getGamesObject();
-					Scores.List scores = g.scores().list(boardId,
-							collection.name(), ts.toString());
-					scores.setMaxResults(30);
-					LeaderboardScores result = scores.execute();
-					List<LeaderboardEntry> list = result.getItems();
-					if (list != null)
-						for (LeaderboardEntry e : list) {
-							GameScore gs = new GameScore();
-							gs.rank = StringUtils.defaultString(e
-									.getFormattedScoreRank());
-							try {
-								try {
-									gs.tag = URLDecoder.decode(StringUtils
-											.defaultString(e.getScoreTag()),
-											"UTF-8");
-								} catch (UnsupportedEncodingException e1) {
-									e1.printStackTrace();
-									gs.tag = "Unknown";
-								}
-								gs.value = StringUtils.defaultString(e
-										.getFormattedScore());
-								gs.user = StringUtils.defaultString(e
-										.getPlayer().getDisplayName());
-								gs.imgUrl = StringUtils.defaultString(e
-										.getPlayer().getAvatarImageUrl());
-							} catch (Exception e1) {
-								e1.printStackTrace();
-							}
-							gscores.list.add(gs);
-						}
-					gscores.collection = collection;
-					gscores.ts = ts;
-					postRunnable(callback.with(gscores));
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		};
-		platform.runTask(runnable);
-	}
-
-	@Override
-	public void lb_getListWindowFor(final String boardId,
-			final Collection collection, final TimeSpan ts,
-			final Callback<GameScores> callback) {
-		final Runnable runnable = new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				GameScores gscores = new GameScores();
-				try {
-					Games g = _getGamesObject();
-					Scores.ListWindow scores = g.scores().listWindow(boardId,
-							collection.name(), ts.name());
-					scores.setMaxResults(5);
-					LeaderboardScores result = scores.execute();
-					List<LeaderboardEntry> list = result.getItems();
-					if (list != null)
-						for (LeaderboardEntry e : list) {
-							GameScore gs = new GameScore();
-							gs.rank = e.getFormattedScoreRank();
-							gs.tag = URLDecoder.decode(
-									StringUtils.defaultString(e.getScoreTag()),
-									"UTF-8");
-							gs.value = e.getFormattedScore();
-							gs.user = e.getPlayer().getDisplayName();
-							gs.imgUrl = e.getPlayer().getAvatarImageUrl();
-							gscores.list.add(gs);
-						}
-					gscores.collection = collection;
-					gscores.ts = ts;
-					postRunnable(callback.with(gscores));
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		};
-		platform.runTask(runnable);
-	}
-
-	private Games _getGamesObject() throws GeneralSecurityException,
-			IOException {
-		_login();
-		Games.Builder b = new Games.Builder(httpTransport, JSON_FACTORY,
-				credential);
-		b.setApplicationName(APP_NAME);
-		Games g = b.build();
-		return g;
-	}
-
-	@Override
-	public void ach_reveal(final String id, final Callback<Void> callback) {
-		platform.runTask(new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				try {
-					Games g = _getGamesObject();
-					Achievements ac = g.achievements();
-					ac.reveal(id).execute();
-					postRunnable(callback.withNull());
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		});
-	}
-
-	@Override
-	public void ach_unlocked(final String id, final Callback<Void> callback) {
-		platform.runTask(new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				try {
-					Games g = _getGamesObject();
-					Achievements ac = g.achievements();
-					ac.unlock(id).execute();
-					postRunnable(callback.withNull());
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		});
-	}
-
-	@Override
-	public void ach_list(final Callback<GameAchievements> callback) {
-		final Runnable runnable = new Runnable() {
-			private final Runnable _self = this;
-
-			@Override
-			public void run() {
-				GameAchievements results = new GameAchievements();
-				try {
-					Games g = _getGamesObject();
-					Achievements ac = g.achievements();
-					PlayerAchievementListResponse response = ac.list("me")
-							.execute();
-					List<PlayerAchievement> list = response.getItems();
-					if (list != null)
-						for (PlayerAchievement pa : list) {
-							GameAchievement a = new GameAchievement();
-							a.id = pa.getId();
-							a.state = pa.getAchievementState();
-							results.list.add(a);
-						}
-					postRunnable(callback.with(results));
-				} catch (Exception e) {
-					e.printStackTrace();
-					retry(_self);
-				}
-			}
-		};
-		platform.runTask(runnable);
-	}
+//	@Override
+//	public void lb_submit(final String boardId, final long score,
+//			final String label, final Callback<Void> callback) {
+//		final Runnable runnable = new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				try {
+//					Games g = _getGamesObject();
+//					Submit submit = g.scores().submit(boardId, score);
+//					String tag = URLEncoder.encode(label, "UTF-8");
+//					submit.setScoreTag(tag);
+//					submit.setScore(score);
+//					submit.execute();
+//					postRunnable(callback.withNull());
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		};
+//		platform.runTask(runnable);
+//	}
+//
+//	@Override
+//	public void lb_getScoresFor(final String boardId,
+//			final Callback<GameScores> callback) {
+//		final Runnable runnable = new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				GameScores gscores = new GameScores();
+//				try {
+//					Games g = _getGamesObject();
+//					Scores.Get scores = g.scores().get("me", boardId,
+//							TimeSpan.ALL_TIME.name());
+//					scores.setMaxResults(30);
+//					PlayerLeaderboardScoreListResponse result = scores
+//							.execute();
+//					List<PlayerLeaderboardScore> list = result.getItems();
+//					if (list != null)
+//						for (PlayerLeaderboardScore e : list) {
+//							GameScore gs = new GameScore();
+//							gs.rank = "";
+//							gs.tag = URLDecoder.decode(
+//									StringUtils.defaultString(e.getScoreTag()),
+//									"UTF-8");
+//							gs.value = e.getScoreString();
+//							gs.user = "";
+//							gscores.list.add(gs);
+//						}
+//					postRunnable(callback.with(gscores));
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		};
+//		platform.runTask(runnable);
+//	}
+//
+//	@Override
+//	public void lb_getListFor(final String boardId,
+//			final Collection collection, final TimeSpan ts,
+//			final Callback<GameScores> callback) {
+//		final Runnable runnable = new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				GameScores gscores = new GameScores();
+//				try {
+//					Games g = _getGamesObject();
+//					Scores.List scores = g.scores().list(boardId,
+//							collection.name(), ts.toString());
+//					scores.setMaxResults(30);
+//					LeaderboardScores result = scores.execute();
+//					List<LeaderboardEntry> list = result.getItems();
+//					if (list != null)
+//						for (LeaderboardEntry e : list) {
+//							GameScore gs = new GameScore();
+//							gs.rank = StringUtils.defaultString(e
+//									.getFormattedScoreRank());
+//							try {
+//								try {
+//									gs.tag = URLDecoder.decode(StringUtils
+//											.defaultString(e.getScoreTag()),
+//											"UTF-8");
+//								} catch (UnsupportedEncodingException e1) {
+//									e1.printStackTrace();
+//									gs.tag = "Unknown";
+//								}
+//								gs.value = StringUtils.defaultString(e
+//										.getFormattedScore());
+//								gs.user = StringUtils.defaultString(e
+//										.getPlayer().getDisplayName());
+//								gs.imgUrl = StringUtils.defaultString(e
+//										.getPlayer().getAvatarImageUrl());
+//							} catch (Exception e1) {
+//								e1.printStackTrace();
+//							}
+//							gscores.list.add(gs);
+//						}
+//					gscores.collection = collection;
+//					gscores.ts = ts;
+//					postRunnable(callback.with(gscores));
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		};
+//		platform.runTask(runnable);
+//	}
+//
+//	@Override
+//	public void lb_getListWindowFor(final String boardId,
+//			final Collection collection, final TimeSpan ts,
+//			final Callback<GameScores> callback) {
+//		final Runnable runnable = new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				GameScores gscores = new GameScores();
+//				try {
+//					Games g = _getGamesObject();
+//					Scores.ListWindow scores = g.scores().listWindow(boardId,
+//							collection.name(), ts.name());
+//					scores.setMaxResults(5);
+//					LeaderboardScores result = scores.execute();
+//					List<LeaderboardEntry> list = result.getItems();
+//					if (list != null)
+//						for (LeaderboardEntry e : list) {
+//							GameScore gs = new GameScore();
+//							gs.rank = e.getFormattedScoreRank();
+//							gs.tag = URLDecoder.decode(
+//									StringUtils.defaultString(e.getScoreTag()),
+//									"UTF-8");
+//							gs.value = e.getFormattedScore();
+//							gs.user = e.getPlayer().getDisplayName();
+//							gs.imgUrl = e.getPlayer().getAvatarImageUrl();
+//							gscores.list.add(gs);
+//						}
+//					gscores.collection = collection;
+//					gscores.ts = ts;
+//					postRunnable(callback.with(gscores));
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		};
+//		platform.runTask(runnable);
+//	}
+//
+//	private Games _getGamesObject() throws GeneralSecurityException,
+//			IOException {
+//		_login();
+//		Games.Builder b = new Games.Builder(httpTransport, JSON_FACTORY,
+//				credential);
+//		b.setApplicationName(APP_NAME);
+//		Games g = b.build();
+//		return g;
+//	}
+//
+//	@Override
+//	public void ach_reveal(final String id, final Callback<Void> callback) {
+//		platform.runTask(new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				try {
+//					Games g = _getGamesObject();
+//					Achievements ac = g.achievements();
+//					ac.reveal(id).execute();
+//					postRunnable(callback.withNull());
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		});
+//	}
+//
+//	@Override
+//	public void ach_unlocked(final String id, final Callback<Void> callback) {
+//		platform.runTask(new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				try {
+//					Games g = _getGamesObject();
+//					Achievements ac = g.achievements();
+//					ac.unlock(id).execute();
+//					postRunnable(callback.withNull());
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		});
+//	}
+//
+//	@Override
+//	public void ach_list(final Callback<GameAchievements> callback) {
+//		final Runnable runnable = new Runnable() {
+//			private final Runnable _self = this;
+//
+//			@Override
+//			public void run() {
+//				GameAchievements results = new GameAchievements();
+//				try {
+//					Games g = _getGamesObject();
+//					Achievements ac = g.achievements();
+//					PlayerAchievementListResponse response = ac.list("me")
+//							.execute();
+//					List<PlayerAchievement> list = response.getItems();
+//					if (list != null)
+//						for (PlayerAchievement pa : list) {
+//							GameAchievement a = new GameAchievement();
+//							a.id = pa.getId();
+//							a.state = pa.getAchievementState();
+//							results.list.add(a);
+//						}
+//					postRunnable(callback.with(results));
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					retry(_self);
+//				}
+//			}
+//		};
+//		platform.runTask(runnable);
+//	}
 
 	@Override
 	public void drive_getFileByTitle(final String title,

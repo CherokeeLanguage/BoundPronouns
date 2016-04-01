@@ -47,7 +47,7 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
 		//FOR DESKTOP GOOGLE API
-        compile 'com.google.apis:google-api-services-games:v1-rev172-1.21.0'
+        //compile 'com.google.apis:google-api-services-games:v1-rev172-1.21.0'
         compile 'com.google.apis:google-api-services-drive:v3-rev16-1.21.0'
         compile 'com.google.oauth-client:google-oauth-client:1.21.0'
         compile 'com.google.oauth-client:google-oauth-client-jetty:1.21.0'
@@ -104,12 +104,12 @@ project(":android") {
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
         //FOR ANDROID GOOGLE API
-        compile ('com.google.apis:google-api-services-games:v1-rev172-1.21.0') {
+        /*compile ('com.google.apis:google-api-services-games:v1-rev172-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
 			exclude module: 'junit'
 			exclude module: 'android'
-		}
+		}*/
         compile ('com.google.apis:google-api-services-drive:v3-rev16-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
@@ -165,12 +165,12 @@ project(":ios") {
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
         
         //FOR IOS GOOGLE API
-         compile ('com.google.apis:google-api-services-games:v1-rev172-1.21.0') {
+         /*compile ('com.google.apis:google-api-services-games:v1-rev172-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'
 			exclude module: 'junit'
 			exclude module: 'android'
-		}
+		}*/
         compile ('com.google.apis:google-api-services-drive:v3-rev16-1.21.0') {
 			exclude module: 'httpclient'
 			exclude module: 'xpp3'

@@ -8,7 +8,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList.FileMeta;
 
 
-public interface GooglePlayGameServices extends LeaderboardClient, AchievementsClient {
+public interface GooglePlayGameServices {
 	
 	public Callback<Void> noop=new Callback<Void>() {
 		@Override
@@ -101,13 +101,12 @@ public interface GooglePlayGameServices extends LeaderboardClient, AchievementsC
 	public static class GameScores {
 		public static class GameScore {
 			public String rank;
-			public String value;
+			public String score;
 			public String tag;
 			public String user;
 			public String imgUrl;
+			public String activeCards;
 		}
-		public Collection collection;
-		public TimeSpan ts;
 		public List<GameScore> list=new ArrayList<GameScore>();
 	}
 	

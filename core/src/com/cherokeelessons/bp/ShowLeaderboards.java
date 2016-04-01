@@ -60,7 +60,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 	public FileHandle p0;
 
-	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th" };
+	public String[] ranks = { "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th" };
 
 	public Callback<GameScores> success_show_scores = new Callback<GameScores>() {
 		@Override
@@ -78,40 +78,34 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			table.clear();
 			table.defaults().expandX();
 			String text = "Rank";
-			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).padLeft(15)
-					.padRight(15).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
+			text = "Cards";
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 			text = "Score";
-			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 			text = "Skill Level";
-			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 			text = "Display Name";
-			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 
-			if (data.list.size()>100) {
-				data.list.subList(100, data.list.size()).clear();
-			}
-			
 			int c=0;
 			for (GameScore score : data.list) {
 				c++;
-				Gdx.app.log(this.getClass().getSimpleName(), "doing label for score: "+c);
 				table.row();
-				table.add(new Label(score.rank, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK)))
-						.padLeft(15).padRight(15).center();
-				table.add(new Label(score.value, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).right()
-						.padRight(30);
-				table.add(new Label(score.tag, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
-				table.add(new Label(score.user, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+				table.add(new Label(score.rank, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
+				table.add(new Label(score.activeCards, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).right();
+				table.add(new Label(score.score, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).right();
+				table.add(new Label(score.tag, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
+				table.add(new Label(score.user, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 			}
 
 			for (int ix = data.list.size(); ix < ranks.length; ix++) {
 				table.row();
-				table.add(new Label(ranks[ix], new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).padLeft(15)
-						.padRight(15).center();
-				table.add(new Label("0", new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).right()
-						.padRight(30);
-				table.add(new Label("Newbie", new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
-				table.add(new Label("", new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
+				table.add(new Label(ranks[ix], new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
+				table.add(new Label("", new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).right();
+				table.add(new Label("", new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).right();
+				table.add(new Label("", new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
+				table.add(new Label("", new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 			}
 		}
 	};

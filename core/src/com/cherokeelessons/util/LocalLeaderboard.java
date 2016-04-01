@@ -51,16 +51,14 @@ public class LocalLeaderboard implements LeaderboardClient {
 	public void lb_getScoresFor(String boardId, final Callback<GameScores> callback) {
 		List<String> scores = new ArrayList<>(Arrays.asList(prefs.getString("leaderboard", "").split("\n")));
 		final GameScores gss = new GameScores();
-		gss.collection = Collection.PUBLIC;
 		gss.list = new ArrayList<>();
-		gss.ts = TimeSpan.WEEKLY;
 		for (String score : scores) {
 			String[] s = score.split("\t");
 			if (s == null || s.length == 0) {
 				continue;
 			}
 			GameScore gs = new GameScore();
-			gs.value = s[0].trim();
+			gs.score = s[0].trim();
 			if (s.length > 1) {
 				gs.tag = s[1];
 			}
@@ -84,12 +82,12 @@ public class LocalLeaderboard implements LeaderboardClient {
 				long v1;
 				long v2;
 				try {
-					v1 = Long.valueOf(o1.value);
+					v1 = Long.valueOf(o1.score);
 				} catch (NumberFormatException e) {
 					v1 = 0;
 				}
 				try {
-					v2 = Long.valueOf(o2.value);
+					v2 = Long.valueOf(o2.score);
 				} catch (NumberFormatException e) {
 					v2 = 0;
 				}
