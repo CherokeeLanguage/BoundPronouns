@@ -706,6 +706,10 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		text = "Display Name";
 		table.add(new Label(text, scores_ls)).center();
 
+		if (gamescores.list.size()>100) {
+			gamescores.list.subList(100, gamescores.list.size()).clear();
+		}
+		
 		for (GameScore score : gamescores.list) {
 			table.row();
 			table.add(new Label(score.rank, scores_ls)).padLeft(15).padRight(15)
@@ -716,7 +720,6 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		}
 
 		for (int ix = gamescores.list.size(); ix < 5; ix++) {
-			Gdx.app.log(TAG, "ix: " + ix);
 			table.row();
 			table.add(new Label("", scores_ls)).padLeft(15).padRight(15).center();
 			table.add(new Label("0", scores_ls)).right().padRight(30);
