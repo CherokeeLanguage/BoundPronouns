@@ -20,7 +20,8 @@ Uses CC0 audio from http://archive.org/
 
 Uses "Holo" theme from posting on LibGDX forums.
 
-Uses the "FreeSerif" font for Cherokee Syllabary and English text rendering.
+Uses the GPL "FreeSerif" font for Cherokee Syllabary and English text rendering.
+The font is available from: https://www.gnu.org/software/freefont/
 
 Powered by LibGDX + RoboVM
 Uses Apache Lang3 (org.apache.commons:commons-lang3)
