@@ -180,26 +180,20 @@ public class BoundPronouns extends Game {
 		Gdx.app.log("BoundPronouns#initManager", "start");
 
 		FileHandleResolver resolver = new InternalFileHandleResolver();
-		Gdx.app.log("BoundPronouns#initManager", "setloader:freetype");
 		manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
-		Gdx.app.log("BoundPronouns#initManager", "setloader:bitmapfont.ttf");
 		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
-		Gdx.app.log("BoundPronouns#initManager", "setload:bitmapfont.otf");
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
 		MusicParameter mus_param = new MusicParameter();
-		Gdx.app.log("BoundPronouns#initManager", SND_COYOTE);
 		manager.load(SND_COYOTE, Music.class, mus_param);
 
 		SoundParameter snd_param = new SoundParameter();
-		Gdx.app.log("BoundPronouns#initManager", SND_MENU);
 		manager.load(SND_MENU, Sound.class, snd_param);
 
 		TextureParameter param = new TextureParameter();
 		param.magFilter = TextureFilter.Linear;
 		param.minFilter = TextureFilter.Linear;
-
-		Gdx.app.log("BoundPronouns#initManager", "textures");
+		
 		manager.load(IMG_LOADING, Texture.class, param);
 		manager.load(IMG_PIXEL, Texture.class, param);
 		manager.load(IMG_PAPER1, Texture.class, param);
@@ -211,16 +205,13 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_ERASE, Texture.class, param);
 		manager.load(IMG_SYNC, Texture.class, param);
 
-		Gdx.app.log("BoundPronouns#initManager", "skin");
 		manager.load(SKIN, Skin.class);
 
-		Gdx.app.log("BoundPronouns#initManager", "loading screen");
 		for (int ix = 0; ix < 11; ix++) {
 			manager.load(levelImg(ix), Texture.class, param);
 		}
 
 		addFonts();
-
 	}
 
 	public static String levelImg(int level) {
@@ -228,17 +219,20 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFonts() {
-		Gdx.app.log("BoundPronouns#initManager", "addFonts");
-		addFreeSerifFor(40, Font.SerifXSmall);
-		addFreeSerifFor(46, Font.SerifSmall);
-		addFreeSerifFor(52, Font.SerifMedium);
-		addFreeSerifFor(60, Font.SerifLarge);
-		addFreeSerifFor(68, Font.SerifLLarge);
-		addFreeSerifFor(78, Font.SerifXLarge);
+		for (Font font: Font.values()) {
+			addFreeSerifFor(font.getSize(), font);
+		}
 	}
 
 	public static enum Font {
-		SerifXSmall, SerifSmall, SerifMedium, SerifLarge, SerifXLarge, xSerifMediumLarge, SerifLLarge;
+		SerifXSmall(40), SerifSmall(46), SerifMedium(52), SerifLarge(60), SerifXLarge(78), SerifLLarge(68);
+		private final int size;
+		public int getSize() {
+			return size;
+		}
+		private Font(int size) {
+			this.size=size;
+		}
 	}
 
 	public BitmapFont getFont(Font font) {
@@ -278,7 +272,6 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFreeSerifFor(int size, Font fontname) {
-		Gdx.app.log("BoundPronouns#addFreeSerifFor", size + "|" + fontname.name());
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			String valueOf = String.valueOf(c);
@@ -300,11 +293,17 @@ public class BoundPronouns extends Game {
 		}
 		FreeTypeFontLoaderParameter font = new FreeTypeFontLoaderParameter();
 		font.fontFileName = "otf/FreeSerif.otf";
+		font.fontParameters.borderGamma=1.0f;
+		font.fontParameters.borderStraight=false;
 		font.fontParameters.characters = defaultChars;
+		font.fontParameters.color=Color.WHITE;
+		font.fontParameters.gamma=1.1f;
 		font.fontParameters.kerning = true;
-		font.fontParameters.size = size;
 		font.fontParameters.magFilter = TextureFilter.Linear;
 		font.fontParameters.minFilter = TextureFilter.Linear;
+		font.fontParameters.size = size;
+		font.fontParameters.spaceX=1;
+		font.fontParameters.spaceY=1;
 		manager.load(fontname.name() + ".ttf", BitmapFont.class, font);
 		return;
 	}

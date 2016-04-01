@@ -36,11 +36,11 @@ public class DreamLo implements LeaderboardClient {
 		this.prefs = prefs;
 	}
 
-	private Callback<Void> noop=new Callback<Void>() {
-		@Override
-		public void success(Void result) {
-		}
-	};
+//	private Callback<Void> noop=new Callback<Void>() {
+//		@Override
+//		public void success(Void result) {
+//		}
+//	};
 	private Callback<Void> delete_old_board=new Callback<Void>() {
 		@Override
 		public void success(Void result) {
@@ -179,19 +179,19 @@ public class DreamLo implements LeaderboardClient {
 			@Override
 			public void handleHttpResponse(HttpResponse httpResponse) {
 				Gdx.app.log("DreamLo", "lb_sumbit: " + httpResponse.getResultAsString());
-				callback.success(null);
+				Gdx.app.postRunnable(callback.withNull());
 			}
 
 			@Override
 			public void failed(Throwable t) {
 				Gdx.app.log("DreamLo", "lb_submit", t);
-				callback.error(new RuntimeException(t));
+				Gdx.app.postRunnable(callback.with(new RuntimeException(t)));
 			}
 
 			@Override
 			public void cancelled() {
 				Gdx.app.log("DreamLo", "lb_submit: timed out");
-				callback.error(new RuntimeException("TIMED OUT"));
+				Gdx.app.postRunnable(callback.with(new RuntimeException("TIMED OUT")));
 			}
 		});
 	}
@@ -303,19 +303,19 @@ public class DreamLo implements LeaderboardClient {
 						break;
 					}
 				}
-				callback.success(gss);
+				Gdx.app.postRunnable(callback.with(gss));
 			}
 
 			@Override
 			public void failed(Throwable t) {
 				Gdx.app.log("DreamLo", "lb_getScoresFor:", t);
-				callback.error(new RuntimeException(t));
+				Gdx.app.postRunnable(callback.with(new RuntimeException(t)));
 			}
 
 			@Override
 			public void cancelled() {
 				Gdx.app.log("DreamLo", "lb_getScoresFor: timed out");
-				callback.error(new RuntimeException("TIMED OUT"));
+				Gdx.app.postRunnable(callback.with(new RuntimeException("TIMED OUT")));
 			}
 		});
 	}

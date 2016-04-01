@@ -1,3 +1,7 @@
+2.20
+
+Fix scoreboard system crashes. Minor font adjustments.
+
 2.19
 
 Misc bug fixes related to scoreboard.
