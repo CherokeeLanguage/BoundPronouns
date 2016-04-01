@@ -59,7 +59,6 @@ import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
-import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.Log;
 
@@ -295,8 +294,6 @@ public class LearningSession extends ChildScreen implements Screen {
 			tbs.font = params.game.getFont(Font.SerifMedium);
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
-			final TextButton btn_scores = new TextButton("Submit Score", tbs);
-			btn_scores.setText("View High Scores");
 
 			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
 			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
@@ -343,38 +340,11 @@ public class LearningSession extends ChildScreen implements Screen {
 					text(label);
 					button(btn_ok, btn_ok);
 
-					if (lb != null) {
-						button(btn_scores, btn_scores);
-					}
-
 					if (BoundPronouns.services != null) {
 						button(syncb, syncb);
 					}
 
 					final GoogleSyncUI gsu = new GoogleSyncUI(params.game, params.stage, params.slot, null);
-
-					final Callback<GameScores> showPublicScores = new Callback<GameScores>() {
-						@Override
-						public void success(GameScores result) {
-							gsu.showScores("Today's Public Scores", result, null);
-						}
-					};
-
-					final Callback<Void> getPublicScores = new Callback<Void>() {
-						@Override
-						public void success(Void result) {
-							if (lb != null) {
-								lb.lb_getScoresFor(null, showPublicScores);
-							}
-						}
-					};
-
-					btn_scores.addListener(new ClickListener() {
-						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-							getPublicScores.success(null);
-							return true;
-						};
-					});
 
 					syncb.addListener(new ClickListener() {
 						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -415,10 +385,6 @@ public class LearningSession extends ChildScreen implements Screen {
 
 				protected void result(Object object) {
 					if (syncb.equals(object)) {
-						cancel();
-						return;
-					}
-					if (btn_scores.equals(object)) {
 						cancel();
 						return;
 					}
