@@ -87,8 +87,8 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			text = "Display Name";
 			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifMedium), Color.BLACK))).center();
 
-			if (data.list.size()>20) {
-				data.list.subList(20, data.list.size()).clear();
+			if (data.list.size()>100) {
+				data.list.subList(100, data.list.size()).clear();
 			}
 			
 			int c=0;

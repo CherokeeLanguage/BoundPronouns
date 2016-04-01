@@ -662,6 +662,9 @@ public class GoogleSyncUI implements Runnable, Disposable {
 	public void showScores(String title, GameScores gamescores,
 			final Runnable whenDone) {
 		setDialogStyles();
+		LabelStyle scores_ls;
+		scores_ls = new LabelStyle(skin.get(LabelStyle.class));
+		scores_ls.font = game.getFont(Font.SerifMedium);
 		Dialog scores = new Dialog(title, dws) {
 			Dialog scores = this;
 			{
@@ -695,31 +698,31 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		table.clear();
 		table.defaults().expandX();
 		String text = "Rank";
-		table.add(new Label(text, dls)).padLeft(15).padRight(15).center();
+		table.add(new Label(text, scores_ls)).padLeft(15).padRight(15).center();
 		text = "Score";
-		table.add(new Label(text, dls)).center();
+		table.add(new Label(text, scores_ls)).center();
 		text = "Skill Level";
-		table.add(new Label(text, dls)).center();
+		table.add(new Label(text, scores_ls)).center();
 		text = "Display Name";
-		table.add(new Label(text, dls)).center();
+		table.add(new Label(text, scores_ls)).center();
 
 		for (GameScore score : gamescores.list) {
 			table.row();
-			table.add(new Label(score.rank, dls)).padLeft(15).padRight(15)
+			table.add(new Label(score.rank, scores_ls)).padLeft(15).padRight(15)
 					.center();
-			table.add(new Label(score.value, dls)).right().padRight(30);
-			table.add(new Label(score.tag, dls)).center();
-			table.add(new Label(score.user, dls)).center();
+			table.add(new Label(score.value, scores_ls)).right().padRight(30);
+			table.add(new Label(score.tag, scores_ls)).center();
+			table.add(new Label(score.user, scores_ls)).center();
 		}
 
 		for (int ix = gamescores.list.size(); ix < 5; ix++) {
 			Gdx.app.log(TAG, "ix: " + ix);
 			table.row();
-			table.add(new Label("", dls)).padLeft(15).padRight(15).center();
-			table.add(new Label("0", dls)).right().padRight(30);
-			table.add(new Label(SlotInfo.LevelName.Newbie.getEnglish(), dls))
+			table.add(new Label("", scores_ls)).padLeft(15).padRight(15).center();
+			table.add(new Label("0", scores_ls)).right().padRight(30);
+			table.add(new Label(SlotInfo.LevelName.Newbie.getEnglish(), scores_ls))
 					.center();
-			table.add(new Label("", dls)).center();
+			table.add(new Label("", scores_ls)).center();
 		}
 
 		scores.button(new TextButton("OK", tbs));
