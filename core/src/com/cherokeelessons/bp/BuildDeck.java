@@ -1096,35 +1096,4 @@ public class BuildDeck implements Runnable {
 		public String latin;
 		public String def;
 	}
-
-	public static FileHandle getDeckSlot() {
-		FileHandle p0;
-		String path0 = "BoundPronouns/slots/deck";
-		switch (Gdx.app.getType()) {
-		case Android:
-			p0 = Gdx.files.local(path0);
-			break;
-		case Applet:
-			p0 = Gdx.files.external(path0);
-			break;
-		case Desktop:
-			p0 = Gdx.files.external(path0);
-			break;
-		case HeadlessDesktop:
-			p0 = Gdx.files.external(path0);
-			break;
-		case WebGL:
-			p0 = Gdx.files.external(path0);
-			break;
-		case iOS:
-			p0 = Gdx.files.local(path0);
-			break;
-		default:
-			p0 = Gdx.files.external(path0);
-		}
-		if (!p0.exists()) {
-			p0.mkdirs();
-		}
-		return p0;
-	}
 }

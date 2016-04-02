@@ -46,6 +46,7 @@ import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
+import com.cherokeelessons.util.SlotFile;
 
 public class MainScreen implements Screen, InputProcessor {
 
@@ -495,15 +496,7 @@ public class MainScreen implements Screen, InputProcessor {
 	}
 
 	public static FileHandle getFolder(int ix) {
-		return getFolder(ix + "");
-	}
-
-	public static FileHandle getFolder(String child) {
-		final FileHandle p0;
-		String path0 = "BoundPronouns/slots";
-		p0 = Gdx.files.external(path0);
-		p0.child(child).mkdirs();
-		return p0.child(child);
+		return SlotFile.getFolder(ix + "");
 	}
 
 	private ClickListener viewPractice = new ClickListener() {

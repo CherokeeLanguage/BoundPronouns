@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.util.SlotFile;
 
 
 public class BuildDeckScreen extends ChildScreen {
@@ -26,7 +27,7 @@ public class BuildDeckScreen extends ChildScreen {
 
 	public BuildDeckScreen(BoundPronouns game, Screen caller) {
 		super(game, caller);
-		buildDeck=new BuildDeck(game, BuildDeck.getDeckSlot(), done);	
+		buildDeck=new BuildDeck(game, SlotFile.getDeckSlot(), done);	
 		
 		Gdx.app.postRunnable(buildDeck);
 	}
