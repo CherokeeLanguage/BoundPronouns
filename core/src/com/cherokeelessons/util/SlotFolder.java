@@ -9,21 +9,26 @@ public class SlotFolder {
 	
 	public static final String base = "BoundPronouns";
 	
-	private static void migrate(String path, String subpath){
+	public static void migrate(){
 		Preferences prefs = BoundPronouns.getPrefs();
-		String key = "migrate-"+path+"-"+subpath;
+		String key = "migrate-"+base;
 		if (prefs.getBoolean(key, false)){
 			return;
 		}
-		FileHandle lpath = Gdx.files.local(path).child(subpath);
-		if (lpath.exists()) {
+		FileHandle lpath = Gdx.files.local(base);
+		if (lpath.exists()&&!lpath.isDirectory()) {
+			lpath.deleteDirectory();
+		}
+		if (lpath.child("slots").child("0").isDirectory()) {
 			prefs.remove(key);
 			prefs.putBoolean(key, true);
 			prefs.flush();
 			return;
 		}
-		FileHandle epath = Gdx.files.external(path).child(subpath);
-		epath.moveTo(lpath);
+		FileHandle epath = Gdx.files.external(base);
+		if (epath.isDirectory()) {
+			epath.moveTo(lpath);
+		}
 		prefs.remove(key);
 		prefs.putBoolean(key, true);
 		prefs.flush();
@@ -34,7 +39,6 @@ public class SlotFolder {
 		String path0 = base + "/slots";
 		switch (Gdx.app.getType()) {
 		case Android:
-			migrate(path0, child);
 			p0 = Gdx.files.local(path0);
 			break;
 		case Applet:
@@ -50,7 +54,6 @@ public class SlotFolder {
 			p0 = Gdx.files.external(path0);
 			break;
 		case iOS:
-			migrate(path0, child);
 			p0 = Gdx.files.local(path0);
 			break;
 		default:

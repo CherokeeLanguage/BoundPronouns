@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.cherokeelessons.util.SlotFolder;
 
 public class LoadingScreen implements Screen {
 
@@ -31,6 +32,12 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void show() {
+		switch (Gdx.app.getType()) {
+		case Android:
+		case iOS:
+			SlotFolder.migrate();
+		default:
+		}
 	}
 
 	private Music howl;

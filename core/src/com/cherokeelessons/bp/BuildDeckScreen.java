@@ -27,8 +27,7 @@ public class BuildDeckScreen extends ChildScreen {
 
 	public BuildDeckScreen(BoundPronouns game, Screen caller) {
 		super(game, caller);
-		buildDeck=new BuildDeck(game, SlotFolder.getDeckSlot(), done);	
-		
+		buildDeck=new BuildDeck(game, SlotFolder.getDeckSlot(), done);
 		Gdx.app.postRunnable(buildDeck);
 	}
 	
