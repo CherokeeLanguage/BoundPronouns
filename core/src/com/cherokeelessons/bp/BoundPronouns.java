@@ -164,7 +164,7 @@ public class BoundPronouns extends Game {
 		initManager();
 		this.setScreen(new LoadingScreen(this));
 		Gdx.input.setCatchBackKey(true);
-		new DreamLo(prefs).registerWithDreamLoBoard();
+		new DreamLo(getPrefs()).registerWithDreamLoBoard();
 	}
 
 	@Override
