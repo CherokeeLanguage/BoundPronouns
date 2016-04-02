@@ -5,7 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.cherokeelessons.bp.BoundPronouns;
 
-public class SlotFile {
+public class SlotFolder {
 	
 	public static final String base = "BoundPronouns";
 	
@@ -61,31 +61,6 @@ public class SlotFile {
 	}
 	
 	public static FileHandle getDeckSlot() {
-		FileHandle p0;
-		String path0 = base+"/slots/deck";
-		switch (Gdx.app.getType()) {
-		case Android:
-			p0 = Gdx.files.local(path0);
-			break;
-		case Applet:
-			p0 = Gdx.files.external(path0);
-			break;
-		case Desktop:
-			p0 = Gdx.files.external(path0);
-			break;
-		case HeadlessDesktop:
-			p0 = Gdx.files.external(path0);
-			break;
-		case WebGL:
-			p0 = Gdx.files.external(path0);
-			break;
-		case iOS:
-			p0 = Gdx.files.local(path0);
-			break;
-		default:
-			p0 = Gdx.files.external(path0);
-		}
-		p0.mkdirs();
-		return p0;
+		return getFolder("deck");
 	}
 }

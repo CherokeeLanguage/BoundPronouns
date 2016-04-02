@@ -46,7 +46,7 @@ import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
-import com.cherokeelessons.util.SlotFile;
+import com.cherokeelessons.util.SlotFolder;
 
 public class MainScreen implements Screen, InputProcessor {
 
@@ -496,7 +496,7 @@ public class MainScreen implements Screen, InputProcessor {
 	}
 
 	public static FileHandle getFolder(int ix) {
-		return SlotFile.getFolder(ix + "");
+		return SlotFolder.getFolder(ix + "");
 	}
 
 	private ClickListener viewPractice = new ClickListener() {

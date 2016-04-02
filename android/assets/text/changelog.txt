@@ -1,3 +1,7 @@
+2.24
+
+Add code to migrate to internal device storage of slots.
+
 2.23
 
 Misc leaderboard related fixes.
