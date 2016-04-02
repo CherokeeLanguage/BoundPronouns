@@ -17,10 +17,8 @@ import com.badlogic.gdx.Net.HttpResponse;
 import com.badlogic.gdx.Net.HttpResponseListener;
 import com.badlogic.gdx.Preferences;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
-import com.cherokeelessons.util.GooglePlayGameServices.Collection;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
-import com.cherokeelessons.util.GooglePlayGameServices.TimeSpan;
 
 public class DreamLo {
 	private static final String DREAMLO_USERID = "dreamlo-userid";
@@ -154,11 +152,11 @@ public class DreamLo {
 		}
 	};
 
-	public void lb_getScoresFor(final String boardId, final Callback<GameScores> callback) {
+	public void lb_getScores(final Callback<GameScores> callback) {
 		if (!registerWithDreamLoBoard()) {
 			Gdx.app.postRunnable(new Runnable() {
 				public void run() {
-					DreamLo.this.lb_getScoresFor(boardId, callback);
+					DreamLo.this.lb_getScores(callback);
 				}
 			});
 			return;
@@ -282,15 +280,6 @@ public class DreamLo {
 			public void cancelled() {
 				Gdx.app.log("DreamLo", "lb_getScoresFor: timed out");
 				Gdx.app.postRunnable(callback.with(new RuntimeException("TIMED OUT")));
-			}
-		});
-	}
-
-	public void lb_getListFor(final String boardId, Collection collection, TimeSpan ts,
-			final Callback<GameScores> callback) {
-		Gdx.app.postRunnable(new Runnable() {
-			public void run() {
-				DreamLo.this.lb_getScoresFor(boardId, callback);
 			}
 		});
 	}

@@ -58,46 +58,6 @@ public interface GooglePlayGameServices {
 		public abstract void success(T result);
 	}
 	
-	public static enum Collection {
-		PUBLIC("Top Public Scores"), SOCIAL("Top Circle Scores");
-		final String english;
-		public String getEnglish() {
-			return english;
-		}
-		private Collection(String english) {
-			this.english=english;
-		}
-		public Collection next() {
-			Collection[] values = Collection.values();
-			int ix=(ordinal()+1)%(values.length);
-			return values[ix];
-		}
-	}
-	
-	public static enum TimeSpan {
-		DAILY("Today's Best"), WEEKLY("This Week's Best"), ALL_TIME("Alltime Best");
-		private TimeSpan(String engrish) {
-			this.engrish=engrish;
-		}
-		private final String engrish;
-		public String getEngrish() {
-			return engrish;
-		}
-		public TimeSpan next() {
-			TimeSpan[] values = TimeSpan.values();
-			int ix=(ordinal()+1)%(values.length);
-			return values[ix];
-		}
-	}
-	
-	public static class GameAchievements {
-		public static class GameAchievement {
-			public String id;
-			public String state;
-		}
-		public List<GameAchievement> list =new ArrayList<GameAchievement>();		
-	}
-	
 	public static class GameScores {
 		public static class GameScore {
 			public String rank;

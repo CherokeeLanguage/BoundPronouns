@@ -214,7 +214,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	private void requestScores() {
 		if (lb != null) {
 			message.setText("Loading ...");
-			lb.lb_getListFor(null, null, null, success_show_scores);
+			lb.lb_getScores(success_show_scores);
 		}
 	}
 
