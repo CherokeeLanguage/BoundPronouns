@@ -151,6 +151,9 @@ public class BoundPronouns extends Game {
 	private static Preferences prefs;
 
 	public static Preferences getPrefs() {
+		if (prefs==null) {
+			prefs = Gdx.app.getPreferences(BoundPronouns.class.getName());
+		}
 		return prefs;
 	}
 
@@ -161,7 +164,6 @@ public class BoundPronouns extends Game {
 		initManager();
 		this.setScreen(new LoadingScreen(this));
 		Gdx.input.setCatchBackKey(true);
-		prefs = Gdx.app.getPreferences(this.getClass().getName());
 		new DreamLo(prefs).registerWithDreamLoBoard();
 	}
 

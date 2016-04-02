@@ -32,12 +32,6 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void show() {
-		switch (Gdx.app.getType()) {
-		case Android:
-		case iOS:
-			SlotFolder.migrate();
-		default:
-		}
 	}
 
 	private Music howl;
