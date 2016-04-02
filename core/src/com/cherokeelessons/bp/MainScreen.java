@@ -315,7 +315,7 @@ public class MainScreen implements Screen, InputProcessor {
 					String name = (StringUtils.isBlank(info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!" : info.settings.name;
 					String tag = info.level.getEnglish() + "!!!" + name;
 					if (info.activeCards!=0 && info.lastScore!=0) {
-						new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.lastScore, info.activeCards, tag,
+						new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.activeCards, info.lastScore, tag,
 								noop_success);
 					}
 				}

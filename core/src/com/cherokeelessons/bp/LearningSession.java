@@ -365,7 +365,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					if (lb != null) {
 						String tag = info.level.getEnglish() + "!!!" + info.settings.name;
 						String slot = params.slot.nameWithoutExtension();
-						lb.lb_submit(slot != null ? slot : "", info.lastScore, info.activeCards, tag, noop_success);
+						lb.lb_submit(slot != null ? slot : "", info.activeCards, info.lastScore, tag, noop_success);
 					}
 
 					if (BoundPronouns.services != null) {
