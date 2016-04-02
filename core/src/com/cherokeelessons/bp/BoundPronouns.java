@@ -239,38 +239,6 @@ public class BoundPronouns extends Game {
 		return manager.get(font.name() + ".ttf", BitmapFont.class);
 	}
 
-	@SuppressWarnings("unused")
-	private void addFreeSansFor(int size, Font fontname) {
-		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
-		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
-			String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		for (char c : "ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ".toCharArray()) {
-			String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		for (char c : SPECIALS.toCharArray()) {
-			String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		FreeTypeFontLoaderParameter font = new FreeTypeFontLoaderParameter();
-		font.fontFileName = "otf/FreeSans.otf";
-		font.fontParameters.characters = defaultChars;
-		font.fontParameters.kerning = true;
-		font.fontParameters.size = size;
-		font.fontParameters.magFilter = TextureFilter.Linear;
-		font.fontParameters.minFilter = TextureFilter.Linear;
-		manager.load(fontname.name() + ".ttf", BitmapFont.class, font);
-		return;
-	}
-
 	private void addFreeSerifFor(int size, Font fontname) {
 		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {

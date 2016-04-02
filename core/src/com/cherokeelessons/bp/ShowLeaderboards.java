@@ -88,9 +88,7 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 			text = "Display Name";
 			table.add(new Label(text, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 
-			int c=0;
 			for (GameScore score : data.list) {
-				c++;
 				table.row();
 				table.add(new Label(score.rank, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).center();
 				table.add(new Label(score.activeCards, new LabelStyle(game.getFont(Font.SerifSmall), Color.BLACK))).right();
@@ -125,9 +123,9 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 
 		final TextButton sync_button;
 		if (!BoundPronouns.services.isLoggedIn()) {
-			sync_button = new TextButton("Login to Sync", tbs);
+			sync_button = new TextButton("Sync Login", tbs);
 		} else {
-			sync_button = new TextButton("Logout of Sync", tbs);
+			sync_button = new TextButton("Sync Logout", tbs);
 		}
 
 		final WindowStyle dws = new WindowStyle(skin.get(WindowStyle.class));
@@ -212,10 +210,8 @@ public class ShowLeaderboards extends ChildScreen implements Screen {
 	}
 
 	private void requestScores() {
-		if (lb != null) {
-			message.setText("Loading ...");
-			lb.lb_getScores(success_show_scores);
-		}
+		message.setText("Loading ...");
+		lb.lb_getScores(success_show_scores);
 	}
 
 	private Dialog errorDialog(final Exception e, final Runnable done) {

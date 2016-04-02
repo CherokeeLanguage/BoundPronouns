@@ -23,7 +23,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 public class DreamLo {
 	private static final String DREAMLO_USERID = "dreamlo-userid";
 	private static final String writeUrl = "http://dreamlo.com/lb/" + "1KLmiETsgkKwjRY-BUVjogsht9ozTZpUWLMmilJeSB-Q";
-	private static final String readUrl = "http://dreamlo.com/lb/" + "56fb26656e51b603cc253197/pipe";
+	private static final String readUrl = "http://dreamlo.com/lb/" + "56fb26656e51b603cc253197";
 	/**
 	 * boardId = "animal-slot#-timstamp-random";
 	 */
@@ -131,7 +131,7 @@ public class DreamLo {
 					}
 					HttpRequest httpRequest = new HttpRequest("GET");
 					httpRequest.setTimeOut(10000);
-					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/ᎩᎶ%20ᎢᏤ");
+					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/"+encode("ᎢᏤ ᎠᏯ!!!ᎩᎶ ᎢᏤ"));
 					Gdx.net.sendHttpRequest(httpRequest, registeredListener);
 					prefs.putString(DREAMLO_USERID, id + "");
 					prefs.flush();
