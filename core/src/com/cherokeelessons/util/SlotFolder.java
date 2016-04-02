@@ -26,7 +26,7 @@ public class SlotFolder {
 			return;
 		}
 		FileHandle epath = Gdx.files.external(base);
-		if (epath.isDirectory()) {
+		if (epath.child("slots").child("0").isDirectory()) {
 			epath.moveTo(lpath);
 		}
 		prefs.remove(key);
