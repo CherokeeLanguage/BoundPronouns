@@ -52,3 +52,4 @@ build/
 /local.properties
 /ios.save/
 /FIX/
+/.classpath
