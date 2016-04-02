@@ -1,6 +1,7 @@
 package com.cherokeelessons.util;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -28,13 +30,48 @@ public class DreamLo {
 	 * boardId = "animal-slot#-timstamp-random";
 	 */
 	private final Preferences prefs;
-	
-	@SuppressWarnings("deprecation")
-	private static String encode(String string) {
+
+	/**
+	 * Correctly percent encode for passing as URL component
+	 * {@link http://stackoverflow.com/questions/724043/http-url-address-encoding-in-java}
+	 * @param s
+	 * @return
+	 */
+	public static String encode(final String s) {
+		if (s == null) {
+			return "";
+		}
+
+		final StringBuilder sb = new StringBuilder();
+
 		try {
-			return URLEncoder.encode(string, "UTF-8").replaceAll("\\+", "%20");
-		} catch (UnsupportedEncodingException e) {
-			return URLEncoder.encode(string).replaceAll("\\+", "%20");
+			for (final char c : s.toCharArray()) {
+				if (((c >= 'A') && (c <= 'Z')) //
+						|| ((c >= 'a') && (c <= 'z')) //
+						|| ((c >= '0') && (c <= '9')) //
+						|| (c == '-') //
+						|| (c == '.') //
+						|| (c == '_') //
+						|| (c == '~')) {
+					sb.append(c);
+					continue;
+				}
+
+				final byte[] bytes = ("" + c).getBytes("UTF-8");
+
+				for (byte b : bytes) {
+					sb.append('%');
+
+					int upper = (((int) b) >> 4) & 0xf;
+					sb.append(Integer.toHexString(upper).toUpperCase());
+
+					int lower = ((int) b) & 0xf;
+					sb.append(Integer.toHexString(lower).toUpperCase());
+				}
+			}
+			return sb.toString();
+		} catch (UnsupportedEncodingException uee) {
+			throw new RuntimeException("UTF-8 unsupported!?", uee);
 		}
 	}
 
@@ -42,38 +79,39 @@ public class DreamLo {
 		this.prefs = prefs;
 	}
 
-	private Callback<Void> delete_old_board=new Callback<Void>() {
+	private Callback<Void> delete_old_board = new Callback<Void>() {
 		@Override
 		public void success(Void result) {
 			prefs.remove("leaderboard");
 			prefs.flush();
 		}
 	};
-	private static boolean migration_pending=false;
-	private Runnable migrate=new Runnable() {
+	private static boolean migration_pending = false;
+	private Runnable migrate = new Runnable() {
 		@Override
 		public void run() {
 			if (migration_pending) {
 				return;
 			}
-			migration_pending=true;
+			migration_pending = true;
 			String[] old = prefs.getString("leaderboard", "").split("\n");
-			for (int c =0; c<old.length; c++) {
-				if (old[c]==null||!old[c].contains("\t")){
+			for (int c = 0; c < old.length; c++) {
+				if (old[c] == null || !old[c].contains("\t")) {
 					continue;
 				}
 				String[] field = old[c].split("\t");
-				if (field==null||field.length<3) {
+				if (field == null || field.length < 3) {
 					continue;
 				}
 				try {
 					Long score = Long.valueOf(field[0]);
-					lb_submit(""+(c+4), score, 0, field[1]+"!!!"+field[2], delete_old_board);
+					lb_submit("" + (c + 4), score, 0, field[1] + "!!!" + field[2], delete_old_board);
 				} catch (NumberFormatException e) {
 				}
 			}
 		}
 	};
+
 	public boolean registerWithDreamLoBoard() {
 		if (prefs.getString(DREAMLO_USERID, "").length() == 0) {
 			if (!registeredListenerPending) {
@@ -131,7 +169,7 @@ public class DreamLo {
 					}
 					HttpRequest httpRequest = new HttpRequest("GET");
 					httpRequest.setTimeOut(10000);
-					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/"+encode("ᎢᏤ ᏴᏫ!!!ᎩᎶ ᎢᏤ"));
+					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/" + encode("ᎢᏤ ᏴᏫ!!!ᎩᎶ ᎢᏤ"));
 					Gdx.net.sendHttpRequest(httpRequest, registeredListener);
 					prefs.putString(DREAMLO_USERID, id + "");
 					prefs.flush();
@@ -184,26 +222,26 @@ public class DreamLo {
 					 */
 					GameScore gs = new GameScore();
 					gs.score = StringUtils.defaultString(s[2]).trim();
-					gs.score=StringUtils.reverse(gs.score).replaceAll("(\\d{3})", "$1,");
-					gs.score=StringUtils.reverse(gs.score);
-					gs.score=StringUtils.strip(gs.score, ",");
+					gs.score = StringUtils.reverse(gs.score).replaceAll("(\\d{3})", "$1,");
+					gs.score = StringUtils.reverse(gs.score);
+					gs.score = StringUtils.strip(gs.score, ",");
 					String label = StringUtils.defaultString(s[3]).trim();
 					gs.tag = StringUtils.substringBefore(label, "!!!");
 					String decoded_other_name = StringUtils.substringAfter(label, "!!!");
-					String dreamLoId=StringUtils.defaultString(s[0]).trim();
+					String dreamLoId = StringUtils.defaultString(s[0]).trim();
 					gs.user = dreamLoId;
 					if (gs.user.startsWith(myId)) {
 						gs.user = decoded_other_name;
 					} else {
 						if (!decoded_other_name.matches(".*?[a-zA-Z].*?")) {
-							gs.user = StringUtils.left(decoded_other_name,14)+" #"+dreamLoId;
+							gs.user = StringUtils.left(decoded_other_name, 14) + " #" + dreamLoId;
 						}
 					}
 					gs.user = StringUtils.left(gs.user, 17);
 					gs.activeCards = StringUtils.defaultString(s[1]).trim();
-					gs.activeCards=StringUtils.reverse(gs.activeCards).replaceAll("(\\d{3})", "$1,");
-					gs.activeCards=StringUtils.reverse(gs.activeCards);
-					gs.activeCards=StringUtils.strip(gs.activeCards, ",");
+					gs.activeCards = StringUtils.reverse(gs.activeCards).replaceAll("(\\d{3})", "$1,");
+					gs.activeCards = StringUtils.reverse(gs.activeCards);
+					gs.activeCards = StringUtils.strip(gs.activeCards, ",");
 					gss.list.add(gs);
 				}
 				Comparator<GameScore> descending = new Comparator<GooglePlayGameServices.GameScores.GameScore>() {
@@ -218,8 +256,8 @@ public class DreamLo {
 						if (o1 == null) {
 							return 1;
 						}
-						if (StringUtils.isBlank(o1.tag)!=StringUtils.isBlank(o2.tag)) {
-							return StringUtils.isBlank(o1.tag)?1:-1;
+						if (StringUtils.isBlank(o1.tag) != StringUtils.isBlank(o2.tag)) {
+							return StringUtils.isBlank(o1.tag) ? 1 : -1;
 						}
 						long v1;
 						long v2;
@@ -233,7 +271,7 @@ public class DreamLo {
 						} catch (NumberFormatException e) {
 							v2 = 0;
 						}
-						if (v1!=v2) {
+						if (v1 != v2) {
 							return v1 < v2 ? 1 : -1;
 						}
 						try {
@@ -284,7 +322,8 @@ public class DreamLo {
 		});
 	}
 
-	public void lb_submit(final String boardId, final long cards, final long score, final String label, final Callback<Void> callback) {
+	public void lb_submit(final String boardId, final long cards, final long score, final String label,
+			final Callback<Void> callback) {
 		if (!registerWithDreamLoBoard()) {
 			Gdx.app.postRunnable(new Runnable() {
 				@Override
@@ -296,8 +335,8 @@ public class DreamLo {
 		}
 		HttpRequest httpRequest = new HttpRequest("GET");
 		httpRequest.setTimeOut(10000);
-		String url = writeUrl + "/add/" + prefs.getString(DREAMLO_USERID, "") + "-" + boardId + "/" + cards + "/"+score+"/"
-				+ encode(label);
+		String url = writeUrl + "/add/" + prefs.getString(DREAMLO_USERID, "") + "-" + boardId + "/" + cards + "/"
+				+ score + "/" + encode(label);
 		httpRequest.setUrl(url);
 		Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
 			@Override
