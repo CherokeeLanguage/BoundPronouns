@@ -1,6 +1,6 @@
 2.21
 
-Change leaderboards to show and rank by using total count of cards a player has reached successfully. 
+Change leaderboard to rank by using total count of cards a player is studying.
 
 2.20
 
