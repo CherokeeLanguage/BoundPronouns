@@ -131,7 +131,7 @@ public class DreamLo {
 					}
 					HttpRequest httpRequest = new HttpRequest("GET");
 					httpRequest.setTimeOut(10000);
-					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/"+encode("ᎢᏤ ᎠᏯ!!!ᎩᎶ ᎢᏤ"));
+					httpRequest.setUrl(writeUrl + "/add/" + id + "-0/0/0/"+encode("ᎢᏤ ᏴᏫ!!!ᎩᎶ ᎢᏤ"));
 					Gdx.net.sendHttpRequest(httpRequest, registeredListener);
 					prefs.putString(DREAMLO_USERID, id + "");
 					prefs.flush();
