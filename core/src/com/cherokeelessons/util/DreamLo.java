@@ -1,8 +1,6 @@
 package com.cherokeelessons.util;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,7 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
