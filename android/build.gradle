@@ -22,7 +22,12 @@ android {
 	  }
     signingConfigs {
         release {
-            storeFile file("/home/mjoyner/Keystore")
+        		if (new File("/Users/mjoyner").isDirectory()) {
+        			storeFile file("/Users/mjoyner/Keystore")
+        		} else {
+        			storeFile file("/home/mjoyner/Keystore")
+        		}
+            
             storePassword "Wayawaya359"
             keyAlias "cherokeelessons.apk"
             keyPassword "Wayawaya359"
