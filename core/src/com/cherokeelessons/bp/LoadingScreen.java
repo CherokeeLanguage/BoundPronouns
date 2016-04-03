@@ -32,6 +32,7 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void show() {
+		SlotFolder.migrate();
 	}
 
 	private Music howl;
