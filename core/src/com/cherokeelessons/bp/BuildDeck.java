@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 84;
+	public static int version = 86;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -844,11 +844,11 @@ public class BuildDeck implements Runnable {
 		d.def = StringUtils.left(d.def, 1).toUpperCase()
 				+ StringUtils.substring(d.def, 1);
 		
-		d.def = d.def.replaceAll("\\b(us)(, .*?)( recently)", "$1$3$2");
+		d.def = d.def.replaceAll("\\b([Uu]s)(, .*?)( recently)", "$1$3$2");
 		
-		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1 are ").intern();
-		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1 were ").intern();
-		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1 have ").intern();
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1$2are ").intern();
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1$2were ").intern();
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1$2have ").intern();
 		
 		d.def = d.def.replace("and I is", "and I are").intern();
 		d.def = d.def.replace("I is", "I am").intern();
@@ -888,23 +888,18 @@ public class BuildDeck implements Runnable {
 		d.def = d.def.replace("They often has", "They often have").intern();
 
 		if (d.def.startsWith("For")) {
+			d.def = d.def.replaceAll("\\b[Hh]e\\b", "him");
+			d.def = d.def.replaceAll("\\b[Tt]hey\\b", "them");
+			d.def = d.def.replaceAll("\\bI\\b", "me");
+			d.def = d.def.replaceAll("\\bYou\\b", "you");
 			d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For us, $1,").intern();
-			d.def = d.def.replace("For he ", "For him ").intern();
-			d.def = d.def.replace("For He ", "For him ").intern();
-			d.def = d.def.replace("For they ", "For them ").intern();
-			d.def = d.def.replace("For They ", "For them ").intern();
-			d.def = d.def.replace("For I ", "For me ").intern();
-			d.def = d.def.replace("and I ", "and me ").intern();
-			d.def = d.def.replace("For You ", "For you ").intern();
 		}
 
 		if (d.def.startsWith("Let")) {
-			d.def = d.def.replaceAll("Let he\\b", "Let him").intern();
-			d.def = d.def.replaceAll("Let He\\b", "Let him ").intern();
-			d.def = d.def.replaceAll("Let they\\b", "Let them").intern();
+			d.def = d.def.replaceAll("Let [Hh]e\\b", "Let him").intern();
+			d.def = d.def.replaceAll("Let [Tt]hey\\b", "Let them").intern();
 			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
 			d.def = d.def.replaceAll("Let I\\b", "Let me").intern();
-			d.def = d.def.replaceAll("Let They\\b", "Let them").intern();
 			d.def = d.def.replaceAll("and I\\b", "and me").intern();
 			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
 			d.def = d.def.replaceAll("Let (.*?), we\\b", "Let us, $1,").intern();
