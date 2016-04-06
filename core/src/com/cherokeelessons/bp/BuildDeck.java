@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 86;
+	public static int version = 87;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -274,7 +274,7 @@ public class BuildDeck implements Runnable {
 
 			String vgroup = vroot_h_chr;
 
-			setStatus("Conjugating: " + vroot_h);
+			setStatus("Conjugating: " + vroot_h_chr);
 			final Iterator<String[]> ipro = pronouns.iterator();
 			while (ipro.hasNext()) {
 				String[] pronoun = ipro.next();
