@@ -202,7 +202,7 @@ public class BuildDeck implements Runnable {
 			
 			if (vtypes.contains("n")){
 				String term = challenge[2];
-				setStatus("Adding non-conjugated term: " + term);
+				setStatus("Please wait, adding term: " + term);
 				Card c = getCardByChallenge(term, deck);
 				if (c == null) {
 					c = new Card();
@@ -274,7 +274,7 @@ public class BuildDeck implements Runnable {
 
 			String vgroup = vroot_h_chr;
 
-			setStatus("Conjugating: " + vroot_h_chr);
+			setStatus("Please wait, conjugating: " + vroot_h_chr);
 			final Iterator<String[]> ipro = pronouns.iterator();
 			while (ipro.hasNext()) {
 				String[] pronoun = ipro.next();
