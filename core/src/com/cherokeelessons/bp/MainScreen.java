@@ -46,6 +46,7 @@ import com.cherokeelessons.cards.SlotInfo.TimeLimit;
 import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
+import com.cherokeelessons.util.RandomName;
 import com.cherokeelessons.util.SlotFolder;
 
 public class MainScreen implements Screen, InputProcessor {
@@ -144,7 +145,7 @@ public class MainScreen implements Screen, InputProcessor {
 		tfs.font = game.getFont(Font.SerifSmall);
 
 		if (!newSession) {
-			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? "ᏐᏈᎵ ᏂᏧᏙᎥᎾ" : info.settings.name;
+			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? RandomName.getRandomName() : info.settings.name;
 		}
 		final TextField name = new TextField(info.settings.name, tfs);
 		name.setDisabled(true);
@@ -217,6 +218,9 @@ public class MainScreen implements Screen, InputProcessor {
 				}
 				if (ok.equals(object)) {
 					info.settings.name = name.getText();
+					if (StringUtils.isBlank(info.settings.name)){
+						info.settings.name=RandomName.getRandomName();
+					}
 					json.toJson(info, p1);
 				}
 				if (onResult != null) {
@@ -302,6 +306,10 @@ public class MainScreen implements Screen, InputProcessor {
 					info.settings.timeLimit = TimeLimit.Novice;
 					info.settings.deck = DeckMode.Conjugations;
 				}
+				if (StringUtils.isBlank(info.settings.name)){
+					info.settings.name=RandomName.getRandomName();
+					json.toJson(info, infoFile);
+				}
 				if (!info.updatedVersion()) {
 					FileHandle activeDeckFile = p0.child(LearningSession.ActiveDeckJson);
 					ActiveDeck activeDeck = null;
@@ -313,7 +321,7 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
-					String name = (StringUtils.isBlank(info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!" : info.settings.name;
+					String name = (StringUtils.isBlank(info.settings.name)) ? RandomName.getRandomName() : info.settings.name;
 					String tag = info.level.getEnglish() + "!!!" + name;
 					if (info.activeCards!=0 && info.lastScore!=0) {
 						new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.activeCards, info.lastScore, tag,
@@ -334,7 +342,7 @@ public class MainScreen implements Screen, InputProcessor {
 			String txt = "";
 			txt += info.level;
 			txt += " ";
-			txt += (StringUtils.isBlank(settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!" : settings.name;
+			txt += (StringUtils.isBlank(settings.name)) ? RandomName.getRandomName() : settings.name;
 			txt += " - ";
 			txt += "Score: " + info.lastScore;
 			txt += "\n";

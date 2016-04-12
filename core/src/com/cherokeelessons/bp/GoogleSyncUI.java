@@ -38,6 +38,7 @@ import com.cherokeelessons.util.GooglePlayGameServices.FileMetaList;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores;
 import com.cherokeelessons.util.GooglePlayGameServices.GameScores.GameScore;
 import com.cherokeelessons.util.JsonConverter;
+import com.cherokeelessons.util.RandomName;
 
 /**
  * 
@@ -258,11 +259,12 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		content.add(new Label("CLOUD COPY:", dls));
 
 		String txt = "";
-
+		if (StringUtils.isBlank(cloud_info.settings.name)){
+			cloud_info.settings.name=RandomName.getRandomName();
+		}
 		txt += cloud_info.level;
 		txt += " ";
-		txt += (StringUtils.isBlank(cloud_info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
-				: cloud_info.settings.name;
+		txt += cloud_info.settings.name;
 		txt += " - ";
 		txt += "Score: " + cloud_info.lastScore;
 		txt += "\n";
@@ -294,11 +296,13 @@ public class GoogleSyncUI implements Runnable, Disposable {
 		content.row();
 		content.add(new Label("DEVICE COPY:", dls));
 
+		if (StringUtils.isBlank(device_info.settings.name)) {
+			device_info.settings.name=RandomName.getRandomName();
+		}
 		txt = "";
 		txt += device_info.level;
 		txt += " ";
-		txt += (StringUtils.isBlank(device_info.settings.name)) ? "ᎤᏲᏒ ᏥᏍᏕᏥ!"
-				: cloud_info.settings.name;
+		txt += cloud_info.settings.name;
 		txt += " - ";
 		txt += "Score: " + device_info.lastScore;
 		txt += "\n";

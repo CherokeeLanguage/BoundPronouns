@@ -61,6 +61,7 @@ import com.cherokeelessons.util.DreamLo;
 import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.Log;
+import com.cherokeelessons.util.RandomName;
 
 public class LearningSession extends ChildScreen implements Screen {
 
@@ -283,9 +284,12 @@ public class LearningSession extends ChildScreen implements Screen {
 			FileHandle infoFile = params.slot.child(INFO_JSON);
 			if (!infoFile.exists()) {
 				info = new SlotInfo();
-				info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
+				info.settings.name = RandomName.getRandomName();
 			} else {
 				info = json.fromJson(SlotInfo.class, infoFile);
+				if (StringUtils.isBlank(info.settings.name)){
+					info.settings.name=RandomName.getRandomName();
+				}
 				infoFile.copyTo(params.slot.child(INFO_JSON + ".bak"));
 			}
 			SlotInfo.calculateStats(info, params.deck);
@@ -1054,7 +1058,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		FileHandle infoFile = slot.child(INFO_JSON);
 		if (!infoFile.exists()) {
 			info = new SlotInfo();
-			info.settings.name = "ᎤᏲᏒ ᎣᎦᎾ!";
+			info.settings.name = RandomName.getRandomName();
 			info.settings.sessionLength = SessionLength.Brief;
 			info.settings.timeLimit = TimeLimit.Novice;
 			info.settings.deck = DeckMode.Conjugations;
@@ -1062,6 +1066,9 @@ public class LearningSession extends ChildScreen implements Screen {
 			info = json.fromJson(SlotInfo.class, infoFile);
 			info.settings.sessionLength = SessionLength.Brief;
 			info.settings.timeLimit = TimeLimit.Novice;
+			if (StringUtils.isBlank(info.settings.name)){
+				info.settings.name=RandomName.getRandomName();
+			}
 		}
 
 		newCardDialog = new NewCardDialog(game, skin) {
