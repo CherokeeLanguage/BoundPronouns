@@ -1,3 +1,7 @@
+2.30
+
+Misc bug fixes. Add random names for blank named or new sessions.
+
 2.29
 
 Various bug fixes.
