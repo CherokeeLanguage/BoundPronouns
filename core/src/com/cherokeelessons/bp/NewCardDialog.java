@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -30,10 +31,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
-import com.cherokeelessons.cards.Answer;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.SlotInfo;
-import com.cherokeelessons.cards.Answer.AnswerList;
 
 public abstract class NewCardDialog extends Dialog {
 	
@@ -52,7 +51,7 @@ public abstract class NewCardDialog extends Dialog {
 	public NewCardDialog(BoundPronouns game, Skin skin) {
 		super("New Vocabulary", skin);
 		
-		this.title = "New Vocabulary";
+		this.title = "New Vocabulary - Time Remaining: ";
 		this.skin=skin;
 		this.game = game;
 		this.getTitleLabel().setAlignment(Align.center);
@@ -111,7 +110,7 @@ public abstract class NewCardDialog extends Dialog {
 		btable.row();
 		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		tbs_check.font=game.getFont(Font.SerifMedium);
-		TextButton a = new TextButton("READY!", tbs_check);
+		TextButton a = new TextButton("TAP HERE WHEN READY!", tbs_check);
 		btable.add(a).fill().expandX().bottom();
 		setObject(a, null);
 		
@@ -251,8 +250,11 @@ public abstract class NewCardDialog extends Dialog {
 		return answer;
 	}
 
-	public void setCounter(int cardcount) {
-		getTitleLabel().setText(title+" ["+cardcount+"]");
+	public void setTimeRemaining(float seconds) {
+		int min = MathUtils.floor(seconds/60f);
+		int sec = MathUtils.floor(seconds-min*60f);
+		getTitleLabel().setText(title + " " + min + ":" + (sec<10?"0"+sec:sec));
+		getTitleLabel().setAlignment(Align.center);
 	}
 	
 	@Override

@@ -1,40 +1,3 @@
-The program has 6 main sections:
-
-• Practice: This section is for doing the actual practices.
-• Leaderboards: Shows the top scores.
-• Instructions: What is being displayed now.
-• View Pronouns: This section of the program displays a quick reference listing of the pronouns taught by this program.
-• About: Describes the software itself and attributes various sources.
-• Quit: Exits the software completely.
-
-Your stats:
-
-When you complete a session your statistics will be displayed.
-
-Your level is based on your long term demonstrated knowledge of your active cards and ranges from "Newbie" to "Grandmaster". The proficiency value is an indicator of how well you have been performing with the cards in your practice set. The score is based on how fast you answer each challenge correctly.
-
-Leaderboards:
-
-Leaderboard scores are only for the local device.
-
-Practicing:
-
-When you select “Practice” you will be presented with the “Select Session” screen.
-
-Selecting any session with “*** NEW SESSION ***” will then present you with the initial session setup settings display:
-• Name: An optional session name. Tap the "underline" to enter a name in a popup dialog.
-• Display: Do want Syllabary only challenges? Latin alphabet only challenges? or both?
-• Session Length: How long do you want a practice session to last?
-• Card Time Limit: How long do you want to be allowed to answer each challenge in?
-• Mute by default: Do you want the sound effects muted?
-• Which card set?: You can choose to study only the bare prefixes, only the conjugated forms, or a mixture of both. This setting can not be changed later.
-
-For any already existing session you can erase it or edit its settings.
-
-Selecting any already existing session will start that session. If you are doing sessions “back-to-back” you will prompted with doing a simple practice or jumping forwards in time by a full day.
-• If you select practice, then the session will start and not record the results when done.
-• If you select jump forward, then the session will start as if a full day had passed and record the results when done.
-
 Pronunciation and Markings:
 
 Cherokee has six main vowels. They are “a”, “e”, “i”, “o”, “u”, and “v”.
@@ -82,13 +45,3 @@ Unlike English, where you stress different syllables in words with loudness you 
 Cherokee is spoken with the tip of the tongue against the lower front teeth most of the time. You should be using the middle of your tongue to make the “s”, “d”, and “t” sounds, not the tongue's tip.
 
 Cherokee does not usually make a distinction between “he”, “she”, or “it”. When you see “he”, you can usually substitute “she” or “it”.
-
-Cherokee is more precise than English when talking about people, the English words “we” and “us” will be avoided.
-
-Cherokee usually makes a clear distinction between “you one”, “you two”, and “you all”.
-
-Keep in mind:
-
-• This program is for learning the bound pronouns in both their “bare” and “conjugated” forms.
-• This program is NOT for learning about general grammar, various verb stems and tenses, or for general vocabulary building.
-• This program uses “C.E.D.” spellings and pronunciation markings. 

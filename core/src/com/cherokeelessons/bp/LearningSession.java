@@ -535,10 +535,15 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 			previousCard = activeCard;
 			final Card deckCard = new Card(getCardById(activeCard.pgroup, activeCard.vgroup));
+			float sessionSeconds = info.settings.sessionLength.getSeconds();
 			if (activeCard.newCard) {
 				elapsed_tick_on = false;
 				ticktock.stop(ticktock_id);
-				newCardDialog.setCounter(cardcount++);
+				if (elapsed < sessionSeconds) {
+					newCardDialog.setTimeRemaining(sessionSeconds - elapsed);
+				} else {
+					newCardDialog.setTimeRemaining(0f);
+				}
 				newCardDialog.setCard(deckCard);
 				newCardDialog.show(stage);
 				activeCard.box = 0;
@@ -549,7 +554,11 @@ public class LearningSession extends ChildScreen implements Screen {
 				challenge_elapsed = 0f;
 				elapsed_tick_on = true;
 				ticktock_id = ticktock.loop(0f);
-				challengeCardDialog.setCounter(cardcount++);
+				if (elapsed < sessionSeconds) {
+					challengeCardDialog.setTimeRemaining(sessionSeconds - elapsed);
+				} else {
+					challengeCardDialog.setTimeRemaining(0f);
+				}
 				challengeCardDialog.setCard(activeCard, deckCard);
 				challengeCardDialog.show(stage);
 
@@ -1003,6 +1012,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * used for logging periodic messages
 	 */
 	private float notice_elapsed = 0f;
+	private float counter_elapsed = 0f;
 	private ProcessActiveCards processActiveCards = new ProcessActiveCards() {
 	};
 
@@ -1792,6 +1802,15 @@ public class LearningSession extends ChildScreen implements Screen {
 				int mins = (int) (elapsed / 60);
 				int secs = (int) (elapsed - mins * 60f);
 				log.info(mins + ":" + (secs < 10 ? "0" : "") + secs);
+			}
+			float sessionSeconds = info.settings.sessionLength.getSeconds();
+			if (counter_elapsed + .5f > elapsed) {
+				counter_elapsed = elapsed;
+				if (elapsed < sessionSeconds) {
+					challengeCardDialog.setTimeRemaining(sessionSeconds - elapsed);
+				} else {
+					challengeCardDialog.setTimeRemaining(0f);
+				}
 			}
 		}
 		super.render(delta);

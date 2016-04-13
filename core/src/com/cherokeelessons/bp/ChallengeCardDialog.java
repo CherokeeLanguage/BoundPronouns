@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -91,7 +92,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 	public ChallengeCardDialog(BoundPronouns game, Skin skin) {
 		super("Challenge Card", skin);
 		this.skin = skin;
-		this.title = "Challenge Card";
+		this.title = "Time Remaining: ";
 		this.game = game;
 		this.getTitleLabel().setAlignment(Align.center);
 		getStyle().titleFont = game.getFont(Font.SerifLarge);
@@ -349,8 +350,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 		check.setVisible(visible);
 	}
 
-	public void setCounter(int cardcount) {
-		getTitleLabel().setText(title + " [" + cardcount + "]");
+	public void setTimeRemaining(float seconds) {
+		int min = MathUtils.floor(seconds/60f);
+		int sec = MathUtils.floor(seconds-min*60f);
+		getTitleLabel().setText(title + " " + min + ":" + (sec<10?"0"+sec:sec));
 		getTitleLabel().setAlignment(Align.center);
 	}
 

@@ -62,11 +62,11 @@ public class MainScreen implements Screen, InputProcessor {
 			return true;
 		}
 	};
-	private ClickListener viewInstructions = new ClickListener() {
+	private ClickListener viewInfo = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 			game.click();
-			game.setScreen(new ShowInstructions(game, MainScreen.this));
+			game.setScreen(new ShowInfo(game, MainScreen.this));
 			return true;
 		}
 	};
@@ -587,8 +587,8 @@ public class MainScreen implements Screen, InputProcessor {
 			container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 		}
 
-		button = new TextButton("Instructions", bstyle);
-		button.addListener(viewInstructions);
+		button = new TextButton("Information", bstyle);
+		button.addListener(viewInfo);
 		button.setTouchable(Touchable.enabled);
 		if ((++column) % 2 == 0) {
 			container.row();

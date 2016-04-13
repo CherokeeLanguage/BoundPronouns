@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 
-public class ShowInstructions extends ChildScreen {
+public class ShowInfo extends ChildScreen {
 
 	private final Skin skin;
 	private ScrollPane scroll;
@@ -23,9 +23,8 @@ public class ShowInstructions extends ChildScreen {
 	private Table table;
 	private Table container;
 	
-	public ShowInstructions(BoundPronouns game, MainScreen mainScreen) {
+	public ShowInfo(BoundPronouns game, MainScreen mainScreen) {
 		super(game, mainScreen);
-		
 		
 		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		
