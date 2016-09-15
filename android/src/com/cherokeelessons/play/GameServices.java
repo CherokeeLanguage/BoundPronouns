@@ -162,7 +162,7 @@ public class GameServices implements GooglePlayGameServices {
 		
 		StringReader sr = new StringReader(json);
 		clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, sr);
-		Set<String> scopes = new HashSet<>(GamesScopes.all());
+		Set<String> scopes = new HashSet<String>(GamesScopes.all());
 		
 		//games
 		scopes.add("https://www.googleapis.com/auth/games");
