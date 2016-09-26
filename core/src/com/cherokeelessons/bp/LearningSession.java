@@ -68,7 +68,6 @@ public class LearningSession extends ChildScreen implements Screen {
 	private static final Logger log = Log.getLogger(LearningSession.class.getName());
 
 	private class ActiveDeckLoader implements Runnable {
-
 		@Override
 		public void run() {
 			log.info("Loading Active Deck ...");

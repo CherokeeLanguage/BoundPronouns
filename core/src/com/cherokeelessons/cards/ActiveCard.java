@@ -103,9 +103,9 @@ public class ActiveCard {
 	}
 
 	/**
-	 * How many times a card must be shown in the session. <br/>
+	 * How many times a card must be shown in the session. <br>
 	 * The value's pimsleur value must not exceed the sesson length or else the
-	 * card will never be successfully marked as known! <br/>
+	 * card will never be successfully marked as known! <br>
 	 * 5 minutes sessions can not have a value > 3!
 	 * 
 	 * @return
