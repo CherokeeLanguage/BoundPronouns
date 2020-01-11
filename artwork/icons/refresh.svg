@@ -13,9 +13,9 @@
    sodipodi:docname="refresh.svg"
    viewBox="0 0 391.08201 318.56"
    version="1.1"
-   inkscape:version="0.91 r"
-   width="391.082"
-   height="318.56"
+   inkscape:version="0.92.1 r15371"
+   width="417.15414"
+   height="339.79733"
    inkscape:export-filename="refresh.png"
    inkscape:export-xdpi="17.26"
    inkscape:export-ydpi="17.26">
@@ -30,13 +30,13 @@
      pagecolor="#ffffff"
      inkscape:window-height="1024"
      inkscape:window-maximized="1"
-     inkscape:zoom="1.4"
+     inkscape:zoom="2.2454561"
      inkscape:window-x="1920"
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="layer1"
-     inkscape:cx="-117.33665"
-     inkscape:cy="108.16127"
+     inkscape:cx="208.57707"
+     inkscape:cy="169.89867"
      fit-margin-top="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
@@ -52,7 +52,7 @@
        id="path2985"
        style="fill:#ffffff"
        inkscape:connector-curvature="0"
-       d="m 345,266.66 c -75.6,0 -138.88,52.668 -155.19,123.31 l 56.531,0 c 14.69,-40.27 53.31,-69.03 98.66,-69.03 45.35,0 83.969,28.763 98.656,69.031 l 56.531,0 c -16.31,-70.65 -79.59,-123.31 -155.19,-123.31 z M 190.47,464.75 c 17.33,69.21 79.95,120.47 154.53,120.47 74.584,0 137.2,-51.256 154.53,-120.47 l -56.938,0 c -15.43,38.78 -53.31,66.19 -97.59,66.19 -44.28,0 -82.158,-27.41 -97.594,-66.188 l -56.938,0 z" />
+       d="m 345,266.66 c -75.6,0 -138.88,52.668 -155.19,123.31 h 56.531 c 14.69,-40.27 53.31,-69.03 98.66,-69.03 45.35,0 83.969,28.763 98.656,69.031 h 56.531 c -16.31,-70.65 -79.59,-123.31 -155.19,-123.31 z M 190.47,464.75 c 17.33,69.21 79.95,120.47 154.53,120.47 74.584,0 137.2,-51.256 154.53,-120.47 h -56.938 c -15.43,38.78 -53.31,66.19 -97.59,66.19 -44.28,0 -82.158,-27.41 -97.594,-66.188 H 190.47 Z" />
     <path
        id="path2992"
        sodipodi:nodetypes="ccc"

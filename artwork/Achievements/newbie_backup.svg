@@ -10,16 +10,16 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="546.13336"
-   height="546.13336"
+   width="512"
+   height="512"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.1 r15371"
-   sodipodi:docname="4-apprentice.svg"
+   inkscape:version="0.91 r"
+   sodipodi:docname="newbie.svg"
    viewBox="0 0 512 512"
-   inkscape:export-filename="4-apprentice.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-filename="0-75.png"
+   inkscape:export-xdpi="13.183594"
+   inkscape:export-ydpi="13.183594">
   <defs
      id="defs4">
     <radialGradient
@@ -233,7 +233,7 @@
        x2="730.69"
        y2="292.70999" />
     <filter
-       style="color-interpolation-filters:sRGB"
+       style="color-interpolation-filters:sRGB;"
        inkscape:label="Drop Shadow"
        id="filter4096">
       <feFlood
@@ -272,9 +272,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.3970947"
-     inkscape:cx="273.06668"
-     inkscape:cy="273.06668"
+     inkscape:zoom="0.7"
+     inkscape:cx="-151.96938"
+     inkscape:cy="423.28169"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -302,7 +302,7 @@
      id="layer1"
      transform="translate(0,-540.36218)">
     <g
-       transform="matrix(4.1673449,0,0,4.1673449,-3831.573,-990.94405)"
+       transform="matrix(1.8907292,0,0,1.8907292,-1434.4738,-546.28888)"
        id="g5805">
       <path
          transform="translate(122.59,215.6)"
@@ -324,7 +324,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="matrix(2.9194043,0,0,2.9194043,-2685.9033,-716.31102)"
+       transform="matrix(1.3245446,0,0,1.3245446,-655.7704,-548.64525)"
        id="g5761">
       <path
          d="m 592.48,396.99 c -9.3947,8.9088 -95.599,20.226 -106.97,14.044 -11.376,-6.1819 -48.778,-84.669 -46.414,-97.399 2.364,-12.729 65.452,-72.555 78.289,-74.24 12.837,-1.6853 89.229,39.828 94.799,51.516 5.5696,11.688 -10.306,97.17 -19.7,106.08 z"
@@ -346,7 +346,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="matrix(4.1515594,0,0,4.1515594,-3580.8203,-1156.3094)"
+       transform="matrix(1.8835292,0,0,1.8835292,-1588.044,-496.805)"
        id="g5870">
       <path
          d="m -196.35,136.34 c -6.476,3.5824 -55.323,2.688 -61.663,-1.1291 -6.3405,-3.8171 -29.989,-46.567 -29.854,-53.966 0.13549,-7.3996 25.333,-49.255 31.809,-52.837 6.476,-3.5825 55.323,-2.688 61.663,1.1291 6.3405,3.8171 29.989,46.567 29.854,53.966 -0.13549,7.3996 -25.333,49.255 -31.809,52.837 z"
@@ -367,11 +367,8 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="matrix(4.1673449,0,0,4.1673449,-3118.7159,-902.37262)"
-       id="g5805-4"
-       inkscape:export-filename="4-apprentice-75.png"
-       inkscape:export-xdpi="13.183594"
-       inkscape:export-ydpi="13.183594">
+       transform="matrix(1.8907292,0,0,1.8907292,-832.36763,-546.28888)"
+       id="g5805-4">
       <path
          transform="translate(122.59,215.6)"
          d="m 748.64,192.03 c 0,33.927 -27.503,61.43 -61.43,61.43 -33.927,0 -61.43,-27.503 -61.43,-61.43 0,-33.927 27.503,-61.43 61.43,-61.43 33.927,0 61.43,27.503 61.43,61.43 z"
@@ -392,7 +389,7 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       transform="matrix(4.1515594,0,0,4.1515594,-3707.9631,-1422.0237)"
+       transform="matrix(4.1515594,0,0,4.1515594,-2793.6774,-793.45229)"
        id="g5870-8">
       <path
          d="m -196.35,136.34 c -6.476,3.5824 -55.323,2.688 -61.663,-1.1291 -6.3405,-3.8171 -29.989,-46.567 -29.854,-53.966 0.13549,-7.3996 25.333,-49.255 31.809,-52.837 6.476,-3.5825 55.323,-2.688 61.663,1.1291 6.3405,3.8171 29.989,46.567 29.854,53.966 -0.13549,7.3996 -25.333,49.255 -31.809,52.837 z"
@@ -436,17 +433,14 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;line-height:0%;font-family:ALEWISDODI;-inkscape-font-specification:'ALEWISDODI, Ultra-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#800080;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4096)"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:276.25921631px;line-height:100%;font-family:ALEWISDODI;-inkscape-font-specification:'ALEWISDODI Ultra-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000080;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4096);"
        x="263.64981"
        y="891.67688"
        id="text3500"
-       inkscape:export-filename="4-apprentice-75.png"
-       inkscape:export-xdpi="13.183594"
-       inkscape:export-ydpi="13.183594"><tspan
+       sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
-         id="tspan4146"
+         id="tspan3502"
          x="263.64981"
-         y="891.67688"
-         style="font-size:276.26248169px;line-height:1">ᏅᎩ</tspan></text>
+         y="891.67688">ᎢᏤ</tspan></text>
   </g>
 </svg>
