@@ -20,13 +20,13 @@ android {
     packagingOptions {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
-    defaultConfig {
-        applicationId "com.mygdx.game"
+    /*defaultConfig {
+        applicationId "com.cherokeelessons.bp.android"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-    }
+        versionCode 2.31
+        versionName "231"
+    }*/
     buildTypes {
         release {
             minifyEnabled false
