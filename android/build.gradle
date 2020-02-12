@@ -24,8 +24,8 @@ android {
         applicationId "com.cherokeelessons.bp.android"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 2.31
-        versionName "231"
+        versionCode 2.32
+        versionName "232"
     }*/
     buildTypes {
         release {

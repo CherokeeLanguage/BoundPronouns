@@ -1,3 +1,7 @@
+2.32
+
+Update to latest available libGDX and MobiVM's RoboVM
+
 2.31
 
 Added timer to top of challenge screen to show time remaining for each learning session.

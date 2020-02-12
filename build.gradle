@@ -15,7 +15,7 @@ buildscript {
 
 
 allprojects {
-    version = '2.31'
+    version = '2.32'
     apply plugin: "eclipse"
 	eclipse {
 	    classpath {
