@@ -1,3 +1,7 @@
+plugins {
+  id "com.greensopinion.gradle-android-eclipse" version "1.0"
+}
+
 android {
     buildToolsVersion "29.0.2"
     compileSdkVersion 29
