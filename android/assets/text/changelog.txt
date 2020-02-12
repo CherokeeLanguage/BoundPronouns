@@ -1,6 +1,7 @@
 2.32
 
-Update to latest available libGDX and MobiVM's RoboVM
+Update to latest available libGDX and MobiVM's RoboVM.
+Removed Sync due to labor involved with tracking API changes for OAUTH and WEBVIEWS.
 
 2.31
 
