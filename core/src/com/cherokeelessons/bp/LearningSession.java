@@ -57,8 +57,6 @@ import com.cherokeelessons.cards.SlotInfo;
 import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
-import com.cherokeelessons.util.DreamLo;
-import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.Log;
 import com.cherokeelessons.util.RandomName;
@@ -249,7 +247,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 		private void truncateToNearestMinute(List<ActiveCard> deck) {
 			for (ActiveCard card : deck) {
-				card.show_again_ms = (60l * 1000l) * (card.show_again_ms / (1000l * 60l));
+				card.show_again_ms = 60l * 1000l * (card.show_again_ms / (1000l * 60l));
 			}
 		}
 	}
@@ -276,7 +274,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		public void run() {
 			JsonConverter json = new JsonConverter();
 
-			params.deck.lastrun = System.currentTimeMillis() - ((long) params.elapsed_secs) * 1000l;
+			params.deck.lastrun = System.currentTimeMillis() - (long) params.elapsed_secs * 1000l;
 			Collections.sort(params.deck.deck, byShowTime);
 
 			final SlotInfo info;
@@ -313,7 +311,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			Dialog bye = new Dialog(dtitle, dws) {
 				final Dialog bye = this;
 				{
-					this.getTitleLabel().setAlignment(Align.center);
+					getTitleLabel().setAlignment(Align.center);
 					final Texture background = params.game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 					final TextureRegion region = new TextureRegion(background);
 					final TiledDrawable tiled = new TiledDrawable(region);
@@ -342,50 +340,9 @@ public class LearningSession extends ChildScreen implements Screen {
 					Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button(btn_ok, btn_ok);
-
-					if (BoundPronouns.services != null) {
-						button(syncb, syncb);
-					}
-
-					final GoogleSyncUI gsu = new GoogleSyncUI(params.game, params.stage, params.slot, null);
-
-					syncb.addListener(new ClickListener() {
-						public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-							if (!BoundPronouns.services.isLoggedIn()) {
-								gsu.askToLoginForSync(new Runnable() {
-									@Override
-									public void run() {
-										gsu.upload();
-									}
-								});
-							} else {
-								gsu.upload();
-							}
-							return true;
-						};
-					});
-
-					if (lb != null) {
-						String tag = info.level.getEnglish() + "!!!" + info.settings.name;
-						String slot = params.slot.nameWithoutExtension();
-						lb.lb_submit(slot != null ? slot : "", info.activeCards, info.lastScore, tag, noop_success);
-					}
-
-					if (BoundPronouns.services != null) {
-						if (BoundPronouns.services.isLoggedIn()) {
-							syncb.setVisible(false);
-							gsu.uploadHidden(new Runnable() {
-								@Override
-								public void run() {
-									syncb.setVisible(true);
-								}
-							});
-						} else {
-							syncb.setVisible(true);
-						}
-					}
 				}
 
+				@Override
 				protected void result(Object object) {
 					if (syncb.equals(object)) {
 						cancel();
@@ -396,7 +353,7 @@ public class LearningSession extends ChildScreen implements Screen {
 						params.game.setScreen(params.caller);
 						current.dispose();
 					}
-				};
+				}
 			};
 			bye.show(params.stage);
 			bye.setModal(true);
@@ -512,7 +469,7 @@ public class LearningSession extends ChildScreen implements Screen {
 					}
 					log.info("session time is not up");
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					log.info("shifting discards to zero point: " + (shift_by_ms / ONE_SECOND_ms));
+					log.info("shifting discards to zero point: " + shift_by_ms / ONE_SECOND_ms);
 					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
 						addCards(IncrementDeckBySize, current_active);
 					}
@@ -526,7 +483,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				 */
 				if (elapsed > info.settings.sessionLength.getSeconds() && current_discards.deck.size() > 0) {
 					long shift_by_ms = getMinShiftTimeOf(current_discards);
-					log.info("shifting discards to zero point: " + (shift_by_ms / ONE_SECOND_ms));
+					log.info("shifting discards to zero point: " + shift_by_ms / ONE_SECOND_ms);
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
 					return;
@@ -571,8 +528,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				randomizeSexes(displayed_answers);
 				activeCard.tries_remaining--;
 				challengeCardDialog.setAnswers(tracked_answers, displayed_answers);
-				float duration = info.settings.timeLimit.getSeconds() - (float) activeCard.box
-						- (float) activeCard.getMinCorrectInARow();
+				float duration = info.settings.timeLimit.getSeconds() - activeCard.box
+						- activeCard.getMinCorrectInARow();
 				if (duration < 4) {
 					duration = 4f;
 				}
@@ -673,8 +630,9 @@ public class LearningSession extends ChildScreen implements Screen {
 		@Override
 		public int compare(ActiveCard o1, ActiveCard o2) {
 			long dif = o1.show_again_ms - o2.show_again_ms;
-			if (dif < 0)
+			if (dif < 0) {
 				dif = -dif;
+			}
 			if (dif < ONE_MINUTE_ms) {
 				return 0;
 			}
@@ -742,12 +700,7 @@ public class LearningSession extends ChildScreen implements Screen {
 												// horizontally
 	private static final int maxAnswers = 4;
 	private static final int maxCorrect = 4;
-	private static Callback<Void> noop_success = new Callback<Void>() {
-		@Override
-		public void success(Void result) {
-			log.info("LearningSession-Score Submit: " + "success");
-		}
-	};
+
 	private static final long ONE_DAY_ms;
 	private static final long ONE_HOUR_ms;
 	private static final long ONE_MINUTE_ms;
@@ -1006,7 +959,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	private LoadMasterDeck loadDeck = new LoadMasterDeck() {
 	};
 	private final NewCardDialog newCardDialog;
-	private final Set<String> nodupes = new HashSet<String>();
+	private final Set<String> nodupes = new HashSet<>();
 	/**
 	 * used for logging periodic messages
 	 */
@@ -1035,22 +988,13 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private long ticktock_id;
 
-	private final static DreamLo lb;
-
-	static {
-		lb = new DreamLo(BoundPronouns.getPrefs());
-	}
-
-	// private TooSoonDialog tooSoon = new TooSoonDialog() {
-	// };
-
 	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
 		super(_game, caller);
 		int totalCards = game.deck.cards.size();
-		current_active.deck = new ArrayList<ActiveCard>(totalCards);
-		current_discards.deck = new ArrayList<ActiveCard>(totalCards);
-		current_done.deck = new ArrayList<ActiveCard>(totalCards);
-		current_due.deck = new ArrayList<ActiveCard>(totalCards);
+		current_active.deck = new ArrayList<>(totalCards);
+		current_discards.deck = new ArrayList<>(totalCards);
+		current_done.deck = new ArrayList<>(totalCards);
+		current_due.deck = new ArrayList<>(totalCards);
 
 		this.slot = slot;
 		slot.mkdirs();
@@ -1083,7 +1027,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
 			protected void result(Object object) {
-				this.clearActions();
+				clearActions();
 				stage.addAction(Actions.run(showACard));
 			}
 
@@ -1133,7 +1077,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			@Override
 			protected void result(Object object) {
-				this.navEnable(false);
+				navEnable(false);
 				if (CONTINUE.equals(object)) {
 					check.setTouchable(Touchable.disabled);
 					check.setDisabled(true);
@@ -1150,8 +1094,8 @@ public class LearningSession extends ChildScreen implements Screen {
 				 */
 				_activeCard.showCount++;
 				_activeCard.showTime += challenge_elapsed;
-				this.clearActions();
-				this.setCheckVisible(false);
+				clearActions();
+				setCheckVisible(false);
 				setTimer(0);
 				ticktock.setVolume(ticktock_id, 0f);
 				ticktock.stop(ticktock_id);
@@ -1439,7 +1383,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	}
 
 	private AnswerList getAnswerSetsFor(final ActiveCard active, final Card challengeCard, Deck deck) {
-		Set<String> already = new HashSet<String>(16);
+		Set<String> already = new HashSet<>(16);
 		AnswerList answers = new AnswerList();
 		/*
 		 * contains copies of used answers, vgroups, and pgroups to prevent
@@ -1457,7 +1401,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * for temporary manipulation of list data so we don't mess with master
 		 * copies in cards, etc.
 		 */
-		List<String> tmp_correct = new ArrayList<String>(16);
+		List<String> tmp_correct = new ArrayList<>(16);
 		tmp_correct.addAll(challengeCard.answer);
 
 		/**
@@ -1468,8 +1412,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			public int compare(String o1, String o2) {
 				Integer i1 = active.getCorrectInARowFor(o1);
 				Integer i2 = active.getCorrectInARowFor(o2);
-				i1 = (i1 == null ? 0 : i1);
-				i2 = (i2 == null ? 0 : i2);
+				i1 = i1 == null ? 0 : i1;
+				i2 = i2 == null ? 0 : i2;
 				if (i1 < i2) {
 					return -1;
 				}
@@ -1561,7 +1505,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * contains copies of used answers, vgroups, and pgroups to prevent
 		 * duplicates
 		 */
-		Set<String> already = new HashSet<String>(16);
+		Set<String> already = new HashSet<>(16);
 		already.add(card.pgroup);
 		already.add(card.vgroup);
 		already.addAll(card.answer);
@@ -1571,7 +1515,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		 * for temporary manipulation of list data so we don't mess with master
 		 * copies in cards, etc.
 		 */
-		List<String> tmp_correct = new ArrayList<String>(16);
+		List<String> tmp_correct = new ArrayList<>(16);
 		tmp_correct.clear();
 		tmp_correct.addAll(card.answer);
 
@@ -1583,8 +1527,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			public int compare(String o1, String o2) {
 				Integer i1 = active.getCorrectInARowFor(o1);
 				Integer i2 = active.getCorrectInARowFor(o2);
-				i1 = (i1 == null ? 0 : i1);
-				i2 = (i2 == null ? 0 : i2);
+				i1 = i1 == null ? 0 : i1;
+				i2 = i2 == null ? 0 : i2;
 				if (i1 < i2) {
 					return -1;
 				}

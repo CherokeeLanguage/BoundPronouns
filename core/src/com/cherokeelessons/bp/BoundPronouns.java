@@ -38,8 +38,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.cherokeelessons.bp.BuildDeck.DataSet;
 import com.cherokeelessons.cards.Deck;
-import com.cherokeelessons.util.DreamLo;
-import com.cherokeelessons.util.GooglePlayGameServices;
 
 public class BoundPronouns extends Game {
 
@@ -59,14 +57,12 @@ public class BoundPronouns extends Game {
 		Gdx.app.log("BoundPronouns", "Resume");
 	}
 
-	public static interface PlatformTextInput {
-		public void getTextInput(final TextInputListener listener, final String title, final String text,
+	public interface PlatformTextInput {
+		void getTextInput(final TextInputListener listener, final String title, final String text,
 				final String hint);
 	}
 
 	public static PlatformTextInput pInput = null;
-
-	public static GooglePlayGameServices services = null;
 
 	private final static Rectangle minSize = new Rectangle(0, 0, 1280, 720);
 
@@ -162,9 +158,8 @@ public class BoundPronouns extends Game {
 		Gdx.app.log("BoundPronouns", "create");
 		manager = new AssetManager();
 		initManager();
-		this.setScreen(new LoadingScreen(this));
+		setScreen(new LoadingScreen(this));
 		Gdx.input.setCatchBackKey(true);
-		new DreamLo(getPrefs()).registerWithDreamLoBoard();
 	}
 
 	@Override
@@ -226,7 +221,7 @@ public class BoundPronouns extends Game {
 		}
 	}
 
-	public static enum Font {
+	public enum Font {
 		SerifXSmall(38), SerifSmall(46), SerifMedium(52), SerifLarge(60), SerifXLarge(78), SerifLLarge(68);
 		private final int size;
 		public int getSize() {
@@ -310,7 +305,7 @@ public class BoundPronouns extends Game {
 		click.play(1f);
 	}
 
-	private static final List<DataSet> pronouns = new ArrayList<BuildDeck.DataSet>();
+	private static final List<DataSet> pronouns = new ArrayList<>();
 
 	public static final String INFO_JSON = "info.json";
 
@@ -319,7 +314,7 @@ public class BoundPronouns extends Game {
 	public static List<DataSet> loadPronounRecords() {
 		Gdx.app.log("BoundPronouns", "loadPronounRecords");
 		if (pronouns.size() != 0) {
-			return new ArrayList<DataSet>(pronouns);
+			return new ArrayList<>(pronouns);
 		}
 		FileHandle csvlist = Gdx.files.internal("csv/pronouns-list-tab.csv");
 		List<String[]> records = new ArrayList<>();
@@ -394,7 +389,7 @@ public class BoundPronouns extends Game {
 			prevChr = chr;
 		}
 		Gdx.app.log("BoundPronouns", "loadPronounRecords: " + pronouns.size());
-		return new ArrayList<DataSet>(pronouns);
+		return new ArrayList<>(pronouns);
 	}
 
 	public static void glClearColor() {

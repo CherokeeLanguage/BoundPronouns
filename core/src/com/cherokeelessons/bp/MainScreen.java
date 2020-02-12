@@ -1,5 +1,7 @@
 package com.cherokeelessons.bp;
 
+import javax.security.auth.callback.Callback;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -43,8 +45,6 @@ import com.cherokeelessons.cards.SlotInfo.DeckMode;
 import com.cherokeelessons.cards.SlotInfo.DisplayMode;
 import com.cherokeelessons.cards.SlotInfo.SessionLength;
 import com.cherokeelessons.cards.SlotInfo.TimeLimit;
-import com.cherokeelessons.util.DreamLo;
-import com.cherokeelessons.util.GooglePlayGameServices.Callback;
 import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.RandomName;
 import com.cherokeelessons.util.SlotFolder;
@@ -71,12 +71,6 @@ public class MainScreen implements Screen, InputProcessor {
 		}
 	};
 
-	Callback<Void> noop_success = new Callback<Void>() {
-		@Override
-		public void success(Void result) {
-		}
-	};
-
 	private ClickListener viewAbout = new ClickListener() {
 		@Override
 		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -84,15 +78,6 @@ public class MainScreen implements Screen, InputProcessor {
 			game.setScreen(new ShowAbout(game, MainScreen.this));
 			return true;
 		}
-	};
-
-	private ClickListener viewBoards = new ClickListener() {
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			game.click();
-			game.setScreen(new ShowLeaderboards(game, MainScreen.this));
-			return true;
-		};
 	};
 
 	private final JsonConverter json;
@@ -106,7 +91,7 @@ public class MainScreen implements Screen, InputProcessor {
 			tiled.setMinHeight(0);
 			tiled.setMinWidth(0);
 			tiled.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
-			this.getTitleLabel().setAlignment(Align.center);
+			getTitleLabel().setAlignment(Align.center);
 		}
 	}
 
@@ -145,7 +130,7 @@ public class MainScreen implements Screen, InputProcessor {
 		tfs.font = game.getFont(Font.SerifSmall);
 
 		if (!newSession) {
-			info.settings.name = (StringUtils.isBlank(info.settings.name)) ? RandomName.getRandomName() : info.settings.name;
+			info.settings.name = StringUtils.isBlank(info.settings.name) ? RandomName.getRandomName() : info.settings.name;
 		}
 		final TextField name = new TextField(info.settings.name, tfs);
 		name.setDisabled(true);
@@ -212,6 +197,7 @@ public class MainScreen implements Screen, InputProcessor {
 		final TextButton cancel = new TextButton("CANCEL", tbs);
 
 		final DialogX edit = new DialogX("Settings", skin) {
+			@Override
 			protected void result(Object object) {
 				if (object == null) {
 					object = cancel;
@@ -226,7 +212,7 @@ public class MainScreen implements Screen, InputProcessor {
 				if (onResult != null) {
 					Gdx.app.postRunnable(onResult);
 				}
-			};
+			}
 
 			@Override
 			public Dialog show(Stage stage) {
@@ -269,7 +255,7 @@ public class MainScreen implements Screen, InputProcessor {
 		edit.button(cancel, cancel);
 
 		return edit;
-	};
+	}
 
 	public void doSlotsDialog() {
 		final SlotDialog chooseSlot = new SlotDialog("Select Session", skin, game, game.getFont(Font.SerifLarge));
@@ -299,7 +285,7 @@ public class MainScreen implements Screen, InputProcessor {
 			infoFile = p0.child(BoundPronouns.INFO_JSON);
 			if (infoFile.exists()) {
 				info = json.fromJson(SlotInfo.class, infoFile);
-				blank = (info == null);
+				blank = info == null;
 				if (info == null) {
 					info = new SlotInfo();
 					info.settings.sessionLength = SessionLength.Brief;
@@ -321,12 +307,8 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
-					String name = (StringUtils.isBlank(info.settings.name)) ? RandomName.getRandomName() : info.settings.name;
+					String name = StringUtils.isBlank(info.settings.name) ? RandomName.getRandomName() : info.settings.name;
 					String tag = info.level.getEnglish() + "!!!" + name;
-					if (info.activeCards!=0 && info.lastScore!=0) {
-						new DreamLo(BoundPronouns.getPrefs()).lb_submit(ix+"", info.activeCards, info.lastScore, tag,
-								noop_success);
-					}
 				}
 			}
 			if (blank) {
@@ -342,7 +324,7 @@ public class MainScreen implements Screen, InputProcessor {
 			String txt = "";
 			txt += info.level;
 			txt += " ";
-			txt += (StringUtils.isBlank(settings.name)) ? RandomName.getRandomName() : settings.name;
+			txt += StringUtils.isBlank(settings.name) ? RandomName.getRandomName() : settings.name;
 			txt += " - ";
 			txt += "Score: " + info.lastScore;
 			txt += "\n";
@@ -360,6 +342,7 @@ public class MainScreen implements Screen, InputProcessor {
 			slots.add(textb).pad(0).expand().fill().left();
 			final boolean isNewSession = blank;
 			textb.addListener(new ClickListener() {
+				@Override
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					final Runnable startSession = new Runnable() {
 						@Override
@@ -376,7 +359,7 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					Gdx.app.postRunnable(startSession);
 					return true;
-				};
+				}
 			});
 			tbs = new TextButtonStyle(textb.getStyle());
 			tbs.font = game.getFont(Font.SerifSmall);
@@ -418,6 +401,7 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.getImage().setColor(Color.CLEAR);
 			}
 			syncb.addListener(new ClickListener() {
+				@Override
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					Gdx.app.log("MainScreen", p0.name());
 					Runnable whenDone = new Runnable() {
@@ -427,15 +411,14 @@ public class MainScreen implements Screen, InputProcessor {
 							doSlotsDialog();
 						}
 					};
-					GoogleSyncUI gsync = new GoogleSyncUI(game, stage, p0, whenDone);
 					game.click();
-					Gdx.app.postRunnable(gsync);
 					return true;
-				};
+				}
 			});
 
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
+				@Override
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					DialogX edit = getEditDialogFor(infoFile, false, new Runnable() {
 						@Override
@@ -451,15 +434,17 @@ public class MainScreen implements Screen, InputProcessor {
 			});
 
 			deleteb.addListener(new ClickListener() {
+				@Override
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					Dialog confirm = new Dialog("Erase?", skin) {
 						{
 							WindowStyle ws = new WindowStyle(skin.get(WindowStyle.class));
 							ws.titleFont = game.getFont(Font.SerifLarge);
 							setStyle(ws);
-							this.getTitleLabel().setAlignment(Align.center);
+							getTitleLabel().setAlignment(Align.center);
 						}
 
+						@Override
 						protected void result(Object object) {
 							if (object == null) {
 								return;
@@ -469,7 +454,7 @@ public class MainScreen implements Screen, InputProcessor {
 							}
 							chooseSlot.hide();
 							doSlotsDialog();
-						};
+						}
 					};
 					confirm.setBackground(tiled);
 					LabelStyle ls = skin.get(LabelStyle.class);
@@ -483,7 +468,7 @@ public class MainScreen implements Screen, InputProcessor {
 					confirm.setFillParent(true);
 					confirm.show(stage);
 					return true;
-				};
+				}
 			});
 		}
 
@@ -529,9 +514,9 @@ public class MainScreen implements Screen, InputProcessor {
 
 	public MainScreen(BoundPronouns boundPronouns) {
 
-		this.game = boundPronouns;
-		this.skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
-		this.multi = new InputMultiplexer();
+		game = boundPronouns;
+		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
+		multi = new InputMultiplexer();
 		stage = new Stage();
 		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
 
@@ -557,7 +542,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 		int column = 0;
 		int padBottom = 12;
-		if ((++column) % 2 == 0) {
+		if (++column % 2 == 0) {
 			container.row();
 			column = 0;
 		}
@@ -568,29 +553,16 @@ public class MainScreen implements Screen, InputProcessor {
 		button = new TextButton("Practice", bstyle);
 		button.addListener(viewPractice);
 		button.setTouchable(Touchable.enabled);
-		if ((++column) % 2 == 0) {
+		if (++column % 2 == 0) {
 			container.row();
 			column = 0;
 		}
 		container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
 
-		boolean showLeaderboards = (BoundPronouns.services != null);
-
-		if (showLeaderboards) {
-			button = new TextButton("Leaderboards", bstyle);
-			button.addListener(viewBoards);
-			button.setTouchable(Touchable.enabled);
-			if ((++column) % 2 == 0) {
-				container.row();
-				column = 0;
-			}
-			container.add(button).padBottom(padBottom).expand().fill().width(Value.percentWidth(.5f, container));
-		}
-
 		button = new TextButton("Information", bstyle);
 		button.addListener(viewInfo);
 		button.setTouchable(Touchable.enabled);
-		if ((++column) % 2 == 0) {
+		if (++column % 2 == 0) {
 			container.row();
 			column = 0;
 		}
@@ -599,7 +571,7 @@ public class MainScreen implements Screen, InputProcessor {
 		button = new TextButton("View Pronouns", bstyle);
 		button.addListener(viewPronouns);
 		button.setTouchable(Touchable.enabled);
-		if ((++column) % 2 == 0) {
+		if (++column % 2 == 0) {
 			container.row();
 			column = 0;
 		}
@@ -608,7 +580,7 @@ public class MainScreen implements Screen, InputProcessor {
 		button = new TextButton("About", bstyle);
 		button.addListener(viewAbout);
 		button.setTouchable(Touchable.enabled);
-		if ((++column) % 2 == 0) {
+		if (++column % 2 == 0) {
 			container.row();
 			column = 0;
 		}
@@ -617,7 +589,7 @@ public class MainScreen implements Screen, InputProcessor {
 		button = new TextButton("Quit", bstyle);
 		button.addListener(viewQuit);
 		button.setTouchable(Touchable.enabled);
-		if ((++column) % 2 == 0) {
+		if (++column % 2 == 0) {
 			container.row();
 			column = 0;
 		}
@@ -663,7 +635,6 @@ public class MainScreen implements Screen, InputProcessor {
 	@Override
 	public void dispose() {
 		stage.dispose();
-		GoogleSyncUI.dispose_skin();
 	}
 
 	@Override
