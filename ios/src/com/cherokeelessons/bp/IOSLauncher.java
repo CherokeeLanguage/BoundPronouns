@@ -5,21 +5,14 @@ import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.cherokeelessons.play.GameServices;
-import com.cherokeelessons.play.Platform;
 
 public class IOSLauncher extends IOSApplication.Delegate {
-	
-	private Platform platform;
 	
     @Override
     protected IOSApplication createApplication() {
     	try {
 			System.out.println("BoundPronouns#platform");
-			platform = new Platform();
 			System.out.println("BoundPronouns#services");
-			BoundPronouns.services = new GameServices(
-					BoundPronouns.CredentialsFolder, platform);
 			System.out.println("BoundPronouns#config");
 			IOSApplicationConfiguration config = new IOSApplicationConfiguration();
 			config.allowIpod = true;

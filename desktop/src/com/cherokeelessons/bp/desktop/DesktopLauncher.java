@@ -33,19 +33,16 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
-import com.cherokeelessons.play.GameServices;
-import com.cherokeelessons.play.Platform;
 
 public class DesktopLauncher implements PlatformTextInput {
 
 	private static LwjglApplicationConfiguration config;
-	private static GameServices gameServices;
 
 	public static void main(String[] arg) {
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment()
 				.getDefaultScreenDevice();
-		int width = (75 * gd.getDisplayMode().getWidth()) / 100;
-		int height = (75 * gd.getDisplayMode().getHeight()) / 100;
+		int width = 75 * gd.getDisplayMode().getWidth() / 100;
+		int height = 75 * gd.getDisplayMode().getHeight() / 100;
 		config = new LwjglApplicationConfiguration();
 		config.allowSoftwareMode = true;
 		config.forceExit = true;
@@ -56,9 +53,7 @@ public class DesktopLauncher implements PlatformTextInput {
 		config.addIcon("icons/icon-16.png", FileType.Internal);
 		DesktopLauncher desktopLauncher = new DesktopLauncher();
 		BoundPronouns.pInput = desktopLauncher;
-		gameServices = new GameServices(BoundPronouns.CredentialsFolder, new Platform());
-		BoundPronouns.services = gameServices;
-		new LwjglApplication(new BoundPronouns(), config);		 
+		new LwjglApplication(new BoundPronouns(), config);
 	}
 
 
@@ -86,6 +81,7 @@ public class DesktopLauncher implements PlatformTextInput {
 
 				@SuppressWarnings("serial")
 				JPanel textPanel = new JPanel() {
+					@Override
 					public boolean isOptimizedDrawingEnabled() {
 						return false;
 					};
@@ -109,24 +105,25 @@ public class DesktopLauncher implements PlatformTextInput {
 
 							@Override
 							public void removeUpdate(DocumentEvent arg0) {
-								this.updated();
+								updated();
 							}
 
 							@Override
 							public void insertUpdate(DocumentEvent arg0) {
-								this.updated();
+								updated();
 							}
 
 							@Override
 							public void changedUpdate(DocumentEvent arg0) {
-								this.updated();
+								updated();
 							}
 
 							private void updated() {
-								if (textField.getText().length() == 0)
+								if (textField.getText().length() == 0) {
 									placeholderLabel.setVisible(true);
-								else
+								} else {
 									placeholderLabel.setVisible(false);
+								}
 							}
 						});
 
@@ -181,7 +178,7 @@ public class DesktopLauncher implements PlatformTextInput {
 				Object selectedValue = pane.getValue();
 
 				if (selectedValue != null
-						&& (selectedValue instanceof Integer)
+						&& selectedValue instanceof Integer
 						&& ((Integer) selectedValue).intValue() == JOptionPane.OK_OPTION) {
 					listener.input(textField.getText());
 					Gdx.input.setInputProcessor(savedInput);
@@ -192,5 +189,5 @@ public class DesktopLauncher implements PlatformTextInput {
 
 			}
 		});
-	}	
+	}
 }
