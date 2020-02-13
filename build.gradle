@@ -93,8 +93,10 @@ project(":android") {
 }
 
 project(":ios") {
-    apply plugin: "java-library"
+    apply plugin: "java"
     apply plugin: "robovm"
+	apply plugin: "eclipse-wtp"
+	
     sourceCompatibility = 1.7
 
   dependencies {
