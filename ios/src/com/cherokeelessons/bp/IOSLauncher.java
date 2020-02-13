@@ -24,7 +24,7 @@ public class IOSLauncher extends IOSApplication.Delegate {
 			config.preventScreenDimming = true;
 			System.out.println("#IOSApplication");
 			return new IOSApplication(new BoundPronouns(), config);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
