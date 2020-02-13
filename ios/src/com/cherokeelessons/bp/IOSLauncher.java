@@ -1,7 +1,6 @@
 package com.cherokeelessons.bp;
 
 import org.robovm.apple.foundation.NSAutoreleasePool;
-import org.robovm.apple.foundation.NSException;
 import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
@@ -32,8 +31,6 @@ public class IOSLauncher extends IOSApplication.Delegate {
 
     public static void main(String[] argv) {
 		System.out.println("BoundPronouns#main");
-		System.out.println("#registerDefaultJavaUncaughtExceptionHandler");
-		NSException.registerDefaultJavaUncaughtExceptionHandler();
         NSAutoreleasePool pool = new NSAutoreleasePool();
         UIApplication.main(argv, null, IOSLauncher.class);
         pool.close();
