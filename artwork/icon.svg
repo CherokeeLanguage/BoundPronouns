@@ -18,9 +18,9 @@
    width="100%"
    height="100%"
    sodipodi:docname="icon.svg"
-   inkscape:export-filename="icon-4096.png"
-   inkscape:export-xdpi="384"
-   inkscape:export-ydpi="384"><defs
+   inkscape:export-filename="icon-512.png"
+   inkscape:export-xdpi="48"
+   inkscape:export-ydpi="48"><defs
    id="defs181" /><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
@@ -34,7 +34,7 @@
    inkscape:window-height="999"
    id="namedview179"
    showgrid="false"
-   inkscape:zoom="0.79589844"
+   inkscape:zoom="0.7701628"
    inkscape:cx="512"
    inkscape:cy="512"
    inkscape:window-x="0"
@@ -424,6 +424,7 @@
      style="font-size:212.5px;line-height:0.69999999">Pronouns</tspan></text>
 
 
+
 <text
    xml:space="preserve"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:'Aboriginal Serif';-inkscape-font-specification:'Aboriginal Serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -435,6 +436,7 @@
      x="512.14648"
      y="523.0415"
      style="font-size:300px;line-height:1">ᏣᎳᎩ</tspan></text>
+
 
 
 </svg>
