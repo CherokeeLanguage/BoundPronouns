@@ -20,19 +20,37 @@ android {
     packagingOptions {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
-    /*defaultConfig {
+   defaultConfig {
         applicationId "com.cherokeelessons.bp.android"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 2.32
-        versionName "232"
-    }*/
+        versionCode 232
+        versionName "2.32"
+    }
+   signingConfigs {
+        release {
+        		if (new File(RELEASE_STORE_FILEA).isDirectory()) {
+        			storeFile file(RELEASE_STORE_FILEA)
+        		} else {
+        			storeFile file(RELEASE_STORE_FILEB)
+        		}
+            
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+	eclipse.project {
+    	name = appName + "-android"
+	}
 }
 
 

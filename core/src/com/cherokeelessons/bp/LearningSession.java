@@ -296,12 +296,12 @@ public class LearningSession extends ChildScreen implements Screen {
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
 
-			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
-			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
-			final ImageButton syncb = new ImageButton(draw_sync);
-			syncb.setTransform(true);
-			syncb.getImage().setScaling(Scaling.fit);
-			syncb.getImage().setColor(Color.DARK_GRAY);
+//			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
+//			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
+//			final ImageButton syncb = new ImageButton(draw_sync);
+//			syncb.setTransform(true);
+//			syncb.getImage().setScaling(Scaling.fit);
+//			syncb.getImage().setColor(Color.DARK_GRAY);
 
 			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
 			// : "Practice Results";
@@ -344,10 +344,10 @@ public class LearningSession extends ChildScreen implements Screen {
 
 				@Override
 				protected void result(Object object) {
-					if (syncb.equals(object)) {
-						cancel();
-						return;
-					}
+//					if (syncb.equals(object)) {
+//						cancel();
+//						return;
+//					}
 					Screen current = params.game.getScreen();
 					if (params.caller != null && !params.caller.equals(current)) {
 						params.game.setScreen(params.caller);

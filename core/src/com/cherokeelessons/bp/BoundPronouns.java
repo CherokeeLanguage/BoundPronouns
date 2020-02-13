@@ -123,7 +123,7 @@ public class BoundPronouns extends Game {
 
 	public static final String IMG_SETTINGS = "images/gear.png";
 	public static final String IMG_ERASE = "images/trash.png";
-	public static final String IMG_SYNC = "images/refresh.png";
+	// public static final String IMG_SYNC = "images/refresh.png";
 
 	public static final String SND_MENU = "audio/click.mp3";
 	public static final String SND_COYOTE = "audio/coyote.mp3";
@@ -200,7 +200,7 @@ public class BoundPronouns extends Game {
 		manager.load(IMG_SCROLLBUTTON, Texture.class, param);
 		manager.load(IMG_SETTINGS, Texture.class, param);
 		manager.load(IMG_ERASE, Texture.class, param);
-		manager.load(IMG_SYNC, Texture.class, param);
+		// manager.load(IMG_SYNC, Texture.class, param);
 
 		manager.load(SKIN, Skin.class);
 

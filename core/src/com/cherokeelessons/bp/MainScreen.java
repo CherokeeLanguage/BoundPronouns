@@ -383,13 +383,13 @@ public class MainScreen implements Screen, InputProcessor {
 			deleteb.getImage().setColor(Color.DARK_GRAY);
 			editControls.add(deleteb).center();
 
-			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
-			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
-			ImageButton syncb = new ImageButton(draw_sync);
-			syncb.setTransform(true);
-			syncb.getImage().setScaling(Scaling.fit);
-			syncb.getImage().setColor(Color.DARK_GRAY);
-			editControls.add(syncb).center();
+//			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
+//			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
+//			ImageButton syncb = new ImageButton(draw_sync);
+//			syncb.setTransform(true);
+//			syncb.getImage().setScaling(Scaling.fit);
+//			syncb.getImage().setColor(Color.DARK_GRAY);
+//			editControls.add(syncb).center();
 
 			slots.add(editControls);
 			if (blank) {
@@ -400,21 +400,21 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.setTouchable(Touchable.disabled);
 				deleteb.getImage().setColor(Color.CLEAR);
 			}
-			syncb.addListener(new ClickListener() {
-				@Override
-				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-					Gdx.app.log("MainScreen", p0.name());
-					Runnable whenDone = new Runnable() {
-						@Override
-						public void run() {
-							chooseSlot.hide();
-							doSlotsDialog();
-						}
-					};
-					game.click();
-					return true;
-				}
-			});
+//			syncb.addListener(new ClickListener() {
+//				@Override
+//				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+//					Gdx.app.log("MainScreen", p0.name());
+//					Runnable whenDone = new Runnable() {
+//						@Override
+//						public void run() {
+//							chooseSlot.hide();
+//							doSlotsDialog();
+//						}
+//					};
+//					game.click();
+//					return true;
+//				}
+//			});
 
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
