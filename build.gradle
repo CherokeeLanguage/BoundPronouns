@@ -120,8 +120,8 @@ project(":core") {
     apply plugin: "eclipse-wtp"
 	sourceCompatibility = 1.7
     dependencies {
-        api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         
         //compile 'org.apache.commons:commons-lang3:3.1'
         //compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
