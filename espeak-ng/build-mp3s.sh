@@ -1,0 +1,51 @@
+#!/bin/bash
+
+export LC_ALL=C
+
+set -e
+set -o pipefail
+
+trap 'echo ERROR; read a' ERR
+
+ff="tmp-ffmpeg.sh"
+cp /dev/null "$ff"
+
+mp3dir="./mp3"
+
+if [ -d "$mp3dir" ]; then
+    for mp3 in "$mp3dir"/*.mp3; do
+        if [ -f "$mp3" ]; then rm "$mp3"; fi
+    done
+else
+    mkdir "$mp3dir"
+fi
+
+function dospeak_chr {
+    local txt="${1}"
+    local filename="${2}"
+
+    local mp3="$filename".mp3
+    local wav="$filename".wav
+
+    echo "${HOME}/espeak-ng/bin/espeak-ng -v chr -w \"$wav\" \"$txt\"" >> "$ff"
+    echo "ffmpeg -y -i \"$wav\" -codec:a libmp3lame -qscale:a 2 \"$mp3\" > /dev/null 2>&1" >> "$ff"
+    echo "rm \"$wav\"" >> "$ff"
+    echo >> "$ff"
+
+}
+
+file="espeak.txt"
+
+cat "$file" | while read line; do
+    echo "'${line}'"
+    syl="$(echo "$line" | cut -f 1)"
+    chr="$(echo "$line" | cut -f 2)"
+    filename="$(echo "$line" | cut -f 3)"
+
+    dospeak_chr "$chr" "$mp3dir/$filename"
+done
+
+bash "$ff"
+rm "$ff"
+
+exit 0
