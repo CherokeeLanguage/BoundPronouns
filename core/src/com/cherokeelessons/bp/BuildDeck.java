@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 87;
+	public static int version = 88;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -48,12 +48,14 @@ public class BuildDeck implements Runnable {
 	private final BoundPronouns game;
 	private final Runnable done;
 	private final FileHandle dest;
+	private final FileHandle forEspeak;
 
 	public BuildDeck(BoundPronouns game, FileHandle slot, Runnable done) {
 		this.game = game;
 		this.done = done;
 		this.deck = game.deck;
 		dest = slot.child("deck.json");
+		forEspeak = slot.child("espeak.txt");
 	}
 
 	public Runnable save = new Runnable() {
@@ -67,9 +69,79 @@ public class BuildDeck implements Runnable {
 			game.log(this, deck.cards.size() + " cards in deck.");
 			deck.size = deck.cards.size();
 			json.toJson(deck, dest);
+			
+			if (forEspeak.exists()) {
+				forEspeak.delete();
+			}
+			Set<String> already = new HashSet<>();
+			StringBuilder sb = new StringBuilder();
+			for (Card card: deck.cards) {
+				if (card.challenge.size()!=2) {
+					continue;
+				}
+				String syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
+				String challenge = StringUtils.defaultString(card.challenge.get(1));
+				if (challenge.trim().endsWith("-")) {
+					continue;
+				}
+				sb.append(syllabary);
+				sb.append("\t");
+				sb.append(challenge);
+				sb.append("\t");
+				String asFilename = asFilename(challenge);
+				sb.append(asFilename);
+				sb.append("\n");
+				forEspeak.writeString(sb.toString(), true, "UTF-8");
+				sb.setLength(0);
+				if (already.contains(challenge)) {
+					throw new RuntimeException("DUPLICATE CHALLENGE: "+challenge);
+				}
+				already.add(challenge);
+				if (already.contains(asFilename)) {
+					throw new RuntimeException("DUPLICATE FILENAME: "+asFilename);
+				}
+				already.add(asFilename);
+			}
 			if (done != null) {
 				Gdx.app.postRunnable(done);
 			}
+		}
+
+		private String asPlainSyllabary(String syllabary) {
+			syllabary = syllabary.replace(BoundPronouns.UNDERDOT, "");
+			syllabary = syllabary.replace(BoundPronouns.UNDERX, "");
+			syllabary = syllabary.replaceAll("[¹²³⁴]", "");
+			return syllabary;
+		}
+
+		private String asFilename(String challenge) {
+			challenge = challenge.replace("ɂ", "-");
+			
+			challenge = challenge.replace("¹", "1");
+			challenge = challenge.replace("²", "2");
+			challenge = challenge.replace("³", "3");
+			challenge = challenge.replace("⁴", "4");
+			
+			challenge = challenge.replace("a", "aa");
+			challenge = challenge.replace("e", "ee");
+			challenge = challenge.replace("i", "ii");
+			challenge = challenge.replace("o", "oo");
+			challenge = challenge.replace("u", "uu");
+			challenge = challenge.replace("v", "vv");
+			
+			challenge = challenge.replace("ạ", "a");
+			challenge = challenge.replace("ẹ", "e");
+			challenge = challenge.replace("ị", "i");
+			challenge = challenge.replace("ọ", "o");
+			challenge = challenge.replace("ụ", "u");
+			challenge = challenge.replace("ṿ", "v");
+			
+			challenge = challenge.replaceAll("(?i)[^a-z1234\\-]", "");
+			
+			challenge = challenge.replaceAll("([cdghjklmnstwy])([aeiouv])([aeiouv])([cdghjklmnstwy\\-])", "$1$2$4");
+			challenge = challenge.replaceAll("^(.*)([aeiouv])([aeiouv])([1234]+)?$", "$1$2$4");
+			
+			return challenge;
 		}
 	};
 
