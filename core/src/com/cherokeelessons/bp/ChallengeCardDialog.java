@@ -7,6 +7,9 @@ import java.util.Iterator;
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Music.OnCompletionListener;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -77,6 +80,8 @@ public abstract class ChallengeCardDialog extends Dialog {
 
 	private TextButton mute;
 
+	private TextButton speak;
+
 	private final TextButton pause;
 
 	public boolean paused = false;
@@ -113,17 +118,15 @@ public abstract class ChallengeCardDialog extends Dialog {
 		row();
 		add(appNavBar = new Table(skin)).expandX().fillX().bottom();
 		appNavBar.defaults().space(6);
-		
-		TextButtonStyle navStyle = new TextButtonStyle(
-				skin.get(TextButtonStyle.class));
+
+		TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		navStyle.font = game.getFont(Font.SerifMedium);
-		main = new TextButton("Main Menu", navStyle);
+		main = new TextButton("Exit", navStyle);
 		appNavBar.row();
 		appNavBar.add(main).left();
 		main.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				showMainMenu();
 				return true;
 			}
@@ -136,8 +139,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		mute.setText("Mute");
 		mute.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				settings.muted = !settings.muted;
 				updateMuteButtonText();
 				return true;
@@ -151,8 +153,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		pause.setText("Pause");
 		pause.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				paused = !paused;
 				if (!paused) {
 					// being unchecked
@@ -169,24 +170,34 @@ public abstract class ChallengeCardDialog extends Dialog {
 			}
 		});
 
+		speak = new TextButton("Speak", navStyle);
+		speak.addListener(new ClickListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				if (!speak.isDisabled()) {
+					Gdx.app.postRunnable(playAudio);
+				}
+				return true;
+			}
+		});
+
+		c = appNavBar.add(speak).left().fillX();
+
 		LabelStyle ls = new LabelStyle(skin.get(LabelStyle.class));
 		ls.font = game.getFont(Font.SerifMedium);
 		timer = new Label("--", ls);
 		appNavBar.add(timer).right().expandX();
 
-		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default",
-				TextButtonStyle.class));
+		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		tbs_check.font = game.getFont(Font.SerifLarge);
 		check = new TextButton("CHECK!", tbs_check);
 
-		answer_style = new TextButtonStyle(skin.get("default",
-				TextButtonStyle.class));
+		answer_style = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		answer_style.font = game.getFont(Font.SerifMedium);
 	}
 
 	private TiledDrawable getDialogBackground() {
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		TextureRegion region = new TextureRegion(texture);
 		TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
@@ -222,7 +233,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 	protected void result(Object object) {
 		super.result(object);
 	}
-	
+
 	private String removexmarks(String answer) {
 		answer = answer.replace("xHe", "He");
 		answer = answer.replace("xShe", "She");
@@ -231,8 +242,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		return answer;
 	}
 
-	public void setAnswers(AnswerList tracked_answers,
-			AnswerList displayed_answers) {
+	public void setAnswers(AnswerList tracked_answers, AnswerList displayed_answers) {
 		Table btable = getButtonTable();
 		btable.clearChildren();
 		boolean odd = true;
@@ -242,14 +252,12 @@ public abstract class ChallengeCardDialog extends Dialog {
 			if (odd) {
 				btable.row();
 			}
-			final TextButton a = new TextButton(removexmarks(displayed_answer.answer),
-					answer_style);
+			final TextButton a = new TextButton(removexmarks(displayed_answer.answer), answer_style);
 			a.getLabel().setWrap(true);
 			a.setUserObject(tracked_answer);
 			a.addListener(new ClickListener() {
 				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 					if (a.isChecked()) {
 						// we are being unchecked
 						a.setColor(Color.WHITE);
@@ -302,8 +310,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		ctable.clearChildren();
 		ctable.row();
 
-		TextButtonStyle chr_san_large = new TextButtonStyle(
-				skin.get(TextButtonStyle.class));
+		TextButtonStyle chr_san_large = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		chr_san_large.font = game.getFont(Font.SerifXLarge);
 
 		TextButton challenge_top = new TextButton("", chr_san_large);
@@ -319,12 +326,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 		}
 		Label msg;
 		if (!StringUtils.isBlank(syllabary)) {
-			LabelStyle san_style = new LabelStyle(
-					game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
+			LabelStyle san_style = new LabelStyle(game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
 			if (shrink) {
 				game.log(this, syllabary.length() + "");
-				san_style = new LabelStyle(game.getFont(Font.SerifLLarge),
-						chr_san_large.fontColor);
+				san_style = new LabelStyle(game.getFont(Font.SerifLLarge), chr_san_large.fontColor);
 			}
 			msg = new Label(syllabary, san_style);
 			msg.setAlignment(Align.center);
@@ -332,12 +337,10 @@ public abstract class ChallengeCardDialog extends Dialog {
 			challenge_top.add(msg).fill().expand();
 		}
 		if (!StringUtils.isBlank(latin)) {
-			LabelStyle serif_style = new LabelStyle(
-					game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
+			LabelStyle serif_style = new LabelStyle(game.getFont(Font.SerifXLarge), chr_san_large.fontColor);
 			if (shrink) {
 				game.log(this, latin.length() + "");
-				serif_style = new LabelStyle(game.getFont(Font.SerifLLarge),
-						chr_san_large.fontColor);
+				serif_style = new LabelStyle(game.getFont(Font.SerifLLarge), chr_san_large.fontColor);
 			}
 			msg = new Label(latin, serif_style);
 			msg.setAlignment(Align.center);
@@ -351,9 +354,9 @@ public abstract class ChallengeCardDialog extends Dialog {
 	}
 
 	public void setTimeRemaining(float seconds) {
-		int min = MathUtils.floor(seconds/60f);
-		int sec = MathUtils.floor(seconds-min*60f);
-		getTitleLabel().setText(title + " " + min + ":" + (sec<10?"0"+sec:sec));
+		int min = MathUtils.floor(seconds / 60f);
+		int sec = MathUtils.floor(seconds - min * 60f);
+		getTitleLabel().setText(title + " " + min + ":" + (sec < 10 ? "0" + sec : sec));
 		getTitleLabel().setAlignment(Align.center);
 	}
 
@@ -362,22 +365,58 @@ public abstract class ChallengeCardDialog extends Dialog {
 		String z = (x < 10 ? "0" : "") + x;
 		timer.setText(z);
 	}
+	
+	protected Runnable runnableNoop = new Runnable() {
+		@Override
+		public void run() {
+		}
+	};
 
 	@Override
 	public Dialog show(Stage stage) {
 		paused = false;
 		Gdx.app.postRunnable(disableCard);
 		RunnableAction enable = Actions.run(enableCard);
+		RunnableAction audio;
+		if (settings.muted) {
+			speak.setDisabled(false);
+			speak.setTouchable(Touchable.enabled);
+			audio = Actions.run(runnableNoop);
+		} else {
+			audio = Actions.run(playAudio);
+		}
+
 		if (Gdx.input.isTouched()) {
 			DelayAction delay = Actions.delay(.2f);
-			show(stage, sequence(Actions.alpha(0), delay, Actions.fadeIn(0.4f, Interpolation.fade), enable));
+			show(stage, sequence(Actions.alpha(0), delay, Actions.fadeIn(0.4f, Interpolation.fade), enable, audio));
 		} else {
-			show(stage, sequence(Actions.alpha(0), Actions.fadeIn(0.4f, Interpolation.fade), enable));
+			show(stage, sequence(Actions.alpha(0), Actions.fadeIn(0.4f, Interpolation.fade), enable, audio));
 		}
-		setPosition(Math.round((stage.getWidth() - getWidth()) / 2),
-				Math.round((stage.getHeight() - getHeight()) / 2));
+		setPosition(Math.round((stage.getWidth() - getWidth()) / 2), Math.round((stage.getHeight() - getHeight()) / 2));
 		return this;
 	}
+
+	protected Runnable playAudio = new Runnable() {
+		@Override
+		public void run() {
+			speak.setDisabled(true);
+			FileHandle audioFile = game.audioFiles.get(_deckCard.challenge.get(1));
+			if (audioFile == null) {
+				Gdx.app.log(this.getClass().getName(), "NO AUDIO FILE MATCHES: " + _deckCard.challenge.get(1));
+			}
+			Music newMusic = Gdx.audio.newMusic(audioFile);
+			newMusic.setOnCompletionListener(musicDispose);
+			newMusic.play();
+		}
+	};
+
+	protected OnCompletionListener musicDispose = new OnCompletionListener() {
+		@Override
+		public void onCompletion(Music music) {
+			speak.setDisabled(false);
+			music.dispose();
+		}
+	};
 
 	protected abstract void showMainMenu();
 

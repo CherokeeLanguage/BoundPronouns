@@ -513,8 +513,8 @@ public class MainScreen implements Screen, InputProcessor {
 	private final Table container;
 
 	public MainScreen(BoundPronouns boundPronouns) {
-
 		game = boundPronouns;
+		game.loadEspeakMap();
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		multi = new InputMultiplexer();
 		stage = new Stage();

@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -86,6 +88,7 @@ public class BoundPronouns extends Game {
 	public final static Color ClearColor;
 
 	public final Deck deck = new Deck();
+	public final Map<String, FileHandle> audioFiles=new HashMap<>();
 
 	public static final String SKIN = "skins/holo/Holo-light-xhdpi.json";
 
@@ -394,5 +397,25 @@ public class BoundPronouns extends Game {
 
 	public static void glClearColor() {
 		Gdx.gl.glClearColor(ClearColor.r, ClearColor.g, ClearColor.b, ClearColor.a);
+	}
+
+	public void loadEspeakMap() {
+		String text = Gdx.files.internal("text/espeak.txt").readString("UTF-8");
+		String[] lines = text.split("\n");
+		for (String line: lines) {
+			if (!line.contains("\t") || line.isEmpty()) {
+				continue;
+			}
+			String[] columns = line.split("\t");
+			if (columns==null) {
+				continue;
+			}
+			if (columns.length<3) {
+				continue;
+			}
+			String pronounce = columns[1];
+			String filename = columns[2];
+			audioFiles.put(pronounce, Gdx.files.internal("mp3-challenges/"+filename+".mp3"));
+		}
 	}
 }
