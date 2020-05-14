@@ -1,4 +1,6 @@
-Created by Michael Joyner
+Created by Michael Conrad
+
+Speech audio files generated with espeak-ng.
 
 Grammar information from:
 

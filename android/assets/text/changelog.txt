@@ -1,3 +1,7 @@
+3.00
+
+Initial version with synthetic voice audio for each of the challenges. Mute will disable the voice auto play.
+
 2.32
 
 Update to latest available libGDX and MobiVM's RoboVM.
