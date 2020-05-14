@@ -159,6 +159,7 @@ public abstract class NewCardDialog extends Dialog {
 			FileHandle audioFile = game.audioFiles.get(pronounce);
 			if (audioFile == null) {
 				Gdx.app.log(this.getClass().getName(), "NO AUDIO FILE MATCHES: " + pronounce);
+				return;
 			}
 			Music newMusic = Gdx.audio.newMusic(audioFile);
 			newMusic.setOnCompletionListener(musicDispose);

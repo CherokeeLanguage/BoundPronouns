@@ -403,6 +403,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 			FileHandle audioFile = game.audioFiles.get(_deckCard.challenge.get(1));
 			if (audioFile == null) {
 				Gdx.app.log(this.getClass().getName(), "NO AUDIO FILE MATCHES: " + _deckCard.challenge.get(1));
+				return;
 			}
 			Music newMusic = Gdx.audio.newMusic(audioFile);
 			newMusic.setOnCompletionListener(musicDispose);
