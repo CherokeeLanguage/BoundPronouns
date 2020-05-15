@@ -488,6 +488,15 @@ public class LearningSession extends ChildScreen implements Screen {
 					Gdx.app.postRunnable(showACard);
 					return;
 				}
+				/*
+				 * Fallback behavior.
+				 */
+				log.info("Forcing discards to be time shifted.");
+				long shift_by_ms = getMinShiftTimeOf(current_discards);
+				addCards(IncrementDeckBySize, current_active);
+				updateTime(current_discards, shift_by_ms);
+				Gdx.app.postRunnable(showACard);
+				return;
 			}
 			previousCard = activeCard;
 			final Card deckCard = new Card(getCardById(activeCard.pgroup, activeCard.vgroup));

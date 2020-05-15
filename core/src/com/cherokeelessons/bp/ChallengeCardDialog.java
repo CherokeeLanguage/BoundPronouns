@@ -369,6 +369,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 	protected Runnable runnableNoop = new Runnable() {
 		@Override
 		public void run() {
+			// Do nothing
 		}
 	};
 

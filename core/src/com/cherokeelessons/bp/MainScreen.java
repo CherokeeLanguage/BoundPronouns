@@ -311,7 +311,7 @@ public class MainScreen implements Screen, InputProcessor {
 					String tag = info.level.getEnglish() + "!!!" + name;
 				}
 			}
-			if (blank) {
+			if (info == null || blank) {
 				info = new SlotInfo();
 				info.settings.name = "*** NEW SESSION ***";
 				info.settings.sessionLength = SessionLength.Brief;

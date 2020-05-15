@@ -65,10 +65,12 @@ public class ChildScreen implements Screen, InputProcessor {
 
 	@Override
 	public void pause() {
+		//do nothing
 	}
 
 	@Override
 	public void resume() {
+		//do nothing
 	}
 
 	@Override
