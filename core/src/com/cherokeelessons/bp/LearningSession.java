@@ -1412,8 +1412,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			public int compare(String o1, String o2) {
 				Integer i1 = active.getCorrectInARowFor(o1);
 				Integer i2 = active.getCorrectInARowFor(o2);
-				i1 = i1 == null ? 0 : i1;
-				i2 = i2 == null ? 0 : i2;
+//				i1 = i1 == null ? 0 : i1;
+//				i2 = i2 == null ? 0 : i2;
 				if (i1 < i2) {
 					return -1;
 				}
@@ -1527,8 +1527,8 @@ public class LearningSession extends ChildScreen implements Screen {
 			public int compare(String o1, String o2) {
 				Integer i1 = active.getCorrectInARowFor(o1);
 				Integer i2 = active.getCorrectInARowFor(o2);
-				i1 = i1 == null ? 0 : i1;
-				i2 = i2 == null ? 0 : i2;
+//				i1 = (i1 == null) ? 0 : i1;
+//				i2 = (i2 == null) ? 0 : i2;
 				if (i1 < i2) {
 					return -1;
 				}
