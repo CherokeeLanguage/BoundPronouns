@@ -144,7 +144,7 @@
 ᏕᏥᎦ	de²jị²ga²	dee2ji2ga2
 ᏕᏥᎦ	de³ji²ga²	dee3jii2ga2
 ᏕᏥᎭ	de³ji²ha	dee3jii2ha
-ᏗᏂᎦ	dị'³ni²ga	di3nii2ga
+ᏗᏂᎦ	dị³ni²ga	di3nii2ga
 ᏗᏗᎦ	dị²di²ga	di2dii2ga
 ᏗᏥᎦ	dị²ji²ga	di2jii2ga
 ᏗᏥᏥ	di¹ji²ji	dii1jii2ji
@@ -965,7 +965,7 @@
 ᏗᎪᎩᏙᏓ	dị²go²gi²do²da	di2goo2gii2doo2da
 ᏗᎬᏩᏂᏥ	dị²gv²wạ²ni²ji	di2gvv2wa2nii2ji
 ᏗᎾᏙᎵᎩ	dị²nạ²da²dohl²gi	di2na2daa2dohl2gi
-ᏗᏂᎪᏩᏔ	dị'³ni²go¹wah²ta	di3nii2goo1wah2ta
+ᏗᏂᎪᏩᏔ	dị³ni²go¹wah²ta	di3nii2goo1wah2ta
 ᏗᏆᏚᎸᏗ	dị¹gwạ²duhl²di	di1gwa2duhl2di
 ᏗᏆᏤᎵᎢ	dị¹gwạ²je²li⁴ɂi	di1gwaa2jee2lii4-i
 ᏗᏍᎩᏂᏥ	dị²sgị²ni²ji	di2sgi2nii2ji
