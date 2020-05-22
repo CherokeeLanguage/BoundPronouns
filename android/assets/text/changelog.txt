@@ -1,3 +1,7 @@
+3.02
+
+Updated audio with latest espeak-ng generated output using updated phoneme files.
+
 3.01
 
 Initial version with synthetic voice audio for each of the challenges. Mute will disable the voice auto play.
