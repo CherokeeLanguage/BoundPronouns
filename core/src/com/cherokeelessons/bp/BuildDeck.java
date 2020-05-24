@@ -22,7 +22,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 89;
+	public static int version = 90;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -76,7 +76,7 @@ public class BuildDeck implements Runnable {
 			Set<String> already = new HashSet<>();
 			StringBuilder sb = new StringBuilder();
 			for (Card card: deck.cards) {
-				if (card.challenge.size()!=2) {
+				if (card.challenge.size()<2) {
 					continue;
 				}
 				String syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
