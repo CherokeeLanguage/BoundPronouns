@@ -242,11 +242,42 @@ public abstract class NewCardDialog extends Dialog {
 			latin = i.next();
 			pronounce = latin;
 		}
+		
+		boolean stripPronunciationMarks=false;
+		if (settings.display.equals(SlotInfo.DisplayMode.NONE)) {
+			latin = "";
+			syllabary = "";
+		}
 		if (settings.display.equals(SlotInfo.DisplayMode.Latin)) {
 			syllabary = "";
 		}
+		if (settings.display.equals(SlotInfo.DisplayMode.LATIN_NP)) {
+			syllabary = "";
+			stripPronunciationMarks = true;
+		}
 		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)) {
 			latin = "";
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.SYLLABARY_NP)) {
+			latin = "";
+			stripPronunciationMarks = true;
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.BOTH_NP)) {
+			stripPronunciationMarks = true;
+		}
+		
+		if (stripPronunciationMarks) {
+			syllabary = syllabary.replace(BoundPronouns.UNDERDOT, "");
+			syllabary = syllabary.replace(BoundPronouns.UNDERX, "");
+			syllabary = syllabary.replaceAll("[¹²³⁴]", "");
+			
+			latin = latin.replace(BoundPronouns.UNDERDOT, "");
+			latin = latin.replace(BoundPronouns.UNDERX, "");
+			latin = latin.replaceAll("[¹²³⁴]", "");
+			for (String[] px: new String[][] {{"ạ", "a"}, {"ẹ", "e"}, {"ị", "i"}, {"ọ", "o"}, {"ụ", "u"}, {"ṿ", "v"}}) {
+				latin = latin.replace(px[0], px[1]);
+				latin = latin.replace(px[0].toUpperCase(), px[1].toUpperCase());
+			}
 		}
 
 		Table ctable = getContentTable();

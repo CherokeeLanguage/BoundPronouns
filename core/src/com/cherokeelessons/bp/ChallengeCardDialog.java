@@ -57,21 +57,23 @@ public abstract class ChallengeCardDialog extends Dialog {
 	protected final TextButton check;
 
 	private Runnable disableCard = new Runnable() {
+		@Override
 		public void run() {
 			check.setDisabled(true);
 			check.setVisible(true);
 			check.setTouchable(Touchable.disabled);
 			navEnable(false);
-		};
+		}
 	};
 
 	private Runnable enableCard = new Runnable() {
+		@Override
 		public void run() {
 			check.setDisabled(false);
 			check.setVisible(true);
 			check.setTouchable(Touchable.enabled);
 			navEnable(true);
-		};
+		}
 	};
 
 	private final BoundPronouns game;
@@ -207,6 +209,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		return background;
 	}
 
+	@Override
 	public void hide() {
 		hide(null);
 	}
@@ -290,6 +293,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 		this._activeCard = activeCard;
 		this._deckCard = deckCard;
 
+		boolean stripPronunciationMarks = false;
 		String syllabary = "";
 		String latin = "";
 		Iterator<String> i = deckCard.challenge.iterator();
@@ -299,11 +303,40 @@ public abstract class ChallengeCardDialog extends Dialog {
 		if (i.hasNext()) {
 			latin = i.next();
 		}
+		if (settings.display.equals(SlotInfo.DisplayMode.NONE)) {
+			latin = "";
+			syllabary = "";
+		}
 		if (settings.display.equals(SlotInfo.DisplayMode.Latin)) {
 			syllabary = "";
 		}
+		if (settings.display.equals(SlotInfo.DisplayMode.LATIN_NP)) {
+			syllabary = "";
+			stripPronunciationMarks = true;
+		}
 		if (settings.display.equals(SlotInfo.DisplayMode.Syllabary)) {
 			latin = "";
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.SYLLABARY_NP)) {
+			latin = "";
+			stripPronunciationMarks = true;
+		}
+		if (settings.display.equals(SlotInfo.DisplayMode.BOTH_NP)) {
+			stripPronunciationMarks = true;
+		}
+		
+		if (stripPronunciationMarks) {
+			syllabary = syllabary.replace(BoundPronouns.UNDERDOT, "");
+			syllabary = syllabary.replace(BoundPronouns.UNDERX, "");
+			syllabary = syllabary.replaceAll("[¹²³⁴]", "");
+			
+			latin = latin.replace(BoundPronouns.UNDERDOT, "");
+			latin = latin.replace(BoundPronouns.UNDERX, "");
+			latin = latin.replaceAll("[¹²³⁴]", "");
+			for (String[] px: new String[][] {{"ạ", "a"}, {"ẹ", "e"}, {"ị", "i"}, {"ọ", "o"}, {"ụ", "u"}, {"ṿ", "v"}}) {
+				latin = latin.replace(px[0], px[1]);
+				latin = latin.replace(px[0].toUpperCase(), px[1].toUpperCase());
+			}
 		}
 
 		Table ctable = getContentTable();

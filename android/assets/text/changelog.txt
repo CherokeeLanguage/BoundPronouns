@@ -1,6 +1,8 @@
 3.03
 
-Add 11 more audio challenges. Some espeak-ng audio adjustments.
+Added additional display options for "No Marks" to hide all tone and cadence marks to provide plain Syllabary and Latin forms.
+Added additional display option for "Audio Only" for those only wanting no visual clues for the answers.
+Added 11 missing audio challenges. Updated to newer espeak-ng output using updated phonemes.
 
 3.02
 

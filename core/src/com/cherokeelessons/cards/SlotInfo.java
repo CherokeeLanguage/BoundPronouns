@@ -100,17 +100,23 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum DisplayMode {
-		Syllabary("Only show Syllabary"), Latin("Only show Latin"), Both(
-				"Show both Syllabary and Latin");
+		Both("Syllabary and Latin - Tones Marked"), //
+		Syllabary("Syllabary - Tones Marked"), //
+		Latin("Latin - Tones Marked"), //
+		BOTH_NP("Syllabary and Latin - No Marks"),
+		SYLLABARY_NP("Syllabary - No Marks"), //
+		LATIN_NP("Latin - No Marks"), //
+		NONE("Audio Only");
 		private DisplayMode(String english) {
 			this.english = english.intern();
 		}
 
 		private String english;
 
+		@Override
 		public String toString() {
 			return english;
-		};
+		}
 
 		public static DisplayMode getNext(DisplayMode mode) {
 			for (int ix = 0; ix < values().length - 1; ix++) {
@@ -133,9 +139,10 @@ public class SlotInfo implements Serializable {
 
 		private String english;
 
+		@Override
 		public String toString() {
 			return english;
-		};
+		}
 
 		public static DeckMode getNext(DeckMode mode) {
 			for (int ix = 0; ix < values().length - 1; ix++) {
@@ -164,9 +171,10 @@ public class SlotInfo implements Serializable {
 			return seconds;
 		}
 
+		@Override
 		public String toString() {
 			return english;
-		};
+		}
 
 		public static SessionLength getNext(SessionLength mode) {
 			for (int ix = 0; ix < values().length - 1; ix++) {
@@ -203,9 +211,10 @@ public class SlotInfo implements Serializable {
 
 		final private String english;
 
+		@Override
 		public String toString() {
 			return english;
-		};
+		}
 
 		public static TimeLimit getNext(TimeLimit mode) {
 			for (int ix = 0; ix < values().length - 1; ix++) {
@@ -354,7 +363,7 @@ public class SlotInfo implements Serializable {
 				score -= maxCardScore;
 				perfect = false;
 			}
-			double avgShowTime = card.showTime / (float) card.showCount;
+			double avgShowTime = card.showTime / card.showCount;
 			double cardScore = maxCardScore - avgShowTime;
 			if (cardScore<1) {
 				cardScore=1;
