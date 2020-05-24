@@ -148,7 +148,6 @@
 ᏗᏗᎦ	dị²di²ga	di2dii2ga
 ᏗᏥᎦ	dị²ji²ga	di2jii2ga
 ᏗᏥᏥ	di¹ji²ji	dii1jii2ji
-ᏗᏨᏥ	di¹jv²ji	dii1jvv2ji
 ᏙᎩᎭ	do¹gi²ha	doo1gii2ha
 ᏙᏥᎦ	do¹ji²ga²	doo1jii2ga2
 ᏚᎬᎢ	du²gv²³ɂi	duu2gvv23-i
@@ -224,7 +223,6 @@
 ᎡᏦᎵᎦ	e¹johl²ga²	ee1johl2ga2
 ᎡᏦᎵᎩ	e¹jo²li¹gi	ee1joo2lii1gi
 ᎡᏦᎵᎩ	e¹johl²gi	ee1johl2gi
-ᎢᎦᎵᎢ	i¹ga²lị²ɂi	ii1gaa2li2-i
 ᎢᎦᏘᏗ	i¹gạt²di	ii1gat2di
 ᎢᎦᏚᎳ	i¹gạ²du²³la	ii1ga2duu23la
 ᎢᎦᏚᎳ	i¹gạ²du²³la²	ii1ga2duu23la2
@@ -253,7 +251,6 @@
 ᎢᏙᎵᎦ	i¹dohl²ga	ii1dohl2ga
 ᎢᏙᎵᎦ	i¹dohl²ga²	ii1dohl2ga2
 ᎢᏙᎵᎩ	i¹dohl²gi	ii1dohl2gi
-ᎢᏣᎵᎢ	i¹ja²lị²ɂi	ii1jaa2li2-i
 ᎢᏣᏗᎭ	i¹jạ²dị²ha	ii1ja2di2ha
 ᎢᏣᏘᏗ	i¹jạt²di	ii1jat2di
 ᎢᏣᏚᎳ	i¹jạ²du²³la	ii1ja2duu23la
@@ -271,7 +268,6 @@
 ᎢᏦᎵᎦ	i¹johl²ga²	ii1johl2ga2
 ᎢᏦᎵᎩ	i¹johl²gi	ii1johl2gi
 ᎢᏨᏙᏓ	i¹jv²do²da	ii1jvv2doo2da
-ᎣᎦᎵᎢ	o¹ga²lị²ɂi	oo1gaa2li2-i
 ᎣᎦᏘᏗ	o¹gạt²di	oo1gat2di
 ᎣᎦᏚᎳ	o¹gạ²du²³la²	oo1ga2duu23la2
 ᎣᎩᎬᎢ	o¹gi²gv²³ɂi	oo1gii2gvv23-i
@@ -303,7 +299,6 @@
 ᎤᎮᏍᏗ	u¹he³sdi	uu1hee3sdi
 ᎤᎸᏍᏗ	u¹lv¹sdi	uu1lvv1sdi
 ᎤᎸᏒᎢ	u¹lv³²sv²³ɂi	uu1lvv32svv23-i
-ᎤᎾᎵᎢ	u¹na²lị²ɂi	uu1naa2li2-i
 ᎤᎾᏘᏗ	u¹nạt²di	uu1nat2di
 ᎤᎾᏚᎳ	u¹nạ²du²³la²	uu1na2duu23la2
 ᎤᏂᎬᎢ	u¹ni²gv²³ɂi	uu1nii2gvv23-i
@@ -344,7 +339,6 @@
 ᎨᏦᎵᎦ	ge²johl²ga	gee2johl2ga
 ᎨᏦᎵᎦ	ge²johl²ga²	gee2johl2ga2
 ᎨᏦᎵᎩ	ge²johl²gi	gee2johl2gi
-ᎩᎾᎵᎢ	gị²na²lị²ɂi	gi2naa2li2-i
 ᎩᎾᏘᏗ	gị²nạt²di	gi2nat2di
 ᎩᎾᏚᎳ	gị²nạ²du²³la	gi2na2duu23la
 ᎩᎾᏚᎳ	gị²nạ²du²³la²	gi2na2duu23la2
@@ -389,7 +383,6 @@
 ᏍᏉᎵᎦ	sgwo²li¹ga	sgwoo2lii1ga
 ᏍᏉᎵᎦ	sgwo²li¹ga²	sgwoo2lii1ga2
 ᏍᏉᎵᎩ	sgwo²li¹gi	sgwoo2lii1gi
-ᏍᏓᎵᎢ	sda²lị²ɂi	sdaa2li2-i
 ᏍᏓᏗᎭ	sdạ²dị²ha	sda2di2ha
 ᏍᏓᏘᏗ	sdạt²di	sdat2di
 ᏍᏓᏚᎳ	sdạ²du²³la	sda2duu23la
@@ -445,7 +438,6 @@
 ᏗᎨᏥᏥ	dị²ge²ji²ji	di2gee2jii2ji
 ᏗᎪᎩᏥ	dị²go²gi²ji	di2goo2gii2ji
 ᏗᏆᎵᎢ	dị¹gwa²lị²ɂi	di1gwaa2li2-i
-ᏗᏍᎩᏥ	di¹sgi²ji	dii1sgii2ji
 ᏗᏍᏗᎦ	dị²sdi²ga	di2sdii2ga
 ᏗᏍᏗᏥ	dị²sdi²ji	di2sdii2ji
 ᏗᏍᏛᏥ	dị²sdv²ji	di2sdvv2ji
@@ -453,7 +445,6 @@
 ᏗᏣᎵᎢ	dị²jạ²lị²ɂi	di2ja2li2-i
 ᏗᏣᏚᎳ	dị²jạ²du²³la	di2ja2duu23la
 ᏗᏥᏙᏓ	di¹ji²do²da	dii1jii2doo2da
-ᏗᏨᏙᏓ	di¹jv²do²da	dii1jvv2doo2da
 ᏘᎪᏩᏔ	tị²go¹wah²ta	ti2goo1wah2ta
 ᏙᎦᏚᎳ	do¹gạ²du²³la²	doo1ga2duu23la2
 ᏙᎩᎬᎢ	do¹gi²gv²³ɂi	doo1gii2gvv23-i
@@ -685,7 +676,6 @@
 ᎣᎩᎮᏍᏗ	o¹gi²he³sdi	oo1gii2hee3sdi
 ᎣᎩᎸᏍᏗ	o¹gi²lv¹sdi	oo1gii2lvv1sdi
 ᎣᎩᎸᏒᎢ	o¹gi²lv³²sv²³ɂi	oo1gii2lvv32svv23-i
-ᎣᎩᎾᎵᎢ	o¹gị²na²lị²ɂi	oo1gi2naa2li2-i
 ᎣᎩᎾᏘᏗ	o¹gị²nạt²di	oo1gi2nat2di
 ᎣᎩᎾᏚᎳ	o¹gị²nạ²du²³la²	oo1gi2na2duu23la2
 ᎣᎩᏂᎬᎢ	o¹gị²ni²gv²³ɂi	oo1gi2nii2gvv23-i
@@ -979,7 +969,6 @@
 ᏗᏆᏚᎸᏗ	dị¹gwạ²duhl²di	di1gwa2duhl2di
 ᏗᏆᏤᎵᎢ	dị¹gwạ²je²li⁴ɂi	di1gwaa2jee2lii4-i
 ᏗᏍᎩᏂᏥ	dị²sgị²ni²ji	di2sgi2nii2ji
-ᏗᏍᎩᏙᏓ	di¹sgi²do²da	dii1sgii2doo2da
 ᏗᏍᏓᎵᎢ	dị²sda²lị²ɂi	di2sdaa2li2-i
 ᏗᏍᏓᏚᎳ	dị²sdạ²du²³la	di2sda2duu23la
 ᏗᏍᏗᏙᏓ	dị²sdi²do²da	di2sdii2doo2da
