@@ -1,3 +1,7 @@
+3.04
+
+Fix internal listing of available audio challenges to include the missing 11 challenges.
+
 3.03
 
 Added additional display options for "No Marks" to hide all tone and cadence marks to provide plain Syllabary and Latin forms.

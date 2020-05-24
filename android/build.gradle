@@ -24,8 +24,8 @@ android {
         applicationId "com.cherokeelessons.bp.android"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 303
-        versionName "3.03"
+        versionCode Integer.valueOf(version.replace(".","")) // 304
+        versionName version
         setProperty("archivesBaseName", appName+"-"+version)
     }
    signingConfigs {
