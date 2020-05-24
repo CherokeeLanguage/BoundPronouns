@@ -1,3 +1,7 @@
+3.03
+
+Add 11 more audio challenges. Some espeak-ng audio adjustments.
+
 3.02
 
 Updated audio with latest espeak-ng generated output using updated phoneme files.
