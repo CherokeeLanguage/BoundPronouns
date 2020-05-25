@@ -1,3 +1,7 @@
+3.05
+
+Updated to newer espeak-ng output using updated phonemes.
+
 3.04
 
 Fix internal listing of available audio challenges to include the missing 11 challenges.
