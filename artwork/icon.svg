@@ -14,7 +14,7 @@
    x="0px"
    y="0px"
    enable-background="new 0 0 221.435 361.443"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    width="100%"
    height="100%"
    sodipodi:docname="icon.svg"
@@ -34,7 +34,7 @@
    inkscape:window-height="999"
    id="namedview179"
    showgrid="false"
-   inkscape:zoom="0.7701628"
+   inkscape:zoom="0.77606252"
    inkscape:cx="512"
    inkscape:cy="512"
    inkscape:window-x="0"
@@ -44,7 +44,33 @@
    fit-margin-top="0"
    fit-margin-left="0"
    fit-margin-right="0"
-   fit-margin-bottom="0" /><rect
+   fit-margin-bottom="0"
+   showguides="true"
+   inkscape:guide-bbox="true"><sodipodi:guide
+     position="128,0"
+     orientation="1,0"
+     id="guide99"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /><sodipodi:guide
+     position="0,128"
+     orientation="0,1"
+     id="guide101"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /><sodipodi:guide
+     position="0,896"
+     orientation="0,1"
+     id="guide103"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /><sodipodi:guide
+     position="896,0"
+     orientation="1,0"
+     id="guide107"
+     inkscape:locked="false"
+     inkscape:label=""
+     inkscape:color="rgb(0,0,255)" /></sodipodi:namedview><rect
    style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
    id="rect3855"
    width="1024"
@@ -402,26 +428,27 @@
    id="metadata177"><rdf:RDF><cc:Work><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><cc:license
          rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" /><dc:publisher><cc:Agent
-           rdf:about="http://openclipart.org/"><dc:title>Openclipart</dc:title></cc:Agent></dc:publisher><dc:title /><dc:date>2009-03-20T04:48:30</dc:date><dc:description>In the Reign of the Coyote by Katherine Chandler, 1905</dc:description><dc:source>http://openclipart.org/detail/22611/coyote-by-johnny_automatic</dc:source><dc:creator><cc:Agent><dc:title>johnny_automatic</dc:title></cc:Agent></dc:creator><dc:subject><rdf:Bag><rdf:li>animal</rdf:li><rdf:li>canine</rdf:li><rdf:li>clip art</rdf:li><rdf:li>clipart</rdf:li><rdf:li>coyote</rdf:li><rdf:li>externalsource</rdf:li><rdf:li>image</rdf:li><rdf:li>media</rdf:li><rdf:li>png</rdf:li><rdf:li>public domain</rdf:li><rdf:li>svg</rdf:li></rdf:Bag></dc:subject></cc:Work><cc:License
+           rdf:about="http://openclipart.org/"><dc:title>Openclipart</dc:title></cc:Agent></dc:publisher><dc:title></dc:title><dc:date>2009-03-20T04:48:30</dc:date><dc:description>In the Reign of the Coyote by Katherine Chandler, 1905</dc:description><dc:source>http://openclipart.org/detail/22611/coyote-by-johnny_automatic</dc:source><dc:creator><cc:Agent><dc:title>johnny_automatic</dc:title></cc:Agent></dc:creator><dc:subject><rdf:Bag><rdf:li>animal</rdf:li><rdf:li>canine</rdf:li><rdf:li>clip art</rdf:li><rdf:li>clipart</rdf:li><rdf:li>coyote</rdf:li><rdf:li>externalsource</rdf:li><rdf:li>image</rdf:li><rdf:li>media</rdf:li><rdf:li>png</rdf:li><rdf:li>public domain</rdf:li><rdf:li>svg</rdf:li></rdf:Bag></dc:subject></cc:Work><cc:License
        rdf:about="http://creativecommons.org/publicdomain/zero/1.0/"><cc:permits
          rdf:resource="http://creativecommons.org/ns#Reproduction" /><cc:permits
          rdf:resource="http://creativecommons.org/ns#Distribution" /><cc:permits
          rdf:resource="http://creativecommons.org/ns#DerivativeWorks" /></cc:License></rdf:RDF></metadata><text
    xml:space="preserve"
-   style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;line-height:0%;font-family:ALEWISDODI;-inkscape-font-specification:'ALEWISDODI, Ultra-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#c0c0ff;fill-opacity:1;stroke:none"
-   x="510.00726"
-   y="762.87537"
+   style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:10.15118217px;line-height:0%;font-family:ALEWISDODI;-inkscape-font-specification:'ALEWISDODI, Ultra-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#c0c0ff;fill-opacity:1;stroke:none;stroke-width:0.84593183"
+   x="510.27039"
+   y="696.79858"
    id="text3857"><tspan
      sodipodi:role="line"
      id="tspan3859"
-     x="510.00726"
-     y="762.87537"
-     style="font-size:212.5px;line-height:0.69999999">Bound</tspan><tspan
+     x="510.27039"
+     y="696.79858"
+     style="font-size:179.76052856px;line-height:0.69999999;stroke-width:0.84593183">Bound</tspan><tspan
      sodipodi:role="line"
-     x="510.00726"
-     y="911.62537"
+     x="510.27039"
+     y="822.63098"
      id="tspan3861"
-     style="font-size:212.5px;line-height:0.69999999">Pronouns</tspan></text>
+     style="font-size:179.76052856px;line-height:0.69999999;stroke-width:0.84593183">Pronouns</tspan></text>
+
 
 
 
@@ -429,13 +456,14 @@
    xml:space="preserve"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:'Aboriginal Serif';-inkscape-font-specification:'Aboriginal Serif, Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
    x="512.14648"
-   y="523.0415"
+   y="463.0415"
    id="text3423"><tspan
      sodipodi:role="line"
      id="tspan3425"
      x="512.14648"
-     y="523.0415"
+     y="463.0415"
      style="font-size:300px;line-height:1">ᏣᎳᎩ</tspan></text>
+
 
 
 
