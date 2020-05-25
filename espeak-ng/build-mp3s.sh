@@ -7,6 +7,8 @@ set -o pipefail
 
 trap 'echo ERROR; read a' ERR
 
+vol=200
+
 cd "$(dirname "$0")"
 
 ff="tmp-ffmpeg.sh"
@@ -22,6 +24,14 @@ else
     mkdir "$mp3dir"
 fi
 
+function rebuildEspeak {
+    z="$(pwd)"
+    cd ~/git/espeak-ng
+    make
+    make install
+    cd "$z"
+}
+
 function dospeak_chr {
     local txt="${1}"
     local filename="${2}"
@@ -30,12 +40,14 @@ function dospeak_chr {
     local wav="$filename".wav
 
     echo "echo $txt" >> "$ff"
-    echo "${HOME}/espeak-ng/bin/espeak-ng -v chr -w \"$wav\" \"$txt\"" >> "$ff"
+    echo "${HOME}/espeak-ng/bin/espeak-ng -a $vol -v chr -w \"$wav\" \"$txt\"" >> "$ff"
     echo "ffmpeg -y -i \"$wav\" -codec:a libmp3lame -qscale:a 2 \"$mp3\" > /dev/null 2>&1" >> "$ff"
     echo "rm \"$wav\"" >> "$ff"
     echo >> "$ff"
 
 }
+
+rebuildEspeak
 
 file="espeak.txt"
 
@@ -51,8 +63,8 @@ done
 bash "$ff"
 rm "$ff"
 
-for mp3 in mp3/*; do 
-    normalize-audio "$mp3"
-done
+#for mp3 in mp3/*; do 
+#    normalize-audio -a 8dbe "$mp3"
+#done
 
 exit 0
