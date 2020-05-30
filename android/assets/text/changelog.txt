@@ -1,9 +1,6 @@
-3.05
+3.xx
 
 Updated to newer espeak-ng output using updated phonemes.
-(Improvements one can hopefully hear made to 'h', 'g', 'd', 's', and 'v').
-Final nasal vowels at the end of words still need adjustment.
-Short vowels which should be devoiced when followed by "h" aren't at this time.
 
 3.04
 
