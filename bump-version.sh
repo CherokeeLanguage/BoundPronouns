@@ -8,7 +8,12 @@ trap 'echo ERROR' ERR
 cd "$(dirname "$0")"
 
 version=$(head -n1 version)
+xversion="${version:0:${#version}-2}.${version: -2}"
+git tag "$xversion" || true
+git push --tags
+
 version=$(($version + 1 ))
+xversion="${version:0:${#version}-2}.${version: -2}"
 
 xversion="${version:0:${#version}-2}.${version: -2}"
 

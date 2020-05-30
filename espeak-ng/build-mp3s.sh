@@ -7,7 +7,7 @@ set -o pipefail
 
 trap 'echo ERROR; read a' ERR
 
-vol=200
+vol=100
 
 cd "$(dirname "$0")"
 
@@ -63,8 +63,8 @@ done
 bash "$ff"
 rm "$ff"
 
-#for mp3 in mp3/*; do 
-#    normalize-audio -a 8dbe "$mp3"
-#done
+for mp3 in mp3/*; do 
+    normalize-audio -a 8dbe "$mp3"
+done
 
 exit 0
