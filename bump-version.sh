@@ -11,6 +11,7 @@ version=$(head -n1 version)
 xversion="${version:0:${#version}-2}.${version: -2}"
 git tag "$xversion" || true
 git push --tags
+git push --all
 
 version=$(($version + 1 ))
 xversion="${version:0:${#version}-2}.${version: -2}"
@@ -25,7 +26,5 @@ sed -i "s/versionName=\".*\"/versionName=\"$xversion\"/g" android/AndroidManifes
 sed -i "s/app.version=.*$/app.version=$xversion/g" ios/robovm.properties
 
 echo "$version" > version
-
-git commit -m "Version Bump" bump-version.sh version build.gradle android/AndroidManifest.xml ios/robovm.properties
 
 exit 0
