@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 version=$(head -n1 version)
 xversion="${version:0:${#version}-2}.${version: -2}"
 git add .
-git commit -a -m "autocommit  for tagging."
+git commit -a -m "autocommit  for tagging version." || true
 git tag "$xversion" || true
 git push --tags
 
@@ -29,7 +29,7 @@ sed -i "s/app.version=.*$/app.version=$xversion/g" ios/robovm.properties
 echo "$version" > version
 
 git add .
-git commit -a -m "Start of next development cycle."
+git commit -a -m "Start of next development cycle." || true
 git tag "${xversion}-PRE" || true
 git push --tags
 
