@@ -32,7 +32,7 @@ public class BuildDeck implements Runnable {
 	private String prevChr = "";
 	private String status = "";
 
-	private Card getCardByChallenge(String chr, Deck deck) {
+	private Card getCardByChallenge(String chr, @SuppressWarnings("hiding") Deck deck) {
 		for (Card card : deck.cards) {
 			if (card.challenge.get(0).equalsIgnoreCase(chr)) {
 				return card;
@@ -155,6 +155,7 @@ public class BuildDeck implements Runnable {
 				}
 			}
 			if (dest.exists()) {
+				@SuppressWarnings("hiding")
 				Deck deck;
 				try {
 					deck = json.fromJson(Deck.class, dest);
@@ -255,8 +256,8 @@ public class BuildDeck implements Runnable {
 		DataSet d = new DataSet();
 		StringBuilder vroot = new StringBuilder();
 		StringBuilder vroot_chr = new StringBuilder();
-		Set<String> vtypes = new HashSet<String>();
-		Set<String> ptypes = new HashSet<String>();
+		Set<String> vtypes = new HashSet<>();
+		Set<String> ptypes = new HashSet<>();
 		long tick = System.currentTimeMillis();
 		final Iterator<String[]> ichallenge = challenges.iterator();
 		while (ichallenge.hasNext()) {

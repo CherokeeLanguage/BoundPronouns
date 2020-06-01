@@ -43,6 +43,7 @@ public class ShowAbout extends ChildScreen {
 	}
 	
 	private Runnable initView = new Runnable() {
+		@Override
 		public void run() {
 		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
 		ls.font=game.getFont(Font.SerifSmall);
@@ -81,7 +82,7 @@ public class ShowAbout extends ChildScreen {
 		container.add(scroll).expand().fill();
 		stage.setKeyboardFocus(scroll);
 		stage.setScrollFocus(scroll);
-		};
+		}
 	};
 
 	@Override

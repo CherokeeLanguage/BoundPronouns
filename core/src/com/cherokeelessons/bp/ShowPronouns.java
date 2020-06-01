@@ -9,7 +9,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.BitmapFont.BitmapFontData;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -32,7 +31,7 @@ public class ShowPronouns extends ChildScreen {
 	private static final String SORT_BY_ENGLISH = "Sort by English";
 	private static final String SORT_BY_LATIN = "Sort by Latin";
 	private static final String SORT_BY_SYLLABARY = "Sort by Syllabary";
-	private final Array<DisplayRecord> drecs = new Array<DisplayRecord>();
+	private final Array<DisplayRecord> drecs = new Array<>();
 
 	private static class DisplayRecord implements Comparable<DisplayRecord> {
 		public static enum SortBy {
@@ -95,8 +94,9 @@ public class ShowPronouns extends ChildScreen {
 						+ definition.getText().toString();
 				string3 = cleanup(string3);
 				return string3.toLowerCase();
+			default:
+				return "";
 			}
-			return "";
 		}
 
 		private String cleanup(String string) {
@@ -133,8 +133,9 @@ public class ShowPronouns extends ChildScreen {
 					return -1;
 				}
 				return -splitCompare(o);
+			default:
+				return sortKey().compareTo(o.sortKey());
 			}
-			return sortKey().compareTo(o.sortKey());
 		}
 
 		public int splitCompare(DisplayRecord o) {
@@ -170,22 +171,24 @@ public class ShowPronouns extends ChildScreen {
 		}
 	};
 	private ClickListener list_sortByL = new ClickListener() {
+		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			DisplayRecord.setSortBy(DisplayRecord.SortBy.Latin);
 			drecs.sort();
 			populateList();
 			return true;
-		};
+		}
 	};
 	private ClickListener list_sortByS = new ClickListener() {
+		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			DisplayRecord.setSortBy(DisplayRecord.SortBy.Syllabary);
 			drecs.sort();
 			populateList();
 			return true;
-		};
+		}
 	};
 	private TextButton sortByS;
 	private TextButton sortByL;
@@ -215,7 +218,7 @@ public class ShowPronouns extends ChildScreen {
 		
 	}
 
-	public void initialPopulate(BoundPronouns game) {
+	public void initialPopulate(@SuppressWarnings("hiding") BoundPronouns game) {
 		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
 				Texture.class);
 		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
@@ -331,8 +334,9 @@ public class ShowPronouns extends ChildScreen {
 			return " " + BoundPronouns.TRIANGLE_ASC + BoundPronouns.DIAMOND;
 		case SplitDescending:
 			return " " + BoundPronouns.TRIANGLE_DESC + BoundPronouns.DIAMOND;
+		default:
+			return "   ";
 		}
-		return "   ";
 	}
 
 	@Override

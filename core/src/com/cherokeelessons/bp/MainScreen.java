@@ -1,7 +1,5 @@
 package com.cherokeelessons.bp;
 
-import javax.security.auth.callback.Callback;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -99,6 +97,7 @@ public class MainScreen implements Screen, InputProcessor {
 		return getEditDialogFor(p1, newSession, new Runnable() {
 			@Override
 			public void run() {
+				//Do nothing
 			}
 		});
 	}
@@ -215,7 +214,7 @@ public class MainScreen implements Screen, InputProcessor {
 			}
 
 			@Override
-			public Dialog show(Stage stage) {
+			public Dialog show(@SuppressWarnings("hiding") Stage stage) {
 				super.show(stage);
 				stage.setKeyboardFocus(name);
 				stage.setScrollFocus(name);
@@ -307,8 +306,8 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
-					String name = StringUtils.isBlank(info.settings.name) ? RandomName.getRandomName() : info.settings.name;
-					String tag = info.level.getEnglish() + "!!!" + name;
+					//String name = StringUtils.isBlank(info.settings.name) ? RandomName.getRandomName() : info.settings.name;
+					//String tag = info.level.getEnglish() + "!!!" + name;
 				}
 			}
 			if (info == null || blank) {
@@ -620,14 +619,6 @@ public class MainScreen implements Screen, InputProcessor {
 	}
 
 	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
-	}
-
-	@Override
 	public void hide() {
 		Gdx.input.setInputProcessor(null);
 	}
@@ -682,6 +673,16 @@ public class MainScreen implements Screen, InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		return false;
+	}
+
+	@Override
+	public void pause() {
+		//Do nothing
+	}
+
+	@Override
+	public void resume() {
+		//Do nothing		
 	}
 
 	

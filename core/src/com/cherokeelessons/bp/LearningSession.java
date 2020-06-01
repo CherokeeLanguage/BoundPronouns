@@ -23,7 +23,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -32,7 +31,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -40,11 +38,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Scaling;
 import com.cherokeelessons.bp.BoundPronouns.Font;
 import com.cherokeelessons.bp.LearningSession.SaveActiveDeckWithDialog.SaveParams;
 import com.cherokeelessons.cards.ActiveCard;
@@ -61,7 +56,7 @@ import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.Log;
 import com.cherokeelessons.util.RandomName;
 
-public class LearningSession extends ChildScreen implements Screen {
+public class LearningSession extends ChildScreen {
 
 	private static final Logger log = Log.getLogger(LearningSession.class.getName());
 
@@ -309,6 +304,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			final WindowStyle dws = new WindowStyle(params.skin.get(WindowStyle.class));
 			dws.titleFont = params.game.getFont(Font.SerifLarge);
 			Dialog bye = new Dialog(dtitle, dws) {
+				@SuppressWarnings("hiding")
 				final Dialog bye = this;
 				{
 					getTitleLabel().setAlignment(Align.center);
@@ -656,6 +652,21 @@ public class LearningSession extends ChildScreen implements Screen {
 	private static final int InitialDeckSize = 5;
 
 	private static int lv_d[] = new int[1024]; // cost array, horizontally
+	private static int lv_p[] = new int[1024]; // 'previous' cost array,
+												// horizontally
+	private static final int maxAnswers = 4;
+	private static final int maxCorrect = 4;
+
+	private static final long ONE_DAY_ms;
+	private static final long ONE_HOUR_ms;
+	private static final long ONE_MINUTE_ms;
+	private static final long ONE_SECOND_ms;
+	static {
+		ONE_SECOND_ms = 1000l;
+		ONE_MINUTE_ms = 60l * ONE_SECOND_ms;
+		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
+		ONE_DAY_ms = 24l * ONE_HOUR_ms;
+	}
 	/**
 	 * <p>
 	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
@@ -702,32 +713,111 @@ public class LearningSession extends ChildScreen implements Screen {
 	 *            the target threshold, must not be negative
 	 * @return result distance, or {@code -1} if the distance would be greater
 	 *         than the threshold
-	 * @throws IllegalArgumentException
-	 *             if either String input {@code null} or negative threshold
 	 */
-	private static int lv_p[] = new int[1024]; // 'previous' cost array,
-												// horizontally
-	private static final int maxAnswers = 4;
-	private static final int maxCorrect = 4;
-
-	private static final long ONE_DAY_ms;
-	private static final long ONE_HOUR_ms;
-	private static final long ONE_MINUTE_ms;
-	private static final long ONE_SECOND_ms;
-	static {
-		ONE_SECOND_ms = 1000l;
-		ONE_MINUTE_ms = 60l * ONE_SECOND_ms;
-		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
-		ONE_DAY_ms = 24l * ONE_HOUR_ms;
-	}
 
 	public static synchronized int getLevenshteinDistanceIgnoreCase(CharSequence s, CharSequence t, int threshold) {
 		return getLevenshteinDistanceIgnoreCase(String.valueOf(s), String.valueOf(t), threshold);
 	}
 
+	/**
+	 * <p>
+	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
+	 * to preven GC issues on Android.
+	 * </p>
+	 * <p>
+	 * Find the Levenshtein distance between two Strings if it's less than or
+	 * equal to a given threshold.
+	 * </p>
+	 *
+	 * <p>
+	 * This is the number of changes needed to change one String into another,
+	 * where each change is a single character modification (deletion, insertion
+	 * or substitution).
+	 * </p>
+	 *
+	 * <p>
+	 * This implementation follows from Algorithms on Strings, Trees and
+	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
+	 * Levenshtein distance algorithm from
+	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
+	 * ld.htm</a>
+	 * </p>
+	 *
+	 * <pre>
+	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
+	 * </pre>
+	 *
+	 * @param s
+	 *            the first String, must not be null
+	 * @param t
+	 *            the second String, must not be null
+	 * @param threshold
+	 *            the target threshold, must not be negative
+	 * @return result distance, or {@code -1} if the distance would be greater
+	 *         than the threshold
+	 */
+
 	public static synchronized int getLevenshteinDistanceIgnoreCase(String s, String t, int threshold) {
 		return getLevenshteinDistance(s != null ? s.toLowerCase() : "", t != null ? t.toLowerCase() : "", threshold);
 	}
+
+	/**
+	 * <p>
+	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
+	 * to preven GC issues on Android.
+	 * </p>
+	 * <p>
+	 * Find the Levenshtein distance between two Strings if it's less than or
+	 * equal to a given threshold.
+	 * </p>
+	 *
+	 * <p>
+	 * This is the number of changes needed to change one String into another,
+	 * where each change is a single character modification (deletion, insertion
+	 * or substitution).
+	 * </p>
+	 *
+	 * <p>
+	 * This implementation follows from Algorithms on Strings, Trees and
+	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
+	 * Levenshtein distance algorithm from
+	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
+	 * ld.htm</a>
+	 * </p>
+	 *
+	 * <pre>
+	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
+	 * </pre>
+	 *
+	 * @param s
+	 *            the first String, must not be null
+	 * @param t
+	 *            the second String, must not be null
+	 * @param threshold
+	 *            the target threshold, must not be negative
+	 * @return result distance, or {@code -1} if the distance would be greater
+	 *         than the threshold
+	 */
 
 	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t, int threshold) {
 		if (s == null || t == null) {
@@ -862,12 +952,11 @@ public class LearningSession extends ChildScreen implements Screen {
 		// distance
 		if (lv_p[n] <= threshold) {
 			return lv_p[n];
-		} else {
-			return -1;
 		}
+		return -1;
 	}
 
-	private void resetAsNew(ActiveDeck current_due) {
+	private void resetAsNew(@SuppressWarnings("hiding") ActiveDeck current_due) {
 		for (ActiveCard card : current_due.deck) {
 			if (card.noErrors) {
 				continue;
@@ -883,8 +972,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	}
 
-	private ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader() {
-	};
+	private ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader();
 
 	private Sound buzzer;
 
@@ -912,7 +1000,7 @@ public class LearningSession extends ChildScreen implements Screen {
 		}
 	};
 
-	private int cardcount = 0;
+	//private int cardcount = 0;
 
 	/**
 	 * How long this challenge has been displayed.
@@ -965,8 +1053,7 @@ public class LearningSession extends ChildScreen implements Screen {
 
 	private final JsonConverter json;
 
-	private LoadMasterDeck loadDeck = new LoadMasterDeck() {
-	};
+	private LoadMasterDeck loadDeck = new LoadMasterDeck();
 	private final NewCardDialog newCardDialog;
 	private final Set<String> nodupes = new HashSet<>();
 	/**
@@ -974,15 +1061,13 @@ public class LearningSession extends ChildScreen implements Screen {
 	 */
 	private float notice_elapsed = 0f;
 	private float counter_elapsed = 0f;
-	private ProcessActiveCards processActiveCards = new ProcessActiveCards() {
-	};
+	private ProcessActiveCards processActiveCards = new ProcessActiveCards();
 
 	private final Random rand = new Random();
 
 	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
 
-	private ShowACard showACard = new ShowACard() {
-	};
+	private ShowACard showACard = new ShowACard();
 
 	/**
 	 * time since last "shuffle"
@@ -1041,7 +1126,7 @@ public class LearningSession extends ChildScreen implements Screen {
 			}
 
 			@Override
-			public Dialog show(Stage stage) {
+			public Dialog show(@SuppressWarnings("hiding") Stage stage) {
 				return super.show(stage);
 			}
 
@@ -1057,6 +1142,7 @@ public class LearningSession extends ChildScreen implements Screen {
 				Runnable no = new Runnable() {
 					@Override
 					public void run() {
+						//Do nothing
 					}
 				};
 				Dialog dialog = dialogYN("Please Confirm Exit",
@@ -1807,6 +1893,7 @@ public class LearningSession extends ChildScreen implements Screen {
 	 * time-shift all cards by time since last recorded run.
 	 * 
 	 * @param currentDeck
+	 * @param ms 
 	 */
 	public void updateTime(ActiveDeck currentDeck, long ms) {
 		Iterator<ActiveCard> istat = currentDeck.deck.iterator();

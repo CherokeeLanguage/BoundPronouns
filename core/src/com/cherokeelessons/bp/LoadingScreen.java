@@ -36,6 +36,11 @@ public class LoadingScreen implements Screen {
 		case Android:
 		case iOS:
 			SlotFolder.migrate();
+			break;
+		case Applet:
+		case Desktop:
+		case HeadlessDesktop:
+		case WebGL:
 		default:
 		}
 	}
@@ -89,14 +94,17 @@ public class LoadingScreen implements Screen {
 
 	@Override
 	public void pause() {
+		//Do nothing
 	}
 
 	@Override
 	public void resume() {
+		//Do nothing
 	}
 
 	@Override
 	public void hide() {
+		//Do nothing
 	}
 
 	@Override

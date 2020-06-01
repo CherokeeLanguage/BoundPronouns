@@ -18,19 +18,21 @@ public class ChildScreen implements Screen, InputProcessor {
 	protected final InputMultiplexer multi;
 	
 	protected final ClickListener exit = new ClickListener() {
+		@Override
 		public boolean touchDown(InputEvent event, float x, float y,
 				int pointer, int button) {
 			doExit.run();
 			return true;
-		};
+		}
 	};
 	
 	protected final Runnable doExit = new Runnable(){
+		@Override
 		public void run() {
 			game.click();
 			game.setScreen(caller);
 			dispose();
-		};
+		}
 	};
 	
 	public ChildScreen(BoundPronouns game, Screen caller) {
@@ -94,6 +96,7 @@ public class ChildScreen implements Screen, InputProcessor {
 				doExit.run();
 				return true;
 			}
+			break;
 		default:
 		}
 		return false;

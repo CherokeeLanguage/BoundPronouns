@@ -203,7 +203,7 @@ public abstract class NewCardDialog extends Dialog {
 		boolean odd = true;
 		List<String> answers = new ArrayList<>(the_card.answer);
 		Collections.sort(answers);
-		for (String answer : answers) {
+		for (@SuppressWarnings("hiding") String answer : answers) {
 			answer = removexmarks(answer);
 			if (odd) {
 				ctable.row();
@@ -329,7 +329,7 @@ public abstract class NewCardDialog extends Dialog {
 		setAnswers(the_card);
 	}
 
-	private String removexmarks(String answer) {
+	private String removexmarks(@SuppressWarnings("hiding") String answer) {
 		answer = answer.replace("xHe", "He");
 		answer = answer.replace("xShe", "She");
 		answer = answer.replace("xhe", "he");
@@ -347,6 +347,7 @@ public abstract class NewCardDialog extends Dialog {
 	protected Runnable runnableNoop = new Runnable() {
 		@Override
 		public void run() {
+			//Do nothing
 		}
 	};
 
