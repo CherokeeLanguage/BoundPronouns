@@ -1,9 +1,13 @@
 package com.cherokeelessons.cards;
 
 import java.io.Serializable;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 @SuppressWarnings("serial")
 public class SlotInfo implements Serializable {
+	private int totalCards;
 	private String signature = "";
 
 	public String getSignature() {
@@ -20,15 +24,12 @@ public class SlotInfo implements Serializable {
 	public static final int JUST_LEARNED_BOX = 1;
 
 	public static enum LevelName {
-		Newbie("Newbie", 0, "CgkI4pfA4J4KEAIQAQ"), Novice("Novice", 1,
-				"CgkI4pfA4J4KEAIQAg"), Rookie("Rookie", 2, "CgkI4pfA4J4KEAIQAw"), Beginner(
-				"Beginner", 3, "CgkI4pfA4J4KEAIQBA"), Apprentice("Apprentice",
-				4, "CgkI4pfA4J4KEAIQBQ"), Intermediate("Intermediate", 5,
-				"CgkI4pfA4J4KEAIQBg"), Advanced("Advanced", 6,
-				"CgkI4pfA4J4KEAIQBw"), Proficient("Proficient", 7,
-				"CgkI4pfA4J4KEAIQCA"), Expert("Expert", 8, "CgkI4pfA4J4KEAIQCQ"), Master(
-				"Master", 9, "CgkI4pfA4J4KEAIQCg"), GrandMaster("Grandmaster",
-				10, "CgkI4pfA4J4KEAIQCw");
+		Newbie("Newbie", 0, "CgkI4pfA4J4KEAIQAQ"), Novice("Novice", 1, "CgkI4pfA4J4KEAIQAg"),
+		Rookie("Rookie", 2, "CgkI4pfA4J4KEAIQAw"), Beginner("Beginner", 3, "CgkI4pfA4J4KEAIQBA"),
+		Apprentice("Apprentice", 4, "CgkI4pfA4J4KEAIQBQ"), Intermediate("Intermediate", 5, "CgkI4pfA4J4KEAIQBg"),
+		Advanced("Advanced", 6, "CgkI4pfA4J4KEAIQBw"), Proficient("Proficient", 7, "CgkI4pfA4J4KEAIQCA"),
+		Expert("Expert", 8, "CgkI4pfA4J4KEAIQCQ"), Master("Master", 9, "CgkI4pfA4J4KEAIQCg"),
+		GrandMaster("Grandmaster", 10, "CgkI4pfA4J4KEAIQCw");
 
 		public LevelName next() {
 			LevelName[] values = LevelName.values();
@@ -103,10 +104,10 @@ public class SlotInfo implements Serializable {
 		Both("Syllabary and Latin - Tones Marked"), //
 		Syllabary("Syllabary - Tones Marked"), //
 		Latin("Latin - Tones Marked"), //
-		BOTH_NP("Syllabary and Latin - No Marks"),
-		SYLLABARY_NP("Syllabary - No Marks"), //
+		BOTH_NP("Syllabary and Latin - No Marks"), SYLLABARY_NP("Syllabary - No Marks"), //
 		LATIN_NP("Latin - No Marks"), //
 		NONE("Audio Only");
+
 		private DisplayMode(String english) {
 			this.english = english.intern();
 		}
@@ -129,9 +130,8 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum DeckMode {
-		Both("Both bound prefixes and conjugated forms"), Pronouns(
-				"Only the bound pronoun prefixes"), Conjugations(
-				"Only the conjugated forms");
+		Both("Both bound prefixes and conjugated forms"), Pronouns("Only the bound pronoun prefixes"),
+		Conjugations("Only the conjugated forms");
 
 		private DeckMode(String english) {
 			this.english = english.intern();
@@ -155,9 +155,8 @@ public class SlotInfo implements Serializable {
 	}
 
 	public static enum SessionLength {
-		XBrief("XBrief: 2 minutes", 2f), Brief("Brief: 5 minutes", 5f), Standard(
-				"Standard: 10 minutes", 10f), Long("Long: 15 minutes", 15f), BrainNumbing(
-				"Brain Numbing: very long", 60f);
+		XBrief("XBrief: 2 minutes", 2f), Brief("Brief: 5 minutes", 5f), Standard("Standard: 10 minutes", 10f),
+		Long("Long: 15 minutes", 15f), BrainNumbing("Brain Numbing: very long", 60f);
 
 		final private float seconds;
 		final private String english;
@@ -193,10 +192,8 @@ public class SlotInfo implements Serializable {
 	 *
 	 */
 	public static enum TimeLimit {
-		Expert("Expert: Max 10 seconds", 10f), Standard(
-				"Standard: Max 15 seconds", 15f), Novice(
-				"Novice: Max 60 seconds", 60f), Newbie("Newbie: Max 1 hour",
-				60f * 60f);
+		Expert("Expert: Max 10 seconds", 10f), Standard("Standard: Max 15 seconds", 15f),
+		Novice("Novice: Max 60 seconds", 60f), Newbie("Newbie: Max 1 hour", 60f * 60f);
 
 		private TimeLimit(String english, float seconds) {
 			this.english = english.intern();
@@ -329,16 +326,15 @@ public class SlotInfo implements Serializable {
 		}
 
 		/*
-		 * Set "level" to ceil(average box value) found in active deck. Negative
-		 * box values are ignored.
+		 * Set "level" to ceil(average box value) found in active deck. Negative box
+		 * values are ignored.
 		 */
 
 		int boxsum = 0;
 		for (ActiveCard card : activeDeck.deck) {
 			boxsum += (card.box > 0 ? card.box : 0);
 		}
-		info.level = LevelName.forLevel((int) Math.ceil((double) (boxsum)
-				/ (double) activeDeck.deck.size()));
+		info.level = LevelName.forLevel((int) Math.ceil((double) (boxsum) / (double) activeDeck.deck.size()));
 		/*
 		 * Set "fullScore" to sum of all box values found in active deck
 		 */
@@ -349,8 +345,8 @@ public class SlotInfo implements Serializable {
 		info.fullScore = boxsum;
 
 		/*
-		 * Set last score based on timings of most recent session. Cards with
-		 * errors count as "-1" each. Apply "boxlevel" values as bonus points.
+		 * Set last score based on timings of most recent session. Cards with errors
+		 * count as "-1" each. Apply "boxlevel" values as bonus points.
 		 */
 		float maxCardScore = SlotInfo.TimeLimit.Novice.getSeconds();
 		float score = 0f;
@@ -365,8 +361,8 @@ public class SlotInfo implements Serializable {
 			}
 			double avgShowTime = card.showTime / card.showCount;
 			double cardScore = maxCardScore - avgShowTime;
-			if (cardScore<1) {
-				cardScore=1;
+			if (cardScore < 1) {
+				cardScore = 1;
 			}
 			score += (cardScore + card.box);
 		}
@@ -376,20 +372,21 @@ public class SlotInfo implements Serializable {
 		info.lastScore = (int) Math.ceil(score);
 		info.perfect = perfect;
 		/*
-		 * Calculate total proficiency with active cards (based on most recent noErrors flag)
+		 * Calculate total proficiency with active cards (based on most recent noErrors
+		 * flag)
 		 */
 		int totalCards = activeDeck.deck.size();
 		int correctCount = 0;
-		for (ActiveCard card: activeDeck.deck) {
+		for (ActiveCard card : activeDeck.deck) {
 			if (card.noErrors) {
 				correctCount++;
 			}
-			info.proficiency=((100*correctCount)/totalCards);
+			info.proficiency = ((100 * correctCount) / totalCards);
 		}
 		/*
 		 * What is the total percentange of cards learned out of the master deck?
 		 */
-		
+
 //		int maxBox = 1;
 //		for (ActiveCard card : activeDeck.deck) {
 //			maxBox=Math.max(maxBox, card.box);
@@ -403,7 +400,7 @@ public class SlotInfo implements Serializable {
 //		} else {
 //			info.proficiency=0;
 //		}
-		
+
 		/*
 		 * How many are "fully learned" out of the active deck?
 		 */
@@ -420,8 +417,8 @@ public class SlotInfo implements Serializable {
 		info.activeCards = activeDeck.deck.size() - info.longTerm;
 
 		/*
-		 * How many are "well known" out of the active deck? (excluding full
-		 * learned ones)
+		 * How many are "well known" out of the active deck? (excluding full learned
+		 * ones)
 		 */
 		info.mediumTerm = 0;
 		for (ActiveCard card : activeDeck.deck) {
@@ -431,8 +428,8 @@ public class SlotInfo implements Serializable {
 		}
 
 		/*
-		 * How many are "short term known" out of the active deck? (excluding
-		 * full learned ones)
+		 * How many are "short term known" out of the active deck? (excluding full
+		 * learned ones)
 		 */
 		info.shortTerm = 0;
 		for (ActiveCard card : activeDeck.deck) {
@@ -440,5 +437,42 @@ public class SlotInfo implements Serializable {
 				info.shortTerm++;
 			}
 		}
+	}
+
+	public static void calculateTotalCardCount(SlotInfo info, List<Card> cards) {
+		DeckMode deckMode = info.settings.deck;
+		if (deckMode.equals(DeckMode.Both)) {
+			info.setTotalCards(cards.size());
+			return;
+		}
+		int count = 0;
+		for (Card card : cards) {
+			switch (deckMode) {
+			case Conjugations:
+				if (!StringUtils.isBlank(card.vgroup)) {
+					count++;
+					continue;
+				}
+				break;
+			case Pronouns:
+				if (StringUtils.isBlank(card.vgroup)) {
+					count++;
+					continue;
+				}
+				break;
+			case Both:
+			default:
+				break;
+			}
+		}
+		info.setTotalCards(count);
+	}
+
+	public int getTotalCards() {
+		return totalCards;
+	}
+
+	public void setTotalCards(int totalCards) {
+		this.totalCards = totalCards;
 	}
 }

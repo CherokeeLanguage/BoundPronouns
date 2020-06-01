@@ -1,5 +1,7 @@
 package com.cherokeelessons.bp;
 
+import java.text.NumberFormat;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Gdx;
@@ -320,6 +322,8 @@ public class MainScreen implements Screen, InputProcessor {
 			info.validate();
 			SlotInfo.Settings settings = info.settings;
 
+			SlotInfo.calculateTotalCardCount(info, game.deck.cards);
+			NumberFormat nf = NumberFormat.getInstance();
 			String txt = "";
 			txt += info.level;
 			txt += " ";
@@ -327,7 +331,7 @@ public class MainScreen implements Screen, InputProcessor {
 			txt += " - ";
 			txt += "Score: " + info.lastScore;
 			txt += "\n";
-			txt += info.activeCards + " cards";
+			txt += nf.format(info.activeCards) + " of " + nf.format(info.getTotalCards()) + " cards";
 			txt += " with a " + info.proficiency + "% proficiency";
 
 			TextButtonStyle tbs = new TextButtonStyle(skin.get(TextButtonStyle.class));

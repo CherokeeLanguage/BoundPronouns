@@ -1,5 +1,6 @@
 package com.cherokeelessons.bp;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -285,6 +286,7 @@ public class LearningSession extends ChildScreen {
 				infoFile.copyTo(params.slot.child(INFO_JSON + ".bak"));
 			}
 			SlotInfo.calculateStats(info, params.deck);
+			SlotInfo.calculateTotalCardCount(info, params.game.deck.cards);
 
 			TextButtonStyle tbs = new TextButtonStyle(params.skin.get(TextButtonStyle.class));
 			tbs.font = params.game.getFont(Font.SerifMedium);
@@ -307,6 +309,7 @@ public class LearningSession extends ChildScreen {
 				@SuppressWarnings("hiding")
 				final Dialog bye = this;
 				{
+					NumberFormat nf = NumberFormat.getInstance();
 					getTitleLabel().setAlignment(Align.center);
 					final Texture background = params.game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 					final TextureRegion region = new TextureRegion(background);
@@ -324,9 +327,17 @@ public class LearningSession extends ChildScreen {
 					sb.append(info.level);
 					sb.append("\n");
 					sb.append("Score: ");
-					sb.append(info.lastScore);
+					sb.append(nf.format(info.lastScore));
 					sb.append("\n");
-					sb.append(info.activeCards + " active cards");
+					sb.append(nf.format(info.activeCards) + " cards");
+					if (info.getTotalCards()>0) {
+						int pct = info.activeCards*100/info.getTotalCards();
+						sb.append(" out of ");
+						sb.append(nf.format(info.getTotalCards()));
+						sb.append(" (");
+						sb.append(pct);
+						sb.append("%)");
+					}
 					sb.append("\n");
 					sb.append("You currently have a " + info.proficiency + "% proficiency level");
 					sb.append("\n");
