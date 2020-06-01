@@ -1,6 +1,7 @@
-3.xx
+3.17
 
-Updated to newer espeak-ng output using updated phonemes.
+Indicate how many total cards are in the deck.
+Updated to newest espeak-ng output using most recently updated Cherokee phoneme definitions.
 
 3.04
 
