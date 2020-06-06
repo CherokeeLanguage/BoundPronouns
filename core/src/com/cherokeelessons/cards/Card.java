@@ -20,6 +20,25 @@ public class Card implements Serializable, Comparable<Card> {
 	public String vgroup;
 	public boolean reversed;
 
+	private int vset;
+	public int getVset() {
+		return vset;
+	}
+
+	public void setVset(int vset) {
+		this.vset = vset;
+	}
+
+	public int getPset() {
+		return pset;
+	}
+
+	public void setPset(int pset) {
+		this.pset = pset;
+	}
+
+	private int pset;
+	
 	public Card() {
 	}
 
@@ -30,6 +49,8 @@ public class Card implements Serializable, Comparable<Card> {
 		this.key = card.key;
 		this.pgroup = card.pgroup;
 		this.vgroup = card.vgroup;
+		this.pset=card.pset;
+		this.vset=card.vset;
 	}
 
 	@Override
@@ -38,7 +59,19 @@ public class Card implements Serializable, Comparable<Card> {
 	}
 
 	private String sortKey() {
-		StringBuilder key = new StringBuilder();
+		StringBuilder sortKey = new StringBuilder();
+		
+		if (vgroup==null||vgroup.length()==0){
+			sortKey.append("0-");
+		} else {
+			sortKey.append("1-");
+		}
+		
+		sortKey.append(StringUtils.leftPad(pset+"", 4, "0"));
+		sortKey.append("-");
+		sortKey.append(StringUtils.leftPad(vset+"", 4, "0"));
+		sortKey.append("-");
+		
 		if (challenge.size() != 0) {
 			String tmp = challenge.get(0);
 			tmp = tmp.replaceAll("[¹²³⁴ɂ" + BoundPronouns.SPECIALS + "]", "");
@@ -46,32 +79,24 @@ public class Card implements Serializable, Comparable<Card> {
 			if (tmp.matches(".*[Ꭰ-Ᏼ].*")) {
 				tmp = tmp.replaceAll("[^Ꭰ-Ᏼ]", "");
 			}
-			String length = tmp.length() + "";
-			while (length.length() < 4) {
-				length = "0" + length;
-			}
-			if (vgroup==null||vgroup.length()==0){
-				key.append("0-");
-			} else {
-				key.append("1-");
-			}
-			key.append(length);
-			key.append("+");
-			key.append(tmp);
-			key.append("+");
+			String length = StringUtils.leftPad(tmp.length() + "", 4, "0");
+			sortKey.append(length);
+			sortKey.append("+");
+			sortKey.append(tmp);
+			sortKey.append("+");
 		}
 		for (String s : challenge) {
-			key.append(s);
-			key.append("+");
+			sortKey.append(s);
+			sortKey.append("+");
 		}
 		for (String s : answer) {
-			key.append(s);
-			key.append("+");
+			sortKey.append(s);
+			sortKey.append("+");
 		}
 		if (debug) {
-			this.key = key.toString();
+			this.key = sortKey.toString();
 		}
-		return key.toString();
+		return sortKey.toString();
 	}
 
 	/**

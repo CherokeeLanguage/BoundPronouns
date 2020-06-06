@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,7 +25,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean forceRebuild = false;
 
-	public static int version = 90;
+	public static int version = 91;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -61,7 +64,25 @@ public class BuildDeck implements Runnable {
 	public Runnable save = new Runnable() {
 		@Override
 		public void run() {
+			//presort deck
 			Collections.sort(deck.cards);
+			//assign sets based on order and pronoun + verb set combination
+			Map<String, AtomicInteger> counts = new HashMap<>();
+			for (Card card: deck.cards) {
+				String pset = card.pgroup;
+				String vset = card.vgroup;
+				if (!counts.containsKey(pset)) {
+					counts.put(pset, new AtomicInteger());
+				}
+				if (!counts.containsKey(vset)) {
+					counts.put(vset, new AtomicInteger());
+				}
+				card.setPset(counts.get(pset).incrementAndGet());
+				card.setVset(counts.get(vset).incrementAndGet());
+			}
+			//resort deck
+			Collections.sort(deck.cards);
+			//assign ids based on card positions in the deck
 			for (int i = 0; i < deck.cards.size(); i++) {
 				deck.cards.get(i).id = i + 1;
 			}
