@@ -23,9 +23,9 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck implements Runnable {
 
-	private static final boolean forceRebuild = false;
+	private static final boolean FORCE_REBUILD = false;
 
-	public static int version = 91;
+	public static final int DECK_VERSION = 91;
 
 	private JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
@@ -86,7 +86,7 @@ public class BuildDeck implements Runnable {
 			for (int i = 0; i < deck.cards.size(); i++) {
 				deck.cards.get(i).id = i + 1;
 			}
-			deck.version = version;
+			deck.version = DECK_VERSION;
 			game.log(this, deck.cards.size() + " cards in deck.");
 			deck.size = deck.cards.size();
 			json.toJson(deck, dest);
@@ -170,7 +170,7 @@ public class BuildDeck implements Runnable {
 	public void run() {
 		long tick = System.currentTimeMillis();
 		work: {
-			if (forceRebuild) {
+			if (FORCE_REBUILD) {
 				if (dest.exists()) {
 					dest.delete();
 				}
@@ -183,7 +183,7 @@ public class BuildDeck implements Runnable {
 				} catch (Exception e) {
 					deck = new Deck();
 				}
-				if (deck.version == version) {
+				if (deck.version == DECK_VERSION) {
 					game.deck.cards.clear();
 					game.deck.cards.addAll(deck.cards);
 					deck.cards.clear();
