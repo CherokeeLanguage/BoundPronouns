@@ -1,13 +1,17 @@
 package com.cherokeelessons.bp;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 
 public class GoodByeScreen extends ChildScreen {
-	
+
+	public GoodByeScreen(final BoundPronouns game, final Screen caller) {
+		super(game, caller);
+	}
+
 	@Override
-	public boolean keyDown(int keycode) {
+	public boolean keyDown(final int keycode) {
 		switch (keycode) {
 		case Keys.BACK:
 		case Keys.ESCAPE:
@@ -17,17 +21,13 @@ public class GoodByeScreen extends ChildScreen {
 		return super.keyDown(keycode);
 	}
 
-	public GoodByeScreen(BoundPronouns game, Screen caller) {
-		super(game, caller);
+	@Override
+	public void render(final float delta) {
+		Gdx.app.exit();
 	}
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(null);		
-	}
-	
-	@Override
-	public void render(float delta) {
-		Gdx.app.exit();
+		Gdx.input.setInputProcessor(null);
 	}
 }

@@ -59,8 +59,6 @@ import com.cherokeelessons.util.RandomName;
 
 public class LearningSession extends ChildScreen {
 
-	private static final Logger log = Log.getLogger(LearningSession.class.getName());
-
 	private class ActiveDeckLoader implements Runnable {
 		@Override
 		public void run() {
@@ -68,7 +66,7 @@ public class LearningSession extends ChildScreen {
 			if (!slot.child(ActiveDeckJson).exists()) {
 				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
 			}
-			ActiveDeck tmp = json.fromJson(ActiveDeck.class, slot.child(ActiveDeckJson));
+			final ActiveDeck tmp = json.fromJson(ActiveDeck.class, slot.child(ActiveDeckJson));
 			current_due.deck = tmp.deck;
 			current_due.lastrun = tmp.lastrun;
 			Collections.sort(current_due.deck, byShowTime);
@@ -87,14 +85,14 @@ public class LearningSession extends ChildScreen {
 	}
 
 	private class ProcessActiveCards implements Runnable {
-		private void markAllNoErrors(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
+		private void markAllNoErrors(final ActiveDeck deck) {
+			for (final ActiveCard card : deck.deck) {
 				card.noErrors = true;
 			}
 		}
 
-		private void onlyPositiveBoxValues(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
+		private void onlyPositiveBoxValues(final ActiveDeck deck) {
+			for (final ActiveCard card : deck.deck) {
 				if (card.box < 0) {
 					card.box = 0;
 					continue;
@@ -102,17 +100,17 @@ public class LearningSession extends ChildScreen {
 			}
 		}
 
-		private void resetScoring(ActiveDeck deck) {
-			for (ActiveCard card : deck.deck) {
+		private void resetScoring(final ActiveDeck deck) {
+			for (final ActiveCard card : deck.deck) {
 				card.showCount = 0;
 				card.showTime = 0f;
 			}
 		}
 
-		private void retireNotYetCards(ActiveDeck current_pending) {
-			Iterator<ActiveCard> icard = current_pending.deck.iterator();
+		private void retireNotYetCards(final ActiveDeck current_pending) {
+			final Iterator<ActiveCard> icard = current_pending.deck.iterator();
 			while (icard.hasNext()) {
-				ActiveCard card = icard.next();
+				final ActiveCard card = icard.next();
 				if (card.show_again_ms < ONE_HOUR_ms) {
 					continue;
 				}
@@ -128,15 +126,14 @@ public class LearningSession extends ChildScreen {
 			nodupes.clear();
 			log.info("Processing Active Cards ...");
 
-			int needed = InitialDeckSize;
+			final int needed = InitialDeckSize;
 
 			/*
-			 * time-shift all cards by exactly one day + one extra hour for
-			 * safety
+			 * time-shift all cards by exactly one day + one extra hour for safety
 			 */
 			updateTime(current_due, ONE_DAY_ms + ONE_HOUR_ms);
 			int due = 0;
-			for (ActiveCard card : current_due.deck) {
+			for (final ActiveCard card : current_due.deck) {
 				if (card.show_again_ms < 0) {
 					due++;
 				}
@@ -144,12 +141,12 @@ public class LearningSession extends ChildScreen {
 			log.info(due + " cards previous cards are due.");
 
 			/*
-			 * Make sure we don't have active cards pointing to no longer
-			 * existing master deck cards
+			 * Make sure we don't have active cards pointing to no longer existing master
+			 * deck cards
 			 */
-			Iterator<ActiveCard> ipending = current_due.deck.iterator();
+			final Iterator<ActiveCard> ipending = current_due.deck.iterator();
 			while (ipending.hasNext()) {
-				ActiveCard active = ipending.next();
+				final ActiveCard active = ipending.next();
 				if (getCardById(active.pgroup, active.vgroup) != null) {
 					continue;
 				}
@@ -190,13 +187,13 @@ public class LearningSession extends ChildScreen {
 			/*
 			 * Reset tries count after box clamping done
 			 */
-			for (ActiveCard card : current_due.deck) {
+			for (final ActiveCard card : current_due.deck) {
 				card.resetTriesRemaining();
 			}
 
 			/*
-			 * time-shift all cards by an additional seven days to pull in more
-			 * cards if this is an extra practice session
+			 * time-shift all cards by an additional seven days to pull in more cards if
+			 * this is an extra practice session
 			 */
 			// if (isExtraPractice) {
 			// updateTime(current_due, ONE_DAY_ms * 7l);
@@ -223,8 +220,8 @@ public class LearningSession extends ChildScreen {
 			Collections.shuffle(current_due.deck);
 
 			/*
-			 * resort deck, any cards with the same truncated show time stay in
-			 * their local shuffled order
+			 * resort deck, any cards with the same truncated show time stay in their local
+			 * shuffled order
 			 */
 			Collections.sort(current_due.deck, byShowTimeChunks);
 
@@ -241,8 +238,8 @@ public class LearningSession extends ChildScreen {
 			log.info("Elapsed :" + elapsed);
 		}
 
-		private void truncateToNearestMinute(List<ActiveCard> deck) {
-			for (ActiveCard card : deck) {
+		private void truncateToNearestMinute(final List<ActiveCard> deck) {
+			for (final ActiveCard card : deck) {
 				card.show_again_ms = 60l * 1000l * (card.show_again_ms / (1000l * 60l));
 			}
 		}
@@ -262,33 +259,33 @@ public class LearningSession extends ChildScreen {
 
 		private final SaveParams params;
 
-		public SaveActiveDeckWithDialog(SaveParams params) {
+		public SaveActiveDeckWithDialog(final SaveParams params) {
 			this.params = params;
 		}
 
 		@Override
 		public void run() {
-			JsonConverter json = new JsonConverter();
+			final JsonConverter json = new JsonConverter();
 
 			params.deck.lastrun = System.currentTimeMillis() - (long) params.elapsed_secs * 1000l;
 			Collections.sort(params.deck.deck, byShowTime);
 
 			final SlotInfo info;
-			FileHandle infoFile = params.slot.child(INFO_JSON);
+			final FileHandle infoFile = params.slot.child(INFO_JSON);
 			if (!infoFile.exists()) {
 				info = new SlotInfo();
 				info.settings.name = RandomName.getRandomName();
 			} else {
 				info = json.fromJson(SlotInfo.class, infoFile);
-				if (StringUtils.isBlank(info.settings.name)){
-					info.settings.name=RandomName.getRandomName();
+				if (StringUtils.isBlank(info.settings.name)) {
+					info.settings.name = RandomName.getRandomName();
 				}
 				infoFile.copyTo(params.slot.child(INFO_JSON + ".bak"));
 			}
 			SlotInfo.calculateStats(info, params.deck);
 			SlotInfo.calculateTotalCardCount(info, params.game.deck.cards);
 
-			TextButtonStyle tbs = new TextButtonStyle(params.skin.get(TextButtonStyle.class));
+			final TextButtonStyle tbs = new TextButtonStyle(params.skin.get(TextButtonStyle.class));
 			tbs.font = params.game.getFont(Font.SerifMedium);
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
@@ -302,14 +299,14 @@ public class LearningSession extends ChildScreen {
 
 			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
 			// : "Practice Results";
-			String dtitle = "Practice Results";
+			final String dtitle = "Practice Results";
 			final WindowStyle dws = new WindowStyle(params.skin.get(WindowStyle.class));
 			dws.titleFont = params.game.getFont(Font.SerifLarge);
-			Dialog bye = new Dialog(dtitle, dws) {
+			final Dialog bye = new Dialog(dtitle, dws) {
 				@SuppressWarnings("hiding")
 				final Dialog bye = this;
 				{
-					NumberFormat nf = NumberFormat.getInstance();
+					final NumberFormat nf = NumberFormat.getInstance();
 					getTitleLabel().setAlignment(Align.center);
 					final Texture background = params.game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 					final TextureRegion region = new TextureRegion(background);
@@ -319,10 +316,10 @@ public class LearningSession extends ChildScreen {
 					tiled.setTopHeight(params.game.getFont(Font.SerifLarge).getCapHeight() + 20);
 					bye.background(tiled);
 
-					LabelStyle lstyle = new LabelStyle(params.skin.get(LabelStyle.class));
+					final LabelStyle lstyle = new LabelStyle(params.skin.get(LabelStyle.class));
 					lstyle.font = params.game.getFont(Font.SerifMedium);
 
-					StringBuilder sb = new StringBuilder();
+					final StringBuilder sb = new StringBuilder();
 					sb.append("Level: ");
 					sb.append(info.level);
 					sb.append("\n");
@@ -330,8 +327,8 @@ public class LearningSession extends ChildScreen {
 					sb.append(nf.format(info.lastScore));
 					sb.append("\n");
 					sb.append(nf.format(info.activeCards) + " cards");
-					if (info.getTotalCards()>0) {
-						int pct = info.activeCards*100/info.getTotalCards();
+					if (info.getTotalCards() > 0) {
+						final int pct = info.activeCards * 100 / info.getTotalCards();
 						sb.append(" out of ");
 						sb.append(nf.format(info.getTotalCards()));
 						sb.append(" (");
@@ -341,21 +338,21 @@ public class LearningSession extends ChildScreen {
 					sb.append("\n");
 					sb.append("You currently have a " + info.proficiency + "% proficiency level");
 					sb.append("\n");
-					int minutes = (int) (params.elapsed_secs / 60f);
-					int seconds = (int) (params.elapsed_secs - minutes * 60f);
+					final int minutes = (int) (params.elapsed_secs / 60f);
+					final int seconds = (int) (params.elapsed_secs - minutes * 60f);
 					sb.append("Total actual challenge time: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
-					Label label = new Label(sb.toString(), lstyle);
+					final Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button(btn_ok, btn_ok);
 				}
 
 				@Override
-				protected void result(Object object) {
+				protected void result(final Object object) {
 //					if (syncb.equals(object)) {
 //						cancel();
 //						return;
 //					}
-					Screen current = params.game.getScreen();
+					final Screen current = params.game.getScreen();
 					if (params.caller != null && !params.caller.equals(current)) {
 						params.game.setScreen(params.caller);
 						current.dispose();
@@ -386,8 +383,8 @@ public class LearningSession extends ChildScreen {
 		/*
 		 * genderizer
 		 */
-		private void randomizeSexes(AnswerList answers) {
-			for (Answer answer : answers.list) {
+		private void randomizeSexes(final AnswerList answers) {
+			for (final Answer answer : answers.list) {
 				if (r.nextBoolean() && answer.answer.contains("himself")) {
 					answer.answer = answer.answer.replace("He ", "She ");
 					answer.answer = answer.answer.replace(" him", " her");
@@ -416,7 +413,7 @@ public class LearningSession extends ChildScreen {
 				/**
 				 * scan current discards for cards that need to get "bumped"
 				 */
-				for (ActiveCard tmp : current_discards.deck) {
+				for (final ActiveCard tmp : current_discards.deck) {
 					if (tmp.noErrors && tmp.tries_remaining < 1) {
 						tmp.box++;
 						tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
@@ -426,7 +423,7 @@ public class LearningSession extends ChildScreen {
 				/**
 				 * scan current discards for cards that need to get "downgraded"
 				 */
-				for (ActiveCard tmp : current_discards.deck) {
+				for (final ActiveCard tmp : current_discards.deck) {
 					if (!tmp.noErrors && tmp.tries_remaining < 1) {
 						tmp.box--;
 						tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
@@ -434,7 +431,7 @@ public class LearningSession extends ChildScreen {
 					}
 				}
 
-				SaveParams params = new SaveParams();
+				final SaveParams params = new SaveParams();
 				params.caller = LearningSession.this.caller;
 				params.deck = new ActiveDeck();
 				params.deck.deck.addAll(current_active.deck);
@@ -475,7 +472,7 @@ public class LearningSession extends ChildScreen {
 						return;
 					}
 					log.info("session time is not up");
-					long shift_by_ms = getMinShiftTimeOf(current_discards);
+					final long shift_by_ms = getMinShiftTimeOf(current_discards);
 					log.info("shifting discards to zero point: " + shift_by_ms / ONE_SECOND_ms);
 					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
 						addCards(IncrementDeckBySize, current_active);
@@ -485,11 +482,10 @@ public class LearningSession extends ChildScreen {
 					return;
 				}
 				/*
-				 * Session time is up, force time shift cards into active show
-				 * range...
+				 * Session time is up, force time shift cards into active show range...
 				 */
 				if (elapsed > info.settings.sessionLength.getSeconds() && current_discards.deck.size() > 0) {
-					long shift_by_ms = getMinShiftTimeOf(current_discards);
+					final long shift_by_ms = getMinShiftTimeOf(current_discards);
 					log.info("shifting discards to zero point: " + shift_by_ms / ONE_SECOND_ms);
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
@@ -499,7 +495,7 @@ public class LearningSession extends ChildScreen {
 				 * Fallback behavior.
 				 */
 				log.info("Forcing discards to be time shifted.");
-				long shift_by_ms = getMinShiftTimeOf(current_discards);
+				final long shift_by_ms = getMinShiftTimeOf(current_discards);
 				addCards(IncrementDeckBySize, current_active);
 				updateTime(current_discards, shift_by_ms);
 				Gdx.app.postRunnable(showACard);
@@ -507,7 +503,7 @@ public class LearningSession extends ChildScreen {
 			}
 			previousCard = activeCard;
 			final Card deckCard = new Card(getCardById(activeCard.pgroup, activeCard.vgroup));
-			float sessionSeconds = info.settings.sessionLength.getSeconds();
+			final float sessionSeconds = info.settings.sessionLength.getSeconds();
 			if (activeCard.newCard) {
 				elapsed_tick_on = false;
 				ticktock.stop(ticktock_id);
@@ -540,7 +536,7 @@ public class LearningSession extends ChildScreen {
 				} else {
 					tracked_answers = getAnswerSetsForBySimilarChallenge(activeCard, deckCard, game.deck);
 				}
-				AnswerList displayed_answers = new AnswerList(tracked_answers);
+				final AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 				activeCard.tries_remaining--;
 				challengeCardDialog.setAnswers(tracked_answers, displayed_answers);
@@ -558,7 +554,7 @@ public class LearningSession extends ChildScreen {
 				for (float x = duration; x >= 0; x -= .25f) {
 					final float timer = duration - x;
 					final float volume = x / duration;
-					DelayAction updater = Actions.delay(x - .05f, Actions.run(new Runnable() {
+					final DelayAction updater = Actions.delay(x - .05f, Actions.run(new Runnable() {
 						@Override
 						public void run() {
 							if (challengeCardDialog.settings.muted) {
@@ -574,6 +570,8 @@ public class LearningSession extends ChildScreen {
 			}
 		}
 	}
+
+	private static final Logger log = Log.getLogger(LearningSession.class.getName());
 
 	// private class TooSoonDialog implements Runnable {
 	// @Override
@@ -634,7 +632,7 @@ public class LearningSession extends ChildScreen {
 
 	private static Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
 		@Override
-		public int compare(ActiveCard o1, ActiveCard o2) {
+		public int compare(final ActiveCard o1, final ActiveCard o2) {
 			if (o1.show_again_ms != o2.show_again_ms) {
 				return o1.show_again_ms > o2.show_again_ms ? 1 : -1;
 			}
@@ -644,7 +642,7 @@ public class LearningSession extends ChildScreen {
 
 	private static Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
 		@Override
-		public int compare(ActiveCard o1, ActiveCard o2) {
+		public int compare(final ActiveCard o1, final ActiveCard o2) {
 			long dif = o1.show_again_ms - o2.show_again_ms;
 			if (dif < 0) {
 				dif = -dif;
@@ -678,26 +676,27 @@ public class LearningSession extends ChildScreen {
 		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
 		ONE_DAY_ms = 24l * ONE_HOUR_ms;
 	}
+
 	/**
 	 * <p>
-	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
-	 * to preven GC issues on Android.
+	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays to
+	 * preven GC issues on Android.
 	 * </p>
 	 * <p>
-	 * Find the Levenshtein distance between two Strings if it's less than or
-	 * equal to a given threshold.
-	 * </p>
-	 *
-	 * <p>
-	 * This is the number of changes needed to change one String into another,
-	 * where each change is a single character modification (deletion, insertion
-	 * or substitution).
+	 * Find the Levenshtein distance between two Strings if it's less than or equal
+	 * to a given threshold.
 	 * </p>
 	 *
 	 * <p>
-	 * This implementation follows from Algorithms on Strings, Trees and
-	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
-	 * Levenshtein distance algorithm from
+	 * This is the number of changes needed to change one String into another, where
+	 * each change is a single character modification (deletion, insertion or
+	 * substitution).
+	 * </p>
+	 *
+	 * <p>
+	 * This implementation follows from Algorithms on Strings, Trees and Sequences
+	 * by Dan Gusfield and Chas Emerick's implementation of the Levenshtein distance
+	 * algorithm from
 	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
 	 * ld.htm</a>
 	 * </p>
@@ -716,121 +715,14 @@ public class LearningSession extends ChildScreen {
 	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
 	 * </pre>
 	 *
-	 * @param s
-	 *            the first String, must not be null
-	 * @param t
-	 *            the second String, must not be null
-	 * @param threshold
-	 *            the target threshold, must not be negative
-	 * @return result distance, or {@code -1} if the distance would be greater
-	 *         than the threshold
+	 * @param s         the first String, must not be null
+	 * @param t         the second String, must not be null
+	 * @param threshold the target threshold, must not be negative
+	 * @return result distance, or {@code -1} if the distance would be greater than
+	 *         the threshold
 	 */
 
-	public static synchronized int getLevenshteinDistanceIgnoreCase(CharSequence s, CharSequence t, int threshold) {
-		return getLevenshteinDistanceIgnoreCase(String.valueOf(s), String.valueOf(t), threshold);
-	}
-
-	/**
-	 * <p>
-	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
-	 * to preven GC issues on Android.
-	 * </p>
-	 * <p>
-	 * Find the Levenshtein distance between two Strings if it's less than or
-	 * equal to a given threshold.
-	 * </p>
-	 *
-	 * <p>
-	 * This is the number of changes needed to change one String into another,
-	 * where each change is a single character modification (deletion, insertion
-	 * or substitution).
-	 * </p>
-	 *
-	 * <p>
-	 * This implementation follows from Algorithms on Strings, Trees and
-	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
-	 * Levenshtein distance algorithm from
-	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
-	 * ld.htm</a>
-	 * </p>
-	 *
-	 * <pre>
-	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
-	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
-	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
-	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
-	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
-	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
-	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
-	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
-	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
-	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
-	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
-	 * </pre>
-	 *
-	 * @param s
-	 *            the first String, must not be null
-	 * @param t
-	 *            the second String, must not be null
-	 * @param threshold
-	 *            the target threshold, must not be negative
-	 * @return result distance, or {@code -1} if the distance would be greater
-	 *         than the threshold
-	 */
-
-	public static synchronized int getLevenshteinDistanceIgnoreCase(String s, String t, int threshold) {
-		return getLevenshteinDistance(s != null ? s.toLowerCase() : "", t != null ? t.toLowerCase() : "", threshold);
-	}
-
-	/**
-	 * <p>
-	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays
-	 * to preven GC issues on Android.
-	 * </p>
-	 * <p>
-	 * Find the Levenshtein distance between two Strings if it's less than or
-	 * equal to a given threshold.
-	 * </p>
-	 *
-	 * <p>
-	 * This is the number of changes needed to change one String into another,
-	 * where each change is a single character modification (deletion, insertion
-	 * or substitution).
-	 * </p>
-	 *
-	 * <p>
-	 * This implementation follows from Algorithms on Strings, Trees and
-	 * Sequences by Dan Gusfield and Chas Emerick's implementation of the
-	 * Levenshtein distance algorithm from
-	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
-	 * ld.htm</a>
-	 * </p>
-	 *
-	 * <pre>
-	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
-	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
-	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
-	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
-	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
-	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
-	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
-	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
-	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
-	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
-	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
-	 * </pre>
-	 *
-	 * @param s
-	 *            the first String, must not be null
-	 * @param t
-	 *            the second String, must not be null
-	 * @param threshold
-	 *            the target threshold, must not be negative
-	 * @return result distance, or {@code -1} if the distance would be greater
-	 *         than the threshold
-	 */
-
-	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t, int threshold) {
+	public static synchronized int getLevenshteinDistance(CharSequence s, CharSequence t, final int threshold) {
 		if (s == null || t == null) {
 			throw new IllegalArgumentException("Strings must not be null");
 		}
@@ -839,45 +731,42 @@ public class LearningSession extends ChildScreen {
 		}
 
 		/*
-		 * This implementation only computes the distance if it's less than or
-		 * equal to the threshold value, returning -1 if it's greater. The
-		 * advantage is performance: unbounded distance is O(nm), but a bound of
-		 * k allows us to reduce it to O(km) time by only computing a diagonal
-		 * stripe of width 2k + 1 of the cost table. It is also possible to use
-		 * this to compute the unbounded Levenshtein distance by starting the
-		 * threshold at 1 and doubling each time until the distance is found;
-		 * this is O(dm), where d is the distance.
-		 * 
-		 * One subtlety comes from needing to ignore entries on the border of
-		 * our stripe eg. p[] = |#|#|#|* d[] = *|#|#|#| We must ignore the entry
-		 * to the left of the leftmost member We must ignore the entry above the
-		 * rightmost member
-		 * 
-		 * Another subtlety comes from our stripe running off the matrix if the
-		 * strings aren't of the same size. Since string s is always swapped to
-		 * be the shorter of the two, the stripe will always run off to the
-		 * upper right instead of the lower left of the matrix.
-		 * 
-		 * As a concrete example, suppose s is of length 5, t is of length 7,
-		 * and our threshold is 1. In this case we're going to walk a stripe of
-		 * length 3. The matrix would look like so:
-		 * 
-		 * 1 2 3 4 5 1 |#|#| | | | 2 |#|#|#| | | 3 | |#|#|#| | 4 | | |#|#|#| 5 |
-		 * | | |#|#| 6 | | | | |#| 7 | | | | | |
-		 * 
-		 * Note how the stripe leads off the table as there is no possible way
-		 * to turn a string of length 5 into one of length 7 in edit distance of
-		 * 1.
-		 * 
+		 * This implementation only computes the distance if it's less than or equal to
+		 * the threshold value, returning -1 if it's greater. The advantage is
+		 * performance: unbounded distance is O(nm), but a bound of k allows us to
+		 * reduce it to O(km) time by only computing a diagonal stripe of width 2k + 1
+		 * of the cost table. It is also possible to use this to compute the unbounded
+		 * Levenshtein distance by starting the threshold at 1 and doubling each time
+		 * until the distance is found; this is O(dm), where d is the distance.
+		 *
+		 * One subtlety comes from needing to ignore entries on the border of our stripe
+		 * eg. p[] = |#|#|#|* d[] = *|#|#|#| We must ignore the entry to the left of the
+		 * leftmost member We must ignore the entry above the rightmost member
+		 *
+		 * Another subtlety comes from our stripe running off the matrix if the strings
+		 * aren't of the same size. Since string s is always swapped to be the shorter
+		 * of the two, the stripe will always run off to the upper right instead of the
+		 * lower left of the matrix.
+		 *
+		 * As a concrete example, suppose s is of length 5, t is of length 7, and our
+		 * threshold is 1. In this case we're going to walk a stripe of length 3. The
+		 * matrix would look like so:
+		 *
+		 * 1 2 3 4 5 1 |#|#| | | | 2 |#|#|#| | | 3 | |#|#|#| | 4 | | |#|#|#| 5 | | |
+		 * |#|#| 6 | | | | |#| 7 | | | | | |
+		 *
+		 * Note how the stripe leads off the table as there is no possible way to turn a
+		 * string of length 5 into one of length 7 in edit distance of 1.
+		 *
 		 * Additionally, this implementation decreases memory usage by using two
 		 * single-dimensional arrays and swapping them back and forth instead of
-		 * allocating an entire n by m matrix. This requires a few minor
-		 * changes, such as immediately returning when it's detected that the
-		 * stripe has run off the matrix and initially filling the arrays with
-		 * large values so that entries we don't compute are ignored.
-		 * 
-		 * See Algorithms on Strings, Trees and Sequences by Dan Gusfield for
-		 * some discussion.
+		 * allocating an entire n by m matrix. This requires a few minor changes, such
+		 * as immediately returning when it's detected that the stripe has run off the
+		 * matrix and initially filling the arrays with large values so that entries we
+		 * don't compute are ignored.
+		 *
+		 * See Algorithms on Strings, Trees and Sequences by Dan Gusfield for some
+		 * discussion.
 		 */
 
 		int n = s.length(); // length of s
@@ -893,7 +782,7 @@ public class LearningSession extends ChildScreen {
 
 		if (n > m) {
 			// swap the two strings to consume less memory
-			CharSequence tmp = s;
+			final CharSequence tmp = s;
 			s = t;
 			t = tmp;
 			n = m;
@@ -911,7 +800,7 @@ public class LearningSession extends ChildScreen {
 		int _d[]; // placeholder to assist in swapping p and d
 
 		// fill in starting table values
-		int boundary = Math.min(n, threshold) + 1;
+		final int boundary = Math.min(n, threshold) + 1;
 		for (int i = 0; i < boundary; i++) {
 			lv_p[i] = i;
 		}
@@ -922,12 +811,12 @@ public class LearningSession extends ChildScreen {
 
 		// iterates through t
 		for (int j = 1; j <= m; j++) {
-			char t_j = t.charAt(j - 1); // jth character of t
+			final char t_j = t.charAt(j - 1); // jth character of t
 			lv_d[0] = j;
 
 			// compute stripe indices, constrain to array size
-			int min = Math.max(1, j - threshold);
-			int max = Math.min(n, j + threshold);
+			final int min = Math.max(1, j - threshold);
+			final int max = Math.min(n, j + threshold);
 
 			// the stripe may lead off of the table if s and t are of different
 			// sizes
@@ -967,34 +856,118 @@ public class LearningSession extends ChildScreen {
 		return -1;
 	}
 
-	private void resetAsNew(@SuppressWarnings("hiding") ActiveDeck current_due) {
-		for (ActiveCard card : current_due.deck) {
-			if (card.noErrors) {
-				continue;
-			}
-			if (card.box > 0) {
-				continue;
-			}
-			if (card.getMinCorrectInARow() > 2) {
-				continue;
-			}
-			card.newCard = true;
-			log.info("Resetting as new: " + getCardById(card.pgroup, card.vgroup).challenge.toString());
-		}
+	/**
+	 * <p>
+	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays to
+	 * preven GC issues on Android.
+	 * </p>
+	 * <p>
+	 * Find the Levenshtein distance between two Strings if it's less than or equal
+	 * to a given threshold.
+	 * </p>
+	 *
+	 * <p>
+	 * This is the number of changes needed to change one String into another, where
+	 * each change is a single character modification (deletion, insertion or
+	 * substitution).
+	 * </p>
+	 *
+	 * <p>
+	 * This implementation follows from Algorithms on Strings, Trees and Sequences
+	 * by Dan Gusfield and Chas Emerick's implementation of the Levenshtein distance
+	 * algorithm from
+	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
+	 * ld.htm</a>
+	 * </p>
+	 *
+	 * <pre>
+	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
+	 * </pre>
+	 *
+	 * @param s         the first String, must not be null
+	 * @param t         the second String, must not be null
+	 * @param threshold the target threshold, must not be negative
+	 * @return result distance, or {@code -1} if the distance would be greater than
+	 *         the threshold
+	 */
+
+	public static synchronized int getLevenshteinDistanceIgnoreCase(final CharSequence s, final CharSequence t,
+			final int threshold) {
+		return getLevenshteinDistanceIgnoreCase(String.valueOf(s), String.valueOf(t), threshold);
 	}
 
-	private ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader();
+	/**
+	 * <p>
+	 * Taken from StringUtils.class and reconfigured to use pre-allocated arrays to
+	 * preven GC issues on Android.
+	 * </p>
+	 * <p>
+	 * Find the Levenshtein distance between two Strings if it's less than or equal
+	 * to a given threshold.
+	 * </p>
+	 *
+	 * <p>
+	 * This is the number of changes needed to change one String into another, where
+	 * each change is a single character modification (deletion, insertion or
+	 * substitution).
+	 * </p>
+	 *
+	 * <p>
+	 * This implementation follows from Algorithms on Strings, Trees and Sequences
+	 * by Dan Gusfield and Chas Emerick's implementation of the Levenshtein distance
+	 * algorithm from
+	 * <a href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/
+	 * ld.htm</a>
+	 * </p>
+	 *
+	 * <pre>
+	 * StringUtils.getLevenshteinDistance(null, *, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, null, *)             = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance(*, *, -1)               = IllegalArgumentException
+	 * StringUtils.getLevenshteinDistance("","", 0)               = 0
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 8)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 7)       = 7
+	 * StringUtils.getLevenshteinDistance("aaapppp", "", 6))      = -1
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 7) = 7
+	 * StringUtils.getLevenshteinDistance("elephant", "hippo", 6) = -1
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 7) = 7
+	 * StringUtils.getLevenshteinDistance("hippo", "elephant", 6) = -1
+	 * </pre>
+	 *
+	 * @param s         the first String, must not be null
+	 * @param t         the second String, must not be null
+	 * @param threshold the target threshold, must not be negative
+	 * @return result distance, or {@code -1} if the distance would be greater than
+	 *         the threshold
+	 */
+
+	public static synchronized int getLevenshteinDistanceIgnoreCase(final String s, final String t,
+			final int threshold) {
+		return getLevenshteinDistance(s != null ? s.toLowerCase() : "", t != null ? t.toLowerCase() : "", threshold);
+	}
+
+	private final ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader();
 
 	private Sound buzzer;
 
 	/**
-	 * Sort answers by edit distance so the list can be trimmed to size easily.
-	 * The sort only considers edit distance and does not factor in actual
-	 * String values - this is intentional.
+	 * Sort answers by edit distance so the list can be trimmed to size easily. The
+	 * sort only considers edit distance and does not factor in actual String values
+	 * - this is intentional.
 	 */
-	private Comparator<Answer> byDistance = new Comparator<Answer>() {
+	private final Comparator<Answer> byDistance = new Comparator<Answer>() {
 		@Override
-		public int compare(Answer o1, Answer o2) {
+		public int compare(final Answer o1, final Answer o2) {
 			if (o1.correct != o2.correct && o1.correct) {
 				return -1;
 			}
@@ -1011,12 +984,12 @@ public class LearningSession extends ChildScreen {
 		}
 	};
 
-	//private int cardcount = 0;
-
 	/**
 	 * How long this challenge has been displayed.
 	 */
 	private float challenge_elapsed;
+
+	// private int cardcount = 0;
 
 	private final ChallengeCardDialog challengeCardDialog;
 
@@ -1030,8 +1003,8 @@ public class LearningSession extends ChildScreen {
 	private final ActiveDeck current_active = new ActiveDeck();
 
 	/**
-	 * holding area for cards that have just been displayed or are not scheduled
-	 * yet for display
+	 * holding area for cards that have just been displayed or are not scheduled yet
+	 * for display
 	 */
 	private final ActiveDeck current_discards = new ActiveDeck();
 
@@ -1048,11 +1021,11 @@ public class LearningSession extends ChildScreen {
 	private Sound ding;
 
 	private Skin dskin = null;
+
 	/**
 	 * total challenge time accumulated
 	 */
 	private float elapsed = 0f;
-
 	/**
 	 * Whether elapsed time should be accumulated or not
 	 */
@@ -1060,11 +1033,12 @@ public class LearningSession extends ChildScreen {
 
 	final private SlotInfo info;
 
-	// private boolean isExtraPractice = false;
-
 	private final JsonConverter json;
 
-	private LoadMasterDeck loadDeck = new LoadMasterDeck();
+	// private boolean isExtraPractice = false;
+
+	private final LoadMasterDeck loadDeck = new LoadMasterDeck();
+
 	private final NewCardDialog newCardDialog;
 	private final Set<String> nodupes = new HashSet<>();
 	/**
@@ -1072,13 +1046,12 @@ public class LearningSession extends ChildScreen {
 	 */
 	private float notice_elapsed = 0f;
 	private float counter_elapsed = 0f;
-	private ProcessActiveCards processActiveCards = new ProcessActiveCards();
-
+	private final ProcessActiveCards processActiveCards = new ProcessActiveCards();
 	private final Random rand = new Random();
 
 	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
 
-	private ShowACard showACard = new ShowACard();
+	private final ShowACard showACard = new ShowACard();
 
 	/**
 	 * time since last "shuffle"
@@ -1093,9 +1066,9 @@ public class LearningSession extends ChildScreen {
 
 	private long ticktock_id;
 
-	public LearningSession(BoundPronouns _game, Screen caller, FileHandle slot) {
+	public LearningSession(final BoundPronouns _game, final Screen caller, final FileHandle slot) {
 		super(_game, caller);
-		int totalCards = game.deck.cards.size();
+		final int totalCards = game.deck.cards.size();
 		current_active.deck = new ArrayList<>(totalCards);
 		current_discards.deck = new ArrayList<>(totalCards);
 		current_done.deck = new ArrayList<>(totalCards);
@@ -1103,8 +1076,8 @@ public class LearningSession extends ChildScreen {
 
 		this.slot = slot;
 		slot.mkdirs();
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
-		TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
+		final Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
+		final TiledDrawable d = new TiledDrawable(new TextureRegion(texture));
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		container = new Table(skin);
 		container.setBackground(d);
@@ -1113,7 +1086,7 @@ public class LearningSession extends ChildScreen {
 		stage.addAction(Actions.delay(.05f, Actions.run(loadDeck)));
 		json = new JsonConverter();
 
-		FileHandle infoFile = slot.child(INFO_JSON);
+		final FileHandle infoFile = slot.child(INFO_JSON);
 		if (!infoFile.exists()) {
 			info = new SlotInfo();
 			info.settings.name = RandomName.getRandomName();
@@ -1124,39 +1097,39 @@ public class LearningSession extends ChildScreen {
 			info = json.fromJson(SlotInfo.class, infoFile);
 			info.settings.sessionLength = SessionLength.Brief;
 			info.settings.timeLimit = TimeLimit.Novice;
-			if (StringUtils.isBlank(info.settings.name)){
-				info.settings.name=RandomName.getRandomName();
+			if (StringUtils.isBlank(info.settings.name)) {
+				info.settings.name = RandomName.getRandomName();
 			}
 		}
 
 		newCardDialog = new NewCardDialog(game, skin) {
 			@Override
-			protected void result(Object object) {
+			protected void result(final Object object) {
 				clearActions();
 				stage.addAction(Actions.run(showACard));
 			}
 
 			@Override
-			public Dialog show(@SuppressWarnings("hiding") Stage stage) {
+			public Dialog show(@SuppressWarnings("hiding") final Stage stage) {
 				return super.show(stage);
 			}
 
 			@Override
 			protected void showMainMenu() {
-				Runnable yes = new Runnable() {
+				final Runnable yes = new Runnable() {
 					@Override
 					public void run() {
 						game.setScreen(LearningSession.this.caller);
 						LearningSession.this.dispose();
 					}
 				};
-				Runnable no = new Runnable() {
+				final Runnable no = new Runnable() {
 					@Override
 					public void run() {
-						//Do nothing
+						// Do nothing
 					}
 				};
-				Dialog dialog = dialogYN("Please Confirm Exit",
+				final Dialog dialog = dialogYN("Please Confirm Exit",
 						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)", yes,
 						no);
 				dialog.getTitleLabel().setAlignment(Align.center);
@@ -1182,7 +1155,7 @@ public class LearningSession extends ChildScreen {
 			DelayAction delayShowNextCard;
 
 			@Override
-			protected void result(Object object) {
+			protected void result(final Object object) {
 				navEnable(false);
 				if (CONTINUE.equals(object)) {
 					check.setTouchable(Touchable.disabled);
@@ -1195,8 +1168,7 @@ public class LearningSession extends ChildScreen {
 					return;
 				}
 				/*
-				 * bump show count and add in elapsed display time for later
-				 * scoring ...
+				 * bump show count and add in elapsed display time for later scoring ...
 				 */
 				_activeCard.showCount++;
 				_activeCard.showTime += challenge_elapsed;
@@ -1211,28 +1183,27 @@ public class LearningSession extends ChildScreen {
 				 */
 				boolean doBuzzer = false;
 				/**
-				 * worst case scenario, all wrong ones marked and no right ones
-				 * marked, gets set to false if ANY combination of
-				 * checked/unchecked is valid
+				 * worst case scenario, all wrong ones marked and no right ones marked, gets set
+				 * to false if ANY combination of checked/unchecked is valid
 				 */
 				boolean doCow = true;
 				int wrong = 0;
-				for (Actor b : getButtonTable().getChildren()) {
+				for (final Actor b : getButtonTable().getChildren()) {
 					if (b instanceof Button) {
 						((Button) b).setDisabled(true);
 						((Button) b).setTouchable(Touchable.disabled);
 					}
 					if (b instanceof TextButton) {
-						TextButton tb = (TextButton) b;
-						Object userObject = tb.getUserObject();
+						final TextButton tb = (TextButton) b;
+						final Object userObject = tb.getUserObject();
 						if (userObject != null && userObject instanceof Answer) {
-							Answer tracked_answer = (Answer) userObject;
+							final Answer tracked_answer = (Answer) userObject;
 							if (!tb.isChecked() && !tracked_answer.correct) {
 								tb.addAction(Actions.fadeOut(.2f));
 								doCow = false;
 							}
 							if (tb.isChecked() && !tracked_answer.correct) {
-								ColorAction toRed = Actions.color(Color.RED, .4f);
+								final ColorAction toRed = Actions.color(Color.RED, .4f);
 								tb.addAction(toRed);
 								tb.setText(BoundPronouns.HEAVY_BALLOT_X + " " + tb.getText());
 								doBuzzer = true;
@@ -1241,25 +1212,24 @@ public class LearningSession extends ChildScreen {
 								wrong++;
 							}
 							if (!tb.isChecked() && tracked_answer.correct) {
-								ColorAction toGreen = Actions.color(Color.GREEN, .4f);
-								ColorAction toClear = Actions.color(Color.CLEAR, .2f);
-								SequenceAction sequence = Actions.sequence(toClear, toGreen);
+								final ColorAction toGreen = Actions.color(Color.GREEN, .4f);
+								final ColorAction toClear = Actions.color(Color.CLEAR, .2f);
+								final SequenceAction sequence = Actions.sequence(toClear, toGreen);
 								tb.addAction(Actions.repeat(2, sequence));
 								tb.setText(BoundPronouns.RIGHT_ARROW + " " + tb.getText());
 								doBuzzer = true;
 								resetCorrectInARow(_activeCard);
 								if (_activeCard.noErrors && _activeCard.tries_remaining < 1) {
 									/*
-									 * set for at leat one more show if the
-									 * first time a card is incorrectly answered
-									 * there are no shows remaining
+									 * set for at leat one more show if the first time a card is incorrectly
+									 * answered there are no shows remaining
 									 */
 									_activeCard.tries_remaining++;
 								}
 								_activeCard.noErrors = false;
 							}
 							if (tb.isChecked() && tracked_answer.correct) {
-								ColorAction toGreen = Actions.color(Color.GREEN, .2f);
+								final ColorAction toGreen = Actions.color(Color.GREEN, .2f);
 								tb.addAction(toGreen);
 								doCow = false;
 								tb.setText(BoundPronouns.HEAVY_CHECK_MARK + " " + tb.getText());
@@ -1304,20 +1274,20 @@ public class LearningSession extends ChildScreen {
 			@Override
 			protected void showMainMenu() {
 				final boolean wasPaused = challengeCardDialog.paused;
-				Runnable yes = new Runnable() {
+				final Runnable yes = new Runnable() {
 					@Override
 					public void run() {
 						game.setScreen(LearningSession.this.caller);
 						LearningSession.this.dispose();
 					}
 				};
-				Runnable no = new Runnable() {
+				final Runnable no = new Runnable() {
 					@Override
 					public void run() {
 						challengeCardDialog.paused = wasPaused;
 					}
 				};
-				Dialog dialog = dialogYN("Please Confirm Exit",
+				final Dialog dialog = dialogYN("Please Confirm Exit",
 						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)", yes,
 						no);
 				dialog.show(stage);
@@ -1331,20 +1301,20 @@ public class LearningSession extends ChildScreen {
 	}
 
 	/**
-	 * add this many cards to the Current Active Deck first from the current
-	 * Active Deck then from the master Deck set
-	 * 
+	 * add this many cards to the Current Active Deck first from the current Active
+	 * Deck then from the master Deck set
+	 *
 	 * @param needed
 	 * @param active
 	 */
-	public void addCards(int needed, ActiveDeck active) {
+	public void addCards(int needed, final ActiveDeck active) {
 		int startingSize = active.deck.size();
 		/**
 		 * look for previous cards to load first, if their delay time is up
 		 */
 		Iterator<ActiveCard> ipending = current_due.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
-			ActiveCard next = ipending.next();
+			final ActiveCard next = ipending.next();
 			if (next.box >= SlotInfo.FULLY_LEARNED_BOX) {
 				continue;
 			}
@@ -1366,9 +1336,9 @@ public class LearningSession extends ChildScreen {
 		 * not enough already seen cards, add new never seen cards
 		 */
 		startingSize = active.deck.size();
-		Iterator<Card> ideck = game.deck.cards.iterator();
+		final Iterator<Card> ideck = game.deck.cards.iterator();
 		while (needed > 0 && ideck.hasNext()) {
-			Card next = ideck.next();
+			final Card next = ideck.next();
 			switch (info.settings.deck) {
 			case Both:
 				break;
@@ -1385,11 +1355,11 @@ public class LearningSession extends ChildScreen {
 			default:
 				break;
 			}
-			String unique_id = next.pgroup + "+" + next.vgroup;
+			final String unique_id = next.pgroup + "+" + next.vgroup;
 			if (nodupes.contains(unique_id)) {
 				continue;
 			}
-			ActiveCard activeCard = new ActiveCard();
+			final ActiveCard activeCard = new ActiveCard();
 			activeCard.box = 0;
 			activeCard.noErrors = true;
 			activeCard.newCard = true;
@@ -1413,7 +1383,7 @@ public class LearningSession extends ChildScreen {
 		 */
 		ipending = current_due.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
-			ActiveCard next = ipending.next();
+			final ActiveCard next = ipending.next();
 			if (next.box < SlotInfo.FULLY_LEARNED_BOX) {
 				continue;
 			}
@@ -1424,7 +1394,7 @@ public class LearningSession extends ChildScreen {
 		}
 		ipending = current_due.deck.iterator();
 		while (needed > 0 && ipending.hasNext()) {
-			ActiveCard next = ipending.next();
+			final ActiveCard next = ipending.next();
 			next.resetTriesRemaining();
 			active.deck.add(next);
 			needed--;
@@ -1433,24 +1403,24 @@ public class LearningSession extends ChildScreen {
 
 	}
 
-	private Dialog dialogYN(String title, String message, final Runnable yes, final Runnable no) {
+	private Dialog dialogYN(final String title, String message, final Runnable yes, final Runnable no) {
 		if (dskin == null) {
 			dskin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
 		}
-		WindowStyle ws = new WindowStyle(dskin.get(WindowStyle.class));
+		final WindowStyle ws = new WindowStyle(dskin.get(WindowStyle.class));
 		ws.titleFont = game.getFont(Font.SerifLLarge);
-		LabelStyle ls = new LabelStyle(dskin.get(LabelStyle.class));
+		final LabelStyle ls = new LabelStyle(dskin.get(LabelStyle.class));
 		message = WordUtils.wrap(message, 70);
 		ls.font = game.getFont(Font.SerifLarge);
-		Label msg = new Label(message, ls);
+		final Label msg = new Label(message, ls);
 		msg.setAlignment(Align.center);
-		TextButtonStyle tbs = new TextButtonStyle(dskin.get(TextButtonStyle.class));
+		final TextButtonStyle tbs = new TextButtonStyle(dskin.get(TextButtonStyle.class));
 		tbs.font = game.getFont(Font.SerifLarge);
 		final TextButton btn_yes = new TextButton("YES", tbs);
 		final TextButton btn_no = new TextButton("NO", tbs);
-		Dialog dialog = new Dialog(title, ws) {
+		final Dialog dialog = new Dialog(title, ws) {
 			@Override
-			protected void result(Object object) {
+			protected void result(final Object object) {
 				super.result(object);
 				if (btn_yes.equals(object)) {
 					Gdx.app.postRunnable(yes);
@@ -1488,26 +1458,25 @@ public class LearningSession extends ChildScreen {
 		}
 	}
 
-	private AnswerList getAnswerSetsFor(final ActiveCard active, final Card challengeCard, Deck deck) {
-		Set<String> already = new HashSet<>(16);
-		AnswerList answers = new AnswerList();
+	private AnswerList getAnswerSetsFor(final ActiveCard active, final Card challengeCard, final Deck deck) {
+		final Set<String> already = new HashSet<>(16);
+		final AnswerList answers = new AnswerList();
 		/*
-		 * contains copies of used answers, vgroups, and pgroups to prevent
-		 * duplicates
+		 * contains copies of used answers, vgroups, and pgroups to prevent duplicates
 		 */
 		already.add(challengeCard.pgroup);
 		already.add(challengeCard.vgroup);
 		/*
-		 * make sure all correct answers are in the "black list" for potential
-		 * wrong answers
+		 * make sure all correct answers are in the "black list" for potential wrong
+		 * answers
 		 */
 		already.addAll(challengeCard.answer);
 
 		/*
-		 * for temporary manipulation of list data so we don't mess with master
-		 * copies in cards, etc.
+		 * for temporary manipulation of list data so we don't mess with master copies
+		 * in cards, etc.
 		 */
-		List<String> tmp_correct = new ArrayList<>(16);
+		final List<String> tmp_correct = new ArrayList<>(16);
 		tmp_correct.addAll(challengeCard.answer);
 
 		/**
@@ -1515,9 +1484,9 @@ public class LearningSession extends ChildScreen {
 		 */
 		Collections.sort(tmp_correct, new Comparator<String>() {
 			@Override
-			public int compare(String o1, String o2) {
-				Integer i1 = active.getCorrectInARowFor(o1);
-				Integer i2 = active.getCorrectInARowFor(o2);
+			public int compare(final String o1, final String o2) {
+				final Integer i1 = active.getCorrectInARowFor(o1);
+				final Integer i2 = active.getCorrectInARowFor(o2);
 //				i1 = i1 == null ? 0 : i1;
 //				i2 = i2 == null ? 0 : i2;
 				if (i1 < i2) {
@@ -1529,21 +1498,20 @@ public class LearningSession extends ChildScreen {
 				return o1.compareTo(o2);
 			}
 		});
-		int r = rand.nextInt(tmp_correct.size()) + 1;
+		final int r = rand.nextInt(tmp_correct.size()) + 1;
 		for (int i = 0; i < r && i < maxCorrect; i++) {
-			String answer = tmp_correct.get(i);
+			final String answer = tmp_correct.get(i);
 			answers.list.add(0, new Answer(true, answer, 0));
 		}
 
 		/*
-		 * look for "similar" looking answers by picking one random correct
-		 * answer and comparing to one random wrong answer per card in the
-		 * master deck
+		 * look for "similar" looking answers by picking one random correct answer and
+		 * comparing to one random wrong answer per card in the master deck
 		 */
-		Deck tmp = new Deck(deck);
+		final Deck tmp = new Deck(deck);
 		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
 			Collections.shuffle(tmp.cards);
-			for (Card deckCard : tmp.cards) {
+			for (final Card deckCard : tmp.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
 				 */
@@ -1551,8 +1519,7 @@ public class LearningSession extends ChildScreen {
 					continue;
 				}
 				/*
-				 * make sure we keep bare pronouns with bare pronouns and
-				 * vice-versa
+				 * make sure we keep bare pronouns with bare pronouns and vice-versa
 				 */
 				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils.isBlank(deckCard.vgroup)) {
 					continue;
@@ -1568,21 +1535,21 @@ public class LearningSession extends ChildScreen {
 				/*
 				 * select a random correct answer
 				 */
-				String correct_answer = challengeCard.answer.get(rand.nextInt(challengeCard.answer.size())).intern();
+				final String correct_answer = challengeCard.answer.get(rand.nextInt(challengeCard.answer.size()))
+						.intern();
 				/*
 				 * select a random wrong answer
 				 */
-				String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size())).intern();
+				final String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size())).intern();
 				if (already.contains(wrong_answer)) {
 					continue;
 				}
 				/*
-				 * if edit distance is close enough, add it, then add pgroup,
-				 * vgroup and selected answer to already used list otherwise go
-				 * on and check next card
+				 * if edit distance is close enough, add it, then add pgroup, vgroup and
+				 * selected answer to already used list otherwise go on and check next card
 				 */
 
-				int ldistance = getLevenshteinDistanceIgnoreCase(correct_answer, wrong_answer, distance);
+				final int ldistance = getLevenshteinDistanceIgnoreCase(correct_answer, wrong_answer, distance);
 				if (ldistance < 1) {
 					continue;
 				}
@@ -1604,24 +1571,23 @@ public class LearningSession extends ChildScreen {
 		return answers;
 	}
 
-	private AnswerList getAnswerSetsForBySimilarChallenge(final ActiveCard active, final Card card, Deck deck) {
-		AnswerList answers = new AnswerList();
-		String challenge = card.challenge.get(0);
+	private AnswerList getAnswerSetsForBySimilarChallenge(final ActiveCard active, final Card card, final Deck deck) {
+		final AnswerList answers = new AnswerList();
+		final String challenge = card.challenge.get(0);
 		/**
-		 * contains copies of used answers, vgroups, and pgroups to prevent
-		 * duplicates
+		 * contains copies of used answers, vgroups, and pgroups to prevent duplicates
 		 */
-		Set<String> already = new HashSet<>(16);
+		final Set<String> already = new HashSet<>(16);
 		already.add(card.pgroup);
 		already.add(card.vgroup);
 		already.addAll(card.answer);
 		already.add(challenge);
 
 		/**
-		 * for temporary manipulation of list data so we don't mess with master
-		 * copies in cards, etc.
+		 * for temporary manipulation of list data so we don't mess with master copies
+		 * in cards, etc.
 		 */
-		List<String> tmp_correct = new ArrayList<>(16);
+		final List<String> tmp_correct = new ArrayList<>(16);
 		tmp_correct.clear();
 		tmp_correct.addAll(card.answer);
 
@@ -1630,9 +1596,9 @@ public class LearningSession extends ChildScreen {
 		 */
 		Collections.sort(tmp_correct, new Comparator<String>() {
 			@Override
-			public int compare(String o1, String o2) {
-				Integer i1 = active.getCorrectInARowFor(o1);
-				Integer i2 = active.getCorrectInARowFor(o2);
+			public int compare(final String o1, final String o2) {
+				final Integer i1 = active.getCorrectInARowFor(o1);
+				final Integer i2 = active.getCorrectInARowFor(o2);
 //				i1 = (i1 == null) ? 0 : i1;
 //				i2 = (i2 == null) ? 0 : i2;
 				if (i1 < i2) {
@@ -1647,19 +1613,19 @@ public class LearningSession extends ChildScreen {
 		/*
 		 * Add a random count of correct answers. Least known first.
 		 */
-		int r = rand.nextInt(tmp_correct.size()) + 1;
+		final int r = rand.nextInt(tmp_correct.size()) + 1;
 		for (int i = 0; i < r && i < maxCorrect; i++) {
-			String answer = tmp_correct.get(i);
+			final String answer = tmp_correct.get(i);
 			answers.list.add(0, new Answer(true, answer, 0));
 		}
 
 		/*
 		 * look for "similar" looking challenges
 		 */
-		Deck tmp = new Deck(deck);
+		final Deck tmp = new Deck(deck);
 		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
 			Collections.shuffle(tmp.cards);
-			for (Card deckCard : tmp.cards) {
+			for (final Card deckCard : tmp.cards) {
 				/*
 				 * make sure we have unique pronouns for each wrong answer
 				 */
@@ -1667,8 +1633,7 @@ public class LearningSession extends ChildScreen {
 					continue;
 				}
 				/*
-				 * make sure we keep bare pronouns with bare pronouns and
-				 * vice-versa
+				 * make sure we keep bare pronouns with bare pronouns and vice-versa
 				 */
 				if (StringUtils.isBlank(card.vgroup) != StringUtils.isBlank(deckCard.vgroup)) {
 					continue;
@@ -1682,21 +1647,21 @@ public class LearningSession extends ChildScreen {
 					}
 				}
 				/**
-				 * if edit distance is close enough, add it, then add pgroup,
-				 * vgroup and selected answer to already used list
+				 * if edit distance is close enough, add it, then add pgroup, vgroup and
+				 * selected answer to already used list
 				 */
-				String tmp_challenge = deckCard.challenge.get(0);
+				final String tmp_challenge = deckCard.challenge.get(0);
 				if (already.contains(tmp_challenge)) {
 					continue;
 				}
-				int ldistance = getLevenshteinDistanceIgnoreCase(challenge, tmp_challenge, distance);
+				final int ldistance = getLevenshteinDistanceIgnoreCase(challenge, tmp_challenge, distance);
 				if (ldistance < 1) {
 					continue;
 				}
 				/*
 				 * select a random wrong answer
 				 */
-				String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
+				final String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
 				if (already.contains(wrong_answer)) {
 					continue;
 				}
@@ -1715,8 +1680,8 @@ public class LearningSession extends ChildScreen {
 		return answers;
 	}
 
-	private Card getCardById(String pgroup, String vgroup) {
-		for (Card card : game.deck.cards) {
+	private Card getCardById(final String pgroup, final String vgroup) {
+		for (final Card card : game.deck.cards) {
 			if (!card.pgroup.equals(pgroup)) {
 				continue;
 			}
@@ -1730,18 +1695,18 @@ public class LearningSession extends ChildScreen {
 
 	/**
 	 * Calculates amount of ms needed to shift by to move deck to "0" point.
-	 * 
+	 *
 	 * @param current_pending
 	 * @return
 	 */
-	private long getMinShiftTimeOf(ActiveDeck current_pending) {
+	private long getMinShiftTimeOf(final ActiveDeck current_pending) {
 		if (current_pending.deck.size() == 0) {
 			return 0;
 		}
 		long by = Long.MAX_VALUE;
-		Iterator<ActiveCard> icard = current_pending.deck.iterator();
+		final Iterator<ActiveCard> icard = current_pending.deck.iterator();
 		while (icard.hasNext()) {
-			ActiveCard card = icard.next();
+			final ActiveCard card = icard.next();
 			if (card.tries_remaining < 1) {
 				continue;
 			}
@@ -1765,7 +1730,7 @@ public class LearningSession extends ChildScreen {
 			 * remove from active session any cards with no tries left
 			 */
 			while (discards.hasNext()) {
-				ActiveCard discard = discards.next();
+				final ActiveCard discard = discards.next();
 				if (discard.tries_remaining > 0) {
 					continue;
 				}
@@ -1789,7 +1754,7 @@ public class LearningSession extends ChildScreen {
 			 * Find all cards in active session ready for display by time
 			 */
 			while (discards.hasNext()) {
-				ActiveCard tmp = discards.next();
+				final ActiveCard tmp = discards.next();
 				if (tmp.show_again_ms > 0) {
 					continue;
 				}
@@ -1802,28 +1767,28 @@ public class LearningSession extends ChildScreen {
 			Collections.shuffle(current_active.deck);
 			Collections.sort(current_active.deck, byShowTimeChunks);
 		}
-		ActiveCard card = current_active.deck.get(0);
+		final ActiveCard card = current_active.deck.get(0);
 		current_active.deck.remove(0);
 		current_discards.deck.add(card);
 		return card;
 	}
 
 	/**
-	 * record all cards currently "in-play" so that when cards are retrieved
-	 * from the master deck they are new cards
-	 * 
+	 * record all cards currently "in-play" so that when cards are retrieved from
+	 * the master deck they are new cards
+	 *
 	 * @param activeDeck
 	 */
-	public void recordAlreadySeen(ActiveDeck activeDeck) {
-		Iterator<ActiveCard> istat = activeDeck.deck.iterator();
+	public void recordAlreadySeen(final ActiveDeck activeDeck) {
+		final Iterator<ActiveCard> istat = activeDeck.deck.iterator();
 		while (istat.hasNext()) {
-			ActiveCard next = istat.next();
-			String unique_id = next.pgroup + "+" + next.vgroup;
+			final ActiveCard next = istat.next();
+			final String unique_id = next.pgroup + "+" + next.vgroup;
 			nodupes.add(unique_id);
 		}
 	}
 
-	private void reInsertCard(ActiveCard card) {
+	private void reInsertCard(final ActiveCard card) {
 		if (current_active.deck.size() < 2) {
 			current_active.deck.add(card);
 		} else {
@@ -1833,7 +1798,7 @@ public class LearningSession extends ChildScreen {
 	}
 
 	@Override
-	public void render(float delta) {
+	public void render(final float delta) {
 		if (challengeCardDialog.paused) {
 			BoundPronouns.glClearColor();
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -1848,11 +1813,11 @@ public class LearningSession extends ChildScreen {
 			notice_elapsed += delta;
 			if (notice_elapsed > 60f) {
 				notice_elapsed = 0f;
-				int mins = (int) (elapsed / 60);
-				int secs = (int) (elapsed - mins * 60f);
+				final int mins = (int) (elapsed / 60);
+				final int secs = (int) (elapsed - mins * 60f);
 				log.info(mins + ":" + (secs < 10 ? "0" : "") + secs);
 			}
-			float sessionSeconds = info.settings.sessionLength.getSeconds();
+			final float sessionSeconds = info.settings.sessionLength.getSeconds();
 			if (counter_elapsed + .5f > elapsed) {
 				counter_elapsed = elapsed;
 				if (elapsed < sessionSeconds) {
@@ -1865,8 +1830,24 @@ public class LearningSession extends ChildScreen {
 		super.render(delta);
 	}
 
-	public void resetCorrectInARow(ActiveCard card) {
-		Card dcard = getCardById(card.pgroup, card.vgroup);
+	private void resetAsNew(@SuppressWarnings("hiding") final ActiveDeck current_due) {
+		for (final ActiveCard card : current_due.deck) {
+			if (card.noErrors) {
+				continue;
+			}
+			if (card.box > 0) {
+				continue;
+			}
+			if (card.getMinCorrectInARow() > 2) {
+				continue;
+			}
+			card.newCard = true;
+			log.info("Resetting as new: " + getCardById(card.pgroup, card.vgroup).challenge.toString());
+		}
+	}
+
+	public void resetCorrectInARow(final ActiveCard card) {
+		final Card dcard = getCardById(card.pgroup, card.vgroup);
 		if (dcard == null) {
 			card.resetCorrectInARow(new ArrayList<String>());
 			return;
@@ -1874,14 +1855,14 @@ public class LearningSession extends ChildScreen {
 		card.resetCorrectInARow(dcard.answer);
 	}
 
-	private void resetCorrectInARow(ActiveDeck current_pending) {
-		for (ActiveCard card : current_pending.deck) {
+	private void resetCorrectInARow(final ActiveDeck current_pending) {
+		for (final ActiveCard card : current_pending.deck) {
 			resetCorrectInARow(card);
 		}
 	}
 
-	protected void resetRetriesCount(ActiveDeck deck) {
-		for (ActiveCard card : deck.deck) {
+	protected void resetRetriesCount(final ActiveDeck deck) {
+		for (final ActiveCard card : deck.deck) {
 			card.resetTriesRemaining();
 		}
 	}
@@ -1902,14 +1883,14 @@ public class LearningSession extends ChildScreen {
 
 	/**
 	 * time-shift all cards by time since last recorded run.
-	 * 
+	 *
 	 * @param currentDeck
-	 * @param ms 
+	 * @param ms
 	 */
-	public void updateTime(ActiveDeck currentDeck, long ms) {
-		Iterator<ActiveCard> istat = currentDeck.deck.iterator();
+	public void updateTime(final ActiveDeck currentDeck, final long ms) {
+		final Iterator<ActiveCard> istat = currentDeck.deck.iterator();
 		while (istat.hasNext()) {
-			ActiveCard next = istat.next();
+			final ActiveCard next = istat.next();
 			next.show_again_ms -= ms;
 		}
 	}

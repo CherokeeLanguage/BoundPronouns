@@ -10,22 +10,22 @@ import com.badlogic.gdx.utils.Align;
 
 public class SlotDialog extends Dialog {
 
-	public SlotDialog(String title, Skin skin, BoundPronouns game, BitmapFont font) {
+	public SlotDialog(final String title, final Skin skin, final BoundPronouns game, final BitmapFont font) {
 		super(title, skin);
-		
-		WindowStyle ws = new WindowStyle(getStyle());
-		
-		Texture background = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
-		TextureRegion region = new TextureRegion(background);
-		TiledDrawable tiled = new TiledDrawable(region);
-		tiled.setMinHeight(0);		
-		tiled.setTopHeight(font.getCapHeight()+20);
-		
+
+		final WindowStyle ws = new WindowStyle(getStyle());
+
+		final Texture background = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
+		final TextureRegion region = new TextureRegion(background);
+		final TiledDrawable tiled = new TiledDrawable(region);
+		tiled.setMinHeight(0);
+		tiled.setTopHeight(font.getCapHeight() + 20);
+
 		ws.titleFont = font;
-		ws.background=tiled;
-		
+		ws.background = tiled;
+
 		setStyle(ws);
-		
+
 		getTitleLabel().setAlignment(Align.center);
-	}	
+	}
 }

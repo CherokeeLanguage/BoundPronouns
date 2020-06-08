@@ -19,64 +19,63 @@ public class ShowInfo extends ChildScreen {
 
 	private final Skin skin;
 	private ScrollPane scroll;
-	
+
 	private Table table;
-	private Table container;
-	
-	public ShowInfo(BoundPronouns game, MainScreen mainScreen) {
+	private final Table container;
+
+	private final Runnable initView = new Runnable() {
+		@Override
+		public void run() {
+			final LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
+			ls.font = game.getFont(Font.SerifSmall);
+			ls.background = null;
+
+			container.row();
+			final TextButtonStyle bls = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
+			bls.font = game.getFont(Font.SerifMedium);
+			final TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
+			container.add(back).left().width(BoundPronouns.BACK_WIDTH);
+			back.addListener(exit);
+
+			table = new Table(skin);
+
+			scroll = new ScrollPane(table, skin);
+			scroll.setColor(Color.DARK_GRAY);
+			scroll.setFadeScrollBars(false);
+			scroll.setSmoothScrolling(true);
+
+			String text = Gdx.files.internal("text/instructions.txt").readString("UTF-8");
+			text += "\n\n";
+			final Label label = new Label(text, ls);
+			label.setWrap(true);
+
+			table.row();
+			table.add(label).expand().fill().left().padLeft(20).padRight(20);
+
+			container.row();
+			container.add(scroll).expand().fill();
+			stage.setKeyboardFocus(scroll);
+			stage.setScrollFocus(scroll);
+		}
+	};
+
+	public ShowInfo(final BoundPronouns game, final MainScreen mainScreen) {
 		super(game, mainScreen);
-		
+
 		skin = new Skin(Gdx.files.internal(BoundPronouns.SKIN));
-		
+
 		container = new Table(skin);
 		stage.addActor(container);
-		
+
 		container.setBackground(d());
 		container.setFillParent(true);
 		container.addAction(Actions.delay(.1f, Actions.run(initView)));
 	}
-	
+
 	private TiledDrawable d() {
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN,
-				Texture.class);
+		final Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
 		return new TiledDrawable(new TextureRegion(texture));
 	}
-	
-	private Runnable initView = new Runnable() {
-		@Override
-		public void run() {
-		LabelStyle ls = new LabelStyle(skin.get("default", LabelStyle.class));
-		ls.font=game.getFont(Font.SerifSmall);
-		ls.background=null;
-		
-		container.row();
-		TextButtonStyle bls=new TextButtonStyle(skin.get("default", TextButtonStyle.class));
-		bls.font=game.getFont(Font.SerifMedium);
-		TextButton back = new TextButton(BoundPronouns.BACK_ARROW, bls);
-		container.add(back).left().width(BoundPronouns.BACK_WIDTH);
-		back.addListener(exit);
-		
-		table = new Table(skin);
-		
-		scroll = new ScrollPane(table, skin);
-		scroll.setColor(Color.DARK_GRAY);
-		scroll.setFadeScrollBars(false);
-		scroll.setSmoothScrolling(true);
-		
-		String text = Gdx.files.internal("text/instructions.txt").readString("UTF-8");
-		text+="\n\n";
-		Label label = new Label(text, ls);
-		label.setWrap(true);
-		
-		table.row();
-		table.add(label).expand().fill().left().padLeft(20).padRight(20);
-		
-		container.row();
-		container.add(scroll).expand().fill();
-		stage.setKeyboardFocus(scroll);
-		stage.setScrollFocus(scroll);
-		}
-	};
 
 	@Override
 	public void dispose() {

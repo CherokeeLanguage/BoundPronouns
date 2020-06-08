@@ -55,7 +55,45 @@ public abstract class NewCardDialog extends Dialog {
 
 	private TextButton speak;
 
-	public NewCardDialog(BoundPronouns game, Skin skin) {
+	protected Runnable playAudio = new Runnable() {
+		@Override
+		public void run() {
+			speak.setDisabled(true);
+			speak.setTouchable(Touchable.disabled);
+			final FileHandle audioFile = game.audioFiles.get(pronounce);
+			if (audioFile == null) {
+				Gdx.app.log(this.getClass().getName(), "NO AUDIO FILE MATCHES: " + pronounce);
+				return;
+			}
+			final Music newMusic = Gdx.audio.newMusic(audioFile);
+			newMusic.setOnCompletionListener(musicDispose);
+			newMusic.play();
+		}
+	};
+
+	protected OnCompletionListener musicDispose = new OnCompletionListener() {
+		@Override
+		public void onCompletion(final Music music) {
+			speak.setDisabled(false);
+			speak.setTouchable(Touchable.enabled);
+			music.dispose();
+		}
+	};
+
+	private final TextButtonStyle answer_style;
+
+	private String pronounce = "";
+
+	protected Runnable runnableNoop = new Runnable() {
+		@Override
+		public void run() {
+			// Do nothing
+		}
+	};
+
+	private TextButton mute;
+
+	public NewCardDialog(final BoundPronouns game, final Skin skin) {
 		super("New Vocabulary", skin);
 
 		this.title = "New Vocabulary - Time Remaining: ";
@@ -76,21 +114,21 @@ public abstract class NewCardDialog extends Dialog {
 		answer.setDisabled(true);
 		answer.setTouchable(Touchable.disabled);
 
-		TextButtonStyle answerStyle = new TextButtonStyle(answer.getStyle());
+		final TextButtonStyle answerStyle = new TextButtonStyle(answer.getStyle());
 		answerStyle.font = game.getFont(Font.SerifSmall);
 		answer.setStyle(answerStyle);
 		answer.align(Align.bottom);
 
-		Table ctable = getContentTable();
+		final Table ctable = getContentTable();
 		ctable.row();
 		ctable.row();
 		ctable.add(answer).fill().expand();
 
-		Cell<Table> tcell = getCell(getContentTable());
+		final Cell<Table> tcell = getCell(getContentTable());
 		tcell.expand();
 		tcell.fill();
 
-		Cell<Table> bcell = getCell(getButtonTable());
+		final Cell<Table> bcell = getCell(getButtonTable());
 		bcell.expandX();
 		bcell.fillX().bottom();
 
@@ -98,38 +136,41 @@ public abstract class NewCardDialog extends Dialog {
 		add(appNavBar = new Table(skin)).left().expandX().bottom();
 		appNavBar.defaults().space(6);
 
-		TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		final TextButtonStyle navStyle = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		navStyle.font = game.getFont(Font.SerifMedium);
-		TextButton exit = new TextButton("Exit", navStyle);
+		final TextButton exit = new TextButton("Exit", navStyle);
 		appNavBar.row();
 		appNavBar.add(exit).left().expandX();
 
 		exit.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer,
+					final int button) {
 				showMainMenu();
 				return true;
 			}
 		});
-		
+
 		mute = new TextButton("Unmute", navStyle);
-		Cell<TextButton> c = appNavBar.add(mute).left().fillX();
-		float tmp = c.getPrefWidth();
+		final Cell<TextButton> c = appNavBar.add(mute).left().fillX();
+		final float tmp = c.getPrefWidth();
 		c.width(tmp);
 		mute.setText("Mute");
 		mute.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer,
+					final int button) {
 				settings.muted = !settings.muted;
 				updateMuteButtonText();
 				return true;
 			}
 		});
-		
+
 		speak = new TextButton("Speak", navStyle);
 		speak.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(final InputEvent event, final float x, final float y, final int pointer,
+					final int button) {
 				if (!speak.isDisabled()) {
 					Gdx.app.postRunnable(playAudio);
 				}
@@ -138,12 +179,12 @@ public abstract class NewCardDialog extends Dialog {
 		});
 		appNavBar.add(speak).left().expandX();
 
-		Table btable = getButtonTable();
+		final Table btable = getButtonTable();
 		btable.clearChildren();
 		btable.row();
-		TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
+		final TextButtonStyle tbs_check = new TextButtonStyle(skin.get("default", TextButtonStyle.class));
 		tbs_check.font = game.getFont(Font.SerifMedium);
-		TextButton a = new TextButton("TAP HERE WHEN READY!", tbs_check);
+		final TextButton a = new TextButton("TAP HERE WHEN READY!", tbs_check);
 		btable.add(a).fill().expandX().bottom();
 		setObject(a, null);
 
@@ -151,40 +192,15 @@ public abstract class NewCardDialog extends Dialog {
 		answer_style.font = game.getFont(Font.SerifMedium);
 	}
 
-	protected Runnable playAudio = new Runnable() {
-		@Override
-		public void run() {
-			speak.setDisabled(true);
-			speak.setTouchable(Touchable.disabled);
-			FileHandle audioFile = game.audioFiles.get(pronounce);
-			if (audioFile == null) {
-				Gdx.app.log(this.getClass().getName(), "NO AUDIO FILE MATCHES: " + pronounce);
-				return;
-			}
-			Music newMusic = Gdx.audio.newMusic(audioFile);
-			newMusic.setOnCompletionListener(musicDispose);
-			newMusic.play();
-		}
-	};
-
-	protected OnCompletionListener musicDispose = new OnCompletionListener() {
-		@Override
-		public void onCompletion(Music music) {
-			speak.setDisabled(false);
-			speak.setTouchable(Touchable.enabled);
-			music.dispose();
-		}
-	};
-
 	@Override
-	public void act(float delta) {
+	public void act(final float delta) {
 		super.act(delta);
 	}
 
 	private TiledDrawable getDialogBackground() {
-		Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
-		TextureRegion region = new TextureRegion(texture);
-		TiledDrawable background = new TiledDrawable(region);
+		final Texture texture = game.manager.get(BoundPronouns.IMG_MAYAN, Texture.class);
+		final TextureRegion region = new TextureRegion(texture);
+		final TiledDrawable background = new TiledDrawable(region);
 		background.setMinHeight(0);
 		background.setMinWidth(0);
 		background.setTopHeight(game.getFont(Font.SerifLarge).getCapHeight() + 20);
@@ -196,14 +212,21 @@ public abstract class NewCardDialog extends Dialog {
 		super.hide(null);
 	}
 
-	private final TextButtonStyle answer_style;
+	private String removexmarks(@SuppressWarnings("hiding") String answer) {
+		answer = answer.replace("xHe", "He");
+		answer = answer.replace("xShe", "She");
+		answer = answer.replace("xhe", "he");
+		answer = answer.replace("xshe", "she");
+		return answer;
+	}
 
-	protected void setAnswers(Card the_card) {
-		Table ctable = getContentTable();
+	protected void setAnswers(final Card the_card) {
+		final Table ctable = getContentTable();
 		boolean odd = true;
-		List<String> answers = new ArrayList<>(the_card.answer);
+		final List<String> answers = new ArrayList<>(the_card.answer);
 		Collections.sort(answers);
-		for (@SuppressWarnings("hiding") String answer : answers) {
+		for (@SuppressWarnings("hiding")
+		String answer : answers) {
 			answer = removexmarks(answer);
 			if (odd) {
 				ctable.row();
@@ -213,7 +236,7 @@ public abstract class NewCardDialog extends Dialog {
 			a.setColor(Color.WHITE);
 			a.setTouchable(Touchable.disabled);
 			a.setDisabled(true);
-			Value percentWidth = Value.percentWidth(.49f, ctable);
+			final Value percentWidth = Value.percentWidth(.49f, ctable);
 			ctable.add(a).fillX().width(percentWidth).pad(0).space(0);
 			odd = !odd;
 		}
@@ -223,18 +246,16 @@ public abstract class NewCardDialog extends Dialog {
 			a.setColor(Color.WHITE);
 			a.setTouchable(Touchable.disabled);
 			a.setDisabled(true);
-			Value percentWidth = Value.percentWidth(.49f, ctable);
+			final Value percentWidth = Value.percentWidth(.49f, ctable);
 			ctable.add(a).fillX().width(percentWidth).pad(0).space(0);
 		}
 		ctable.row();
 	}
 
-	private String pronounce = "";
-
-	public void setCard(Card the_card) {
+	public void setCard(final Card the_card) {
 		String syllabary = "";
 		String latin = "";
-		Iterator<String> i = the_card.challenge.iterator();
+		final Iterator<String> i = the_card.challenge.iterator();
 		if (i.hasNext()) {
 			syllabary = i.next();
 		}
@@ -242,8 +263,8 @@ public abstract class NewCardDialog extends Dialog {
 			latin = i.next();
 			pronounce = latin;
 		}
-		
-		boolean stripPronunciationMarks=false;
+
+		boolean stripPronunciationMarks = false;
 		if (settings.display.equals(SlotInfo.DisplayMode.NONE)) {
 			latin = "";
 			syllabary = "";
@@ -265,34 +286,35 @@ public abstract class NewCardDialog extends Dialog {
 		if (settings.display.equals(SlotInfo.DisplayMode.BOTH_NP)) {
 			stripPronunciationMarks = true;
 		}
-		
+
 		if (stripPronunciationMarks) {
 			syllabary = syllabary.replace(BoundPronouns.UNDERDOT, "");
 			syllabary = syllabary.replace(BoundPronouns.UNDERX, "");
 			syllabary = syllabary.replaceAll("[¹²³⁴]", "");
-			
+
 			latin = latin.replace(BoundPronouns.UNDERDOT, "");
 			latin = latin.replace(BoundPronouns.UNDERX, "");
 			latin = latin.replaceAll("[¹²³⁴]", "");
-			for (String[] px: new String[][] {{"ạ", "a"}, {"ẹ", "e"}, {"ị", "i"}, {"ọ", "o"}, {"ụ", "u"}, {"ṿ", "v"}}) {
+			for (final String[] px : new String[][] { { "ạ", "a" }, { "ẹ", "e" }, { "ị", "i" }, { "ọ", "o" },
+					{ "ụ", "u" }, { "ṿ", "v" } }) {
 				latin = latin.replace(px[0], px[1]);
 				latin = latin.replace(px[0].toUpperCase(), px[1].toUpperCase());
 			}
 		}
 
-		Table ctable = getContentTable();
+		final Table ctable = getContentTable();
 		ctable.clearChildren();
 		ctable.row();
 
-		TextButtonStyle chr_san_large = new TextButtonStyle(skin.get(TextButtonStyle.class));
+		final TextButtonStyle chr_san_large = new TextButtonStyle(skin.get(TextButtonStyle.class));
 		chr_san_large.font = game.getFont(Font.SerifXLarge);
 
-		TextButton challenge_top = new TextButton("", chr_san_large);
+		final TextButton challenge_top = new TextButton("", chr_san_large);
 		challenge_top.setDisabled(true);
 		challenge_top.setTouchable(Touchable.disabled);
 		challenge_top.clearChildren();
 
-		Cell<TextButton> challenge = ctable.add(challenge_top).fill().expand().align(Align.center);
+		final Cell<TextButton> challenge = ctable.add(challenge_top).fill().expand().align(Align.center);
 		if (the_card.answer.size() != 1) {
 			challenge.colspan(2);
 		}
@@ -329,30 +351,15 @@ public abstract class NewCardDialog extends Dialog {
 		setAnswers(the_card);
 	}
 
-	private String removexmarks(@SuppressWarnings("hiding") String answer) {
-		answer = answer.replace("xHe", "He");
-		answer = answer.replace("xShe", "She");
-		answer = answer.replace("xhe", "he");
-		answer = answer.replace("xshe", "she");
-		return answer;
-	}
-
-	public void setTimeRemaining(float seconds) {
-		int min = MathUtils.floor(seconds / 60f);
-		int sec = MathUtils.floor(seconds - min * 60f);
+	public void setTimeRemaining(final float seconds) {
+		final int min = MathUtils.floor(seconds / 60f);
+		final int sec = MathUtils.floor(seconds - min * 60f);
 		getTitleLabel().setText(title + " " + min + ":" + (sec < 10 ? "0" + sec : sec));
 		getTitleLabel().setAlignment(Align.center);
 	}
 
-	protected Runnable runnableNoop = new Runnable() {
-		@Override
-		public void run() {
-			//Do nothing
-		}
-	};
-
 	@Override
-	public Dialog show(Stage stage) {
+	public Dialog show(final Stage stage) {
 		RunnableAction audio;
 		if (settings.muted) {
 			speak.setDisabled(false);
@@ -367,8 +374,7 @@ public abstract class NewCardDialog extends Dialog {
 	}
 
 	protected abstract void showMainMenu();
-	
-	private TextButton mute;
+
 	public void updateMuteButtonText() {
 		mute.setText(settings.muted ? "Unmute" : "Mute");
 	}

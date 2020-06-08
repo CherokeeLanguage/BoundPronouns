@@ -18,12 +18,53 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class JsonConverter {
 	final protected ObjectMapper mapper;
 
-	
-
 	public JsonConverter() {
 		mapper = new ObjectMapper();
 		init();
 	}
+
+	public <T> T fromJson(final Class<T> classOfT, final FileHandle fhandle) {
+		return fromJson(fhandle.file(), classOfT);
+	}
+
+//	private String toJson(Object object) {
+//		ObjectWriter writer;
+//		writer = mapper.writer();
+//		try {
+//			return writer.writeValueAsString(object);
+//		} catch (JsonProcessingException e) {
+//			return null;
+//		}
+//	}
+
+	private <T> T fromJson(final File src, final Class<T> classOfT) {
+		if (src == null || !src.isFile() || !src.canRead()) {
+			return null;
+		}
+		ObjectReader reader;
+		reader = mapper.reader(classOfT);
+		try {
+			return reader.readValue(src);
+		} catch (final JsonProcessingException e) {
+		} catch (final IOException e) {
+		}
+		return null;
+	}
+
+//	private <T> T fromJson(String json, Class<T> classOfT) {
+//		if (json == null)
+//			return null;
+//		T result = null;
+//		ObjectReader reader;
+//		reader = mapper.reader(classOfT);
+//		try {
+//			result = reader.readValue(json);
+//		} catch (JsonProcessingException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//		}
+//		return result;
+//	}
 
 	protected void init() {
 		mapper.getVisibilityChecker().withFieldVisibility(Visibility.ANY);
@@ -56,60 +97,17 @@ public class JsonConverter {
 		mapper.disable(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY);
 	}
 
-//	private String toJson(Object object) {
-//		ObjectWriter writer;
-//		writer = mapper.writer();
-//		try {
-//			return writer.writeValueAsString(object);
-//		} catch (JsonProcessingException e) {
-//			return null;
-//		}
-//	}
-
-	private void toJson(File dest, Object object) {
+	private void toJson(final File dest, final Object object) {
 		ObjectWriter writer;
 		writer = mapper.writer();
 		try {
 			writer.writeValue(dest, object);
-		} catch (JsonProcessingException e) {
-		} catch (IOException e) {
+		} catch (final JsonProcessingException e) {
+		} catch (final IOException e) {
 		}
 	}
 
-//	private <T> T fromJson(String json, Class<T> classOfT) {
-//		if (json == null)
-//			return null;
-//		T result = null;
-//		ObjectReader reader;
-//		reader = mapper.reader(classOfT);
-//		try {
-//			result = reader.readValue(json);
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//		}
-//		return result;
-//	}
-
-	private <T> T fromJson(File src, Class<T> classOfT) {
-		if (src == null || !src.isFile() || !src.canRead()) {
-			return null;
-		}
-		ObjectReader reader;
-		reader = mapper.reader(classOfT);
-		try {
-			return reader.readValue(src);
-		} catch (JsonProcessingException e) {
-		} catch (IOException e) {
-		}
-		return null;
-	}
-
-	public void toJson(Object object, FileHandle fhandle) {
+	public void toJson(final Object object, final FileHandle fhandle) {
 		toJson(fhandle.file(), object);
-	}
-
-	public <T> T fromJson(Class<T> classOfT, FileHandle fhandle) {
-		return fromJson(fhandle.file(), classOfT);
 	}
 }

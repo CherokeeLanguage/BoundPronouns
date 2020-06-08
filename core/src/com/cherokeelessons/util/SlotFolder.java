@@ -6,38 +6,16 @@ import com.badlogic.gdx.files.FileHandle;
 import com.cherokeelessons.bp.BoundPronouns;
 
 public class SlotFolder {
-	
+
 	public static final String base = "BoundPronouns";
-	
-	public static void migrate(){
-		Preferences prefs = BoundPronouns.getPrefs();
-		String key = "migrate-" + base;
-		if (prefs.getBoolean(key, false)) {
-			Gdx.app.log("Migrate", "Marked as already migrated.");
-			return;
-		}
-		FileHandle lpath = Gdx.files.local(base);
-		if (lpath.exists() && !lpath.isDirectory()) {
-			lpath.deleteDirectory();
-		}
-		FileHandle epath = Gdx.files.external(base);
-		if (epath.file().getAbsolutePath().equals(lpath.file().getAbsolutePath())) {
-			return;
-		}
-		if (epath.child("slots").child("0").isDirectory()) {
-			Gdx.app.log("Migrate", "Moving: "+epath.file().getAbsolutePath()+" to "+lpath.file().getAbsolutePath());
-			lpath.deleteDirectory();
-			epath.moveTo(lpath);
-			Gdx.app.log("Migrate", "Done.");
-		}
-		prefs.remove(key);
-		prefs.putBoolean(key, true);
-		prefs.flush();
+
+	public static FileHandle getDeckSlot() {
+		return getFolder("deck");
 	}
-	
-	public static FileHandle getFolder(String child) {
+
+	public static FileHandle getFolder(final String child) {
 		final FileHandle p0;
-		String path0 = base + "/slots";
+		final String path0 = base + "/slots";
 		switch (Gdx.app.getType()) {
 		case Android:
 			p0 = Gdx.files.local(path0);
@@ -63,8 +41,31 @@ public class SlotFolder {
 		p0.child(child).mkdirs();
 		return p0.child(child);
 	}
-	
-	public static FileHandle getDeckSlot() {
-		return getFolder("deck");
+
+	public static void migrate() {
+		final Preferences prefs = BoundPronouns.getPrefs();
+		final String key = "migrate-" + base;
+		if (prefs.getBoolean(key, false)) {
+			Gdx.app.log("Migrate", "Marked as already migrated.");
+			return;
+		}
+		final FileHandle lpath = Gdx.files.local(base);
+		if (lpath.exists() && !lpath.isDirectory()) {
+			lpath.deleteDirectory();
+		}
+		final FileHandle epath = Gdx.files.external(base);
+		if (epath.file().getAbsolutePath().equals(lpath.file().getAbsolutePath())) {
+			return;
+		}
+		if (epath.child("slots").child("0").isDirectory()) {
+			Gdx.app.log("Migrate",
+					"Moving: " + epath.file().getAbsolutePath() + " to " + lpath.file().getAbsolutePath());
+			lpath.deleteDirectory();
+			epath.moveTo(lpath);
+			Gdx.app.log("Migrate", "Done.");
+		}
+		prefs.remove(key);
+		prefs.putBoolean(key, true);
+		prefs.flush();
 	}
 }

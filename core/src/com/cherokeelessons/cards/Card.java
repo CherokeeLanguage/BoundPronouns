@@ -13,65 +13,65 @@ public class Card implements Serializable, Comparable<Card> {
 	private static final boolean debug = false;
 	public int id;
 
-	public List<String> challenge = new ArrayList<String>();
-	public List<String> answer = new ArrayList<String>();
+	public List<String> challenge = new ArrayList<>();
+	public List<String> answer = new ArrayList<>();
 	public String key;
 	public String pgroup;
 	public String vgroup;
 	public boolean reversed;
 
 	private int vset;
-	public int getVset() {
-		return vset;
-	}
-
-	public void setVset(int vset) {
-		this.vset = vset;
-	}
-
-	public int getPset() {
-		return pset;
-	}
-
-	public void setPset(int pset) {
-		this.pset = pset;
-	}
-
 	private int pset;
-	
+
 	public Card() {
 	}
 
-	public Card(Card card) {
+	public Card(final Card card) {
 		this.answer.addAll(card.answer);
 		this.challenge.addAll(card.challenge);
 		this.id = card.id;
 		this.key = card.key;
 		this.pgroup = card.pgroup;
 		this.vgroup = card.vgroup;
-		this.pset=card.pset;
-		this.vset=card.vset;
+		this.pset = card.pset;
+		this.vset = card.vset;
 	}
 
 	@Override
-	public int compareTo(Card o) {
+	public int compareTo(final Card o) {
 		return sortKey().compareTo(o.sortKey());
 	}
 
+	public int getPset() {
+		return pset;
+	}
+
+	public int getVset() {
+		return vset;
+	}
+
+	public void setPset(final int pset) {
+		this.pset = pset;
+	}
+
+	public void setVset(final int vset) {
+		this.vset = vset;
+	}
+
 	private String sortKey() {
-		StringBuilder sortKey = new StringBuilder();
-		
-		if (vgroup==null||vgroup.length()==0){
+		final StringBuilder sortKey = new StringBuilder();
+
+		if (vgroup == null || vgroup.length() == 0) {
 			sortKey.append("0-");
 		} else {
 			sortKey.append("1-");
 		}
-		
-		sortKey.append(StringUtils.leftPad(pset+"", 4, "0"));
+
+		sortKey.append(StringUtils.leftPad(pset + "", 4, "0"));
 		sortKey.append("-");
-		sortKey.append(StringUtils.leftPad(vset+"", 4, "0"));
+		sortKey.append(StringUtils.leftPad(vset + "", 4, "0"));
 		sortKey.append("-");
-		
+
 		if (challenge.size() != 0) {
 			String tmp = challenge.get(0);
 			tmp = tmp.replaceAll("[¹²³⁴ɂ" + BoundPronouns.SPECIALS + "]", "");
@@ -79,17 +79,17 @@ public class Card implements Serializable, Comparable<Card> {
 			if (tmp.matches(".*[Ꭰ-Ᏼ].*")) {
 				tmp = tmp.replaceAll("[^Ꭰ-Ᏼ]", "");
 			}
-			String length = StringUtils.leftPad(tmp.length() + "", 4, "0");
+			final String length = StringUtils.leftPad(tmp.length() + "", 4, "0");
 			sortKey.append(length);
 			sortKey.append("+");
 			sortKey.append(tmp);
 			sortKey.append("+");
 		}
-		for (String s : challenge) {
+		for (final String s : challenge) {
 			sortKey.append(s);
 			sortKey.append("+");
 		}
-		for (String s : answer) {
+		for (final String s : answer) {
 			sortKey.append(s);
 			sortKey.append("+");
 		}

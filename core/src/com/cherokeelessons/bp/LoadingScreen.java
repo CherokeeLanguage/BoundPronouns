@@ -20,7 +20,9 @@ public class LoadingScreen implements Screen {
 	private Image loadingBar = null;
 	private final Table table;
 
-	public LoadingScreen(BoundPronouns boundPronouns) {
+	private Music howl;
+
+	public LoadingScreen(final BoundPronouns boundPronouns) {
 		Gdx.app.log("Screen: ", this.getClass().getSimpleName());
 		this.game = boundPronouns;
 		stage = new Stage();
@@ -28,83 +30,6 @@ public class LoadingScreen implements Screen {
 		table = new Table();
 		stage.addActor(table);
 		table.setFillParent(true);
-	}
-
-	@Override
-	public void show() {
-		switch (Gdx.app.getType()) {
-		case Android:
-		case iOS:
-			SlotFolder.migrate();
-			break;
-		case Applet:
-		case Desktop:
-		case HeadlessDesktop:
-		case WebGL:
-		default:
-		}
-	}
-
-	private Music howl;
-
-	@Override
-	public void render(float delta) {
-		stage.act();
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.draw();
-		if (game.manager.update())
-			nextscreen: {
-				if (howl != null && !Gdx.input.isTouched() && howl.isPlaying()) {
-					break nextscreen;
-				}
-				game.setScreen(new BuildDeckScreen(game, null));
-				dispose();
-				return;
-			}
-		if (doHowl) {
-			if (howl == null && game.manager.isLoaded(BoundPronouns.SND_COYOTE)) {
-				howl = game.manager.get(BoundPronouns.SND_COYOTE, Music.class);
-				howl.setLooping(false);
-				howl.setVolume(1f);
-				howl.play();
-			}
-		}
-		if (!game.manager.isLoaded(BoundPronouns.IMG_LOADING)) {
-			return;
-		}
-		if (loadingBar == null) {
-			Gdx.app.log(this.getClass().getName(), "Loading Bar");
-			Texture texture = game.manager.get(BoundPronouns.IMG_LOADING,
-					Texture.class);
-			if (texture == null) {
-				Gdx.app.log(this.getClass().getName(),
-						"Failed loading 'Loading Bar' image!");
-			}
-			loadingBar = new Image(texture);
-			table.add(loadingBar).align(Align.center).expand();
-			loadingBar.setColor(Color.RED);
-		}
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
-		stage.getViewport().update(width, height);
-	}
-
-	@Override
-	public void pause() {
-		//Do nothing
-	}
-
-	@Override
-	public void resume() {
-		//Do nothing
-	}
-
-	@Override
-	public void hide() {
-		//Do nothing
 	}
 
 	@Override
@@ -128,5 +53,79 @@ public class LoadingScreen implements Screen {
 				game.manager.unload(BoundPronouns.IMG_LOADING);
 			}
 		});
+	}
+
+	@Override
+	public void hide() {
+		// Do nothing
+	}
+
+	@Override
+	public void pause() {
+		// Do nothing
+	}
+
+	@Override
+	public void render(final float delta) {
+		stage.act();
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		stage.draw();
+		if (game.manager.update()) {
+			nextscreen: {
+				if (howl != null && !Gdx.input.isTouched() && howl.isPlaying()) {
+					break nextscreen;
+				}
+				game.setScreen(new BuildDeckScreen(game, null));
+				dispose();
+				return;
+			}
+		}
+		if (doHowl) {
+			if (howl == null && game.manager.isLoaded(BoundPronouns.SND_COYOTE)) {
+				howl = game.manager.get(BoundPronouns.SND_COYOTE, Music.class);
+				howl.setLooping(false);
+				howl.setVolume(1f);
+				howl.play();
+			}
+		}
+		if (!game.manager.isLoaded(BoundPronouns.IMG_LOADING)) {
+			return;
+		}
+		if (loadingBar == null) {
+			Gdx.app.log(this.getClass().getName(), "Loading Bar");
+			final Texture texture = game.manager.get(BoundPronouns.IMG_LOADING, Texture.class);
+			if (texture == null) {
+				Gdx.app.log(this.getClass().getName(), "Failed loading 'Loading Bar' image!");
+			}
+			loadingBar = new Image(texture);
+			table.add(loadingBar).align(Align.center).expand();
+			loadingBar.setColor(Color.RED);
+		}
+	}
+
+	@Override
+	public void resize(final int width, final int height) {
+		stage.setViewport(BoundPronouns.getFitViewport(stage.getCamera()));
+		stage.getViewport().update(width, height);
+	}
+
+	@Override
+	public void resume() {
+		// Do nothing
+	}
+
+	@Override
+	public void show() {
+		switch (Gdx.app.getType()) {
+		case Android:
+		case iOS:
+			SlotFolder.migrate();
+			break;
+		case Applet:
+		case Desktop:
+		case HeadlessDesktop:
+		case WebGL:
+		default:
+		}
 	}
 }
