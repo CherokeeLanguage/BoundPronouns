@@ -1,3 +1,13 @@
+3.19
+
+Pronunciation fix for prefix ᎦᏥ- (I+them-animate). The master entry in the pronouns table was missing a tone mark.
+
+3.18
+
+Adjust master deck sorting so that challenges are no longer grouped by bound pronoun or verb. Each new challenge introduced and added to your active cards should now be a different bound pronoun.
+Does not change the ordering of cards already active in a session slot which are soley ordered based on your accuracy with correct answers and last show time.
+If you haven't gotten very far (<100 cards active), it is strongly recommended to delete your session and start over.
+
 3.17
 
 Indicate how many total cards are in the deck.

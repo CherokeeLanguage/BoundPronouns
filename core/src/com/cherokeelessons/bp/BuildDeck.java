@@ -31,7 +31,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean FORCE_REBUILD = false;
 
-	public static final int DECK_VERSION = 91;
+	public static final int DECK_VERSION = 95;
 	private final JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
 	private final List<String[]> challenges = new ArrayList<>();
