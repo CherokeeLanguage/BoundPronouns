@@ -58,7 +58,7 @@ public class Card implements Serializable, Comparable<Card> {
 		this.vset = vset;
 	}
 
-	private String sortKey() {
+	public String sortKey() {
 		final StringBuilder sortKey = new StringBuilder();
 
 		if (vgroup == null || vgroup.length() == 0) {

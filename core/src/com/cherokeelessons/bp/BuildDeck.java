@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean FORCE_REBUILD = false;
 
-	public static final int DECK_VERSION = 95;
+	public static final int DECK_VERSION = 98;
 	private final JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
 	private final List<String[]> challenges = new ArrayList<>();
@@ -46,48 +47,60 @@ public class BuildDeck implements Runnable {
 	private final Runnable done;
 	private final FileHandle dest;
 	private final FileHandle forEspeak;
+	private final FileHandle checkSheet;
+	private String asFilename(String challenge) {
+		challenge = challenge.replace("ɂ", "-");
+		
+		challenge = challenge.replace("¹", "1");
+		challenge = challenge.replace("²", "2");
+		challenge = challenge.replace("³", "3");
+		challenge = challenge.replace("⁴", "4");
+		
+		challenge = challenge.replace("a", "aa");
+		challenge = challenge.replace("e", "ee");
+		challenge = challenge.replace("i", "ii");
+		challenge = challenge.replace("o", "oo");
+		challenge = challenge.replace("u", "uu");
+		challenge = challenge.replace("v", "vv");
+		
+		challenge = challenge.replace("ạ", "a");
+		challenge = challenge.replace("ẹ", "e");
+		challenge = challenge.replace("ị", "i");
+		challenge = challenge.replace("ọ", "o");
+		challenge = challenge.replace("ụ", "u");
+		challenge = challenge.replace("ṿ", "v");
+		
+		challenge = challenge.replaceAll("(?i)[^a-z1234\\-]", "");
+		
+		challenge = challenge.replaceAll("([cdghjklmnstwy])([aeiouv])([aeiouv])([cdghjklmnstwy\\-])", "$1$2$4");
+		challenge = challenge.replaceAll("^(.*)([aeiouv])([aeiouv])([1234]+)?$", "$1$2$4");
+		
+		return challenge;
+	}
+	
+	private String asPlainSyllabary(String syllabary) {
+		syllabary = syllabary.replace(BoundPronouns.UNDERDOT, "");
+		syllabary = syllabary.replace(BoundPronouns.UNDERX, "");
+		syllabary = syllabary.replaceAll("[¹²³⁴]", "");
+		return syllabary;
+	}
+	
 	public Runnable save = new Runnable() {
-		private String asFilename(String challenge) {
-			challenge = challenge.replace("ɂ", "-");
-
-			challenge = challenge.replace("¹", "1");
-			challenge = challenge.replace("²", "2");
-			challenge = challenge.replace("³", "3");
-			challenge = challenge.replace("⁴", "4");
-
-			challenge = challenge.replace("a", "aa");
-			challenge = challenge.replace("e", "ee");
-			challenge = challenge.replace("i", "ii");
-			challenge = challenge.replace("o", "oo");
-			challenge = challenge.replace("u", "uu");
-			challenge = challenge.replace("v", "vv");
-
-			challenge = challenge.replace("ạ", "a");
-			challenge = challenge.replace("ẹ", "e");
-			challenge = challenge.replace("ị", "i");
-			challenge = challenge.replace("ọ", "o");
-			challenge = challenge.replace("ụ", "u");
-			challenge = challenge.replace("ṿ", "v");
-
-			challenge = challenge.replaceAll("(?i)[^a-z1234\\-]", "");
-
-			challenge = challenge.replaceAll("([cdghjklmnstwy])([aeiouv])([aeiouv])([cdghjklmnstwy\\-])", "$1$2$4");
-			challenge = challenge.replaceAll("^(.*)([aeiouv])([aeiouv])([1234]+)?$", "$1$2$4");
-
-			return challenge;
-		}
-
-		private String asPlainSyllabary(String syllabary) {
-			syllabary = syllabary.replace(BoundPronouns.UNDERDOT, "");
-			syllabary = syllabary.replace(BoundPronouns.UNDERX, "");
-			syllabary = syllabary.replaceAll("[¹²³⁴]", "");
-			return syllabary;
-		}
-
+		
 		@Override
 		public void run() {
-			// presort deck
-			Collections.sort(deck.cards);
+			// presort deck by syllabary length, ascending
+			Collections.sort(deck.cards, new Comparator<Card>() {
+				@Override
+				public int compare(Card a, Card b) {
+					String c1 = a.challenge.get(0);
+					String c2 = b.challenge.get(0);
+					if (c1.length()!=c2.length()) {
+						return Integer.compare(c1.length(), c2.length());
+					}
+					return c1.compareToIgnoreCase(c2);
+				}
+			});
 			// assign sets based on order and pronoun + verb set combination
 			final Map<String, AtomicInteger> counts = new HashMap<>();
 			for (final Card card : deck.cards) {
@@ -116,8 +129,12 @@ public class BuildDeck implements Runnable {
 			if (forEspeak.exists()) {
 				forEspeak.delete();
 			}
+			if (checkSheet.exists()) {
+				checkSheet.delete();
+			}
 			final Set<String> already = new HashSet<>();
 			final StringBuilder sb = new StringBuilder();
+			final StringBuilder check = new StringBuilder();
 			for (final Card card : deck.cards) {
 				if (card.challenge.size() < 2) {
 					continue;
@@ -136,6 +153,25 @@ public class BuildDeck implements Runnable {
 				sb.append("\n");
 				forEspeak.writeString(sb.toString(), true, "UTF-8");
 				sb.setLength(0);
+				
+				check.append(card.getPset());
+				check.append("\t");
+				check.append(card.getVset());
+				check.append("\t");
+				check.append(syllabary);
+				check.append("\t");
+				check.append(challenge);
+				
+				for (int ix=0; ix<5; ix++) {
+					check.append("\t");
+					if (card.answer.size()>ix) {
+						check.append(card.answer.get(ix));
+					}
+				}
+				check.append("\n");
+				checkSheet.writeString(check.toString(), true, "UTF-8");
+				check.setLength(0);
+				
 				if (already.contains(challenge)) {
 					throw new RuntimeException("DUPLICATE CHALLENGE: " + challenge);
 				}
@@ -157,6 +193,7 @@ public class BuildDeck implements Runnable {
 		this.deck = game.deck;
 		dest = slot.child("deck.json");
 		forEspeak = slot.child("espeak.txt");
+		checkSheet = slot.child("review-sheet.tsv");
 	}
 
 	private void addChallengesToDeck() {
@@ -525,9 +562,6 @@ public class BuildDeck implements Runnable {
 				}
 
 				if (v_imp && !vtypes.contains("xwi")) {
-//					if (!isOnlyYou(subj, obj)) {
-//						addWiPrefix(d);
-//					}
 					if (!isIncludesYou(subj, obj)) {
 						addWiPrefix(d);
 					}
@@ -814,6 +848,48 @@ public class BuildDeck implements Runnable {
 			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
 			d.def = d.def.replaceAll("Let (.*?), we\\b", "Let us, $1,").intern();
 		}
+
+		/**
+		 * Final replacements on the replacements for more succinct English.
+		 */
+		d.def = d.def.replace("You all and I, we", "All of us");
+		d.def = d.def.replace("You one and I, we", "You one and I");
+		d.def = d.def.replace("He and I, we", "He and I");
+
+		d.def = d.def.replace("They and I, we", "They and I");
+
+		d.def = d.def.replace("us, you all and me,", "all of us");
+		d.def = d.def.replace("us, you all and me", "all of us");
+
+		d.def = d.def.replace("us, them and me,", "them and me");
+		d.def = d.def.replace("us, them and me", "them and me");
+
+		d.def = d.def.replace("us, you one and me,", "you one and me");
+		d.def = d.def.replace("us, you one and me", "you one and me");
+
+		d.def = d.def.replace("us, him and me,", "him and me");
+		d.def = d.def.replace("us, him and me", "him and me");
+
+		/**
+		 * Idiom fixup: (recognize => acquainted)
+		 */
+		if (!d.def.contains("often")) {
+			if (d.def.startsWith("Let")) {
+				d.def = d.def.replace("recognize each other", "become acquainted with each other");
+			}
+			if (d.def.startsWith("For")) {
+				d.def = d.def.replace("recognize each other", "become acquainted with each other");
+			}
+			d.def = d.def.replace("recognize each other", "are acquainted with each other");
+			if (d.def.contains(" and ")) {
+				d.def = d.def.replace("recognize them-animate", "are acquainted with them-animate");
+			}
+		}
+		/**
+		 * Replace "you one" with "you (1)" last.
+		 */
+		d.def = d.def.replace("you one", "you (1)");
+		d.def = d.def.replace("You one", "You (1)");
 	}
 
 	private void doSyllabaryConsonentVowelFixes(final DataSet d) {
@@ -1016,24 +1092,6 @@ public class BuildDeck implements Runnable {
 		}
 		subj = subj.toLowerCase();
 		return subj.matches(".*\\byou\\b.*");
-	}
-
-	@SuppressWarnings("unused")
-	private boolean isOnlyYou(String subj, final String obj) {
-		if (StringUtils.isBlank(subj)) {
-			subj = obj;
-		}
-		subj = subj.toLowerCase();
-		if (subj.equals("you one")) {
-			return true;
-		}
-		if (subj.equals("you two")) {
-			return true;
-		}
-		if (subj.equals("you all")) {
-			return true;
-		}
-		return false;
 	}
 
 	public boolean isPluralSubj(final String subj) {
