@@ -531,7 +531,7 @@ public class LearningSession extends ChildScreen {
 				challengeCardDialog.show(stage);
 
 				AnswerList tracked_answers;
-				if (rand.nextBoolean()) {
+				if (rand.nextInt(4)==0) {
 					tracked_answers = getAnswerSetsFor(activeCard, deckCard, game.deck);
 				} else {
 					tracked_answers = getAnswerSetsForBySimilarChallenge(activeCard, deckCard, game.deck);
@@ -660,7 +660,7 @@ public class LearningSession extends ChildScreen {
 
 	private static final int InitialDeckSize = 5;
 
-	private static final int maxAnswers = 4;
+	private static final int MAX_ANSWERS = 4;
 	private static final int maxCorrect = 4;
 
 	private static final long ONE_DAY_ms;
@@ -1276,14 +1276,14 @@ public class LearningSession extends ChildScreen {
 				already.add(deckCard.pgroup);
 				already.add(deckCard.vgroup);
 				already.add(wrong_answer);
-				if (answers.list.size() >= maxAnswers) {
+				if (answers.list.size() >= MAX_ANSWERS) {
 					break scanDeck;
 				}
 			}
 		}
 		Collections.sort(answers.list, byDistance);
-		if (answers.list.size() > maxAnswers) {
-			answers.list.subList(maxAnswers, answers.list.size()).clear();
+		if (answers.list.size() > MAX_ANSWERS) {
+			answers.list.subList(MAX_ANSWERS, answers.list.size()).clear();
 		}
 		Collections.shuffle(answers.list);
 		log.info("getAnswerSetsFor already set size: " + already.size());
@@ -1292,7 +1292,7 @@ public class LearningSession extends ChildScreen {
 
 	private AnswerList getAnswerSetsForBySimilarChallenge(final ActiveCard active, final Card card, final Deck deck) {
 		final AnswerList answers = new AnswerList();
-		final String challenge = card.challenge.get(0);
+		final String challenge = card.challenge.get(1);
 		/**
 		 * contains copies of used answers, vgroups, and pgroups to prevent duplicates
 		 */
@@ -1342,26 +1342,26 @@ public class LearningSession extends ChildScreen {
 		 * look for "similar" looking challenges
 		 */
 		final Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
+		scanDeck: for (int distance = 3; distance < 100; distance +=3) {
 			Collections.shuffle(tmp.cards);
-			for (final Card deckCard : tmp.cards) {
-				/*
-				 * make sure we have unique pronouns for each wrong answer
-				 */
-				if (already.contains(deckCard.pgroup)) {
-					continue;
-				}
+			for (final Card wrongCard : tmp.cards) {
 				/*
 				 * make sure we keep bare pronouns with bare pronouns and vice-versa
 				 */
-				if (StringUtils.isBlank(card.vgroup) != StringUtils.isBlank(deckCard.vgroup)) {
+				if (StringUtils.isBlank(card.vgroup) != StringUtils.isBlank(wrongCard.vgroup)) {
 					continue;
 				}
-				/*
-				 * keep verbs unique as well
-				 */
-				if (!StringUtils.isBlank(deckCard.vgroup)) {
-					if (already.contains(deckCard.vgroup)) {
+				if (!StringUtils.isBlank(card.vgroup)) {
+					/*
+					 * make sure we have unique pronouns for each wrong conjugated answer
+					 */
+					if (already.contains(wrongCard.pgroup)) {
+						continue;
+					}
+					/*
+					 * keep verbs unique as well
+					 */
+					if (already.contains(wrongCard.vgroup)) {
 						continue;
 					}
 				}
@@ -1369,32 +1369,42 @@ public class LearningSession extends ChildScreen {
 				 * if edit distance is close enough, add it, then add pgroup, vgroup and
 				 * selected answer to already used list
 				 */
-				final String tmp_challenge = deckCard.challenge.get(0);
-				if (already.contains(tmp_challenge)) {
+				final String wrongChallenge = wrongCard.challenge.get(1);
+				if (already.contains(wrongChallenge)) {
 					continue;
 				}
 				final int threshold = distance;
-				final int ldistance = GameUtils.getLevenshteinDistanceIgnoreCase(challenge, tmp_challenge, threshold);
+				final int ldistance = GameUtils.getLevenshteinDistanceIgnoreCase(challenge, wrongChallenge, threshold);
 				if (ldistance < 1) {
 					continue;
 				}
 				/*
 				 * select a random wrong answer
 				 */
-				final String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size()));
-				if (already.contains(wrong_answer)) {
+				final String wrongAnswer = wrongCard.answer.get(rand.nextInt(wrongCard.answer.size()));
+				if (already.contains(wrongAnswer)) {
 					continue;
 				}
-				already.add(wrong_answer);
-				answers.list.add(new Answer(false, wrong_answer, ldistance));
-				if (answers.list.size() >= maxAnswers) {
+				
+				if (!StringUtils.isBlank(wrongCard.vgroup)) {
+					already.add(wrongCard.vgroup);
+				}
+				if (!StringUtils.isBlank(wrongCard.pgroup)) {
+					already.add(wrongCard.pgroup);
+				}
+				
+				already.add(wrongChallenge);
+				already.add(wrongAnswer);
+				answers.list.add(new Answer(false, wrongAnswer, ldistance));
+//				answers.list.add(new Answer(false, wrongChallenge, ldistance));
+				if (answers.list.size() > MAX_ANSWERS) {
 					break scanDeck;
 				}
 			}
 		}
 		Collections.sort(answers.list, byDistance);
-		if (answers.list.size() > maxAnswers) {
-			answers.list.subList(maxAnswers, answers.list.size()).clear();
+		if (answers.list.size() > MAX_ANSWERS) {
+			answers.list.subList(MAX_ANSWERS, answers.list.size()).clear();
 		}
 		Collections.shuffle(answers.list);
 		return answers;
