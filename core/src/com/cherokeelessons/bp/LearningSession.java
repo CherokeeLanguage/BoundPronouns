@@ -531,11 +531,7 @@ public class LearningSession extends ChildScreen {
 				challengeCardDialog.show(stage);
 
 				AnswerList tracked_answers;
-				if (rand.nextInt(4)==0) {
-					tracked_answers = getAnswerSetsFor(activeCard, deckCard, game.deck);
-				} else {
-					tracked_answers = getAnswerSetsForBySimilarChallenge(activeCard, deckCard, game.deck);
-				}
+				tracked_answers = GameUtils.getAnswerSetsBySimilarChallenges(activeCard, deckCard, game.deck);
 				final AnswerList displayed_answers = new AnswerList(tracked_answers);
 				randomizeSexes(displayed_answers);
 				activeCard.tries_remaining--;
@@ -660,9 +656,6 @@ public class LearningSession extends ChildScreen {
 
 	private static final int InitialDeckSize = 5;
 
-	private static final int MAX_ANSWERS = 4;
-	private static final int maxCorrect = 4;
-
 	private static final long ONE_DAY_ms;
 	private static final long ONE_HOUR_ms;
 	private static final long ONE_MINUTE_ms;
@@ -677,30 +670,6 @@ public class LearningSession extends ChildScreen {
 	private final ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader();
 
 	private Sound buzzer;
-
-	/**
-	 * Sort answers by edit distance so the list can be trimmed to size easily. The
-	 * sort only considers edit distance and does not factor in actual String values
-	 * - this is intentional.
-	 */
-	private final Comparator<Answer> byDistance = new Comparator<Answer>() {
-		@Override
-		public int compare(final Answer o1, final Answer o2) {
-			if (o1.correct != o2.correct && o1.correct) {
-				return -1;
-			}
-			if (o2.correct) {
-				return 1;
-			}
-			if (o1.distance < o2.distance) {
-				return -1;
-			}
-			if (o1.distance > o2.distance) {
-				return 1;
-			}
-			return 0;
-		}
-	};
 
 	/**
 	 * How long this challenge has been displayed.
@@ -1176,239 +1145,7 @@ public class LearningSession extends ChildScreen {
 		}
 	}
 
-	private AnswerList getAnswerSetsFor(final ActiveCard active, final Card challengeCard, final Deck deck) {
-		final Set<String> already = new HashSet<>(16);
-		final AnswerList answers = new AnswerList();
-		/*
-		 * contains copies of used answers, vgroups, and pgroups to prevent duplicates
-		 */
-		already.add(challengeCard.pgroup);
-		already.add(challengeCard.vgroup);
-		/*
-		 * make sure all correct answers are in the "black list" for potential wrong
-		 * answers
-		 */
-		already.addAll(challengeCard.answer);
-
-		/*
-		 * for temporary manipulation of list data so we don't mess with master copies
-		 * in cards, etc.
-		 */
-		final List<String> tmp_correct = new ArrayList<>(16);
-		tmp_correct.addAll(challengeCard.answer);
-
-		/**
-		 * sort answers from least known to most known
-		 */
-		Collections.sort(tmp_correct, new Comparator<String>() {
-			@Override
-			public int compare(final String o1, final String o2) {
-				final Integer i1 = active.getCorrectInARowFor(o1);
-				final Integer i2 = active.getCorrectInARowFor(o2);
-//				i1 = i1 == null ? 0 : i1;
-//				i2 = i2 == null ? 0 : i2;
-				if (i1 < i2) {
-					return -1;
-				}
-				if (i1 > i2) {
-					return 1;
-				}
-				return o1.compareTo(o2);
-			}
-		});
-		final int r = rand.nextInt(tmp_correct.size()) + 1;
-		for (int i = 0; i < r && i < maxCorrect; i++) {
-			final String answer = tmp_correct.get(i);
-			answers.list.add(0, new Answer(true, answer, 0));
-		}
-
-		/*
-		 * look for "similar" looking answers by picking one random correct answer and
-		 * comparing to one random wrong answer per card in the master deck
-		 */
-		final Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 5; distance < 100; distance += 5) {
-			Collections.shuffle(tmp.cards);
-			for (final Card deckCard : tmp.cards) {
-				/*
-				 * make sure we have unique pronouns for each wrong answer
-				 */
-				if (already.contains(deckCard.pgroup)) {
-					continue;
-				}
-				/*
-				 * make sure we keep bare pronouns with bare pronouns and vice-versa
-				 */
-				if (StringUtils.isBlank(challengeCard.vgroup) != StringUtils.isBlank(deckCard.vgroup)) {
-					continue;
-				}
-				/*
-				 * keep verbs unique as well
-				 */
-				if (!StringUtils.isBlank(deckCard.vgroup)) {
-					if (already.contains(deckCard.vgroup)) {
-						continue;
-					}
-				}
-				/*
-				 * select a random correct answer
-				 */
-				final String correct_answer = challengeCard.answer.get(rand.nextInt(challengeCard.answer.size()))
-						.intern();
-				/*
-				 * select a random wrong answer
-				 */
-				final String wrong_answer = deckCard.answer.get(rand.nextInt(deckCard.answer.size())).intern();
-				if (already.contains(wrong_answer)) {
-					continue;
-				}
-				final int threshold = distance;
-				/*
-				 * if edit distance is close enough, add it, then add pgroup, vgroup and
-				 * selected answer to already used list otherwise go on and check next card
-				 */
-
-				final int ldistance = GameUtils.getLevenshteinDistanceIgnoreCase(correct_answer, wrong_answer, threshold);
-				if (ldistance < 1) {
-					continue;
-				}
-				answers.list.add(new Answer(false, wrong_answer, ldistance));
-				already.add(deckCard.pgroup);
-				already.add(deckCard.vgroup);
-				already.add(wrong_answer);
-				if (answers.list.size() >= MAX_ANSWERS) {
-					break scanDeck;
-				}
-			}
-		}
-		Collections.sort(answers.list, byDistance);
-		if (answers.list.size() > MAX_ANSWERS) {
-			answers.list.subList(MAX_ANSWERS, answers.list.size()).clear();
-		}
-		Collections.shuffle(answers.list);
-		log.info("getAnswerSetsFor already set size: " + already.size());
-		return answers;
-	}
-
-	private AnswerList getAnswerSetsForBySimilarChallenge(final ActiveCard active, final Card card, final Deck deck) {
-		final AnswerList answers = new AnswerList();
-		final String challenge = card.challenge.get(1);
-		/**
-		 * contains copies of used answers, vgroups, and pgroups to prevent duplicates
-		 */
-		final Set<String> already = new HashSet<>(16);
-		already.add(card.pgroup);
-		already.add(card.vgroup);
-		already.addAll(card.answer);
-		already.add(challenge);
-
-		/**
-		 * for temporary manipulation of list data so we don't mess with master copies
-		 * in cards, etc.
-		 */
-		final List<String> tmp_correct = new ArrayList<>(16);
-		tmp_correct.clear();
-		tmp_correct.addAll(card.answer);
-
-		/**
-		 * sort answers from least known to most known
-		 */
-		Collections.sort(tmp_correct, new Comparator<String>() {
-			@Override
-			public int compare(final String o1, final String o2) {
-				final Integer i1 = active.getCorrectInARowFor(o1);
-				final Integer i2 = active.getCorrectInARowFor(o2);
-//				i1 = (i1 == null) ? 0 : i1;
-//				i2 = (i2 == null) ? 0 : i2;
-				if (i1 < i2) {
-					return -1;
-				}
-				if (i1 > i2) {
-					return 1;
-				}
-				return o1.compareTo(o2);
-			}
-		});
-		/*
-		 * Add a random count of correct answers. Least known first.
-		 */
-		final int r = rand.nextInt(tmp_correct.size()) + 1;
-		for (int i = 0; i < r && i < maxCorrect; i++) {
-			final String answer = tmp_correct.get(i);
-			answers.list.add(0, new Answer(true, answer, 0));
-		}
-
-		/*
-		 * look for "similar" looking challenges
-		 */
-		final Deck tmp = new Deck(deck);
-		scanDeck: for (int distance = 3; distance < 100; distance +=3) {
-			Collections.shuffle(tmp.cards);
-			for (final Card wrongCard : tmp.cards) {
-				/*
-				 * make sure we keep bare pronouns with bare pronouns and vice-versa
-				 */
-				if (StringUtils.isBlank(card.vgroup) != StringUtils.isBlank(wrongCard.vgroup)) {
-					continue;
-				}
-				if (!StringUtils.isBlank(card.vgroup)) {
-					/*
-					 * make sure we have unique pronouns for each wrong conjugated answer
-					 */
-					if (already.contains(wrongCard.pgroup)) {
-						continue;
-					}
-					/*
-					 * keep verbs unique as well
-					 */
-					if (already.contains(wrongCard.vgroup)) {
-						continue;
-					}
-				}
-				/**
-				 * if edit distance is close enough, add it, then add pgroup, vgroup and
-				 * selected answer to already used list
-				 */
-				final String wrongChallenge = wrongCard.challenge.get(1);
-				if (already.contains(wrongChallenge)) {
-					continue;
-				}
-				final int threshold = distance;
-				final int ldistance = GameUtils.getLevenshteinDistanceIgnoreCase(challenge, wrongChallenge, threshold);
-				if (ldistance < 1) {
-					continue;
-				}
-				/*
-				 * select a random wrong answer
-				 */
-				final String wrongAnswer = wrongCard.answer.get(rand.nextInt(wrongCard.answer.size()));
-				if (already.contains(wrongAnswer)) {
-					continue;
-				}
-				
-				if (!StringUtils.isBlank(wrongCard.vgroup)) {
-					already.add(wrongCard.vgroup);
-				}
-				if (!StringUtils.isBlank(wrongCard.pgroup)) {
-					already.add(wrongCard.pgroup);
-				}
-				
-				already.add(wrongChallenge);
-				already.add(wrongAnswer);
-				answers.list.add(new Answer(false, wrongAnswer, ldistance));
-//				answers.list.add(new Answer(false, wrongChallenge, ldistance));
-				if (answers.list.size() > MAX_ANSWERS) {
-					break scanDeck;
-				}
-			}
-		}
-		Collections.sort(answers.list, byDistance);
-		if (answers.list.size() > MAX_ANSWERS) {
-			answers.list.subList(MAX_ANSWERS, answers.list.size()).clear();
-		}
-		Collections.shuffle(answers.list);
-		return answers;
-	}
+	
 
 	private Card getCardById(final String pgroup, final String vgroup) {
 		for (final Card card : game.deck.cards) {

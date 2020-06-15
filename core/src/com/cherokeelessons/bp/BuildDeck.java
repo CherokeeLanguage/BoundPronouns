@@ -32,7 +32,7 @@ public class BuildDeck implements Runnable {
 
 	private static final boolean FORCE_REBUILD = false;
 
-	public static final int DECK_VERSION = 98;
+	public static final int DECK_VERSION = 99;
 	private final JsonConverter json = new JsonConverter();
 	private List<String[]> pronouns = null;
 	private final List<String[]> challenges = new ArrayList<>();
@@ -875,15 +875,12 @@ public class BuildDeck implements Runnable {
 		 */
 		if (!d.def.contains("often")) {
 			if (d.def.startsWith("Let")) {
-				d.def = d.def.replace("recognize each other", "become acquainted with each other");
+				d.def = d.def.replace("recognize each other", "become acquainted");
 			}
 			if (d.def.startsWith("For")) {
-				d.def = d.def.replace("recognize each other", "become acquainted with each other");
+				d.def = d.def.replace("recognize each other", "become acquainted");
 			}
-			d.def = d.def.replace("recognize each other", "are acquainted with each other");
-			if (d.def.contains(" and ")) {
-				d.def = d.def.replace("recognize them-animate", "are acquainted with them-animate");
-			}
+			d.def = d.def.replace("recognize each other", "are acquainted");
 		}
 		/**
 		 * Replace "you one" with "you (1)" last.
