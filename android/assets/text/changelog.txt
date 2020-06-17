@@ -1,3 +1,8 @@
+3.22
+
+Switch to Brazilian Portuguese &~ instead of French V~ for "v" and "ṿ".
+Some adjustments for when to use become acquainted instead of recognize.
+
 3.21
 
 Update espeak.txt file.
