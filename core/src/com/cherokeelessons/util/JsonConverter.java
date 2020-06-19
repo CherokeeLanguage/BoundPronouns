@@ -37,7 +37,7 @@ public class JsonConverter {
 //		}
 //	}
 
-	private <T> T fromJson(final File src, final Class<T> classOfT) {
+	public <T> T fromJson(final File src, final Class<T> classOfT) {
 		if (src == null || !src.isFile() || !src.canRead()) {
 			return null;
 		}
@@ -97,13 +97,15 @@ public class JsonConverter {
 		mapper.disable(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY);
 	}
 
-	private void toJson(final File dest, final Object object) {
+	public void toJson(final File dest, final Object object) {
 		ObjectWriter writer;
 		writer = mapper.writer();
 		try {
 			writer.writeValue(dest, object);
 		} catch (final JsonProcessingException e) {
+			//ignore
 		} catch (final IOException e) {
+			//ignore
 		}
 	}
 
