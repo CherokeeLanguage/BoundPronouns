@@ -126,4 +126,11 @@ project(":core") {
         compile 'org.apache.commons:commons-lang3:3.1'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
     }
+    
+    compileJava.doLast {
+    	javaexec {
+    		classpath = sourceSets.main.runtimeClasspath
+    		main = "com.cherokeelessons.bp.build.BuildDeck"
+    	}
+    }
 }
