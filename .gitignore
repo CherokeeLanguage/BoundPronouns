@@ -41,7 +41,8 @@ tmp/
 
 .gradle
 gradle-app.setting
-build/
+/build/
+/*/build/
 
 ## OS Specific
 .DS_Store
