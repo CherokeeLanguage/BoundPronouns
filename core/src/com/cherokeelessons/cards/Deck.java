@@ -31,7 +31,7 @@ public class Deck {
 	 * Pimsleur staggered intervals (powers of 5) seconds as ms
 	 * 
 	 * @param correct_in_a_row
-	 * @return
+	 * @return How long until next show.
 	 */
 	public static long getNextInterval(int correct_in_a_row) {
 		if (correct_in_a_row < 0) {
@@ -47,7 +47,7 @@ public class Deck {
 	 * SM2 staggered intervals (powers of 1.7) days as ms
 	 * 
 	 * @param box
-	 * @return
+	 * @return How long before next show.
 	 */
 	public static long getNextSessionInterval(int box) {
 		if (box >= sm2_intervals.size()) {
@@ -72,4 +72,37 @@ public class Deck {
 		version = deck.version;
 		size = cards.size();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cards == null) ? 0 : cards.hashCode());
+		result = prime * result + size;
+		result = prime * result + version;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Deck other = (Deck) obj;
+		if (cards == null) {
+			if (other.cards != null)
+				return false;
+		} else if (!cards.equals(other.cards))
+			return false;
+		if (size != other.size)
+			return false;
+		if (version != other.version)
+			return false;
+		return true;
+	}
+	
+	
 }

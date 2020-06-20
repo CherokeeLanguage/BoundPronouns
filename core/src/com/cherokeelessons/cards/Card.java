@@ -99,6 +99,68 @@ public class Card implements Serializable, Comparable<Card> {
 		return sortKey.toString();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
+		result = prime * result + ((challenge == null) ? 0 : challenge.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((key == null) ? 0 : key.hashCode());
+		result = prime * result + ((pgroup == null) ? 0 : pgroup.hashCode());
+		result = prime * result + pset;
+		result = prime * result + (reversed ? 1231 : 1237);
+		result = prime * result + ((vgroup == null) ? 0 : vgroup.hashCode());
+		result = prime * result + vset;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Card other = (Card) obj;
+		if (answer == null) {
+			if (other.answer != null)
+				return false;
+		} else if (!answer.equals(other.answer))
+			return false;
+		if (challenge == null) {
+			if (other.challenge != null)
+				return false;
+		} else if (!challenge.equals(other.challenge))
+			return false;
+		if (id != other.id)
+			return false;
+		if (key == null) {
+			if (other.key != null)
+				return false;
+		} else if (!key.equals(other.key))
+			return false;
+		if (pgroup == null) {
+			if (other.pgroup != null)
+				return false;
+		} else if (!pgroup.equals(other.pgroup))
+			return false;
+		if (pset != other.pset)
+			return false;
+		if (reversed != other.reversed)
+			return false;
+		if (vgroup == null) {
+			if (other.vgroup != null)
+				return false;
+		} else if (!vgroup.equals(other.vgroup))
+			return false;
+		if (vset != other.vset)
+			return false;
+		return true;
+	}
+
+	
 	/**
 	 * id of card in main deck based on pgroup/vgroup combinations
 	 */

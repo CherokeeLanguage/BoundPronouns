@@ -29,8 +29,6 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck {
 
-	private static final boolean FORCE_REBUILD = false;
-
 	public static final int DECK_VERSION = 100;
 
 	public static void main(final String[] args) throws FileNotFoundException, IOException {
@@ -905,27 +903,20 @@ public class BuildDeck {
 		}
 	}
 
+	private Deck oldDeck;
+	
 	public void execute() throws FileNotFoundException, IOException {
-		if (FORCE_REBUILD) {
-			if (deckFile.exists()) {
-				deckFile.delete();
-			}
-		}
 		if (deckFile.exists()) {
 			try {
-				deck = json.fromJson(deckFile, Deck.class);
+				oldDeck = json.fromJson(deckFile, Deck.class);
 			} catch (final Exception e) {
-				deck = new Deck();
+				oldDeck = new Deck();
 			}
-			if (deck.version == DECK_VERSION) {
-				System.out.println(deck.cards.size() + " cards in pre-existing deck.");
-				return;
-			}
-			deckFile.delete();
 		} else {
-			deck = new Deck();
+			oldDeck = new Deck();
 		}
-
+		deck = new Deck();
+		
 		loadPronouns();
 
 		final Iterator<String[]> ipronoun = pronouns.iterator();
@@ -1111,17 +1102,26 @@ public class BuildDeck {
 		for (int i = 0; i < deck.cards.size(); i++) {
 			deck.cards.get(i).id = i + 1;
 		}
+		
 		deck.version = DECK_VERSION;
-		System.out.println(deck.cards.size() + " cards in deck to save.");
 		deck.size = deck.cards.size();
-		json.toJson(deckFile, deck);
+		
+		/*
+		 * Only rewrite deck file if the master deck has changed.
+		 */
+		if (!deck.equals(oldDeck)) {
+			System.out.println(deck.cards.size() + " cards in deck to save.");
+			json.toJson(deckFile, deck);
+		}
 
 		if (forEspeak.exists()) {
 			forEspeak.delete();
 		}
+		
 		if (checkSheet.exists()) {
 			checkSheet.delete();
 		}
+		
 		final Set<String> already = new HashSet<>();
 		final StringBuilder sb = new StringBuilder();
 		final StringBuilder check = new StringBuilder();
@@ -1161,7 +1161,7 @@ public class BuildDeck {
 				}
 			}
 			check.append("\n");
-			appendText(checkSheet, sb.toString());
+			appendText(checkSheet, check.toString());
 			check.setLength(0);
 
 			if (already.contains(challenge)) {
