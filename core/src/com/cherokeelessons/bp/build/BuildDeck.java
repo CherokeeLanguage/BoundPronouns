@@ -64,7 +64,6 @@ public class BuildDeck {
 		final Iterator<String[]> ichallenge = challenges.iterator();
 		while (ichallenge.hasNext()) {
 			final String[] challenge = ichallenge.next();
-			ichallenge.remove();
 			vtypes.clear();
 			vtypes.addAll(Arrays.asList(challenge[0].split(",\\s*")));
 
@@ -903,18 +902,17 @@ public class BuildDeck {
 		}
 	}
 
-	private Deck oldDeck;
+	private Deck oldDeck=null;
 	
 	public void execute() throws FileNotFoundException, IOException {
 		if (deckFile.exists()) {
 			try {
 				oldDeck = json.fromJson(deckFile, Deck.class);
 			} catch (final Exception e) {
-				oldDeck = new Deck();
+				//ignore
 			}
-		} else {
-			oldDeck = new Deck();
 		}
+		
 		deck = new Deck();
 		
 		loadPronouns();
@@ -922,7 +920,6 @@ public class BuildDeck {
 		final Iterator<String[]> ipronoun = pronouns.iterator();
 		while (ipronoun.hasNext()) {
 			final String[] pronounRecord = ipronoun.next();
-			ipronoun.remove();
 			String chr = pronounRecord[1];
 			String latin = pronounRecord[2];
 			/*

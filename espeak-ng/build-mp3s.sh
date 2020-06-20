@@ -49,7 +49,7 @@ function dospeak_chr {
 
 rebuildEspeak
 
-file="espeak.txt"
+file="../android/assets/espeak.txt"
 
 cat "$file" | while read line; do
     echo "'${line}'"
@@ -64,7 +64,7 @@ bash "$ff"
 rm "$ff"
 
 for mp3 in mp3/*; do 
-    normalize-audio -a 8dbe "$mp3"
+    normalize-audio --peak "$mp3"
 done
 
 exit 0
