@@ -1,3 +1,7 @@
+3.23
+
+Switch to using pre-conjugated master deck. Boost volume on audio files to max.
+
 3.22
 
 Switch to Brazilian Portuguese &~ instead of French V~ for "v" and "ṿ".
