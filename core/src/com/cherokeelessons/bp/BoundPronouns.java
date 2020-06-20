@@ -38,7 +38,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoa
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.cherokeelessons.bp.BuildDeck.DataSet;
+import com.cherokeelessons.bp.build.DataSet;
 import com.cherokeelessons.cards.Deck;
 
 public class BoundPronouns extends Game {

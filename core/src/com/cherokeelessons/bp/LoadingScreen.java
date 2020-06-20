@@ -10,11 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.cherokeelessons.cards.Deck;
+import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.SlotFolder;
 
 public class LoadingScreen implements Screen {
 
-	private static final boolean doHowl = true;
+	private static final boolean HOWL = true;
 	private final BoundPronouns game;
 	private final Stage stage;
 	private Image loadingBar = null;
@@ -64,6 +66,8 @@ public class LoadingScreen implements Screen {
 	public void pause() {
 		// Do nothing
 	}
+	
+	private final JsonConverter json = new JsonConverter();
 
 	@Override
 	public void render(final float delta) {
@@ -75,12 +79,17 @@ public class LoadingScreen implements Screen {
 				if (howl != null && !Gdx.input.isTouched() && howl.isPlaying()) {
 					break nextscreen;
 				}
-				game.setScreen(new BuildDeckScreen(game, null));
+				Deck tmpDeck = json.fromJson(Deck.class, Gdx.files.internal("deck.json"));
+				game.deck.cards.clear();
+				game.deck.cards.addAll(tmpDeck.cards);
+				game.deck.size = tmpDeck.size;
+				game.deck.version = tmpDeck.version;
+				game.setScreen(new MainScreen(game));
 				dispose();
 				return;
 			}
 		}
-		if (doHowl) {
+		if (HOWL) {
 			if (howl == null && game.manager.isLoaded(BoundPronouns.SND_COYOTE)) {
 				howl = game.manager.get(BoundPronouns.SND_COYOTE, Music.class);
 				howl.setLooping(false);

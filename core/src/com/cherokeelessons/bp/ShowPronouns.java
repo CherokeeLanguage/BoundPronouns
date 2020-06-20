@@ -24,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.cherokeelessons.bp.BoundPronouns.Font;
-import com.cherokeelessons.bp.BuildDeck.DataSet;
+import com.cherokeelessons.bp.build.DataSet;
 
 public class ShowPronouns extends ChildScreen {
 

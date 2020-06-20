@@ -47,12 +47,12 @@ public class BuildDeck {
 
 	private String status = "";
 
-	private final File dest;
+	private final File deckFile;
 	private final File forEspeak;
 	private final File checkSheet;
 
 	public BuildDeck(final File assetsFolder) {
-		dest = new File(assetsFolder, "deck.json");
+		deckFile = new File(assetsFolder, "deck.json");
 		forEspeak = new File(assetsFolder, "espeak.txt");
 		checkSheet = new File(assetsFolder, "review-sheet.tsv");
 	}
@@ -907,13 +907,13 @@ public class BuildDeck {
 
 	public void execute() throws FileNotFoundException, IOException {
 		if (FORCE_REBUILD) {
-			if (dest.exists()) {
-				dest.delete();
+			if (deckFile.exists()) {
+				deckFile.delete();
 			}
 		}
-		if (dest.exists()) {
+		if (deckFile.exists()) {
 			try {
-				deck = json.fromJson(dest, Deck.class);
+				deck = json.fromJson(deckFile, Deck.class);
 			} catch (final Exception e) {
 				deck = new Deck();
 			}
@@ -921,7 +921,7 @@ public class BuildDeck {
 				System.out.println(deck.cards.size() + " cards in pre-existing deck.");
 				return;
 			}
-			dest.delete();
+			deckFile.delete();
 		} else {
 			deck = new Deck();
 		}
@@ -1114,7 +1114,7 @@ public class BuildDeck {
 		deck.version = DECK_VERSION;
 		System.out.println(deck.cards.size() + " cards in deck to save.");
 		deck.size = deck.cards.size();
-		json.toJson(dest, deck);
+		json.toJson(deckFile, deck);
 
 		if (forEspeak.exists()) {
 			forEspeak.delete();
