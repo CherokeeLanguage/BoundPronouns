@@ -63,13 +63,19 @@ public class LearningSession extends ChildScreen {
 		@Override
 		public void run() {
 			log.info("Loading Active Deck ...");
-			if (!slot.child(ActiveDeckJson).exists()) {
-				json.toJson(new ActiveDeck(), slot.child(ActiveDeckJson));
+			if (!slot.child(ACTIVE_DECK_JSON).exists()) {
+				json.toJson(new ActiveDeck(), slot.child(ACTIVE_DECK_JSON));
 			}
-			final ActiveDeck tmp = json.fromJson(ActiveDeck.class, slot.child(ActiveDeckJson));
-			current_due.deck = tmp.deck;
-			current_due.lastrun = tmp.lastrun;
-			Collections.sort(current_due.deck, byShowTime);
+			
+			try {
+				final ActiveDeck tmp = json.fromJson(ActiveDeck.class, slot.child(ACTIVE_DECK_JSON));
+				current_due.deck = tmp.deck;
+				current_due.lastrun = tmp.lastrun;
+				Collections.sort(current_due.deck, byShowTime);
+			} catch (Exception e) {
+				current_due.deck=new ActiveDeck().deck;
+				current_due.lastrun=0;
+			}
 
 			stage.addAction(Actions.run(processActiveCards));
 		}
@@ -80,7 +86,7 @@ public class LearningSession extends ChildScreen {
 		public void run() {
 			log.info("Loading Master Deck...");
 			stage.addAction(Actions.run(activeDeckLoader));
-			log.info("Loaded " + info.settings.deck.name() + " " + game.deck.cards.size() + " master cards.");
+			log.info("DeckMode=" + info.settings.deck.name() + ", Card count=" + game.deck.cards.size());
 		}
 	}
 
@@ -363,9 +369,9 @@ public class LearningSession extends ChildScreen {
 			bye.setModal(true);
 			bye.setFillParent(true);
 
-			FileHandle tmp = params.slot.child(ActiveDeckJson + ".tmp");
+			FileHandle tmp = params.slot.child(ACTIVE_DECK_JSON + ".tmp");
 			json.toJson(params.deck, tmp);
-			tmp.moveTo(params.slot.child(ActiveDeckJson));
+			tmp.moveTo(params.slot.child(ACTIVE_DECK_JSON));
 			tmp.delete();
 			tmp = params.slot.child(INFO_JSON + ".tmp");
 			json.toJson(info, tmp);
@@ -624,7 +630,7 @@ public class LearningSession extends ChildScreen {
 	// }
 	// }
 
-	public static final String ActiveDeckJson = "ActiveDeck.json";
+	public static final String ACTIVE_DECK_JSON = "ActiveDeck.json";
 
 	private static Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
 		@Override

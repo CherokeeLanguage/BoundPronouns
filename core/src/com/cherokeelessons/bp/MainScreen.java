@@ -257,7 +257,7 @@ public class MainScreen implements Screen, InputProcessor {
 					json.toJson(info, infoFile);
 				}
 				if (!info.updatedVersion()) {
-					final FileHandle activeDeckFile = p0.child(LearningSession.ActiveDeckJson);
+					final FileHandle activeDeckFile = p0.child(LearningSession.ACTIVE_DECK_JSON);
 					ActiveDeck activeDeck = null;
 					if (activeDeckFile.exists()) {
 						activeDeck = json.fromJson(ActiveDeck.class, activeDeckFile);

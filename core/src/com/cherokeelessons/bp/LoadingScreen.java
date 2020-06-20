@@ -80,6 +80,9 @@ public class LoadingScreen implements Screen {
 					break nextscreen;
 				}
 				Deck tmpDeck = json.fromJson(Deck.class, Gdx.files.internal("deck.json"));
+				if (tmpDeck == null) {
+					throw new RuntimeException("CAN'T READ EMBEDDED DECK!");
+				}
 				game.deck.cards.clear();
 				game.deck.cards.addAll(tmpDeck.cards);
 				game.deck.size = tmpDeck.size;

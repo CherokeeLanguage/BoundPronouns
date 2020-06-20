@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.TimeZone;
 
+import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.files.FileHandle;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -24,7 +25,11 @@ public class JsonConverter {
 	}
 
 	public <T> T fromJson(final Class<T> classOfT, final FileHandle fhandle) {
-		return fromJson(fhandle.file(), classOfT);
+		File file = fhandle.file();
+		if (fhandle.type().equals(FileType.Internal) || file==null || !file.canRead()) {
+			return fromJson(fhandle.readString("UTF-8").intern(), classOfT);
+		}
+		return fromJson(file, classOfT);
 	}
 
 //	private String toJson(Object object) {
@@ -46,25 +51,28 @@ public class JsonConverter {
 		try {
 			return reader.readValue(src);
 		} catch (final JsonProcessingException e) {
+			e.printStackTrace();
 		} catch (final IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
-//	private <T> T fromJson(String json, Class<T> classOfT) {
-//		if (json == null)
-//			return null;
-//		T result = null;
-//		ObjectReader reader;
-//		reader = mapper.reader(classOfT);
-//		try {
-//			result = reader.readValue(json);
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//		}
-//		return result;
-//	}
+	private <T> T fromJson(String json, Class<T> classOfT) {
+		if (json == null)
+			return null;
+		T result = null;
+		ObjectReader reader;
+		reader = mapper.reader(classOfT);
+		try {
+			result = reader.readValue(json);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	protected void init() {
 		mapper.getVisibilityChecker().withFieldVisibility(Visibility.ANY);
