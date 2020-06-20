@@ -41,6 +41,7 @@ function dospeak_chr {
 
     echo "echo $txt" >> "$ff"
     echo "${HOME}/espeak-ng/bin/espeak-ng -a $vol -v chr -w \"$wav\" \"$txt\"" >> "$ff"
+    echo "normalize-audio \"$wav\"" >> "$ff"
     echo "ffmpeg -y -i \"$wav\" -codec:a libmp3lame -qscale:a 2 \"$mp3\" > /dev/null 2>&1" >> "$ff"
     echo "rm \"$wav\"" >> "$ff"
     echo >> "$ff"
@@ -62,9 +63,5 @@ done
 
 bash "$ff"
 rm "$ff"
-
-for mp3 in mp3/*; do 
-    normalize-audio --peak "$mp3"
-done
 
 exit 0
