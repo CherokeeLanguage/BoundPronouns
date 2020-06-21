@@ -1,3 +1,8 @@
+3.25
+
+Reduce cards needed for ᎢᏨ-, ᎢᏍᎩ-, ᎢᏍᏛ-, and ᏍᎩᏂ- by doing "a or b" forms in the English.
+Also updated English wording replacement to hopefully produce better English answer sets.
+
 3.24
 
 Fix for loading embedded master deck on android.
