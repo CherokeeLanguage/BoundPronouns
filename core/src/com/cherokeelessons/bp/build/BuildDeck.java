@@ -744,6 +744,19 @@ public class BuildDeck {
 		}
 
 		/**
+		 * Idiom fixup: (recognize => acquainted)
+		 */
+		if (!d.def.contains("often")) {
+			if (d.def.startsWith("Let")) {
+				d.def = d.def.replace("recognize each other", "become acquainted");
+			}
+			if (d.def.startsWith("For")) {
+				d.def = d.def.replace("recognize each other", "become acquainted");
+			}
+			d.def = d.def.replace("recognize each other", "are acquainted");
+		}
+		
+		/**
 		 * Final replacements on the replacements for more succinct English.
 		 */
 		d.def = d.def.replace("You all and I, we", "All of us");
@@ -763,24 +776,27 @@ public class BuildDeck {
 
 		d.def = d.def.replace("us, him and me,", "him and me");
 		d.def = d.def.replace("us, him and me", "him and me");
-
+		
 		/**
-		 * Idiom fixup: (recognize => acquainted)
+		 * English grammar fixes.
 		 */
-		if (!d.def.contains("often")) {
-			if (d.def.startsWith("Let")) {
-				d.def = d.def.replace("recognize each other", "become acquainted");
-			}
-			if (d.def.startsWith("For")) {
-				d.def = d.def.replace("recognize each other", "become acquainted");
-			}
-			d.def = d.def.replace("recognize each other", "are acquainted");
-		}
+		d.def = d.def.replace("Let we", "Let us");
+		d.def = d.def.replace("let we", "let us");
+		
 		/**
-		 * Replace "you one" with "you (1)" last.
+		 * Final replacements.
 		 */
+		d.def = d.def.replace("you one or you two", "you one or both");
+		d.def = d.def.replace("You one or you two", "You one or both");
+		
+		d.def = d.def.replace("you one or two", "you one or both");
+		d.def = d.def.replace("You one or two", "You one or both");
+		
 		d.def = d.def.replace("you one", "you (1)");
 		d.def = d.def.replace("You one", "You (1)");
+		
+		d.def = d.def.replace("you two", "you both");
+		d.def = d.def.replace("You two", "You both");
 	}
 
 	private void doSyllabaryConsonentVowelFixes(final DataSet d) {
@@ -1122,6 +1138,10 @@ public class BuildDeck {
 		final Set<String> already = new HashSet<>();
 		final StringBuilder sb = new StringBuilder();
 		final StringBuilder check = new StringBuilder();
+		int maxAnswers = 0;
+		for (final Card card : deck.cards) {
+			maxAnswers = Math.max(maxAnswers, card.answer.size());
+		}
 		for (final Card card : deck.cards) {
 			if (card.challenge.size() < 2) {
 				continue;
@@ -1151,7 +1171,7 @@ public class BuildDeck {
 			check.append("\t");
 			check.append(challenge);
 
-			for (int ix = 0; ix < 5; ix++) {
+			for (int ix = 0; ix < maxAnswers; ix++) {
 				check.append("\t");
 				if (card.answer.size() > ix) {
 					check.append(card.answer.get(ix));
