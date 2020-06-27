@@ -12,6 +12,8 @@ cd "$(dirname "$0")"
 SRC="mp3/"
 DEST="../android/assets/mp3-challenges/"
 
-rsync -a --delete-after --human-readable --progress --verbose "$SRC" "$DEST"
+echo " - Syncing android assets folder with any changed mp3s."
+
+rsync -a --delete-after --human-readable --progress "$SRC" "$DEST"
 
 exit 0

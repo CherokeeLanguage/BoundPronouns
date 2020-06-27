@@ -52,15 +52,15 @@ rebuildEspeak
 
 file="../android/assets/espeak.txt"
 
+echo " - generating wavs"
 cat "$file" | while read line; do
-    echo "'${line}'"
     syl="$(echo "$line" | cut -f 1)"
     chr="$(echo "$line" | cut -f 2)"
     filename="$(echo "$line" | cut -f 3)"
-
     dospeak_chr "$chr" "$mp3dir/$filename"
 done
 
+echo " - converting to mp3s"
 bash "$ff"
 rm "$ff"
 

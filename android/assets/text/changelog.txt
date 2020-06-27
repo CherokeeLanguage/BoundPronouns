@@ -1,3 +1,11 @@
+3.27
+
+Add missing audio files.
+
+3.26
+
+Fixes for the h/ɂ alternations in stems based on persons.
+
 3.25
 
 Reduce cards needed for ᎢᏨ-, ᎢᏍᎩ-, ᎢᏍᏛ-, and ᏍᎩᏂ- by doing "a or b" forms in the English.
