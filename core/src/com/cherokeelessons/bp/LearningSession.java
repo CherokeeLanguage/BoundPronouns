@@ -740,7 +740,6 @@ public class LearningSession extends ChildScreen {
 	private float notice_elapsed = 0f;
 	private float counter_elapsed = 0f;
 	private final ProcessActiveCards processActiveCards = new ProcessActiveCards();
-	private final Random rand = new Random();
 
 	private SaveActiveDeckWithDialog saveActiveDeckWithDialog;
 
