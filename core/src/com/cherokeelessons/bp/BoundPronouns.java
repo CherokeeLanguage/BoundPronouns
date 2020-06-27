@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
@@ -312,7 +313,7 @@ public class BoundPronouns extends Game {
 		manager = new AssetManager();
 		initManager();
 		setScreen(new LoadingScreen(this));
-		Gdx.input.setCatchBackKey(true);
+		Gdx.input.setCatchKey(Keys.BACK, true);
 	}
 
 	@Override
@@ -368,12 +369,11 @@ public class BoundPronouns extends Game {
 		for (int ix = 0; ix < 11; ix++) {
 			manager.load(levelImg(ix), Texture.class, param);
 		}
-
 		addFonts();
 	}
 
 	public void loadEspeakMap() {
-		final String text = Gdx.files.internal("text/espeak.txt").readString("UTF-8");
+		final String text = Gdx.files.internal("espeak.tsv").readString("UTF-8");
 		final String[] lines = text.split("\n");
 		for (final String line : lines) {
 			if (!line.contains("\t") || line.isEmpty()) {
