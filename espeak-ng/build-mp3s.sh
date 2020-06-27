@@ -39,20 +39,19 @@ function dospeak_chr {
     local mp3="$filename".mp3
     local wav="$filename".wav
 
-    echo "echo $txt" >> "$ff"
+    #echo "echo $txt" >> "$ff"
     echo "${HOME}/espeak-ng/bin/espeak-ng -a $vol -v chr -w \"$wav\" \"$txt\"" >> "$ff"
     echo "normalize-audio -q \"$wav\"" >> "$ff"
     echo "ffmpeg -y -i \"$wav\" -codec:a libmp3lame -qscale:a 2 \"$mp3\" > /dev/null 2>&1" >> "$ff"
     echo "rm \"$wav\"" >> "$ff"
     echo >> "$ff"
-
 }
 
 rebuildEspeak
 
 file="../android/assets/espeak.txt"
 
-echo " - generating wavs"
+echo " - generating ffmpeg script"
 cat "$file" | while read line; do
     syl="$(echo "$line" | cut -f 1)"
     chr="$(echo "$line" | cut -f 2)"
@@ -60,7 +59,7 @@ cat "$file" | while read line; do
     dospeak_chr "$chr" "$mp3dir/$filename"
 done
 
-echo " - converting to mp3s"
+echo " - generating wavs, normalizing, and converting to mp3s"
 bash "$ff"
 rm "$ff"
 
