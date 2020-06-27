@@ -1,6 +1,7 @@
 3.27
 
 Add missing audio files.
+Use "alveolar" version of "d" instead of "dental" version of "d" for espeak-ng generated audio.
 
 3.26
 

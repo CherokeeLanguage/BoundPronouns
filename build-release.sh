@@ -7,12 +7,15 @@ trap 'echo ERROR' ERR
 
 cd "$(dirname "$0")"
 
-#Always rebuild and resync audio.
+#Rebuild conjugations table for use by espeak-ng phase
+./gradlew clean || exit 1
+./gradlew core:build || exit 1 
 
+#Always rebuild and resync audio.
 bash ./espeak-ng/build-mp3s.sh
 bash ./espeak-ng/sync-mp3s.sh
 
-#Ensure the project can be built before doing anything else.
+#Ensure the project can be full built before doing anything else.
 ./gradlew clean || exit 1
 ./gradlew core:build || exit 1
 ./gradlew desktop:dist || exit 1
