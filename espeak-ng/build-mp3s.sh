@@ -49,7 +49,7 @@ function dospeak_chr {
 
 rebuildEspeak
 
-file="../android/assets/espeak.txt"
+file="../android/assets/espeak.tsv"
 
 echo " - generating ffmpeg script"
 cat "$file" | while read line; do
