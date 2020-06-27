@@ -1,17 +1,15 @@
 	#MULTI-FORMS								
-vta, alt	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	I¹jv²-, I¹jv²y-	I or we two	you all					
-vta, alt	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	I¹jv²-, I¹jv²y-	We all	you one					
-vta	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	I¹jv²-, I¹jv²y-	We all	you two or all					
+vta, alt	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	I¹jv²-, I¹jv²y-	I, we two, or we all	you all					
+vta, alt	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	I¹jv²-, I¹jv²y-	We all	you one, two					
 									
-vta	Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-	I¹sgi²-, I¹sgi²y-	You one or both	us all					
-vta	Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-	I¹sgi²-, I¹sgi²y-	You all	me or us					
+vta, alt	Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-	I¹sgi²-, I¹sgi²y-	You one, two, or all	us all					
+vta, alt	Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-	I¹sgi²-, I¹sgi²y-	You all	me					
 									
-vta, alt	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Sdv²-, Sdv²y-	I	you both					
+vta, alt	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Sdv²-, Sdv²y-	I	you two					
 vta, alt	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Sdv²-, Sdv²y-	We two	you one or you two					
 									
-vta, alt	ᏍᎩ̣²Ꮒ²-	Sgị²ni²-	You one	us two					
+vta, alt	ᏍᎩ̣²Ꮒ²-	Sgị²ni²-	You one or two	us two					
 vta, alt	ᏍᎩ̣²Ꮒ²-	Sgị²ni²-	You two	me					
-vta	ᏍᎩ̣²Ꮒ²-	Sgi²̣ni²-	You two	us two					
 									
 	#CED Order							#possessives	#reciprocal relationship
 	#R1								
@@ -20,18 +18,16 @@ vta, alt	Ꮵ²-, Ꮵ²Ꮿ͓-	Ji²-, Ji²y-	I	him
 vi, vti, alt	Ꮵ̣²-, Ꭶ͓-	Jị²-, G-	I	it	a			My	
 vi, vti	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	A¹gị²-, A¹gw-	I	it	b			My	
 									
-									
-vta	Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-	Gạ²ji²-, Gạ²ji²y-	I	them-animate					
+vta, alt	Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-	Gạ²ji²-, Gạ²ji²y-	I	them-animate					
 vti	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	De²jị²-, De²g-	I	them-inanimate	a	Ꮧ̣²Ꮵ̣²-, Ꮧ̣²Ꭶ͓-	Dị²jị²-, Dị²g-	My	
-vti	Ꮣ¹Ꭹ²-, Ꮣ¹Ꮖ͓-	Da¹gị²-, Da¹gw-	I	them-inanimate	b	Ꮧ̣¹Ꭹ̣²-, Ꮧ̣¹Ꮖ͓-	Dị¹gị²-, Dị¹gw-	My	
+vti, alt	Ꮣ¹Ꭹ²-, Ꮣ¹Ꮖ͓-	Da¹gị²-, Da¹gw-	I	them-inanimate	b	Ꮧ̣¹Ꭹ̣²-, Ꮧ̣¹Ꮖ͓-	Dị¹gị²-, Dị¹gw-	My	
 	#R2								
-vta, alt	ᏍᎩ̣²-, ᏍᏆ͓-	Sgị²-, Sgw-	You one	me					
+vta	ᏍᎩ̣²-, ᏍᏆ͓-	Sgị²-, Sgw-	You one	me					
 vta, alt	Ꭿ²-, Ꭿ²Ꮿ͓-	Hi²-, Hi²y-	You one	him					
 vi, vti	Ꭿ̣²-	Hị²-	You one	it	a			Your ones	
 vi, vti	Ꮳ̣²-	Jạ²-	You one	it	b			Your ones	
 									
-									
-vta	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Gạ²hi²-, Gạ²hi²y-	You one	them-animate					
+vta, alt	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Gạ²hi²-, Gạ²hi²y-	You one	them-animate					
 vti	Ꮥ²Ꭿ̣²-	De²hị²-	You one	them-inanimate	a	Ꮨ̣²-	tị²-	Your ones	
 vti	Ꮥ²Ꮳ̣²-	De²jạ²-	You one	them-inanimate	b	Ꮧ̣²Ꮳ̣²-	Dị²jạ²-	Your ones	
 	#R3								
@@ -55,17 +51,16 @@ vti	Ꮪ²-, Ꮪ²Ꮹ͓-	Du²-, Du²w-	He	them-inanimate	b	Ꮷ²-, Ꮷ²Ꮹ͓-	ju
 vta, alt	Ꭱ¹Ꮒ²-	E¹ni²-	You one and I, we	him					
 vi, vti	Ꭲ¹Ꮒ²-	I¹ni²-	You one and I, we	it	a			You one and I, our	
 vi, vti	Ꭹ̣²Ꮒ²-	Gị²ni²-	You one and I, we	it	b			You one and I, our	
-vta	Ꭸ²Ꮒ̣²-	Ge²ni²-	You one and I, we	them-animate					
+vta, alt	Ꭸ²Ꮒ̣²-	Ge²ni²-	You one and I, we	them-animate					
 vti	Ꮥ³Ꮒ̣²-	De³ni²-	You one and I, we	them-inanimate	a	Ꮧ̣³Ꮒ̣²-	Dị³ni²-	You one and I, our	
 vti	Ꮥ²Ꭹ̣²Ꮒ²-	De²gị²ni²-	You one and I, we	them-inanimate	b	Ꮧ̣²Ꭹ̣²Ꮒ²-	Dị²gị²ni²-	You one and I, our	
 	#R5								
 									
 vta, alt	Ꭳ¹ᏍᏗ²-	O¹sdi²-	He and I, we	him					
-vi, vti	Ꭳ¹ᏍᏗ²-	O²sdi²-	He and I, we	it	a			He and I, our	
+vi, vti	Ꭳ¹ᏍᏗ²-	O¹sdi²-	He and I, we	it	a			He and I, our	
 vi, vti	Ꭳ¹Ꭹ̣²Ꮒ²-	O¹gị²ni²-	He and I, we	it	b			He and I, our	
 									
-									
-vta	Ꭺ²ᏍᏗ²-	Go²sdi²-	He and I, we	them-animate					
+vta, alt	Ꭺ²ᏍᏗ²-	Go²sdi²-	He and I, we	them-animate					
 vti	Ꮩ¹ᏍᏗ²-	Do¹sdi²-	He and I, we	them-inanimate	a	Ꮶ¹ᏍᏗ²-	jo¹sdi²-	He and I, our	
 vti	Ꮩ¹Ꭹ̣²Ꮒ²-	Do¹gị²ni²-	He and I, we	them-inanimate	b	Ꮶ¹Ꭹ̣²Ꮒ²-	jo¹gị²ni²-	He and I, our	
 	#R6								
@@ -81,8 +76,7 @@ vta, alt	Ꭳ¹Ꮵ²-	O¹ji²-	They and I, we	him
 vi, vti	Ꭳ¹Ꮵ²-	O¹ji²-	They and I, we	it	a			They and I, our	
 vi, vti	Ꭳ¹Ꭹ²-	O¹gi²-	They and I, we	it	b			They and I, our	
 									
-									
-vta	Ꭺ²Ꮵ²-	Go²ji²-	They and I, we	them-animate					
+vta, alt	Ꭺ²Ꮵ²-	Go²ji²-	They and I, we	them-animate					
 vti	Ꮩ¹Ꮵ²-	Do¹ji²-	They and I, we	them-inanimate	a	Ꮶ¹Ꮵ²-	jo¹ji²-	They and I, our	
 vti	Ꮩ¹Ꭹ²-	Do¹gi²-	They and I, we	them-inanimate	b	Ꮶ¹Ꭹ²-	jo¹gi²-	They and I, our	
 	#R8								
@@ -90,16 +84,14 @@ vti	Ꮩ¹Ꭹ²-	Do¹gi²-	They and I, we	them-inanimate	b	Ꮶ¹Ꭹ²-	jo¹gi²-	
 vta, alt	Ꭱ¹ᏍᏗ²-	E¹sdi²-	You two	him					
 vi, vti	ᏍᏗ²-	Sdi²-	You two	it				Your twos	
 									
-									
-vta	Ꭸ²ᏍᏗ²-	Ge²sdi²-	You two	them-animate					
+vta, alt	Ꭸ²ᏍᏗ²-	Ge²sdi²-	You two	them-animate					
 vti	Ꮥ²ᏍᏗ²-	De²sdi²-	You two	them-inanimate		Ꮧ̣²ᏍᏗ²-	Dị²sdi²-	Your twos	
 	#R9								
 									
 vta, alt	Ꭱ¹Ꮵ²-	E¹ji²-	You all	him					
 vi, vti	Ꭲ¹Ꮵ²-	I¹ji²-	You all	it				Your alls	
 									
-									
-vta	Ꭸ²Ꮵ²-	Ge²ji²-	You all	them-animate					
+vta, alt	Ꭸ²Ꮵ²-	Ge²ji²-	You all	them-animate					
 vti	Ꮥ³Ꮵ̣²-	De³ji²-	You all	them-inanimate		Ꮧ̣²Ꮵ̣²-	Dị²ji²-	Your alls	
 	#R10								
 vta	Ꭼ²Ꭹ̣²-, Ꭼ²Ꮖ͓-	Gv²gi²-, Gv²gw-	They	me					
@@ -113,8 +105,8 @@ vta	Ꭸ²Ꭹ̣²Ꮒ²-	Ge²gị²ni²-	They	us, you one and me
 vta	Ꭺ²Ꭹ̣²Ꮒ²-	Go²gị²ni²-	They	us, him and me					
 vta	Ꭸ²Ꭹ²-	Ge²gi²-	They	us, you all and me					
 vta	Ꭺ²Ꭹ²-	Go²gi²-	They	us, them and me					
-vta	Ꭸ²ᏍᏗ²-	Ge²sdi²-	They	you two					
-vta	Ꭸ²Ꮵ²-	Ge²ji²-	They	you all					
+vta, alt	Ꭸ²ᏍᏗ²-	Ge²sdi²-	They	you two					
+vta, alt	Ꭸ³Ꮵ²-	Ge³ji²-	They	you all					
 vta	Ꮣ¹Ꮒ²-	Da¹ni²-	They	them-animate	a	Ꮧ̣²Ꮒ²-	dị²ni²-		
 vti	Ꮣ¹Ꮒ²-	Da¹ni²-	They	them-inanimate	a	Ꮧ̣²Ꮒ²-	dị²ni²-	Their	
 vta	Ꮪ¹Ꮒ²-	Du¹ni²-	They	them-animate	b	Ꮷ¹Ꮒ²-	ju¹ni²-		
