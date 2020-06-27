@@ -51,7 +51,7 @@ public class BuildDeck {
 
 	public BuildDeck(final File assetsFolder) {
 		deckFile = new File(assetsFolder, "deck.json");
-		forEspeak = new File(assetsFolder, "espeak.txt");
+		forEspeak = new File(assetsFolder, "espeak.tsv");
 		checkSheet = new File(assetsFolder, "review-sheet.tsv");
 	}
 
