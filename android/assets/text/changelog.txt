@@ -1,3 +1,15 @@
+3.30
+
+Fix issue with "bound pronouns" list screen caused by "csv" to "tsv" filename extension change.
+
+3.29
+
+Change minimum Android SDK requirements.
+
+3.28
+
+Change "csv" to "tsv" to correctly identify file contents for editing.
+
 3.27
 
 Add missing audio files.

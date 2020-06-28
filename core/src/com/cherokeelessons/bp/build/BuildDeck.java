@@ -1022,9 +1022,9 @@ public class BuildDeck {
 
 	private void loadPronouns() throws IOException {
 		pronouns = new ArrayList<>();
-		FileInputStream csv = new FileInputStream("../android/assets/csv/pronouns-list-tab.tsv");
+		FileInputStream tsv = new FileInputStream("../android/assets/tsv/pronouns-list-tab.tsv");
 
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(csv, Charset.forName("UTF-8")))) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(tsv, Charset.forName("UTF-8")))) {
 			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				final String[] copyOf = Arrays.copyOf(line.split("\t"), 9);
 				for (int i = 0; i < copyOf.length; i++) {
@@ -1054,8 +1054,8 @@ public class BuildDeck {
 				continue;
 			}
 		}
-		csv = new FileInputStream("../android/assets/csv/challenges-tab.tsv");
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(csv, Charset.forName("UTF-8")))) {
+		tsv = new FileInputStream("../android/assets/tsv/challenges-tab.tsv");
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(tsv, Charset.forName("UTF-8")))) {
 			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				final String[] copyOf = Arrays.copyOf(line.split("\t"), 9);
 				for (int i = 0; i < copyOf.length; i++) {

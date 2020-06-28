@@ -167,9 +167,9 @@ public class BoundPronouns extends Game {
 		if (pronouns.size() != 0) {
 			return new ArrayList<>(pronouns);
 		}
-		final FileHandle csvlist = Gdx.files.internal("csv/pronouns-list-tab.csv");
+		final FileHandle tsvlist = Gdx.files.internal("tsv/pronouns-list-tab.tsv");
 		final List<String[]> records = new ArrayList<>();
-		try (BufferedReader reader = csvlist.reader(1024, "UTF-8")) {
+		try (BufferedReader reader = tsvlist.reader(1024, "UTF-8")) {
 			for (String line = reader.readLine(); line != null; line = reader.readLine()) {
 				records.add(line.split("\t"));
 			}
@@ -181,6 +181,9 @@ public class BoundPronouns extends Game {
 		final Iterator<String[]> ipro = records.iterator();
 		while (ipro.hasNext()) {
 			final String[] pronoun = ipro.next();
+			if (pronoun==null || pronoun.length==0) {
+				continue;
+			}
 			final String vtmode = StringUtils.strip(pronoun[0]);
 			final String syllabary = StringUtils.strip(pronoun[1]);
 			if (StringUtils.isBlank(vtmode)) {
@@ -200,6 +203,9 @@ public class BoundPronouns extends Game {
 		String prevLatin = "";
 		String prevChr = "";
 		for (final String[] record : records) {
+			if (record==null || record.length==0) {
+				continue;
+			}
 			final String vtmode = record[0];
 			if (StringUtils.isBlank(vtmode)) {
 				continue;
