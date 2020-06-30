@@ -59,7 +59,9 @@ version=$(head -n1 version)
 version=$(($version + 1 ))
 xversion="${version:0:${#version}-2}.${version: -2}"
 
+echo "==================================="
 echo "BUILD RELEASE: $xversion ($version)"
+echo "-----------------------------------"
 
 sed -i "s/version = '.*'/version = '$xversion'/g" build.gradle
 sed -i "s/versionCode=\".*\"/versionCode=\"$version\"/g" android/AndroidManifest.xml
