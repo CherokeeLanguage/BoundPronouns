@@ -937,6 +937,7 @@ public class BuildDeck {
 		while (ipronoun.hasNext()) {
 			final String[] pronounRecord = ipronoun.next();
 			String chr = pronounRecord[1];
+			String pgroup = chr; // for the pgroup field, must be unchanged.
 			String latin = pronounRecord[2];
 			/*
 			 * Strip out "[" and "]" that are in the reflexive forms for pronoun card
@@ -972,7 +973,7 @@ public class BuildDeck {
 			Card c = getCardByChallenge(chr.toString(), deck);
 			if (c == null) {
 				c = new Card();
-				c.pgroup = chr;
+				c.pgroup = pgroup;
 				c.vgroup = "";
 				c.challenge.add(chr.toString());
 				c.challenge.add(latin.toString());
@@ -1087,8 +1088,16 @@ public class BuildDeck {
 		Collections.sort(deck.cards, new Comparator<Card>() {
 			@Override
 			public int compare(final Card a, final Card b) {
-				final String c1 = a.challenge.get(0);
-				final String c2 = b.challenge.get(0);
+				String c1 = a.challenge.get(0);
+				String v1 = a.vgroup.trim();
+				String c2 = b.challenge.get(0);
+				String v2 = b.vgroup.trim();
+				if (v1.isEmpty() != v2.isEmpty()) {
+					if (v1.isEmpty()) {
+						return -1;
+					}
+					return 1;
+				}
 				if (c1.length() != c2.length()) {
 					return Integer.compare(c1.length(), c2.length());
 				}
@@ -1106,8 +1115,10 @@ public class BuildDeck {
 			if (!counts.containsKey(vset)) {
 				counts.put(vset, new AtomicInteger());
 			}
-			card.setPset(counts.get(pset).incrementAndGet());
-			card.setVset(counts.get(vset).incrementAndGet());
+				card.setPset(counts.get(pset).incrementAndGet());
+			if (!vset.isEmpty()) {
+				card.setVset(counts.get(vset).incrementAndGet());
+			}
 		}
 		// resort deck
 		Collections.sort(deck.cards);
@@ -1135,6 +1146,8 @@ public class BuildDeck {
 			checkSheet.delete();
 		}
 		
+		appendText(checkSheet, "PSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
+		
 		final Set<String> already = new HashSet<>();
 		final StringBuilder sb = new StringBuilder();
 		final StringBuilder check = new StringBuilder();
@@ -1143,20 +1156,35 @@ public class BuildDeck {
 			maxAnswers = Math.max(maxAnswers, card.answer.size());
 		}
 		for (final Card card : deck.cards) {
-			if (card.challenge.size() < 2) {
-				continue;
+//			if (card.challenge.size() < 2) {
+//				continue;
+//			}
+			final String syllabary;
+			if (card.challenge.size()>0) {
+				syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
+			} else {
+				syllabary = "";
 			}
-			final String syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
-			final String challenge = StringUtils.defaultString(card.challenge.get(1));
-			if (challenge.trim().endsWith("-")) {
-				continue;
+			final String challenge;
+			if (card.challenge.size()>1) {
+				challenge = StringUtils.defaultString(card.challenge.get(1));
+			} else {
+				challenge = "";
 			}
+//			if (challenge.trim().endsWith("-")) {
+//				continue;
+//			}
 			sb.append(syllabary);
 			sb.append("\t");
 			sb.append(challenge);
 			sb.append("\t");
-			final String asFilename = asFilename(challenge);
-			sb.append(asFilename);
+			final String asFilename;
+			if (!challenge.isEmpty() && !challenge.endsWith("-")) {
+				asFilename = asFilename(challenge);
+				sb.append(asFilename);
+			} else {
+				asFilename="";
+			}
 			sb.append("\n");
 
 			appendText(forEspeak, sb.toString());
@@ -1166,6 +1194,10 @@ public class BuildDeck {
 			check.append(card.getPset());
 			check.append("\t");
 			check.append(card.getVset());
+			check.append("\t");
+			check.append(card.pgroup);
+			check.append("\t");
+			check.append(card.vgroup);
 			check.append("\t");
 			check.append(syllabary);
 			check.append("\t");
@@ -1181,11 +1213,11 @@ public class BuildDeck {
 			appendText(checkSheet, check.toString());
 			check.setLength(0);
 
-			if (already.contains(challenge)) {
+			if (!challenge.isEmpty() && already.contains(challenge)) {
 				throw new RuntimeException("DUPLICATE CHALLENGE: " + challenge);
 			}
 			already.add(challenge);
-			if (already.contains(asFilename)) {
+			if (!asFilename.isEmpty() && already.contains(asFilename)) {
 				throw new RuntimeException("DUPLICATE FILENAME: " + asFilename);
 			}
 			already.add(asFilename);

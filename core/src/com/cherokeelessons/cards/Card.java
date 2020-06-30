@@ -10,7 +10,7 @@ import com.cherokeelessons.bp.BoundPronouns;
 
 @SuppressWarnings("serial")
 public class Card implements Serializable, Comparable<Card> {
-	private static final boolean debug = false;
+	private static final boolean DEBUG = true;
 	public int id;
 
 	public List<String> challenge = new ArrayList<>();
@@ -61,12 +61,6 @@ public class Card implements Serializable, Comparable<Card> {
 	public String sortKey() {
 		final StringBuilder sortKey = new StringBuilder();
 
-		if (vgroup == null || vgroup.length() == 0) {
-			sortKey.append("0-");
-		} else {
-			sortKey.append("1-");
-		}
-
 		sortKey.append(StringUtils.leftPad(pset + "", 4, "0"));
 		sortKey.append("-");
 		sortKey.append(StringUtils.leftPad(vset + "", 4, "0"));
@@ -93,7 +87,7 @@ public class Card implements Serializable, Comparable<Card> {
 			sortKey.append(s);
 			sortKey.append("+");
 		}
-		if (debug) {
+		if (DEBUG) {
 			this.key = sortKey.toString();
 		}
 		return sortKey.toString();
