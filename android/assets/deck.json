@@ -1730,19 +1730,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 47
   }, {
-    "answer" : [ "For them and me to become acquainted" ],
-    "challenge" : [ "Ꮶ¹Ꭶ̣²Ꮩ²Ꮅ³ᏍᏗ", "jo¹gạ²da²do²hlị³sdi" ],
-    "id" : 174,
-    "key" : "0002-0047-0006+ᏦᎦᏙᎵᏍᏗ+Ꮶ¹Ꭶ̣²Ꮩ²Ꮅ³ᏍᏗ+jo¹gạ²da²do²hlị³sdi+For them and me to become acquainted+",
-    "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 47
-  }, {
     "answer" : [ "You (1) and I are being recognized" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮓ²Ꮅ¹Ꭶ", "e¹gị²no²li¹ga" ],
-    "id" : 175,
+    "id" : 174,
     "key" : "0002-0048-0005+ᎡᎩᏃᎵᎦ+Ꭱ¹Ꭹ̣²Ꮓ²Ꮅ¹Ꭶ+e¹gị²no²li¹ga+You (1) and I are being recognized+",
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
     "pset" : 2,
@@ -1752,7 +1742,7 @@
   }, {
     "answer" : [ "Let you (1) and me see ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "i¹nạ²da²go¹wah²ta" ],
-    "id" : 176,
+    "id" : 175,
     "key" : "0002-0048-0006+ᎢᎾᏓᎪᏩᏔ+Ꭲ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+i¹nạ²da²go¹wah²ta+Let you (1) and me see ourselves+",
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1760,19 +1750,9 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 48
   }, {
-    "answer" : [ "For them to become acquainted" ],
-    "challenge" : [ "Ꮷ¹Ꮎ̣²Ꮩ²Ꮅ³ᏍᏗ", "ju¹nạ²da²do²hlị³sdi" ],
-    "id" : 177,
-    "key" : "0002-0048-0006+ᏧᎾᏙᎵᏍᏗ+Ꮷ¹Ꮎ̣²Ꮩ²Ꮅ³ᏍᏗ+ju¹nạ²da²do²hlị³sdi+For them to become acquainted+",
-    "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 48
-  }, {
     "answer" : [ "Let all of us see ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "i¹dạ²da²go¹wah²ta" ],
-    "id" : 178,
+    "id" : 176,
     "key" : "0002-0049-0006+ᎢᏓᏓᎪᏩᏔ+Ꭲ¹Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+i¹dạ²da²go¹wah²ta+Let all of us see ourselves+",
     "pgroup" : "Ꭲ¹Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1782,7 +1762,7 @@
   }, {
     "answer" : [ "Let you all see yourselves" ],
     "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "i¹jạ²da²go¹wah²ta" ],
-    "id" : 179,
+    "id" : 177,
     "key" : "0002-0050-0006+ᎢᏣᏓᎪᏩᏔ+Ꭲ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+i¹jạ²da²go¹wah²ta+Let you all see yourselves+",
     "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1790,29 +1770,9 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 50
   }, {
-    "answer" : [ "For all of us to become acquainted" ],
-    "challenge" : [ "Ꮧ̣²Ꭶ̣²Ꮩ²Ꮅ³ᏍᏗ", "dị²gạ²da²do²hlị³sdi" ],
-    "id" : 180,
-    "key" : "0002-0050-0006+ᏗᎦᏙᎵᏍᏗ+Ꮧ̣²Ꭶ̣²Ꮩ²Ꮅ³ᏍᏗ+dị²gạ²da²do²hlị³sdi+For all of us to become acquainted+",
-    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 50
-  }, {
-    "answer" : [ "Let you (1) and me become acquainted" ],
-    "challenge" : [ "Ꮧ̣²Ꮎ̣²ᏙᎵ͓²Ꭹ", "dị²nạ²da²dohl²gi" ],
-    "id" : 181,
-    "key" : "0002-0051-0005+ᏗᎾᏙᎵᎩ+Ꮧ̣²Ꮎ̣²ᏙᎵ͓²Ꭹ+dị²nạ²da²dohl²gi+Let you (1) and me become acquainted+",
-    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 51
-  }, {
     "answer" : [ "I recognize myself" ],
     "challenge" : [ "Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "gạ²da²dohl²ga" ],
-    "id" : 182,
+    "id" : 178,
     "key" : "0002-0052-0005+ᎦᏓᏙᎵᎦ+Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭶ+gạ²da²dohl²ga+I recognize myself+",
     "pgroup" : "Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1820,19 +1780,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 52
   }, {
-    "answer" : [ "Let all of us become acquainted" ],
-    "challenge" : [ "Ꮧ̣²Ꮣ̣²ᏙᎵ͓²Ꭹ", "dị²dạ²da²dohl²gi" ],
-    "id" : 183,
-    "key" : "0002-0052-0005+ᏗᏓᏙᎵᎩ+Ꮧ̣²Ꮣ̣²ᏙᎵ͓²Ꭹ+dị²dạ²da²dohl²gi+Let all of us become acquainted+",
-    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 52
-  }, {
     "answer" : [ "I recognize them-animate" ],
     "challenge" : [ "Ꭶ̣²Ꮵ²Ᏺ²Ꮅ¹Ꭶ", "gạ²ji²yo²li¹ga" ],
-    "id" : 184,
+    "id" : 179,
     "key" : "0002-0053-0005+ᎦᏥᏲᎵᎦ+Ꭶ̣²Ꮵ²Ᏺ²Ꮅ¹Ꭶ+gạ²ji²yo²li¹ga+I recognize them-animate+",
     "pgroup" : "Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-",
     "pset" : 2,
@@ -1840,19 +1790,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 53
   }, {
-    "answer" : [ "Let you all become acquainted" ],
-    "challenge" : [ "Ꮧ̣²Ꮳ̣²ᏙᎵ͓²Ꭹ", "dị²jạ²da²dohl²gi" ],
-    "id" : 185,
-    "key" : "0002-0053-0005+ᏗᏣᏙᎵᎩ+Ꮧ̣²Ꮳ̣²ᏙᎵ͓²Ꭹ+dị²jạ²da²dohl²gi+Let you all become acquainted+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 53
-  }, {
     "answer" : [ "They recognize you (1) and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭶ", "ge²gị²nohl²ga" ],
-    "id" : 186,
+    "id" : 180,
     "key" : "0002-0054-0005+ᎨᎩᏃᎵᎦ+Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭶ+ge²gị²nohl²ga+They recognize you (1) and me+",
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
     "pset" : 2,
@@ -1862,7 +1802,7 @@
   }, {
     "answer" : [ "Let them and me want ourselves" ],
     "challenge" : [ "Ꮼ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ", "wo¹gạ²dạ²du²³la" ],
-    "id" : 187,
+    "id" : 181,
     "key" : "0002-0054-0005+ᏬᎦᏓᏚᎳ+Ꮼ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ+wo¹gạ²dạ²du²³la+Let them and me want ourselves+",
     "pgroup" : "Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1872,7 +1812,7 @@
   }, {
     "answer" : [ "They recognize him and me" ],
     "challenge" : [ "Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭶ", "go²gị²nohl²ga" ],
-    "id" : 188,
+    "id" : 182,
     "key" : "0002-0055-0005+ᎪᎩᏃᎵᎦ+Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭶ+go²gị²nohl²ga+They recognize him and me+",
     "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
     "pset" : 2,
@@ -1882,7 +1822,7 @@
   }, {
     "answer" : [ "Let them want themselves" ],
     "challenge" : [ "Ꮽ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "wu¹nạ²dạ²du²³la" ],
-    "id" : 189,
+    "id" : 183,
     "key" : "0002-0056-0005+ᏭᎾᏓᏚᎳ+Ꮽ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ+wu¹nạ²dạ²du²³la+Let them want themselves+",
     "pgroup" : "Ꭴ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1892,7 +1832,7 @@
   }, {
     "answer" : [ "Let you (1) and me want ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "gị²nạ²dạ²du²³la" ],
-    "id" : 190,
+    "id" : 184,
     "key" : "0002-0057-0005+ᎩᎾᏓᏚᎳ+Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ+gị²nạ²dạ²du²³la+Let you (1) and me want ourselves+",
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1902,7 +1842,7 @@
   }, {
     "answer" : [ "They recognize themselves" ],
     "challenge" : [ "Ꭰ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "a¹nạ²da²dohl²ga" ],
-    "id" : 191,
+    "id" : 185,
     "key" : "0002-0058-0006+ᎠᎾᏓᏙᎵᎦ+Ꭰ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ+a¹nạ²da²dohl²ga+They recognize themselves+",
     "pgroup" : "Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1910,29 +1850,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 58
   }, {
-    "answer" : [ "For him and me to become acquainted" ],
-    "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮩ²Ꮅ³ᏍᏗ", "jo¹gị²nạ²da²do²hlị³sdi" ],
-    "id" : 192,
-    "key" : "0002-0059-0007+ᏦᎩᎾᏙᎵᏍᏗ+Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮩ²Ꮅ³ᏍᏗ+jo¹gị²nạ²da²do²hlị³sdi+For him and me to become acquainted+",
-    "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 59
-  }, {
-    "answer" : [ "For you (1) and me to become acquainted" ],
-    "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮩ²Ꮅ³ᏍᏗ", "dị²gị²nạ²da²do²hlị³sdi" ],
-    "id" : 193,
-    "key" : "0002-0060-0007+ᏗᎩᎾᏙᎵᏍᏗ+Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮩ²Ꮅ³ᏍᏗ+dị²gị²nạ²da²do²hlị³sdi+For you (1) and me to become acquainted+",
-    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 2,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 60
-  }, {
     "answer" : [ "They and I recognize ourselves" ],
     "challenge" : [ "Ꭳ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "o¹jạ²da²dohl²ga" ],
-    "id" : 194,
+    "id" : 186,
     "key" : "0002-0062-0006+ᎣᏣᏓᏙᎵᎦ+Ꭳ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ+o¹jạ²da²dohl²ga+They and I recognize ourselves+",
     "pgroup" : "Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1940,9 +1860,19 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 62
   }, {
+    "answer" : [ "All of us saw each other a while ago" ],
+    "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de³gạ²da²go²hv²³ɂi" ],
+    "id" : 187,
+    "key" : "0002-0062-0006+ᏕᎦᏓᎪᎲᎢ+Ꮥ³Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de³gạ²da²go²hv²³ɂi+All of us saw each other a while ago+",
+    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 62
+  }, {
     "answer" : [ "They are acquainted" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "da¹nạ²da²dohl²ga" ],
-    "id" : 195,
+    "id" : 188,
     "key" : "0002-0063-0006+ᏓᎾᏓᏙᎵᎦ+Ꮣ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ+da¹nạ²da²dohl²ga+They are acquainted+",
     "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1950,19 +1880,59 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 63
   }, {
-    "answer" : [ "Let you both become acquainted" ],
-    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²ᏙᎵ͓²Ꭹ", "dị²sdạ²da²dohl²gi" ],
-    "id" : 196,
-    "key" : "0002-0063-0006+ᏗᏍᏓᏙᎵᎩ+Ꮧ̣²ᏍᏓ̣²ᏙᎵ͓²Ꭹ+dị²sdạ²da²dohl²gi+Let you both become acquainted+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "You (1) and I are acquainted" ],
+    "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³nạ²da²dohl²ga" ],
+    "id" : 189,
+    "key" : "0002-0064-0006+ᏕᎾᏓᏙᎵᎦ+Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de³nạ²da²dohl²ga+You (1) and I are acquainted+",
+    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 63
+    "vgroup" : "ᎣᎵ͓²Ꭶ",
+    "vset" : 64
+  }, {
+    "answer" : [ "They and I saw each other a while ago" ],
+    "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "do¹gạ²da²go²hv²³ɂi" ],
+    "id" : 190,
+    "key" : "0002-0064-0006+ᏙᎦᏓᎪᎲᎢ+Ꮩ¹Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+do¹gạ²da²go²hv²³ɂi+They and I saw each other a while ago+",
+    "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 64
+  }, {
+    "answer" : [ "All of us are acquainted" ],
+    "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³dạ²da²dohl²ga" ],
+    "id" : 191,
+    "key" : "0002-0065-0006+ᏕᏓᏓᏙᎵᎦ+Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de³dạ²da²dohl²ga+All of us are acquainted+",
+    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭶ",
+    "vset" : 65
+  }, {
+    "answer" : [ "You all are acquainted" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³jạ²da²dohl²ga" ],
+    "id" : 192,
+    "key" : "0002-0066-0006+ᏕᏣᏓᏙᎵᎦ+Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de³jạ²da²dohl²ga+You all are acquainted+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭶ",
+    "vset" : 66
+  }, {
+    "answer" : [ "They saw each other a while ago" ],
+    "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "du¹nạ²da²go²hv²³ɂi" ],
+    "id" : 193,
+    "key" : "0002-0066-0006+ᏚᎾᏓᎪᎲᎢ+Ꮪ¹Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+du¹nạ²da²go²hv²³ɂi+They saw each other a while ago+",
+    "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 66
   }, {
     "answer" : [ "They and I are acquainted" ],
     "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "do¹jạ²da²dohl²ga" ],
-    "id" : 197,
+    "id" : 194,
     "key" : "0002-0067-0006+ᏙᏣᏓᏙᎵᎦ+Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ+do¹jạ²da²dohl²ga+They and I are acquainted+",
     "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1972,7 +1942,7 @@
   }, {
     "answer" : [ "He and I recognize ourselves" ],
     "challenge" : [ "Ꭳ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "o¹sdạ²da²dohl²ga" ],
-    "id" : 198,
+    "id" : 195,
     "key" : "0002-0068-0007+ᎣᏍᏓᏓᏙᎵᎦ+Ꭳ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ+o¹sdạ²da²dohl²ga+He and I recognize ourselves+",
     "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
@@ -1980,15 +1950,45 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 68
   }, {
+    "answer" : [ "You both are acquainted" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de²sdạ²da²dohl²ga" ],
+    "id" : 196,
+    "key" : "0002-0069-0007+ᏕᏍᏓᏓᏙᎵᎦ+Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de²sdạ²da²dohl²ga+You both are acquainted+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭶ",
+    "vset" : 69
+  }, {
+    "answer" : [ "You (1) and I saw each other a while ago" ],
+    "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de²gị²nạ²da²go²hv²³ɂi" ],
+    "id" : 197,
+    "key" : "0002-0070-0007+ᏕᎩᎾᏓᎪᎲᎢ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de²gị²nạ²da²go²hv²³ɂi+You (1) and I saw each other a while ago+",
+    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 70
+  }, {
     "answer" : [ "He and I are acquainted" ],
     "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "do¹sdạ²da²dohl²ga" ],
-    "id" : 199,
+    "id" : 198,
     "key" : "0002-0070-0007+ᏙᏍᏓᏓᏙᎵᎦ+Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ+do¹sdạ²da²dohl²ga+He and I are acquainted+",
     "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 2,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 70
+  }, {
+    "answer" : [ "He and I saw each other a while ago" ],
+    "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "do¹gị²nạ²da²go²hv²³ɂi" ],
+    "id" : 199,
+    "key" : "0002-0071-0007+ᏙᎩᎾᏓᎪᎲᎢ+Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+do¹gị²nạ²da²go²hv²³ɂi+He and I saw each other a while ago+",
+    "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 2,
+    "reversed" : false,
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 71
   }, {
     "answer" : [ "Let him and me want ourselves" ],
     "challenge" : [ "Ꮼ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "wo¹gị²nạ²dạ²du²³la" ],
@@ -2830,9 +2830,19 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 59
   }, {
+    "answer" : [ "All of us wanted each other recently" ],
+    "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de³gạ²dạ²du²³la²" ],
+    "id" : 284,
+    "key" : "0003-0060-0005+ᏕᎦᏓᏚᎳ+Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de³gạ²dạ²du²³la²+All of us wanted each other recently+",
+    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 3,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 60
+  }, {
     "answer" : [ "All of us recognize ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "i¹dạ²da²dohl²ga" ],
-    "id" : 284,
+    "id" : 285,
     "key" : "0003-0060-0006+ᎢᏓᏓᏙᎵᎦ+Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ+i¹dạ²da²dohl²ga+All of us recognize ourselves+",
     "pgroup" : "Ꭲ¹Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
@@ -2842,7 +2852,7 @@
   }, {
     "answer" : [ "You all recognize yourselves" ],
     "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "i¹jạ²da²dohl²ga" ],
-    "id" : 285,
+    "id" : 286,
     "key" : "0003-0061-0006+ᎢᏣᏓᏙᎵᎦ+Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ+i¹jạ²da²dohl²ga+You all recognize yourselves+",
     "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
@@ -2850,69 +2860,39 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 61
   }, {
-    "answer" : [ "All of us saw each other a while ago" ],
-    "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de³gạ²da²go²hv²³ɂi" ],
-    "id" : 286,
-    "key" : "0003-0062-0006+ᏕᎦᏓᎪᎲᎢ+Ꮥ³Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de³gạ²da²go²hv²³ɂi+All of us saw each other a while ago+",
-    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 3,
-    "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 62
-  }, {
-    "answer" : [ "You (1) and I are acquainted" ],
-    "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³nạ²da²dohl²ga" ],
+    "answer" : [ "They and I wanted each other recently" ],
+    "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "do¹gạ²dạ²du²³la²" ],
     "id" : 287,
-    "key" : "0003-0064-0006+ᏕᎾᏓᏙᎵᎦ+Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de³nạ²da²dohl²ga+You (1) and I are acquainted+",
-    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 3,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ",
-    "vset" : 64
-  }, {
-    "answer" : [ "They and I saw each other a while ago" ],
-    "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "do¹gạ²da²go²hv²³ɂi" ],
-    "id" : 288,
-    "key" : "0003-0064-0006+ᏙᎦᏓᎪᎲᎢ+Ꮩ¹Ꭶ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+do¹gạ²da²go²hv²³ɂi+They and I saw each other a while ago+",
+    "key" : "0003-0062-0005+ᏙᎦᏓᏚᎳ+Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²+do¹gạ²dạ²du²³la²+They and I wanted each other recently+",
     "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
     "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 64
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 62
   }, {
-    "answer" : [ "All of us are acquainted" ],
-    "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³dạ²da²dohl²ga" ],
-    "id" : 289,
-    "key" : "0003-0065-0006+ᏕᏓᏓᏙᎵᎦ+Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de³dạ²da²dohl²ga+All of us are acquainted+",
-    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 3,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ",
-    "vset" : 65
-  }, {
-    "answer" : [ "You all are acquainted" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³jạ²da²dohl²ga" ],
-    "id" : 290,
-    "key" : "0003-0066-0006+ᏕᏣᏓᏙᎵᎦ+Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de³jạ²da²dohl²ga+You all are acquainted+",
+    "answer" : [ "You all saw each other a while ago" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de³jạ²da²go²hv²³ɂi" ],
+    "id" : 288,
+    "key" : "0003-0063-0006+ᏕᏣᏓᎪᎲᎢ+Ꮥ³Ꮳ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de³jạ²da²go²hv²³ɂi+You all saw each other a while ago+",
     "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ",
-    "vset" : 66
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 63
   }, {
-    "answer" : [ "They saw each other a while ago" ],
-    "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "du¹nạ²da²go²hv²³ɂi" ],
-    "id" : 291,
-    "key" : "0003-0066-0006+ᏚᎾᏓᎪᎲᎢ+Ꮪ¹Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+du¹nạ²da²go²hv²³ɂi+They saw each other a while ago+",
+    "answer" : [ "They wanted each other recently" ],
+    "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "du¹nạ²dạ²du²³la²" ],
+    "id" : 289,
+    "key" : "0003-0064-0005+ᏚᎾᏓᏚᎳ+Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²+du¹nạ²dạ²du²³la²+They wanted each other recently+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
     "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 66
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 64
   }, {
     "answer" : [ "You (1) and I saw ourselves a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "gị²nạ²da²go²hv²³ɂi" ],
-    "id" : 292,
+    "id" : 290,
     "key" : "0003-0067-0006+ᎩᎾᏓᎪᎲᎢ+Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+gị²nạ²da²go²hv²³ɂi+You (1) and I saw ourselves a while ago+",
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
@@ -2922,7 +2902,7 @@
   }, {
     "answer" : [ "They saw each other recently" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "da¹nạ²da²go¹wah²ta²" ],
-    "id" : 293,
+    "id" : 291,
     "key" : "0003-0068-0006+ᏓᎾᏓᎪᏩᏔ+Ꮣ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+da¹nạ²da²go¹wah²ta²+They saw each other recently+",
     "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
@@ -2930,9 +2910,49 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 68
   }, {
+    "answer" : [ "You (1) and I wanted each other recently" ],
+    "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de²gị²nạ²dạ²du²³la²" ],
+    "id" : 292,
+    "key" : "0003-0068-0006+ᏕᎩᎾᏓᏚᎳ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de²gị²nạ²dạ²du²³la²+You (1) and I wanted each other recently+",
+    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 3,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 68
+  }, {
+    "answer" : [ "You both saw each other a while ago" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de²sdạ²da²go²hv²³ɂi" ],
+    "id" : 293,
+    "key" : "0003-0068-0007+ᏕᏍᏓᏓᎪᎲᎢ+Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de²sdạ²da²go²hv²³ɂi+You both saw each other a while ago+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 3,
+    "reversed" : false,
+    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
+    "vset" : 68
+  }, {
+    "answer" : [ "You (1) and I saw each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de³nạ²da²go¹wah²ta²" ],
+    "id" : 294,
+    "key" : "0003-0069-0006+ᏕᎾᏓᎪᏩᏔ+Ꮥ³Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de³nạ²da²go¹wah²ta²+You (1) and I saw each other recently+",
+    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 3,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
+    "vset" : 69
+  }, {
+    "answer" : [ "He and I wanted each other recently" ],
+    "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "do¹gị²nạ²dạ²du²³la²" ],
+    "id" : 295,
+    "key" : "0003-0069-0006+ᏙᎩᎾᏓᏚᎳ+Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²+do¹gị²nạ²dạ²du²³la²+He and I wanted each other recently+",
+    "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 3,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 69
+  }, {
     "answer" : [ "He and I saw ourselves a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "o¹gị²nạ²da²go²hv²³ɂi" ],
-    "id" : 294,
+    "id" : 296,
     "key" : "0003-0069-0007+ᎣᎩᎾᏓᎪᎲᎢ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+o¹gị²nạ²da²go²hv²³ɂi+He and I saw ourselves a while ago+",
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
@@ -2940,35 +2960,15 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 69
   }, {
-    "answer" : [ "You both are acquainted" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de²sdạ²da²dohl²ga" ],
-    "id" : 295,
-    "key" : "0003-0069-0007+ᏕᏍᏓᏓᏙᎵᎦ+Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ+de²sdạ²da²dohl²ga+You both are acquainted+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 3,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ",
-    "vset" : 69
-  }, {
-    "answer" : [ "You (1) and I saw each other a while ago" ],
-    "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de²gị²nạ²da²go²hv²³ɂi" ],
-    "id" : 296,
-    "key" : "0003-0070-0007+ᏕᎩᎾᏓᎪᎲᎢ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de²gị²nạ²da²go²hv²³ɂi+You (1) and I saw each other a while ago+",
-    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 3,
-    "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 70
-  }, {
-    "answer" : [ "He and I saw each other a while ago" ],
-    "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "do¹gị²nạ²da²go²hv²³ɂi" ],
+    "answer" : [ "All of us saw each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de³dạ²da²go¹wah²ta²" ],
     "id" : 297,
-    "key" : "0003-0071-0007+ᏙᎩᎾᏓᎪᎲᎢ+Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+do¹gị²nạ²da²go²hv²³ɂi+He and I saw each other a while ago+",
-    "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "key" : "0003-0070-0006+ᏕᏓᏓᎪᏩᏔ+Ꮥ³Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de³dạ²da²go¹wah²ta²+All of us saw each other recently+",
+    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 3,
     "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 71
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
+    "vset" : 70
   }, {
     "answer" : [ "They and I saw each other recently" ],
     "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "do¹jạ²da²go¹wah²ta²" ],
@@ -3720,9 +3720,29 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 46
   }, {
+    "answer" : [ "For me to recognize myself" ],
+    "challenge" : [ "Ꭰ¹Ꮖ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "a¹gwạ²da²do²hlị³sdi" ],
+    "id" : 373,
+    "key" : "0004-0048-0007+ᎠᏆᏓᏙᎵᏍᏗ+Ꭰ¹Ꮖ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+a¹gwạ²da²do²hlị³sdi+For me to recognize myself+",
+    "pgroup" : "Ꭰ¹Ꮖ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 48
+  }, {
+    "answer" : [ "For all of us to recognize ourselves" ],
+    "challenge" : [ "Ꭲ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "i¹gạ²da²do²hlị³sdi" ],
+    "id" : 374,
+    "key" : "0004-0049-0007+ᎢᎦᏓᏙᎵᏍᏗ+Ꭲ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+i¹gạ²da²do²hlị³sdi+For all of us to recognize ourselves+",
+    "pgroup" : "Ꭲ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 49
+  }, {
     "answer" : [ "Let you both recognize yourselves" ],
     "challenge" : [ "ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "sdạ²da²dohl²gi" ],
-    "id" : 373,
+    "id" : 375,
     "key" : "0004-0050-0006+ᏍᏓᏓᏙᎵᎩ+ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ+sdạ²da²dohl²gi+Let you both recognize yourselves+",
     "pgroup" : "ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
@@ -3730,11 +3750,11 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 50
   }, {
-    "answer" : [ "For you all to become acquainted" ],
-    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮩ²Ꮅ³ᏍᏗ", "dị²jạ²da²do²hlị³sdi" ],
-    "id" : 374,
-    "key" : "0004-0051-0006+ᏗᏣᏙᎵᏍᏗ+Ꮧ̣²Ꮳ̣²Ꮩ²Ꮅ³ᏍᏗ+dị²jạ²da²do²hlị³sdi+For you all to become acquainted+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "For them and me to recognize ourselves" ],
+    "challenge" : [ "Ꭳ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "o¹gạ²da²do²hlị³sdi" ],
+    "id" : 376,
+    "key" : "0004-0051-0007+ᎣᎦᏓᏙᎵᏍᏗ+Ꭳ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+o¹gạ²da²do²hlị³sdi+For them and me to recognize ourselves+",
+    "pgroup" : "Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
@@ -3742,7 +3762,7 @@
   }, {
     "answer" : [ "I recognized myself recently" ],
     "challenge" : [ "Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "gạ²da²dohl²ga²" ],
-    "id" : 375,
+    "id" : 377,
     "key" : "0004-0052-0005+ᎦᏓᏙᎵᎦ+Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+gạ²da²dohl²ga²+I recognized myself recently+",
     "pgroup" : "Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
@@ -3750,21 +3770,21 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 52
   }, {
-    "answer" : [ "For me to recognize myself" ],
-    "challenge" : [ "Ꭰ¹Ꮖ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "a¹gwạ²da²do²hlị³sdi" ],
-    "id" : 376,
-    "key" : "0004-0052-0007+ᎠᏆᏓᏙᎵᏍᏗ+Ꭰ¹Ꮖ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+a¹gwạ²da²do²hlị³sdi+For me to recognize myself+",
-    "pgroup" : "Ꭰ¹Ꮖ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "For them to recognize themselves" ],
+    "challenge" : [ "Ꭴ¹Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "u¹nạ²da²do²hlị³sdi" ],
+    "id" : 378,
+    "key" : "0004-0052-0007+ᎤᎾᏓᏙᎵᏍᏗ+Ꭴ¹Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+u¹nạ²da²do²hlị³sdi+For them to recognize themselves+",
+    "pgroup" : "Ꭴ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 52
   }, {
-    "answer" : [ "For all of us to recognize ourselves" ],
-    "challenge" : [ "Ꭲ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "i¹gạ²da²do²hlị³sdi" ],
-    "id" : 377,
-    "key" : "0004-0053-0007+ᎢᎦᏓᏙᎵᏍᏗ+Ꭲ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+i¹gạ²da²do²hlị³sdi+For all of us to recognize ourselves+",
-    "pgroup" : "Ꭲ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "For them and me to become acquainted" ],
+    "challenge" : [ "Ꮶ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "jo¹gạ²da²do²hlị³sdi" ],
+    "id" : 379,
+    "key" : "0004-0053-0007+ᏦᎦᏓᏙᎵᏍᏗ+Ꮶ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+jo¹gạ²da²do²hlị³sdi+For them and me to become acquainted+",
+    "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
@@ -3772,7 +3792,7 @@
   }, {
     "answer" : [ "They recognized us recently, you (1) and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭶ²", "ge²gị²nohl²ga²" ],
-    "id" : 378,
+    "id" : 380,
     "key" : "0004-0054-0005+ᎨᎩᏃᎵᎦ+Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭶ²+ge²gị²nohl²ga²+They recognized us recently, you (1) and me+",
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
     "pset" : 4,
@@ -3780,9 +3800,19 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 54
   }, {
+    "answer" : [ "For them to become acquainted" ],
+    "challenge" : [ "Ꮷ¹Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "ju¹nạ²da²do²hlị³sdi" ],
+    "id" : 381,
+    "key" : "0004-0054-0007+ᏧᎾᏓᏙᎵᏍᏗ+Ꮷ¹Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+ju¹nạ²da²do²hlị³sdi+For them to become acquainted+",
+    "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 54
+  }, {
     "answer" : [ "They recognized us recently, him and me" ],
     "challenge" : [ "Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭶ²", "go²gị²nohl²ga²" ],
-    "id" : 379,
+    "id" : 382,
     "key" : "0004-0055-0005+ᎪᎩᏃᎵᎦ+Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭶ²+go²gị²nohl²ga²+They recognized us recently, him and me+",
     "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
     "pset" : 4,
@@ -3790,109 +3820,99 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 55
   }, {
-    "answer" : [ "For them and me to recognize ourselves" ],
-    "challenge" : [ "Ꭳ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "o¹gạ²da²do²hlị³sdi" ],
-    "id" : 380,
-    "key" : "0004-0055-0007+ᎣᎦᏓᏙᎵᏍᏗ+Ꭳ¹Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+o¹gạ²da²do²hlị³sdi+For them and me to recognize ourselves+",
-    "pgroup" : "Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "For you (1) and me to recognize ourselves" ],
+    "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "gị²nạ²da²do²hlị³sdi" ],
+    "id" : 383,
+    "key" : "0004-0055-0007+ᎩᎾᏓᏙᎵᏍᏗ+Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+gị²nạ²da²do²hlị³sdi+For you (1) and me to recognize ourselves+",
+    "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 55
   }, {
-    "answer" : [ "For them to recognize themselves" ],
-    "challenge" : [ "Ꭴ¹Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "u¹nạ²da²do²hlị³sdi" ],
-    "id" : 381,
-    "key" : "0004-0056-0007+ᎤᎾᏓᏙᎵᏍᏗ+Ꭴ¹Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+u¹nạ²da²do²hlị³sdi+For them to recognize themselves+",
-    "pgroup" : "Ꭴ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 56
-  }, {
-    "answer" : [ "For you both to become acquainted" ],
-    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮩ²Ꮅ³ᏍᏗ", "dị²sdạ²da²do²hlị³sdi" ],
-    "id" : 382,
-    "key" : "0004-0057-0007+ᏗᏍᏓᏙᎵᏍᏗ+Ꮧ̣²ᏍᏓ̣²Ꮩ²Ꮅ³ᏍᏗ+dị²sdạ²da²do²hlị³sdi+For you both to become acquainted+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 57
-  }, {
-    "answer" : [ "For you (1) and me to recognize ourselves" ],
-    "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "gị²nạ²da²do²hlị³sdi" ],
-    "id" : 383,
-    "key" : "0004-0058-0007+ᎩᎾᏓᏙᎵᏍᏗ+Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+gị²nạ²da²do²hlị³sdi+For you (1) and me to recognize ourselves+",
-    "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 58
-  }, {
-    "answer" : [ "All of us wanted each other recently" ],
-    "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de³gạ²dạ²du²³la²" ],
-    "id" : 384,
-    "key" : "0004-0060-0005+ᏕᎦᏓᏚᎳ+Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de³gạ²dạ²du²³la²+All of us wanted each other recently+",
-    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 60
-  }, {
     "answer" : [ "Let you (1) and me recognize ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "i¹nạ²da²dohl²gi" ],
-    "id" : 385,
-    "key" : "0004-0060-0006+ᎢᎾᏓᏙᎵᎩ+Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ+i¹nạ²da²dohl²gi+Let you (1) and me recognize ourselves+",
+    "id" : 384,
+    "key" : "0004-0057-0006+ᎢᎾᏓᏙᎵᎩ+Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ+i¹nạ²da²dohl²gi+Let you (1) and me recognize ourselves+",
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 60
+    "vset" : 57
+  }, {
+    "answer" : [ "Let all of us want each other" ],
+    "challenge" : [ "Ꮧ̣²Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²gạ²dạ²du²³la" ],
+    "id" : 385,
+    "key" : "0004-0058-0005+ᏗᎦᏓᏚᎳ+Ꮧ̣²Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²gạ²dạ²du²³la+Let all of us want each other+",
+    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
+    "vset" : 58
   }, {
     "answer" : [ "Let all of us recognize ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "i¹dạ²da²dohl²gi" ],
     "id" : 386,
-    "key" : "0004-0061-0006+ᎢᏓᏓᏙᎵᎩ+Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭹ+i¹dạ²da²dohl²gi+Let all of us recognize ourselves+",
+    "key" : "0004-0058-0006+ᎢᏓᏓᏙᎵᎩ+Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭹ+i¹dạ²da²dohl²gi+Let all of us recognize ourselves+",
     "pgroup" : "Ꭲ¹Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 61
-  }, {
-    "answer" : [ "For him and me to recognize ourselves" ],
-    "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "o¹gị²nạ²da²do²hlị³sdi" ],
-    "id" : 387,
-    "key" : "0004-0061-0008+ᎣᎩᎾᏓᏙᎵᏍᏗ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+o¹gị²nạ²da²do²hlị³sdi+For him and me to recognize ourselves+",
-    "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
-    "vset" : 61
-  }, {
-    "answer" : [ "They and I wanted each other recently" ],
-    "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "do¹gạ²dạ²du²³la²" ],
-    "id" : 388,
-    "key" : "0004-0062-0005+ᏙᎦᏓᏚᎳ+Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ²+do¹gạ²dạ²du²³la²+They and I wanted each other recently+",
-    "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 62
+    "vset" : 58
   }, {
     "answer" : [ "Let you all recognize yourselves" ],
     "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "i¹jạ²da²dohl²gi" ],
-    "id" : 389,
-    "key" : "0004-0062-0006+ᎢᏣᏓᏙᎵᎩ+Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ+i¹jạ²da²dohl²gi+Let you all recognize yourselves+",
+    "id" : 387,
+    "key" : "0004-0059-0006+ᎢᏣᏓᏙᎵᎩ+Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ+i¹jạ²da²dohl²gi+Let you all recognize yourselves+",
     "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 62
+    "vset" : 59
+  }, {
+    "answer" : [ "For him and me to recognize ourselves" ],
+    "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "o¹gị²nạ²da²do²hlị³sdi" ],
+    "id" : 388,
+    "key" : "0004-0059-0008+ᎣᎩᎾᏓᏙᎵᏍᏗ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+o¹gị²nạ²da²do²hlị³sdi+For him and me to recognize ourselves+",
+    "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 59
+  }, {
+    "answer" : [ "Let them recognize themselves" ],
+    "challenge" : [ "Ꮹ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wa¹nạ²da²dohl²gi" ],
+    "id" : 389,
+    "key" : "0004-0060-0006+ᏩᎾᏓᏙᎵᎩ+Ꮹ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wa¹nạ²da²dohl²gi+Let them recognize themselves+",
+    "pgroup" : "Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 60
+  }, {
+    "answer" : [ "For him and me to become acquainted" ],
+    "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "jo¹gị²nạ²da²do²hlị³sdi" ],
+    "id" : 390,
+    "key" : "0004-0060-0008+ᏦᎩᎾᏓᏙᎵᏍᏗ+Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+jo¹gị²nạ²da²do²hlị³sdi+For him and me to become acquainted+",
+    "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 60
+  }, {
+    "answer" : [ "Let them and me recognize ourselves" ],
+    "challenge" : [ "Ꮼ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wo¹jạ²da²dohl²gi" ],
+    "id" : 391,
+    "key" : "0004-0061-0006+ᏬᏣᏓᏙᎵᎩ+Ꮼ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wo¹jạ²da²dohl²gi+Let them and me recognize ourselves+",
+    "pgroup" : "Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 61
   }, {
     "answer" : [ "They recognized each other recently" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "da¹nạ²da²dohl²ga²" ],
-    "id" : 390,
+    "id" : 392,
     "key" : "0004-0063-0006+ᏓᎾᏓᏙᎵᎦ+Ꮣ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+da¹nạ²da²dohl²ga²+They recognized each other recently+",
     "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
@@ -3900,39 +3920,29 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 63
   }, {
-    "answer" : [ "They wanted each other recently" ],
-    "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "du¹nạ²dạ²du²³la²" ],
-    "id" : 391,
-    "key" : "0004-0064-0005+ᏚᎾᏓᏚᎳ+Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²+du¹nạ²dạ²du²³la²+They wanted each other recently+",
-    "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 64
-  }, {
-    "answer" : [ "Let them recognize themselves" ],
-    "challenge" : [ "Ꮹ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wa¹nạ²da²dohl²gi" ],
-    "id" : 392,
-    "key" : "0004-0064-0006+ᏩᎾᏓᏙᎵᎩ+Ꮹ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wa¹nạ²da²dohl²gi+Let them recognize themselves+",
-    "pgroup" : "Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 64
-  }, {
-    "answer" : [ "Let them and me recognize ourselves" ],
-    "challenge" : [ "Ꮼ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wo¹jạ²da²dohl²gi" ],
+    "answer" : [ "You (1) and I recognized each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de³nạ²da²dohl²ga²" ],
     "id" : 393,
-    "key" : "0004-0065-0006+ᏬᏣᏓᏙᎵᎩ+Ꮼ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wo¹jạ²da²dohl²gi+Let them and me recognize ourselves+",
-    "pgroup" : "Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "key" : "0004-0064-0006+ᏕᎾᏓᏙᎵᎦ+Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de³nạ²da²dohl²ga²+You (1) and I recognized each other recently+",
+    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vgroup" : "ᎣᎵ͓²Ꭶ²",
+    "vset" : 64
+  }, {
+    "answer" : [ "All of us recognized each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de³dạ²da²dohl²ga²" ],
+    "id" : 394,
+    "key" : "0004-0065-0006+ᏕᏓᏓᏙᎵᎦ+Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de³dạ²da²dohl²ga²+All of us recognized each other recently+",
+    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 65
   }, {
     "answer" : [ "They and I recognized each other recently" ],
     "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "do¹jạ²da²dohl²ga²" ],
-    "id" : 394,
+    "id" : 395,
     "key" : "0004-0067-0006+ᏙᏣᏓᏙᎵᎦ+Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+do¹jạ²da²dohl²ga²+They and I recognized each other recently+",
     "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
@@ -3940,49 +3950,19 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 67
   }, {
-    "answer" : [ "You (1) and I wanted each other recently" ],
-    "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de²gị²nạ²dạ²du²³la²" ],
-    "id" : 395,
-    "key" : "0004-0068-0006+ᏕᎩᎾᏓᏚᎳ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de²gị²nạ²dạ²du²³la²+You (1) and I wanted each other recently+",
-    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 68
-  }, {
-    "answer" : [ "You (1) and I saw each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de³nạ²da²go¹wah²ta²" ],
+    "answer" : [ "Let him and me recognize ourselves" ],
+    "challenge" : [ "Ꮼ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wo¹sdạ²da²dohl²gi" ],
     "id" : 396,
-    "key" : "0004-0069-0006+ᏕᎾᏓᎪᏩᏔ+Ꮥ³Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de³nạ²da²go¹wah²ta²+You (1) and I saw each other recently+",
-    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "key" : "0004-0069-0007+ᏬᏍᏓᏓᏙᎵᎩ+Ꮼ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wo¹sdạ²da²dohl²gi+Let him and me recognize ourselves+",
+    "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 69
-  }, {
-    "answer" : [ "He and I wanted each other recently" ],
-    "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "do¹gị²nạ²dạ²du²³la²" ],
-    "id" : 397,
-    "key" : "0004-0069-0006+ᏙᎩᎾᏓᏚᎳ+Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²+do¹gị²nạ²dạ²du²³la²+He and I wanted each other recently+",
-    "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 69
-  }, {
-    "answer" : [ "All of us saw each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de³dạ²da²go¹wah²ta²" ],
-    "id" : 398,
-    "key" : "0004-0070-0006+ᏕᏓᏓᎪᏩᏔ+Ꮥ³Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de³dạ²da²go¹wah²ta²+All of us saw each other recently+",
-    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 4,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
-    "vset" : 70
   }, {
     "answer" : [ "He and I recognized each other recently" ],
     "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "do¹sdạ²da²dohl²ga²" ],
-    "id" : 399,
+    "id" : 397,
     "key" : "0004-0070-0007+ᏙᏍᏓᏓᏙᎵᎦ+Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+do¹sdạ²da²dohl²ga²+He and I recognized each other recently+",
     "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
@@ -3990,15 +3970,35 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 70
   }, {
-    "answer" : [ "Let him and me recognize ourselves" ],
-    "challenge" : [ "Ꮼ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wo¹sdạ²da²dohl²gi" ],
-    "id" : 400,
-    "key" : "0004-0071-0007+ᏬᏍᏓᏓᏙᎵᎩ+Ꮼ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wo¹sdạ²da²dohl²gi+Let him and me recognize ourselves+",
-    "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "You all saw each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de³jạ²da²go¹wah²ta²" ],
+    "id" : 398,
+    "key" : "0004-0071-0006+ᏕᏣᏓᎪᏩᏔ+Ꮥ³Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de³jạ²da²go¹wah²ta²+You all saw each other recently+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 4,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 71
+  }, {
+    "answer" : [ "Let you (1) and me want each other" ],
+    "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²gị²nạ²dạ²du²³la" ],
+    "id" : 399,
+    "key" : "0004-0074-0006+ᏗᎩᎾᏓᏚᎳ+Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²gị²nạ²dạ²du²³la+Let you (1) and me want each other+",
+    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
+    "vset" : 74
+  }, {
+    "answer" : [ "You both saw each other recently" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de²sdạ²da²go¹wah²ta²" ],
+    "id" : 400,
+    "key" : "0004-0074-0007+ᏕᏍᏓᏓᎪᏩᏔ+Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de²sdạ²da²go¹wah²ta²+You both saw each other recently+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 4,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
+    "vset" : 74
   }, {
     "answer" : [ "I, his mother" ],
     "challenge" : [ "Ꮵ²Ꮵ", "ji²ji" ],
@@ -4810,19 +4810,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 55
   }, {
-    "answer" : [ "Let all of us want each other" ],
-    "challenge" : [ "Ꮧ̣²Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²gạ²dạ²du²³la" ],
-    "id" : 482,
-    "key" : "0005-0058-0005+ᏗᎦᏓᏚᎳ+Ꮧ̣²Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²gạ²dạ²du²³la+Let all of us want each other+",
-    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 5,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
-    "vset" : 58
-  }, {
     "answer" : [ "For them and me to want each other" ],
     "challenge" : [ "Ꮶ¹Ꭶ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "jo¹gạ²dạ²duhl²di" ],
-    "id" : 483,
+    "id" : 482,
     "key" : "0005-0058-0006+ᏦᎦᏓᏚᎸᏗ+Ꮶ¹Ꭶ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ+jo¹gạ²dạ²duhl²di+For them and me to want each other+",
     "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
@@ -4832,7 +4822,7 @@
   }, {
     "answer" : [ "They saw themselves recently" ],
     "challenge" : [ "Ꭰ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "a¹nạ²da²go¹wah²ta²" ],
-    "id" : 484,
+    "id" : 483,
     "key" : "0005-0059-0006+ᎠᎾᏓᎪᏩᏔ+Ꭰ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+a¹nạ²da²go¹wah²ta²+They saw themselves recently+",
     "pgroup" : "Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
@@ -4840,9 +4830,29 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 59
   }, {
+    "answer" : [ "All of us are wanting each other" ],
+    "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de³gạ²dạ²du²lị³ha" ],
+    "id" : 484,
+    "key" : "0005-0060-0006+ᏕᎦᏓᏚᎵᎭ+Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de³gạ²dạ²du²lị³ha+All of us are wanting each other+",
+    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 5,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
+    "vset" : 60
+  }, {
+    "answer" : [ "Let you (1) and me see each other" ],
+    "challenge" : [ "Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²nạ²da²go¹wah²ta" ],
+    "id" : 485,
+    "key" : "0005-0060-0006+ᏗᎾᏓᎪᏩᏔ+Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²nạ²da²go¹wah²ta+Let you (1) and me see each other+",
+    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 5,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 60
+  }, {
     "answer" : [ "For them to want each other" ],
     "challenge" : [ "Ꮷ¹Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "ju¹nạ²dạ²duhl²di" ],
-    "id" : 485,
+    "id" : 486,
     "key" : "0005-0060-0006+ᏧᎾᏓᏚᎸᏗ+Ꮷ¹Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ+ju¹nạ²dạ²duhl²di+For them to want each other+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
@@ -4852,7 +4862,7 @@
   }, {
     "answer" : [ "You (1) and I saw ourselves recently" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "i¹nạ²da²go¹wah²ta²" ],
-    "id" : 486,
+    "id" : 487,
     "key" : "0005-0061-0006+ᎢᎾᏓᎪᏩᏔ+Ꭲ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+i¹nạ²da²go¹wah²ta²+You (1) and I saw ourselves recently+",
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
@@ -4860,9 +4870,19 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 61
   }, {
+    "answer" : [ "Let all of us see each other" ],
+    "challenge" : [ "Ꮧ̣²Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²dạ²da²go¹wah²ta" ],
+    "id" : 488,
+    "key" : "0005-0061-0006+ᏗᏓᏓᎪᏩᏔ+Ꮧ̣²Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²dạ²da²go¹wah²ta+Let all of us see each other+",
+    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 5,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 61
+  }, {
     "answer" : [ "All of us saw ourselves recently" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "i¹dạ²da²go¹wah²ta²" ],
-    "id" : 487,
+    "id" : 489,
     "key" : "0005-0062-0006+ᎢᏓᏓᎪᏩᏔ+Ꭲ¹Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+i¹dạ²da²go¹wah²ta²+All of us saw ourselves recently+",
     "pgroup" : "Ꭲ¹Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
@@ -4870,35 +4890,15 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 62
   }, {
-    "answer" : [ "You all saw each other a while ago" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de³jạ²da²go²hv²³ɂi" ],
-    "id" : 488,
-    "key" : "0005-0063-0006+ᏕᏣᏓᎪᎲᎢ+Ꮥ³Ꮳ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de³jạ²da²go²hv²³ɂi+You all saw each other a while ago+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 5,
-    "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 63
-  }, {
     "answer" : [ "They often recognize each other" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "da¹nạ²da²dohl²go³ɂi" ],
-    "id" : 489,
+    "id" : 490,
     "key" : "0005-0063-0007+ᏓᎾᏓᏙᎵᎪᎢ+Ꮣ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+da¹nạ²da²dohl²go³ɂi+They often recognize each other+",
     "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 63
-  }, {
-    "answer" : [ "You (1) and I recognized each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de³nạ²da²dohl²ga²" ],
-    "id" : 490,
-    "key" : "0005-0064-0006+ᏕᎾᏓᏙᎵᎦ+Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de³nạ²da²dohl²ga²+You (1) and I recognized each other recently+",
-    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 5,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ²",
-    "vset" : 64
   }, {
     "answer" : [ "You (1) and I wanted ourselves recently" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "gị²nạ²dạ²du²³la²" ],
@@ -4920,15 +4920,15 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 65
   }, {
-    "answer" : [ "All of us recognized each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de³dạ²da²dohl²ga²" ],
+    "answer" : [ "You all recognized each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de³jạ²da²dohl²ga²" ],
     "id" : 493,
-    "key" : "0005-0065-0006+ᏕᏓᏓᏙᎵᎦ+Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de³dạ²da²dohl²ga²+All of us recognized each other recently+",
-    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
+    "key" : "0005-0066-0006+ᏕᏣᏓᏙᎵᎦ+Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de³jạ²da²dohl²ga²+You all recognized each other recently+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
-    "vset" : 65
+    "vset" : 66
   }, {
     "answer" : [ "He and I wanted ourselves recently" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "o¹gị²nạ²dạ²du²³la²" ],
@@ -4940,9 +4940,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 67
   }, {
+    "answer" : [ "They and I often recognize each other" ],
+    "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "do¹jạ²da²dohl²go³ɂi" ],
+    "id" : 495,
+    "key" : "0005-0067-0007+ᏙᏣᏓᏙᎵᎪᎢ+Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+do¹jạ²da²dohl²go³ɂi+They and I often recognize each other+",
+    "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 5,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
+    "vset" : 67
+  }, {
     "answer" : [ "For him and me to want each other" ],
     "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "jo¹gị²nạ²dạ²duhl²di" ],
-    "id" : 495,
+    "id" : 496,
     "key" : "0005-0067-0007+ᏦᎩᎾᏓᏚᎸᏗ+Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ+jo¹gị²nạ²dạ²duhl²di+For him and me to want each other+",
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
@@ -4950,55 +4960,45 @@
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 67
   }, {
-    "answer" : [ "You both saw each other a while ago" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de²sdạ²da²go²hv²³ɂi" ],
-    "id" : 496,
-    "key" : "0005-0068-0007+ᏕᏍᏓᏓᎪᎲᎢ+Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ+de²sdạ²da²go²hv²³ɂi+You both saw each other a while ago+",
+    "answer" : [ "You (1) and I are wanting each other" ],
+    "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de²gị²nạ²dạ²du²lị³ha" ],
+    "id" : 497,
+    "key" : "0005-0068-0007+ᏕᎩᎾᏓᏚᎵᎭ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de²gị²nạ²dạ²du²lị³ha+You (1) and I are wanting each other+",
+    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 5,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
+    "vset" : 68
+  }, {
+    "answer" : [ "You both recognized each other recently" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de²sdạ²da²dohl²ga²" ],
+    "id" : 498,
+    "key" : "0005-0069-0007+ᏕᏍᏓᏓᏙᎵᎦ+Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de²sdạ²da²dohl²ga²+You both recognized each other recently+",
     "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
     "reversed" : false,
-    "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
-    "vset" : 68
+    "vgroup" : "ᎣᎵ͓²Ꭶ²",
+    "vset" : 69
   }, {
-    "answer" : [ "Let them and me become acquainted" ],
-    "challenge" : [ "Ꮻ̣²Ꮶ¹Ꮳ̣²ᏙᎵ͓²Ꭹ", "wị²jo¹jạ²da²dohl²gi" ],
-    "id" : 497,
-    "key" : "0005-0070-0006+ᏫᏦᏣᏙᎵᎩ+Ꮻ̣²Ꮶ¹Ꮳ̣²ᏙᎵ͓²Ꭹ+wị²jo¹jạ²da²dohl²gi+Let them and me become acquainted+",
-    "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "He and I often recognize each other" ],
+    "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "do¹sdạ²da²dohl²go³ɂi" ],
+    "id" : 499,
+    "key" : "0005-0070-0008+ᏙᏍᏓᏓᏙᎵᎪᎢ+Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+do¹sdạ²da²dohl²go³ɂi+He and I often recognize each other+",
+    "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 70
   }, {
     "answer" : [ "He and I saw ourselves recently" ],
     "challenge" : [ "Ꭳ¹ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "o¹sdạ²da²go¹wah²ta²" ],
-    "id" : 498,
+    "id" : 500,
     "key" : "0005-0073-0007+ᎣᏍᏓᏓᎪᏩᏔ+Ꭳ¹ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+o¹sdạ²da²go¹wah²ta²+He and I saw ourselves recently+",
     "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 5,
     "reversed" : false,
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 73
-  }, {
-    "answer" : [ "Let him and me become acquainted" ],
-    "challenge" : [ "Ꮻ̣²Ꮶ¹ᏍᏓ̣²ᏙᎵ͓²Ꭹ", "wị²jo¹sdạ²da²dohl²gi" ],
-    "id" : 499,
-    "key" : "0005-0073-0007+ᏫᏦᏍᏓᏙᎵᎩ+Ꮻ̣²Ꮶ¹ᏍᏓ̣²ᏙᎵ͓²Ꭹ+wị²jo¹sdạ²da²dohl²gi+Let him and me become acquainted+",
-    "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 5,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 73
-  }, {
-    "answer" : [ "Let you (1) and me want each other" ],
-    "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²gị²nạ²dạ²du²³la" ],
-    "id" : 500,
-    "key" : "0005-0074-0006+ᏗᎩᎾᏓᏚᎳ+Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²gị²nạ²dạ²du²³la+Let you (1) and me want each other+",
-    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 5,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
-    "vset" : 74
   }, {
     "answer" : [ "I, Me", "We, Us" ],
     "challenge" : [ "Ꭰ̣²Ᏼ", "ạ²yv" ],
@@ -5790,9 +5790,19 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 56
   }, {
+    "answer" : [ "For all of us to become acquainted" ],
+    "challenge" : [ "Ꮧ̣²Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "dị²gạ²da²do²hlị³sdi" ],
+    "id" : 580,
+    "key" : "0006-0056-0007+ᏗᎦᏓᏙᎵᏍᏗ+Ꮧ̣²Ꭶ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+dị²gạ²da²do²hlị³sdi+For all of us to become acquainted+",
+    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 6,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 56
+  }, {
     "answer" : [ "They wanted us recently, you (1) and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²", "ge²gị²nạ²du²³la²" ],
-    "id" : 580,
+    "id" : 581,
     "key" : "0006-0057-0005+ᎨᎩᎾᏚᎳ+Ꭸ²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²+ge²gị²nạ²du²³la²+They wanted us recently, you (1) and me+",
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
     "pset" : 6,
@@ -5802,7 +5812,7 @@
   }, {
     "answer" : [ "They wanted us recently, him and me" ],
     "challenge" : [ "Ꭺ²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²", "go²gị²nạ²du²³la²" ],
-    "id" : 581,
+    "id" : 582,
     "key" : "0006-0058-0005+ᎪᎩᎾᏚᎳ+Ꭺ²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²+go²gị²nạ²du²³la²+They wanted us recently, him and me+",
     "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
     "pset" : 6,
@@ -5812,7 +5822,7 @@
   }, {
     "answer" : [ "They recognized themselves recently" ],
     "challenge" : [ "Ꭰ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "a¹nạ²da²dohl²ga²" ],
-    "id" : 582,
+    "id" : 583,
     "key" : "0006-0058-0006+ᎠᎾᏓᏙᎵᎦ+Ꭰ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+a¹nạ²da²dohl²ga²+They recognized themselves recently+",
     "pgroup" : "Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5822,7 +5832,7 @@
   }, {
     "answer" : [ "You (1) and I recognized ourselves recently" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "i¹nạ²da²dohl²ga²" ],
-    "id" : 583,
+    "id" : 584,
     "key" : "0006-0059-0006+ᎢᎾᏓᏙᎵᎦ+Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+i¹nạ²da²dohl²ga²+You (1) and I recognized ourselves recently+",
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5832,7 +5842,7 @@
   }, {
     "answer" : [ "All of us recognized ourselves recently" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "i¹dạ²da²dohl²ga²" ],
-    "id" : 584,
+    "id" : 585,
     "key" : "0006-0060-0006+ᎢᏓᏓᏙᎵᎦ+Ꭲ¹Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+i¹dạ²da²dohl²ga²+All of us recognized ourselves recently+",
     "pgroup" : "Ꭲ¹Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5840,25 +5850,15 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 60
   }, {
-    "answer" : [ "All of us are wanting each other" ],
-    "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de³gạ²dạ²du²lị³ha" ],
-    "id" : 585,
-    "key" : "0006-0060-0006+ᏕᎦᏓᏚᎵᎭ+Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de³gạ²dạ²du²lị³ha+All of us are wanting each other+",
-    "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 6,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
-    "vset" : 60
-  }, {
-    "answer" : [ "Let you (1) and me see each other" ],
-    "challenge" : [ "Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²nạ²da²go¹wah²ta" ],
+    "answer" : [ "You all wanted each other recently" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de³jạ²dạ²du²³la²" ],
     "id" : 586,
-    "key" : "0006-0060-0006+ᏗᎾᏓᎪᏩᏔ+Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²nạ²da²go¹wah²ta+Let you (1) and me see each other+",
-    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "key" : "0006-0061-0005+ᏕᏣᏓᏚᎳ+Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de³jạ²dạ²du²³la²+You all wanted each other recently+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
     "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 60
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 61
   }, {
     "answer" : [ "For you (1) and me to want ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "gị²nạ²dạ²duhl²di" ],
@@ -5870,14 +5870,14 @@
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 61
   }, {
-    "answer" : [ "Let all of us see each other" ],
-    "challenge" : [ "Ꮧ̣²Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²dạ²da²go¹wah²ta" ],
+    "answer" : [ "For you (1) and me to become acquainted" ],
+    "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "dị²gị²nạ²da²do²hlị³sdi" ],
     "id" : 588,
-    "key" : "0006-0061-0006+ᏗᏓᏓᎪᏩᏔ+Ꮧ̣²Ꮣ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²dạ²da²go¹wah²ta+Let all of us see each other+",
-    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
+    "key" : "0006-0061-0008+ᏗᎩᎾᏓᏙᎵᏍᏗ+Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+dị²gị²nạ²da²do²hlị³sdi+For you (1) and me to become acquainted+",
+    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
     "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 61
   }, {
     "answer" : [ "They and I recognized ourselves recently" ],
@@ -5890,9 +5890,19 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 62
   }, {
+    "answer" : [ "Let you (1) and me become acquainted" ],
+    "challenge" : [ "Ꮧ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "dị²nạ²da²dohl²gi" ],
+    "id" : 590,
+    "key" : "0006-0062-0006+ᏗᎾᏓᏙᎵᎩ+Ꮧ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ+dị²nạ²da²dohl²gi+Let you (1) and me become acquainted+",
+    "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 6,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 62
+  }, {
     "answer" : [ "They and I are wanting each other" ],
     "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "do¹gạ²dạ²du²lị³ha" ],
-    "id" : 590,
+    "id" : 591,
     "key" : "0006-0062-0006+ᏙᎦᏓᏚᎵᎭ+Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+do¹gạ²dạ²du²lị³ha+They and I are wanting each other+",
     "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5900,9 +5910,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 62
   }, {
+    "answer" : [ "Let all of us become acquainted" ],
+    "challenge" : [ "Ꮧ̣²Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "dị²dạ²da²dohl²gi" ],
+    "id" : 592,
+    "key" : "0006-0063-0006+ᏗᏓᏓᏙᎵᎩ+Ꮧ̣²Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭹ+dị²dạ²da²dohl²gi+Let all of us become acquainted+",
+    "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 6,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 63
+  }, {
     "answer" : [ "They are wanting each other" ],
     "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "du¹nạ²dạ²du²lị³ha" ],
-    "id" : 591,
+    "id" : 593,
     "key" : "0006-0064-0006+ᏚᎾᏓᏚᎵᎭ+Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+du¹nạ²dạ²du²lị³ha+They are wanting each other+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5910,9 +5930,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 64
   }, {
+    "answer" : [ "You both wanted each other recently" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de²sdạ²dạ²du²³la²" ],
+    "id" : 594,
+    "key" : "0006-0066-0006+ᏕᏍᏓᏓᏚᎳ+Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de²sdạ²dạ²du²³la²+You both wanted each other recently+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 6,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
+    "vset" : 66
+  }, {
     "answer" : [ "For him and me to want ourselves" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "o¹gị²nạ²dạ²duhl²di" ],
-    "id" : 592,
+    "id" : 595,
     "key" : "0006-0066-0007+ᎣᎩᎾᏓᏚᎸᏗ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ+o¹gị²nạ²dạ²duhl²di+For him and me to want ourselves+",
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5920,19 +5950,9 @@
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 66
   }, {
-    "answer" : [ "They and I often recognize each other" ],
-    "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "do¹jạ²da²dohl²go³ɂi" ],
-    "id" : 593,
-    "key" : "0006-0067-0007+ᏙᏣᏓᏙᎵᎪᎢ+Ꮩ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+do¹jạ²da²dohl²go³ɂi+They and I often recognize each other+",
-    "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 6,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
-    "vset" : 67
-  }, {
     "answer" : [ "He and I recognized ourselves recently" ],
     "challenge" : [ "Ꭳ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "o¹sdạ²da²dohl²ga²" ],
-    "id" : 594,
+    "id" : 596,
     "key" : "0006-0068-0007+ᎣᏍᏓᏓᏙᎵᎦ+Ꭳ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+o¹sdạ²da²dohl²ga²+He and I recognized ourselves recently+",
     "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5940,19 +5960,19 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 68
   }, {
-    "answer" : [ "You (1) and I are wanting each other" ],
-    "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de²gị²nạ²dạ²du²lị³ha" ],
-    "id" : 595,
-    "key" : "0006-0068-0007+ᏕᎩᎾᏓᏚᎵᎭ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de²gị²nạ²dạ²du²lị³ha+You (1) and I are wanting each other+",
-    "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "They are seeing each other" ],
+    "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "da¹nạ²da²gowh²tị³ha" ],
+    "id" : 597,
+    "key" : "0006-0068-0007+ᏓᎾᏓᎪᏩᏘᎭ+Ꮣ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+da¹nạ²da²gowh²tị³ha+They are seeing each other+",
+    "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
     "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
+    "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 68
   }, {
     "answer" : [ "He and I are wanting each other" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "do¹gị²nạ²dạ²du²lị³ha" ],
-    "id" : 596,
+    "id" : 598,
     "key" : "0006-0069-0007+ᏙᎩᎾᏓᏚᎵᎭ+Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+do¹gị²nạ²dạ²du²lị³ha+He and I are wanting each other+",
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
@@ -5960,45 +5980,25 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 69
   }, {
-    "answer" : [ "He and I often recognize each other" ],
-    "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "do¹sdạ²da²dohl²go³ɂi" ],
-    "id" : 597,
-    "key" : "0006-0070-0008+ᏙᏍᏓᏓᏙᎵᎪᎢ+Ꮩ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+do¹sdạ²da²dohl²go³ɂi+He and I often recognize each other+",
+    "answer" : [ "They and I are seeing each other" ],
+    "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "do¹jạ²da²gowh²tị³ha" ],
+    "id" : 599,
+    "key" : "0006-0072-0007+ᏙᏣᏓᎪᏩᏘᎭ+Ꮩ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+do¹jạ²da²gowh²tị³ha+They and I are seeing each other+",
+    "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 6,
+    "reversed" : false,
+    "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
+    "vset" : 72
+  }, {
+    "answer" : [ "He and I are seeing each other" ],
+    "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "do¹sdạ²da²gowh²tị³ha" ],
+    "id" : 600,
+    "key" : "0006-0075-0008+ᏙᏍᏓᏓᎪᏩᏘᎭ+Ꮩ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+do¹sdạ²da²gowh²tị³ha+He and I are seeing each other+",
     "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 6,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
-    "vset" : 70
-  }, {
-    "answer" : [ "You all saw each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de³jạ²da²go¹wah²ta²" ],
-    "id" : 598,
-    "key" : "0006-0071-0006+ᏕᏣᏓᎪᏩᏔ+Ꮥ³Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de³jạ²da²go¹wah²ta²+You all saw each other recently+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 6,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
-    "vset" : 71
-  }, {
-    "answer" : [ "Let them become acquainted" ],
-    "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮎ̣²ᏙᎵ͓²Ꭹ", "wị²dị²nạda²dohl²gi" ],
-    "id" : 599,
-    "key" : "0006-0072-0006+ᏫᏗᎾᏙᎵᎩ+Ꮻ̣²Ꮧ̣²Ꮎ̣²ᏙᎵ͓²Ꭹ+wị²dị²nạda²dohl²gi+Let them become acquainted+",
-    "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 6,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 72
-  }, {
-    "answer" : [ "You both saw each other recently" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "de²sdạ²da²go¹wah²ta²" ],
-    "id" : 600,
-    "key" : "0006-0074-0007+ᏕᏍᏓᏓᎪᏩᏔ+Ꮥ²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+de²sdạ²da²go¹wah²ta²+You both saw each other recently+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 6,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
-    "vset" : 74
+    "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
+    "vset" : 75
   }, {
     "answer" : [ "He ate a solid food recently" ],
     "challenge" : [ "Ꭰ̣²Ꭶ²", "ạ²ga²" ],
@@ -6840,9 +6840,19 @@
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 62
   }, {
+    "answer" : [ "Let you all see each other" ],
+    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²jạ²da²go¹wah²ta" ],
+    "id" : 685,
+    "key" : "0007-0062-0006+ᏗᏣᏓᎪᏩᏔ+Ꮧ̣²Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²jạ²da²go¹wah²ta+Let you all see each other+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 7,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 62
+  }, {
     "answer" : [ "They and I often recognize ourselves" ],
     "challenge" : [ "Ꭳ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "o¹jạ²da²dohl²go³ɂi" ],
-    "id" : 685,
+    "id" : 686,
     "key" : "0007-0062-0007+ᎣᏣᏓᏙᎵᎪᎢ+Ꭳ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+o¹jạ²da²dohl²go³ɂi+They and I often recognize ourselves+",
     "pgroup" : "Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6852,7 +6862,7 @@
   }, {
     "answer" : [ "You all saw yourselves recently" ],
     "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²", "i¹jạ²da²go¹wah²ta²" ],
-    "id" : 686,
+    "id" : 687,
     "key" : "0007-0063-0006+ᎢᏣᏓᎪᏩᏔ+Ꭲ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ²+i¹jạ²da²go¹wah²ta²+You all saw yourselves recently+",
     "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6862,7 +6872,7 @@
   }, {
     "answer" : [ "Let me see myself" ],
     "challenge" : [ "Ꮻ̣²Ꭶ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²gạ²da²go¹wah²ta" ],
-    "id" : 687,
+    "id" : 688,
     "key" : "0007-0063-0006+ᏫᎦᏓᎪᏩᏔ+Ꮻ̣²Ꭶ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²gạ²da²go¹wah²ta+Let me see myself+",
     "pgroup" : "Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6872,7 +6882,7 @@
   }, {
     "answer" : [ "For them to see each other" ],
     "challenge" : [ "Ꮷ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "ju¹nạ²da²gowh²tvh³di" ],
-    "id" : 688,
+    "id" : 689,
     "key" : "0007-0063-0007+ᏧᎾᏓᎪᏩᏛᏗ+Ꮷ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ+ju¹nạ²da²gowh²tvh³di+For them to see each other+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6882,7 +6892,7 @@
   }, {
     "answer" : [ "For you (1) and me to see ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "gị²nạ²da²gowh²tvh³di" ],
-    "id" : 689,
+    "id" : 690,
     "key" : "0007-0064-0007+ᎩᎾᏓᎪᏩᏛᏗ+Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ+gị²nạ²da²gowh²tvh³di+For you (1) and me to see ourselves+",
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6892,7 +6902,7 @@
   }, {
     "answer" : [ "You (1) and I often recognize each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de³nạ²da²dohl²go³ɂi" ],
-    "id" : 690,
+    "id" : 691,
     "key" : "0007-0064-0007+ᏕᎾᏓᏙᎵᎪᎢ+Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+de³nạ²da²dohl²go³ɂi+You (1) and I often recognize each other+",
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6902,7 +6912,7 @@
   }, {
     "answer" : [ "All of us often recognize each other" ],
     "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de³dạ²da²dohl²go³ɂi" ],
-    "id" : 691,
+    "id" : 692,
     "key" : "0007-0065-0007+ᏕᏓᏓᏙᎵᎪᎢ+Ꮥ³Ꮣ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+de³dạ²da²dohl²go³ɂi+All of us often recognize each other+",
     "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6910,29 +6920,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 65
   }, {
-    "answer" : [ "You all recognized each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de³jạ²da²dohl²ga²" ],
-    "id" : 692,
-    "key" : "0007-0066-0006+ᏕᏣᏓᏙᎵᎦ+Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de³jạ²da²dohl²ga²+You all recognized each other recently+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 7,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ²",
-    "vset" : 66
-  }, {
-    "answer" : [ "They are seeing each other" ],
-    "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "da¹nạ²da²gowh²tị³ha" ],
-    "id" : 693,
-    "key" : "0007-0068-0007+ᏓᎾᏓᎪᏩᏘᎭ+Ꮣ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+da¹nạ²da²gowh²tị³ha+They are seeing each other+",
-    "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 7,
-    "reversed" : false,
-    "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
-    "vset" : 68
-  }, {
     "answer" : [ "For you (1) and me to want each other" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "dị²gị²nạ²dạ²duhl²di" ],
-    "id" : 694,
+    "id" : 693,
     "key" : "0007-0068-0007+ᏗᎩᎾᏓᏚᎸᏗ+Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ+dị²gị²nạ²dạ²duhl²di+For you (1) and me to want each other+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6942,7 +6932,7 @@
   }, {
     "answer" : [ "He and I often recognize ourselves" ],
     "challenge" : [ "Ꭳ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "o¹sdạ²da²dohl²go³ɂi" ],
-    "id" : 695,
+    "id" : 694,
     "key" : "0007-0068-0008+ᎣᏍᏓᏓᏙᎵᎪᎢ+Ꭳ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+o¹sdạ²da²dohl²go³ɂi+He and I often recognize ourselves+",
     "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6950,19 +6940,9 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 68
   }, {
-    "answer" : [ "You both recognized each other recently" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "de²sdạ²da²dohl²ga²" ],
-    "id" : 696,
-    "key" : "0007-0069-0007+ᏕᏍᏓᏓᏙᎵᎦ+Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+de²sdạ²da²dohl²ga²+You both recognized each other recently+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 7,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭶ²",
-    "vset" : 69
-  }, {
     "answer" : [ "For him and me to see ourselves" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "o¹gị²nạ²da²gowh²tvh³di" ],
-    "id" : 697,
+    "id" : 695,
     "key" : "0007-0069-0008+ᎣᎩᎾᏓᎪᏩᏛᏗ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ+o¹gị²nạ²da²gowh²tvh³di+For him and me to see ourselves+",
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6972,7 +6952,7 @@
   }, {
     "answer" : [ "For him and me to see each other" ],
     "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "jo¹gị²nạ²da²gowh²tvh³di" ],
-    "id" : 698,
+    "id" : 696,
     "key" : "0007-0070-0008+ᏦᎩᎾᏓᎪᏩᏛᏗ+Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ+jo¹gị²nạ²da²gowh²tvh³di+For him and me to see each other+",
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
@@ -6980,25 +6960,45 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 70
   }, {
-    "answer" : [ "They and I are seeing each other" ],
-    "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "do¹jạ²da²gowh²tị³ha" ],
-    "id" : 699,
-    "key" : "0007-0072-0007+ᏙᏣᏓᎪᏩᏘᎭ+Ꮩ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+do¹jạ²da²gowh²tị³ha+They and I are seeing each other+",
+    "answer" : [ "Let you both see each other" ],
+    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²sdạ²da²go¹wah²ta" ],
+    "id" : 697,
+    "key" : "0007-0073-0007+ᏗᏍᏓᏓᎪᏩᏔ+Ꮧ̣²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²sdạ²da²go¹wah²ta+Let you both see each other+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 7,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 73
+  }, {
+    "answer" : [ "Let them and me see each other" ],
+    "challenge" : [ "Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²jo¹jạ²da²go¹wah²ta" ],
+    "id" : 698,
+    "key" : "0007-0077-0007+ᏫᏦᏣᏓᎪᏩᏔ+Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²jo¹jạ²da²go¹wah²ta+Let them and me see each other+",
     "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
     "reversed" : false,
-    "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
-    "vset" : 72
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 77
   }, {
-    "answer" : [ "He and I are seeing each other" ],
-    "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "do¹sdạ²da²gowh²tị³ha" ],
+    "answer" : [ "Let them see each other" ],
+    "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²dị²nạda²go¹wah²ta" ],
+    "id" : 699,
+    "key" : "0007-0078-0007+ᏫᏗᎾᏓᎪᏩᏔ+Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²dị²nạda²go¹wah²ta+Let them see each other+",
+    "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 7,
+    "reversed" : false,
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 78
+  }, {
+    "answer" : [ "Let him and me see each other" ],
+    "challenge" : [ "Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²jo¹sdạ²da²go¹wah²ta" ],
     "id" : 700,
-    "key" : "0007-0075-0008+ᏙᏍᏓᏓᎪᏩᏘᎭ+Ꮩ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+do¹sdạ²da²gowh²tị³ha+He and I are seeing each other+",
+    "key" : "0007-0079-0008+ᏫᏦᏍᏓᏓᎪᏩᏔ+Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²jo¹sdạ²da²go¹wah²ta+Let him and me see each other+",
     "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 7,
     "reversed" : false,
-    "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
-    "vset" : 75
+    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
+    "vset" : 79
   }, {
     "answer" : [ "He said recently" ],
     "challenge" : [ "Ꭰ̣²Ꮣ²", "ạ²da²" ],
@@ -7600,9 +7600,19 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 47
   }, {
+    "answer" : [ "For you both to recognize yourselves" ],
+    "challenge" : [ "ᏍᏓ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "sdạ²da²do²hlị³sdi" ],
+    "id" : 761,
+    "key" : "0008-0047-0007+ᏍᏓᏓᏙᎵᏍᏗ+ᏍᏓ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+sdạ²da²do²hlị³sdi+For you both to recognize yourselves+",
+    "pgroup" : "ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 47
+  }, {
     "answer" : [ "You (1) and I are often recognized" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮓ²Ꮅ²Ꭺ³Ꭲ", "e¹gị²no²li²go³ɂi" ],
-    "id" : 761,
+    "id" : 762,
     "key" : "0008-0048-0006+ᎡᎩᏃᎵᎪᎢ+Ꭱ¹Ꭹ̣²Ꮓ²Ꮅ²Ꭺ³Ꭲ+e¹gị²no²li²go³ɂi+You (1) and I are often recognized+",
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
     "pset" : 8,
@@ -7612,7 +7622,7 @@
   }, {
     "answer" : [ "All of us are wanting ourselves" ],
     "challenge" : [ "Ꭲ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "i¹gạ²dạ²du²lị³ha" ],
-    "id" : 762,
+    "id" : 763,
     "key" : "0008-0049-0006+ᎢᎦᏓᏚᎵᎭ+Ꭲ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+i¹gạ²dạ²du²lị³ha+All of us are wanting ourselves+",
     "pgroup" : "Ꭲ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7622,7 +7632,7 @@
   }, {
     "answer" : [ "You (1), two, or all recognized us all recently", "You all recognized me recently" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ᏺ²Ꮅ¹Ꭶ²", "i¹sgi²yo²li¹ga²" ],
-    "id" : 763,
+    "id" : 764,
     "key" : "0008-0049-0006+ᎢᏍᎩᏲᎵᎦ+Ꭲ¹ᏍᎩ²Ᏺ²Ꮅ¹Ꭶ²+i¹sgi²yo²li¹ga²+You (1), two, or all recognized us all recently+You all recognized me recently+",
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
     "pset" : 8,
@@ -7632,22 +7642,12 @@
   }, {
     "answer" : [ "You (1) are seeing yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "hạ²da²gowh²tị³ha" ],
-    "id" : 764,
+    "id" : 765,
     "key" : "0008-0049-0006+ᎭᏓᎪᏩᏘᎭ+Ꭽ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+hạ²da²gowh²tị³ha+You (1) are seeing yourself+",
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
     "reversed" : false,
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
-    "vset" : 49
-  }, {
-    "answer" : [ "For you both to recognize yourselves" ],
-    "challenge" : [ "ᏍᏓ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "sdạ²da²do²hlị³sdi" ],
-    "id" : 765,
-    "key" : "0008-0049-0007+ᏍᏓᏓᏙᎵᏍᏗ+ᏍᏓ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+sdạ²da²do²hlị³sdi+For you both to recognize yourselves+",
-    "pgroup" : "ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 49
   }, {
     "answer" : [ "You (1) are seeing them-inanimate" ],
@@ -7660,9 +7660,19 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 50
   }, {
+    "answer" : [ "For you all to recognize yourselves" ],
+    "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "i¹jạ²da²do²hlị³sdi" ],
+    "id" : 767,
+    "key" : "0008-0050-0007+ᎢᏣᏓᏙᎵᏍᏗ+Ꭲ¹Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+i¹jạ²da²do²hlị³sdi+For you all to recognize yourselves+",
+    "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 50
+  }, {
     "answer" : [ "You (1) recognized them-animate recently" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ᏺ²Ꮅ¹Ꭶ²", "gạ²hi²yo²li¹ga²" ],
-    "id" : 767,
+    "id" : 768,
     "key" : "0008-0051-0005+ᎦᎯᏲᎵᎦ+Ꭶ̣²Ꭿ²Ᏺ²Ꮅ¹Ꭶ²+gạ²hi²yo²li¹ga²+You (1) recognized them-animate recently+",
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
     "pset" : 8,
@@ -7672,7 +7682,7 @@
   }, {
     "answer" : [ "They and I are wanting ourselves" ],
     "challenge" : [ "Ꭳ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "o¹gạ²dạ²du²lị³ha" ],
-    "id" : 768,
+    "id" : 769,
     "key" : "0008-0052-0006+ᎣᎦᏓᏚᎵᎭ+Ꭳ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+o¹gạ²dạ²du²lị³ha+They and I are wanting ourselves+",
     "pgroup" : "Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7682,7 +7692,7 @@
   }, {
     "answer" : [ "I often recognize them-animate" ],
     "challenge" : [ "Ꭶ̣²Ꮵ²Ᏺ²Ꮅ²Ꭺ³Ꭲ", "gạ²ji²yo²li²go³ɂi" ],
-    "id" : 769,
+    "id" : 770,
     "key" : "0008-0053-0006+ᎦᏥᏲᎵᎪᎢ+Ꭶ̣²Ꮵ²Ᏺ²Ꮅ²Ꭺ³Ꭲ+gạ²ji²yo²li²go³ɂi+I often recognize them-animate+",
     "pgroup" : "Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-",
     "pset" : 8,
@@ -7692,7 +7702,7 @@
   }, {
     "answer" : [ "You (1) and I are seeing them-inanimate" ],
     "challenge" : [ "Ꮥ³Ꮒ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de³ni²gowh²tị³ha" ],
-    "id" : 770,
+    "id" : 771,
     "key" : "0008-0053-0006+ᏕᏂᎪᏩᏘᎭ+Ꮥ³Ꮒ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ+de³ni²gowh²tị³ha+You (1) and I are seeing them-inanimate+",
     "pgroup" : "Ꮥ³Ꮒ̣²-",
     "pset" : 8,
@@ -7702,7 +7712,7 @@
   }, {
     "answer" : [ "They are wanting themselves" ],
     "challenge" : [ "Ꭴ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "u¹nạ²dạ²du²lị³ha" ],
-    "id" : 771,
+    "id" : 772,
     "key" : "0008-0054-0006+ᎤᎾᏓᏚᎵᎭ+Ꭴ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+u¹nạ²dạ²du²lị³ha+They are wanting themselves+",
     "pgroup" : "Ꭴ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7712,22 +7722,12 @@
   }, {
     "answer" : [ "All of us are seeing them-inanimate" ],
     "challenge" : [ "Ꮥ³Ꮧ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de³di²gowh²tị³ha" ],
-    "id" : 772,
+    "id" : 773,
     "key" : "0008-0054-0006+ᏕᏗᎪᏩᏘᎭ+Ꮥ³Ꮧ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ+de³di²gowh²tị³ha+All of us are seeing them-inanimate+",
     "pgroup" : "Ꮥ³Ꮧ̣²-",
     "pset" : 8,
     "reversed" : false,
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
-    "vset" : 54
-  }, {
-    "answer" : [ "For you all to recognize yourselves" ],
-    "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "i¹jạ²da²do²hlị³sdi" ],
-    "id" : 773,
-    "key" : "0008-0054-0007+ᎢᏣᏓᏙᎵᏍᏗ+Ꭲ¹Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+i¹jạ²da²do²hlị³sdi+For you all to recognize yourselves+",
-    "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 54
   }, {
     "answer" : [ "All of us recognized each other a while ago" ],
@@ -7810,19 +7810,9 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 60
   }, {
-    "answer" : [ "You all wanted each other recently" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de³jạ²dạ²du²³la²" ],
-    "id" : 782,
-    "key" : "0008-0061-0005+ᏕᏣᏓᏚᎳ+Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de³jạ²dạ²du²³la²+You all wanted each other recently+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 61
-  }, {
     "answer" : [ "You (1) and I are seeing ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "i¹nạ²da²gowh²tị³ha" ],
-    "id" : 783,
+    "id" : 782,
     "key" : "0008-0061-0007+ᎢᎾᏓᎪᏩᏘᎭ+Ꭲ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+i¹nạ²da²gowh²tị³ha+You (1) and I are seeing ourselves+",
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7832,7 +7822,7 @@
   }, {
     "answer" : [ "All of us are seeing ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "i¹dạ²da²gowh²tị³ha" ],
-    "id" : 784,
+    "id" : 783,
     "key" : "0008-0062-0007+ᎢᏓᏓᎪᏩᏘᎭ+Ꭲ¹Ꮣ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+i¹dạ²da²gowh²tị³ha+All of us are seeing ourselves+",
     "pgroup" : "Ꭲ¹Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7842,13 +7832,23 @@
   }, {
     "answer" : [ "You (1) and I recognized each other a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "de²gị²nạ²da²dohl²jv²³ɂi" ],
-    "id" : 785,
+    "id" : 784,
     "key" : "0008-0063-0008+ᏕᎩᎾᏓᏙᎵᏨᎢ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ+de²gị²nạ²da²dohl²jv²³ɂi+You (1) and I recognized each other a while ago+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 63
+  }, {
+    "answer" : [ "Let you all become acquainted" ],
+    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "dị²jạ²da²dohl²gi" ],
+    "id" : 785,
+    "key" : "0008-0064-0006+ᏗᏣᏓᏙᎵᎩ+Ꮧ̣²Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ+dị²jạ²da²dohl²gi+Let you all become acquainted+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 64
   }, {
     "answer" : [ "He and I recognized each other a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "do¹gị²nạ²da²dohl²jv²³ɂi" ],
@@ -7870,9 +7870,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 65
   }, {
+    "answer" : [ "Let me recognize myself" ],
+    "challenge" : [ "Ꮻ̣²Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wị²gạ²da²dohl²gi" ],
+    "id" : 788,
+    "key" : "0008-0065-0006+ᏫᎦᏓᏙᎵᎩ+Ꮻ̣²Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wị²gạ²da²dohl²gi+Let me recognize myself+",
+    "pgroup" : "Ꭶ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 65
+  }, {
     "answer" : [ "They and I are seeing ourselves" ],
     "challenge" : [ "Ꭳ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "o¹jạ²da²gowh²tị³ha" ],
-    "id" : 788,
+    "id" : 789,
     "key" : "0008-0065-0007+ᎣᏣᏓᎪᏩᏘᎭ+Ꭳ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+o¹jạ²da²gowh²tị³ha+They and I are seeing ourselves+",
     "pgroup" : "Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7880,29 +7890,9 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 65
   }, {
-    "answer" : [ "You both wanted each other recently" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ²", "de²sdạ²dạ²du²³la²" ],
-    "id" : 789,
-    "key" : "0008-0066-0006+ᏕᏍᏓᏓᏚᎳ+Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ²+de²sdạ²dạ²du²³la²+You both wanted each other recently+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
-    "vset" : 66
-  }, {
-    "answer" : [ "Let me recognize myself" ],
-    "challenge" : [ "Ꮻ̣²Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wị²gạ²da²dohl²gi" ],
-    "id" : 790,
-    "key" : "0008-0066-0006+ᏫᎦᏓᏙᎵᎩ+Ꮻ̣²Ꭶ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wị²gạ²da²dohl²gi+Let me recognize myself+",
-    "pgroup" : "Ꭶ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 66
-  }, {
     "answer" : [ "He and I are wanting ourselves" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "o¹gị²nạ²dạ²du²lị³ha" ],
-    "id" : 791,
+    "id" : 790,
     "key" : "0008-0067-0007+ᎣᎩᎾᏓᏚᎵᎭ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+o¹gị²nạ²dạ²du²lị³ha+He and I are wanting ourselves+",
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7912,7 +7902,7 @@
   }, {
     "answer" : [ "You (1) and I are seeing each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de³nạ²da²gowh²tị³ha" ],
-    "id" : 792,
+    "id" : 791,
     "key" : "0008-0069-0007+ᏕᎾᏓᎪᏩᏘᎭ+Ꮥ³Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+de³nạ²da²gowh²tị³ha+You (1) and I are seeing each other+",
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7922,12 +7912,22 @@
   }, {
     "answer" : [ "All of us are seeing each other" ],
     "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de³dạ²da²gowh²tị³ha" ],
-    "id" : 793,
+    "id" : 792,
     "key" : "0008-0070-0007+ᏕᏓᏓᎪᏩᏘᎭ+Ꮥ³Ꮣ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+de³dạ²da²gowh²tị³ha+All of us are seeing each other+",
     "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
     "reversed" : false,
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
+    "vset" : 70
+  }, {
+    "answer" : [ "Let you both become acquainted" ],
+    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "dị²sdạ²da²dohl²gi" ],
+    "id" : 793,
+    "key" : "0008-0070-0007+ᏗᏍᏓᏓᏙᎵᎩ+Ꮧ̣²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ+dị²sdạ²da²dohl²gi+Let you both become acquainted+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 70
   }, {
     "answer" : [ "Let him and me see them-inanimate" ],
@@ -7940,9 +7940,29 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 71
   }, {
+    "answer" : [ "Let them and me become acquainted" ],
+    "challenge" : [ "Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wị²jo¹jạ²da²dohl²gi" ],
+    "id" : 795,
+    "key" : "0008-0071-0007+ᏫᏦᏣᏓᏙᎵᎩ+Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wị²jo¹jạ²da²dohl²gi+Let them and me become acquainted+",
+    "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 71
+  }, {
+    "answer" : [ "Let them become acquainted" ],
+    "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wị²dị²nạda²dohl²gi" ],
+    "id" : 796,
+    "key" : "0008-0072-0007+ᏫᏗᎾᏓᏙᎵᎩ+Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wị²dị²nạda²dohl²gi+Let them become acquainted+",
+    "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 72
+  }, {
     "answer" : [ "He and I are seeing ourselves" ],
     "challenge" : [ "Ꭳ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "o¹sdạ²da²gowh²tị³ha" ],
-    "id" : 795,
+    "id" : 797,
     "key" : "0008-0073-0008+ᎣᏍᏓᏓᎪᏩᏘᎭ+Ꭳ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ+o¹sdạ²da²gowh²tị³ha+He and I are seeing ourselves+",
     "pgroup" : "Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 8,
@@ -7950,45 +7970,25 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 73
   }, {
+    "answer" : [ "Let him and me become acquainted" ],
+    "challenge" : [ "Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "wị²jo¹sdạ²da²dohl²gi" ],
+    "id" : 798,
+    "key" : "0008-0073-0008+ᏫᏦᏍᏓᏓᏙᎵᎩ+Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭹ+wị²jo¹sdạ²da²dohl²gi+Let him and me become acquainted+",
+    "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 8,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 73
+  }, {
     "answer" : [ "Let me see them-inanimate" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮵ̣²Ꭺ¹Ꮹ²Ꮤ", "wị²dị²jị²go¹wah²ta" ],
-    "id" : 796,
+    "id" : 799,
     "key" : "0008-0074-0006+ᏫᏗᏥᎪᏩᏔ+Ꮻ̣²Ꮧ̣²Ꮵ̣²Ꭺ¹Ꮹ²Ꮤ+wị²dị²jị²go¹wah²ta+Let me see them-inanimate+",
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
     "pset" : 8,
     "reversed" : false,
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 74
-  }, {
-    "answer" : [ "Let them and me see each other" ],
-    "challenge" : [ "Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²jo¹jạ²da²go¹wah²ta" ],
-    "id" : 797,
-    "key" : "0008-0077-0007+ᏫᏦᏣᏓᎪᏩᏔ+Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²jo¹jạ²da²go¹wah²ta+Let them and me see each other+",
-    "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 77
-  }, {
-    "answer" : [ "Let them see each other" ],
-    "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²dị²nạda²go¹wah²ta" ],
-    "id" : 798,
-    "key" : "0008-0078-0007+ᏫᏗᎾᏓᎪᏩᏔ+Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²dị²nạda²go¹wah²ta+Let them see each other+",
-    "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 78
-  }, {
-    "answer" : [ "Let him and me see each other" ],
-    "challenge" : [ "Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "wị²jo¹sdạ²da²go¹wah²ta" ],
-    "id" : 799,
-    "key" : "0008-0079-0008+ᏫᏦᏍᏓᏓᎪᏩᏔ+Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+wị²jo¹sdạ²da²go¹wah²ta+Let him and me see each other+",
-    "pgroup" : "Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 8,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 79
   }, {
     "answer" : [ "I understood it recently" ],
     "challenge" : [ "Ꭺ²Ꮅ¹Ꭶ²", "go²li¹ga²" ],
@@ -8750,9 +8750,19 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 59
   }, {
+    "answer" : [ "Let you all want each other" ],
+    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²jạ²dạ²du²³la" ],
+    "id" : 876,
+    "key" : "0009-0060-0005+ᏗᏣᏓᏚᎳ+Ꮧ̣²Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²jạ²dạ²du²³la+Let you all want each other+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 9,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
+    "vset" : 60
+  }, {
     "answer" : [ "You (1) and I recognized ourselves a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "gị²nạ²da²dohl²jv²³ɂi" ],
-    "id" : 876,
+    "id" : 877,
     "key" : "0009-0060-0007+ᎩᎾᏓᏙᎵᏨᎢ+Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ+gị²nạ²da²dohl²jv²³ɂi+You (1) and I recognized ourselves a while ago+",
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8762,7 +8772,7 @@
   }, {
     "answer" : [ "You all recognized yourselves recently" ],
     "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²", "i¹jạ²da²dohl²ga²" ],
-    "id" : 877,
+    "id" : 878,
     "key" : "0009-0061-0006+ᎢᏣᏓᏙᎵᎦ+Ꭲ¹Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭶ²+i¹jạ²da²dohl²ga²+You all recognized yourselves recently+",
     "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8772,7 +8782,7 @@
   }, {
     "answer" : [ "You (1) and I saw them-inanimate a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ", "de²gị²ni²go²hv²³ɂi" ],
-    "id" : 878,
+    "id" : 879,
     "key" : "0009-0061-0006+ᏕᎩᏂᎪᎲᎢ+Ꮥ²Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ+de²gị²ni²go²hv²³ɂi+You (1) and I saw them-inanimate a while ago+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
     "pset" : 9,
@@ -8782,23 +8792,13 @@
   }, {
     "answer" : [ "You (1) and I are often seeing ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "i¹nạ²da²gowh²ti²³sgọ³ɂi" ],
-    "id" : 879,
+    "id" : 880,
     "key" : "0009-0061-0009+ᎢᎾᏓᎪᏩᏘᏍᎪᎢ+Ꭲ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ+i¹nạ²da²gowh²ti²³sgọ³ɂi+You (1) and I are often seeing ourselves+",
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
     "reversed" : false,
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 61
-  }, {
-    "answer" : [ "Let you all see each other" ],
-    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²jạ²da²go¹wah²ta" ],
-    "id" : 880,
-    "key" : "0009-0062-0006+ᏗᏣᏓᎪᏩᏔ+Ꮧ̣²Ꮳ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²jạ²da²go¹wah²ta+Let you all see each other+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 9,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 62
   }, {
     "answer" : [ "He and I recognized ourselves a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "o¹gị²nạ²da²dohl²jv²³ɂi" ],
@@ -8860,9 +8860,19 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 66
   }, {
+    "answer" : [ "Let you both want each other" ],
+    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²sdạ²dạ²du²³la" ],
+    "id" : 887,
+    "key" : "0009-0066-0006+ᏗᏍᏓᏓᏚᎳ+Ꮧ̣²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²sdạ²dạ²du²³la+Let you both want each other+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 9,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
+    "vset" : 66
+  }, {
     "answer" : [ "They saw us recently, him and me" ],
     "challenge" : [ "Ꭺ²Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²", "go²gị²ni²go¹wah²ta²" ],
-    "id" : 887,
+    "id" : 888,
     "key" : "0009-0067-0006+ᎪᎩᏂᎪᏩᏔ+Ꭺ²Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²+go²gị²ni²go¹wah²ta²+They saw us recently, him and me+",
     "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
     "pset" : 9,
@@ -8872,7 +8882,7 @@
   }, {
     "answer" : [ "They are often seeing each other" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "da¹nạ²da²gowh²ti²³sgọ³ɂi" ],
-    "id" : 888,
+    "id" : 889,
     "key" : "0009-0068-0009+ᏓᎾᏓᎪᏩᏘᏍᎪᎢ+Ꮣ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ+da¹nạ²da²gowh²ti²³sgọ³ɂi+They are often seeing each other+",
     "pgroup" : "Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8882,7 +8892,7 @@
   }, {
     "answer" : [ "You (1) and I are often seeing each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "de³nạ²da²gowh²ti²³sgọ³ɂi" ],
-    "id" : 889,
+    "id" : 890,
     "key" : "0009-0069-0009+ᏕᎾᏓᎪᏩᏘᏍᎪᎢ+Ꮥ³Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ+de³nạ²da²gowh²ti²³sgọ³ɂi+You (1) and I are often seeing each other+",
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8892,7 +8902,7 @@
   }, {
     "answer" : [ "Let them and me want each other" ],
     "challenge" : [ "Ꮻ̣²Ꮶ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ", "wị²jo¹gạ²dạ²du²³la" ],
-    "id" : 890,
+    "id" : 891,
     "key" : "0009-0070-0006+ᏫᏦᎦᏓᏚᎳ+Ꮻ̣²Ꮶ¹Ꭶ̣²Ꮣ̣²Ꮪ²³Ꮃ+wị²jo¹gạ²dạ²du²³la+Let them and me want each other+",
     "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8902,7 +8912,7 @@
   }, {
     "answer" : [ "All of us are often seeing each other" ],
     "challenge" : [ "Ꮥ³Ꮣ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "de³dạ²da²gowh²ti²³sgọ³ɂi" ],
-    "id" : 891,
+    "id" : 892,
     "key" : "0009-0070-0009+ᏕᏓᏓᎪᏩᏘᏍᎪᎢ+Ꮥ³Ꮣ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ+de³dạ²da²gowh²ti²³sgọ³ɂi+All of us are often seeing each other+",
     "pgroup" : "Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8912,7 +8922,7 @@
   }, {
     "answer" : [ "For you (1) and me to see each other" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "dị²gị²nạ²da²gowh²tvh³di" ],
-    "id" : 892,
+    "id" : 893,
     "key" : "0009-0071-0008+ᏗᎩᎾᏓᎪᏩᏛᏗ+Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ+dị²gị²nạ²da²gowh²tvh³di+For you (1) and me to see each other+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8922,7 +8932,7 @@
   }, {
     "answer" : [ "Let them want each other" ],
     "challenge" : [ "Ꮻ̣²Ꮷ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "wị²ju¹nạ²dạ²du²³la" ],
-    "id" : 893,
+    "id" : 894,
     "key" : "0009-0072-0006+ᏫᏧᎾᏓᏚᎳ+Ꮻ̣²Ꮷ¹Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ+wị²ju¹nạ²dạ²du²³la+Let them want each other+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
@@ -8932,23 +8942,13 @@
   }, {
     "answer" : [ "They and I are often seeing each other" ],
     "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "do¹jạ²da²gowh²ti²³sgọ³ɂi" ],
-    "id" : 894,
+    "id" : 895,
     "key" : "0009-0072-0009+ᏙᏣᏓᎪᏩᏘᏍᎪᎢ+Ꮩ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ+do¹jạ²da²gowh²ti²³sgọ³ɂi+They and I are often seeing each other+",
     "pgroup" : "Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 9,
     "reversed" : false,
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 72
-  }, {
-    "answer" : [ "Let you both see each other" ],
-    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²sdạ²da²go¹wah²ta" ],
-    "id" : 895,
-    "key" : "0009-0073-0007+ᏗᏍᏓᏓᎪᏩᏔ+Ꮧ̣²ᏍᏓ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ+dị²sdạ²da²go¹wah²ta+Let you both see each other+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 9,
-    "reversed" : false,
-    "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 73
   }, {
     "answer" : [ "He and I are often seeing ourselves" ],
     "challenge" : [ "Ꭳ¹ᏍᏓ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "o¹sdạ²da²gowh²ti²³sgọ³ɂi" ],
@@ -9673,26 +9673,16 @@
     "answer" : [ "Let them recognize them-animate" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²ᏃᎵ͓²Ꭹ", "wị²dị²nohl²gi" ],
     "id" : 968,
-    "key" : "0010-0059-0005+ᏫᏗᏃᎵᎩ+Ꮻ̣²Ꮧ̣²ᏃᎵ͓²Ꭹ+wị²dị²nohl²gi+Let them recognize them-animate+",
+    "key" : "0010-0056-0005+ᏫᏗᏃᎵᎩ+Ꮻ̣²Ꮧ̣²ᏃᎵ͓²Ꭹ+wị²dị²nohl²gi+Let them recognize them-animate+",
     "pgroup" : "Ꮣ¹Ꮒ²-",
     "pset" : 10,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 59
-  }, {
-    "answer" : [ "Let you all want each other" ],
-    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²jạ²dạ²du²³la" ],
-    "id" : 969,
-    "key" : "0010-0060-0005+ᏗᏣᏓᏚᎳ+Ꮧ̣²Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²jạ²dạ²du²³la+Let you all want each other+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 10,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
-    "vset" : 60
+    "vset" : 56
   }, {
     "answer" : [ "All of us wanted each other a while ago" ],
     "challenge" : [ "Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "de³gạ²dạ²du²lv²hv²³ɂi" ],
-    "id" : 970,
+    "id" : 969,
     "key" : "0010-0060-0007+ᏕᎦᏓᏚᎸᎲᎢ+Ꮥ³Ꭶ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ+de³gạ²dạ²du²lv²hv²³ɂi+All of us wanted each other a while ago+",
     "pgroup" : "Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
@@ -9702,7 +9692,7 @@
   }, {
     "answer" : [ "They and I wanted each other a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "do¹gạ²dạ²du²lv²hv²³ɂi" ],
-    "id" : 971,
+    "id" : 970,
     "key" : "0010-0062-0007+ᏙᎦᏓᏚᎸᎲᎢ+Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ+do¹gạ²dạ²du²lv²hv²³ɂi+They and I wanted each other a while ago+",
     "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
@@ -9712,7 +9702,7 @@
   }, {
     "answer" : [ "They wanted each other a while ago" ],
     "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "du¹nạ²dạ²du²lv²hv²³ɂi" ],
-    "id" : 972,
+    "id" : 971,
     "key" : "0010-0064-0007+ᏚᎾᏓᏚᎸᎲᎢ+Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ+du¹nạ²dạ²du²lv²hv²³ɂi+They wanted each other a while ago+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
@@ -9722,7 +9712,7 @@
   }, {
     "answer" : [ "He and I saw them-inanimate a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ", "do¹gị²ni²go²hv²³ɂi" ],
-    "id" : 973,
+    "id" : 972,
     "key" : "0010-0065-0006+ᏙᎩᏂᎪᎲᎢ+Ꮩ¹Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ+do¹gị²ni²go²hv²³ɂi+He and I saw them-inanimate a while ago+",
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
     "pset" : 10,
@@ -9732,7 +9722,7 @@
   }, {
     "answer" : [ "You (1) and I wanted ourselves a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "gị²nạ²dạ²du²lv²hv²³ɂi" ],
-    "id" : 974,
+    "id" : 973,
     "key" : "0010-0065-0007+ᎩᎾᏓᏚᎸᎲᎢ+Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ+gị²nạ²dạ²du²lv²hv²³ɂi+You (1) and I wanted ourselves a while ago+",
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
@@ -9740,19 +9730,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 65
   }, {
-    "answer" : [ "Let you both want each other" ],
-    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²sdạ²dạ²du²³la" ],
-    "id" : 975,
-    "key" : "0010-0066-0006+ᏗᏍᏓᏓᏚᎳ+Ꮧ̣²ᏍᏓ̣²Ꮣ̣²Ꮪ²³Ꮃ+dị²sdạ²dạ²du²³la+Let you both want each other+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "You all often recognize each other" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de³jạ²da²dohl²go³ɂi" ],
+    "id" : 974,
+    "key" : "0010-0066-0007+ᏕᏣᏓᏙᎵᎪᎢ+Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+de³jạ²da²dohl²go³ɂi+You all often recognize each other+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
     "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
+    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 66
   }, {
     "answer" : [ "He and I wanted ourselves a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "o¹gị²nạ²dạ²du²lv²hv²³ɂi" ],
-    "id" : 976,
+    "id" : 975,
     "key" : "0010-0067-0008+ᎣᎩᎾᏓᏚᎸᎲᎢ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ+o¹gị²nạ²dạ²du²lv²hv²³ɂi+He and I wanted ourselves a while ago+",
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
@@ -9762,13 +9752,23 @@
   }, {
     "answer" : [ "You (1) and I wanted each other a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "de²gị²nạ²dạ²du²lv²hv²³ɂi" ],
-    "id" : 977,
+    "id" : 976,
     "key" : "0010-0068-0008+ᏕᎩᎾᏓᏚᎸᎲᎢ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ+de²gị²nạ²dạ²du²lv²hv²³ɂi+You (1) and I wanted each other a while ago+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 10,
     "reversed" : false,
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 68
+  }, {
+    "answer" : [ "You both often recognize each other" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de²sdạ²da²dohl²go³ɂi" ],
+    "id" : 977,
+    "key" : "0010-0069-0008+ᏕᏍᏓᏓᏙᎵᎪᎢ+Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+de²sdạ²da²dohl²go³ɂi+You both often recognize each other+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 10,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
+    "vset" : 69
   }, {
     "answer" : [ "He and I wanted each other a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "do¹gị²nạ²dạ²du²lv²hv²³ɂi" ],
@@ -10420,9 +10420,19 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 53
   }, {
+    "answer" : [ "Let him and me recognize them-animate" ],
+    "challenge" : [ "Ꮻ̣²Ꭺ²ᏍᏙ²Ꮅ¹Ꭹ", "wị²go²sdo²li¹gi" ],
+    "id" : 1043,
+    "key" : "0011-0053-0006+ᏫᎪᏍᏙᎵᎩ+Ꮻ̣²Ꭺ²ᏍᏙ²Ꮅ¹Ꭹ+wị²go²sdo²li¹gi+Let him and me recognize them-animate+",
+    "pgroup" : "Ꭺ²ᏍᏗ²-",
+    "pset" : 11,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 53
+  }, {
     "answer" : [ "They often are wanting themselves" ],
     "challenge" : [ "Ꭴ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "u¹nạ²dạ²du²li²³sgọ³ɂi" ],
-    "id" : 1043,
+    "id" : 1044,
     "key" : "0011-0054-0008+ᎤᎾᏓᏚᎵᏍᎪᎢ+Ꭴ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ+u¹nạ²dạ²du²li²³sgọ³ɂi+They often are wanting themselves+",
     "pgroup" : "Ꭴ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
@@ -10432,23 +10442,13 @@
   }, {
     "answer" : [ "For me to want them-animate" ],
     "challenge" : [ "Ꭶ̣²Ꮵ²Ꮿ̣²ᏚᎸ͓²Ꮧ", "gạ²ji²yạ²duhl²di" ],
-    "id" : 1044,
+    "id" : 1045,
     "key" : "0011-0055-0006+ᎦᏥᏯᏚᎸᏗ+Ꭶ̣²Ꮵ²Ꮿ̣²ᏚᎸ͓²Ꮧ+gạ²ji²yạ²duhl²di+For me to want them-animate+",
     "pgroup" : "Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-",
     "pset" : 11,
     "reversed" : false,
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 55
-  }, {
-    "answer" : [ "Let him and me recognize them-animate" ],
-    "challenge" : [ "Ꮻ̣²Ꭺ²ᏍᏙ²Ꮅ¹Ꭹ", "wị²go²sdo²li¹gi" ],
-    "id" : 1045,
-    "key" : "0011-0056-0006+ᏫᎪᏍᏙᎵᎩ+Ꮻ̣²Ꭺ²ᏍᏙ²Ꮅ¹Ꭹ+wị²go²sdo²li¹gi+Let him and me recognize them-animate+",
-    "pgroup" : "Ꭺ²ᏍᏗ²-",
-    "pset" : 11,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 56
   }, {
     "answer" : [ "Let you (1) and me want them-inanimate" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ", "dị²gị²nạ²du²³la" ],
@@ -10480,9 +10480,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 60
   }, {
+    "answer" : [ "You all are wanting each other" ],
+    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de³jạ²dạ²du²lị³ha" ],
+    "id" : 1049,
+    "key" : "0011-0061-0006+ᏕᏣᏓᏚᎵᎭ+Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de³jạ²dạ²du²lị³ha+You all are wanting each other+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 11,
+    "reversed" : false,
+    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
+    "vset" : 61
+  }, {
     "answer" : [ "They and I often are wanting each other" ],
     "challenge" : [ "Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "do¹gạ²dạ²du²li²³sgọ³ɂi" ],
-    "id" : 1049,
+    "id" : 1050,
     "key" : "0011-0062-0008+ᏙᎦᏓᏚᎵᏍᎪᎢ+Ꮩ¹Ꭶ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ+do¹gạ²dạ²du²li²³sgọ³ɂi+They and I often are wanting each other+",
     "pgroup" : "Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
@@ -10492,7 +10502,7 @@
   }, {
     "answer" : [ "They often are wanting each other" ],
     "challenge" : [ "Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "du¹nạ²dạ²du²li²³sgọ³ɂi" ],
-    "id" : 1050,
+    "id" : 1051,
     "key" : "0011-0064-0008+ᏚᎾᏓᏚᎵᏍᎪᎢ+Ꮪ¹Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ+du¹nạ²dạ²du²li²³sgọ³ɂi+They often are wanting each other+",
     "pgroup" : "Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
@@ -10502,7 +10512,7 @@
   }, {
     "answer" : [ "You (1) and I often are wanting ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "gị²nạ²dạ²du²li²³sgọ³ɂi" ],
-    "id" : 1051,
+    "id" : 1052,
     "key" : "0011-0065-0008+ᎩᎾᏓᏚᎵᏍᎪᎢ+Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ+gị²nạ²dạ²du²li²³sgọ³ɂi+You (1) and I often are wanting ourselves+",
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
@@ -10510,19 +10520,29 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 65
   }, {
-    "answer" : [ "You all often recognize each other" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de³jạ²da²dohl²go³ɂi" ],
-    "id" : 1052,
-    "key" : "0011-0066-0007+ᏕᏣᏓᏙᎵᎪᎢ+Ꮥ³Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+de³jạ²da²dohl²go³ɂi+You all often recognize each other+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
+    "answer" : [ "You both are wanting each other" ],
+    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de²sdạ²dạ²du²lị³ha" ],
+    "id" : 1053,
+    "key" : "0011-0066-0007+ᏕᏍᏓᏓᏚᎵᎭ+Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de²sdạ²dạ²du²lị³ha+You both are wanting each other+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
+    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 66
+  }, {
+    "answer" : [ "Let them recognize you (1) and me" ],
+    "challenge" : [ "Ꮻ̣²Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭹ", "wị²ge²gị²nohl²gi" ],
+    "id" : 1054,
+    "key" : "0011-0067-0006+ᏫᎨᎩᏃᎵᎩ+Ꮻ̣²Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭹ+wị²ge²gị²nohl²gi+Let them recognize you (1) and me+",
+    "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
+    "pset" : 11,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 67
   }, {
     "answer" : [ "He and I often are wanting ourselves" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "o¹gị²nạ²dạ²du²li²³sgọ³ɂi" ],
-    "id" : 1053,
+    "id" : 1055,
     "key" : "0011-0067-0009+ᎣᎩᎾᏓᏚᎵᏍᎪᎢ+Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ+o¹gị²nạ²dạ²du²li²³sgọ³ɂi+He and I often are wanting ourselves+",
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
@@ -10530,11 +10550,11 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 67
   }, {
-    "answer" : [ "Let them recognize you (1) and me" ],
-    "challenge" : [ "Ꮻ̣²Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭹ", "wị²ge²gị²nohl²gi" ],
-    "id" : 1054,
-    "key" : "0011-0068-0006+ᏫᎨᎩᏃᎵᎩ+Ꮻ̣²Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭹ+wị²ge²gị²nohl²gi+Let them recognize you (1) and me+",
-    "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
+    "answer" : [ "Let them recognize him and me" ],
+    "challenge" : [ "Ꮻ̣²Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭹ", "wị²go²gị²nohl²gi" ],
+    "id" : 1056,
+    "key" : "0011-0068-0006+ᏫᎪᎩᏃᎵᎩ+Ꮻ̣²Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭹ+wị²go²gị²nohl²gi+Let them recognize him and me+",
+    "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
     "pset" : 11,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
@@ -10542,33 +10562,13 @@
   }, {
     "answer" : [ "You (1) and I often are wanting each other" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "de²gị²nạ²dạ²du²li²³sgọ³ɂi" ],
-    "id" : 1055,
+    "id" : 1057,
     "key" : "0011-0068-0009+ᏕᎩᎾᏓᏚᎵᏍᎪᎢ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ+de²gị²nạ²dạ²du²li²³sgọ³ɂi+You (1) and I often are wanting each other+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 11,
     "reversed" : false,
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 68
-  }, {
-    "answer" : [ "Let them recognize him and me" ],
-    "challenge" : [ "Ꮻ̣²Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭹ", "wị²go²gị²nohl²gi" ],
-    "id" : 1056,
-    "key" : "0011-0069-0006+ᏫᎪᎩᏃᎵᎩ+Ꮻ̣²Ꭺ²Ꭹ̣²ᏃᎵ͓²Ꭹ+wị²go²gị²nohl²gi+Let them recognize him and me+",
-    "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
-    "pset" : 11,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 69
-  }, {
-    "answer" : [ "You both often recognize each other" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de²sdạ²da²dohl²go³ɂi" ],
-    "id" : 1057,
-    "key" : "0011-0069-0008+ᏕᏍᏓᏓᏙᎵᎪᎢ+Ꮥ²ᏍᏓ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ+de²sdạ²da²dohl²go³ɂi+You both often recognize each other+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 11,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
-    "vset" : 69
   }, {
     "answer" : [ "He and I often are wanting each other" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "do¹gị²nạ²dạ²du²li²³sgọ³ɂi" ],
@@ -11130,9 +11130,19 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 47
   }, {
+    "answer" : [ "Let him recognize them-animate" ],
+    "challenge" : [ "Ꮻ̣²Ꮧ̣²ᎪᎵ͓²Ꭹ", "wị²dị²gohl²gi" ],
+    "id" : 1114,
+    "key" : "0012-0055-0005+ᏫᏗᎪᎵᎩ+Ꮻ̣²Ꮧ̣²ᎪᎵ͓²Ꭹ+wị²dị²gohl²gi+Let him recognize them-animate+",
+    "pgroup" : "Ꮣ̣²-, Ꮥ²Ꭶ̣²-",
+    "pset" : 12,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 55
+  }, {
     "answer" : [ "For you all to see yourselves" ],
     "challenge" : [ "Ꭲ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "i¹jạ²da²gowh²tvh³di" ],
-    "id" : 1114,
+    "id" : 1115,
     "key" : "0012-0055-0007+ᎢᏣᏓᎪᏩᏛᏗ+Ꭲ¹Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ+i¹jạ²da²gowh²tvh³di+For you all to see yourselves+",
     "pgroup" : "Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 12,
@@ -11142,7 +11152,7 @@
   }, {
     "answer" : [ "They are wanting you (1) and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ", "ge²gị²nạ²du²lị³ha" ],
-    "id" : 1115,
+    "id" : 1116,
     "key" : "0012-0057-0006+ᎨᎩᎾᏚᎵᎭ+Ꭸ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ+ge²gị²nạ²du²lị³ha+They are wanting you (1) and me+",
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
     "pset" : 12,
@@ -11152,7 +11162,7 @@
   }, {
     "answer" : [ "You (1) or both saw us two recently", "You both saw me recently" ],
     "challenge" : [ "ᏍᎩ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²", "sgị²ni²go¹wah²ta²" ],
-    "id" : 1116,
+    "id" : 1117,
     "key" : "0012-0057-0006+ᏍᎩᏂᎪᏩᏔ+ᏍᎩ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²+sgị²ni²go¹wah²ta²+You (1) or both saw us two recently+You both saw me recently+",
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
     "pset" : 12,
@@ -11160,19 +11170,19 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 57
   }, {
-    "answer" : [ "Let him recognize them-animate" ],
-    "challenge" : [ "Ꮻ̣²Ꮧ̣²ᎪᎵ͓²Ꭹ", "wị²dị²gohl²gi" ],
-    "id" : 1117,
-    "key" : "0012-0058-0005+ᏫᏗᎪᎵᎩ+Ꮻ̣²Ꮧ̣²ᎪᎵ͓²Ꭹ+wị²dị²gohl²gi+Let him recognize them-animate+",
-    "pgroup" : "Ꮣ̣²-, Ꮥ²Ꭶ̣²-",
+    "answer" : [ "For you all to become acquainted" ],
+    "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "dị²jạ²da²do²hlị³sdi" ],
+    "id" : 1118,
+    "key" : "0012-0057-0007+ᏗᏣᏓᏙᎵᏍᏗ+Ꮧ̣²Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+dị²jạ²da²do²hlị³sdi+For you all to become acquainted+",
+    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
     "pset" : 12,
     "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 58
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 57
   }, {
     "answer" : [ "They are wanting him and me" ],
     "challenge" : [ "Ꭺ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ", "go²gị²nạ²du²lị³ha" ],
-    "id" : 1118,
+    "id" : 1119,
     "key" : "0012-0058-0006+ᎪᎩᎾᏚᎵᎭ+Ꭺ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ+go²gị²nạ²du²lị³ha+They are wanting him and me+",
     "pgroup" : "Ꭺ²Ꭹ̣²Ꮒ²-",
     "pset" : 12,
@@ -11180,9 +11190,19 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 58
   }, {
+    "answer" : [ "For you both to become acquainted" ],
+    "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "dị²sdạ²da²do²hlị³sdi" ],
+    "id" : 1120,
+    "key" : "0012-0058-0008+ᏗᏍᏓᏓᏙᎵᏍᏗ+Ꮧ̣²ᏍᏓ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ+dị²sdạ²da²do²hlị³sdi+For you both to become acquainted+",
+    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
+    "pset" : 12,
+    "reversed" : false,
+    "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
+    "vset" : 58
+  }, {
     "answer" : [ "You (1) and I are wanting them-inanimate" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ", "de²gị²nạ²du²lị³ha" ],
-    "id" : 1119,
+    "id" : 1121,
     "key" : "0012-0059-0006+ᏕᎩᎾᏚᎵᎭ+Ꮥ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ+de²gị²nạ²du²lị³ha+You (1) and I are wanting them-inanimate+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
     "pset" : 12,
@@ -11192,7 +11212,7 @@
   }, {
     "answer" : [ "You (1) and I were seen recently" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²", "e¹gị²ni²go¹wah²ta²" ],
-    "id" : 1120,
+    "id" : 1122,
     "key" : "0012-0060-0006+ᎡᎩᏂᎪᏩᏔ+Ꭱ¹Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²+e¹gị²ni²go¹wah²ta²+You (1) and I were seen recently+",
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
     "pset" : 12,
@@ -11200,19 +11220,9 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 60
   }, {
-    "answer" : [ "You all are wanting each other" ],
-    "challenge" : [ "Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de³jạ²dạ²du²lị³ha" ],
-    "id" : 1121,
-    "key" : "0012-0061-0006+ᏕᏣᏓᏚᎵᎭ+Ꮥ³Ꮳ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de³jạ²dạ²du²lị³ha+You all are wanting each other+",
-    "pgroup" : "Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 12,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
-    "vset" : 61
-  }, {
     "answer" : [ "He and I are wanting them-inanimate" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ", "do¹gị²nạ²du²lị³ha" ],
-    "id" : 1122,
+    "id" : 1123,
     "key" : "0012-0063-0006+ᏙᎩᎾᏚᎵᎭ+Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ+do¹gị²nạ²du²lị³ha+He and I are wanting them-inanimate+",
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
     "pset" : 12,
@@ -11222,22 +11232,12 @@
   }, {
     "answer" : [ "Let them see you (1)" ],
     "challenge" : [ "Ꮻ̣²Ꭸ²Ꮳ̣²Ꭺ¹Ꮹ²Ꮤ", "wị²ge²jạ²go¹wah²ta" ],
-    "id" : 1123,
+    "id" : 1124,
     "key" : "0012-0066-0006+ᏫᎨᏣᎪᏩᏔ+Ꮻ̣²Ꭸ²Ꮳ̣²Ꭺ¹Ꮹ²Ꮤ+wị²ge²jạ²go¹wah²ta+Let them see you (1)+",
     "pgroup" : "Ꭸ²Ꮳ̣²-",
     "pset" : 12,
     "reversed" : false,
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
-    "vset" : 66
-  }, {
-    "answer" : [ "You both are wanting each other" ],
-    "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de²sdạ²dạ²du²lị³ha" ],
-    "id" : 1124,
-    "key" : "0012-0066-0007+ᏕᏍᏓᏓᏚᎵᎭ+Ꮥ²ᏍᏓ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ+de²sdạ²dạ²du²lị³ha+You both are wanting each other+",
-    "pgroup" : "Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-",
-    "pset" : 12,
-    "reversed" : false,
-    "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 66
   }, {
     "answer" : [ "Let them see them-animate", "Let them see them-inanimate" ],
@@ -12430,9 +12430,19 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 51
   }, {
+    "answer" : [ "Let them recognize you both" ],
+    "challenge" : [ "Ꮻ̣²Ꭸ²ᏍᏙ²Ꮅ¹Ꭹ", "wị²ge²sdo²li¹gi" ],
+    "id" : 1244,
+    "key" : "0014-0051-0006+ᏫᎨᏍᏙᎵᎩ+Ꮻ̣²Ꭸ²ᏍᏙ²Ꮅ¹Ꭹ+wị²ge²sdo²li¹gi+Let them recognize you both+",
+    "pgroup" : "Ꭸ²ᏍᏗ²-",
+    "pset" : 14,
+    "reversed" : false,
+    "vgroup" : "ᎣᎵ͓²Ꭹ",
+    "vset" : 51
+  }, {
     "answer" : [ "Let them and me want them-inanimate" ],
     "challenge" : [ "Ꮻ̣²Ꮶ¹Ꭶ̣²Ꮪ²³Ꮃ", "wị²jo¹gạ²du²³la" ],
-    "id" : 1244,
+    "id" : 1245,
     "key" : "0014-0052-0005+ᏫᏦᎦᏚᎳ+Ꮻ̣²Ꮶ¹Ꭶ̣²Ꮪ²³Ꮃ+wị²jo¹gạ²du²³la+Let them and me want them-inanimate+",
     "pgroup" : "Ꮩ¹Ꭹ²-",
     "pset" : 14,
@@ -12442,7 +12452,7 @@
   }, {
     "answer" : [ "For you (1) to want them-animate" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꮿ̣²ᏚᎸ͓²Ꮧ", "gạ²hi²yạ²duhl²di" ],
-    "id" : 1245,
+    "id" : 1246,
     "key" : "0014-0054-0006+ᎦᎯᏯᏚᎸᏗ+Ꭶ̣²Ꭿ²Ꮿ̣²ᏚᎸ͓²Ꮧ+gạ²hi²yạ²duhl²di+For you (1) to want them-animate+",
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
     "pset" : 14,
@@ -12450,29 +12460,29 @@
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 54
   }, {
-    "answer" : [ "Let them recognize you both" ],
-    "challenge" : [ "Ꮻ̣²Ꭸ²ᏍᏙ²Ꮅ¹Ꭹ", "wị²ge²sdo²li¹gi" ],
-    "id" : 1246,
-    "key" : "0014-0054-0006+ᏫᎨᏍᏙᎵᎩ+Ꮻ̣²Ꭸ²ᏍᏙ²Ꮅ¹Ꭹ+wị²ge²sdo²li¹gi+Let them recognize you both+",
-    "pgroup" : "Ꭸ²ᏍᏗ²-",
+    "answer" : [ "Let me recognize you both", "Let us two recognize you (1) or both" ],
+    "challenge" : [ "Ꮻ̣²ᏍᏛ²Ᏺ²Ꮅ¹Ꭹ", "wị²sdv²yo²li¹gi" ],
+    "id" : 1247,
+    "key" : "0014-0054-0006+ᏫᏍᏛᏲᎵᎩ+Ꮻ̣²ᏍᏛ²Ᏺ²Ꮅ¹Ꭹ+wị²sdv²yo²li¹gi+Let me recognize you both+Let us two recognize you (1) or both+",
+    "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
     "pset" : 14,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 54
   }, {
-    "answer" : [ "Let me recognize you both", "Let us two recognize you (1) or both" ],
-    "challenge" : [ "Ꮻ̣²ᏍᏛ²Ᏺ²Ꮅ¹Ꭹ", "wị²sdv²yo²li¹gi" ],
-    "id" : 1247,
-    "key" : "0014-0057-0006+ᏫᏍᏛᏲᎵᎩ+Ꮻ̣²ᏍᏛ²Ᏺ²Ꮅ¹Ꭹ+wị²sdv²yo²li¹gi+Let me recognize you both+Let us two recognize you (1) or both+",
-    "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
+    "answer" : [ "Let me recognize them-animate" ],
+    "challenge" : [ "Ꮻ̣²Ꭶ̣²Ꮵ²Ᏺ²Ꮅ¹Ꭹ", "wị²gạ²ji²yo²li¹gi" ],
+    "id" : 1248,
+    "key" : "0014-0066-0006+ᏫᎦᏥᏲᎵᎩ+Ꮻ̣²Ꭶ̣²Ꮵ²Ᏺ²Ꮅ¹Ꭹ+wị²gạ²ji²yo²li¹gi+Let me recognize them-animate+",
+    "pgroup" : "Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-",
     "pset" : 14,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 57
+    "vset" : 66
   }, {
     "answer" : [ "They are seeing you (1) and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "ge²gị²ni²gowh²tị³ha" ],
-    "id" : 1248,
+    "id" : 1249,
     "key" : "0014-0066-0007+ᎨᎩᏂᎪᏩᏘᎭ+Ꭸ²Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮨ̣³Ꭽ+ge²gị²ni²gowh²tị³ha+They are seeing you (1) and me+",
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
     "pset" : 14,
@@ -12482,23 +12492,13 @@
   }, {
     "answer" : [ "For you (1) and me to see them-inanimate" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮫ³Ꮧ", "dị²gị²ni²gowh²tvh³di" ],
-    "id" : 1249,
+    "id" : 1250,
     "key" : "0014-0066-0007+ᏗᎩᏂᎪᏩᏛᏗ+Ꮧ̣²Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮫ³Ꮧ+dị²gị²ni²gowh²tvh³di+For you (1) and me to see them-inanimate+",
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
     "pset" : 14,
     "reversed" : false,
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 66
-  }, {
-    "answer" : [ "Let me recognize them-animate" ],
-    "challenge" : [ "Ꮻ̣²Ꭶ̣²Ꮵ²Ᏺ²Ꮅ¹Ꭹ", "wị²gạ²ji²yo²li¹gi" ],
-    "id" : 1250,
-    "key" : "0014-0067-0006+ᏫᎦᏥᏲᎵᎩ+Ꮻ̣²Ꭶ̣²Ꮵ²Ᏺ²Ꮅ¹Ꭹ+wị²gạ²ji²yo²li¹gi+Let me recognize them-animate+",
-    "pgroup" : "Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-",
-    "pset" : 14,
-    "reversed" : false,
-    "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 67
   }, {
     "answer" : [ "They are seeing him and me" ],
     "challenge" : [ "Ꭺ²Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "go²gị²ni²gowh²tị³ha" ],
@@ -16713,12 +16713,12 @@
     "answer" : [ "Let him recognize you (1) and me" ],
     "challenge" : [ "Ꮻ̣²Ꭹ̣²ᏃᎵ͓²Ꭹ", "wị²gị²nohl²gi" ],
     "id" : 1672,
-    "key" : "0025-0055-0005+ᏫᎩᏃᎵᎩ+Ꮻ̣²Ꭹ̣²ᏃᎵ͓²Ꭹ+wị²gị²nohl²gi+Let him recognize you (1) and me+",
+    "key" : "0025-0052-0005+ᏫᎩᏃᎵᎩ+Ꮻ̣²Ꭹ̣²ᏃᎵ͓²Ꭹ+wị²gị²nohl²gi+Let him recognize you (1) and me+",
     "pgroup" : "Ꭹ̣²Ꮒ²-",
     "pset" : 25,
     "reversed" : false,
     "vgroup" : "ᎣᎵ͓²Ꭹ",
-    "vset" : 55
+    "vset" : 52
   }, {
     "answer" : [ "He saw us recently, him and me", "He and I were seen recently" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²", "o¹gị²ni²go¹wah²ta²" ],
