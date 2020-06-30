@@ -1,3 +1,7 @@
+3.31
+
+Adjust sort order of master deck to better spread challenges across pronoun and verb combinations.
+
 3.30
 
 Fix issue with "bound pronouns" list screen caused by "csv" to "tsv" filename extension change.
