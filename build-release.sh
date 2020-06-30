@@ -11,9 +11,35 @@ cd "$(dirname "$0")"
 ./gradlew clean || exit 1
 ./gradlew core:build || exit 1 
 
+#Always auto commit the conjugation table data via git
+git add android/assets/deck.json
+git add android/assets/espeak.tsv
+git add android/assets/review-sheet.tsv
+git commit -m "Updated master deck file."
+
+
+if ! git diff-index --quiet HEAD --; then
+    git status
+    echo
+    echo "PENDING CHANGES NOT COMMITTED - ABORTING"
+    echo
+    exit -1
+fi
+
 #Always rebuild and resync audio.
 bash ./espeak-ng/build-mp3s.sh
 bash ./espeak-ng/sync-mp3s.sh
+#Always re-add audio files if any changed.
+git add android/assets/mp3-challenges
+git commit -m "Updated Audio"
+
+if ! git diff-index --quiet HEAD --; then
+    git status
+    echo
+    echo "PENDING CHANGES NOT COMMITTED - ABORTING"
+    echo
+    exit -1
+fi
 
 #Ensure the project can be full built before doing anything else.
 ./gradlew clean || exit 1
