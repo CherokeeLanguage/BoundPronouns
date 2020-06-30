@@ -1,3 +1,7 @@
+3.32
+
+Spelling fixes.
+
 3.31
 
 Adjust sort order of master deck to better spread challenges across pronoun and verb combinations.
