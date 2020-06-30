@@ -15,7 +15,7 @@ cd "$(dirname "$0")"
 git add android/assets/deck.json
 git add android/assets/espeak.tsv
 git add android/assets/review-sheet.tsv
-git commit -m "Updated master deck file."
+git commit -m "Updated master deck file." || true #ignore if no changes to commit.
 
 
 if ! git diff-index --quiet HEAD --; then
@@ -31,7 +31,7 @@ bash ./espeak-ng/build-mp3s.sh
 bash ./espeak-ng/sync-mp3s.sh
 #Always re-add audio files if any changed.
 git add android/assets/mp3-challenges
-git commit -m "Updated Audio"
+git commit -m "Updated audio files." || true #ignore if no changes to commit.
 
 if ! git diff-index --quiet HEAD --; then
     git status
@@ -47,8 +47,13 @@ fi
 ./gradlew desktop:dist || exit 1
 ./gradlew android:assembleRelease || exit 1
 
-git add .
-git commit -a -m "Autocommit for next release build." || true
+if ! git diff-index --quiet HEAD --; then
+    git status
+    echo
+    echo "PENDING CHANGES NOT COMMITTED - ABORTING"
+    echo
+    exit -1
+fi
 
 version=$(head -n1 version)
 version=$(($version + 1 ))
@@ -63,11 +68,9 @@ sed -i "s/app.version=.*$/app.version=$xversion/g" ios/robovm.properties
 
 echo "$version" > version
 
-git add .
+git add version
 git commit -a -m "Bump version for release build." || true
 git tag "${xversion}" || true
-#git push --all
-#git push --tags
 
 #Build the newly tagged version.
 ./gradlew clean
