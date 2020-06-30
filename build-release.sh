@@ -21,7 +21,7 @@ git commit -m "Updated master deck file." || true #ignore if no changes to commi
 if ! git diff-index --quiet HEAD --; then
     git status
     echo
-    echo "PENDING CHANGES NOT COMMITTED - ABORTING"
+    echo "PENDING CHANGES NOT COMMITTED - ABORTING [post deck rebuild]"
     echo
     exit -1
 fi
@@ -36,7 +36,7 @@ git commit -m "Updated audio files." || true #ignore if no changes to commit.
 if ! git diff-index --quiet HEAD --; then
     git status
     echo
-    echo "PENDING CHANGES NOT COMMITTED - ABORTING"
+    echo "PENDING CHANGES NOT COMMITTED - ABORTING [post audio rebuild]"
     echo
     exit -1
 fi
@@ -50,7 +50,7 @@ fi
 if ! git diff-index --quiet HEAD --; then
     git status
     echo
-    echo "PENDING CHANGES NOT COMMITTED - ABORTING"
+    echo "PENDING CHANGES NOT COMMITTED - ABORTING [post project test full rebuild]"
     echo
     exit -1
 fi
