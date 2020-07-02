@@ -55,6 +55,11 @@ if ! git diff-index --quiet HEAD --; then
     exit -1
 fi
 
+#Make sure we have an up-to-date git log in the text folder as "git-changelog.txt"
+git log --simplify-merges --pretty=format:"%ad [%h]:%d %s" --abbrev-commit --date=short > android/assets/text/git-changelog.txt
+git add android/assets/text/git-changelog.txt
+git commit android/assets/text/git-changelog.txt -m "Update git changelog." || true
+
 version=$(head -n1 version)
 version=$(($version + 1 ))
 xversion="${version:0:${#version}-2}.${version: -2}"
