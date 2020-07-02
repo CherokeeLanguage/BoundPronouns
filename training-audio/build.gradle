@@ -2,8 +2,18 @@ apply plugin: "java"
 sourceCompatibility = 1.8
 archivesBaseName = 'bp-TrainingAudio'
 
-dependencies {
+repositories {
+        mavenCentral()
+        jcenter()
+        google()
+        maven { url "https://jitpack.io" }
+    }
 
+dependencies {
+	compile "ie.corballis:sox-java:1.0.4"
+	compile "com.harium.hci:espeak:1.0.2"
+	compile group: 'commons-io', name: 'commons-io', version: '2.7'
+	compile 'com.github.CherokeeLanguage:LeitnerCards:20161025'
 }
 
 eclipse {
