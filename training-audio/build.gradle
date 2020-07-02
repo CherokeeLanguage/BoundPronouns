@@ -1,0 +1,23 @@
+apply plugin: "java"
+sourceCompatibility = 1.8
+archivesBaseName = 'bp-TrainingAudio'
+
+dependencies {
+
+}
+
+eclipse {
+	project {
+		name = appName + "-training-audio"
+		linkedResource name: 'assets', type: '2', location: 'PARENT-1-PROJECT_LOC/android/assets'
+	}
+	classpath {
+		downloadSources=true
+	}
+}
+
+task "create-dirs" {
+	doLast{
+	sourceSets*.java.srcDirs*.each { it.mkdirs() }
+	sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}}
