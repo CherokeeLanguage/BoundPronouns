@@ -1149,7 +1149,7 @@ public class BuildDeck {
 		appendText(checkSheet, "PSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
 		
 		final Set<String> already = new HashSet<>();
-		final StringBuilder sb = new StringBuilder();
+		final StringBuilder espeak = new StringBuilder();
 		final StringBuilder check = new StringBuilder();
 		int maxAnswers = 0;
 		for (final Card card : deck.cards) {
@@ -1171,25 +1171,25 @@ public class BuildDeck {
 			} else {
 				challenge = "";
 			}
-//			if (challenge.trim().endsWith("-")) {
-//				continue;
-//			}
-			sb.append(syllabary);
-			sb.append("\t");
-			sb.append(challenge);
-			sb.append("\t");
+			if (challenge.trim().endsWith("-")) {
+				continue;
+			}
+			espeak.append(syllabary);
+			espeak.append("\t");
+			espeak.append(challenge);
+			espeak.append("\t");
 			final String asFilename;
 			if (!challenge.isEmpty() && !challenge.endsWith("-")) {
 				asFilename = asFilename(challenge);
-				sb.append(asFilename);
+				espeak.append(asFilename);
 			} else {
 				asFilename="";
 			}
-			sb.append("\n");
+			espeak.append("\n");
 
-			appendText(forEspeak, sb.toString());
+			appendText(forEspeak, espeak.toString());
 
-			sb.setLength(0);
+			espeak.setLength(0);
 
 			check.append(card.getPset());
 			check.append("\t");
