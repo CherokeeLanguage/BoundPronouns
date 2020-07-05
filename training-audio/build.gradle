@@ -10,10 +10,11 @@ repositories {
     }
 
 dependencies {
+	compile project(":LeitnerCards")
 	compile "ie.corballis:sox-java:1.0.4"
 	compile "com.harium.hci:espeak:1.0.2"
 	compile group: 'commons-io', name: 'commons-io', version: '2.7'
-	compile 'com.github.CherokeeLanguage:LeitnerCards:20161025'
+	//compile 'com.github.CherokeeLanguage:LeitnerCards:20161025'
 }
 
 eclipse {
