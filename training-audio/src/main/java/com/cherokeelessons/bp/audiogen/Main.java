@@ -3,21 +3,35 @@ package com.cherokeelessons.bp.audiogen;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.commons.lang3.SystemUtils;
 
 public class Main {
 	
-	private final AudioDeck mainDeck;
-
+	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final String DECK_TSV = "../android/assets/review-sheet.tsv";
 	private static final int CHEROKEE_ANSWER=5;
 	private static final int CHALLENGES_START=6;
-	private static final String[] VOICES = {"default", "Diogo", "f5"};
+	
+	private final AudioDeck mainDeck;
+	private final Set<String> voiceVariants;
 	
 	public Main() {
 		mainDeck = new AudioDeck();
+		voiceVariants = new TreeSet<>();
+		//default
+		voiceVariants.addAll(Arrays.asList(""));
+		//magali's choices
+		voiceVariants.addAll(Arrays.asList("Diogo", "f5"));
+		//craig's choices
+		voiceVariants.addAll(Arrays.asList("antonio", "Mr", "robosoft5"));
+		//tommylee's choices
+		voiceVariants.addAll(Arrays.asList("Diogo"));
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -25,6 +39,16 @@ public class Main {
 	}
 
 	public void execute() throws IOException {
+		buildMainDeck();
+		generateWavFiles();
+	}
+
+	private void generateWavFiles() {
+		File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
+		ESpeakNg espeak = new ESpeakNg(espeakNgBin);
+	}
+
+	private void buildMainDeck() throws IOException {
 		StringBuilder debug = new StringBuilder();
 		File jsonFile = new File(DECK_TSV);
 		System.out.println(jsonFile.getAbsolutePath());

@@ -10,10 +10,11 @@ repositories {
     }
 
 dependencies {
-	compile project(":LeitnerCards")
+	//compile project(":LeitnerCards")
 	compile "ie.corballis:sox-java:1.0.4"
-	compile group: 'commons-io', name: 'commons-io', version: '2.7'
-	//compile 'com.github.CherokeeLanguage:LeitnerCards:20161025'
+	compile 'commons-io:commons-io:2.+'
+	compile 'org.apache.commons:commons-lang3:3.+'
+	compile 'com.github.CherokeeLanguage:LeitnerCards:20200704.00'
 }
 
 eclipse {
