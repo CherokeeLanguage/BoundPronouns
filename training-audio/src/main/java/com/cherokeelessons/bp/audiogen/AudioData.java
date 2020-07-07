@@ -33,11 +33,11 @@ public class AudioData implements ICardData {
 		this.answer = answer;
 	}
 
-	public long getAnswerDuration() {
+	public float getAnswerDuration() {
 		return answerDuration;
 	}
 
-	public void setAnswerDuration(long answerDuration) {
+	public void setAnswerDuration(float answerDuration) {
 		this.answerDuration = answerDuration;
 	}
 
@@ -49,11 +49,11 @@ public class AudioData implements ICardData {
 		this.challenge = challenge;
 	}
 
-	public long getChallengeDuration() {
+	public float getChallengeDuration() {
 		return challengeDuration;
 	}
 
-	public void setChallengeDuration(long challengeDuration) {
+	public void setChallengeDuration(float challengeDuration) {
 		this.challengeDuration = challengeDuration;
 	}
 
@@ -66,15 +66,15 @@ public class AudioData implements ICardData {
 	/**
 	 * Duration of the answer audio in ms.
 	 */
-	private long answerDuration;
+	private float answerDuration;
 	/**
 	 * The challenge phrase needing translating into Cherokee.
 	 */
 	private String challenge;
 	/**
-	 * Duration of the challenge in ms.
+	 * Duration of the challenge in seconds.
 	 */
-	private long challengeDuration;
+	private float challengeDuration;
 
 	@SuppressWarnings("unchecked")
 	@Override
