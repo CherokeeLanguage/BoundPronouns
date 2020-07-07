@@ -30,6 +30,7 @@ public class ESpeakNg {
 		List<String> cmd = new ArrayList<>();
 
 		cmd.add(espeakNg.getAbsolutePath());
+		cmd.add("-z"); //trim trailing silence off of audio
 		cmd.add("-w");
 		cmd.add(wavFile.getAbsolutePath());
 		if (voice != null && !voice.trim().isEmpty()) {
