@@ -1,8 +1,29 @@
 package com.cherokeelessons.bp.audiogen;
 
+import java.io.File;
+
 import com.cherokeelessons.deck.ICardData;
 
 public class AudioData implements ICardData {
+	
+	private File answerFile;
+	private File challengeFile;
+
+	public File getAnswerFile() {
+		return answerFile;
+	}
+
+	public void setAnswerFile(File answerFile) {
+		this.answerFile = answerFile;
+	}
+
+	public File getChallengeFile() {
+		return challengeFile;
+	}
+
+	public void setChallengeFile(File challengeFile) {
+		this.challengeFile = challengeFile;
+	}
 
 	public String getAnswer() {
 		return answer;

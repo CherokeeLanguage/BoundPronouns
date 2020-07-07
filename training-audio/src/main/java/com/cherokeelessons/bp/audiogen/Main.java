@@ -3,7 +3,11 @@ package com.cherokeelessons.bp.audiogen;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,28 +16,41 @@ import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang3.SystemUtils;
 
 public class Main {
-	
+
 	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final String DECK_TSV = "../android/assets/review-sheet.tsv";
-	private static final int CHEROKEE_ANSWER=5;
-	private static final int CHALLENGES_START=6;
-	
+	private static final int CHEROKEE_ANSWER = 5;
+	private static final int CHALLENGES_START = 6;
+
 	private final AudioDeck mainDeck;
 	private final Set<String> voiceVariants;
-	
+
+	private List<String> voices = new ArrayList<>();
+	private String previousVoice = "";
+
+	public String nextVoice() {
+		if (voices.isEmpty()) {
+			voices.addAll(voiceVariants);
+			do {
+				Collections.shuffle(voices);
+			} while (voices.get(0).equals(previousVoice));
+		}
+		return previousVoice = voices.remove(0);
+	}
+
 	public Main() {
 		mainDeck = new AudioDeck();
 		voiceVariants = new TreeSet<>();
-		//default
+		// default
 		voiceVariants.addAll(Arrays.asList(""));
-		//magali's choices
+		// magali's choices
 		voiceVariants.addAll(Arrays.asList("Diogo", "f5"));
-		//craig's choices
+		// craig's choices
 		voiceVariants.addAll(Arrays.asList("antonio", "Mr", "robosoft5"));
-		//tommylee's choices
+		// tommylee's choices
 		voiceVariants.addAll(Arrays.asList("Diogo"));
 	}
-	
+
 	public static void main(String[] args) throws IOException {
 		new Main().execute();
 	}
@@ -44,8 +61,44 @@ public class Main {
 	}
 
 	private void generateWavFiles() {
+		FileUtils.deleteQuietly(WAVS_DIR);
 		File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
 		ESpeakNg espeak = new ESpeakNg(espeakNgBin);
+		Set<String> already = new HashSet<>();
+		for (AudioCard card : mainDeck.getCards()) {
+			AudioData data = card.getData();
+			String answer = data.getAnswer();
+			String challenge = data.getChallenge();
+			challenge = AudioGenUtil.removeEnglishFixedGenderMarks(AudioGenUtil.randomizeEnglishSexes(challenge));
+			String challengeFilename = AudioGenUtil.asEnglishFilename(challenge);
+			File challengeWavFile = new File(WAVS_DIR, "challenge-" + challengeFilename);
+			String answerFilename = AudioGenUtil.asPhoneticFilename(answer);
+			File answerWavFile = new File(WAVS_DIR, "answer-" + answerFilename);
+			data.setAnswerFile(answerWavFile);
+			data.setChallengeFile(challengeWavFile);
+			if (!already.contains(challenge)) {
+				String voice = nextVoice();
+				if (!voice.trim().isEmpty()) {
+					voice = "en-us+" + voice;
+				} else {
+					voice = "en-us";
+				}
+				System.out.println(" - "+challengeWavFile.getName()+" ["+voice+"]");
+				espeak.generateWav(voice, challengeWavFile, challenge);
+				already.add(challenge);
+			}
+			if (!already.contains(answer)) {
+				String voice = nextVoice();
+				if (!voice.trim().isEmpty()) {
+					voice = "chr+" + voice;
+				} else {
+					voice = "chr";
+				}
+				System.out.println(" - "+answerWavFile.getName()+" ["+voice+"]");
+				espeak.generateWav(voice, answerWavFile, answer);
+				already.add(answer);
+			}
+		}
 	}
 
 	private void buildMainDeck() throws IOException {
@@ -54,21 +107,21 @@ public class Main {
 		System.out.println(jsonFile.getAbsolutePath());
 		try (LineIterator li = FileUtils.lineIterator(jsonFile, StandardCharsets.UTF_8.name())) {
 			li.next();
-			int id=0;
-			while(li.hasNext()) {
+			int id = 0;
+			while (li.hasNext()) {
 				String line = li.next();
 				String[] fields = line.split("\t");
-				if (fields.length<=CHALLENGES_START) {
-					System.out.println("; "+line);
+				if (fields.length <= CHALLENGES_START) {
+					System.out.println("; " + line);
 					continue;
 				}
 				String answer = fields[CHEROKEE_ANSWER];
-				for (int ix=CHALLENGES_START; ix<fields.length; ix++) {
+				for (int ix = CHALLENGES_START; ix < fields.length; ix++) {
 					String challenge = fields[ix];
 					if (challenge.trim().isEmpty()) {
 						continue;
 					}
-					AudioData data=new AudioData();
+					AudioData data = new AudioData();
 					data.setAnswer(answer);
 					data.setAnswerDuration(0);
 					data.setChallenge(challenge);
@@ -77,7 +130,7 @@ public class Main {
 					AudioCard card = new AudioCard();
 					card.setData(data);
 					mainDeck.add(card);
-					debug.append(data.id() + "\t"+ challenge + "\t" + answer+"\n");
+					debug.append(data.id() + "\t" + challenge + "\t" + answer + "\n");
 				}
 			}
 		}
