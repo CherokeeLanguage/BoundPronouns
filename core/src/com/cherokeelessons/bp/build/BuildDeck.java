@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +18,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +36,12 @@ public class BuildDeck {
 
 	public static void main(final String[] args) throws FileNotFoundException, IOException {
 		System.out.println("BUILD DECK");
+		try {
 		new BuildDeck(new File("../android/assets")).execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}	
 	}
 
 	private final JsonConverter json = new JsonConverter();
@@ -55,7 +63,7 @@ public class BuildDeck {
 		checkSheet = new File(assetsFolder, "review-sheet.tsv");
 	}
 
-	private void addChallengesToDeck() {
+	private void addConjugatedChallengesToDeck() {
 		final DataSet d = new DataSet();
 		final StringBuilder vroot = new StringBuilder();
 		final StringBuilder vroot_chr = new StringBuilder();
@@ -753,9 +761,11 @@ public class BuildDeck {
 			if (d.def.startsWith("For")) {
 				d.def = d.def.replace("recognize each other", "become acquainted");
 			}
+			d.def = d.def.replace("recognized each other recently", "became acquainted recently");
+			d.def = d.def.replace("recognized each other a while ago", "became acquainted a while ago");
 			d.def = d.def.replace("recognize each other", "are acquainted");
 		}
-		
+
 		/**
 		 * Final replacements on the replacements for more succinct English.
 		 */
@@ -776,25 +786,25 @@ public class BuildDeck {
 
 		d.def = d.def.replace("us, him and me,", "him and me");
 		d.def = d.def.replace("us, him and me", "him and me");
-		
+
 		/**
 		 * English grammar fixes.
 		 */
 		d.def = d.def.replace("Let we", "Let us");
 		d.def = d.def.replace("let we", "let us");
-		
+
 		/**
 		 * Final replacements.
 		 */
 		d.def = d.def.replace("you one or you two", "you one or both");
 		d.def = d.def.replace("You one or you two", "You one or both");
-		
+
 		d.def = d.def.replace("you one or two", "you one or both");
 		d.def = d.def.replace("You one or two", "You one or both");
-		
+
 		d.def = d.def.replace("you one", "you (1)");
 		d.def = d.def.replace("You one", "You (1)");
-		
+
 		d.def = d.def.replace("you two", "you both");
 		d.def = d.def.replace("You two", "You both");
 	}
@@ -918,19 +928,19 @@ public class BuildDeck {
 		}
 	}
 
-	private Deck oldDeck=null;
-	
+	private Deck oldDeck = null;
+
 	public void execute() throws FileNotFoundException, IOException {
 		if (deckFile.exists()) {
 			try {
 				oldDeck = json.fromJson(deckFile, Deck.class);
 			} catch (final Exception e) {
-				//ignore
+				// ignore
 			}
 		}
-		
+
 		deck = new Deck();
-		
+
 		loadPronouns();
 
 		final Iterator<String[]> ipronoun = pronouns.iterator();
@@ -984,11 +994,11 @@ public class BuildDeck {
 			prevLatin = latin;
 		}
 
-		addChallengesToDeck();
+		addConjugatedChallengesToDeck();
 
 		setStatus("Saving ...");
 
-		save();
+		sortThenSaveDeck();
 	}
 
 	private Card getCardByChallenge(final String chr, @SuppressWarnings("hiding") final Deck deck) {
@@ -1083,8 +1093,10 @@ public class BuildDeck {
 		}
 	}
 
-	private void save() throws FileNotFoundException, IOException {
-		// presort deck by syllabary length, ascending
+	private void sortThenSaveDeck() throws FileNotFoundException, IOException {
+		/*
+		 * Presort deck by syllabary length, ascending
+		 */
 		Collections.sort(deck.cards, new Comparator<Card>() {
 			@Override
 			public int compare(final Card a, final Card b) {
@@ -1104,7 +1116,9 @@ public class BuildDeck {
 				return c1.compareToIgnoreCase(c2);
 			}
 		});
-		// assign sets based on order and pronoun + verb set combination
+		/*
+		 * assign sets based on order and pronoun + verb set combination
+		 */
 		final Map<String, AtomicInteger> counts = new HashMap<>();
 		for (final Card card : deck.cards) {
 			final String pset = card.pgroup;
@@ -1115,7 +1129,7 @@ public class BuildDeck {
 			if (!counts.containsKey(vset)) {
 				counts.put(vset, new AtomicInteger());
 			}
-				card.setPset(counts.get(pset).incrementAndGet());
+			card.setPset(counts.get(pset).incrementAndGet());
 			if (!vset.isEmpty()) {
 				card.setVset(counts.get(vset).incrementAndGet());
 			}
@@ -1126,10 +1140,12 @@ public class BuildDeck {
 		for (int i = 0; i < deck.cards.size(); i++) {
 			deck.cards.get(i).id = i + 1;
 		}
-		
+
+		reduceDeckSize(deck);
+
 		deck.version = DECK_VERSION;
 		deck.size = deck.cards.size();
-		
+
 		/*
 		 * Only rewrite deck file if the master deck has changed.
 		 */
@@ -1141,13 +1157,13 @@ public class BuildDeck {
 		if (forEspeak.exists()) {
 			forEspeak.delete();
 		}
-		
+
 		if (checkSheet.exists()) {
 			checkSheet.delete();
 		}
-		
+
 		appendText(checkSheet, "PSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
-		
+
 		final Set<String> already = new HashSet<>();
 		final StringBuilder espeak = new StringBuilder();
 		final StringBuilder check = new StringBuilder();
@@ -1160,13 +1176,13 @@ public class BuildDeck {
 //				continue;
 //			}
 			final String syllabary;
-			if (card.challenge.size()>0) {
+			if (card.challenge.size() > 0) {
 				syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
 			} else {
 				syllabary = "";
 			}
 			final String challenge;
-			if (card.challenge.size()>1) {
+			if (card.challenge.size() > 1) {
 				challenge = StringUtils.defaultString(card.challenge.get(1));
 			} else {
 				challenge = "";
@@ -1183,7 +1199,7 @@ public class BuildDeck {
 				asFilename = asFilename(challenge);
 				espeak.append(asFilename);
 			} else {
-				asFilename="";
+				asFilename = "";
 			}
 			espeak.append("\n");
 
@@ -1222,6 +1238,112 @@ public class BuildDeck {
 			}
 			already.add(asFilename);
 		}
+	}
+
+	/**
+	 * Reduce deck to 1/2 the original size while keeping a mandatory set of bound
+	 * pronouns and spreading the usage of the remainder pronouns as much as
+	 * possible.
+	 * 
+	 * @param deckToFilter
+	 */
+	private void reduceDeckSize(Deck deckToFilter) {
+		Set<String> alwaysKeep = new HashSet<>();
+		alwaysKeep.addAll(Arrays.asList(//
+				"", //
+				"Ꮵ²-, Ꮵ²Ꮿ͓-", "Ꮵ̣²-, Ꭶ͓-", "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-", //
+				"Ꭿ²-, Ꭿ²Ꮿ͓-", "Ꭿ̣²-", "Ꮳ̣²-", "Ꭰ̣²-, Ꭶ̣²-", //
+				"Ꭴ¹-, Ꭴ¹Ꮹ͓-", "Ꭰ¹Ꮒ²-", "Ꭴ¹Ꮒ²-"));
+		/*
+		 * split out into buckets based on bound pronoun
+		 */
+		List<Card> tmpDeck = new ArrayList<>(deckToFilter.cards);
+		Map<String, List<Card>> buckets = new HashMap<>();
+		Iterator<Card> iter = tmpDeck.iterator();
+		while (iter.hasNext()) {
+			Card card = iter.next();
+			String pgroup = card.pgroup;
+			if (alwaysKeep.contains(pgroup)) {
+				// cards in the always keep list aren't eligible for removal
+				iter.remove();
+				continue;
+			}
+			pgroup = pgroup.replaceAll("\\[.*\\]", "");
+			int ix = pgroup.indexOf("-");
+			if (ix!=-1) {
+				pgroup = card.challenge.get(0).substring(0, ix-1)+"|"+pgroup;
+			}
+			if (!buckets.containsKey(pgroup)) {
+				buckets.put(pgroup, new ArrayList<Card>());
+			}
+			buckets.get(pgroup).add(0, card);
+		}
+		/*
+		 * amount of these remaining conjugations to remove
+		 */
+		int maxRemoveCount = tmpDeck.size()*3/5;
+		
+		System.out.println("Trying to reduce final deck size to: " + (deckToFilter.cards.size() - maxRemoveCount));
+		
+		tmpDeck.clear();
+		/**
+		 * Work from pronoun sets with largest to smallest for removals.
+		 */
+		List<List<Card>> sorted = new ArrayList<>(buckets.values());
+		while(tmpDeck.size()<maxRemoveCount) {
+			Collections.sort(sorted, new Comparator<List<Card>>() {
+				@Override
+				public int compare(List<Card> a, List<Card> b) {
+					return b.size()-a.size();
+				}
+			});
+			List<Card> biggestBucket = sorted.get(0);
+			if (biggestBucket.size()<3) {
+				break;
+			}
+			tmpDeck.add(biggestBucket.remove(0));
+		}
+		
+		/*
+		 * single shot removal
+		 */
+		System.out.println("Removing: "+tmpDeck.size());
+		deckToFilter.cards.removeAll(tmpDeck);
+		
+		/*
+		 * rebuild buckets with cards for use to get a basic report of counts by bound pronoun set
+		 */
+		buckets.clear();
+		tmpDeck = new ArrayList<>(deckToFilter.cards);
+		iter = tmpDeck.iterator();
+		while (iter.hasNext()) {
+			Card card = iter.next();
+			String pgroup = card.pgroup;
+			int ib = pgroup.indexOf("[");
+			if (ib!=-1) {
+				pgroup = pgroup.replaceAll("\\[.*\\]", "");
+			}
+			int ix = pgroup.indexOf("-");
+			if (ix>0) {
+				pgroup = card.challenge.get(0).substring(0, ix-1)+"|"+pgroup;
+			}
+			if (!buckets.containsKey(pgroup)) {
+				buckets.put(pgroup, new ArrayList<Card>());
+			}
+			buckets.get(pgroup).add(0, card);
+		}
+		
+		System.out.println("Final deck size: " + (deckToFilter.cards.size()));
+		
+		/*
+		 * Dump a review report showing the counts by prefix set.
+		 */
+		StringBuilder sb = new StringBuilder();
+		for (String bucket: new TreeSet<>(buckets.keySet())) {
+			sb.append(bucket+": "+NumberFormat.getInstance().format(buckets.get(bucket).size()));
+			sb.append("\n");
+		}
+		System.out.println(sb.toString());
 	}
 
 	private void setStatus(final String string) {
