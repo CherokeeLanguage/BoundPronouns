@@ -1,6 +1,7 @@
 3.32
 
-Spelling fixes. Leaner and better focused deck with more core verbs.
+Leaner and better focused deck with more core verbs.
+Misc conjugated form fixes. Misc English fixes.
 
 3.31
 

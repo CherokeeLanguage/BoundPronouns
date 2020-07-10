@@ -225,7 +225,7 @@ vti, a	ᎠᏗᏔᏍᎦ	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	a¹di²tạ³sga	a¹di²tạ³sga
 	ᎦᏗᏔᏍᎦ	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	gạ²di¹tạ³sga	a¹di²tạ³sga	I am drinking x		something, drinks	
 vti, u	ᎤᏗᏔᎲᎢ	Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ	u¹di²tạ²hv²³ɂi	u¹di²tạ²hv²³ɂi	he drank x a while ago		something, drinks	
 vti, a	ᎠᏗᏔᏍᎪᎢ	Ꭰ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ	a¹di²tạ²sgo³ɂi	a¹di²tạ²sgo³ɂi	he often is drinking x		something, drinks	
-vti, imp	ᎭᏗᏔ	Ꭽ̣²Ꮧ²³Ꮤ	hạ²di²³ta	a²di²³ta	let him drinking x		something, drinks	
+vti, imp	ᎭᏗᏔ	Ꭽ̣²Ꮧ²³Ꮤ	hạ²di²³ta	a²di²³ta	let him drink x		something, drinks	
 vti, a	ᎭᏗᏔ	Ꭽ̣²Ꮧ²³Ꮤ²	hạ²di²³ta²	a²di²³ta²	he drank x recently		something, drinks	
 vti, u, inf	ᎤᏗᏔᏍᏗ	Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ	u²di²tạ²sdi	a²di²tạ²sdi	for him to drink x		something, drinks	
 								
@@ -233,6 +233,6 @@ vti, g	ᎠᏚᎩᎠ	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ạ¹tu²³gị³a	ạ¹tu²³gị�
 	ᎦᏚᎩᎠ	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	gạɂ²du²³gị³ɂa	ạ¹tu²³gị³a, ạɂ²du²³gị³a	I am drinking x		an alchoholic drink, alchoholic drinks	
 vti, u	ᎤᏚᎩᏒᎢ	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	u¹tu²³gi³²sv²³ɂi	ạ¹tu²³gi³²sv²³ɂi, ạɂ²du²³gi³²sv²³ɂi	he drank x a while ago		an alchoholic drink, alchoholic drinks	
 vti, g	ᎤᏚᎩᏍᎪᎢ	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	a¹tu²³gi³²sgo³ɂi	a¹tu²³gi³²sgo³ɂi, ạɂ²du²³gi³²sgo³ɂi	he often is drinking x		an alchoholic drink, alchoholic drinks	
-vti, imp	ᎭᏚᎩ	Ꭰ̣²Ꮪ²³Ꭹ	hạ²tu²³gi	ạ²tu²³gi, ạɂ²du²³gi	let him drinking x		an alchoholic drink, alchoholic drinks	
+vti, imp	ᎭᏚᎩ	Ꭰ̣²Ꮪ²³Ꭹ	hạ²tu²³gi	ạ²tu²³gi, ạɂ²du²³gi	let him drink x		an alchoholic drink, alchoholic drinks	
 vti, g	ᎭᏚᎦ	Ꭰ̣²Ꮪ²³Ꭶ²	hạ²tu²³ga²	ạ²tu²³ga², ạɂ²du²³ga²	he drank x recently		an alchoholic drink, alchoholic drinks	
 vti, u, inf	ᎤᏚᎩᏍᏗ	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	u²tu²³gi³²sdi	ạ²tu²³gi³²sdi, ạɂ²du²³gi³²sdi	for him to drink x		an alchoholic drink, alchoholic drinks	
