@@ -68,7 +68,7 @@ public class BuildDeck {
 	private void addConjugatedChallengesToDeck() {
 		final DataSet d = new DataSet();
 		final Set<String> vtypes = new HashSet<>();
-		final Set<String> ptypes = new HashSet<>();
+
 		final Iterator<String[]> ichallenge = challenges.iterator();
 		while (ichallenge.hasNext()) {
 			final String[] challenge = ichallenge.next();
@@ -76,24 +76,27 @@ public class BuildDeck {
 			vtypes.addAll(Arrays.asList(challenge[0].split(",\\s*")));
 
 			if (vtypes.contains("n")) {
-				final String term = challenge[2];
-				setStatus("Please wait, adding term: " + term);
-				Card c = getCardByChallenge(term, deck);
+				String latinCitationEntry = challenge[3];
+				final String chrCitationEntry = challenge[2];
+				setStatus("Please wait, adding term: " + chrCitationEntry);
+				Card c = getCardByChallenge(chrCitationEntry, deck);
 				if (c == null) {
 					c = new Card();
 					deck.cards.add(c);
+					c.vgroup = chrCitationEntry;
+					c.pgroup = "";
 				}
-				c.vgroup = term;
-				c.pgroup = "";
 				// chr
-				c.challenge.add(term);
+				c.challenge.add(chrCitationEntry);
 				// latin
-				c.challenge.add(challenge[3]);
+				c.challenge.add(latinCitationEntry);
 				for (final String def : challenge[5].split(";")) {
 					c.answer.add(StringUtils.strip(def));
 				}
 				continue;
 			}
+
+			String latinStemEntry = challenge[3];
 
 			boolean v_g3rd = false;
 			if (vtypes.contains("g")) {
@@ -104,8 +107,8 @@ public class BuildDeck {
 				vtypes.remove("xde");
 				vtypes.add("xdi");
 			}
-			final boolean vSetB = challenge[3].startsWith("u") || challenge[3].startsWith("ụ")
-					|| challenge[3].startsWith("j");
+			final boolean vSetB = latinStemEntry.startsWith("u") || latinStemEntry.startsWith("ụ")
+					|| latinStemEntry.startsWith("j");
 			final String vroot_set = challenge[4];
 			final String vroot_chr_set = challenge[2];
 			final String vdef_active = challenge[5];
@@ -133,7 +136,17 @@ public class BuildDeck {
 				v_imp = vdef_passive.toLowerCase().startsWith("let");
 				v_inf = vdef_passive.toLowerCase().startsWith("for");
 			}
-			final boolean use_di_prefixed_forms = vtypes.contains("adj") || v_imp || v_inf;
+			final boolean useDiPrefixedForms = vtypes.contains("adj") || v_imp || v_inf;
+
+			final String vgroup = vroot_h_chr;
+
+			final boolean gStem = vroot_h.startsWith("ɂ");
+			if (gStem) {
+				vroot_h = vroot_h.substring(1);
+				vroot_alt = vroot_alt.substring(1);
+				vroot_h_chr = vroot_h_chr.substring(1);
+				vroot_alt_chr = vroot_alt_chr.substring(1);
+			}
 
 			final boolean aStem = vroot_h.matches("[ạaẠA].*");
 			final boolean eStem = vroot_h.matches("[ẹeẸE].*");
@@ -141,33 +154,30 @@ public class BuildDeck {
 			final boolean oStem = vroot_h.matches("[ọoỌO].*");
 			final boolean uStem = vroot_h.matches("[ụuỤU].*");
 			final boolean vStem = vroot_h.matches("[ṿvṾV].*");
-			final boolean gStem = vroot_h.startsWith("ɂ");
-			final boolean cStem = !(aStem | eStem | iStem | oStem | uStem | vStem) || gStem;
-			if (gStem) {
-				vroot_h=vroot_h.substring(1);
-				vroot_alt=vroot_alt.substring(1);
-				vroot_h_chr=vroot_h_chr.substring(1);
-				vroot_alt_chr=vroot_alt_chr.substring(1);
-			}
-			
-			final String vgroup = vroot_h_chr;
+			final boolean cStem = !(aStem | eStem | iStem | oStem | uStem | vStem);
 
 			setStatus("Please wait, conjugating: " + vroot_h_chr);
 			final Iterator<String[]> ipro = pronouns.iterator();
 			while (ipro.hasNext()) {
 				final String[] pronoun = ipro.next();
-				final boolean pSetA = pronoun[5].equalsIgnoreCase("a");
-				final boolean pSetB = pronoun[5].equalsIgnoreCase("b");
+				String pSetIndicator = pronoun[5];
+				final boolean pSetA = pSetIndicator.equalsIgnoreCase("a");
+				final boolean pSetB = pSetIndicator.equalsIgnoreCase("b");
 				if (pSetB && !vSetB) {
 					continue;
 				}
 				if (pSetA && vSetB) {
 					continue;
 				}
-				final String vtmode = pronoun[0];
-				final String syllabary = pronoun[1];
-				ptypes.clear();
-				ptypes.addAll(Arrays.asList(vtmode.split(",\\s*")));
+
+				final String pTypeSet = pronoun[0];
+				final String pSyllabarySet = pronoun[1];
+				final String pLatinSet = pronoun[2];
+				final String pChrDiPrefixedSet = pronoun[6];
+				final String pLatinDiPrefixedSet = pronoun[7];
+
+				final Set<String> ptypes = new HashSet<>();
+				ptypes.addAll(Arrays.asList(pTypeSet.split(",\\s*")));
 
 				boolean p_g3rd = false;
 				if (ptypes.contains("g")) {
@@ -188,64 +198,49 @@ public class BuildDeck {
 					vrootChrSb.append(vroot_h_chr);
 				}
 
-				
-				d.chr = syllabary;
-				d.latin = pronoun[2];
+				d.chr = pSyllabarySet;
+				d.latin = pLatinSet;
 				d.def = "";
-				
-				selectPronounForm(d, cStem, gStem, syllabary, pronoun[2]);
 
-				final String pgroup = d.chr;
-
-				if (use_di_prefixed_forms) {
-					if (!StringUtils.isBlank(pronoun[6])) {
-						d.chr = pronoun[6];
-						d.latin = pronoun[7];
+				if (useDiPrefixedForms) {
+					if (!StringUtils.isBlank(pChrDiPrefixedSet)) {
+						d.chr = pChrDiPrefixedSet;
+						d.latin = pLatinDiPrefixedSet;
 					}
 				}
 
-				/*
-				 * a vs ga select
-				 */
-				if (v_g3rd && p_g3rd) {
-					d.chr = StringUtils.substringAfter(d.chr, ",");
-					d.chr = StringUtils.strip(d.chr);
-					d.latin = StringUtils.substringAfter(d.latin, ",");
-					d.latin = StringUtils.strip(d.latin);
-				}
-
-				/*
-				 * a vs ga select
-				 */
-				if (!v_g3rd && p_g3rd) {
-					d.chr = StringUtils.substringBefore(d.chr, ",");
-					d.chr = StringUtils.strip(d.chr);
-					d.latin = StringUtils.substringBefore(d.latin, ",");
-					d.latin = StringUtils.strip(d.latin);
-				}
-
-				if (!cStem  && d.chr.contains(",")) {
-					/*
-					 * select vowel stem pronoun.
-					 */
-					d.chr = StringUtils.substringAfter(d.chr, ",");
-					d.chr = StringUtils.substringBefore(d.chr, "-");
-					d.chr = StringUtils.strip(d.chr);
-
-					d.latin = StringUtils.substringAfter(d.latin, ",");
-					d.latin = StringUtils.substringBefore(d.latin, "-");
-					d.latin = StringUtils.strip(d.latin);
+				final String pgroup;
+				if (pSyllabarySet.lastIndexOf(",") != pSyllabarySet.indexOf(",")) {
+					pgroup = StringUtils.substringBeforeLast(pSyllabarySet, ",").trim();
 				} else {
-					/*
-					 * select consonent stem pronoun
-					 */
-					d.chr = StringUtils.substringBefore(d.chr, ",");
-					d.chr = StringUtils.substringBefore(d.chr, "-");
-					d.chr = StringUtils.strip(d.chr);
-					d.latin = StringUtils.substringBefore(d.latin, ",");
-					d.latin = StringUtils.substringBefore(d.latin, "-");
-					d.latin = StringUtils.strip(d.latin);
+					pgroup = pSyllabarySet;
 				}
+
+				selectPronounForm(d, cStem, gStem, pSyllabarySet, pLatinSet, p_g3rd, v_g3rd);
+
+				// selectPronounForm(d, cStem, gStem, d.chr, d.latin);
+//				if (!cStem && d.chr.contains(",")) {
+//					/*
+//					 * select vowel stem pronoun.
+//					 */
+//					d.chr = StringUtils.substringAfter(d.chr, ",");
+//					d.chr = StringUtils.substringBefore(d.chr, "-");
+//					d.chr = StringUtils.strip(d.chr);
+//
+//					d.latin = StringUtils.substringAfter(d.latin, ",");
+//					d.latin = StringUtils.substringBefore(d.latin, "-");
+//					d.latin = StringUtils.strip(d.latin);
+//				} else {
+//					/*
+//					 * select consonent stem pronoun
+//					 */
+//					d.chr = StringUtils.substringBefore(d.chr, ",");
+//					d.chr = StringUtils.substringBefore(d.chr, "-");
+//					d.chr = StringUtils.strip(d.chr);
+//					d.latin = StringUtils.substringBefore(d.latin, ",");
+//					d.latin = StringUtils.substringBefore(d.latin, "-");
+//					d.latin = StringUtils.strip(d.latin);
+//				}
 
 				if ((v_imp || v_inf) && aStem) {
 					if (d.chr.equals("Ꮨ̣²")) {
@@ -510,11 +505,11 @@ public class BuildDeck {
 
 				} else {
 					d.def = vdef_passive;
-					if (d.def.toLowerCase().startsWith("someone")||d.def.toLowerCase().startsWith("for someone")) {
+					if (d.def.toLowerCase().startsWith("someone") || d.def.toLowerCase().startsWith("for someone")) {
 						if (d.def.contains(" him")) {
-							d.def=d.def.replaceFirst(" him", " " + pronounObject);
+							d.def = d.def.replaceFirst(" him", " " + pronounObject);
 						} else if (d.def.contains(" me")) {
-							d.def=d.def.replaceFirst(" me", " " + pronounObject);
+							d.def = d.def.replaceFirst(" me", " " + pronounObject);
 						}
 					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
@@ -562,26 +557,56 @@ public class BuildDeck {
 		setStatus("Finished conjugating ...");
 	}
 
-	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, final String syllabary, final String latin) {
+	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, final String syllabary, final String latin,
+			boolean p_g3rd, boolean v_g3rd) {
+
+		/*
+		 * a vs ga select
+		 */
+		if (v_g3rd && p_g3rd) {
+			d.chr = StringUtils.substringAfter(d.chr, ",");
+			d.chr = StringUtils.strip(d.chr, " -");
+			d.latin = StringUtils.substringAfter(d.latin, ",");
+			d.latin = StringUtils.strip(d.latin, " -");
+			return;
+		}
+
+		/*
+		 * a vs ga select
+		 */
+		if (!v_g3rd && p_g3rd) {
+			d.chr = StringUtils.substringBefore(d.chr, ",");
+			d.chr = StringUtils.strip(d.chr, " -");
+			d.latin = StringUtils.substringBefore(d.latin, ",");
+			d.latin = StringUtils.strip(d.latin, " -");
+			return;
+		}
+
 		if (syllabary.contains(",")) {
 			String tmp = syllabary;
 			String pConsonant = StringUtils.substringBefore(tmp, ",").trim();
 			tmp = StringUtils.substringAfter(tmp, ",").trim();
 			String pVowel = StringUtils.substringBefore(tmp, ",").trim();
-			if (pVowel.isEmpty()) {
-				pVowel=pConsonant;
-			}
 			tmp = StringUtils.substringAfter(tmp, ",").trim();
-			String pGlottal = StringUtils.substringBefore(tmp, ",").trim();
+			String pGlottal = tmp.trim();
+			if (pVowel.isEmpty()) {
+				pVowel = pConsonant;
+			}
 			if (pGlottal.isEmpty()) {
-				pGlottal=pConsonant;
+				if (pVowel.endsWith("Ꮿ"+BoundPronouns.UNDERX+"-")) {
+					pGlottal = pVowel.toLowerCase().replace("Ꮿ"+BoundPronouns.UNDERX+"-", "Ꮿ²-");
+				} else if (pVowel.endsWith("Ꮹ"+BoundPronouns.UNDERX+"-")) {
+					pGlottal = pVowel.toLowerCase().replace("Ꮹ"+BoundPronouns.UNDERX+"-", "Ꮹ²-");
+				} else {
+					pGlottal = pConsonant;
+				}
 			}
 			if (gStem) {
 				d.chr = pGlottal;
 			} else if (cStem) {
-				d.chr=pConsonant;
+				d.chr = pConsonant;
 			} else {
-				d.chr=pVowel;
+				d.chr = pVowel;
 			}
 		} else {
 			d.chr = syllabary;
@@ -591,27 +616,32 @@ public class BuildDeck {
 			String pConsonant = StringUtils.substringBefore(tmp, ",").trim();
 			tmp = StringUtils.substringAfter(tmp, ",").trim();
 			String pVowel = StringUtils.substringBefore(tmp, ",").trim();
-			if (pVowel.isEmpty()) {
-				pVowel=pConsonant;
-			}
 			tmp = StringUtils.substringAfter(tmp, ",").trim();
-			String pGlottal = StringUtils.substringBefore(tmp, ",").trim();
+			String pGlottal = tmp.trim();
+			if (pVowel.isEmpty()) {
+				pVowel = pConsonant;
+			}
 			if (pGlottal.isEmpty()) {
-				pGlottal=pConsonant;
+				if (pVowel.endsWith("y-")) {
+					pGlottal = pVowel.toLowerCase().replace("y-", "ya²-");
+				} else if (pVowel.endsWith("w-")) {
+					pGlottal = pVowel.toLowerCase().replace("w-", "wa²-");
+				} else {
+					pGlottal = pConsonant;
+				}
 			}
 			if (gStem) {
 				d.latin = pGlottal;
 			} else if (cStem) {
-				d.latin=pConsonant;
+				d.latin = pConsonant;
 			} else {
-				d.latin=pVowel;
+				d.latin = pVowel;
 			}
 		} else {
-			d.latin = latin;		
+			d.latin = latin;
 		}
-		if (gStem) {
-			System.out.println("Glottal stop selection: "+d.latin+", "+d.chr);
-		}
+		d.chr = StringUtils.strip(d.chr, " -");
+		d.latin = StringUtils.strip(d.latin, " -");
 	}
 
 	private void addDePrefix(final DataSet d) {
@@ -831,7 +861,7 @@ public class BuildDeck {
 			d.def = d.def.replaceAll("\\b[Tt]hey\\b", "them");
 			d.def = d.def.replaceAll("\\bI\\b", "me");
 			d.def = d.def.replaceAll("\\bYou\\b", "you");
-			//d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For $1");
+			// d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For $1");
 			d.def = d.def.replaceAll(", [Ww]e$", "");
 		}
 		if (d.def.startsWith("For someone")) {
@@ -839,7 +869,7 @@ public class BuildDeck {
 			d.def = d.def.replaceAll("\\b[Tt]hey\\b", "them");
 			d.def = d.def.replaceAll("\\bI\\b", "me");
 			d.def = d.def.replaceAll("\\bYou\\b", "you");
-			//d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For $1");
+			// d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For $1");
 			d.def = d.def.replaceAll(", [Ww]e$", "");
 		}
 		if (d.def.startsWith("For")) {
@@ -1052,12 +1082,21 @@ public class BuildDeck {
 
 		loadPronouns();
 
+		/*
+		 * Add bare pronoun cards to deck.
+		 */
 		final Iterator<String[]> ipronoun = pronouns.iterator();
 		while (ipronoun.hasNext()) {
 			final String[] pronounRecord = ipronoun.next();
 			String chr = pronounRecord[1];
-			String pgroup = chr; // for the pgroup field, must be unchanged.
+			if (chr.lastIndexOf(",") != chr.indexOf(",")) {
+				chr = StringUtils.substringBeforeLast(chr, ",").trim();
+			}
+			String pgroup = chr;
 			String latin = pronounRecord[2];
+			if (latin.lastIndexOf(",") != latin.indexOf(",")) {
+				latin = StringUtils.substringBeforeLast(latin, ",").trim();
+			}
 			/*
 			 * Strip out "[" and "]" that are in the reflexive forms for pronoun card
 			 * challenges ...
@@ -1387,8 +1426,9 @@ public class BuildDeck {
 		tmpDeck.clear();
 		/**
 		 * Work from pronoun sets with largest to smallest for removals. <br>
-		 * Work to keep at least a set minimum of each pronoun's pronunciation variations, as well
-		 * as to keep at least a set minimum of each verb stem with non-core conjugations.
+		 * Work to keep at least a set minimum of each pronoun's pronunciation
+		 * variations, as well as to keep at least a set minimum of each verb stem with
+		 * non-core conjugations.
 		 */
 		final int MIN_VSTEM_COUNT = 2;
 		final int MIN_PFORM_COUNT = 2;
@@ -1403,6 +1443,7 @@ public class BuildDeck {
 				});
 			}
 			buckets.values().removeIf(new Predicate<List<Card>>() {
+
 				@Override
 				public boolean test(List<Card> bucket) {
 					return bucket.size() <= MIN_PFORM_COUNT;
@@ -1473,10 +1514,10 @@ public class BuildDeck {
 		String pgroup = card.pgroup;
 		pgroup = pgroup.replaceAll("\\[.*\\]", "");
 		int ix = pgroup.indexOf("-");
-		if (ix != -1 && card.challenge.get(0).length()>ix) {
+		if (ix != -1 && card.challenge.get(0).length() > ix) {
 			pgroup = card.challenge.get(0).substring(0, ix - 1) + "|" + pgroup;
 		} else {
-			System.out.println("pgroup: "+pgroup+" card: "+card.challenge.get(0));
+			System.out.println("pgroup: " + pgroup + " card: " + card.challenge.get(0));
 		}
 		return pgroup;
 	}
