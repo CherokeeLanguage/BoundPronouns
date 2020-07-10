@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -68,8 +67,6 @@ public class BuildDeck {
 
 	private void addConjugatedChallengesToDeck() {
 		final DataSet d = new DataSet();
-		final StringBuilder vroot = new StringBuilder();
-		final StringBuilder vroot_chr = new StringBuilder();
 		final Set<String> vtypes = new HashSet<>();
 		final Set<String> ptypes = new HashSet<>();
 		final Iterator<String[]> ichallenge = challenges.iterator();
@@ -113,11 +110,12 @@ public class BuildDeck {
 			final String vroot_chr_set = challenge[2];
 			final String vdef_active = challenge[5];
 			final String vdef_passive = challenge[6];
-			final String vdef_objects = challenge[7];
-			String vroot_h = StringUtils.substringBefore(vroot_set, ",").intern();
-			String vroot_h_chr = StringUtils.substringBefore(vroot_chr_set, ",").intern();
-			String vroot_alt = StringUtils.substringAfter(vroot_set, ",").intern();
-			String vroot_alt_chr = StringUtils.substringAfter(vroot_chr_set, ",").intern();
+			final String vdef_inanimateObjects = challenge[7];
+			final String vdef_animateObjects = challenge[8];
+			String vroot_h = StringUtils.substringBefore(vroot_set, ",");
+			String vroot_h_chr = StringUtils.substringBefore(vroot_chr_set, ",");
+			String vroot_alt = StringUtils.substringAfter(vroot_set, ",");
+			String vroot_alt_chr = StringUtils.substringAfter(vroot_chr_set, ",");
 			if (StringUtils.isBlank(vroot_alt)) {
 				vroot_alt = vroot_h;
 			}
@@ -143,16 +141,23 @@ public class BuildDeck {
 			final boolean oStem = vroot_h.matches("[ọoỌO].*");
 			final boolean uStem = vroot_h.matches("[ụuỤU].*");
 			final boolean vStem = vroot_h.matches("[ṿvṾV].*");
-			final boolean cStem = !(aStem | eStem | iStem | oStem | uStem | vStem);
-
+			final boolean gStem = vroot_h.startsWith("ɂ");
+			final boolean cStem = !(aStem | eStem | iStem | oStem | uStem | vStem) || gStem;
+			if (gStem) {
+				vroot_h=vroot_h.substring(1);
+				vroot_alt=vroot_alt.substring(1);
+				vroot_h_chr=vroot_h_chr.substring(1);
+				vroot_alt_chr=vroot_alt_chr.substring(1);
+			}
+			
 			final String vgroup = vroot_h_chr;
 
 			setStatus("Please wait, conjugating: " + vroot_h_chr);
 			final Iterator<String[]> ipro = pronouns.iterator();
 			while (ipro.hasNext()) {
 				final String[] pronoun = ipro.next();
-				final boolean pSetB = pronoun[5].equalsIgnoreCase("b");
 				final boolean pSetA = pronoun[5].equalsIgnoreCase("a");
+				final boolean pSetB = pronoun[5].equalsIgnoreCase("b");
 				if (pSetB && !vSetB) {
 					continue;
 				}
@@ -173,19 +178,22 @@ public class BuildDeck {
 				if (Collections.disjoint(vtypes, ptypes)) {
 					continue;
 				}
-				vroot.setLength(0);
-				vroot_chr.setLength(0);
+				final StringBuilder vrootSb = new StringBuilder();
+				final StringBuilder vrootChrSb = new StringBuilder();
 				if (ptypes.contains("alt")) {
-					vroot.append(vroot_alt);
-					vroot_chr.append(vroot_alt_chr);
+					vrootSb.append(vroot_alt);
+					vrootChrSb.append(vroot_alt_chr);
 				} else {
-					vroot.append(vroot_h);
-					vroot_chr.append(vroot_h_chr);
+					vrootSb.append(vroot_h);
+					vrootChrSb.append(vroot_h_chr);
 				}
 
+				
 				d.chr = syllabary;
 				d.latin = pronoun[2];
 				d.def = "";
+				
+				selectPronounForm(d, cStem, gStem, syllabary, pronoun[2]);
 
 				final String pgroup = d.chr;
 
@@ -200,44 +208,43 @@ public class BuildDeck {
 				 * a vs ga select
 				 */
 				if (v_g3rd && p_g3rd) {
-					d.chr = StringUtils.substringAfter(d.chr, ",").intern();
-					d.chr = StringUtils.strip(d.chr).intern();
-					d.latin = StringUtils.substringAfter(d.latin, ",").intern();
-					d.latin = StringUtils.strip(d.latin).intern();
+					d.chr = StringUtils.substringAfter(d.chr, ",");
+					d.chr = StringUtils.strip(d.chr);
+					d.latin = StringUtils.substringAfter(d.latin, ",");
+					d.latin = StringUtils.strip(d.latin);
 				}
 
 				/*
 				 * a vs ga select
 				 */
 				if (!v_g3rd && p_g3rd) {
-					d.chr = StringUtils.substringBefore(d.chr, ",").intern();
-					d.chr = StringUtils.strip(d.chr).intern();
-					d.latin = StringUtils.substringBefore(d.latin, ",").intern();
-					d.latin = StringUtils.strip(d.latin).intern();
+					d.chr = StringUtils.substringBefore(d.chr, ",");
+					d.chr = StringUtils.strip(d.chr);
+					d.latin = StringUtils.substringBefore(d.latin, ",");
+					d.latin = StringUtils.strip(d.latin);
 				}
 
-				if (!cStem && d.chr.contains(",")) {
+				if (!cStem  && d.chr.contains(",")) {
 					/*
-					 * select vowel stem pronoun
+					 * select vowel stem pronoun.
 					 */
-					d.chr = StringUtils.substringAfter(d.chr, ",").intern();
-					d.chr = StringUtils.substringBefore(d.chr, "-").intern();
-					d.chr = StringUtils.strip(d.chr).intern();
+					d.chr = StringUtils.substringAfter(d.chr, ",");
+					d.chr = StringUtils.substringBefore(d.chr, "-");
+					d.chr = StringUtils.strip(d.chr);
 
-					d.latin = StringUtils.substringAfter(d.latin, ",").intern();
-					d.latin = StringUtils.substringBefore(d.latin, "-").intern();
-					d.latin = StringUtils.strip(d.latin).intern();
-
+					d.latin = StringUtils.substringAfter(d.latin, ",");
+					d.latin = StringUtils.substringBefore(d.latin, "-");
+					d.latin = StringUtils.strip(d.latin);
 				} else {
 					/*
 					 * select consonent stem pronoun
 					 */
-					d.chr = StringUtils.substringBefore(d.chr, ",").intern();
-					d.chr = StringUtils.substringBefore(d.chr, "-").intern();
-					d.chr = StringUtils.strip(d.chr).intern();
-					d.latin = StringUtils.substringBefore(d.latin, ",").intern();
-					d.latin = StringUtils.substringBefore(d.latin, "-").intern();
-					d.latin = StringUtils.strip(d.latin).intern();
+					d.chr = StringUtils.substringBefore(d.chr, ",");
+					d.chr = StringUtils.substringBefore(d.chr, "-");
+					d.chr = StringUtils.strip(d.chr);
+					d.latin = StringUtils.substringBefore(d.latin, ",");
+					d.latin = StringUtils.substringBefore(d.latin, "-");
+					d.latin = StringUtils.strip(d.latin);
 				}
 
 				if ((v_imp || v_inf) && aStem) {
@@ -258,34 +265,34 @@ public class BuildDeck {
 				 * consonent stem
 				 */
 				if (!cStem) {
-					d.chr = d.chr.replaceAll(BoundPronouns.UNDERDOT + "?[¹²³⁴]$", BoundPronouns.UNDERX).intern();
-					d.latin = d.latin.replaceAll("[ẠAạaẸEẹeỊIịiỌOọoỤUụuṾVṿv][¹²³⁴]$", "").intern();
+					d.chr = d.chr.replaceAll(BoundPronouns.UNDERDOT + "?[¹²³⁴]$", BoundPronouns.UNDERX);
+					d.latin = d.latin.replaceAll("[ẠAạaẸEẹeỊIịiỌOọoỤUụuṾVṿv][¹²³⁴]$", "");
 				}
 
 				/*
 				 * "[d]" reflexive form fixups
 				 */
 				if (cStem) {
-					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "").intern();
-					d.latin = d.latin.replaceAll("\\[d\\]$", "").intern();
+					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "");
+					d.latin = d.latin.replaceAll("\\[d\\]$", "");
 				}
 				if (aStem) {
-					d.chr = d.chr.replaceAll("Ꮣ[¹²³⁴]\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
-					d.latin = d.latin.replaceAll("da[¹²³⁴]\\[d\\]$", "d").intern();
+					d.chr = d.chr.replaceAll("Ꮣ[¹²³⁴]\\[Ꮣ͓\\]$", "Ꮣ͓");
+					d.latin = d.latin.replaceAll("da[¹²³⁴]\\[d\\]$", "d");
 				}
 				if (eStem || iStem || oStem || uStem) {
-					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
-					d.chr = d.chr.replace("Ꮣ͓Ꭱ", "Ꮥ").intern();
-					d.chr = d.chr.replace("Ꮣ͓Ꭲ", "Ꮧ").intern();
-					d.chr = d.chr.replace("Ꮣ͓Ꭳ", "Ꮩ").intern();
-					d.chr = d.chr.replace("Ꮣ͓Ꭴ", "Ꮪ").intern();
+					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓");
+					d.chr = d.chr.replace("Ꮣ͓Ꭱ", "Ꮥ");
+					d.chr = d.chr.replace("Ꮣ͓Ꭲ", "Ꮧ");
+					d.chr = d.chr.replace("Ꮣ͓Ꭳ", "Ꮩ");
+					d.chr = d.chr.replace("Ꮣ͓Ꭴ", "Ꮪ");
 
-					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
+					d.latin = d.latin.replaceAll("\\[d\\]$", "d");
 				}
 				if (vStem) {
-					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓").intern();
-					d.chr = d.chr.replace("Ꮣ͓Ꭵ", "Ꮫ").intern();
-					d.latin = d.latin.replaceAll("\\[d\\]$", "d").intern();
+					d.chr = d.chr.replaceAll("\\[Ꮣ͓\\]$", "Ꮣ͓");
+					d.chr = d.chr.replace("Ꮣ͓Ꭵ", "Ꮫ");
+					d.latin = d.latin.replaceAll("\\[d\\]$", "d");
 				}
 
 				/*
@@ -294,7 +301,7 @@ public class BuildDeck {
 
 				if (cStem) {
 
-					if (vroot.toString().matches("[TtDdSs].*")) {
+					if (vrootSb.toString().matches("[TtDdSs].*")) {
 						if (d.latin.equalsIgnoreCase("A¹gị²")) {
 							d.latin = "a¹k";
 							d.chr = "Ꭰ¹Ꭹ͓";
@@ -305,16 +312,16 @@ public class BuildDeck {
 						}
 					}
 					// TODO: which is more correct? "ijch-" or "its-" ?
-					if (vroot.toString().matches("[Tt].*")) {
+					if (vrootSb.toString().matches("[Tt].*")) {
 						if (d.latin.equalsIgnoreCase("I¹ji²")) {
 							d.latin = "i¹ts";
 							d.chr = "Ꭲ¹Ꮵ͓";
 						}
 					}
 
-					if (vroot.length() > 1) {
-						final char vroot_0 = vroot.charAt(0);
-						final char vroot_1 = vroot.charAt(1);
+					if (vrootSb.length() > 1) {
+						final char vroot_0 = vrootSb.charAt(0);
+						final char vroot_1 = vrootSb.charAt(1);
 						if (vroot_0 == 'ɂ' && // glottal stop followed by tone marking
 								(vroot_1 == '¹' || vroot_1 == '²' || vroot_1 == '³' || vroot_1 == '⁴')) {
 							d.chr = d.chr.replaceAll("[¹²³⁴]+$", "");
@@ -324,84 +331,84 @@ public class BuildDeck {
 						}
 					}
 
-					d.chr += vroot_chr;
-					// d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+					d.chr += vrootChrSb;
+					// d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 
-					d.latin += vroot;
-					// d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+					d.latin += vrootSb;
+					// d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 				}
 
 				if (aStem) {
 					u_check: {
 						if (d.chr.equals("Ꭴ¹Ꮹ͓")) {
-							d.chr = "Ꭴ" + vroot_chr.substring(1);
-							d.latin = "u" + vroot.substring(1);
+							d.chr = "Ꭴ" + vrootChrSb.substring(1);
+							d.latin = "u" + vrootSb.substring(1);
 							break u_check;
 						}
 						if (d.chr.equals("Ꮷ²Ꮹ͓")) {
-							d.chr = "Ꮷ" + vroot_chr.substring(1);
-							d.latin = "ju" + vroot.substring(1);
+							d.chr = "Ꮷ" + vrootChrSb.substring(1);
+							d.latin = "ju" + vrootSb.substring(1);
 							break u_check;
 						}
 						if (d.chr.equals("Ꮪ²Ꮹ͓")) {
-							d.chr = "Ꮪ" + vroot_chr.substring(1);
-							d.latin = "du" + vroot.substring(1);
+							d.chr = "Ꮪ" + vrootChrSb.substring(1);
+							d.latin = "du" + vrootSb.substring(1);
 							break u_check;
 						}
-						d.chr += vroot_chr;
-						d.latin += vroot;
+						d.chr += vrootChrSb;
+						d.latin += vrootSb;
 					}
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 				}
 
 				if (eStem || iStem || oStem || uStem) {
-					d.chr += vroot_chr;
-					// d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+					d.chr += vrootChrSb;
+					// d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 
-					d.latin += vroot;
-					// d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "").intern();
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+					d.latin += vrootSb;
+					// d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ?[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 				}
 
 				if (vStem) {
 					u_check: {
 						if (d.chr.equals("Ꭴ¹Ꮹ͓")) {
-							d.chr = "Ꭴ̣²Ꮹ" + vroot_chr.substring(1);
-							d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-							d.latin = "ụ²wa" + vroot.substring(1);
-							d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+							d.chr = "Ꭴ̣²Ꮹ" + vrootChrSb.substring(1);
+							d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
+							d.latin = "ụ²wa" + vrootSb.substring(1);
+							d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 							break u_check;
 						}
 						if (d.chr.equals("Ꮷ²Ꮹ͓")) {
-							d.chr = "Ꮷ̣²Ꮹ" + vroot_chr.substring(1);
-							d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-							d.latin = "jụ²wa" + vroot.substring(1);
-							d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+							d.chr = "Ꮷ̣²Ꮹ" + vrootChrSb.substring(1);
+							d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
+							d.latin = "jụ²wa" + vrootSb.substring(1);
+							d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 							break u_check;
 						}
 						if (d.chr.equals("Ꮪ²Ꮹ͓")) {
-							d.chr = "Ꮪ̣²Ꮹ" + vroot_chr.substring(1);
-							d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-							d.latin = "dụ²wa" + vroot.substring(1);
-							d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+							d.chr = "Ꮪ̣²Ꮹ" + vrootChrSb.substring(1);
+							d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
+							d.latin = "dụ²wa" + vrootSb.substring(1);
+							d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 							break u_check;
 						}
-						d.chr += vroot_chr;
-						d.latin += vroot;
+						d.chr += vrootChrSb;
+						d.latin += vrootSb;
 					}
-					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
-					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "").intern();
+					d.chr = d.chr.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
+					d.latin = d.latin.replaceAll("[¹²³⁴](?=ɂ[¹²³⁴])", "");
 				}
 
 				doSyllabaryConsonentVowelFixes(d);
 
-				d.latin = d.latin.toLowerCase().intern();
+				d.latin = d.latin.toLowerCase();
 				String subj = pronoun[3];
-				String obj = pronoun[4];
+				String pronounObject = pronoun[4];
 
 				if (!StringUtils.isBlank(subj) && isPluralSubj(subj)) {
 					if (vtypes.contains("xde")) {
@@ -410,7 +417,7 @@ public class BuildDeck {
 					if (vtypes.contains("xdi")) {
 						addDiPrefix(d, aStem);
 					}
-				} else if (isPluralSubj(obj)) {
+				} else if (isPluralSubj(pronounObject)) {
 					if (vtypes.contains("xde")) {
 						addDePrefix(d);
 					}
@@ -424,7 +431,7 @@ public class BuildDeck {
 				}
 
 				if (v_imp && !vtypes.contains("xwi")) {
-					if (!isIncludesYou(subj, obj)) {
+					if (!isIncludesYou(subj, pronounObject)) {
 						addWiPrefix(d);
 					}
 				}
@@ -433,10 +440,10 @@ public class BuildDeck {
 				if (!StringUtils.isEmpty(subj)) {
 					d.def = vdef_active;
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ", pronoun[3] + " ").intern();
+						d.def = d.def.replaceFirst("^[hH]e ", pronoun[3] + " ");
 					}
 					if (d.def.contains("self")) {
-						d.def = d.def.replaceFirst("^[Hh]im", pronoun[3] + "-").intern();
+						d.def = d.def.replaceFirst("^[Hh]im", pronoun[3] + "-");
 						d.def = d.def.replace("I-self", "Myself");
 						d.def = d.def.replace("You one-self", "Your one self");
 						d.def = d.def.replace("He-self", "Himself");
@@ -452,60 +459,84 @@ public class BuildDeck {
 						d.def = pronoun[8] + replaceFirst;
 					}
 					if (subj.contains("I")) {
-						d.def = d.def.replace("[s]", "").intern();
+						d.def = d.def.replace("[s]", "");
 					}
 					if (subj.contains("You one")) {
-						d.def = d.def.replace("[s]", "").intern();
+						d.def = d.def.replace("[s]", "");
 					}
 					if (isPluralSubj(subj)) {
-						d.def = d.def.replace("[s]", "").intern();
+						d.def = d.def.replace("[s]", "");
 					} else {
-						d.def = d.def.replace("[s]", "s").intern();
+						d.def = d.def.replace("[s]", "s");
 					}
 					if (d.def.startsWith("for him ") || d.def.startsWith("For him ")) {
 						if (!subj.startsWith("I")) {
-							subj = StringUtils.left(subj, 1).toLowerCase() + StringUtils.substring(subj, 1).intern();
+							subj = StringUtils.left(subj, 1).toLowerCase() + StringUtils.substring(subj, 1);
 						}
-						d.def = d.def.replaceFirst("^[Ff]or him ", "For " + subj + " ").intern();
+						d.def = d.def.replaceFirst("^[Ff]or him ", "For " + subj + " ");
 					}
 					if (d.def.matches("[Ll]et him.*")) {
 						if (!subj.startsWith("I")) {
-							subj = StringUtils.left(subj, 1).toLowerCase() + StringUtils.substring(subj, 1).intern();
+							subj = StringUtils.left(subj, 1).toLowerCase() + StringUtils.substring(subj, 1);
 						}
-						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + subj + " ").intern();
+						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + subj + " ");
 					}
-					if (!StringUtils.isBlank(vdef_objects)) {
-						final String[] o = vdef_objects.split(",\\s*");
-						String vobj = o[0];
-						if (o.length > 1 && obj.contains("them")) {
-							vobj = o[1];
+
+					if (!StringUtils.isBlank(vdef_inanimateObjects)) {
+						final String[] o = vdef_inanimateObjects.split(",\\s*");
+						if (pronounObject.equalsIgnoreCase("them-inanimate") && o.length > 1) {
+							String verbObject = o[1];
+							d.def = d.def.replaceAll("\\bx\\b", verbObject);
+						} else if (pronounObject.equalsIgnoreCase("it")) {
+							String verbObject = o[0];
+							d.def = d.def.replaceAll("\\bx\\b", verbObject);
+						} else {
+							d.def = d.def.replaceAll("\\bx\\b", pronounObject);
 						}
-						d.def = d.def.replaceAll("\\bx\\b", vobj).intern();
+					} else if (!StringUtils.isBlank(vdef_animateObjects)) {
+						final String[] o = vdef_animateObjects.split(",\\s*");
+						if (pronounObject.equalsIgnoreCase("them-animate") && o.length > 1) {
+							String verbObject = o[1];
+							d.def = d.def.replaceAll("\\bx\\b", verbObject);
+						} else if (pronounObject.equalsIgnoreCase("him")) {
+							String verbObject = o[0];
+							d.def = d.def.replaceAll("\\bx\\b", verbObject);
+						} else {
+							d.def = d.def.replaceAll("\\bx\\b", pronounObject);
+						}
 					} else {
-						d.def = d.def.replaceAll("\\bx\\b", obj).intern();
+						d.def = d.def.replaceAll("\\bx\\b", pronounObject);
 					}
 
 				} else {
 					d.def = vdef_passive;
+					if (d.def.toLowerCase().startsWith("someone")||d.def.toLowerCase().startsWith("for someone")) {
+						if (d.def.contains(" him")) {
+							d.def=d.def.replaceFirst(" him", " " + pronounObject);
+						} else if (d.def.contains(" me")) {
+							d.def=d.def.replaceFirst(" me", " " + pronounObject);
+						}
+					}
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
-						d.def = d.def.replaceFirst("^[hH]e ", obj + " ").intern();
+						d.def = d.def.replaceFirst("^[hH]e ", pronounObject + " ");
 					}
-					if (obj.contains("I")) {
-						d.def = d.def.replace("[s]", "").intern();
+					if (pronounObject.contains("I")) {
+						d.def = d.def.replace("[s]", "");
 					}
-					if (isPluralSubj(obj)) {
-						d.def = d.def.replace("[s]", "").intern();
+					if (isPluralSubj(pronounObject)) {
+						d.def = d.def.replace("[s]", "");
 					} else {
-						d.def = d.def.replace("[s]", "s").intern();
+						d.def = d.def.replace("[s]", "s");
 					}
 					if (d.def.startsWith("for him ") || d.def.startsWith("For him ")) {
-						d.def = d.def.replaceFirst("^[Ff]or him ", "For " + obj + " ").intern();
+						d.def = d.def.replaceFirst("^[Ff]or him ", "For " + pronounObject + " ");
 					}
 					if (d.def.matches("[Ll]et him.*")) {
-						if (!obj.startsWith("I")) {
-							obj = (StringUtils.left(obj, 1).toLowerCase() + StringUtils.substring(obj, 1)).intern();
+						if (!pronounObject.startsWith("I")) {
+							pronounObject = (StringUtils.left(pronounObject, 1).toLowerCase()
+									+ StringUtils.substring(pronounObject, 1));
 						}
-						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + obj + " ").intern();
+						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + pronounObject + " ");
 					}
 				}
 				Card c = getCardByChallenge(d.chr, deck);
@@ -531,123 +562,181 @@ public class BuildDeck {
 		setStatus("Finished conjugating ...");
 	}
 
+	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, final String syllabary, final String latin) {
+		if (syllabary.contains(",")) {
+			String tmp = syllabary;
+			String pConsonant = StringUtils.substringBefore(tmp, ",").trim();
+			tmp = StringUtils.substringAfter(tmp, ",").trim();
+			String pVowel = StringUtils.substringBefore(tmp, ",").trim();
+			if (pVowel.isEmpty()) {
+				pVowel=pConsonant;
+			}
+			tmp = StringUtils.substringAfter(tmp, ",").trim();
+			String pGlottal = StringUtils.substringBefore(tmp, ",").trim();
+			if (pGlottal.isEmpty()) {
+				pGlottal=pConsonant;
+			}
+			if (gStem) {
+				d.chr = pGlottal;
+			} else if (cStem) {
+				d.chr=pConsonant;
+			} else {
+				d.chr=pVowel;
+			}
+		} else {
+			d.chr = syllabary;
+		}
+		if (latin.contains(",")) {
+			String tmp = latin;
+			String pConsonant = StringUtils.substringBefore(tmp, ",").trim();
+			tmp = StringUtils.substringAfter(tmp, ",").trim();
+			String pVowel = StringUtils.substringBefore(tmp, ",").trim();
+			if (pVowel.isEmpty()) {
+				pVowel=pConsonant;
+			}
+			tmp = StringUtils.substringAfter(tmp, ",").trim();
+			String pGlottal = StringUtils.substringBefore(tmp, ",").trim();
+			if (pGlottal.isEmpty()) {
+				pGlottal=pConsonant;
+			}
+			if (gStem) {
+				d.latin = pGlottal;
+			} else if (cStem) {
+				d.latin=pConsonant;
+			} else {
+				d.latin=pVowel;
+			}
+		} else {
+			d.latin = latin;		
+		}
+		if (gStem) {
+			System.out.println("Glottal stop selection: "+d.latin+", "+d.chr);
+		}
+	}
+
 	private void addDePrefix(final DataSet d) {
+		if (d.latin.matches("[d].*")) {
+			return;
+		}
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = ("d" + d.latin).intern();
-			d.chr = ("Ꮣ" + d.chr.substring(1)).intern();
+			d.latin = ("d" + d.latin);
+			d.chr = ("Ꮣ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ẹe].*")) {
-			d.latin = ("d" + d.latin).intern();
-			d.chr = ("Ꮥ" + d.chr.substring(1)).intern();
+			d.latin = ("d" + d.latin);
+			d.chr = ("Ꮥ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ọo].*")) {
-			d.latin = ("d" + d.latin).intern();
-			d.chr = ("Ꮩ" + d.chr.substring(1)).intern();
+			d.latin = ("d" + d.latin);
+			d.chr = ("Ꮩ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ụu].*")) {
-			d.latin = ("d" + d.latin).intern();
-			d.chr = ("Ꮪ" + d.chr.substring(1)).intern();
+			d.latin = ("d" + d.latin);
+			d.chr = ("Ꮪ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ṿv].*")) {
-			d.latin = ("d" + d.latin).intern();
-			d.chr = ("Ꮫ" + d.chr.substring(1)).intern();
+			d.latin = ("d" + d.latin);
+			d.chr = ("Ꮫ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ịi].*")) {
-			d.latin = ("de³" + d.latin.substring(2)).intern();
-			d.chr = ("Ꮥ³" + d.chr.substring(2)).intern();
+			d.latin = ("de³" + d.latin.substring(2));
+			d.chr = ("Ꮥ³" + d.chr.substring(2));
 			return;
 		}
 
-		d.latin = ("de²" + d.latin).intern();
-		d.chr = ("Ꮥ²" + d.chr).intern();
+		d.latin = ("de²" + d.latin);
+		d.chr = ("Ꮥ²" + d.chr);
 
 	}
 
 	private void addDiPrefix(final DataSet d, final boolean aStem) {
+		if (d.latin.matches("[d].*")) {
+			return;
+		}
 		if (d.latin.matches("[ạ].*") && aStem) {
-			d.latin = ("dạ" + d.latin.substring(1)).intern();
-			d.chr = ("Ꮣ" + d.chr.substring(1)).intern();
+			d.latin = ("dạ" + d.latin.substring(1));
+			d.chr = ("Ꮣ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[a].*") && aStem) {
-			d.latin = ("da" + d.latin.substring(1)).intern();
-			d.chr = ("Ꮣ" + d.chr.substring(1)).intern();
+			d.latin = ("da" + d.latin.substring(1));
+			d.chr = ("Ꮣ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = ("dị" + d.latin.substring(1)).intern();
-			d.chr = ("Ꮧ" + d.chr.substring(1)).intern();
+			d.latin = ("dị" + d.latin.substring(1));
+			d.chr = ("Ꮧ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ẹe].*")) {
-			d.latin = ("j" + d.latin).intern();
-			d.chr = ("Ꮴ" + d.chr.substring(1)).intern();
+			d.latin = ("j" + d.latin);
+			d.chr = ("Ꮴ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ọo].*")) {
-			d.latin = ("j" + d.latin).intern();
-			d.chr = ("Ꮶ" + d.chr.substring(1)).intern();
+			d.latin = ("j" + d.latin);
+			d.chr = ("Ꮶ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ụu].*")) {
-			d.latin = ("j" + d.latin).intern();
-			d.chr = ("Ꮷ" + d.chr.substring(1)).intern();
+			d.latin = ("j" + d.latin);
+			d.chr = ("Ꮷ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ṿv].*")) {
-			d.latin = ("j" + d.latin).intern();
-			d.chr = ("Ꮸ" + d.chr.substring(1)).intern();
+			d.latin = ("j" + d.latin);
+			d.chr = ("Ꮸ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ịi].*")) {
-			d.latin = ("d" + d.latin).intern();
-			d.chr = ("Ꮧ" + d.chr.substring(1)).intern();
+			d.latin = ("d" + d.latin);
+			d.chr = ("Ꮧ" + d.chr.substring(1));
 			return;
 		}
 
-		d.latin = ("dị²" + d.latin).intern();
-		d.chr = ("Ꮧ̣²" + d.chr).intern();
+		d.latin = ("dị²" + d.latin);
+		d.chr = ("Ꮧ̣²" + d.chr);
 
 	}
 
 	public void addWiPrefix(final DataSet d) {
 		if (d.latin.matches("[ạa].*")) {
-			d.latin = ("w" + d.latin).intern();
-			d.chr = ("Ꮹ" + d.chr.substring(1)).intern();
+			d.latin = ("w" + d.latin);
+			d.chr = ("Ꮹ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ẹe].*")) {
-			d.latin = ("w" + d.latin).intern();
-			d.chr = ("Ꮺ" + d.chr.substring(1)).intern();
+			d.latin = ("w" + d.latin);
+			d.chr = ("Ꮺ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ọo].*")) {
-			d.latin = ("w" + d.latin).intern();
-			d.chr = ("Ꮼ" + d.chr.substring(1)).intern();
+			d.latin = ("w" + d.latin);
+			d.chr = ("Ꮼ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ụu].*")) {
-			d.latin = ("w" + d.latin).intern();
-			d.chr = ("Ꮽ" + d.chr.substring(1)).intern();
+			d.latin = ("w" + d.latin);
+			d.chr = ("Ꮽ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ṿv].*")) {
-			d.latin = ("w" + d.latin).intern();
-			d.chr = ("Ꮾ" + d.chr.substring(1)).intern();
+			d.latin = ("w" + d.latin);
+			d.chr = ("Ꮾ" + d.chr.substring(1));
 			return;
 		}
 		if (d.latin.matches("[ịi].*")) {
-			d.latin = ("w" + d.latin).intern();
-			d.chr = ("Ꮻ" + d.chr.substring(1)).intern();
+			d.latin = ("w" + d.latin);
+			d.chr = ("Ꮻ" + d.chr.substring(1));
 			return;
 		}
-		d.latin = ("wị²" + d.latin).intern();
-		d.chr = ("Ꮻ̣²" + d.chr).intern();
+		d.latin = ("wị²" + d.latin);
+		d.chr = ("Ꮻ̣²" + d.chr);
 	}
 
 	private void appendText(final File tmp, final String text) throws FileNotFoundException, IOException {
@@ -699,60 +788,76 @@ public class BuildDeck {
 
 		d.def = d.def.replaceAll("\\b([Uu]s)(, .*?)( recently)", "$1$3$2");
 
-		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1$2are ").intern();
-		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1$2were ").intern();
-		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1$2have ").intern();
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1$2are ");
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1$2were ");
+		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1$2have ");
 
-		d.def = d.def.replace("and I is", "and I are").intern();
-		d.def = d.def.replace("I is", "I am").intern();
-		d.def = d.def.replace("You one is", "You one are").intern();
-		d.def = d.def.replace("You two is", "You two are").intern();
-		d.def = d.def.replace("You all is", "You all are").intern();
-		d.def = d.def.replace("They is", "They are").intern();
+		d.def = d.def.replace("and I is", "and I are");
+		d.def = d.def.replace("I is", "I am");
+		d.def = d.def.replace("You one is", "You one are");
+		d.def = d.def.replace("You two is", "You two are");
+		d.def = d.def.replace("You all is", "You all are");
+		d.def = d.def.replace("They is", "They are");
 
-		d.def = d.def.replace("and I was", "and I were").intern();
-		d.def = d.def.replace("You one was", "You one were").intern();
-		d.def = d.def.replace("You two was", "You two were").intern();
-		d.def = d.def.replace("You all was", "You all were").intern();
-		d.def = d.def.replace("They was", "They were").intern();
+		d.def = d.def.replace("and I was", "and I were");
+		d.def = d.def.replace("You one was", "You one were");
+		d.def = d.def.replace("You two was", "You two were");
+		d.def = d.def.replace("You all was", "You all were");
+		d.def = d.def.replace("They was", "They were");
 
-		d.def = d.def.replace("and I often is", "and I often are").intern();
-		d.def = d.def.replace("I often is", "I often am").intern();
-		d.def = d.def.replace("You one often is", "You one often are").intern();
-		d.def = d.def.replace("You two often is", "You two often are").intern();
-		d.def = d.def.replace("You all often is", "You all often are").intern();
-		d.def = d.def.replace("They often is", "They often are").intern();
+		d.def = d.def.replace("and I often is", "and I often are");
+		d.def = d.def.replace("I often is", "I often am");
+		d.def = d.def.replace("You one often is", "You one often are");
+		d.def = d.def.replace("You two often is", "You two often are");
+		d.def = d.def.replace("You all often is", "You all often are");
+		d.def = d.def.replace("They often is", "They often are");
 
-		d.def = d.def.replace("and I has", "and I have").intern();
-		d.def = d.def.replace("I has", "I have").intern();
-		d.def = d.def.replace("You one has", "You one have").intern();
-		d.def = d.def.replace("You two has", "You two have").intern();
-		d.def = d.def.replace("You all has", "You all have").intern();
-		d.def = d.def.replace("They has", "They have").intern();
+		d.def = d.def.replace("and I has", "and I have");
+		d.def = d.def.replace("I has", "I have");
+		d.def = d.def.replace("You one has", "You one have");
+		d.def = d.def.replace("You two has", "You two have");
+		d.def = d.def.replace("You all has", "You all have");
+		d.def = d.def.replace("They has", "They have");
 
-		d.def = d.def.replace("and I often has", "and I often have").intern();
-		d.def = d.def.replace("I often has", "I often have").intern();
-		d.def = d.def.replace("You one often has", "You one often have").intern();
-		d.def = d.def.replace("You two often has", "You two often have").intern();
-		d.def = d.def.replace("You all often has", "You all often have").intern();
-		d.def = d.def.replace("They often has", "They often have").intern();
+		d.def = d.def.replace("and I often has", "and I often have");
+		d.def = d.def.replace("I often has", "I often have");
+		d.def = d.def.replace("You one often has", "You one often have");
+		d.def = d.def.replace("You two often has", "You two often have");
+		d.def = d.def.replace("You all often has", "You all often have");
+		d.def = d.def.replace("They often has", "They often have");
 
+		if (d.def.startsWith("Someone")) {
+			d.def = d.def.replaceAll("\\b[Hh]e\\b", "him");
+			d.def = d.def.replaceAll("\\b[Tt]hey\\b", "them");
+			d.def = d.def.replaceAll("\\bI\\b", "me");
+			d.def = d.def.replaceAll("\\bYou\\b", "you");
+			//d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For $1");
+			d.def = d.def.replaceAll(", [Ww]e$", "");
+		}
+		if (d.def.startsWith("For someone")) {
+			d.def = d.def.replaceAll("\\b[Hh]e\\b", "him");
+			d.def = d.def.replaceAll("\\b[Tt]hey\\b", "them");
+			d.def = d.def.replaceAll("\\bI\\b", "me");
+			d.def = d.def.replaceAll("\\bYou\\b", "you");
+			//d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For $1");
+			d.def = d.def.replaceAll(", [Ww]e$", "");
+		}
 		if (d.def.startsWith("For")) {
 			d.def = d.def.replaceAll("\\b[Hh]e\\b", "him");
 			d.def = d.def.replaceAll("\\b[Tt]hey\\b", "them");
 			d.def = d.def.replaceAll("\\bI\\b", "me");
 			d.def = d.def.replaceAll("\\bYou\\b", "you");
-			d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For us, $1,").intern();
+			d.def = d.def.replaceAll("For (.*?), [Ww]e\\b", "For us, $1,");
 		}
 
 		if (d.def.startsWith("Let")) {
-			d.def = d.def.replaceAll("Let [Hh]e\\b", "Let him").intern();
-			d.def = d.def.replaceAll("Let [Tt]hey\\b", "Let them").intern();
-			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
-			d.def = d.def.replaceAll("Let I\\b", "Let me").intern();
-			d.def = d.def.replaceAll("and I\\b", "and me").intern();
-			d.def = d.def.replaceAll("Let You\\b", "Let you").intern();
-			d.def = d.def.replaceAll("Let (.*?), we\\b", "Let us, $1,").intern();
+			d.def = d.def.replaceAll("Let [Hh]e\\b", "Let him");
+			d.def = d.def.replaceAll("Let [Tt]hey\\b", "Let them");
+			d.def = d.def.replaceAll("Let You\\b", "Let you");
+			d.def = d.def.replaceAll("Let I\\b", "Let me");
+			d.def = d.def.replaceAll("and I\\b", "and me");
+			d.def = d.def.replaceAll("Let You\\b", "Let you");
+			d.def = d.def.replaceAll("Let (.*?), we\\b", "Let us, $1,");
 		}
 
 		/**
@@ -826,107 +931,107 @@ public class BuildDeck {
 			return;
 		}
 		// special case for u + v => uwa
-		d.chr = d.chr.replace("Ꭴ¹Ꮹ͓Ꭵ", "Ꭴ̣²Ꮹ").intern();
+		d.chr = d.chr.replace("Ꭴ¹Ꮹ͓Ꭵ", "Ꭴ̣²Ꮹ");
 
 		String set;
 		set = "[Ꭰ-Ꭵ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭰ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭱ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭲ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭳ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭴ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭵ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭰ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭱ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭲ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭳ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭴ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭵ");
 		if (debug) {
 			System.out.println("Build Deck: " + d.chr);
 		}
 
 		set = "[Ꭷ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭷ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭷ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ");
 
 		set = "[ᎦᎨᎩᎪᎫᎬ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭶ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭶ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭸ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭹ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꭺ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꭻ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꭼ");
 
 		set = "[ᎭᎮᎯᎰᎱᎲ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭽ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭾ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭿ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮀ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮁ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮂ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꭽ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꭾ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꭿ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮀ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮁ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮂ");
 
 		set = "[ᎾᏁᏂᏃᏄᏅ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮎ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮎ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ");
 
 		set = "[Ꮏ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮏ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮏ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮑ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮒ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮓ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮔ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮕ");
 
 		set = "[ᏣᏤᏥᏦᏧᏨ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮳ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮴ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮵ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮶ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮷ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮸ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮳ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮴ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮵ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮶ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮷ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮸ");
 
 		set = "[ᏆᏇᏈᏉᏊᏋ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮖ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮗ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮘ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮙ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮚ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮛ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮖ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮗ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮘ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮙ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮚ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮛ");
 
 		set = "[ᏓᏕᏗᏙᏚᏛ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮣ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮥ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮧ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮣ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮥ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮧ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ");
 
 		set = "[ᏔᏖᏘ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮤ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮦ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮨ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮤ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮦ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮨ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮩ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮪ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮫ");
 
 		set = "[ᏩᏪᏫᏬᏭᏮ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮹ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮺ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮻ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮼ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮽ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮾ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮹ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ꮺ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ꮻ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ꮼ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ꮽ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ꮾ");
 
 		set = "[ᏯᏰᏱᏲᏳᏴ]";
-		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮿ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ᏸ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ᏹ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ᏺ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ᏻ").intern();
-		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ᏼ").intern();
+		d.chr = d.chr.replaceAll(set + x + "Ꭰ", "Ꮿ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭱ", "Ᏸ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭲ", "Ᏹ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭳ", "Ᏺ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭴ", "Ᏻ");
+		d.chr = d.chr.replaceAll(set + x + "Ꭵ", "Ᏼ");
 		if (debug) {
 			System.out.println("Build Deck: " + d.chr);
 		}
@@ -1246,9 +1351,8 @@ public class BuildDeck {
 	}
 
 	/**
-	 * Reduce deck size while keeping a mandatory set of bound
-	 * pronouns and spreading the usage of the remainder pronouns as much as
-	 * possible.
+	 * Reduce deck size while keeping a mandatory set of bound pronouns and
+	 * spreading the usage of the remainder pronouns as much as possible.
 	 * 
 	 * @param deckToFilter
 	 */
@@ -1283,11 +1387,11 @@ public class BuildDeck {
 		tmpDeck.clear();
 		/**
 		 * Work from pronoun sets with largest to smallest for removals. <br>
-		 * Work to keep at least 4 of each pronoun's pronunciation variations, as well
-		 * as to keep at least 4 of each verb stem with non-core conjugations.
+		 * Work to keep at least a set minimum of each pronoun's pronunciation variations, as well
+		 * as to keep at least a set minimum of each verb stem with non-core conjugations.
 		 */
-		final int MIN_VSTEM_COUNT = 4;
-		final int MIN_PFORM_COUNT = 4;
+		final int MIN_VSTEM_COUNT = 3;
+		final int MIN_PFORM_COUNT = 3;
 		while (!buckets.isEmpty()) {
 			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(buckets.values());
 			for (List<Card> bucket : buckets.values()) {
@@ -1368,10 +1472,12 @@ public class BuildDeck {
 	private String pgroupBucket(Card card) {
 		String pgroup = card.pgroup;
 		pgroup = pgroup.replaceAll("\\[.*\\]", "");
-		{int ix = pgroup.indexOf("-");
-		if (ix != -1) {
+		int ix = pgroup.indexOf("-");
+		if (ix != -1 && card.challenge.get(0).length()>ix) {
 			pgroup = card.challenge.get(0).substring(0, ix - 1) + "|" + pgroup;
-		}}
+		} else {
+			System.out.println("pgroup: "+pgroup+" card: "+card.challenge.get(0));
+		}
 		return pgroup;
 	}
 

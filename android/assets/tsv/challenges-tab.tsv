@@ -1,206 +1,196 @@
-vi, a	ᎠᏗᎭ	Ꭰ¹Ꮧ̣²Ꭽ, Ꭰ¹Ꮧ̣²Ꭽ	a¹dị²ha	ạ²dị²ha, ạ²di³ɂa	he is saying		
-	ᎦᏗᎠ	Ꭰ¹Ꮧ̣²Ꭽ	gạ²di³ɂa	ạ²di³ɂa	I am saying		
-vi, u	ᎤᏛᏅᎢ	Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ, Ꭰ̣²Ꮫ¹Ꮕ²³Ꭲ	u¹dv²hnv²³ɂi	ạ²dv²hnv²³ɂi, ạ²dv¹hnv²³ɂi	he said a while ago		
-vi, a	ᎠᏗᏍᎪᎢ	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	a¹di²³sgo³ɂi	ạ²di²³sgo³ɂi	he is often saying		
-vi, imp, a	ᎭᏓ	Ꭰ̣²Ꮣ	hạ²da	ạ²da	let him say		
-vi, a	ᎭᏓ²	Ꭰ̣²Ꮣ²	hạ²da²	ạ²da²	he said recently		
-vi, u, inf	ᎤᏘᏗ	Ꭰ̣Ꮨ͓²Ꮧ	ut²di	ạt²di	for him to say it		
-vti, a	ᎠᎩᎠ	Ꭹ̣³Ꭰ	a¹gị³ɂa	gị³ɂa	he is eating x		a solid food, solid foods
-	ᏥᎩᎠ	Ꭹ̣³Ꭰ	jị²gị³ɂa	gị³ɂa	I am eating x		a solid food, solid foods
-vti, u	ᎤᎬᎢ	Ꭼ²³Ꭲ	u¹gv²³ɂi	gv²³ɂi	he ate x a while ago		a solid food, solid foods
-vti, a	ᎠᎩᏍᎪᎢ	Ꭹ³ᏍᎪ³Ꭲ	a¹gi³sgo³ɂi	gi³sgo³ɂi	he often is eating x		a solid food, solid foods
-vti, imp	ᎯᎦ	Ꭶ	hị²ga	ga	let him eat x		a solid food, solid foods
-vti, a	ᎯᎦ	Ꭶ²	hị²ga²	ga²	he ate x recently		a solid food, solid foods
-vti, u, inf	ᎤᎩᏍᏗ	Ꭹ¹ᏍᏗ	u²gi¹sdi	gi¹sdi	for him to eat x		a solid food, solid foods
-vti, vta, a	ᎠᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	a¹gowh²tị³ha	gowh²tị³ha	he is seeing x	He is being seen	
-	ᏥᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	ji²gowh¹tị³ha	gowh¹tị³ha	I am seeing x	I am being seen	
-vti, vta, u	ᎤᎪᎲᎢ	Ꭺ²Ꮂ²³Ꭲ	u¹go²hv²³ɂi	go²hv²³ɂi	he saw x a while ago	He was seen a while ago	
-vti, vta, a	ᎠᎪᏩᏘᏍᎪᎢ	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	a¹gowh²ti²³sgọ³ɂi	gowh²ti²³sgọ³ɂi	he is often seeing x	He is often seen	
-vti, vta, imp, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ	hi²go¹wah²ta	go¹wah²ta	let him see x	Let him be seen	
-vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he saw x recently	he was seen recently	
-vti, vta, u, inf	ᎤᎪᏩᏛᏗ	ᎪᏩ͓²Ꮫ³Ꮧ	u²gowh²tvh³di	gowh²tvh³di	for him to see x	For him to be seen	
-vti, vta, u	ᎤᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	u¹du²lị³ha	ạ²du²lị³ha	He is wanting x	He is wanted	
-	ᎠᏆᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	a¹gwạ²du²lị³ha	ạ²du²lị³ha	I am wanting x	I am wanted	
-vti, vta, u	ᎤᏚᎸᎲᎢ	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	u¹du²lv²hv²³ɂi	ạ²du²lv²hv²³ɂi	He wanted x a while ago	He was wanted a while ago	
-vti, vta, u	ᎤᏚᎵᏍᎪᎢ	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	u¹du²li²³sgọ³ɂi	ạ²du²li²³sgọ³ɂi	He often is wanting x	He is often wanted	
-vti, vta, imp, u	ᏣᏚᎳ	Ꭰ̣²Ꮪ²³Ꮃ	jạ²du²³la	ạ²du²³la	Let him want x	Let him be wanted	
-vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he wanted x recently	he was wanted recently	
-vti, vta, u, inf	ᎤᏚᎸᏗ	Ꭰ̣²ᏚᎸ͓²Ꮧ	u²duhl²di	ạ²duhl²di	For him to want x	For him to be wanted	
-vi, a	ᎡᎦ	Ꭱ³Ꭶ	e³ga	e³ga	he is going		
-	ᎨᎦ	Ꭱ³Ꭶ	ge³ga	e³ga	I am going		
-vi, u	ᎤᏪᏅᏒᎢ	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	u¹we²nv³sv²³ɂi	e²nv³sv²³ɂi	He went a while ago		
-vi, a	ᎡᎪᎢ	Ꭱ³Ꭺ̣³Ꭲ	e³gọ³ɂi	e³gọ³ɂi	He often is going		
-vi, imp, a	ᎮᎾ	Ꭱ¹Ꮎ	he¹na	e¹na	Let him go		
-vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he went recently		
-vi, u, inf	ᎤᏪᏅᏍᏗ	Ꭱ²Ꮕ¹ᏍᏗ	ụ²we²nv¹sdi	e²nv¹sdi	For him to go		
-vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		a solid object, solid objects
-	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		a solid object, solid objects
-vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		a solid object, solid objects
-vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He often has x		a solid object, solid objects
-vti,  u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		a solid object, solid objects
-vi, xde, u	ᎤᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	u¹yo³sị²ha	yo³sị²ha	He is hungry		
-	ᎠᎩᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	a¹gị²yo³sị²ha	yo³sị²ha	I am hungry		
-vi, xde, u	ᎤᏲᏏᏍᎬᎢ	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	u¹yo³si²sgv²³ɂi	yo³si²sgv²³ɂi	He was hungry a while ago		
-vi, xde, u	ᎤᏲᏏᏍᎪᎢ	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	u¹yo³si²sgo³ɂi	yo³si²sgo³ɂi	He often is hungry		
-vi, xdi, imp, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ	jạ²yo¹si²³sa	yo¹si²³sa	Let him be hungry		
-vi, xde, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ²	jạ²yo¹si²³sa²	yo¹si²³sa²	he was hungry recently		
-vi, xdi, u, inf	ᎤᏲᏏᏐᏗ	Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ	u²yo¹si²³soh³di	yo¹si²³soh³di	For him to be hungry		
-vi, xde, u	ᎤᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	u¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	He is thirsty		
-	ᎠᎩᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	ak¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	I am thirsty		
-vi, xde, u	ᎤᏔᏕᎦᏅᎢ	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	u¹tạ²de²ga³²nv²³ɂi	tạ²de²ga³²nv²³ɂi	He was thirsty a while ago		
-vi, xde, u	ᎤᏔᏕᎩᏍᎪᎢ	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	u¹tạ²de²gi³sgo³ɂi	tạ²de²gi³sgo³ɂi	He is often thirsty		
-vi, xdi, imp, u	ᏣᏔᏕᎬᎦ	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ	tstạ²de²gv¹ga	tạ²de²gv¹ga	Let him be thirsty		
-vi, xde, u	ᏣᏔᏕᎬᎦ²	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	tstạ²de²gv¹ga²	tạ²de²gv¹ga²	he was thirsty recently		
-vi, xdi, u, inf	ᎤᏔᏕᎪᏗ	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	u²tạ²de²³go³²di	tạ²de²³go³²di	For him to be thirsty		
-vi, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he understand[s] x	He is being understood	
-	ᎪᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	go²li¹ga	o²li¹ga	I understand[s] x	I am being understood	
-vi, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago	
-vi, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often understand[s] x	He is often being understood	
-vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood	
-vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he understood x recently	He was understood recently	
-vi, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood	
-vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he recognize[s] x	He is being recognized	
-	ᏣᏲᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	ji²yo²li¹ga	o²li¹ga	I recognize[s] x	I am being recognized	
-vta, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he recognized x a while ago	He was recognized a while ago	
-vta, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often recognize[s] x	He is often recognized	
-vta, g, imp	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hi²yo²li¹gi	ohl²gi, o²li¹gi	let him recognize x	Let him be recognized	
-vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recognized x recently	He was recognized recently	
-vta, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to recognize x	For him to be recognized	
-vi, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x		
-	ᏥᎴᎦ	³Ꮄ¹Ꭶ	jịɂ³le¹ga	ɂ³le¹ga	I am climbing x		
-vi, u	ᎤᎸᏒᎢ	Ꮈ³²Ꮢ²³Ꭲ	u¹lv³²sv²³ɂi	lv³²sv²³ɂi	he climbed x a while ago		
-vi, g	ᎦᎴᎪᎢ	³Ꮄ¹Ꭺ³Ꭲ	gạɂ³le¹go³ɂi	ɂ³le¹go³ɂi	he often is climbing x		
-vi, g, imp	ᎯᎷᎦ	²Ꮇ¹Ꭶ	hịɂ²lu¹ga	ɂ²lu¹ga	let him climb x		
-vi, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he climbed x recently		
-vi, u, inf	ᎤᎸᏍᏗ	Ꮈ¹ᏍᏗ	u²lv¹sdi	lv¹sdi	for him to climb x		
-n	ᏂᎯ	Ꮒ̣²Ꭿ	nị²hi	nị²hi	You one; You two; You all		
-n	ᎠᏴ	Ꭰ̣²Ᏼ	ạ²yv	ạ²yv	I, Me; We, Us		
-n	ᎯᎠ	Ꭿ̣²Ꭰ	hị²ɂa	hịɂa	This, These; They, Them; He, Him		
-n	ᎥᏍᎩᎾ	Ꭵ¹ᏍᎩ̣²Ꮎ	v¹sgị²na	v¹sgị²na	That, Those; They, Them; He, Him		
-							
-vi, u	ᎤᏩᏌ	Ꭵ²³Ꮜ	ụ²wa²³sa	v²³sa	Himself		
-vi, u	ᎤᏩᏌ	Ꭵ⁴Ꮜ	ụ²wa⁴sa	v⁴sa	He alone		
-vti, u, adj	ᎤᏤᎵᎢ	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	u²je²li⁴ɂi	ạ²je²li⁴ɂi	His x		(it is), (they are)
-							
-n	ᎠᎵᎢ	Ꭰ²Ꮅ̣²Ꭲ	a²lị²ɂi	a²lị²ɂi	Friendship		
-							
-n	ᏗᏆᎵᎢ	Ꮧ̣¹Ꮖ²Ꮅ̣²Ꭲ	dị¹gwa²lị²ɂi	dị¹gwa²lị²ɂi	My friends		
-n	ᏗᏣᎵᎢ	Ꮧ̣¹Ꮳ²Ꮅ̣²Ꭲ	dị²jạ²lị²ɂi	dị²jạ²lị²ɂi	You one, your friends		
-n	ᏧᎵᎢ	Ꮷ²Ꮅ̣²Ꭲ	ju²lị²ɂi	ju²lị²ɂi	His friends		
-							
-n	ᎩᎾᎵᎢ	Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	gị²na²lị²ɂi	gị²na²lị²ɂi	You one and I, friends		
-n	ᎩᎾᎵᎢ	Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	gị²na²lị²ɂi	gị²na²lị²ɂi	You one, my friend		
-n	ᏗᎩᎾᎵᎢ	Ꮧ̣²Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	dị²gị²na²lị²ɂi	dị²gị²na²lị²ɂi	You one and I, our friends		
-							
-n	ᎣᎩᎾᎵᎢ	Ꭳ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	o¹gị²na²lị²ɂi	o¹gị²na²lị²ɂi	He and I, friends		
-n	ᎣᎩᎾᎵᎢ	Ꭳ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	o¹gị²na²lị²ɂi	o¹gị²na²lị²ɂi	He, my friend		
-n	ᏦᎩᎾᎵᎢ	Ꮶ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	jo¹gị²na²lị²ɂi	jo¹gị²na²lị²ɂi	He and I, our friends		
-							
-n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You one and I, our friend		
-n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You two and I, our friend		
-n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You all and I, our friend		
-n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You all and I, friends		
-n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You all, my friends		
-n	ᏗᎦᎵᎢ	Ꮧ̣²Ꭶ²Ꮅ̣²Ꭲ	dị²ga²lị²ɂi	dị²ga²lị²ɂi	You all and I, our friends		
-							
-n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	He and I, our friend		
-n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	They and I, our friend		
-n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	They and I, friends		
-n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	They, my friends		
-n	ᏦᎦᎵᎢ	Ꮶ¹Ꭶ²Ꮅ̣²Ꭲ	jo¹ga²lị²ɂi	jo¹ga²lị²ɂi	They and I, our friends		
-							
-n	ᏍᏓᎵᎢ	ᏍᏓ²Ꮅ̣²Ꭲ	sda²lị²ɂi	sda²lị²ɂi	You one, your friend		
-n	ᏍᏓᎵᎢ	ᏍᏓ²Ꮅ̣²Ꭲ	sda²lị²ɂi	sda²lị²ɂi	You two, friends		
-n	ᏗᏍᏓᎵᎢ	Ꮧ̣²ᏍᏓ²Ꮅ̣²Ꭲ	dị²sda²lị²ɂi	dị²sda²lị²ɂi	You two, your friends		
-							
-n	ᎢᏣᎵᎢ	Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ	i¹ja²lị²ɂi	i¹ja²lị²ɂi	You two, your friend		
-n	ᎢᏣᎵᎢ	Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ	i¹ja²lị²ɂi	i¹ja²lị²ɂi	You all, your friend		
-n	ᎢᏣᎵᎢ	Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ	i¹ja²lị²ɂi	i¹ja²lị²ɂi	You all, friends		
-n	ᏗᏣᎵᎢ	Ꮧ̣²Ꮳ²Ꮅ̣²Ꭲ	dị²ja²lị²ɂi	dị²ja²lị²ɂi	You all, your friends		
-							
-n	ᎤᎾᎵᎢ	Ꭴ¹Ꮎ²Ꮅ̣²Ꭲ	u¹na²lị²ɂi	u¹na²lị²ɂi	His friend		
-n	ᎤᎾᎵᎢ	Ꭴ¹Ꮎ²Ꮅ̣²Ꭲ	u¹na²lị²ɂi	u¹na²lị²ɂi	Their friend		
-n	ᎤᎾᎵᎢ	Ꭴ¹Ꮎ²Ꮅ̣²Ꭲ	u¹na²lị²ɂi	u¹na²lị²ɂi	They, friends		
-n	ᏧᎾᎵᎢ	Ꮷ¹Ꮎ²Ꮅ̣²Ꭲ	ju¹na²lị²ɂi	ju¹na²lị²ɂi	Their friends		
-							
-n		Ꭱ²Ꮩ²Ꮣ	e²do²da	e²do²da	Father		
-n		Ꭼ²Ꮩ²Ꮣ	gv²do²da	gv²do²da	I, your father		
-n		Ꮵ²Ꮩ²Ꮣ	ji²do²da	ji²do²da	I, his father		
-n		ᏍᏛ²Ꮩ²Ꮣ	sdv²do²da	sdv²do²da	I, your two's father		
-n		Ꭲ¹Ꮸ²Ꮩ²Ꮣ	i¹jv²do²da	i¹jv²do²da	I, your all's father		
-n		Ꭶ̣²Ꮵ²Ꮩ²Ꮣ	gạ²ji²do²da	gạ²ji²do²da	I, their father		
-n		ᏍᎩ̣²Ꮩ²Ꮣ	sgị²do²da	sgị²do²da	You one, my father		
-n		Ꭿ²Ꮩ²Ꮣ	hi²do²da	hi²do²da	You one, his father		
-n		ᏍᎩ̣²Ꮒ²Ꮩ²Ꮣ	sgị²ni²do²da	sgị²ni²do²da	You one, his and my father		
-n		Ꭲ¹ᏍᎩ²Ꮩ²Ꮣ	i¹sgi²do²da	i¹sgi²do²da	You one, their and my father		
-n		Ꭶ²Ꭿ²Ꮩ²Ꮣ	gạ²hi²do²da	gạ²hi²do²da	You one, their father		
-n		Ꭰ̣²Ꭹ̣²Ꮩ²Ꮣ	ạ²gị²do²da	ạ²gị²do²da	xHe, my father		
-n		Ꮳ̣²Ꮩ²Ꮣ	jạ²do²da	jạ²do²da	xHe, your one's father		
-n		Ꭴ²Ꮩ²Ꮣ	u²do²da	u²do²da	His father		
-n		Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	gị²ni²do²da	gị²ni²do²da	Your one's and my father		
-n		Ꭲ¹Ꭹ²Ꮩ²Ꮣ	i¹gi²do²da	i¹gi²do²da	Your all's and my father		
-n		Ꭳ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	o²gị²ni²do²da	o²gị²ni²do²da	His and my father		
-n		Ꭳ²Ꭹ²Ꮩ²Ꮣ	o²gi²do²da	o²gi²do²da	Their and my father		
-n		ᏍᏗ²Ꮩ²Ꮣ	sdi²do²da	sdi²do²da	Your two's father		
-n		Ꭲ¹Ꮵ²Ꮩ²Ꮣ	i¹ji²do²da	i¹ji²do²da	Your all's father		
-n		Ꭴ²Ꮒ²Ꮩ²Ꮣ	u²ni²do²da	u²ni²do²da	Their father		
-n		Ꮧ̣²Ꭸ²Ꮒ²Ꮩ²Ꮣ	dị²ge²ni²do²da	dị²ge²ni²do²da	You one and I, their mutual fathers		
-n		Ꮧ̣²Ꭸ²Ꮧ²Ꮩ²Ꮣ	dị²ge²di²do²da	dị²ge²di²do²da	You all and I, their mutual fathers		
-n		Ꮧ̣²ᏍᏛ²Ꮩ²Ꮣ	dị²sdv²do²da	dị²sdv²do²da	xHe and I, your two's mutual fathers		
-n		Ꮧ¹Ꮸ²Ꮩ²Ꮣ	di¹jv²do²da	di¹jv²do²da	xHe and I, your all's mutual fathers		
-n		Ꮶ²ᏍᏗ²Ꮩ²Ꮣ	jo²sdi²do²da	jo²sdi²do²da	xHe and I, their mutual fathers		
-n		Ꮧ¹Ꮸ²Ꮩ²Ꮣ	di¹jv²do²da	di¹jv²do²da	They and I, your all's mutual fathers		
-n		Ꮶ²Ꮵ²Ꮩ²Ꮣ	jo²ji²do²da	jo²ji²do²da	They and I, their mutual fathers		
-n		Ꮧ̣²ᏍᎩ̣²Ꮒ²Ꮩ²Ꮣ	dị²sgị²ni²do²da	dị²sgị²ni²do²da	You two, his and my mutual fathers		
-n		Ꮧ¹ᏍᎩ²Ꮩ²Ꮣ	di¹sgi²do²da	di¹sgi²do²da	You two, their and my mutual fathers		
-n		Ꮧ̣²ᏍᏗ²Ꮩ²Ꮣ	dị²sdi²do²da	dị²sdi²do²da	You two, their mutual fathers		
-n		Ꮧ¹ᏍᎩ²Ꮩ²Ꮣ	di¹sgi²do²da	di¹sgi²do²da	You all, their and my mutual fathers		
-n		Ꮧ¹Ꮵ²Ꮩ²Ꮣ	di¹ji²do²da	di¹ji²do²da	You all, their mutual fathers		
-n		Ꮧ̣²Ꭸ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	dị²ge²gị²ni²do²da	dị²ge²gị²ni²do²da	They, your one and my mutual fathers		
-n		Ꮧ̣²Ꭸ²Ꭹ²Ꮩ²Ꮣ	dị²ge²gi²do²da	dị²ge²gi²do²da	They, your all's and my mutual fathers		
-n		Ꮧ̣²Ꭺ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	dị²go²gị²ni²do²da	dị²go²gị²ni²do²da	They, his and my mutual fathers		
-n		Ꮧ̣²Ꭺ²Ꭹ²Ꮩ²Ꮣ	dị²go²gi²do²da	dị²go²gi²do²da	They, their and my mutual fathers		
-n		Ꮧ̣²Ꭸ²ᏍᏗ²Ꮩ²Ꮣ	dị²ge²sdi²do²da	dị²ge²sdi²do²da	They, your two mutual fathers		
-n		Ꮧ̣²Ꭸ²Ꮵ²Ꮩ²Ꮣ	dị²ge²ji²do²da	dị²ge²ji²do²da	They, your all's mutual fathers		
-n		Ꮧ̣²Ꭼ²Ꮹ̣²Ꮒ²Ꮩ²Ꮣ	dị²gv²wạ²ni²do²da	dị²gv²wạ²ni²do²da	They, their mutual fathers		
-							
-n		Ꭱ²Ꮵ	e²ji	e²ji	Mother		
-n		Ꭼ²Ꮵ	gv²ji	gv²ji	I, your mother		
-n		Ꮵ²Ꮵ	ji²ji	ji²ji	I, his mother		
-n		ᏍᏛ²Ꮵ	sdv²ji	sdv²ji	I, your two's mother		
-n		Ꭲ¹Ꮸ²Ꮵ	i¹jv²ji	i¹jv²ji	I, your all's mother		
-n		Ꭶ̣²Ꮵ²Ꮵ	gạ²ji²ji	gạ²ji²ji	I, their mother		
-n		ᏍᎩ̣²Ꮵ	sgị²ji	sgị²ji	You one, my mother		
-n		Ꭿ²Ꮵ	hi²ji	hi²ji	You one, his mother		
-n		ᏍᎩ̣²Ꮒ²Ꮵ	sgị²ni²ji	sgị²ni²ji	You one, his and my mother		
-n		Ꭲ¹ᏍᎩ²Ꮵ	i¹sgi²ji	i¹sgi²ji	You one, their and my mother		
-n		Ꭶ²Ꭿ²Ꮵ	gạ²hi²ji	gạ²hi²ji	You one, their mother		
-n		Ꭰ̣²Ꭹ̣²Ꮵ	ạ²gị²ji	ạ²gị²ji	xShe, my mother		
-n		Ꮳ̣²Ꮵ	jạ²ji	jạ²ji	xShe, your one's mother		
-n		Ꭴ²Ꮵ	u²ji	u²ji	His mother		
-n		Ꭹ̣²Ꮒ²Ꮵ	gị²ni²ji	gị²ni²ji	Your one's and my mother		
-n		Ꭲ¹Ꭹ²Ꮵ	i¹gi²ji	i¹gi²ji	Your all's and my mother		
-n		Ꭳ²Ꭹ̣²Ꮒ²Ꮵ	o²gị²ni²ji	o²gị²ni²ji	His and my mother		
-n		Ꭳ²Ꭹ²Ꮵ	o²gi²ji	o²gi²ji	Their and my mother		
-n		ᏍᏗ²Ꮵ	sdi²ji	sdi²ji	Your two's mother		
-n		Ꭲ¹Ꮵ²Ꮵ	i¹ji²ji	i¹ji²ji	Your all's mother		
-n		Ꭴ²Ꮒ²Ꮵ	u²ni²ji	u²ni²ji	Their mother		
-n		Ꮧ̣²Ꭸ²Ꮒ²Ꮵ	dị²ge²ni²ji	dị²ge²ni²ji	You one and I, their mutual mothers		
-n		Ꮧ̣²Ꭸ²Ꮧ²Ꮵ	dị²ge²di²ji	dị²ge²di²ji	You all and I, their mutual mothers		
-n		Ꮧ̣²ᏍᏛ²Ꮵ	dị²sdv²ji	dị²sdv²ji	xShe and I, your two's mutual mothers		
-n		Ꮧ¹Ꮸ²Ꮵ	di¹jv²ji	di¹jv²ji	xShe and I, your all's mutual mothers		
-n		Ꮶ²ᏍᏗ²Ꮵ	jo²sdi²ji	jo²sdi²ji	xShe and I, their mutual mothers		
-n		Ꮧ¹Ꮸ²Ꮵ	di¹jv²ji	di¹jv²ji	They and I, your all's mutual mothers		
-n		Ꮶ²Ꮵ²Ꮵ	jo²ji²ji	jo²ji²ji	They and I, their mutual mothers		
-n		Ꮧ̣²ᏍᎩ̣²Ꮒ²Ꮵ	dị²sgị²ni²ji	dị²sgị²ni²ji	You two, his and my mutual mothers		
-n		Ꮧ¹ᏍᎩ²Ꮵ	di¹sgi²ji	di¹sgi²ji	You two, their and my mutual mothers		
-n		Ꮧ̣²ᏍᏗ²Ꮵ	dị²sdi²ji	dị²sdi²ji	You two, their mutual mothers		
-n		Ꮧ¹ᏍᎩ²Ꮵ	di¹sgi²ji	di¹sgi²ji	You all, their and my mutual mothers		
-n		Ꮧ¹Ꮵ²Ꮵ	di¹ji²ji	di¹ji²ji	You all, their mutual mothers		
-n		Ꮧ̣²Ꭸ²Ꭹ̣²Ꮒ²Ꮵ	dị²ge²gị²ni²ji	dị²ge²gị²ni²ji	They, your one and my mutual mothers		
-n		Ꮧ̣²Ꭸ²Ꭹ²Ꮵ	dị²ge²gi²ji	dị²ge²gi²ji	They, your all's and my mutual mothers		
-n		Ꮧ̣²Ꭺ²Ꭹ̣²Ꮒ²Ꮵ	dị²go²gị²ni²ji	dị²go²gị²ni²ji	They, his and my mutual mothers		
-n		Ꮧ̣²Ꭺ²Ꭹ²Ꮵ	dị²go²gi²ji	dị²go²gi²ji	They, their and my mutual mothers		
-n		Ꮧ̣²Ꭸ²ᏍᏗ²Ꮵ	dị²ge²sdi²ji	dị²ge²sdi²ji	They, your two mutual mothers		
-n		Ꮧ̣²Ꭸ²Ꮵ²Ꮵ	dị²ge²ji²ji	dị²ge²ji²ji	They, your all's mutual mothers		
-n		Ꮧ̣²Ꭼ²Ꮹ̣²Ꮒ²Ꮵ	dị²gv²wạ²ni²ji	dị²gv²wạ²ni²ji	They, their mutual mothers		
+vi, a	ᎠᏗᎭ	Ꭰ¹Ꮧ̣²Ꭽ, Ꭰ¹Ꮧ̣²Ꭽ	a¹dị²ha	ạ²dị²ha, ạ²di³ɂa	he is saying			
+	ᎦᏗᎠ	Ꭰ¹Ꮧ̣²Ꭽ	gạ²di³ɂa	ạ²di³ɂa	I am saying			
+vi, u	ᎤᏛᏅᎢ	Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ, Ꭰ̣²Ꮫ¹Ꮕ²³Ꭲ	u¹dv²hnv²³ɂi	ạ²dv²hnv²³ɂi, ạ²dv¹hnv²³ɂi	he said a while ago			
+vi, a	ᎠᏗᏍᎪᎢ	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	a¹di²³sgo³ɂi	ạ²di²³sgo³ɂi	he is often saying			
+vi, imp, a	ᎭᏓ	Ꭰ̣²Ꮣ	hạ²da	ạ²da	let him say			
+vi, a	ᎭᏓ²	Ꭰ̣²Ꮣ²	hạ²da²	ạ²da²	he said recently			
+vi, u, inf	ᎤᏘᏗ	Ꭰ̣Ꮨ͓²Ꮧ	ut²di	ạt²di	for him to say it			
+vti, a	ᎠᎩᎠ	Ꭹ̣³Ꭰ	a¹gị³ɂa	gị³ɂa	he is eating x		a solid food, solid foods	
+	ᏥᎩᎠ	Ꭹ̣³Ꭰ	jị²gị³ɂa	gị³ɂa	I am eating x		a solid food, solid foods	
+vti, u	ᎤᎬᎢ	Ꭼ²³Ꭲ	u¹gv²³ɂi	gv²³ɂi	he ate x a while ago		a solid food, solid foods	
+vti, a	ᎠᎩᏍᎪᎢ	Ꭹ³ᏍᎪ³Ꭲ	a¹gi³sgo³ɂi	gi³sgo³ɂi	he often is eating x		a solid food, solid foods	
+vti, imp	ᎯᎦ	Ꭶ	hị²ga	ga	let him eat x		a solid food, solid foods	
+vti, a	ᎯᎦ	Ꭶ²	hị²ga²	ga²	he ate x recently		a solid food, solid foods	
+vti, u, inf	ᎤᎩᏍᏗ	Ꭹ¹ᏍᏗ	u²gi¹sdi	gi¹sdi	for him to eat x		a solid food, solid foods	
+vti, vta, a	ᎠᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	a¹gowh²tị³ha	gowh²tị³ha	he is seeing x	He is being seen		
+	ᏥᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	ji²gowh¹tị³ha	gowh¹tị³ha	I am seeing x	I am being seen		
+vti, vta, u	ᎤᎪᎲᎢ	Ꭺ²Ꮂ²³Ꭲ	u¹go²hv²³ɂi	go²hv²³ɂi	he saw x a while ago	He was seen a while ago		
+vti, vta, a	ᎠᎪᏩᏘᏍᎪᎢ	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	a¹gowh²ti²³sgọ³ɂi	gowh²ti²³sgọ³ɂi	he is often seeing x	He is often seen		
+vti, vta, imp, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ	hi²go¹wah²ta	go¹wah²ta	let him see x	Let him be seen		
+vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he saw x recently	he was seen recently		
+vti, vta, u, inf	ᎤᎪᏩᏛᏗ	ᎪᏩ͓²Ꮫ³Ꮧ	u²gowh²tvh³di	gowh²tvh³di	for him to see x	For him to be seen		
+vti, vta, u	ᎤᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	u¹du²lị³ha	ạ²du²lị³ha	He is wanting x	He is wanted		
+	ᎠᏆᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	a¹gwạ²du²lị³ha	ạ²du²lị³ha	I am wanting x	I am wanted		
+vti, vta, u	ᎤᏚᎸᎲᎢ	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	u¹du²lv²hv²³ɂi	ạ²du²lv²hv²³ɂi	He wanted x a while ago	He was wanted a while ago		
+vti, vta, u	ᎤᏚᎵᏍᎪᎢ	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	u¹du²li²³sgọ³ɂi	ạ²du²li²³sgọ³ɂi	He often is wanting x	He is often wanted		
+vti, vta, imp, u	ᏣᏚᎳ	Ꭰ̣²Ꮪ²³Ꮃ	jạ²du²³la	ạ²du²³la	Let him want x	Let him be wanted		
+vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he wanted x recently	he was wanted recently		
+vti, vta, u, inf	ᎤᏚᎸᏗ	Ꭰ̣²ᏚᎸ͓²Ꮧ	u²duhl²di	ạ²duhl²di	For him to want x	For him to be wanted		
+vi, a	ᎡᎦ	Ꭱ³Ꭶ	e³ga	e³ga	he is going			
+	ᎨᎦ	Ꭱ³Ꭶ	ge³ga	e³ga	I am going			
+vi, u	ᎤᏪᏅᏒᎢ	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	u¹we²nv³sv²³ɂi	e²nv³sv²³ɂi	He went a while ago			
+vi, a	ᎡᎪᎢ	Ꭱ³Ꭺ̣³Ꭲ	e³gọ³ɂi	e³gọ³ɂi	He often is going			
+vi, imp, a	ᎮᎾ	Ꭱ¹Ꮎ	he¹na	e¹na	Let him go			
+vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he went recently			
+vi, u, inf	ᎤᏪᏅᏍᏗ	Ꭱ²Ꮕ¹ᏍᏗ	ụ²we²nv¹sdi	e²nv¹sdi	For him to go			
+								
+vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		a solid object, solid objects	
+	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		a solid object, solid objects	
+vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		a solid object, solid objects	
+vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He often has x		a solid object, solid objects	
+vti, u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		a solid object, solid objects	
+								
+vti, u	ᎤᎾᎠ	Ꮎ̣³Ꭰ	u¹nạ³ɂa	nạ³ɂa	He has x		something flexible, flexible things	
+	ᎠᎩᎾᎠ	Ꮎ̣³Ꭰ	a¹gị²nạ³a	nạ³a	I have x		something flexible, flexible things	
+vti, u	ᎤᎾᎥᎢ	Ꮎ̣³Ꭵ²³Ꭲ	u¹nạ³v²³ɂi	nạ³v²³ɂi	He had x a while ago		something flexible, flexible things	
+vti, u	ᎤᎾᎣᎢ	Ꮎ̣³Ꭳ³Ꭲ	u¹nạ³o³ɂi	nạ³o³ɂi	He often has x		something flexible, flexible things	
+vti, u	ᏣᎾᎡᏍᏗ	Ꮎ̣³Ꭱ³ᏍᏗ	jạ²nạ³e³sdi	nạ³e³sdi	He will be having x		something flexible, flexible things	
+								
+vti, u	ᎤᏁᎭ	Ꮑ̣³Ꭽ	u¹nẹ³ha	nẹ³ha	He has x		a liquid, liquid things	
+	ᎠᎩᏁᎭ	Ꮑ̣³Ꭽ	a¹gị²nẹ³ha	nẹ³ha	I have x		a liquid, liquid things	
+vti, u	ᎤᏁᎲᎢ	Ꮑ²Ꮂ²³Ꭲ	u¹ne²hv²³ɂi	ne²hv²³ɂi	He had x a while ago		a liquid, liquid things	
+vti, u	ᎤᏁᎰᎢ	Ꮑ²Ꮀ³Ꭲ	u¹ne²ho³ɂi	ne²ho³ɂi	He often has x		a liquid, liquid things	
+vti, u	ᏣᏁᎮᏍᏗ	Ꮑ²Ꭾ³ᏍᏗ	jạ²ne²he³sdi	ne²he³sdi	He will be having x		a liquid, liquid things	
+vi, xdi, u, inf	ᎤᏁᏗ	ᏁᏗ	u²neh²di	neh²di	For him to have x		a liquid, liquid things	
+								
+vti, u	ᎤᏩᏯ	Ꭵ³²Ꮿ	u¹wa³²ya	u¹wa³²ya	He has x		something rod shaped, rod shaped things	
+	ᎠᏋᏯ	Ꭵ²³Ꮿ	a¹gwv²³ya	a¹gwv²³ya	I have x		something rod shaped, rod shaped things	
+vti, u	ᎤᏩᏴᎢ	Ꭵ²³ᏴᎢ	u¹wa²³yv³ɂi	u¹wa²³yv³ɂi	He had x a while ago		something rod shaped, rod shaped things	
+vti, u	ᎤᏩᏲᎢ	Ꭵ²³ᏲᎢ	u¹wa²³yọ³ɂi	u¹wa²³yọ³ɂi	He often has x		something rod shaped, rod shaped things	
+vti, u	ᏨᏰᏍᏗ	Ꭵ²³ᏰᏍᏗ	jv²³ye³²sdi	jv²³ye³²sdi	He will be having x		something rod shaped, rod shaped things	
+								
+vta, u, xde	ᎤᏩᎧᎭ	ɂᎧ̣³Ꭽ	u¹wa²kạ³ha	ɂkạ³ha	He has x	Someone has him		something alive, living things
+	ᎠᎩᎧᎭ	ɂᎧ̣³Ꭽ	a¹gi²kạ³ha	ɂkạ³ha	I have x	Someone has me		something alive, living things
+vta, u, xde	ᎤᏩᎧᎲᎢ	ɂᎧ̣²Ꮂ²³Ꭲ	u¹wa²kạ²hv²³ɂi	ɂkạ²hv²³ɂi	He had x a while ago	Someone had him a while ago		something alive, living things
+vta, u, xde	ᎤᏩᎧᎰᎢ	ɂᎧ̣²Ꮀ³Ꭲ	u¹wa²kạ²ho³ɂi	ɂkạ²ho³ɂi	He often has x	Someone often has him		something alive, living things
+vta, u, xde	ᏣᎧᎮᏍᏗ	ɂᎧ̣²Ꭾ³ᏍᏗ	ja²kạ²he³sdi	ɂkạ²he³sdi	He will be having x	Someone will have him		something alive, living things
+vta, xdi, u, inf	ᎤᏩᎪᏗ	ɂᎪ³Ꮧ	u¹wa²koh³di	ɂkoh³di	For him to have x	For someone to have him		something alive, living things
+								
+vi, xde, u	ᎤᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	u¹yo³sị²ha	yo³sị²ha	He is hungry			
+	ᎠᎩᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	a¹gị²yo³sị²ha	yo³sị²ha	I am hungry			
+vi, xde, u	ᎤᏲᏏᏍᎬᎢ	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	u¹yo³si²sgv²³ɂi	yo³si²sgv²³ɂi	He was hungry a while ago			
+vi, xde, u	ᎤᏲᏏᏍᎪᎢ	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	u¹yo³si²sgo³ɂi	yo³si²sgo³ɂi	He often is hungry			
+vi, xdi, imp, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ	jạ²yo¹si²³sa	yo¹si²³sa	Let him be hungry			
+vi, xde, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ²	jạ²yo¹si²³sa²	yo¹si²³sa²	he was hungry recently			
+vi, xdi, u, inf	ᎤᏲᏏᏐᏗ	Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ	u²yo¹si²³soh³di	yo¹si²³soh³di	For him to be hungry			
+vi, xde, u	ᎤᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	u¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	He is thirsty			
+	ᎠᎩᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	ak¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	I am thirsty			
+vi, xde, u	ᎤᏔᏕᎦᏅᎢ	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	u¹tạ²de²ga³²nv²³ɂi	tạ²de²ga³²nv²³ɂi	He was thirsty a while ago			
+vi, xde, u	ᎤᏔᏕᎩᏍᎪᎢ	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	u¹tạ²de²gi³sgo³ɂi	tạ²de²gi³sgo³ɂi	He is often thirsty			
+vi, xdi, imp, u	ᏣᏔᏕᎬᎦ	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ	tstạ²de²gv¹ga	tạ²de²gv¹ga	Let him be thirsty			
+vi, xde, u	ᏣᏔᏕᎬᎦ²	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	tstạ²de²gv¹ga²	tạ²de²gv¹ga²	he was thirsty recently			
+vi, xdi, u, inf	ᎤᏔᏕᎪᏗ	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	u²tạ²de²³go³²di	tạ²de²³go³²di	For him to be thirsty			
+vi, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he understand[s] x	He is being understood		
+	ᎪᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	go²li¹ga	o²li¹ga	I understand[s] x	I am being understood		
+vi, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago		
+vi, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often understand[s] x	He is often being understood		
+vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood		
+vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he understood x recently	He was understood recently		
+vi, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood		
+vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he recognize[s] x	He is being recognized		
+	ᏣᏲᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	ji²yo²li¹ga	o²li¹ga	I recognize[s] x	I am being recognized		
+vta, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he recognized x a while ago	He was recognized a while ago		
+vta, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often recognize[s] x	He is often recognized		
+vta, g, imp	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hi²yo²li¹gi	ohl²gi, o²li¹gi	let him recognize x	Let him be recognized		
+vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recognized x recently	He was recognized recently		
+vta, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to recognize x	For him to be recognized		
+vi, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x			
+	ᏥᎴᎦ	³Ꮄ¹Ꭶ	jịɂ³le¹ga	ɂ³le¹ga	I am climbing x			
+vi, u	ᎤᎸᏒᎢ	Ꮈ³²Ꮢ²³Ꭲ	u¹lv³²sv²³ɂi	lv³²sv²³ɂi	he climbed x a while ago			
+vi, g	ᎦᎴᎪᎢ	³Ꮄ¹Ꭺ³Ꭲ	gạɂ³le¹go³ɂi	ɂ³le¹go³ɂi	he often is climbing x			
+vi, g, imp	ᎯᎷᎦ	²Ꮇ¹Ꭶ	hịɂ²lu¹ga	ɂ²lu¹ga	let him climb x			
+vi, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he climbed x recently			
+vi, u, inf	ᎤᎸᏍᏗ	Ꮈ¹ᏍᏗ	u²lv¹sdi	lv¹sdi	for him to climb x			
+n	ᏂᎯ	Ꮒ̣²Ꭿ	nị²hi	nị²hi	You one; You two; You all			
+n	ᎠᏴ	Ꭰ̣²Ᏼ	ạ²yv	ạ²yv	I, Me; We, Us			
+n	ᎯᎠ	Ꭿ̣²Ꭰ	hị²ɂa	hịɂa	This, These; They, Them; He, Him			
+n	ᎥᏍᎩᎾ	Ꭵ¹ᏍᎩ̣²Ꮎ	v¹sgị²na	v¹sgị²na	That, Those; They, Them; He, Him			
+								
+vi, u	ᎤᏩᏌ	Ꭵ²³Ꮜ	ụ²wa²³sa	v²³sa	Himself			
+vi, u	ᎤᏩᏌ	Ꭵ⁴Ꮜ	ụ²wa⁴sa	v⁴sa	He alone			
+vti, u, adj	ᎤᏤᎵᎢ	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	u²je²li⁴ɂi	ạ²je²li⁴ɂi	His x		(it is), (they are)	
+								
+n	ᎠᎵᎢ	Ꭰ²Ꮅ̣²Ꭲ	a²lị²ɂi	a²lị²ɂi	Friendship			
+								
+n	ᏗᏆᎵᎢ	Ꮧ̣¹Ꮖ²Ꮅ̣²Ꭲ	dị¹gwa²lị²ɂi	dị¹gwa²lị²ɂi	My friends			
+n	ᏗᏣᎵᎢ	Ꮧ̣¹Ꮳ²Ꮅ̣²Ꭲ	dị²jạ²lị²ɂi	dị²jạ²lị²ɂi	You one, your friends			
+n	ᏧᎵᎢ	Ꮷ²Ꮅ̣²Ꭲ	ju²lị²ɂi	ju²lị²ɂi	His friends			
+								
+n	ᎩᎾᎵᎢ	Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	gị²na²lị²ɂi	gị²na²lị²ɂi	You one and I, friends			
+n	ᎩᎾᎵᎢ	Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	gị²na²lị²ɂi	gị²na²lị²ɂi	You one, my friend			
+n	ᏗᎩᎾᎵᎢ	Ꮧ̣²Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	dị²gị²na²lị²ɂi	dị²gị²na²lị²ɂi	You one and I, our friends			
+								
+n	ᎣᎩᎾᎵᎢ	Ꭳ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	o¹gị²na²lị²ɂi	o¹gị²na²lị²ɂi	He and I, friends			
+n	ᎣᎩᎾᎵᎢ	Ꭳ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	o¹gị²na²lị²ɂi	o¹gị²na²lị²ɂi	He, my friend			
+n	ᏦᎩᎾᎵᎢ	Ꮶ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	jo¹gị²na²lị²ɂi	jo¹gị²na²lị²ɂi	He and I, our friends			
+								
+n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You one and I, our friend			
+n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You two and I, our friend			
+n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You all and I, our friend			
+n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You all and I, friends			
+n	ᎢᎦᎵᎢ	Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	i¹ga²lị²ɂi	i¹ga²lị²ɂi	You all, my friends			
+n	ᏗᎦᎵᎢ	Ꮧ̣²Ꭶ²Ꮅ̣²Ꭲ	dị²ga²lị²ɂi	dị²ga²lị²ɂi	You all and I, our friends			
+								
+n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	He and I, our friend			
+n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	They and I, our friend			
+n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	They and I, friends			
+n	ᎣᎦᎵᎢ	Ꭳ¹Ꭶ²Ꮅ̣²Ꭲ	o¹ga²lị²ɂi	o¹ga²lị²ɂi	They, my friends			
+n	ᏦᎦᎵᎢ	Ꮶ¹Ꭶ²Ꮅ̣²Ꭲ	jo¹ga²lị²ɂi	jo¹ga²lị²ɂi	They and I, our friends			
+								
+n	ᏍᏓᎵᎢ	ᏍᏓ²Ꮅ̣²Ꭲ	sda²lị²ɂi	sda²lị²ɂi	You one, your friend			
+n	ᏍᏓᎵᎢ	ᏍᏓ²Ꮅ̣²Ꭲ	sda²lị²ɂi	sda²lị²ɂi	You two, friends			
+n	ᏗᏍᏓᎵᎢ	Ꮧ̣²ᏍᏓ²Ꮅ̣²Ꭲ	dị²sda²lị²ɂi	dị²sda²lị²ɂi	You two, your friends			
+								
+n	ᎢᏣᎵᎢ	Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ	i¹ja²lị²ɂi	i¹ja²lị²ɂi	You two, your friend			
+n	ᎢᏣᎵᎢ	Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ	i¹ja²lị²ɂi	i¹ja²lị²ɂi	You all, your friend			
+n	ᎢᏣᎵᎢ	Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ	i¹ja²lị²ɂi	i¹ja²lị²ɂi	You all, friends			
+n	ᏗᏣᎵᎢ	Ꮧ̣²Ꮳ²Ꮅ̣²Ꭲ	dị²ja²lị²ɂi	dị²ja²lị²ɂi	You all, your friends			
+								
+n	ᎤᎾᎵᎢ	Ꭴ¹Ꮎ²Ꮅ̣²Ꭲ	u¹na²lị²ɂi	u¹na²lị²ɂi	His friend			
+n	ᎤᎾᎵᎢ	Ꭴ¹Ꮎ²Ꮅ̣²Ꭲ	u¹na²lị²ɂi	u¹na²lị²ɂi	Their friend			
+n	ᎤᎾᎵᎢ	Ꭴ¹Ꮎ²Ꮅ̣²Ꭲ	u¹na²lị²ɂi	u¹na²lị²ɂi	They, friends			
+n	ᏧᎾᎵᎢ	Ꮷ¹Ꮎ²Ꮅ̣²Ꭲ	ju¹na²lị²ɂi	ju¹na²lị²ɂi	Their friends			
+								
+n		Ꭱ²Ꮩ²Ꮣ	e²do²da	e²do²da	Father			
+n		Ꭼ²Ꮩ²Ꮣ	gv²do²da	gv²do²da	I, your father			
+n		Ꮵ²Ꮩ²Ꮣ	ji²do²da	ji²do²da	I, his father			
+n		ᏍᏛ²Ꮩ²Ꮣ	sdv²do²da	sdv²do²da	I, your two's father			
+n		Ꭲ¹Ꮸ²Ꮩ²Ꮣ	i¹jv²do²da	i¹jv²do²da	I, your all's father			
+n		Ꭶ̣²Ꮵ²Ꮩ²Ꮣ	gạ²ji²do²da	gạ²ji²do²da	I, their father			
+n		ᏍᎩ̣²Ꮩ²Ꮣ	sgị²do²da	sgị²do²da	You one, my father			
+n		Ꭿ²Ꮩ²Ꮣ	hi²do²da	hi²do²da	You one, his father			
+n		ᏍᎩ̣²Ꮒ²Ꮩ²Ꮣ	sgị²ni²do²da	sgị²ni²do²da	You one, his and my father			
+n		Ꭲ¹ᏍᎩ²Ꮩ²Ꮣ	i¹sgi²do²da	i¹sgi²do²da	You one, their and my father			
+n		Ꭶ²Ꭿ²Ꮩ²Ꮣ	gạ²hi²do²da	gạ²hi²do²da	You one, their father			
+n		Ꭰ̣²Ꭹ̣²Ꮩ²Ꮣ	ạ²gị²do²da	ạ²gị²do²da	xHe, my father			
+n		Ꮳ̣²Ꮩ²Ꮣ	jạ²do²da	jạ²do²da	xHe, your one's father			
+n		Ꭴ²Ꮩ²Ꮣ	u²do²da	u²do²da	His father			
+n		Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	gị²ni²do²da	gị²ni²do²da	Your one's and my father			
+n		Ꭲ¹Ꭹ²Ꮩ²Ꮣ	i¹gi²do²da	i¹gi²do²da	Your all's and my father			
+n		Ꭳ²Ꭹ̣²Ꮒ²Ꮩ²Ꮣ	o²gị²ni²do²da	o²gị²ni²do²da	His and my father			
+n		Ꭳ²Ꭹ²Ꮩ²Ꮣ	o²gi²do²da	o²gi²do²da	Their and my father			
+n		ᏍᏗ²Ꮩ²Ꮣ	sdi²do²da	sdi²do²da	Your two's father			
+n		Ꭲ¹Ꮵ²Ꮩ²Ꮣ	i¹ji²do²da	i¹ji²do²da	Your all's father			
+n		Ꭴ²Ꮒ²Ꮩ²Ꮣ	u²ni²do²da	u²ni²do²da	Their father			
+								
+n		Ꭱ²Ꮵ	e²ji	e²ji	Mother			
+n		Ꭼ²Ꮵ	gv²ji	gv²ji	I, your mother			
+n		Ꮵ²Ꮵ	ji²ji	ji²ji	I, his mother			
+n		ᏍᏛ²Ꮵ	sdv²ji	sdv²ji	I, your two's mother			
+n		Ꭲ¹Ꮸ²Ꮵ	i¹jv²ji	i¹jv²ji	I, your all's mother			
+n		Ꭶ̣²Ꮵ²Ꮵ	gạ²ji²ji	gạ²ji²ji	I, their mother			
+n		ᏍᎩ̣²Ꮵ	sgị²ji	sgị²ji	You one, my mother			
+n		Ꭿ²Ꮵ	hi²ji	hi²ji	You one, his mother			
+n		ᏍᎩ̣²Ꮒ²Ꮵ	sgị²ni²ji	sgị²ni²ji	You one, his and my mother			
+n		Ꭲ¹ᏍᎩ²Ꮵ	i¹sgi²ji	i¹sgi²ji	You one, their and my mother			
+n		Ꭶ²Ꭿ²Ꮵ	gạ²hi²ji	gạ²hi²ji	You one, their mother			
+n		Ꭰ̣²Ꭹ̣²Ꮵ	ạ²gị²ji	ạ²gị²ji	xShe, my mother			
+n		Ꮳ̣²Ꮵ	jạ²ji	jạ²ji	xShe, your one's mother			
+n		Ꭴ²Ꮵ	u²ji	u²ji	His mother			
+n		Ꭹ̣²Ꮒ²Ꮵ	gị²ni²ji	gị²ni²ji	Your one's and my mother			
+n		Ꭲ¹Ꭹ²Ꮵ	i¹gi²ji	i¹gi²ji	Your all's and my mother			
+n		Ꭳ²Ꭹ̣²Ꮒ²Ꮵ	o²gị²ni²ji	o²gị²ni²ji	His and my mother			
+n		Ꭳ²Ꭹ²Ꮵ	o²gi²ji	o²gi²ji	Their and my mother			
+n		ᏍᏗ²Ꮵ	sdi²ji	sdi²ji	Your two's mother			
+n		Ꭲ¹Ꮵ²Ꮵ	i¹ji²ji	i¹ji²ji	Your all's mother			
+n		Ꭴ²Ꮒ²Ꮵ	u²ni²ji	u²ni²ji	Their mother			
