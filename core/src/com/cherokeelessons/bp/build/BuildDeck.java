@@ -138,8 +138,6 @@ public class BuildDeck {
 			}
 			final boolean useDiPrefixedForms = vtypes.contains("adj") || v_imp || v_inf;
 
-			final String vgroup = vroot_h_chr;
-
 			final boolean gStem = vroot_h.startsWith("ɂ");
 			if (gStem) {
 				vroot_h = vroot_h.substring(1);
@@ -188,14 +186,17 @@ public class BuildDeck {
 				if (Collections.disjoint(vtypes, ptypes)) {
 					continue;
 				}
+				final String vgroup;;
 				final StringBuilder vrootSb = new StringBuilder();
 				final StringBuilder vrootChrSb = new StringBuilder();
-				if (ptypes.contains("alt")) {
+				if (ptypes.contains("alt") && !vroot_h.equals(vroot_alt)) {
 					vrootSb.append(vroot_alt);
 					vrootChrSb.append(vroot_alt_chr);
+					vgroup = vroot_alt_chr+"(deaspirate)";
 				} else {
 					vrootSb.append(vroot_h);
 					vrootChrSb.append(vroot_h_chr);
+					vgroup = vroot_h_chr;
 				}
 
 				d.chr = pSyllabarySet;
@@ -217,30 +218,6 @@ public class BuildDeck {
 				}
 
 				selectPronounForm(d, cStem, gStem, pSyllabarySet, pLatinSet, p_g3rd, v_g3rd);
-
-				// selectPronounForm(d, cStem, gStem, d.chr, d.latin);
-//				if (!cStem && d.chr.contains(",")) {
-//					/*
-//					 * select vowel stem pronoun.
-//					 */
-//					d.chr = StringUtils.substringAfter(d.chr, ",");
-//					d.chr = StringUtils.substringBefore(d.chr, "-");
-//					d.chr = StringUtils.strip(d.chr);
-//
-//					d.latin = StringUtils.substringAfter(d.latin, ",");
-//					d.latin = StringUtils.substringBefore(d.latin, "-");
-//					d.latin = StringUtils.strip(d.latin);
-//				} else {
-//					/*
-//					 * select consonent stem pronoun
-//					 */
-//					d.chr = StringUtils.substringBefore(d.chr, ",");
-//					d.chr = StringUtils.substringBefore(d.chr, "-");
-//					d.chr = StringUtils.strip(d.chr);
-//					d.latin = StringUtils.substringBefore(d.latin, ",");
-//					d.latin = StringUtils.substringBefore(d.latin, "-");
-//					d.latin = StringUtils.strip(d.latin);
-//				}
 
 				if ((v_imp || v_inf) && aStem) {
 					if (d.chr.equals("Ꮨ̣²")) {
@@ -583,59 +560,59 @@ public class BuildDeck {
 		}
 
 		if (syllabary.contains(",")) {
-			String tmp = syllabary;
-			String pConsonant = StringUtils.substringBefore(tmp, ",").trim();
-			tmp = StringUtils.substringAfter(tmp, ",").trim();
-			String pVowel = StringUtils.substringBefore(tmp, ",").trim();
-			tmp = StringUtils.substringAfter(tmp, ",").trim();
-			String pGlottal = tmp.trim();
-			if (pVowel.isEmpty()) {
-				pVowel = pConsonant;
+			String tmpSyllabary = syllabary;
+			String pSylConsonant = StringUtils.substringBefore(tmpSyllabary, ",").trim();
+			tmpSyllabary = StringUtils.substringAfter(tmpSyllabary, ",").trim();
+			String pSylVowel = StringUtils.substringBefore(tmpSyllabary, ",").trim();
+			tmpSyllabary = StringUtils.substringAfter(tmpSyllabary, ",").trim();
+			String pSylGlottal = tmpSyllabary.trim();
+			if (pSylVowel.isEmpty()) {
+				pSylVowel = pSylConsonant;
 			}
-			if (pGlottal.isEmpty()) {
-				if (pVowel.endsWith("Ꮿ"+BoundPronouns.UNDERX+"-")) {
-					pGlottal = pVowel.toLowerCase().replace("Ꮿ"+BoundPronouns.UNDERX+"-", "Ꮿ²-");
-				} else if (pVowel.endsWith("Ꮹ"+BoundPronouns.UNDERX+"-")) {
-					pGlottal = pVowel.toLowerCase().replace("Ꮹ"+BoundPronouns.UNDERX+"-", "Ꮹ²-");
+			if (pSylGlottal.isEmpty()) {
+				if (pSylVowel.endsWith("Ꮿ"+BoundPronouns.UNDERX+"-")) {
+					pSylGlottal = pSylVowel.toLowerCase().replace("Ꮿ"+BoundPronouns.UNDERX+"-", "Ꮿ²-");
+				} else if (pSylVowel.endsWith("Ꮹ"+BoundPronouns.UNDERX+"-")) {
+					pSylGlottal = pSylVowel.toLowerCase().replace("Ꮹ"+BoundPronouns.UNDERX+"-", "Ꮹ²-");
 				} else {
-					pGlottal = pConsonant;
+					pSylGlottal = pSylConsonant;
 				}
 			}
 			if (gStem) {
-				d.chr = pGlottal;
+				d.chr = pSylGlottal;
 			} else if (cStem) {
-				d.chr = pConsonant;
+				d.chr = pSylConsonant;
 			} else {
-				d.chr = pVowel;
+				d.chr = pSylVowel;
 			}
 		} else {
 			d.chr = syllabary;
 		}
 		if (latin.contains(",")) {
-			String tmp = latin;
-			String pConsonant = StringUtils.substringBefore(tmp, ",").trim();
-			tmp = StringUtils.substringAfter(tmp, ",").trim();
-			String pVowel = StringUtils.substringBefore(tmp, ",").trim();
-			tmp = StringUtils.substringAfter(tmp, ",").trim();
-			String pGlottal = tmp.trim();
-			if (pVowel.isEmpty()) {
-				pVowel = pConsonant;
+			String tmpLatin = latin;
+			String pLatConsonant = StringUtils.substringBefore(tmpLatin, ",").trim();
+			tmpLatin = StringUtils.substringAfter(tmpLatin, ",").trim();
+			String pLatVowel = StringUtils.substringBefore(tmpLatin, ",").trim();
+			tmpLatin = StringUtils.substringAfter(tmpLatin, ",").trim();
+			String pLatGlottal = tmpLatin.trim();
+			if (pLatVowel.isEmpty()) {
+				pLatVowel = pLatConsonant;
 			}
-			if (pGlottal.isEmpty()) {
-				if (pVowel.endsWith("y-")) {
-					pGlottal = pVowel.toLowerCase().replace("y-", "ya²-");
-				} else if (pVowel.endsWith("w-")) {
-					pGlottal = pVowel.toLowerCase().replace("w-", "wa²-");
+			if (pLatGlottal.isEmpty()) {
+				if (pLatVowel.endsWith("y-")) {
+					pLatGlottal = pLatVowel.toLowerCase().replace("y-", "ya²-");
+				} else if (pLatVowel.endsWith("w-") && !pLatVowel.endsWith("gw-") && !pLatVowel.endsWith("kw-")) {
+					pLatGlottal = pLatVowel.toLowerCase().replace("w-", "wa²-");
 				} else {
-					pGlottal = pConsonant;
+					pLatGlottal = pLatConsonant;
 				}
 			}
 			if (gStem) {
-				d.latin = pGlottal;
+				d.latin = pLatGlottal;
 			} else if (cStem) {
-				d.latin = pConsonant;
+				d.latin = pLatConsonant;
 			} else {
-				d.latin = pVowel;
+				d.latin = pLatVowel;
 			}
 		} else {
 			d.latin = latin;
@@ -821,6 +798,14 @@ public class BuildDeck {
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1$2are ");
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1$2were ");
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1$2have ");
+		
+		d.def = d.def.replaceAll("([Yy]ou)( .*? | )is ", "$1$2are ");
+		d.def = d.def.replaceAll("([Yy]ou)( .*? | )was ", "$1$2were ");
+		d.def = d.def.replaceAll("([Yy]ou)( .*? | )has ", "$1$2have ");
+		
+		d.def = d.def.replaceAll(" all has ", " all have ");
+		d.def = d.def.replaceAll(" two has ", " two have ");
+		d.def = d.def.replaceAll(" both has ", " both have ");
 
 		d.def = d.def.replace("and I is", "and I are");
 		d.def = d.def.replace("I is", "I am");
