@@ -32,6 +32,7 @@ bash ./espeak-ng/sync-mp3s.sh
 #Always re-add audio files if any changed.
 git add android/assets/mp3-challenges
 git commit -m "Updated audio files." || true #ignore if no changes to commit.
+git gc
 
 if ! git diff-index --quiet HEAD --; then
     git status
@@ -47,16 +48,6 @@ fi
 ./gradlew desktop:dist || exit 1
 ./gradlew android:assembleRelease || exit 1
 ./gradlew clean || exit 1
-
-git gc
-
-if ! git diff-index --quiet HEAD --; then
-    git status
-    echo
-    echo "PENDING CHANGES NOT COMMITTED - ABORTING [post project test full rebuild]"
-    echo
-    exit -1
-fi
 
 #Make sure we have an up-to-date git log in the text folder as "git-changelog.txt"
 git log --simplify-merges --pretty=format:"%ad [%h]:%d %s" --abbrev-commit --date=short > android/assets/text/git-changelog.txt
