@@ -46,6 +46,9 @@ fi
 ./gradlew core:build || exit 1
 ./gradlew desktop:dist || exit 1
 ./gradlew android:assembleRelease || exit 1
+./gradlew clean || exit 1
+
+git gc
 
 if ! git diff-index --quiet HEAD --; then
     git status
