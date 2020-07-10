@@ -1390,8 +1390,8 @@ public class BuildDeck {
 		 * Work to keep at least a set minimum of each pronoun's pronunciation variations, as well
 		 * as to keep at least a set minimum of each verb stem with non-core conjugations.
 		 */
-		final int MIN_VSTEM_COUNT = 3;
-		final int MIN_PFORM_COUNT = 3;
+		final int MIN_VSTEM_COUNT = 2;
+		final int MIN_PFORM_COUNT = 2;
 		while (!buckets.isEmpty()) {
 			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(buckets.values());
 			for (List<Card> bucket : buckets.values()) {
