@@ -1507,7 +1507,7 @@ public class BuildDeck {
 			sb.append(NumberFormat.getInstance().format(buckets.get(bucket).size()));
 			sb.append("\n");
 		}
-		System.out.println(sb.toString());
+//		System.out.println(sb.toString());
 	}
 
 	private String pgroupBucket(Card card) {
