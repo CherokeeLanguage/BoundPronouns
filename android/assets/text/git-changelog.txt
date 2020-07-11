@@ -1,6 +1,12 @@
-2020-07-11 [1fc16631]: (HEAD -> master) Updated audio files.
+2020-07-11 [56d5da38]: (HEAD -> master) update changelog
+2020-07-11 [e6ce86b5]: audio updates
+2020-07-11 [3114acfc]: (origin/master) text exercise audio creation
+2020-07-11 [24ffa1d6]: increase min vstem count
+2020-07-11 [d3a2eedc]: (tag: 3.33) Bump version for release build.
+2020-07-11 [f3748e87]: Update git changelog.
+2020-07-11 [1fc16631]: Updated audio files.
 2020-07-11 [58b80a5a]: changelog
-2020-07-11 [6eec9725]: (origin/master) Remove
+2020-07-11 [6eec9725]: Remove
 2020-07-11 [f386741a]: update column indexes
 2020-07-11 [54f7e2ab]: fix issue with cards getting combined incorrectly
 2020-07-11 [de7e30c9]: Update README.md
