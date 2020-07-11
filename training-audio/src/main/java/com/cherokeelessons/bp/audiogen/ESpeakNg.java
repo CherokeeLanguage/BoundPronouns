@@ -38,7 +38,15 @@ public class ESpeakNg {
 			cmd.add(voice);
 		}
 		cmd.add(text);
+		executeCmd(cmd);
+		
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(wavFile.getAbsolutePath());
+		executeCmd(cmd);
+	}
 
+	private void executeCmd(List<String> cmd) {
 		ProcessBuilder b = new ProcessBuilder(cmd);
 		Process process;
 		try {

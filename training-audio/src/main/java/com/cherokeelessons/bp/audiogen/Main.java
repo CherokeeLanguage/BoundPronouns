@@ -19,12 +19,15 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
+import org.omg.CORBA.SystemException;
 
 public class Main {
 
 	private static final NumberFormat NF = NumberFormat.getInstance();
 	private static final File WAVS_DIR = new File("tmp/wavs");
+	private static final File EXCERCISES_DIR = new File("tmp/excercises");
 	private static final String DECK_TSV = "../android/assets/review-sheet.tsv";
 	private static final int CHEROKEE_ANSWER = 6;
 	private static final int CHALLENGES_START = 7;
@@ -63,9 +66,97 @@ public class Main {
 	}
 
 	public void execute() throws IOException, UnsupportedAudioFileException {
-		loadMainDeck();
+		loadMainDeck(true);
 		generateWavFiles();
 		generateDurationsReport();
+		buildExerciseWavFiles();
+	}
+
+	private void buildExerciseWavFiles() {
+		FileUtils.deleteQuietly(EXCERCISES_DIR);
+		File silenceWav = generateSilenceWav();
+		List<File> audioEntries = new ArrayList<>();
+		float tick = 0f;
+		for (AudioCard card: mainDeck.getCards()) {
+			AudioData data = card.getData();
+			audioEntries.add(data.getChallengeFile());
+			tick += data.getChallengeDuration();
+			float answerDuration = data.getAnswerDuration();
+			float gapDuration = answerDuration*1.5f+2f;
+			while (gapDuration-->0f) {
+				audioEntries.add(silenceWav);
+				tick += 1f;
+			}
+			/*
+			 * First answer.
+			 */
+			audioEntries.add(data.getAnswerFile());
+			tick += answerDuration;
+			
+			gapDuration = answerDuration+2f;
+			while (gapDuration-->0f) {
+				audioEntries.add(silenceWav);
+				tick += 1f;
+			}
+			/*
+			 * Confirm answer.
+			 */
+			audioEntries.add(data.getAnswerFile());
+			tick += answerDuration;
+			
+			for (int trailingSilence=0; trailingSilence<4; trailingSilence++) {
+				audioEntries.add(silenceWav);
+				tick += 1f;
+			}
+			if (tick>60f*30f) {
+				break;
+			}
+		}
+		List<String> cmd = new ArrayList<>();
+		cmd.add("sox");
+		for (File audioEntry: audioEntries) {
+			cmd.add(audioEntry.getAbsolutePath());
+		}
+		File wavOutputFile = new File(EXCERCISES_DIR, "test-output.wav");
+		cmd.add(wavOutputFile.getAbsolutePath());
+		executeCmd(cmd);
+		System.out.println("Total ticks: "+NF.format(tick)+" secs ["+NF.format(tick/60f)+" mins]");
+		File mp3OutputFile = new File(EXCERCISES_DIR, "test-output.mp3");
+		cmd.clear();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(wavOutputFile.getAbsolutePath());
+		cmd.add("-codec:a");
+		cmd.add("libmp3lame");
+		cmd.add("-qscale:a");
+		cmd.add("6");
+		cmd.add(mp3OutputFile.getAbsolutePath());
+		executeCmd(cmd);
+	}
+
+	private File generateSilenceWav() {
+		File silenceWav = new File(EXCERCISES_DIR, "silence-1-second.wav");
+		EXCERCISES_DIR.mkdirs();
+		List<String> cmd = Arrays.asList("sox", "-n", "-r", "22050", //
+				"-c", "1", silenceWav.getAbsolutePath(), "trim", "0.0", "1.0");
+		executeCmd(cmd);
+		return silenceWav;
+	}
+
+	private void executeCmd(List<String> cmd) {
+		ProcessBuilder b = new ProcessBuilder(cmd);
+		Process process;
+		try {
+			process = b.start();
+			process.waitFor();
+			if (process.exitValue()!=0) {
+				System.err.println("FATAL: Bad exit value from\n"+StringUtils.join(cmd, " "));
+			}
+			process.destroy();
+		} catch (IOException | InterruptedException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	private void generateDurationsReport() throws IOException {
@@ -79,7 +170,7 @@ public class Main {
 		sb.append("\t");
 		sb.append("Duration");
 		sb.append("\n");
-		for (AudioCard card: mainDeck.getCards()) {
+		for (AudioCard card : mainDeck.getCards()) {
 			AudioData data = card.getData();
 			sb.append(data.getChallengeFile().getName());
 			sb.append("\t");
@@ -116,7 +207,7 @@ public class Main {
 				} else {
 					voice = "en-us";
 				}
-				System.out.println(" - "+challengeWavFile.getName()+" ["+voice+"]");
+				System.out.println(" - " + challengeWavFile.getName() + " [" + voice + "]");
 				espeak.generateWav(voice, challengeWavFile, challenge);
 				float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
@@ -128,7 +219,7 @@ public class Main {
 				} else {
 					voice = "chr";
 				}
-				System.out.println(" - "+answerWavFile.getName()+" ["+voice+"]");
+				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
 				espeak.generateWav(voice, answerWavFile, answer);
 				already.add(answer);
 				float durationInSeconds = getDuration(answerWavFile);
@@ -141,13 +232,17 @@ public class Main {
 		AudioFileFormat audioFileFormat = AudioSystem.getAudioFileFormat(answerWavFile);
 		AudioFormat format = audioFileFormat.getFormat();
 		long audioFileLength = audioFileFormat.getFrameLength();
-		//int frameSize = format.getFrameSize();
+		// int frameSize = format.getFrameSize();
 		float frameRate = format.getFrameRate();
 		float durationInSeconds = (audioFileLength / frameRate);
 		return durationInSeconds;
 	}
 
 	private void loadMainDeck() throws IOException {
+		loadMainDeck(false);
+	}
+	
+	private void loadMainDeck(boolean debugSize) throws IOException {
 		StringBuilder debug = new StringBuilder();
 		File jsonFile = new File(DECK_TSV);
 		System.out.println(jsonFile.getAbsolutePath());
@@ -179,6 +274,9 @@ public class Main {
 					debug.append(data.id() + "\t" + challenge + "\t" + answer + "\n");
 				}
 			}
+		}
+		if (debugSize) {
+			mainDeck.getCards().subList(200, mainDeck.getCards().size()).clear();
 		}
 		FileUtils.writeStringToFile(new File("exercise-set.tsv"), debug.toString(), StandardCharsets.UTF_8);
 	}
