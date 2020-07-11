@@ -1440,7 +1440,7 @@ public class BuildDeck {
 		 * variations, as well as to keep at least a set minimum of each verb stem with
 		 * non-core conjugations.
 		 */
-		final int MIN_VSTEM_COUNT = 3;
+		final int MIN_VSTEM_COUNT = 4;
 		final int MIN_PFORM_COUNT = 4;
 		while (!bucketsByPronoun.isEmpty()) {
 			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(bucketsByPronoun.values());

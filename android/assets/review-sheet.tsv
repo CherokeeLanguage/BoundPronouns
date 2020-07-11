@@ -4,15 +4,18 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 127	2	1	Ꮳ̣²-	Ꭵ⁴Ꮜ	ᏨᏌ	jv⁴sa	You (1) alone				
 128	2	1	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭺ¹Ꮹ²Ꮤ	ᎯᎪᏩᏔ	hi²go¹wah²ta	Let you (1) see him				
 129	2	2	Ꮵ̣²-, Ꭶ͓-	Ꭱ³Ꭶ	ᎨᎦ	ge³ga	I am going				
+130	2	2	Ꭰ¹Ꮵ̣²-, Ꭰ¹Ꭶ͓-	Ꭳ²Ꮅ¹Ꭶ*	ᎠᎪᎵᎦ	a¹go²li¹ga	He is being recognized				
 131	2	2	Ꭴ¹Ꮣ²[Ꮣ͓]-	Ꭺ³Ꮧ	ᎤᏓᎪᏗ	u¹da²koh³di	For him to have himself				
 132	2	2	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ᏸ³Ꭰ*	ᏕᏥᏰᎠ	de²jị²ye³ɂa	I am eating flexible things				
 133	2	3	Ꭿ̣²-	Ꭱ³Ꭶ	ᎮᎦ	he³ga	You (1) are going				
 134	2	3	Ꮳ̣²-, Ꮳ̣²-	ᎣᎵ͓²Ꭶ	ᏦᎵᎦ	johl²ga	He recognizes you (1)				
 138	2	4	Ꭼ²-, Ꭼ²Ꮿ͓-	Ꭺ³Ꮧ	ᎬᏯᎪᏗ	gv²ya²koh³di	For me to have you (1)				
+140	2	6	Ꭲ¹Ꮒ²-	Ꭱ³Ꭶ	ᎢᏁᎦ	i¹ne³ga	You (1) and I are going				
 141	2	7	Ꭲ¹Ꮧ²-	Ꭱ³Ꭶ	ᎢᏕᎦ	i¹de³ga	All of us are going				
 144	2	9	Ꮥ³Ꭹ²-	Ꭽ	ᏕᎩᎭ	de³gi²ha	All of us have solid objects				
 149	2	11	Ꮩ¹Ꭹ²-	Ꭽ	ᏙᎩᎭ	do¹gi²ha	They and I have solid objects				
 152	2	12	Ꭸ³Ꮵ²-	Ꭳ²Ꮅ¹Ꭶ*	ᎨᏦᎵᎦ	ge³jo²li¹ga	They recognize you all				
+153	2	13	Ꭺ²Ꮵ²-	Ꭳ²Ꮅ¹Ꭶ*	ᎪᏦᎵᎦ	go²jo²li¹ga	They and I recognize them-animate				
 154	2	13	Ꮩ¹Ꮵ²-	Ᏸ³Ꭰ	ᏙᏥᏰᎠ	do¹ji²hye³ɂa	They and I are eating flexible things				
 155	2	15	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꭽ	ᏓᎩᎭ	da¹gị²ha	I have solid objects				
 157	2	15	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭺ³Ꮧ	ᏥᏯᎪᏗ	ji²ya²koh³di	For me to have something alive				
@@ -82,6 +85,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 263	3	19	Ꭺ²ᏍᏗ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎪᏍᏙᎵᏍᏗ	go²sdo²li³sdi	For him and me to recognize them-animate				
 264	3	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꭵ³²Ꮿ	ᏕᎩᏅᏯ	de²gị²nu¹wa³²ya	You (1) and I have rod shaped things				
 265	3	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭵ³²Ꮿ	ᏙᎩᏅᏯ	do¹gị²nu¹wa³²ya	He and I have rod shaped things				
+266	3	20	Ꭰ¹Ꮣ²[Ꮣ͓]-	Ꭺ¹Ꮹ²Ꮤ	ᏩᏓᎪᏩᏔ	wa¹da²go¹wah²ta	Let him see himself				
 269	3	21	Ꭸ²Ꭹ̣²Ꮒ²-	Ꭳ²Ꮅ³ᏍᏗ	ᎨᎩᏃᎵᏍᏗ	ge²gị²no²hlị³sdi	For them to recognize you (1) and me				
 271	3	22	Ꭺ²Ꭹ̣²Ꮒ²-	Ꭳ²Ꮅ³ᏍᏗ	ᎪᎩᏃᎵᏍᏗ	go²gị²no²hlị³sdi	For them to recognize him and me				
 273	3	25	Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭷ̣³Ꭽ	ᏣᏓᎧᎭ	jạ²da²kạ³ha	You (1) have yourself				
@@ -92,7 +96,9 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 283	3	37	Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭶ	ᏕᏓᏓᏙᎵᎦ	de³dạ²da²dohl²ga	All of us are acquainted				
 285	3	45	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭺ¹Ꮹ²Ꮤ²	ᎦᏓᎪᏩᏔ	gạ²da²go¹wah²ta²	I recently saw myself				
 287	3	46	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²³Ꮃ	ᏕᎦᏓᏚᎳ	de³gạ²dạ²du²³la	Let all of us want each other				
+288	3	47	Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭷ̣³Ꭽ	ᏙᎦᏓᎧᎭ	do¹gạ²da²kạ³ha	They and I have ourselves	They and I have each other			
 291	3	55	Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭺ¹Ꮹ²Ꮤ	ᏩᎾᏓᎪᏩᏔ	wa¹nạ²da²go¹wah²ta	Let them see themselves				
+295	3	65	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭺ²Ꮂ²³Ꭲ	ᏙᎦᏓᎪᎲᎢ	do¹gạ²da²go²hv²³ɂi	They and I saw each other a while ago				
 304	4	1		Ꭿ²Ꮵ	ᎯᏥ	hi²ji	You one, his mother				
 305	4	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	ᏁᏗ	ᎤᏁᏗ	u¹neh²di	For him to have a liquid				
 306	4	1	Ꭿ̣²-	Ꭰ̣²Ꮣ	ᎭᏓ	hạ²da	Let you (1) say				
@@ -109,6 +115,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 319	4	5	Ꭲ¹Ꮧ²-	Ꭰ̣²Ꮣ	ᎢᏓᏓ	i¹dạ²da	Let all of us say				
 320	4	5	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭺ²Ꮂ²³Ꭲ	ᏥᎪᎲᎢ	ji²go²hv²³ɂi	I saw him a while ago				
 326	4	7	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Ꭺ²Ꮂ²³Ꭲ	ᏍᏛᎪᎲᎢ	sdv²go²hv²³ɂi	I saw you both a while ago	We two saw you (1) or both a while ago			
+327	4	8	Ꭳ¹Ꮵ²-	Ꭱ¹Ꮎ	ᏬᏤᎾ	wo¹je¹na	Let them and me go				
 328	4	8	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꭵ²³ᏲᎢ	ᏓᏋᏲᎢ	da¹gwu¹wa²³yọ³ɂi	I often have rod shaped things				
 329	4	8	Ꮥ³Ꭹ²-	¹ᏘᏗ	ᏕᎩᏘᏗ	de³gi²¹tdi	For all of us to bake things				
 331	4	8	Ꭸ²Ꮒ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎨᏃᎵᏍᏗ	ge²no²li³sdi	For you (1) and me to recognize them-animate				
@@ -127,6 +134,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 351	4	15	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭶ*	ᎯᏲᎵᎦ	hi²yo²li¹ga	You (1) recognize him				
 353	4	15	Ꮩ¹Ꮵ²-	Ꭰ̣²Ꮪ²³Ꭶ²	ᏙᏣᏚᎦ	do¹jạ²tu²³ga²	They and I recently drank alchoholic drinks				
 357	4	18	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꭽ	ᎣᎩᏂᎭ	o¹gị²ni²ha	He and I have a solid object				
+359	4	18	Ꭰ¹Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭹ	ᏩᏓᏙᎵᎩ	wa¹da²dohl²gi	Let him recognize himself				
 360	4	18	Ꮩ¹ᏍᏗ²-	Ꭰ̣²Ꮪ²³Ꭶ²	ᏙᏍᏓᏚᎦ	do¹sdạ²tu²³ga²	He and I recently drank alchoholic drinks				
 362	4	19	Ꮥ²Ꭹ̣²Ꮒ²-	¹ᏘᏗ	ᏕᎩᏂᏘᏗ	de²gị²ni²¹tdi	For you (1) and me to bake things				
 364	4	20	Ꭺ²ᏍᏗ²-	Ꭳ²Ꮅ¹Ꭶ²*	ᎪᏍᏙᎵᎦ	go²sdo²li¹ga²	He and I recently recognized them-animate				
@@ -145,7 +153,9 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 386	4	35	Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭶ²	ᏓᎾᏓᏙᎵᎦ	da¹nạ²da²dohl²ga²	They recently recognized each other				
 390	4	38	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ³ᏍᏗ	ᏙᎩᎾᏓᏙᎵᏍᏗ	do¹gị²nạ²da²do²hlị³sdi	For him and me to become acquainted				
 391	4	39	Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭶ²	ᏙᏣᏓᏙᎵᎦ	do¹jạ²da²dohl²ga²	They and I recently recognized each other				
+393	4	41	Ꭲ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²³Ꮃ	ᎢᎦᏓᏚᎳ	i¹gạ²dạ²du²³la	Let all of us want ourselves				
 394	4	41	Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭶ	ᏕᏍᏓᏓᏙᎵᎦ	de²sdạ²da²dohl²ga	You both are acquainted				
+395	4	41	Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭹ	ᏬᏍᏓᏓᏙᎵᎩ	wo¹sdạ²da²dohl²gi	Let him and me recognize ourselves				
 396	4	42	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭶ²	ᏙᏍᏓᏓᏙᎵᎦ	do¹sdạ²da²dohl²ga²	He and I recently recognized each other				
 405	5	1		Ꮵ²Ꮵ	ᏥᏥ	ji²ji	I, his mother				
 406	5	1	Ꭰ̣²-, Ꭶ̣²-	Ꭱ¹Ꮎ²	ᎡᎾ	e¹na²	He recently went				
@@ -156,6 +166,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 411	5	1	Ꭼ²-, Ꭼ²Ꮿ͓-	Ꭺ¹Ꮹ²Ꮤ²	ᎬᎪᏩᏔ	gv²go¹wah²ta²	I recently saw you (1)				
 412	5	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꭾ³ᏍᏗ	ᏚᎮᏍᏗ	du²he³sdi	He will be having solid objects				
 413	5	2	ᏍᎩ̣²-, ᏍᏆ͓-	Ꭳ²Ꮅ³ᏍᏗ	ᏍᏉᎵᏍᏗ	sgwo²hlị³sdi	For you (1) to recognize me				
+414	5	2	Ꭰ¹Ꮵ̣²-, Ꭰ¹Ꭶ͓-	Ꭳ²Ꮅ¹Ꭶ²*	ᎠᎪᎵᎦ	a¹go²li¹ga²	He was recognized recently				
 415	5	2	Ꭱ¹Ꭹ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎡᎪᎵᏍᏗ	e¹go²li³sdi	For all of us to be recognized				
 416	5	2	Ꭴ¹Ꮣ²[Ꮣ͓]-	Ꭷ̣²Ꮀ³Ꭲ	ᎤᏓᎧᎰᎢ	u¹da²kạ²ho³ɂi	He often has himself				
 417	5	3	Ꭿ̣²-	Ꭱ¹Ꮎ²	ᎮᎾ	he¹na²	You (1) recently went				
@@ -165,6 +176,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 423	5	4	Ꭱ¹Ꮧ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎡᏙᎵᏍᏗ	e¹do²li³sdi	For all of us to recognize him				
 424	5	5	Ꭰ¹Ꮒ²-	Ꭱ¹Ꮎ²	ᎠᏁᎾ	a¹ne¹na²	They recently went				
 425	5	5	Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-	Ꭳ²Ꮅ³ᏍᏗ	ᎡᏦᎵᏍᏗ	e¹jo²hlị³sdi	For you (1) to be recognized				
+428	5	6	Ꭲ¹Ꮒ²-	Ꭱ¹Ꮎ²	ᎢᏁᎾ	i¹ne¹na²	You (1) and I recently went				
 429	5	6	Ꮥ³Ꮒ²-	¹Ꮯ²³Ꮜ	ᏕᏂᏟᏌ	de³ni²¹hli²³sa	Let you (1) and me gather things				
 430	5	7	Ꭲ¹Ꮧ²-	Ꭱ¹Ꮎ²	ᎢᏕᎾ	i¹de¹na²	All of us recently went				
 432	5	7	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Ꭺ¹Ꮹ²Ꮤ²	ᏍᏛᎪᏩᏔ	sdv²go¹wah²ta²	I recently saw you both	We two recently saw you (1) or both			
@@ -184,6 +196,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 452	5	12	Ꭰ¹Ꮣ²[Ꮣ͓]-	Ꭺ¹Ꮹ²Ꮤ²	ᎠᏓᎪᏩᏔ	a¹da²go¹wah²ta²	He recently saw himself				
 455	5	15	ᏍᎩ̣²Ꮒ²-	Ꭳ²Ꮅ¹Ꭹ*	ᏍᎩᏃᎵᎩ	sgị²no²li¹gi	Let you (1) or both recognize us two				
 458	5	16	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*	ᏕᎦᎦᏙᏍᏗ	de²gạ²ga¹to²³sdi	I am looking at them-inanimate				
+460	5	18	Ꭸ²ᏍᏗ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎨᏍᏙᎵᏍᏗ	ge²sdo²li³sdi	For you both to recognize them-animate	For them to recognize you both			
 463	5	19	Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭹ*	ᎢᏍᎩᏲᎵᎩ	i¹sgi²yo²li¹gi	Let you (1), two, or all recognize us all	Let you all recognize me			
 464	5	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꮀ³Ꭲ	ᏕᎩᏂᎰᎢ	de²gị²ni²ho³ɂi	You (1) and I often have solid objects				
 466	5	20	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭹ*	ᎦᎯᏲᎵᎩ	gạ²hi²yo²li¹gi	Let you (1) recognize them-animate				
@@ -193,6 +206,8 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 474	5	25	Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭷ̣²Ꮀ³Ꭲ	ᏣᏓᎧᎰᎢ	jạ²da²kạ²ho³ɂi	You (1) often have yourself				
 477	5	28	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ²Ꭺ³Ꭲ*	ᎦᏓᏙᎵᎪᎢ	gạ²da²do²li²go³ɂi	I often recognize myself				
 478	5	30	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ³ᏍᏗ	ᏕᎦᏓᏙᎵᏍᏗ	de³gạ²da²do²hlị³sdi	For all of us to become acquainted				
+479	5	32	Ꮩ¹ᏍᏗ²-	¹Ꮪ²Ꮂ¹Ꭶ	ᏙᏍᏗᏚᎲᎦ	do¹sdi²¹du²hv¹ga²	He and I recently baked things				
+481	5	35	Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭹ	ᏕᏣᏓᏙᎵᎩ	de³jạ²da²dohl²gi	Let you all become acquainted				
 482	5	35	Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭺ³Ꭲ	ᏓᎾᏓᏙᎵᎪᎢ	da¹nạ²da²dohl²go³ɂi	They often recognize each other				
 485	5	37	Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ³ᏍᏗ	ᏕᎩᎾᏓᏙᎵᏍᏗ	de²gị²nạ²da²do²hlị³sdi	For you (1) and me to become acquainted				
 486	5	38	Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭹ	ᏕᏍᏓᏓᏙᎵᎩ	de²sdạ²da²dohl²gi	Let you both become acquainted				
@@ -200,6 +215,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 488	5	42	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭺ³Ꭲ	ᏙᏍᏓᏓᏙᎵᎪᎢ	do¹sdạ²da²dohl²go³ɂi	He and I often recognize each other				
 497	5	63	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²³Ꮃ²	ᏙᎦᏓᏚᎳ	do¹gạ²dạ²du²³la²	They and I recently wanted each other				
 498	5	65	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²³Ꮃ²	ᏚᎾᏓᏚᎳ	du¹nạ²dạ²du²³la²	They recently wanted each other				
+503	5	70	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²³Ꮃ²	ᏙᎩᎾᏓᏚᎳ	do¹gị²nạ²dạ²du²³la²	He and I recently wanted each other				
 506	6	1		Ꭰ̣²Ᏼ	ᎠᏴ	ạ²yv	I, Me	We, Us			
 507	6	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭾ³ᏍᏗ	ᎤᎮᏍᏗ	u¹he³sdi	He will be having a solid object				
 508	6	1	Ꮵ̣²-, Ꭶ͓-	Ꭰ¹Ꮧ̣²Ꭰ*	ᎦᏗᎠ	gạ²di³ɂa	I am saying				
@@ -212,8 +228,11 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 517	6	3	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭺ²Ꮂ²³Ꭲ	ᎯᎪᎲᎢ	hi²go²hv²³ɂi	You (1) saw him a while ago				
 518	6	3	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ	ᏓᎦᏙᏍᏗ	da¹kto²³sdi	He is looking at them-animate	He is looking at them-inanimate			
 522	6	4	Ꭼ²-, Ꭼ²Ꮿ͓-	Ꭷ̣³Ꭽ	ᎬᏯᎧᎭ	gv²ya²kạ³ha	I have you (1)				
+523	6	5	Ꭲ¹Ꮵ²-	Ꭵ⁴Ꮜ	ᎢᏨᏌ	i¹jv⁴sa	You all alone				
+527	6	6	Ꭲ¹Ꮒ²-	Ꭰ̣²Ꮣ²	ᎢᎾᏓ	i¹nạ²da²	You (1) and I recently said				
 530	6	7	Ꭲ¹Ꮧ²-	Ꭰ̣²Ꮣ²	ᎢᏓᏓ	i¹dạ²da²	All of us recently said				
 531	6	7	Ꭸ²Ꮵ²-, Ꭸ²Ꭶ͓-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎨᎪᎵᏨᎢ	ge²go²li²jv²³ɂi	They were recognized a while ago				
+532	6	8	Ꭳ¹Ꮵ²-	Ꭰ̣²Ꮣ	ᏬᏣᏓ	wo¹jạ²da	Let them and me say				
 534	6	9	Ꮣ¹Ꮒ²-	Ꮿ̣²Ꭶ²	ᏓᏂᏯᎦ	da¹ni²hyạ²ga²	They recently ate flexible things				
 536	6	10	Ꮪ¹Ꮒ²-	Ꭺ³Ꮧ	ᏚᏂᎪᏗ	du¹ni²koh³di	For them to have living things				
 537	6	10	Ꭳ¹ᏍᏗ²-	Ꭰ̣²Ꮣ	ᏬᏍᏓᏓ	wo¹sdạ²da	Let him and me say				
@@ -223,9 +242,12 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 546	6	13	Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎨᏦᎵᏨᎢ	ge²johl²jv²³ɂi	They recognized you (1) a while ago				
 547	6	14	Ꮩ¹Ꮵ²-	¹Ꮯ²³Ꮜ²	ᏙᏥᏟᏌ	do¹ji²¹hli²³sa²	They and I recently gathered things				
 549	6	15	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	¹ᏘᏗ	ᏓᎩᏘᏗ	da¹gị²¹tdi	For me to bake things				
+551	6	16	Ꭱ¹ᏍᏗ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎡᏍᏙᎵᏍᏗ	e¹sdo²li³sdi	For you both to recognize him	For you both to be recognized			
+552	6	16	ᏍᎩ̣²Ꮒ²-	Ꭳ²Ꮅ¹Ꭹ*	ᏍᎩᏃᎵᎩ	sgị²no²li¹gi	Let you both recognize me				
 555	6	17	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	¹ᏘᏗ	ᏕᏣᏘᏗ	de²jạ²¹tdi	For you (1) to bake things				
 556	6	17	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭷ̣³Ꭽ	ᏥᏯᎧᎭ	ji²ya²kạ³ha	I have something alive				
 558	6	17	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭹ*	ᏫᏨᏲᎵᎩ	wi¹jv²yo²li¹gi	Let us, me, two, or we all recognize you all	Let us all recognize you (1), two			
+562	6	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꭵ²³ᏲᎢ	ᏕᎩᏅᏲᎢ	de²gị²nu¹wa²³yọ³ɂi	You (1) and I often have rod shaped things				
 564	6	20	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Ꭳ²Ꮅ³ᏍᏗ*	ᏍᏛᏲᎵᏍᏗ	sdv²yo²li³sdi	For me to recognize you both	For we two to recognize you (1) or both			
 565	6	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭵ²³ᏲᎢ	ᏙᎩᏅᏲᎢ	do¹gị²nu¹wa²³yọ³ɂi	He and I often have rod shaped things				
 567	6	20	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*	ᎦᏓᎦᏙᏍᏗ	gạ²dạ²ga¹to²³sdi	I am looking at myself				
@@ -242,6 +264,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 595	6	49	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ	ᏙᏍᏓᏓᎦᏙᏍᏗ	do¹sdạ²da¹kto²³sdi	He and I are looking at each other				
 601	6	63	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᏙᎦᏓᏚᎸᏗ	do¹gạ²dạ²duhl²di	For them and me to want each other				
 603	6	65	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᏚᎾᏓᏚᎸᏗ	du¹nạ²dạ²duhl²di	For them to want each other				
+606	6	70	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᏙᎩᎾᏓᏚᎸᏗ	do¹gị²nạ²dạ²duhl²di	For him and me to want each other				
 607	7	1		Ꭿ̣²Ꭰ	ᎯᎠ	hị²ɂa	This, These	They, Them	He, Him		
 608	7	1	Ꭰ̣²-, Ꭶ̣²-	Ꭰ̣²Ꮣ²	ᎠᏓ	ạ²da²	He recently said				
 609	7	1	Ꮳ̣²-	Ꭵ²³ᏲᎢ	ᏨᏲᎢ	ju¹wa²³yọ³ɂi	You (1) often have something rod shaped				
@@ -250,18 +273,23 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 612	7	2	Ꮵ̣²-, Ꭶ͓-	Ꭱ³Ꭺ̣³Ꭲ	ᎨᎪᎢ	ge³gọ³ɂi	I often am going				
 613	7	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꮎ̣³Ꭰ	ᏚᎾᎠ	du²nạ³ɂa	He has flexible things				
 614	7	2	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭺ¹Ꮹ²Ꮤ²	ᎯᎪᏩᏔ	hi²go¹wah²ta²	You (1) recently saw him				
+615	7	2	Ꭰ¹Ꮵ̣²-, Ꭰ¹Ꭶ͓-	Ꭳ²Ꮅ²Ꭺ³Ꭲ*	ᎠᎪᎵᎪᎢ	a¹go²li²go³ɂi	He is often recognized				
 617	7	3	Ꭲ¹Ꭹ²-	ᏁᏗ	ᏗᎩᏁᏗ	di¹gi²neh²di	For all of us to have a liquid				
 618	7	4	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	ᏓᏗᏔᏍᎦ	da¹di²tạ³sga	He is drinking drinks				
 619	7	5	Ꭰ¹Ꮒ²-	Ꭰ̣²Ꮣ²	ᎠᎾᏓ	a¹nạ²da²	They recently said				
 622	7	6	Ꭴ¹Ꮒ²-	ᏁᏗ	ᏧᏂᏁᏗ	ju¹ni²neh²di	For them to have a liquid				
+623	7	6	Ꭲ¹Ꮒ²-	Ꮄ¹Ꭶ	ᎢᏂᎴᎦ	i¹ni²³le¹ga	You (1) and I are climbing it				
 626	7	7	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᏁᏗ	ᎠᎩᏁᏗ	a¹gị²neh²di	For me to have a liquid				
 627	7	7	Ꭲ¹Ꮧ²-	Ꮄ¹Ꭶ	ᎢᏗᎴᎦ	i¹di²³le¹ga	All of us are climbing it				
 628	7	7	Ꮥ³Ꮒ²-	ᏍᏗ²³Ꭶ	ᏕᏂᏍᏗᎦ	de³ni²sdi²³ga	Let you (1) and me eat rod shaped things				
 629	7	8	Ꮥ³Ꮧ²-	ᏍᏗ²³Ꭶ	ᏕᏗᏍᏗᎦ	de³di²sdi²³ga	Let all of us eat rod shaped things				
 633	7	10	Ꭳ¹ᏍᏗ²-	Ꭰ̣²Ꮣ²	ᎣᏍᏓᏓ	o¹sdạ²da²	He and I recently said				
 642	7	14	Ꭹ̣²Ꮒ²-	¹ᏘᏗ	ᎩᏂᏘᏗ	gị²ni²¹tdi	For you (1) and me to bake something				
+644	7	15	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꮀ³Ꭲ	ᏓᎩᎰᎢ	da¹gị²ho³ɂi	I often have solid objects				
 645	7	15	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭳ²Ꮅ³ᏍᏗ*	ᏥᏲᎵᏍᏗ	ji²yo²li³sdi	For me to recognize him				
 646	7	15	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	Ꭺ²Ꮂ²³Ꭲ	ᎢᏨᎪᎲᎢ	i¹jv²go²hv²³ɂi	I, we two, or we all saw you all a while ago	We all saw you (1), two a while ago			
+649	7	17	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	Ꮀ³Ꭲ	ᏕᏣᎰᎢ	de²jạ²ho³ɂi	You (1) often have solid objects				
+654	7	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꭵ²³ᏴᎢ	ᏕᎩᏅᏴᎢ	de²gị²nu¹wa²³yv³ɂi	You (1) and I had rod shaped things a while ago				
 657	7	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭵ²³ᏴᎢ	ᏙᎩᏅᏴᎢ	do¹gị²nu¹wa²³yv³ɂi	He and I had rod shaped things a while ago				
 663	7	23	Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ³ᏍᏗ	ᏣᏓᏙᎵᏍᏗ	jạ²da²do²hlị³sdi	For you (1) to recognize yourself				
 667	7	25	Ꭰ¹Ꮖ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ³ᏍᏗ	ᎠᏆᏓᏙᎵᏍᏗ	a¹gwạ²da²do²hlị³sdi	For me to recognize myself				
@@ -270,6 +298,8 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 674	7	31	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	¹Ꮪ²Ꮂ¹Ꭶ	ᏕᏥᏚᎲᎦ	de²jị²¹du²hv¹ga²	I recently baked things				
 678	7	34	Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭺ³Ꭲ	ᎣᏣᏓᏙᎵᎪᎢ	o¹jạ²da²dohl²go³ɂi	They and I often recognize ourselves				
 684	7	40	Ꭳ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭺ³Ꭲ	ᎣᏍᏓᏓᏙᎵᎪᎢ	o¹sdạ²da²dohl²go³ɂi	He and I often recognize ourselves				
+697	7	61	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᏕᎦᏓᏚᎸᏗ	de³gạ²dạ²duhl²di	For all of us to want each other				
+699	7	65	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	ᎪᏩ͓²Ꮫ³Ꮧ	ᏙᎦᏓᎪᏩᏛᏗ	do¹gạ²da²gowh²tvh³di	For them and me to see each other				
 708	8	1		Ꮒ̣²Ꭿ	ᏂᎯ	nị²hi	You one	You two	You all		
 709	8	1	Ꭰ̣²-, Ꭶ̣²-	ᎣᎵ͓²Ꭶ	ᎪᎵᎦ	gohl²ga	He understands it	He recognizes him			
 710	8	1	Ꭿ̣²-	ᎣᎵ͓²Ꭹ	ᎰᎵᎩ	hohl²gi	Let you (1) understand it				
@@ -288,20 +318,21 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 727	8	7	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᎣᎵ͓²Ꭶ	ᎠᏉᎵᎦ	a¹gwohl²ga	He recognizes me				
 729	8	7	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	ᎪᏩ͓²Ꮫ³Ꮧ	ᏍᏛᎪᏩᏛᏗ	sdv²gowh²tvh³di	For me to see you both	For we two to see you (1) or both			
 732	8	8	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Ꭺ¹Ꮹ²Ꮤ²	ᏓᎪᏩᏔ	dạ²go¹wah²ta²	He recently saw them-animate	He recently saw them-inanimate			
-735	8	9	Ꮥ³Ꭹ²-	Ꭾ³ᏍᏗ	ᏕᎩᎮᏍᏗ	de³gi²he³sdi	All of us will be having solid objects				
 737	8	9	Ꭳ¹Ꭹ̣²Ꮒ²-	ᏁᏗ	ᏦᎩᏂᏁᏗ	jo¹gị²ni²neh²di	For him and me to have a liquid				
 738	8	9	Ꮣ¹Ꮒ²-	Ꭰ̣²Ꮪ²³Ꭶ²	ᏓᎾᏚᎦ	da¹nạ²tu²³ga²	They recently drank alchoholic drinks				
 739	8	9	Ꭰ¹Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ	ᎠᏓᎦᏙᏍᏗ	a¹da¹kto²³sdi	He is looking at himself				
 740	8	10	Ꭳ¹ᏍᏗ²-	Ꮄ¹Ꭶ	ᎣᏍᏗᎴᎦ	o¹sdi²³le¹ga	He and I are climbing it				
-744	8	11	Ꮩ¹Ꭹ²-	Ꭾ³ᏍᏗ	ᏙᎩᎮᏍᏗ	do¹gi²he³sdi	They and I will be having solid objects				
 746	8	11	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	ᏕᏣᏤᎵᎢ	de²jạ²je²li⁴ɂi	Your ones (they are)				
 755	8	15	Ꭼ²Ꭹ̣²-, Ꭼ²Ꮖ͓-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎬᏉᎵᏨᎢ	gv²gwohl²jv²³ɂi	They recognized me a while ago				
 756	8	15	Ꮩ¹Ꮵ²-	ᏍᏗ²³Ꭶ²	ᏙᏥᏍᏗᎦ	do¹ji²sdi²³ga²	They and I recently ate rod shaped things				
 757	8	16	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭶ²*	ᏥᏲᎵᎦ	ji²yo²li¹ga²	I recently recognized him				
+761	8	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꭾ³ᏍᏗ	ᏕᎩᏂᎮᏍᏗ	de²gị²ni²he³sdi	You (1) and I will be having solid objects				
 762	8	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	¹Ꮯ²³Ꮜ²	ᏕᏥᏟᏌ	de²jị²¹hli²³sa²	I recently gathered things				
+764	8	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭾ³ᏍᏗ	ᏙᎩᏂᎮᏍᏗ	do¹gị²ni²he³sdi	He and I will be having solid objects				
 766	8	21	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	Ꭺ¹Ꮹ²Ꮤ²	ᎢᏨᎪᏩᏔ	i¹jv²go¹wah²ta²	I, we two, or we all recently saw you all	We all recently saw you (1), two			
 770	8	24	ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ³ᏍᏗ	ᏍᏓᏓᏙᎵᏍᏗ	sdạ²da²do²hlị³sdi	For you both to recognize yourselves				
 776	8	34	Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ	ᎠᎾᏓᎦᏙᏍᏗ	a¹nạ²da¹kto²³sdi	They are looking at themselves				
+781	8	39	Ꭳ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ	ᎣᏣᏓᎦᏙᏍᏗ	o¹jạ²da¹kto²³sdi	They and I are looking at ourselves				
 797	8	63	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	ᏙᎦᏓᏚᎵᎭ	do¹gạ²dạ²du²lị³ha	They and I are wanting each other				
 799	8	65	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	ᏚᎾᏓᏚᎵᎭ	du¹nạ²dạ²du²lị³ha	They are wanting each other				
 802	8	70	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	ᏙᎩᎾᏓᏚᎵᎭ	do¹gị²nạ²dạ²du²lị³ha	He and I are wanting each other				
@@ -317,14 +348,18 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 818	9	4	Ꮵ̣²-, Ꭶ͓-	Ꮄ¹Ꭶ	ᏥᎴᎦ	jị²³le¹ga	I am climbing it				
 819	9	4	Ꭰ¹Ꮒ²-	Ᏸ³Ꭰ	ᎠᏂᏰᎠ	a¹ni²hye³ɂa	They are eating something flexible				
 821	9	4	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	ᏍᏗ²³Ꭶ²	ᏓᏍᏗᎦ	dạ²sdi²³ga²	He recently ate rod shaped things				
+822	9	5	Ꭲ¹Ꮵ²-	Ꭵ²³Ꮜ	ᎢᏨᏌ	i¹jv²³sa	Your all selves				
 825	9	5	Ꭳ¹Ꭹ²-	¹ᏘᏗ	ᎣᎩᏘᏗ	o¹gi²¹tdi	For them and me to bake something				
 827	9	5	Ꮵ²-, Ꮵ²Ꮿ͓-	ᎪᏩ͓²Ꮫ³Ꮧ	ᏥᎪᏩᏛᏗ	ji²gowh²tvh³di	For me to see him				
 838	9	12	Ꭰ¹Ꮣ²[Ꮣ͓]-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᎠᏓᎪᏩᏘᎭ	a¹da²gowh²tị³ha	He is seeing himself				
 841	9	13	Ꮩ¹Ꮵ²-	Ᏸ³ᏍᎪ³Ꭲ	ᏙᏥᏰᏍᎪᎢ	do¹ji²hye³sgo³ɂi	They and I often are eating flexible things				
 843	9	14	Ꭳ¹ᏍᏗ²-	Ᏸ³Ꭰ	ᎣᏍᏗᏰᎠ	o¹sdi²hye³ɂa	He and I are eating something flexible				
 844	9	14	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ³ᏍᏗ*	ᎯᏲᎵᏍᏗ	hi²yo²li³sdi	For you (1) to recognize him				
+845	9	15	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꮂ²³Ꭲ	ᏓᎩᎲᎢ	da¹gị²hv²³ɂi	I had solid objects a while ago				
 846	9	15	Ꮣ¹Ꮒ²-	¹Ꮪ²Ꮂ¹Ꭶ	ᏓᏂᏚᎲᎦ	da¹ni²¹du²hv¹ga²	They recently baked things				
+849	9	17	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	Ꭾ³ᏍᏗ	ᏕᏣᎮᏍᏗ	de²jạ²he³sdi	You (1) will be having solid objects				
 853	9	18	Ꮩ¹ᏍᏗ²-	Ᏸ³ᏍᎪ³Ꭲ	ᏙᏍᏗᏰᏍᎪᎢ	do¹sdi²hye³sgo³ɂi	He and I often are eating flexible things				
+855	9	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꮂ²³Ꭲ	ᏕᎩᏂᎲᎢ	de²gị²ni²hv²³ɂi	You (1) and I had solid objects a while ago				
 857	9	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꮂ²³Ꭲ	ᏙᎩᏂᎲᎢ	do¹gị²ni²hv²³ɂi	He and I had solid objects a while ago				
 868	9	26	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ³ᏍᏗ*	ᎦᎯᏲᎵᏍᏗ	gạ²hi²yo²li³sdi	For you (1) to recognize them-animate				
 874	9	29	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭳ²Ꮅ¹Ꭹ*	ᏫᎦᏓᏙᎵᎩ	wị²gạ²da²do²li¹gi	Let me recognize myself				
@@ -335,24 +370,31 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 881	9	38	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᏙᎩᎾᏓᏙᎵᏨᎢ	do¹gị²nạ²da²dohl²jv²³ɂi	He and I became acquainted a while ago				
 883	9	42	Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭹ	ᏫᏓᎾᏓᏙᎵᎩ	wị²da¹nạ²da²dohl²gi	Let them become acquainted				
 887	9	44	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꭹ	ᏫᏙᏍᏓᏓᏙᎵᎩ	wị²do¹sdạ²da²dohl²gi	Let him and me become acquainted				
+898	9	61	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	ᏕᎦᏓᏚᎵᎭ	de³gạ²dạ²du²lị³ha	All of us are wanting each other				
 910	10	1		ᏍᏛ²Ꮵ	ᏍᏛᏥ	sdv²ji	I, your two's mother				
 911	10	1	Ꭰ̣²-, Ꭶ̣²-	Ꭱ³Ꭺ̣³Ꭲ	ᎡᎪᎢ	e³gọ³ɂi	He often is going				
 912	10	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꮑ̣³Ꭽ	ᎤᏁᎭ	u¹nẹ³ha	He has a liquid				
 913	10	1	Ꮵ̣²-, Ꭶ͓-	Ᏸ³Ꭰ*	ᏥᏰᎠ	jị²ye³ɂa	I am eating something flexible				
+914	10	2	ᏍᏗ²-	Ꭵ³²Ꮿ	ᏍᏛᏯ	sdu¹wa³²ya	You both have something rod shaped				
 915	10	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꮑ²Ꮀ³Ꭲ	ᏚᏁᎰᎢ	du²ne²ho³ɂi	He often has liquid things				
 916	10	2	Ꭴ¹Ꮣ²[Ꮣ͓]-	Ꭷ̣²Ꭾ³ᏍᏗ	ᎤᏓᎧᎮᏍᏗ	u¹da²kạ²he³sdi	He will be having himself				
 917	10	3	Ꭿ̣²-	Ꭱ³Ꭺ̣³Ꭲ	ᎮᎪᎢ	he³gọ³ɂi	You (1) often are going				
 918	10	3	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭵ²³ᏴᎢ	ᎠᏋᏴᎢ	a¹gwu¹wa²³yv³ɂi	I had something rod shaped a while ago				
 920	10	4	Ꮳ̣²-	Ꮀ³Ꭲ	ᏣᎰᎢ	jạ²ho³ɂi	You (1) often have a solid object				
 924	10	5	Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎡᏦᎵᏨᎢ	e¹johl²jv²³ɂi	You (1) were recognized a while ago				
+925	10	6	Ꭰ¹Ꮒ²-	ᎣᎵ͓²Ꭶ	ᎠᏃᎵᎦ	a¹nohl²ga	They understand it	They recognize him			
 930	10	7	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᏍᏛᎪᏩᏘᎭ	sdv²gowh²tị³ha	I am seeing you both	We two are seeing you (1) or both			
+938	10	10	Ꮣ¹Ꮒ²-	¹Ꮯ²³Ꮜ²	ᏓᏂᏟᏌ	da¹ni²¹hli²³sa²	They recently gathered things				
 941	10	11	Ꭸ³Ꮵ²-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎨᏦᎵᏨᎢ	ge³jo²li²jv²³ɂi	They recognized you all a while ago				
 943	10	12	Ꭸ²Ꭹ²-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎨᎪᎵᏨᎢ	ge²gohl²jv²³ɂi	They recognized all of us a while ago				
 944	10	12	Ꭺ²Ꮵ²-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎪᏦᎵᏨᎢ	go²jo²li²jv²³ɂi	They and I recognized them-animate a while ago				
 946	10	14	Ꭺ²Ꭹ²-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎪᎪᎵᏨᎢ	go²gohl²jv²³ɂi	They recognized them and me a while ago				
 947	10	15	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭶ²*	ᎯᏲᎵᎦ	hi²yo²li¹ga²	You (1) recently recognized him				
+949	10	15	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꮎ̣³Ꭰ	ᏓᎩᎾᎠ	da¹gị²nạ³ɂa	I have flexible things				
+950	10	15	Ꭰ¹Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᏩᏓᎦᏙᏍᏓ	wa¹dạ²kto²³sda	Let him look at himself				
 953	10	16	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭳ²Ꮅ²Ꭺ³Ꭲ*	ᏥᏲᎵᎪᎢ	ji²yo²li²go³ɂi	I often recognize him				
 961	10	19	Ꭺ²ᏍᏗ²-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎪᏍᏙᎵᏨᎢ	go²sdo²li²jv²³ɂi	He and I recognized them-animate a while ago				
+962	10	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꮎ̣³Ꭰ	ᏕᎩᏂᎾᎠ	de²gị²ni²nạ³ɂa	You (1) and I have flexible things				
 963	10	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	ᏍᏗ²³Ꭶ²	ᏕᏥᏍᏗᎦ	de²jị²sdi²³ga²	I recently ate rod shaped things				
 965	10	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꮎ̣³Ꭰ	ᏙᎩᏂᎾᎠ	do¹gị²ni²nạ³ɂa	He and I have flexible things				
 966	10	20	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*	ᎦᏓᎦᏙᏍᏓ	gạ²dạ²ga¹to²³sda²	I recently looked at myself				
@@ -368,6 +410,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 989	10	32	Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᏕᏓᏓᎦᏙᏍᏓ	de³dạ²dạ²kto²³sda	Let all of us look at each other				
 990	10	34	Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᏩᎾᏓᎦᏙᏍᏓ	wa¹nạ²dạ²kto²³sda	Let them look at themselves				
 992	10	37	Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᏕᎩᎾᏓᏙᎵᏨᎢ	de²gị²nạ²da²dohl²jv²³ɂi	You (1) and I became acquainted a while ago				
+1002	10	49	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²	ᏙᏍᏓᏓᎦᏙᏍᏓ	do¹sdạ²dạ²kto²³sda²	He and I recently looked at each other				
 1011	11	1		Ꮳ̣²Ꮵ	ᏣᏥ	jạ²ji	xShe, your one's mother				
 1012	11	1	Ꭰ̣²-, Ꭶ̣²-	Ꮄ¹Ꭶ	ᎦᎴᎦ	gạ²³le¹ga	He is climbing it				
 1013	11	1	Ꭼ²-, Ꭼ²Ꮿ͓-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᎬᎪᏩᏘᎭ	gv²gowh²tị³ha	I am seeing you (1)				
@@ -386,8 +429,10 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1036	11	9	Ꮵ̣²-, Ꭶ͓-	Ꭱ¹Ꮎ	ᏫᎨᎾ	wị²ge¹na	Let me go				
 1037	11	9	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᎣᎵ͓²Ꭹ	ᏩᏉᎵᎩ	wa¹gwohl²gi	Let him recognize me				
 1040	11	9	Ꭰ¹Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²	ᎠᏓᎦᏙᏍᏓ	a¹dạ²kto²³sda²	He recently looked at himself				
-1045	11	12	Ꮪ¹Ꮒ²-	Ꮂ²³Ꭲ	ᏚᏂᎲᎢ	du¹ni²hv²³ɂi	They had solid objects a while ago				
 1047	11	13	Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	ᏕᎭᏗᏔᏍᎦ	de²ha¹di²tạ³sga	You (1) are drinking drinks				
+1049	11	15	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꮑ̣³Ꭽ	ᏓᎩᏁᎭ	da¹gị²nẹ³ha	I have liquid things				
+1055	11	17	Ꮩ¹Ꮵ²-	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	ᏙᏣᏗᏔᏍᎦ	do¹ja¹di²tạ³sga	They and I are drinking drinks				
+1058	11	19	Ꮥ²Ꭹ̣²Ꮒ²-	Ꮑ̣³Ꭽ	ᏕᎩᏂᏁᎭ	de²gị²ni²nẹ³ha	You (1) and I have liquid things				
 1059	11	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꮑ̣³Ꭽ	ᏙᎩᏂᏁᎭ	do¹gị²ni²nẹ³ha	He and I have liquid things				
 1067	11	25	Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭷ̣²Ꮂ²³Ꭲ	ᏣᏓᎧᎲᎢ	jạ²da²kạ²hv²³ɂi	You (1) had yourself a while ago				
 1069	11	27	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᏫᎦᏓᎦᏙᏍᏓ	wị²gạ²dạ²ga¹to²³sda	Let me look at myself				
@@ -409,18 +454,21 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1120	12	1	Ꮳ̣²-, Ꮳ̣²-	Ꭷ̣²Ꮂ²³Ꭲ	ᏣᎧᎲᎢ	jạ²kạ²hv²³ɂi	He had you (1) a while ago				
 1121	12	2	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ*	ᏕᎦᏚᎩᎠ	de²gạɂ²du²³gị³a	I am drinking alchoholic drinks				
 1124	12	4	Ꭼ²-, Ꭼ²Ꮿ͓-	Ꭷ̣²Ꮀ³Ꭲ	ᎬᏯᎧᎰᎢ	gv²ya²kạ²ho³ɂi	I often have you (1)				
+1125	12	5	Ꭲ¹Ꮒ²-	Ꭰ¹Ꮧ̣²Ꭽ	ᎢᎾᏗᎭ	i¹nạ²dị²ha	You (1) and I are saying				
 1127	12	6	Ꭲ¹Ꮧ²-	Ꭰ¹Ꮧ̣²Ꭽ	ᎢᏓᏗᎭ	i¹dạ²dị²ha	All of us are saying				
 1130	12	8	Ꮥ³Ꭹ²-	Ᏸ¹ᏍᏗ	ᏕᎩᏰᏍᏗ	de³gi²hye¹sdi	For all of us to eat flexible things				
 1132	12	9	Ꭹ̣²Ꮒ²-	Ꭰ̣Ꮨ͓²Ꮧ	ᎩᎾᏘᏗ	gị²nạt²di	For you (1) and me to say it				
 1135	12	10	Ꮩ¹Ꭹ²-	Ᏸ¹ᏍᏗ	ᏙᎩᏰᏍᏗ	do¹gi²hye¹sdi	For them and me to eat flexible things				
+1137	12	10	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Ꭰ̣²Ꮪ²³Ꭶ²	ᏕᎦᏚᎦ	de²gạ²tu²³ga²	He recently drank alchoholic drinks				
 1140	12	11	Ꭵ¹Ꭹ̣²-, Ꭵ¹Ꮖ͓-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎥᏉᎵᏨᎢ	v¹gwohl²jv²³ɂi	I was recognized a while ago				
-1143	12	12	Ꮪ¹Ꮒ²-	Ꮎ̣³Ꭰ	ᏚᏂᎾᎠ	du¹ni²nạ³ɂa	They have flexible things				
+1141	12	11	Ꮣ¹Ꮒ²-	ᏍᏗ²³Ꭶ²	ᏓᏂᏍᏗᎦ	da¹ni²sdi²³ga²	They recently ate rod shaped things				
 1145	12	12	Ꭰ¹Ꮣ²[Ꮣ͓]-	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	ᎠᏓᎪᏩᏘᏍᎪᎢ	a¹da²gowh²ti²³sgọ³ɂi	He is often seeing himself				
 1146	12	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	¹ᏘᏗ	ᎠᎩᏘᏗ	a¹gị²¹tdi	For me to bake something				
 1147	12	14	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ̣²Ꮪ²³Ꮃ	ᎯᏯᏚᎳ	hi²yạ²du²³la	Let you (1) want him				
 1148	12	14	Ꮩ¹Ꮵ²-	³Ꮯ²Ꮟ̣³Ꭽ	ᏙᏥᏟᏏᎭ	do¹ji²³hli²sị³ha	They and I are gathering things				
 1150	12	15	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	ᎪᏩ͓²Ꮫ³Ꮧ	ᎢᏨᎪᏩᏛᏗ	i¹jv²gowh²tvh³di	For us, me, two, or we all to see you all	For we all to see you (1), two			
 1154	12	17	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭷ̣²Ꮀ³Ꭲ	ᏥᏯᎧᎰᎢ	ji²ya²kạ²ho³ɂi	I often have something alive				
+1197	12	61	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	ᏕᎦᏓᏚᎸᎲᎢ	de³gạ²dạ²du²lv²hv²³ɂi	All of us wanted each other a while ago				
 1200	12	63	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	ᏙᎦᏓᏚᎸᎲᎢ	do¹gạ²dạ²du²lv²hv²³ɂi	They and I wanted each other a while ago				
 1202	12	65	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	ᏚᎾᏓᏚᎸᎲᎢ	du¹nạ²dạ²du²lv²hv²³ɂi	They wanted each other a while ago				
 1208	12	70	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	ᏙᎩᎾᏓᏚᎸᎲᎢ	do¹gị²nạ²dạ²du²lv²hv²³ɂi	He and I wanted each other a while ago				
@@ -433,24 +481,32 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1220	13	4	Ꭲ¹Ꮵ²-	¹ᏘᏗ	ᎢᏥᏘᏗ	i¹ji²¹tdi	For you all to bake something				
 1221	13	4	Ꮵ̣²-, Ꭶ͓-	Ꮇ¹Ꭶ²	ᏥᎷᎦ	jị²²lu¹ga²	I recently climbed it				
 1222	13	4	Ꭰ¹Ꮒ²-	Ꭰ¹Ꮧ̣²Ꭽ	ᎠᎾᏗᎭ	a¹nạ²dị²ha	They are saying				
+1224	13	6	Ꭲ¹Ꮒ²-	Ꭱ³Ꭺ̣³Ꭲ	ᎢᏁᎪᎢ	i¹ne³gọ³ɂi	You (1) and I often are going				
+1226	13	7	Ꭳ¹Ꮵ²-	Ꮇ¹Ꭶ	ᏬᏥᎷᎦ	wo¹ji²²lu¹ga	Let them and me climb it				
 1227	13	7	Ꭲ¹Ꮧ²-	Ꭱ³Ꭺ̣³Ꭲ	ᎢᏕᎪᎢ	i¹de³gọ³ɂi	All of us often are going				
+1228	13	8	Ꭴ¹Ꮒ²-	Ꭰ̣Ꮨ͓²Ꮧ	ᎤᎾᏘᏗ	u¹nạt²di	For them to say it				
 1229	13	8	Ꭳ¹ᏍᏗ²-	Ꮇ¹Ꭶ	ᏬᏍᏗᎷᎦ	wo¹sdi²²lu¹ga	Let him and me climb it				
 1233	13	9	Ꮥ³Ꮵ²-	Ꮿ̣²Ꭶ	ᏕᏥᏯᎦ	de³ji²hyạ²ga	Let you all eat flexible things				
 1234	13	9	Ꭹ̣²Ꮒ²-	Ꭱ²Ꮕ¹ᏍᏗ	ᎩᏁᏅᏍᏗ	gị²ne²nv¹sdi	For you (1) and me to go				
+1237	13	9	Ꮣ¹Ꮒ²-	Ᏸ³ᏍᎪ³Ꭲ	ᏓᏂᏰᏍᎪᎢ	da¹ni²hye³sgo³ɂi	They often are eating flexible things				
 1238	13	9	Ꭰ¹Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ	ᎠᏓᎦᏙᏍᏗᏍᎪᎢ	a¹da¹kto²³sdi³sgo³ɂi	He is often looking at himself				
 1239	13	10	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	ᏓᏆᏤᎵᎢ	da¹gwạ²je²li⁴ɂi	My (they are)				
-1244	13	12	Ꮪ¹Ꮒ²-	Ꮑ̣³Ꭽ	ᏚᏂᏁᎭ	du¹ni²nẹ³ha	They have liquid things				
 1246	13	12	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭽ̣²Ꮧ²³Ꮤ²	ᏕᎦᎭᏗᏔ	de²ga²di²³ta²	I recently drank drinks				
 1247	13	13	Ꮥ²ᏍᏗ²-	Ꮿ̣²Ꭶ	ᏕᏍᏗᏯᎦ	de²sdi²hyạ²ga	Let you both eat flexible things				
 1249	13	15	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ²Ꭺ³Ꭲ*	ᎯᏲᎵᎪᎢ	hi²yo²li²go³ɂi	You (1) often recognize him				
 1250	13	15	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	Ꭰ̣²Ꮪ²³Ꮃ	ᏕᏣᏚᎳ	de²jạ²du²³la	Let you (1) want them-inanimate				
+1253	13	17	Ꮩ¹Ꮵ²-	Ꮿ̣²Ꭶ	ᏫᏙᏥᏯᎦ	wị²do¹ji²hyạ²ga	Let them and me eat flexible things				
 1255	13	18	Ꮩ¹ᏍᏗ²-	Ꮿ̣²Ꭶ	ᏫᏙᏍᏗᏯᎦ	wị²do¹sdi²hyạ²ga	Let him and me eat flexible things				
 1256	13	19	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭺ³Ꮧ	ᎠᎩᎪᏗ	a¹gị²koh³di	For him to have me				
 1258	13	20	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᏍᏛᏲᎵᏨᎢ	sdv²yo²li²jv²³ɂi	I recognized you both a while ago	We two recognized you (1) or both a while ago			
+1259	13	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	ᏙᎩᎾᏤᎵᎢ	do¹gị²nạ²je²li⁴ɂi	He and I, our (they are)				
 1260	13	20	Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*	ᎦᏓᎦᏙᏍᏗᏍᎪᎢ	gạ²da¹ga¹to²³sdi³sgo³ɂi	I am often looking at myself				
 1274	13	34	Ꭰ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ	ᎠᎾᏓᎦᏙᏍᏗᏍᎪᎢ	a¹nạ²da¹kto²³sdi³sgo³ɂi	They are often looking at themselves				
 1275	13	35	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ̣²Ꮪ²³Ꮃ²	ᏥᏯᏚᎳ	ji²yạ²du²³la²	I recently wanted him				
 1288	13	42	Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎩᎾᏓᎦᏙᏍᏙᏗ	gị²nạ²dạ²kto²³sdoh³di	For you (1) and me to look at ourselves				
+1296	13	47	Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭷ̣²Ꮂ²³Ꭲ	ᏙᎦᏓᎧᎲᎢ	do¹gạ²da²kạ²hv²³ɂi	They and I had ourselves a while ago	They and I had each other a while ago			
+1300	13	49	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ	ᏙᏍᏓᏓᎦᏙᏍᏗᏍᎪᎢ	do¹sdạ²da¹kto²³sdi³sgo³ɂi	He and I are often looking at each other				
+1307	13	61	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᏕᎦᏓᏚᎵᏍᎪᎢ	de³gạ²dạ²du²li²³sgọ³ɂi	All of us often are wanting each other				
 1308	13	63	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᏙᎦᏓᏚᎵᏍᎪᎢ	do¹gạ²dạ²du²li²³sgọ³ɂi	They and I often are wanting each other				
 1310	13	65	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᏚᎾᏓᏚᎵᏍᎪᎢ	du¹nạ²dạ²du²li²³sgọ³ɂi	They often are wanting each other				
 1313	13	70	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᏙᎩᎾᏓᏚᎵᏍᎪᎢ	do¹gị²nạ²dạ²du²li²³sgọ³ɂi	He and I often are wanting each other				
@@ -461,15 +517,18 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1318	14	2	Ꭿ²-, Ꭿ²Ꮿ͓-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᎯᎪᏩᏘᎭ	hi²gowh²tị³ha	You (1) are seeing him				
 1321	14	3	Ꮳ̣²-	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	ᏣᏤᎵᎢ	jạ²je²li⁴ɂi	Your ones (it is)				
 1323	14	5	Ꭰ¹Ꮒ²-	Ꭱ³Ꭺ̣³Ꭲ	ᎠᏁᎪᎢ	a¹ne³gọ³ɂi	They often are going				
+1325	14	6	Ꭲ¹Ꮒ²-	Ꮇ¹Ꭶ²	ᎢᏂᎷᎦ	i¹ni²²lu¹ga²	You (1) and I recently climbed it				
 1327	14	7	Ꭲ¹Ꮧ²-	Ꮇ¹Ꭶ²	ᎢᏗᎷᎦ	i¹di²²lu¹ga²	All of us recently climbed it				
+1328	14	7	Ꭴ¹Ꮒ²-	Ꭱ²Ꮕ¹ᏍᏗ	ᎤᏁᏅᏍᏗ	u¹ne²nv¹sdi	For them to go				
 1330	14	9	Ꮵ̣²-, Ꭶ͓-	Ꭰ̣²Ꮣ	ᏫᎦᏓ	wị²gạ²da	Let me say				
 1331	14	9	Ꮥ³Ꮵ²-	Ᏸ¹ᏍᏗ	ᏕᏥᏰᏍᏗ	de³ji²hye¹sdi	For you all to eat flexible things				
+1334	14	11	Ꮩ¹Ꭹ²-	Ꮑ²Ꮀ³Ꭲ	ᏙᎩᏁᎰᎢ	do¹gi²ne²ho³ɂi	They and I often have liquid things				
+1338	14	12	Ꭸ³Ꮵ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*	ᎨᏣᎦᏙᏍᏗ	ge³jạ²ga¹to²³sdi	They are looking at you all				
 1340	14	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮀ³Ꭲ	ᎠᎩᎰᎢ	a¹gị²ho³ɂi	I often have a solid object				
 1344	14	14	Ꭳ¹ᏍᏗ²-	Ꭳ²Ꮅ¹Ꭹ*	ᏬᏍᏙᎵᎩ	wo¹sdo²li¹gi	Let him and me recognize him				
 1350	14	15	Ꮩ¹Ꮵ²-	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ᏙᏣᏚᎩᎠ	do¹jạ¹tu²³gị³a	They and I are drinking alchoholic drinks				
 1358	14	18	Ꮩ¹ᏍᏗ²-	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ᏙᏍᏓᏚᎩᎠ	do¹sdạ¹tu²³gị³a	He and I are drinking alchoholic drinks				
 1360	14	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	³Ꮯ²Ꮟ̣³Ꭽ	ᏕᏥᏟᏏᎭ	de²jị²³hli²sị³ha	I am gathering things				
-1362	14	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꮑ²Ꮀ³Ꭲ	ᏙᎩᏂᏁᎰᎢ	do¹gị²ni²ne²ho³ɂi	He and I often have liquid things				
 1365	14	22	Ꭺ²ᏍᏗ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*	ᎪᏍᏓᎦᏙᏍᏗ	go²sdạ²ga¹to²³sdi	He and I are looking at them-animate				
 1366	14	23	Ꮳ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᏣᏓᏙᎵᏨᎢ	jạ²da²dohl²jv²³ɂi	You (1) recognized yourself a while ago				
 1368	14	25	Ꭰ¹Ꮖ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎠᏆᏓᏙᎵᏨᎢ	a¹gwạ²da²dohl²jv²³ɂi	I recognized myself a while ago				
@@ -493,9 +552,11 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1417	15	5	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭷ̣²Ꮀ³Ꭲ	ᎯᏯᎧᎰᎢ	hi²ya²kạ²ho³ɂi	You (1) often have something alive				
 1418	15	5	Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᎡᏣᎦᏙᏍᏓ	e¹jạ²kto²³sda	Let you (1) be looked at				
 1420	15	7	Ꭴ¹-, Ꭴ¹Ꮹ͓-	¹ᏘᏗ	ᎤᏩᏘᏗ	u¹wa²¹tdi	For him to bake something				
+1423	15	9	Ꮥ³Ꭹ²-	Ꮑ²Ꮀ³Ꭲ	ᏕᎩᏁᎰᎢ	de³gi²ne²ho³ɂi	All of us often have liquid things				
 1428	15	12	Ꭴ¹Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎤᏓᎦᏙᏍᏙᏗ	u¹dạ²kto²³sdoh³di	For him to look at himself				
 1434	15	14	Ꮩ¹Ꮵ²-	³Ꮪ²Ꮂ̣³ᏍᎦ	ᏙᏥᏚᎲᏍᎦ	do¹ji²³du²hṿ³sga	They and I are baking things				
 1435	15	15	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᏥᏲᎵᏨᎢ	ji²yo²li²jv²³ɂi	I recognized him a while ago				
+1450	15	24	Ꭱ¹Ꭹ̣²Ꮒ²-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎡᎩᏃᎵᏨᎢ	e¹gị²no²li²jv²³ɂi	You (1) and I were recognized a while ago				
 1456	15	27	Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎦᏥᏲᎵᏨᎢ	gạ²ji²yo²li²jv²³ɂi	I recognized them-animate a while ago				
 1457	15	28	Ꭰ¹Ꮖ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎠᏆᏓᎦᏙᏍᏙᏗ	a¹gwạ²dạ²kto²³sdoh³di	For me to look at myself				
 1460	15	29	Ꭲ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎢᎦᏓᎦᏙᏍᏙᏗ	i¹gạ²dạ²kto²³sdoh³di	For all of us to look at ourselves				
@@ -527,6 +588,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1573	17	4	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭳ²Ꮅ³ᏍᏗ	ᎠᏉᎵᏍᏗ	a¹gwo²hlị³sdi	For me to understand it	For him to recognize me			
 1575	17	4	Ꭲ¹Ꮒ²-	Ꭰ̣²Ꮪ²³Ꭹ	ᎢᎾᏚᎩ	i¹nạ²tu²³gi	Let you (1) and me drink something alchoholic				
 1579	17	5	Ꭲ¹Ꮧ²-	Ꭰ̣²Ꮪ²³Ꭹ	ᎢᏓᏚᎩ	i¹dạ²tu²³gi	Let all of us drink something alchoholic				
+1584	17	7	Ꭴ¹Ꮒ²-	Ꮈ¹ᏍᏗ	ᎤᏂᎸᏍᏗ	u¹ni²lv¹sdi	For them to climb it				
 1585	17	8	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭵ²³Ꮜ	ᎤᏩᏌ	ụ²wa²³sa	Himself				
 1588	17	10	Ꭳ¹ᏍᏗ²-	Ꭱ³Ꭺ̣³Ꭲ	ᎣᏍᏕᎪᎢ	o¹sde³gọ³ɂi	He and I often are going				
 1589	17	10	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꭱ²Ꮕ¹ᏍᏗ	ᎣᎩᏁᏅᏍᏗ	o¹gị²ne²nv¹sdi	For him and me to go				
@@ -535,6 +597,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1594	17	12	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭰ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ	ᏕᎦᏗᏔᏍᎪᎢ	de²ga¹di²tạ²sgo³ɂi	I often am drinking drinks				
 1599	17	15	Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎨᏣᎦᏙᏍᏙᏗ	ge²jạ²kto²³sdoh³di	For them to look at you (1)				
 1607	17	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭵ²³ᏰᏍᏗ	ᏙᎩᏂᎥᏰᏍᏗ	do¹gị²ni²jv²³ye³²sdi	He and I will be having rod shaped things				
+1608	17	20	Ꮩ¹ᏍᏗ²-	Ꭽ̣²Ꮧ²³Ꮤ²	ᏙᏍᏗᎭᏗᏔ	do¹sda²di²³ta²	He and I recently drank drinks				
 1615	17	25	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꭹ*	ᏫᏥᏲᎵᎩ	wị²ji²yo²li¹gi	Let me recognize him				
 1618	17	28	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᎯᏯᏚᎸᏗ	hi²yạ²duhl²di	For you (1) to want him				
 1648	18	1		Ꭴ²Ꮩ²Ꮣ	ᎤᏙᏓ	u²do²da	His father				
@@ -544,11 +607,13 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1653	18	3	Ꭲ¹Ꮒ²-	¹Ꮯ²³Ꮜ	ᎢᏂᏟᏌ	i¹ni²¹hli²³sa	Let you (1) and me gather something				
 1654	18	4	Ꮳ̣²-	Ꮎ̣³Ꭰ	ᏣᎾᎠ	jạ²nạ³ɂa	You (1) have something flexible				
 1655	18	4	Ꭲ¹Ꮧ²-	¹Ꮯ²³Ꮜ	ᎢᏗᏟᏌ	i¹di²¹hli²³sa	Let all of us gather something				
+1657	18	4	Ꭼ²-, Ꭼ²Ꮿ͓-	Ꭷ̣²Ꭾ³ᏍᏗ	ᎬᏯᎧᎮᏍᏗ	gv²ya²kạ²he³sdi	I will be having you (1)				
 1660	18	5	Ꭰ¹Ꮒ²-	Ꮄ¹Ꭺ³Ꭲ	ᎠᏂᎴᎪᎢ	a¹ni²³le¹go³ɂi	They often are climbing it				
 1662	18	7	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᎣᎵ͓²Ꭶ²	ᎠᏉᎵᎦ	a¹gwohl²ga²	He recently recognized me				
 1664	18	7	Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-	Ꭽ̣²Ꮧ²³Ꮤ	ᏕᎯᎭᏗᏔ	de²ha²di²³ta	Let you (1) drink drinks				
 1666	18	8	Ꮥ³Ꮵ²-	¹Ꮯ²³Ꮜ	ᏕᏥᏟᏌ	de³ji²¹hli²³sa	Let you all gather things				
 1668	18	8	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᏓᎪᏩᏘᎭ	dạ²gowh²tị³ha	He is seeing them-animate	He is seeing them-inanimate			
+1670	18	9	Ꮥ³Ꭹ²-	Ꭵ²³ᏰᏍᏗ	ᏕᎩᎥᏰᏍᏗ	de³gi²jv²³ye³²sdi	All of us will be having rod shaped things				
 1672	18	10	Ꭳ¹ᏍᏗ²-	Ꮇ¹Ꭶ²	ᎣᏍᏗᎷᎦ	o¹sdi²²lu¹ga²	He and I recently climbed it				
 1676	18	12	Ꮥ²ᏍᏗ²-	¹Ꮯ²³Ꮜ	ᏕᏍᏗᏟᏌ	de²sdi²¹hli²³sa	Let you both gather things				
 1678	18	12	Ꭴ¹Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᎤᏓᎦᏙᏍᏔᏅᎢ	u¹da¹kto²³stạ³nv²³ɂi	He looked at himself a while ago				
@@ -557,6 +622,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1682	18	15	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭵ³²Ꮿ	ᎤᏩᏯ	u¹wu¹wa³²ya	He has something rod shaped				
 1684	18	16	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*	ᏕᎦᎦᏙᏍᏓ	de²gạ²ga¹to²³sda²	I recently looked at them-inanimate				
 1686	18	17	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭷ̣²Ꭾ³ᏍᏗ	ᏥᏯᎧᎮᏍᏗ	ji²ya²kạ²he³sdi	I will be having something alive				
+1691	18	18	Ꮩ¹ᏍᏗ²-	Ꭰ̣²Ꮪ²³Ꭹ	ᏫᏙᏍᏓᏚᎩ	wị²do¹sdạ²tu²³gi	Let him and me drink alchoholic drinks				
 1701	18	26	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎦᎯᏲᎵᏨᎢ	gạ²hi²yo²li²jv²³ɂi	You (1) recognized them-animate a while ago				
 1707	18	31	Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᏕᏣᏓᏙᎵᏨᎢ	de³jạ²da²dohl²jv²³ɂi	You all became acquainted a while ago				
 1708	18	31	Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᎣᎦᏓᎦᏙᏍᏔᏅᎢ	o¹gạ²da¹kto²³stạ³nv²³ɂi	They and I looked at ourselves a while ago				
@@ -574,6 +640,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1743	19	6	Ꭳ¹Ꮵ²-	Ꭳ²Ꮅ³ᏍᏗ*	ᎣᏦᎵᏍᏗ	o¹jo²li³sdi	For them and me to recognize him				
 1745	19	6	Ꭸ²Ꮧ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎨᏓᎦᏙᏍᏓ	ge²dạ²ga¹to²³sda	Let all of us look at them-animate				
 1748	19	7	Ꭸ²Ꮵ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎨᏣᎦᏙᏍᏓ	ge²jạ²ga¹to²³sda	Let you all look at them-animate				
+1754	19	9	Ꮣ¹Ꮒ²-	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ᏓᎾᏚᎩᎠ	da¹nạ¹tu²³gị³a	They are drinking alchoholic drinks				
 1755	19	9	Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᏕᎭᎦᏙᏍᏓ	de²hạ²kto²³sda	Let you (1) look at them-inanimate				
 1766	19	17	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭷ̣²Ꮂ²³Ꭲ	ᏥᏯᎧᎲᎢ	ji²ya²kạ²hv²³ɂi	I had something alive a while ago				
 1768	19	18	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭷ̣³Ꭽ	ᎠᎩᎧᎭ	a¹gị²kạ³ha	He has me				
@@ -589,8 +656,9 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1810	20	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꮑ²Ꮂ²³Ꭲ	ᏚᏁᎲᎢ	du²ne²hv²³ɂi	He had liquid things a while ago				
 1811	20	2	Ꮵ̣²-, Ꭶ͓-	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	ᎦᏗᏔᏍᎦ	ga¹di²tạ³sga	I am drinking something				
 1814	20	5	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭷ̣²Ꮂ²³Ꭲ	ᎯᏯᎧᎲᎢ	hi²ya²kạ²hv²³ɂi	You (1) had something alive a while ago				
-1816	20	6	Ꭴ¹Ꮒ²-	Ᏸ¹ᏍᏗ	ᎤᏂᏰᏍᏗ	u¹ni²hye¹sdi	For them to eat something flexible				
+1818	20	6	Ꭲ¹Ꮒ²-	Ꮄ¹Ꭺ³Ꭲ	ᎢᏂᎴᎪᎢ	i¹ni²³le¹go³ɂi	You (1) and I often are climbing it				
 1821	20	7	Ꭲ¹Ꮧ²-	Ꮄ¹Ꭺ³Ꭲ	ᎢᏗᎴᎪᎢ	i¹di²³le¹go³ɂi	All of us often are climbing it				
+1823	20	9	Ꮥ³Ꭹ²-	Ꮎ̣³Ꭳ³Ꭲ	ᏕᎩᎾᎣᎢ	de³gi²nạ³o³ɂi	All of us often have flexible things				
 1826	20	10	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꮈ¹ᏍᏗ	ᎣᎩᏂᎸᏍᏗ	o¹gị²ni²lv¹sdi	For him and me to climb it				
 1828	20	10	Ꮣ¹Ꮒ²-	³Ꮪ²Ꮂ̣³ᏍᎦ	ᏓᏂᏚᎲᏍᎦ	da¹ni²³du²hṿ³sga	They are baking things				
 1834	20	12	Ꮪ¹Ꮒ²-	Ꭵ²³ᏰᏍᏗ	ᏚᏂᎥᏰᏍᏗ	du¹ni²jv²³ye³²sdi	They will be having rod shaped things				
@@ -603,9 +671,12 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1879	21	2	Ꮳ̣²-	Ᏸ¹ᏍᏗ	ᏣᏰᏍᏗ	jạ²hye¹sdi	For you (1) to eat something flexible				
 1880	21	2	Ꭿ̣²-	Ꭺ¹Ꮹ²Ꮤ	ᎯᎪᏩᏔ	hị²go¹wah²ta	Let you (1) see it				
 1882	21	4	Ꭰ̣²-, Ꭶ̣²-	Ꭺ¹Ꮹ²Ꮤ	ᏩᎪᏩᏔ	wạ²go¹wah²ta	Let him see him	Let him see it			
+1883	21	4	Ꭲ¹Ꮒ²-	ᏍᏗ²³Ꭶ	ᎢᏂᏍᏗᎦ	i¹ni²sdi²³ga	Let you (1) and me eat something rod shaped				
 1886	21	5	Ꭲ¹Ꮧ²-	ᏍᏗ²³Ꭶ	ᎢᏗᏍᏗᎦ	i¹di²sdi²³ga	Let all of us eat something rod shaped				
 1887	21	6	Ꮵ̣²-, Ꭶ͓-	¹Ꮪ²Ꮂ¹Ꭶ	ᏥᏚᎲᎦ	jị²¹du²hv¹ga²	I recently baked something				
+1891	21	9	Ꮥ³Ꭹ²-	Ꮑ²Ꭾ³ᏍᏗ	ᏕᎩᏁᎮᏍᏗ	de³gi²ne²he³sdi	All of us will be having liquid things				
 1899	21	12	Ꭸ²ᏍᏗ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎨᏍᏓᎦᏙᏍᏓ	ge²sdạ²ga¹to²³sda	Let you both look at them-animate				
+1900	21	12	Ꭸ³Ꮵ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*	ᎨᏣᎦᏙᏍᏓ	ge³jạ²ga¹to²³sda²	They recently looked at you all				
 1901	21	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮂ²³Ꭲ	ᎠᎩᎲᎢ	a¹gị²hv²³ɂi	I had a solid object a while ago				
 1902	21	13	Ꮥ²ᏍᏗ²-	ᏍᏗ²³Ꭶ	ᏕᏍᏗᏍᏗᎦ	de²sdi²sdi²³ga	Let you both eat rod shaped things				
 1907	21	15	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*	ᎯᏯᎦᏙᏍᏗ	hi²yạ²ga¹to²³sdi	You (1) are looking at him				
@@ -620,12 +691,12 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 1953	22	2	Ꭿ̣²-	Ꮄ¹Ꭺ³Ꭲ	ᎯᎴᎪᎢ	hị²³le¹go³ɂi	You (1) often are climbing it				
 1954	22	2	Ꭱ¹Ꮒ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎡᎾᎦᏙᏍᏓ	e¹nạ²ga¹to²³sda	Let you (1) and me look at him				
 1955	22	3	ᏍᏗ²-	Ꭰ̣Ꮨ͓²Ꮧ	ᏍᏓᏘᏗ	sdạt²di	For you both to say it				
-1956	22	3	Ꭲ¹Ꭹ²-	Ᏸ¹ᏍᏗ	ᎢᎩᏰᏍᏗ	i¹gi²hye¹sdi	For all of us to eat something flexible				
 1957	22	3	Ꭰ̣²-, Ꭶ̣²-	ᏍᏗ²³Ꭶ	ᏩᏍᏗᎦ	wạ²sdi²³ga	Let him eat something rod shaped				
 1959	22	3	Ꭱ¹Ꮧ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎡᏓᎦᏙᏍᏓ	e¹dạ²ga¹to²³sda	Let all of us look at him				
 1960	22	4	Ꮳ̣²-	Ꮑ²Ꮀ³Ꭲ	ᏣᏁᎰᎢ	jạ²ne²ho³ɂi	You (1) often have a liquid				
 1961	22	4	Ꮵ̣²-, Ꭶ͓-	¹Ꮯ²³Ꮜ²	ᏥᏟᏌ	jị²¹hli²³sa²	I recently gathered something				
 1966	22	8	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮈ¹ᏍᏗ	ᎠᎩᎸᏍᏗ	a¹gị²lv¹sdi	For me to climb it				
+1968	22	9	Ꮥ³Ꭹ²-	Ꮑ²Ꮂ²³Ꭲ	ᏕᎩᏁᎲᎢ	de³gi²ne²hv²³ɂi	All of us had liquid things a while ago				
 1971	22	10	Ꮩ¹Ꭹ²-	Ꮿ³Ꭵ²³Ꭲ	ᏙᎩᏯᎥᎢ	do¹gi²hya³ɂv²³ɂi	They and I ate flexible things a while ago				
 1978	22	11	Ꭸ³Ꮵ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*	ᎨᏣᎦᏙᏍᏙᏗ	ge³jạ²ga¹to²³sdoh³di	For them to look at you all				
 1980	22	12	Ꮪ¹Ꮒ²-	Ꮎ̣³Ꭳ³Ꭲ	ᏚᏂᎾᎣᎢ	du¹ni²nạ³o³ɂi	They often have flexible things				
@@ -655,6 +726,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2053	23	15	Ꭰ̣²-, Ꭶ̣²-	ᎣᎵ͓²Ꭹ	ᏫᎪᎵᎩ	wị²gohl²gi	Let him understand it	Let him recognize him			
 2058	23	17	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*	ᏥᏯᎦᏙᏍᏓ	ji²yạ²ga¹to²³sda²	I recently looked at him				
 2063	23	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	ᏍᏗ²³Ꭶ	ᏫᏕᏥᏍᏗᎦ	wị²de²jị²sdi²³ga	Let me eat rod shaped things				
+2065	23	20	ᏍᏛ²-, ᏍᏛ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*	ᏍᏛᏯᎦᏙᏍᏙᏗ	sdv²yạ²ga¹to²³sdoh³di	For me to look at you both	For we two to look at you (1) or both			
 2066	23	20	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎦᎯᏯᎦᏙᏍᏓ	gạ²hi²yạ²ga¹to²³sda	Let you (1) look at them-animate				
 2076	23	30	Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᎢᏣᏓᎦᏙᏍᏓ	i¹jạ²dạ²kto²³sda	Let you all look at yourselves				
 2096	24	1		Ꭰ²Ꮅ̣²Ꭲ	ᎠᎵᎢ	a²lị²ɂi	Friendship				
@@ -673,6 +745,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2127	24	15	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*	ᎯᏯᎦᏙᏍᏓ	hi²yạ²ga¹to²³sda²	You (1) recently looked at him				
 2128	24	15	Ꮩ¹Ꮵ²-	¹ᏍᏗ²³Ꭹ̣³Ꭰ	ᏙᏥᏍᏗᎩᎠ	do¹ji²¹sdi²³gị³ɂa	They and I are eating rod shaped things				
 2129	24	15	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*	ᏥᏯᎦᏙᏍᏙᏗ	ji²yạ²ga¹to²³sdoh³di	For me to look at him				
+2130	24	15	Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᎨᏣᎦᏙᏍᏔᏅᎢ	ge²ja¹kto²³stạ³nv²³ɂi	They looked at you (1) a while ago				
 2135	24	17	Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᏫᏨᏯᎦᏙᏍᏓ	wi¹jv²yạ²ga¹to²³sda	Let us, me, two, or we all look at you all	Let us all look at you (1), two			
 2136	24	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	¹ᏍᏗ²³Ꭹ̣³Ꭰ	ᏕᏥᏍᏗᎩᎠ	de²jị²¹sdi²³gị³ɂa	I am eating rod shaped things				
 2137	24	19	Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᎢᏍᎩᏯᎦᏙᏍᏓ	i¹sgi²yạ²ga¹to²³sda	Let you (1), two, or all look at us all	Let you all look at me			
@@ -681,7 +754,6 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2170	25	1	Ꮳ̣²-	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	ᏤᏅᏒᎢ	je²nv³sv²³ɂi	You (1) went a while ago				
 2171	25	1	Ꭰ̣²-, Ꭶ̣²-	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	ᎠᏗᏔᏍᎦ	a¹di²tạ³sga	He is drinking something				
 2172	25	1	Ꮵ̣²-, Ꭶ͓-	Ᏸ³ᏍᎪ³Ꭲ*	ᏥᏰᏍᎪᎢ	jị²ye³sgo³ɂi	I often am eating something flexible				
-2173	25	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᏚᏚᎸᏗ	du²duhl²di	For him to want them-animate	For him to want them-inanimate			
 2174	25	2	Ꭿ̣²-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ	ᎭᎦᏙᏍᏗ	ha¹kto²³sdi	You (1) are looking at it				
 2177	25	3	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭷ̣³Ꭽ	ᎤᏩᎧᎭ	u¹wa²kạ³ha	He has something alive				
 2179	25	4	Ꭰ¹Ꮒ²-	Ꭰ̣²Ꮪ²³Ꭶ²	ᎠᎾᏚᎦ	a¹nạ²tu²³ga²	They recently drank something alchoholic				
@@ -692,6 +764,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2195	25	13	Ꭵ¹Ꭹ̣²-, Ꭵ¹Ꮖ͓-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎥᏆᎦᏙᏍᏙᏗ	v¹gwạ²kto²³sdoh³di	For me to be looked at				
 2197	25	14	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*	ᎯᏯᎦᏙᏍᏙᏗ	hi²yạ²ga¹to²³sdoh³di	For you (1) to look at him				
 2203	25	18	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭽ̣²Ꮧ²³Ꮤ	ᏫᏕᎦᎭᏗᏔ	wị²de²ga²di²³ta	Let me drink drinks				
+2219	25	30	Ꭲ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎢᏣᏓᎦᏙᏍᏙᏗ	i¹jạ²dạ²kto²³sdoh³di	For you all to look at yourselves				
 2224	25	35	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	ᏥᏯᏚᎸᎲᎢ	ji²yạ²du²lv²hv²³ɂi	I wanted him a while ago				
 2241	26	1		Ꭶ̣²Ꮵ²Ꮵ	ᎦᏥᏥ	gạ²ji²ji	I, their mother				
 2242	26	1	Ꮳ̣²-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᏦᎵᏨᎢ	johl²jv²³ɂi	You (1) understood it a while ago	He recognized you (1) a while ago			
@@ -721,6 +794,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2329	27	8	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭱ²Ꮕ¹ᏍᏗ	ᎤᏪᏅᏍᏗ	u¹we²nv¹sdi	For him to go				
 2333	27	9	Ꮥ³Ꭹ²-	Ꮎ̣³Ꭱ³ᏍᏗ	ᏕᎩᎾᎡᏍᏗ	de³gi²nạ³e³sdi	All of us will be having flexible things				
 2337	27	11	Ꮩ¹Ꭹ²-	Ꮎ̣³Ꭵ²³Ꭲ	ᏙᎩᎾᎥᎢ	do¹gi²nạ³v²³ɂi	They and I had flexible things a while ago				
+2339	27	11	Ꮣ¹Ꮒ²-	Ꭰ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ	ᏓᎾᏗᏔᏍᎪᎢ	da¹na¹di²tạ²sgo³ɂi	They often are drinking drinks				
 2343	27	14	Ꮩ¹Ꮵ²-	³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ	ᏙᏥᏟᏏᏍᎪᎢ	do¹ji²³hli²si²³sgọ³ɂi	They and I are often gathering things				
 2364	27	35	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᏥᏯᏚᎵᏍᎪᎢ	ji²yạ²du²li²³sgọ³ɂi	I often am wanting him				
 2381	28	1		ᏍᏗ²Ꮩ²Ꮣ	ᏍᏗᏙᏓ	sdi²do²da	Your two's father				
@@ -729,12 +803,14 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2384	28	2	ᏍᏗ²-	Ꮈ¹ᏍᏗ	ᏍᏗᎸᏍᏗ	sdi²lv¹sdi	For you both to climb it				
 2385	28	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꮎ̣³Ꭵ²³Ꭲ	ᏚᎾᎥᎢ	du²nạ³v²³ɂi	He had flexible things a while ago				
 2387	28	3	Ꭿ̣²-	¹Ꮪ²Ꮂ¹Ꭶ	ᎯᏚᎲᎦ	hị²¹du²hv¹ga²	You (1) recently baked something				
+2395	28	7	Ꭴ¹Ꮒ²-	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	ᎤᏁᏅᏒᎢ	u¹ne²nv³sv²³ɂi	They went a while ago				
 2396	28	8	Ꮳ̣²-	Ꭺ²Ꮂ²³Ꭲ	ᏣᎪᎲᎢ	jạ²go²hv²³ɂi	You (1) saw it a while ago	He saw you (1) a while ago			
 2397	28	9	Ꮥ³Ꭹ²-	Ꮎ̣³Ꭵ²³Ꭲ	ᏕᎩᎾᎥᎢ	de³gi²nạ³v²³ɂi	All of us had flexible things a while ago				
 2399	28	10	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭳ²Ꮅ³ᏍᏗ	ᎤᏬᎵᏍᏗ	u¹wo²hlị³sdi	For him to understand it	For him to recognize him			
-2404	28	11	Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	ᏕᎭᏚᎩᏍᎪᎢ	de²ha¹tu²³gi³²sgo³ɂi	You (1) often are drinking alchoholic drinks				
+2409	28	12	Ꭸ³Ꮵ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*	ᎨᏣᎦᏙᏍᏗᏍᎪᎢ	ge³ja¹ga¹to²³sdi³sgo³ɂi	They are often looking at you all				
 2422	28	19	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²Ꮪ²³Ꮃ	ᏩᏆᏚᎳ	wa¹gwạ²du²³la	Let me want it	Let him want me			
 2426	28	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ	ᏕᏥᏚᎲᏍᎪᎢ	de²jị²³du²hṿ²sgo³ɂi	I am often baking things				
+2427	28	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ	ᏙᎩᏄᏗᏔᏍᏗ	do¹gị²na²di²tạ²sdi	For him and me to drink drinks				
 2433	28	22	Ꭺ²ᏍᏗ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*	ᎪᏍᏓᎦᏙᏍᏗᏍᎪᎢ	go²sda¹ga¹to²³sdi³sgo³ɂi	He and I are often looking at them-animate				
 2435	28	26	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᏫᏥᏯᎦᏙᏍᏓ	wị²ji²yạ²ga¹to²³sda	Let me look at him				
 2437	28	28	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᎯᏯᏚᎵᏍᎪᎢ	hi²yạ²du²li²³sgọ³ɂi	You (1) often are wanting him				
@@ -748,10 +824,13 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2458	29	4	Ꮳ̣²-	Ꮎ̣³Ꭳ³Ꭲ	ᏣᎾᎣᎢ	jạ²nạ³o³ɂi	You (1) often have something flexible				
 2466	29	9	Ꭹ̣²Ꮒ²-	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	ᎩᏁᏅᏒᎢ	gị²ne²nv³sv²³ɂi	You (1) and I went a while ago				
 2468	29	11	Ꮩ¹Ꭹ²-	¹ᏍᏗ³Ꭼ²³Ꭲ	ᏙᎩᏍᏗᎬᎢ	do¹gi²¹sdi³gv²³ɂi	They and I ate rod shaped things a while ago				
+2469	29	11	Ꮣ¹Ꮒ²-	¹ᏍᏗ²³Ꭹ̣³Ꭰ	ᏓᏂᏍᏗᎩᎠ	da¹ni²¹sdi²³gị³ɂa	They are eating rod shaped things				
 2474	29	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮑ²Ꮀ³Ꭲ	ᎠᎩᏁᎰᎢ	a¹gị²ne²ho³ɂi	I often have a liquid				
 2478	29	15	Ꮩ¹Ꮵ²-	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	ᏙᏣᏚᎩᏍᎪᎢ	do¹ja¹tu²³gi³²sgo³ɂi	They and I often are drinking alchoholic drinks				
 2480	29	15	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*	ᎯᏯᎦᏙᏍᏗᏍᎪᎢ	hi²ya¹ga¹to²³sdi³sgo³ɂi	You (1) are often looking at him				
 2485	29	17	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*	ᏥᏯᎦᏙᏍᏗᏍᎪᎢ	ji²ya¹ga¹to²³sdi³sgo³ɂi	I am often looking at him				
+2486	29	18	Ꮩ¹ᏍᏗ²-	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	ᏙᏍᏓᏚᎩᏍᎪᎢ	do¹sda¹tu²³gi³²sgo³ɂi	He and I often are drinking alchoholic drinks				
+2489	29	19	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ	ᏕᏥᏟᏏᏍᎪᎢ	de²jị²³hli²si²³sgọ³ɂi	I am often gathering things				
 2519	30	1		Ꮳ̣²Ꮩ²Ꮣ	ᏣᏙᏓ	jạ²do²da	xHe, your one's father				
 2520	30	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭰ̣²Ꮪ²³Ꮃ²	ᎤᏚᎳ	u²du²³la²	He recently wanted him	He recently wanted it			
 2521	30	1	Ꭰ̣²-, Ꭶ̣²-	Ᏸ³ᏍᎪ³Ꭲ	ᎦᏰᏍᎪᎢ	gạ²hye³sgo³ɂi	He often is eating something flexible				
@@ -763,12 +842,15 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2537	30	9	Ꮥ³Ꭹ²-	¹ᏍᏗ³Ꭼ²³Ꭲ	ᏕᎩᏍᏗᎬᎢ	de³gi²¹sdi³gv²³ɂi	All of us ate rod shaped things a while ago				
 2540	30	10	Ꮩ¹Ꭹ²-	¹Ꮯ²³Ꮠ̣³Ꮧ	ᏙᎩᏟᏐᏗ	do¹gi²¹hli²³soh³di	For them and me to gather things				
 2542	30	11	Ꭸ³Ꮵ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*	ᎨᏣᎦᏙᏍᏔᏅᎢ	ge³ja¹ga¹to²³stạ³nv²³ɂi	They looked at you all a while ago				
+2543	30	12	Ꮪ¹Ꮒ²-	Ꮎ̣³Ꭱ³ᏍᏗ	ᏚᏂᎾᎡᏍᏗ	du¹ni²nạ³e³sdi	They will be having flexible things				
+2545	30	12	Ꭺ²Ꮵ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*	ᎪᏣᎦᏙᏍᏔᏅᎢ	go²ja¹ga¹to²³stạ³nv²³ɂi	They and I looked at them-animate a while ago				
 2546	30	13	Ꭳ¹ᏍᏗ²-	¹Ꮯ²³Ꮜ	ᏬᏍᏗᏟᏌ	wo¹sdi²¹hli²³sa	Let him and me gather something				
 2552	30	14	Ꭿ²-, Ꭿ²Ꮿ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*	ᎯᏯᎦᏙᏍᏔᏅᎢ	hi²ya¹ga¹to²³stạ³nv²³ɂi	You (1) looked at him a while ago				
 2554	30	15	Ꮵ²-, Ꮵ²Ꮿ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*	ᏥᏯᎦᏙᏍᏔᏅᎢ	ji²ya¹ga¹to²³stạ³nv²³ɂi	I looked at him a while ago				
 2556	30	16	Ꭺ²Ꭹ²-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᎪᎦᎦᏙᏍᏔᏅᎢ	go²ga¹kto²³stạ³nv²³ɂi	They looked at them and me a while ago				
 2559	30	17	Ꭼ²Ꭹ̣²-, Ꭼ²Ꮖ͓-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᎬᏆᎦᏙᏍᏔᏅᎢ	gv²gwa¹kto²³stạ³nv²³ɂi	They looked at me a while ago				
 2562	30	19	Ꭺ²ᏍᏗ²-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*	ᎪᏍᏓᎦᏙᏍᏔᏅᎢ	go²sda¹ga¹to²³stạ³nv²³ɂi	He and I looked at them-animate a while ago				
+2570	30	25	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᏫᏕᎦᎦᏙᏍᏓ	wị²de²gạ²ga¹to²³sda	Let me look at them-inanimate				
 2588	31	1		Ꮷ²Ꮅ̣²Ꭲ	ᏧᎵᎢ	ju²lị²ɂi	His friends				
 2589	31	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᎤᏚᎸᏗ	u²duhl²di	For him to want him	For him to want it			
 2590	31	1	Ꮵ̣²-, Ꭶ͓-	Ꭰ̣²Ꮪ²³Ꭹ*	ᏫᎦᏚᎩ	wị²gạɂ²du²³gi	Let me drink something alchoholic				
@@ -780,6 +862,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2599	31	7	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²ᏚᎸ͓²Ꮧ	ᎠᏆᏚᎸᏗ	a¹gwạ²duhl²di	For me to want it	For him to want me			
 2601	31	8	Ꮥ³Ꭹ²-	¹Ꮯ²³Ꮠ̣³Ꮧ	ᏕᎩᏟᏐᏗ	de³gi²¹hli²³soh³di	For all of us to gather things				
 2602	31	10	Ꮣ¹Ꮒ²-	³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ	ᏓᏂᏚᎲᏍᎪᎢ	da¹ni²³du²hṿ²sgo³ɂi	They are often baking things				
+2604	31	12	Ꮪ¹Ꮒ²-	Ꮎ̣³Ꭵ²³Ꭲ	ᏚᏂᎾᎥᎢ	du¹ni²nạ³v²³ɂi	They had flexible things a while ago				
 2607	31	16	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*	ᏕᎦᎦᏙᏍᏗᏍᎪᎢ	de²ga¹ga¹to²³sdi³sgo³ɂi	I am often looking at them-inanimate				
 2632	32	1		Ꭰ̣²Ꭹ̣²Ꮵ	ᎠᎩᏥ	ạ²gị²ji	xShe, my mother				
 2633	32	1	ᏍᏗ²-	Ᏸ¹ᏍᏗ	ᏍᏗᏰᏍᏗ	sdi²hye¹sdi	For you both to eat something flexible				
@@ -801,14 +884,19 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2678	33	4	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ	ᏓᏍᏗᎩᏍᎪᎢ	dạ²¹sdi²³gi³²sgo³ɂi	He often is eating rod shaped things				
 2686	33	10	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	ᏓᏆᏚᎩᏍᏗ	da¹gwạ²tu²³gi³²sdi	For me to drink alchoholic drinks				
 2688	33	11	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	ᏕᏣᏚᎩᏍᏗ	de²jạ²tu²³gi³²sdi	For you (1) to drink alchoholic drinks				
+2690	33	12	Ꮪ¹Ꮒ²-	¹ᏍᏗ³Ꭼ²³Ꭲ	ᏚᏂᏍᏗᎬᎢ	du¹ni²¹sdi³gv²³ɂi	They ate rod shaped things a while ago				
 2695	33	15	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭵ²³ᏴᎢ	ᎤᏩᏴᎢ	u¹wu¹wa²³yv³ɂi	He had something rod shaped a while ago				
+2700	33	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	ᏙᎩᎾᏚᎩᏍᏗ	do¹gị²nạ²tu²³gi³²sdi	For him and me to drink alchoholic drinks				
 2710	34	1		Ꭲ¹Ꮵ²Ꮩ²Ꮣ	ᎢᏥᏙᏓ	i¹ji²do²da	Your all's father				
 2711	34	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ᏺ¹Ꮟ²³Ꮜ	ᏭᏲᏏᏌ	wu¹yo¹si²³sa	Let him be hungry				
 2712	34	1	Ꭰ̣²-, Ꭶ̣²-	Ꭽ̣²Ꮧ²³Ꮤ²	ᎠᎭᏗᏔ	a²di²³ta²	He recently drank something				
 2713	34	1	Ꭿ̣²-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᎭᎦᏙᏍᏓ	hạ²kto²³sda	Let you (1) look at it				
 2714	34	1	Ꮵ̣²-, Ꭶ͓-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*	ᎦᎦᏙᏍᏓ	gạ²ga¹to²³sda²	I recently looked at it				
 2715	34	2	Ꮳ̣²-	Ꮿ³Ꭵ²³Ꭲ	ᏣᏯᎥᎢ	jạ²hya³ɂv²³ɂi	You (1) ate something flexible a while ago				
+2719	34	5	Ꭰ¹Ꮒ²-	³Ꮯ²Ꮟ̣³Ꭽ	ᎠᏂᏟᏏᎭ	a¹ni²³hli²sị³ha	They are gathering something				
 2720	34	5	Ꭲ¹Ꮧ²-	Ꭽ̣²Ꮧ²³Ꮤ	ᎢᏗᎭᏗᏔ	i¹da²di²³ta	Let all of us drink something				
+2724	34	8	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	ᏓᎪᏩᏘᏍᎪᎢ	dạ²gowh²ti²³sgọ³ɂi	He is often seeing them-animate	He is often seeing them-inanimate			
+2725	34	9	Ꮣ¹Ꮒ²-	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	ᏓᎾᏚᎩᏍᎪᎢ	da¹na¹tu²³gi³²sgo³ɂi	They often are drinking alchoholic drinks				
 2727	34	10	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	ᎣᎩᏁᏅᏒᎢ	o¹gị²ne²nv³sv²³ɂi	He and I went a while ago				
 2737	34	34	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭺ¹Ꮹ²Ꮤ	ᏩᎩᎪᏩᏔ	wa¹gị²go¹wah²ta	Let him see me				
 2743	35	1		Ꭲ¹Ꮸ²Ꮩ²Ꮣ	ᎢᏨᏙᏓ	i¹jv²do²da	I, your all's father				
@@ -821,6 +909,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2756	35	9	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ	ᏓᏊᏗᏔᎲᎢ	da¹gwu¹di²tạ²hv²³ɂi	I drank drinks a while ago				
 2757	35	10	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ	ᏕᏧᏗᏔᎲᎢ	de²ju¹di²tạ²hv²³ɂi	You (1) drank drinks a while ago				
 2758	35	10	Ꮥ³Ꭹ²-	ᏍᏗ²³Ꭹ³²ᏍᏗ	ᏕᎩᏍᏗᎩᏍᏗ	de³gi²sdi²³gi³²sdi	For all of us to eat rod shaped things				
+2760	35	12	Ꮩ¹Ꭹ²-	ᏍᏗ²³Ꭹ³²ᏍᏗ	ᏙᎩᏍᏗᎩᏍᏗ	do¹gi²sdi²³gi³²sdi	For them and me to eat rod shaped things				
 2761	35	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭵ²³ᏰᏍᏗ	ᎠᎩᎥᏰᏍᏗ	a¹gị²jv²³ye³²sdi	I will be having something rod shaped				
 2776	36	1		Ꭳ²Ꭹ²Ꮩ²Ꮣ	ᎣᎩᏙᏓ	o²gi²do²da	Their and my father				
 2777	36	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	ᎪᏩ͓²Ꮫ³Ꮧ	ᎤᎪᏩᏛᏗ	u¹gowh²tvh³di	For him to see him	For him to see it			
@@ -829,8 +918,10 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2780	36	2	Ꭿ̣²-	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ᎭᏚᎩᎠ	hạ¹tu²³gị³a	You (1) are drinking something alchoholic				
 2781	36	2	Ꮪ²-, Ꮪ²Ꮹ͓-	ᏍᏗ²³Ꭹ³²ᏍᏗ	ᏚᏍᏗᎩᏍᏗ	du²sdi²³gi³²sdi	For him to eat rod shaped things				
 2783	36	5	Ꭰ¹Ꮒ²-	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	ᎠᎾᏗᏍᎪᎢ	a¹nạ²di²³sgo³ɂi	They are often saying				
+2784	36	6	Ꭲ¹Ꮒ²-	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	ᎢᎾᏗᏍᎪᎢ	i¹nạ²di²³sgo³ɂi	You (1) and I are often saying				
 2786	36	7	Ꭲ¹Ꮧ²-	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	ᎢᏓᏗᏍᎪᎢ	i¹dạ²di²³sgo³ɂi	All of us are often saying				
 2788	36	10	Ꮵ̣²-, Ꭶ͓-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᏥᎪᏩᏘᎭ	jị²gowh²tị³ha	I am seeing it				
+2789	36	11	Ꮥ³Ꭹ²-	Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ	ᏕᎫᏗᏔᎲᎢ	de³gu¹di²tạ²hv²³ɂi	All of us drank drinks a while ago				
 2800	36	18	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭷ̣²Ꮀ³Ꭲ	ᎠᎩᎧᎰᎢ	a¹gị²kạ²ho³ɂi	He often has me				
 2808	37	1		Ꭴ²Ꮒ²Ꮩ²Ꮣ	ᎤᏂᏙᏓ	u²ni²do²da	Their father				
 2809	37	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꮈ³²Ꮢ²³Ꭲ	ᎤᎸᏒᎢ	u¹lv³²sv²³ɂi	He climbed it a while ago				
@@ -838,8 +929,10 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2811	37	2	Ꭰ̣²-, Ꭶ̣²-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ	ᏩᎦᏙᏍᏓ	wạ²kto²³sda	Let him look at him	Let him look at it			
 2812	37	3	Ꮳ̣²-	Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ	ᏧᏗᏔᏍᏗ	ja²di²tạ²sdi	For you (1) to drink something				
 2814	37	4	Ꭰ¹Ꮒ²-	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ᎠᎾᏚᎩᎠ	a¹nạ¹tu²³gị³a	They are drinking something alchoholic				
+2816	37	6	Ꭴ¹Ꮒ²-	Ᏺ³Ꮟ̣²Ꭽ	ᏚᏂᏲᏏᎭ	du¹ni²yo³sị²ha	They are hungry				
 2818	37	8	Ꮥ³Ꭹ²-	³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ	ᏕᎩᏟᏌᏅᎢ	de³gi²³hli²sạ²hnv²³ɂi	All of us gathered things a while ago				
 2820	37	10	Ꮩ¹Ꭹ²-	³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ	ᏙᎩᏟᏌᏅᎢ	do¹gi²³hli²sạ²hnv²³ɂi	They and I gathered things a while ago				
+2823	37	11	Ꮣ¹Ꮒ²-	¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ	ᏓᏂᏍᏗᎩᏍᎪᎢ	da¹ni²¹sdi²³gi³²sgo³ɂi	They often are eating rod shaped things				
 2827	37	15	Ꮵ̣²-, Ꭶ͓-	¹Ꮯ²³Ꮜ	ᏫᏥᏟᏌ	wị²jị²¹hli²³sa	Let me gather something				
 2829	37	15	ᏍᎩ̣²Ꮒ²-	Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*	ᏍᎩᎾᎦᏙᏍᏓ	sgị²nạ²ga¹to²³sda	Let you (1) or both look at us two				
 2838	37	32	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭺ²Ꮂ²³Ꭲ	ᎠᎩᎪᎲᎢ	a¹gị²go²hv²³ɂi	I saw it a while ago	He saw me a while ago			
@@ -848,6 +941,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2842	38	1	Ꭰ̣²-, Ꭶ̣²-	Ꭰ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ	ᎠᏗᏔᏍᎪᎢ	a¹di²tạ²sgo³ɂi	He often is drinking something				
 2844	38	2	Ꮳ̣²-	³Ꮪ²Ꮕ²³Ꭲ	ᏣᏚᏅᎢ	jạ²³du²hnv²³ɂi	You (1) baked something a while ago				
 2845	38	3	Ꭿ̣²-	Ꭽ̣²Ꮧ²³Ꮤ²	ᎯᎭᏗᏔ	ha²di²³ta²	You (1) recently drank something				
+2847	38	5	Ꭰ¹Ꮒ²-	³Ꮪ²Ꮂ̣³ᏍᎦ	ᎠᏂᏚᎲᏍᎦ	a¹ni²³du²hṿ³sga	They are baking something				
 2865	38	37	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭺ¹Ꮹ²Ꮤ²	ᎠᎩᎪᏩᏔ	a¹gị²go¹wah²ta²	He recently saw me				
 2869	38	47	Ꮵ̣²-, Ꭶ͓-	Ꭺ¹Ꮹ²Ꮤ	ᏫᏥᎪᏩᏔ	wị²jị²go¹wah²ta	Let me see it				
 2872	39	1		Ꭶ²Ꭿ²Ꮩ²Ꮣ	ᎦᎯᏙᏓ	gạ²hi²do²da	You one, their father				
@@ -861,6 +955,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2886	39	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮎ̣³Ꭳ³Ꭲ	ᎠᎩᎾᎣᎢ	a¹gị²nạ³o³ɂi	I often have something flexible				
 2887	39	13	Ꮪ¹Ꮒ²-	ᏍᏗ²³Ꭹ³²ᏍᏗ	ᏚᏂᏍᏗᎩᏍᏗ	du¹ni²sdi²³gi³²sdi	For them to eat rod shaped things				
 2891	39	16	Ꮵ̣²-, Ꭶ͓-	ᏍᏗ²³Ꭶ	ᏫᏥᏍᏗᎦ	wị²jị²sdi²³ga	Let me eat something rod shaped				
+2897	39	20	Ꮩ¹Ꭹ̣²Ꮒ²-	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	ᏙᎩᎾᏚᎩᏒᎢ	do¹gị²nạ¹tu²³gi³²sv²³ɂi	He and I drank alchoholic drinks a while ago				
 2902	40	1		ᏍᎩ̣²Ꮒ²Ꮵ	ᏍᎩᏂᏥ	sgị²ni²ji	You one, his and my mother				
 2903	40	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ᏺ¹Ꮟ²³Ꮜ²	ᎤᏲᏏᏌ	u¹yo¹si²³sa²	He was recently hungry				
 2904	40	2	Ꭿ̣²-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²	ᎭᎦᏙᏍᏓ	hạ²kto²³sda²	You (1) recently looked at it				
@@ -884,6 +979,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 2961	42	4	Ꮳ̣²-	Ꮎ̣³Ꭵ²³Ꭲ	ᏣᎾᎥᎢ	jạ²nạ³v²³ɂi	You (1) had something flexible a while ago				
 2963	42	5	Ꭿ̣²-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᎯᎪᏩᏘᎭ	hị²gowh²tị³ha	You (1) are seeing it				
 2965	42	6	Ꭳ¹Ꮵ²-	Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*	ᎣᏦᎵᏨᎢ	o¹jo²li²jv²³ɂi	They and I recognized him a while ago				
+2967	42	7	Ꭴ¹Ꮒ²-	Ꮈ³²Ꮢ²³Ꭲ	ᎤᏂᎸᏒᎢ	u¹ni²lv³²sv²³ɂi	They climbed it a while ago				
 2971	42	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮿ³Ꭵ²³Ꭲ	ᎠᎩᏯᎥᎢ	a¹gị²hya³ɂv²³ɂi	I ate something flexible a while ago				
 2973	42	14	Ꮵ̣²-, Ꭶ͓-	Ꭽ̣²Ꮧ²³Ꮤ	ᏫᎦᎭᏗᏔ	wị²ga²di²³ta	Let me drink something				
 2980	43	1		Ꭲ¹Ꭶ²Ꮅ̣²Ꭲ	ᎢᎦᎵᎢ	i¹ga²lị²ɂi	You one and I, our friend	You two and I, our friend	You all and I, our friend	You all and I, friends	You all, my friends
@@ -906,9 +1002,11 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3029	45	1	Ꭰ̣²-, Ꭶ̣²-	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	ᎠᏔᏕᎬᎦ	ạ²tạ²de²gv¹ga²	He was recently thirsty				
 3030	45	2	Ꭿ̣²-	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	ᎯᏔᏕᎬᎦ	hị²tạ²de²gv¹ga²	You (1) were recently thirsty				
 3032	45	3	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭷ̣²Ꮀ³Ꭲ	ᎤᏩᎧᎰᎢ	u¹wa²kạ²ho³ɂi	He often has something alive				
+3033	45	3	Ꭲ¹Ꭹ²-	Ᏺ¹Ꮟ²³Ꮜ	ᏗᎩᏲᏏᏌ	di¹gi²yo¹si²³sa	Let all of us be hungry				
 3034	45	4	Ꮳ̣²-	¹ᏍᏗ³Ꭼ²³Ꭲ	ᏣᏍᏗᎬᎢ	jạ²¹sdi³gv²³ɂi	You (1) ate something rod shaped a while ago				
 3035	45	4	Ꭰ¹Ꮒ²-	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	ᏓᏂᏔᏕᎬᎦ	da¹ni²tạ²de²gv¹ga²	They were recently thirsty				
 3036	45	4	Ꮵ̣²-, Ꭶ͓-	³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ	ᏥᏚᎲᏍᎪᎢ	jị²³du²hṿ²sgo³ɂi	I am often baking something				
+3037	45	5	Ꭲ¹Ꮒ²-	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	ᏕᏂᏔᏕᎬᎦ	de³ni²tạ²de²gv¹ga²	You (1) and I were recently thirsty				
 3039	45	6	Ꭲ¹Ꮧ²-	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	ᏕᏗᏔᏕᎬᎦ	de³di²tạ²de²gv¹ga²	All of us were recently thirsty				
 3040	45	7	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	ᎠᏆᏚᎵᎭ	a¹gwạ²du²lị³ha	I am wanting it	He is wanting me			
 3051	46	1		Ꭳ²Ꭹ̣²Ꮒ²Ꮵ	ᎣᎩᏂᏥ	o²gị²ni²ji	His and my mother				
@@ -917,6 +1015,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3054	46	2	Ꮪ²-, Ꮪ²Ꮹ͓-	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	ᏚᏚᎩᏒᎢ	du¹tu²³gi³²sv²³ɂi	He drank alchoholic drinks a while ago				
 3056	46	4	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ	ᎠᏆᏛᏅᎢ	a¹gwạ²dv²hnv²³ɂi	I said a while ago				
 3057	46	4	Ꮵ̣²-, Ꭶ͓-	³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ	ᏥᏟᏏᏍᎪᎢ	jị²³hli²si²³sgọ³ɂi	I am often gathering something				
+3058	46	5	Ꭰ¹Ꮒ²-	³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ	ᎠᏂᏚᎲᏍᎪᎢ	a¹ni²³du²hṿ²sgo³ɂi	They are often baking something				
 3061	46	7	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꮿ³Ꭵ²³Ꭲ	ᎤᏩᏯᎥᎢ	u¹wa²hya³ɂv²³ɂi	He ate something flexible a while ago				
 3063	46	9	Ꭹ̣²Ꮒ²-	Ꮈ³²Ꮢ²³Ꭲ	ᎩᏂᎸᏒᎢ	gị²ni²lv³²sv²³ɂi	You (1) and I climbed it a while ago				
 3066	46	13	Ꮥ²ᏍᏗ²-	Ꭽ̣²Ꮧ²³Ꮤ	ᏕᏍᏗᎭᏗᏔ	de²sda²di²³ta	Let you both drink drinks				
@@ -936,6 +1035,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3100	48	2	Ꭿ̣²-	³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ	ᎯᏟᏏᏍᎪᎢ	hị²³hli²si²³sgọ³ɂi	You (1) are often gathering something				
 3102	48	3	Ꮳ̣²-	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	ᏣᏚᎩᏍᏗ	jạ²tu²³gi³²sdi	For you (1) to drink something alchoholic				
 3103	48	4	Ꭰ¹Ꮒ²-	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	ᎠᎾᏚᎩᏍᎪᎢ	a¹na¹tu²³gi³²sgo³ɂi	They often are drinking something alchoholic				
+3105	48	5	Ꭲ¹Ꭹ²-	Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ	ᎢᎦᏛᏅᎢ	i¹gạ²dv²hnv²³ɂi	All of us said a while ago				
 3107	48	5	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ᏺ¹Ꮟ²³Ꮜ	ᏩᎩᏲᏏᏌ	wa¹gị²yo¹si²³sa	Let me be hungry				
 3109	48	6	Ꭴ¹Ꮒ²-	Ᏺ¹Ꮟ²³Ꮜ²	ᏚᏂᏲᏏᏌ	du¹ni²yo¹si²³sa²	They were recently hungry				
 3111	48	10	Ꭴ¹-, Ꭴ¹Ꮹ͓-	ᎣᎵ͓²Ꮸ²³Ꭲ	ᎤᏬᎵᏨᎢ	u¹wohl²jv²³ɂi	He understood it a while ago	He recognized him a while ago			
@@ -968,6 +1068,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3189	52	3	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭷ̣²Ꭾ³ᏍᏗ	ᎤᏩᎧᎮᏍᏗ	u¹wa²kạ²he³sdi	He will be having something alive				
 3190	52	4	Ꭰ̣²-, Ꭶ̣²-	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	ᎠᎪᏩᏘᏍᎪᎢ	ạ²gowh²ti²³sgọ³ɂi	He is often seeing him	He is often seeing it			
 3192	52	6	Ꭴ¹Ꮒ²-	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	ᏚᏂᏲᏏᏍᎪᎢ	du¹ni²yo³si²sgo³ɂi	They often are hungry				
+3194	52	9	Ꮥ³Ꮵ²-	¹Ꮯ²³Ꮠ̣³Ꮧ	ᏕᏥᏟᏐᏗ	de³ji²¹hli²³soh³di	For you all to gather things				
 3201	52	32	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᎪᏩ͓²Ꮫ³Ꮧ	ᎠᎩᎪᏩᏛᏗ	a¹gị²gowh²tvh³di	For me to see it	For him to see me			
 3204	53	1		Ꭰ̣²Ꭹ̣²Ꮩ²Ꮣ	ᎠᎩᏙᏓ	ạ²gị²do²da	xHe, my father				
 3205	53	2	Ꮳ̣²-	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	ᏣᏲᏏᏍᎬᎢ	jạ²yo³si²sgv²³ɂi	You (1) were hungry a while ago				
@@ -1011,6 +1112,7 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3332	61	1		Ꮧ̣²ᏍᏓ²Ꮅ̣²Ꭲ	ᏗᏍᏓᎵᎢ	dị²sda²lị²ɂi	You two, your friends				
 3333	61	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	ᎤᏔᏕᎩᏍᎪᎢ	u¹tạ²de²gi³sgo³ɂi	He is often thirsty				
 3335	61	3	Ꮳ̣²-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᏣᎦᏙᏍᏔᏅᎢ	ja¹kto²³stạ³nv²³ɂi	You (1) looked at it a while ago	He looked at you (1) a while ago			
+3336	61	4	Ꭲ¹Ꭹ²-	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	ᏕᎩᏔᏕᎩᎠ	de³gi²tạ²de²gi³ɂa	All of us are thirsty				
 3341	61	10	Ꭳ¹Ꭹ̣²Ꮒ²-	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	ᏙᎩᏂᏲᏏᏍᎪᎢ	do¹gị²ni²yo³si²sgo³ɂi	He and I often are hungry				
 3346	61	37	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᎪᏩ͓²Ꮨ̣³Ꭽ	ᎠᎩᎪᏩᏘᎭ	a¹gị²gowh²tị³ha	He is seeing me				
 3347	62	1		Ꭳ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	ᎣᎩᎾᎵᎢ	o¹gị²na²lị²ɂi	He and I, friends	He, my friend			
@@ -1024,7 +1126,9 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3375	64	1		Ꮧ̣²Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ	ᏗᎩᎾᎵᎢ	dị²gị²na²lị²ɂi	You one and I, our friends				
 3376	64	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	ᎤᏚᎩᏒᎢ	u¹tu²³gi³²sv²³ɂi	He drank something alchoholic a while ago				
 3377	64	8	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²	ᎠᏆᎦᏙᏍᏓ	a¹gwạ²kto²³sda²	He recently looked at me				
+3379	64	9	Ꮥ³Ꮵ²-	³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ	ᏕᏥᏟᏌᏅᎢ	de³ji²³hli²sạ²hnv²³ɂi	You all gathered things a while ago				
 3389	65	1	Ꭴ¹-, Ꭴ¹Ꮹ͓-	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	ᎤᏔᏕᎦᏅᎢ	u¹tạ²de²ga³²nv²³ɂi	He was thirsty a while ago				
+3390	65	4	Ꭲ¹Ꮵ²-	Ꮿ³Ꭵ²³Ꭲ	ᎢᏥᏯᎥᎢ	i¹ji²hya³ɂv²³ɂi	You all ate something flexible a while ago				
 3391	65	6	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ	ᎠᏆᎦᏙᏍᏙᏗ	a¹gwạ²kto²³sdoh³di	For me to look at it	For him to look at me			
 3392	65	7	Ꭴ¹Ꮒ²-	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	ᏚᏂᏔᏕᎩᏍᎪᎢ	du¹ni²tạ²de²gi³sgo³ɂi	They are often thirsty				
 3395	65	9	Ꭹ̣²Ꮒ²-	Ᏺ¹Ꮟ²³Ꮜ²	ᏕᎩᏂᏲᏏᏌ	de²gị²ni²yo¹si²³sa²	You (1) and I were recently hungry				
@@ -1052,19 +1156,28 @@ ID	PSET	VSET	PRONOUN	VERB	CHALLENGE		ANSWER
 3479	72	13	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ	ᎠᎩᏟᏌᏅᎢ	a¹gị²³hli²sạ²hnv²³ɂi	I gathered something a while ago				
 3483	73	2	ᏍᏗ²-	Ꮈ³²Ꮢ²³Ꭲ	ᏍᏗᎸᏒᎢ	sdi²lv³²sv²³ɂi	You both climbed it a while ago				
 3484	73	3	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	ᎠᎩᏔᏕᎩᏍᎪᎢ	a¹ktạ²de²gi³sgo³ɂi	I am often thirsty				
+3485	73	4	Ꭲ¹Ꭹ²-	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	ᏗᎩᏔᏕᎪᏗ	di¹gi²tạ²de²³go³²di	For all of us to be thirsty				
 3488	73	9	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	ᏦᎩᏂᏔᏕᎪᏗ	jo¹gị²ni²tạ²de²³go³²di	For him and me to be thirsty				
 3494	74	7	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	ᎠᏆᏚᎵᏍᎪᎢ	a¹gwạ²du²li²³sgọ³ɂi	I often am wanting it	He often is wanting me			
+3502	75	4	Ꭲ¹Ꮵ²-	³Ꮪ²Ꮕ²³Ꭲ	ᎢᏥᏚᏅᎢ	i¹ji²³du²hnv²³ɂi	You all baked something a while ago				
 3503	75	5	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	ᎠᏆᏚᎩᏒᎢ	a¹gwạ¹tu²³gi³²sv²³ɂi	I drank something alchoholic a while ago				
 3511	76	3	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	ᎠᎩᏔᏕᎦᏅᎢ	a¹ktạ²de²ga³²nv²³ɂi	I was thirsty a while ago				
+3512	76	4	Ꭲ¹Ꭹ²-	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	ᏕᎩᏔᏕᎩᏍᎪᎢ	de³gi²tạ²de²gi³sgo³ɂi	All of us are often thirsty				
 3515	76	10	Ꭹ̣²Ꮒ²-	Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ	ᏗᎩᏂᏲᏏᏐᏗ	dị²gị²ni²yo¹si²³soh³di	For you (1) and me to be hungry				
 3516	76	10	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	ᏙᎩᏂᏔᏕᎩᏍᎪᎢ	do¹gị²ni²tạ²de²gi³sgo³ɂi	He and I are often thirsty				
 3521	77	8	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ	ᎠᏆᎦᏙᏍᏗᏍᎪᎢ	a¹gwa¹kto²³sdi³sgo³ɂi	He is often looking at me				
 3530	78	9	Ꭹ̣²Ꮒ²-	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	ᏕᎩᏂᏔᏕᎩᏍᎪᎢ	de²gị²ni²tạ²de²gi³sgo³ɂi	You (1) and I are often thirsty				
 3533	78	37	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	ᎠᎩᎪᏩᏘᏍᎪᎢ	a¹gị²gowh²ti²³sgọ³ɂi	He is often seeing me				
+3536	79	4	Ꭲ¹Ꭹ²-	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	ᏕᎩᏔᏕᎦᏅᎢ	de³gi²tạ²de²ga³²nv²³ɂi	All of us were thirsty a while ago				
 3539	79	6	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	ᎠᏆᎦᏙᏍᏔᏅᎢ	a¹gwa¹kto²³stạ³nv²³ɂi	I looked at it a while ago	He looked at me a while ago			
 3540	79	10	Ꭹ̣²Ꮒ²-	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	ᏗᎩᏂᏔᏕᎪᏗ	dị²gị²ni²tạ²de²³go³²di	For you (1) and me to be thirsty				
 3541	79	10	Ꭳ¹Ꭹ̣²Ꮒ²-	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	ᏙᎩᏂᏔᏕᎦᏅᎢ	do¹gị²ni²tạ²de²ga³²nv²³ɂi	He and I were thirsty a while ago				
 3545	80	9	Ꭹ̣²Ꮒ²-	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	ᏕᎩᏂᏔᏕᎦᏅᎢ	de²gị²ni²tạ²de²ga³²nv²³ɂi	You (1) and I were thirsty a while ago				
 3552	83	1	ᏍᏗ²-	¹Ꮯ²³Ꮠ̣³Ꮧ	ᏍᏗᏟᏐᏗ	sdi²¹hli²³soh³di	For you both to gather something				
+3556	85	4	Ꭲ¹Ꮵ²-	Ᏺ¹Ꮟ²³Ꮜ²	ᏕᏥᏲᏏᏌ	de³ji²yo¹si²³sa²	You all were recently hungry				
+3574	94	4	Ꭲ¹Ꮵ²-	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	ᏕᏥᏲᏏᏍᎪᎢ	de³ji²yo³si²sgo³ɂi	You all often are hungry				
+3579	96	5	Ꭲ¹Ꮵ²-	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ	ᏗᏥᏔᏕᎬᎦ	di¹tstạ²de²gv¹ga	Let you all be thirsty				
 3580	97	2	ᏍᏗ²-	Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ	ᏍᏚᏗᏔᎲᎢ	sdu¹di²tạ²hv²³ɂi	You both drank something a while ago				
 3592	103	1	ᏍᏗ²-	³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ	ᏍᏗᏟᏌᏅᎢ	sdi²³hli²sạ²hnv²³ɂi	You both gathered something a while ago				
+3598	106	4	Ꭲ¹Ꮵ²-	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	ᏕᏥᏲᏏᏍᎬᎢ	de³ji²yo³si²sgv²³ɂi	You all were hungry a while ago				
+3603	108	4	Ꭲ¹Ꮵ²-	Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ	ᏗᏥᏲᏏᏐᏗ	di¹ji²yo¹si²³soh³di	For you all to be hungry				
