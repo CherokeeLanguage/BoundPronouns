@@ -3,7 +3,7 @@ vi, a	ᎠᏗᎭ	Ꭰ¹Ꮧ̣²Ꭽ, Ꭰ¹Ꮧ̣²Ꭰ	a¹dị²ha	ạ²dị²ha, ạ�
 vi, u	ᎤᏛᏅᎢ	Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ, Ꭰ̣²Ꮫ¹Ꮕ²³Ꭲ	u¹dv²hnv²³ɂi	ạ²dv²hnv²³ɂi, ạ²dv¹hnv²³ɂi	he said a while ago			
 vi, a	ᎠᏗᏍᎪᎢ	Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ	a¹di²³sgo³ɂi	ạ²di²³sgo³ɂi	he is often saying			
 vi, imp, a	ᎭᏓ	Ꭰ̣²Ꮣ	hạ²da	ạ²da	let him say			
-vi, a	ᎭᏓ²	Ꭰ̣²Ꮣ²	hạ²da²	ạ²da²	he said recently			
+vi, a	ᎭᏓ²	Ꭰ̣²Ꮣ²	hạ²da²	ạ²da²	he recently said			
 vi, u, inf	ᎤᏘᏗ	Ꭰ̣Ꮨ͓²Ꮧ	ut²di	ạt²di	for him to say it			
 								
 vti, vta, a	ᎠᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	a¹gowh²tị³ha	gowh²tị³ha	he is seeing x	He is being seen		
@@ -11,21 +11,31 @@ vti, vta, a	ᎠᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	a¹gowh²tị³ha	gowh²tị³h
 vti, vta, u	ᎤᎪᎲᎢ	Ꭺ²Ꮂ²³Ꭲ	u¹go²hv²³ɂi	go²hv²³ɂi	he saw x a while ago	He was seen a while ago		
 vti, vta, a	ᎠᎪᏩᏘᏍᎪᎢ	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	a¹gowh²ti²³sgọ³ɂi	gowh²ti²³sgọ³ɂi	he is often seeing x	He is often seen		
 vti, vta, imp, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ	hi²go¹wah²ta	go¹wah²ta	let him see x	Let him be seen		
-vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he saw x recently	he was seen recently		
+vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he recently saw x	he was seen recently		
 vti, vta, u, inf	ᎤᎪᏩᏛᏗ	ᎪᏩ͓²Ꮫ³Ꮧ	u²gowh²tvh³di	gowh²tvh³di	for him to see x	For him to be seen		
+								
+vti, vta, a	ᎠᎦᏙᏍᏗ	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ, Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ	a¹kto²³sdi	a¹kto²³sdi, ạ²ga¹to²³sdi	he is looking at x	He is being looked at		
+	ᏥᏯᎦᏙᏍᏗ	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ, Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ	ji²yạ²ga¹to²³sdi,gạ¹ga¹to²³sdi	a¹kto²³sdi, ạ²ga¹to²³sdi	I am looking at x	I am being looked at		
+vti, vta, u	ᎤᎦᏙᏍᏔᏅᎢ	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ, Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ	u¹kto²³stạ³nv²³ɂi	a¹kto²³stạ³nv²³ɂi, a¹ga¹to²³stạ³nv²³ɂi	he looked at x a while ago	He was looked at a while ago		
+vti, vta, a	ᎠᎦᏙᏍᏗᏍᎪᎢ	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ, Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ	a¹kto²³sdi³sgo³ɂi	a¹kto²³sdi³sgo³ɂi, a¹ga¹to²³sdi³sgo³ɂi	he is often looking at x	He is often looked at		
+vti, vta, imp, a	ᎯᏯᎦᏙᏍᏓ	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ, Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ	hi²yạ²ga¹to²³sda, hạ²kto²³sda	ạ²kto²³sda, ạ²ga¹to²³sda	let him look at x	Let him be looked at		
+vti, vta, a	ᎯᏯᎦᏙᏍᏓ	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ², Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²	hi²yạ²ga¹to²³sda, hạ²kto²³sda	ạ²kto²³sda², ạ²ga¹to²³sda²	he recently looked at x	he was recently looked at		
+vti, vta, u, inf	ᎤᎦᏙᏍᏙᏗ	Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ, Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ	u²kto²³sdoh³di	ạ²kto²³sdoh³di, ạ²ga¹to²³sdoh³di	for him to look at x	For him to be looked at		
+								
 vti, vta, u	ᎤᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	u¹du²lị³ha	ạ²du²lị³ha	He is wanting x	He is wanted		
 	ᎠᏆᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	a¹gwạ²du²lị³ha	ạ²du²lị³ha	I am wanting x	I am wanted		
 vti, vta, u	ᎤᏚᎸᎲᎢ	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	u¹du²lv²hv²³ɂi	ạ²du²lv²hv²³ɂi	He wanted x a while ago	He was wanted a while ago		
 vti, vta, u	ᎤᏚᎵᏍᎪᎢ	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	u¹du²li²³sgọ³ɂi	ạ²du²li²³sgọ³ɂi	He often is wanting x	He is often wanted		
 vti, vta, imp, u	ᏣᏚᎳ	Ꭰ̣²Ꮪ²³Ꮃ	jạ²du²³la	ạ²du²³la	Let him want x	Let him be wanted		
-vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he wanted x recently	he was wanted recently		
+vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he recently wanted x	he was wanted recently		
 vti, vta, u, inf	ᎤᏚᎸᏗ	Ꭰ̣²ᏚᎸ͓²Ꮧ	u²duhl²di	ạ²duhl²di	For him to want x	For him to be wanted		
+								
 vi, a	ᎡᎦ	Ꭱ³Ꭶ	e³ga	e³ga	he is going			
 	ᎨᎦ	Ꭱ³Ꭶ	ge³ga	e³ga	I am going			
 vi, u	ᎤᏪᏅᏒᎢ	Ꭱ²Ꮕ³Ꮢ²³Ꭲ	u¹we²nv³sv²³ɂi	e²nv³sv²³ɂi	He went a while ago			
 vi, a	ᎡᎪᎢ	Ꭱ³Ꭺ̣³Ꭲ	e³gọ³ɂi	e³gọ³ɂi	He often is going			
 vi, imp, a	ᎮᎾ	Ꭱ¹Ꮎ	he¹na	e¹na	Let him go			
-vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he went recently			
+vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he recently went			
 vi, u, inf	ᎤᏪᏅᏍᏗ	Ꭱ²Ꮕ¹ᏍᏗ	ụ²we²nv¹sdi	e²nv¹sdi	For him to go			
 								
 vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		a solid object, solid objects	
@@ -73,36 +83,41 @@ vi, xde, u	ᎤᏲᏏᎭ	Ᏺ³Ꮟ̣²Ꭽ	u¹yo³sị²ha	yo³sị²ha	He is hungr
 vi, xde, u	ᎤᏲᏏᏍᎬᎢ	Ᏺ³Ꮟ²ᏍᎬ²³Ꭲ	u¹yo³si²sgv²³ɂi	yo³si²sgv²³ɂi	He was hungry a while ago			
 vi, xde, u	ᎤᏲᏏᏍᎪᎢ	Ᏺ³Ꮟ²ᏍᎪ³Ꭲ	u¹yo³si²sgo³ɂi	yo³si²sgo³ɂi	He often is hungry			
 vi, xdi, imp, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ	jạ²yo¹si²³sa	yo¹si²³sa	Let him be hungry			
-vi, xde, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ²	jạ²yo¹si²³sa²	yo¹si²³sa²	he was hungry recently			
+vi, xde, u	ᏣᏲᏏᏌ	Ᏺ¹Ꮟ²³Ꮜ²	jạ²yo¹si²³sa²	yo¹si²³sa²	he was recently hungry			
 vi, xdi, u, inf	ᎤᏲᏏᏐᏗ	Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ	u²yo¹si²³soh³di	yo¹si²³soh³di	For him to be hungry			
+								
 vi, xde, u	ᎤᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	u¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	He is thirsty			
 	ᎠᎩᏔᏕᎩᎠ	Ꮤ̣²Ꮥ²Ꭹ³Ꭰ	ak¹tạ²de²gi³ɂa	tạ²de²gi³ɂa	I am thirsty			
 vi, xde, u	ᎤᏔᏕᎦᏅᎢ	Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ	u¹tạ²de²ga³²nv²³ɂi	tạ²de²ga³²nv²³ɂi	He was thirsty a while ago			
 vi, xde, u	ᎤᏔᏕᎩᏍᎪᎢ	Ꮤ̣²Ꮥ²Ꭹ³ᏍᎪ³Ꭲ	u¹tạ²de²gi³sgo³ɂi	tạ²de²gi³sgo³ɂi	He is often thirsty			
 vi, xdi, imp, u	ᏣᏔᏕᎬᎦ	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ	tstạ²de²gv¹ga	tạ²de²gv¹ga	Let him be thirsty			
-vi, xde, u	ᏣᏔᏕᎬᎦ²	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	tstạ²de²gv¹ga²	tạ²de²gv¹ga²	he was thirsty recently			
+vi, xde, u	ᏣᏔᏕᎬᎦ²	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	tstạ²de²gv¹ga²	tạ²de²gv¹ga²	he was recently thirsty			
 vi, xdi, u, inf	ᎤᏔᏕᎪᏗ	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	u²tạ²de²³go³²di	tạ²de²³go³²di	For him to be thirsty			
+								
 vi, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he understand[s] x	He is being understood		
 	ᎪᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	go²li¹ga	o²li¹ga	I understand[s] x	I am being understood		
 vi, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago		
 vi, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often understand[s] x	He is often being understood		
 vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood		
-vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he understood x recently	He was understood recently		
+vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he recently understood x	He was understood recently		
 vi, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood		
+								
 vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he recognize[s] x	He is being recognized		
 	ᏣᏲᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	ji²yo²li¹ga	o²li¹ga	I recognize[s] x	I am being recognized		
 vta, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he recognized x a while ago	He was recognized a while ago		
 vta, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often recognize[s] x	He is often recognized		
 vta, g, imp	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hi²yo²li¹gi	ohl²gi, o²li¹gi	let him recognize x	Let him be recognized		
-vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recognized x recently	He was recognized recently		
+vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recently recognized x	He was recognized recently		
 vta, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to recognize x	For him to be recognized		
+								
 vi, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x			
 	ᏥᎴᎦ	³Ꮄ¹Ꭶ	jịɂ³le¹ga	ɂ³le¹ga	I am climbing x			
 vi, u	ᎤᎸᏒᎢ	Ꮈ³²Ꮢ²³Ꭲ	u¹lv³²sv²³ɂi	lv³²sv²³ɂi	he climbed x a while ago			
 vi, g	ᎦᎴᎪᎢ	³Ꮄ¹Ꭺ³Ꭲ	gạɂ³le¹go³ɂi	ɂ³le¹go³ɂi	he often is climbing x			
 vi, g, imp	ᎯᎷᎦ	²Ꮇ¹Ꭶ	hịɂ²lu¹ga	ɂ²lu¹ga	let him climb x			
-vi, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he climbed x recently			
+vi, g	ᎯᎷᎦ	²Ꮇ¹Ꭶ²	hịɂ²lu¹ga²	ɂ²lu¹ga²	he recently climbed x			
 vi, u, inf	ᎤᎸᏍᏗ	Ꮈ¹ᏍᏗ	u²lv¹sdi	lv¹sdi	for him to climb x			
+								
 n	ᏂᎯ	Ꮒ̣²Ꭿ	nị²hi	nị²hi	You one; You two; You all			
 n	ᎠᏴ	Ꭰ̣²Ᏼ	ạ²yv	ạ²yv	I, Me; We, Us			
 n	ᎯᎠ	Ꭿ̣²Ꭰ	hị²ɂa	hịɂa	This, These; They, Them; He, Him			
@@ -210,7 +225,7 @@ vti, a	ᎠᏍᏗᎩᎠ	¹ᏍᏗ²³Ꭹ̣³Ꭰ	a¹sdi²³gị³ɂa	¹sdi²³gị�
 vti, u	ᎤᏍᏗᎬᎢ	¹ᏍᏗ³Ꭼ²³Ꭲ	u¹sdi³gv²³ɂi	¹sdi³gv²³ɂi	he ate x a while ago		something rod shaped, rod shaped things	
 vti, a	ᎠᏍᏗᎩᏍᎪᎢ	¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ	a¹sdi²³gi³²sgo³ɂi	¹sdi²³gi³²sgo³ɂi	he often is eating x		something rod shaped, rod shaped things	
 vti, imp	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ	hị²sdi²³ga	sdi²³ga	let him eat x		something rod shaped, rod shaped things	
-vti, a	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ²	hị²sdi²³ga²	sdi²³ga²	he ate x recently		something rod shaped, rod shaped things	
+vti, a	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ²	hị²sdi²³ga²	sdi²³ga²	he recently ate x		something rod shaped, rod shaped things	
 vti, u, inf	ᎤᏍᏗᎩᏍᏗ	ᏍᏗ²³Ꭹ³²ᏍᏗ	u²sdi²³gi³²sdi	sdi²³gi³²sdi	for him to eat x		something rod shaped, rod shaped things	
 								
 vti, g	ᎦᏰᎠ	ɂᏰ³Ꭰ	ga²hye³ɂa	ɂhye³ɂa, ɂye³ɂa	he is eating x		something flexible, flexible things	
@@ -218,7 +233,7 @@ vti, g	ᎦᏰᎠ	ɂᏰ³Ꭰ	ga²hye³ɂa	ɂhye³ɂa, ɂye³ɂa	he is eating x		s
 vti, u	ᎤᏩᏯᎥᎢ	ɂᏯ³Ꭵ²³Ꭲ	u¹wa²hya³ɂv²³ɂi	ɂhya³ɂv²³ɂi, ɂya³ɂv²³ɂi	he ate x a while ago		something flexible, flexible things	
 vti, g	ᎦᏰᏍᎪᎢ	ɂᏰ³ᏍᎪ³Ꭲ	ga²hye³sgo³ɂi	ɂhye³sgo³ɂi, ɂye³sgo³ɂi	he often is eating x		something flexible, flexible things	
 vti, imp	ᎯᏯᏯᎦ, ᎯᏯᎦ	ɂᏯ̣²Ꭶ	hi²ya¹yạ²ga, hi²hyạ²ga	ɂhyạ²ga, ɂyạ²ga	let him eat x		something flexible, flexible things	
-vti, g	ᎯᏯᏯᎦ, ᎯᏯᎦ	ɂᏯ̣²Ꭶ²	hi²ya¹yạ²ga, hi²hyạ²ga	ɂhyạ²ga², ɂyạ²ga²	he ate x recently		something flexible, flexible things	
+vti, g	ᎯᏯᏯᎦ, ᎯᏯᎦ	ɂᏯ̣²Ꭶ²	hi²ya¹yạ²ga, hi²hyạ²ga	ɂhyạ²ga², ɂyạ²ga²	he recently ate x		something flexible, flexible things	
 vti, u, inf	ᎤᏩᏰᏍᏗ	ɂᏰ¹ᏍᏗ	ụ²wa²hye¹sdi	ɂhye¹sdi, ɂye¹sdi	for him to eat x		something flexible, flexible things	
 								
 vti, a	ᎠᏗᏔᏍᎦ	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	a¹di²tạ³sga	a¹di²tạ³sga	he is drinking x		something, drinks	
@@ -226,13 +241,13 @@ vti, a	ᎠᏗᏔᏍᎦ	Ꭰ¹Ꮧ²Ꮤ̣³ᏍᎦ	a¹di²tạ³sga	a¹di²tạ³sga
 vti, u	ᎤᏗᏔᎲᎢ	Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ	u¹di²tạ²hv²³ɂi	u¹di²tạ²hv²³ɂi	he drank x a while ago		something, drinks	
 vti, a	ᎠᏗᏔᏍᎪᎢ	Ꭰ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ	a¹di²tạ²sgo³ɂi	a¹di²tạ²sgo³ɂi	he often is drinking x		something, drinks	
 vti, imp	ᎭᏗᏔ	Ꭽ̣²Ꮧ²³Ꮤ	hạ²di²³ta	a²di²³ta	let him drink x		something, drinks	
-vti, a	ᎭᏗᏔ	Ꭽ̣²Ꮧ²³Ꮤ²	hạ²di²³ta²	a²di²³ta²	he drank x recently		something, drinks	
+vti, a	ᎭᏗᏔ	Ꭽ̣²Ꮧ²³Ꮤ²	hạ²di²³ta²	a²di²³ta²	he recently drank x		something, drinks	
 vti, u, inf	ᎤᏗᏔᏍᏗ	Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ	u²di²tạ²sdi	a²di²tạ²sdi	for him to drink x		something, drinks	
 								
-vti, g	ᎠᏚᎩᎠ	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ạ¹tu²³gị³a	ạ¹tu²³gị³a, ạɂ²du²³gị³a	he is drinking x		an alchoholic drink, alchoholic drinks	
-	ᎦᏚᎩᎠ	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	gạɂ²du²³gị³ɂa	ạ¹tu²³gị³a, ạɂ²du²³gị³a	I am drinking x		an alchoholic drink, alchoholic drinks	
-vti, u	ᎤᏚᎩᏒᎢ	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	u¹tu²³gi³²sv²³ɂi	ạ¹tu²³gi³²sv²³ɂi, ạɂ²du²³gi³²sv²³ɂi	he drank x a while ago		an alchoholic drink, alchoholic drinks	
-vti, g	ᎤᏚᎩᏍᎪᎢ	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	a¹tu²³gi³²sgo³ɂi	a¹tu²³gi³²sgo³ɂi, ạɂ²du²³gi³²sgo³ɂi	he often is drinking x		an alchoholic drink, alchoholic drinks	
-vti, imp	ᎭᏚᎩ	Ꭰ̣²Ꮪ²³Ꭹ	hạ²tu²³gi	ạ²tu²³gi, ạɂ²du²³gi	let him drink x		an alchoholic drink, alchoholic drinks	
-vti, g	ᎭᏚᎦ	Ꭰ̣²Ꮪ²³Ꭶ²	hạ²tu²³ga²	ạ²tu²³ga², ạɂ²du²³ga²	he drank x recently		an alchoholic drink, alchoholic drinks	
-vti, u, inf	ᎤᏚᎩᏍᏗ	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	u²tu²³gi³²sdi	ạ²tu²³gi³²sdi, ạɂ²du²³gi³²sdi	for him to drink x		an alchoholic drink, alchoholic drinks	
+vti, g	ᎠᏚᎩᎠ	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	ạ¹tu²³gị³a	ạ¹tu²³gị³a, ạɂ²du²³gị³a	he is drinking x		something alchoholic, alchoholic drinks	
+	ᎦᏚᎩᎠ	Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ	gạɂ²du²³gị³ɂa	ạ¹tu²³gị³a, ạɂ²du²³gị³a	I am drinking x		something alchoholic, alchoholic drinks	
+vti, u	ᎤᏚᎩᏒᎢ	Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ	u¹tu²³gi³²sv²³ɂi	ạ¹tu²³gi³²sv²³ɂi, ạɂ²du²³gi³²sv²³ɂi	he drank x a while ago		something alchoholic, alchoholic drinks	
+vti, g	ᎤᏚᎩᏍᎪᎢ	Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ	a¹tu²³gi³²sgo³ɂi	a¹tu²³gi³²sgo³ɂi, ạɂ²du²³gi³²sgo³ɂi	he often is drinking x		something alchoholic, alchoholic drinks	
+vti, imp	ᎭᏚᎩ	Ꭰ̣²Ꮪ²³Ꭹ	hạ²tu²³gi	ạ²tu²³gi, ạɂ²du²³gi	let him drink x		something alchoholic, alchoholic drinks	
+vti, g	ᎭᏚᎦ	Ꭰ̣²Ꮪ²³Ꭶ²	hạ²tu²³ga²	ạ²tu²³ga², ạɂ²du²³ga²	he recently drank x		something alchoholic, alchoholic drinks	
+vti, u, inf	ᎤᏚᎩᏍᏗ	Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ	u²tu²³gi³²sdi	ạ²tu²³gi³²sdi, ạɂ²du²³gi³²sdi	for him to drink x		something alchoholic, alchoholic drinks	

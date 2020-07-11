@@ -186,13 +186,14 @@ public class BuildDeck {
 				if (Collections.disjoint(vtypes, ptypes)) {
 					continue;
 				}
-				final String vgroup;;
+				final String vgroup;
+				;
 				final StringBuilder vrootSb = new StringBuilder();
 				final StringBuilder vrootChrSb = new StringBuilder();
 				if (ptypes.contains("alt") && !vroot_h.equals(vroot_alt)) {
 					vrootSb.append(vroot_alt);
 					vrootChrSb.append(vroot_alt_chr);
-					vgroup = vroot_alt_chr+"(deaspirate)";
+					vgroup = vroot_alt_chr + "*";
 				} else {
 					vrootSb.append(vroot_h);
 					vrootChrSb.append(vroot_h_chr);
@@ -570,10 +571,10 @@ public class BuildDeck {
 				pSylVowel = pSylConsonant;
 			}
 			if (pSylGlottal.isEmpty()) {
-				if (pSylVowel.endsWith("Ꮿ"+BoundPronouns.UNDERX+"-")) {
-					pSylGlottal = pSylVowel.toLowerCase().replace("Ꮿ"+BoundPronouns.UNDERX+"-", "Ꮿ²-");
-				} else if (pSylVowel.endsWith("Ꮹ"+BoundPronouns.UNDERX+"-")) {
-					pSylGlottal = pSylVowel.toLowerCase().replace("Ꮹ"+BoundPronouns.UNDERX+"-", "Ꮹ²-");
+				if (pSylVowel.endsWith("Ꮿ" + BoundPronouns.UNDERX + "-")) {
+					pSylGlottal = pSylVowel.toLowerCase().replace("Ꮿ" + BoundPronouns.UNDERX + "-", "Ꮿ²-");
+				} else if (pSylVowel.endsWith("Ꮹ" + BoundPronouns.UNDERX + "-")) {
+					pSylGlottal = pSylVowel.toLowerCase().replace("Ꮹ" + BoundPronouns.UNDERX + "-", "Ꮹ²-");
 				} else {
 					pSylGlottal = pSylConsonant;
 				}
@@ -798,11 +799,11 @@ public class BuildDeck {
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1$2are ");
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1$2were ");
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1$2have ");
-		
+
 		d.def = d.def.replaceAll("([Yy]ou)( .*? | )is ", "$1$2are ");
 		d.def = d.def.replaceAll("([Yy]ou)( .*? | )was ", "$1$2were ");
 		d.def = d.def.replaceAll("([Yy]ou)( .*? | )has ", "$1$2have ");
-		
+
 		d.def = d.def.replaceAll(" all has ", " all have ");
 		d.def = d.def.replaceAll(" two has ", " two have ");
 		d.def = d.def.replaceAll(" both has ", " both have ");
@@ -1250,26 +1251,35 @@ public class BuildDeck {
 			}
 		});
 		/*
-		 * assign sets based on order and pronoun + verb set combination
+		 * assign sets based on order and pronoun verb unique counts
 		 */
-		final Map<String, AtomicInteger> counts = new HashMap<>();
+		final Map<String, AtomicInteger> pronounCounts = new HashMap<>();
+		final Map<String, AtomicInteger> verbStemCounts = new HashMap<>();
 		for (final Card card : deck.cards) {
 			final String pset = card.pgroup;
+			if (!pronounCounts.containsKey(pset)) {
+				pronounCounts.put(pset, new AtomicInteger());
+			}
+			card.setPset(pronounCounts.get(pset).incrementAndGet());
+			
 			final String vset = card.vgroup;
-			if (!counts.containsKey(pset)) {
-				counts.put(pset, new AtomicInteger());
-			}
-			if (!counts.containsKey(vset)) {
-				counts.put(vset, new AtomicInteger());
-			}
-			card.setPset(counts.get(pset).incrementAndGet());
 			if (!vset.isEmpty()) {
-				card.setVset(counts.get(vset).incrementAndGet());
+				if (!verbStemCounts.containsKey(vset)) {
+					verbStemCounts.put(vset, new AtomicInteger());
+				}
+				card.setVset(verbStemCounts.get(vset).incrementAndGet());
 			}
 		}
-		// resort deck with sort key by "p group" then "v group" then lengths and locale
-		// sorting
-		Collections.sort(deck.cards);
+		// resort deck by "p group" then "v group"
+		Collections.sort(deck.cards, new Comparator<Card>() {
+			@Override
+			public int compare(Card a, Card b) {
+				if (a.getPset()!=b.getPset()) {
+					return a.getPset()-b.getPset();
+				}
+				return a.getVset()-b.getVset();
+			}
+		});
 		// assign ids based on card positions in the deck
 		for (int i = 0; i < deck.cards.size(); i++) {
 			deck.cards.get(i).id = i + 1;
@@ -1296,7 +1306,7 @@ public class BuildDeck {
 			checkSheet.delete();
 		}
 
-		appendText(checkSheet, "PSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
+		appendText(checkSheet, "ID\tPSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
 
 		final Set<String> already = new HashSet<>();
 		final StringBuilder espeak = new StringBuilder();
@@ -1306,9 +1316,6 @@ public class BuildDeck {
 			maxAnswers = Math.max(maxAnswers, card.answer.size());
 		}
 		for (final Card card : deck.cards) {
-//			if (card.challenge.size() < 2) {
-//				continue;
-//			}
 			final String syllabary;
 			if (card.challenge.size() > 0) {
 				syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
@@ -1341,6 +1348,8 @@ public class BuildDeck {
 
 			espeak.setLength(0);
 
+			check.append(card.id);
+			check.append("\t");
 			check.append(card.getPset());
 			check.append("\t");
 			check.append(card.getVset());
@@ -1386,12 +1395,12 @@ public class BuildDeck {
 				"", //
 				"Ꮵ²-, Ꮵ²Ꮿ͓-", "Ꮵ̣²-, Ꭶ͓-", "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-", //
 				"Ꭿ²-, Ꭿ²Ꮿ͓-", "Ꭿ̣²-", "Ꮳ̣²-", "Ꭰ̣²-, Ꭶ̣²-", //
-				"Ꭴ¹-, Ꭴ¹Ꮹ͓-", "Ꭰ¹Ꮒ²-", "Ꭴ¹Ꮒ²-"));
+				"Ꭴ¹-, Ꭴ¹Ꮹ͓-"));
 		/*
 		 * split out into buckets based on bound pronoun
 		 */
 		List<Card> tmpDeck = new ArrayList<>(deckToFilter.cards);
-		Map<String, List<Card>> buckets = new HashMap<>();
+		Map<String, List<Card>> bucketsByPronoun = new HashMap<>();
 		Iterator<Card> iter = tmpDeck.iterator();
 		while (iter.hasNext()) {
 			Card card = iter.next();
@@ -1399,11 +1408,26 @@ public class BuildDeck {
 				// cards in the always keep list aren't eligible for removal
 				continue;
 			}
-			String pgroup = pgroupBucket(card);
-			if (!buckets.containsKey(pgroup)) {
-				buckets.put(pgroup, new ArrayList<Card>());
+			String pgroup = card.pgroup;// pgroupBucket(card);
+			if (!bucketsByPronoun.containsKey(pgroup)) {
+				bucketsByPronoun.put(pgroup, new ArrayList<Card>());
 			}
-			buckets.get(pgroup).add(0, card);
+			bucketsByPronoun.get(pgroup).add(card);
+		}
+		
+		/*
+		 * Sort each bucket by vset desc, pset desc to weight for removal the most common occurrences first
+		 */
+		for (List<Card> bucket: bucketsByPronoun.values()) {
+			Collections.sort(bucket, new Comparator<Card>() {
+				@Override
+				public int compare(Card a, Card b) {
+					if (a.getVset()==b.getVset()) {
+						return b.getPset()-a.getPset();
+					}
+					return b.getVset() - a.getVset();
+				}
+			});
 		}
 
 		System.out.println("Reducing final deck size");
@@ -1415,11 +1439,11 @@ public class BuildDeck {
 		 * variations, as well as to keep at least a set minimum of each verb stem with
 		 * non-core conjugations.
 		 */
-		final int MIN_VSTEM_COUNT = 2;
-		final int MIN_PFORM_COUNT = 2;
-		while (!buckets.isEmpty()) {
-			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(buckets.values());
-			for (List<Card> bucket : buckets.values()) {
+		final int MIN_VSTEM_COUNT = 3;
+		final int MIN_PFORM_COUNT = 4;
+		while (!bucketsByPronoun.isEmpty()) {
+			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(bucketsByPronoun.values());
+			for (List<Card> bucket : bucketsByPronoun.values()) {
 				bucket.removeIf(new Predicate<Card>() {
 					@Override
 					public boolean test(Card card) {
@@ -1427,14 +1451,13 @@ public class BuildDeck {
 					}
 				});
 			}
-			buckets.values().removeIf(new Predicate<List<Card>>() {
-
+			bucketsByPronoun.values().removeIf(new Predicate<List<Card>>() {
 				@Override
 				public boolean test(List<Card> bucket) {
 					return bucket.size() <= MIN_PFORM_COUNT;
 				}
 			});
-			List<List<Card>> sorted = new ArrayList<>(buckets.values());
+			List<List<Card>> sorted = new ArrayList<>(bucketsByPronoun.values());
 			Collections.sort(sorted, new Comparator<List<Card>>() {
 				@Override
 				public int compare(List<Card> a, List<Card> b) {
@@ -1457,7 +1480,7 @@ public class BuildDeck {
 		 * rebuild buckets with cards for use to get a basic report of counts by bound
 		 * pronoun set
 		 */
-		buckets.clear();
+		bucketsByPronoun.clear();
 		tmpDeck = new ArrayList<>(deckToFilter.cards);
 		iter = tmpDeck.iterator();
 		while (iter.hasNext()) {
@@ -1471,10 +1494,10 @@ public class BuildDeck {
 			if (ix > 0) {
 				pgroup = card.challenge.get(0).substring(0, ix - 1) + "|" + pgroup;
 			}
-			if (!buckets.containsKey(pgroup)) {
-				buckets.put(pgroup, new ArrayList<Card>());
+			if (!bucketsByPronoun.containsKey(pgroup)) {
+				bucketsByPronoun.put(pgroup, new ArrayList<Card>());
 			}
-			buckets.get(pgroup).add(0, card);
+			bucketsByPronoun.get(pgroup).add(0, card);
 		}
 
 		System.out.println("Final deck size: " + (deckToFilter.cards.size()));
@@ -1483,13 +1506,13 @@ public class BuildDeck {
 		 * Dump a review report showing the counts by prefix set.
 		 */
 		StringBuilder sb = new StringBuilder();
-		for (String bucket : new TreeSet<>(buckets.keySet())) {
+		for (String bucket : new TreeSet<>(bucketsByPronoun.keySet())) {
 			if (bucket.isEmpty()) {
 				sb.append("FIXED WORDS: ");
 			} else {
 				sb.append(bucket + ": ");
 			}
-			sb.append(NumberFormat.getInstance().format(buckets.get(bucket).size()));
+			sb.append(NumberFormat.getInstance().format(bucketsByPronoun.get(bucket).size()));
 			sb.append("\n");
 		}
 //		System.out.println(sb.toString());
