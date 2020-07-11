@@ -76,10 +76,11 @@ public class BuildDeck {
 			vtypes.addAll(Arrays.asList(challenge[0].split(",\\s*")));
 
 			if (vtypes.contains("n")) {
-				String latinCitationEntry = challenge[3];
+				final String latinCitationEntry = challenge[3];
 				final String chrCitationEntry = challenge[2];
+				final String cardLookupKey = latinCitationEntry;
 				setStatus("Please wait, adding term: " + chrCitationEntry);
-				Card c = getCardByChallenge(chrCitationEntry, deck);
+				Card c = getCardByLatinChallenge(cardLookupKey, deck);
 				if (c == null) {
 					c = new Card();
 					deck.cards.add(c);
@@ -512,7 +513,7 @@ public class BuildDeck {
 						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + pronounObject + " ");
 					}
 				}
-				Card c = getCardByChallenge(d.chr, deck);
+				Card c = getCardByLatinChallenge(d.latin, deck);
 				if (c == null) {
 					c = new Card();
 					deck.cards.add(c);
@@ -1114,7 +1115,7 @@ public class BuildDeck {
 				chr = prevChr;
 			}
 
-			Card c = getCardByChallenge(chr.toString(), deck);
+			Card c = getCardByLatinChallenge(chr.toString(), deck);
 			if (c == null) {
 				c = new Card();
 				c.pgroup = pgroup;
@@ -1135,9 +1136,9 @@ public class BuildDeck {
 		sortThenSaveDeck();
 	}
 
-	private Card getCardByChallenge(final String chr, @SuppressWarnings("hiding") final Deck deck) {
+	private Card getCardByLatinChallenge(final String latin, @SuppressWarnings("hiding") final Deck deck) {
 		for (final Card card : deck.cards) {
-			if (card.challenge.get(0).equalsIgnoreCase(chr)) {
+			if (card.challenge.get(1).equalsIgnoreCase(latin)) {
 				return card;
 			}
 		}
