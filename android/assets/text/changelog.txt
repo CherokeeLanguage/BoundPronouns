@@ -1,3 +1,7 @@
+3.33
+
+Misc adjustments to deck.
+
 3.32
 
 Leaner and better focused deck with more core verbs.
