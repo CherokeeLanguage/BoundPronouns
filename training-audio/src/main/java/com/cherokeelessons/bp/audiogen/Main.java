@@ -26,8 +26,8 @@ public class Main {
 	private static final NumberFormat NF = NumberFormat.getInstance();
 	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final String DECK_TSV = "../android/assets/review-sheet.tsv";
-	private static final int CHEROKEE_ANSWER = 5;
-	private static final int CHALLENGES_START = 6;
+	private static final int CHEROKEE_ANSWER = 6;
+	private static final int CHALLENGES_START = 7;
 
 	private final AudioDeck mainDeck;
 	private final Set<String> voiceVariants;
@@ -63,7 +63,7 @@ public class Main {
 	}
 
 	public void execute() throws IOException, UnsupportedAudioFileException {
-		buildMainDeck();
+		loadMainDeck();
 		generateWavFiles();
 		generateDurationsReport();
 	}
@@ -147,7 +147,7 @@ public class Main {
 		return durationInSeconds;
 	}
 
-	private void buildMainDeck() throws IOException {
+	private void loadMainDeck() throws IOException {
 		StringBuilder debug = new StringBuilder();
 		File jsonFile = new File(DECK_TSV);
 		System.out.println(jsonFile.getAbsolutePath());
