@@ -23,6 +23,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.omg.CORBA.SystemException;
 
+import com.cherokeelessons.deck.CardStats;
+import com.cherokeelessons.deck.CardUtils;
+import com.cherokeelessons.deck.DeckStats;
+import com.cherokeelessons.deck.ICard;
+
 public class Main {
 
 	private static final NumberFormat NF = NumberFormat.getInstance();
@@ -33,6 +38,8 @@ public class Main {
 	private static final int CHALLENGES_START = 7;
 
 	private final AudioDeck mainDeck;
+	private final AudioDeck activeDeck;
+	private final AudioDeck discardsDeck;
 	private final Set<String> voiceVariants;
 
 	private List<String> voices = new ArrayList<>();
@@ -50,6 +57,8 @@ public class Main {
 
 	public Main() {
 		mainDeck = new AudioDeck();
+		activeDeck = new AudioDeck();
+		discardsDeck = new AudioDeck();
 		voiceVariants = new TreeSet<>();
 		// default
 		voiceVariants.addAll(Arrays.asList(""));
@@ -66,24 +75,38 @@ public class Main {
 	}
 
 	public void execute() throws IOException, UnsupportedAudioFileException {
-		loadMainDeck(true);
+		loadMainDeck();
 		generateWavFiles();
 		generateDurationsReport();
-		buildExerciseWavFiles();
+		buildExerciseMp3Files();
 	}
 
-	private void buildExerciseWavFiles() {
+	private void buildExerciseMp3Files() {
 		FileUtils.deleteQuietly(EXCERCISES_DIR);
 		File silenceWav = generateSilenceWav();
 		List<File> audioEntries = new ArrayList<>();
+		
 		float tick = 0f;
-		for (AudioCard card: mainDeck.getCards()) {
+		while (tick < 60f * 10f) {
+			if (!activeDeck.hasCards() && !mainDeck.hasCards()) {
+				break;
+			}
+			if (activeDeck.getNextShowTime() / 1000f > 4 || !activeDeck.hasCards()) {
+				AudioCard topCard = (AudioCard) mainDeck.topCard();
+				topCard.resetStats();
+				topCard.resetTriesRemaining();
+				activeDeck.add(topCard);
+			}
+			activeDeck.shuffleThenSortByNextSession();
+			activeDeck.updateTimeBy(activeDeck.getNextShowTime());
+			AudioCard card = (AudioCard) activeDeck.topCard();
+			
 			AudioData data = card.getData();
 			audioEntries.add(data.getChallengeFile());
 			tick += data.getChallengeDuration();
 			float answerDuration = data.getAnswerDuration();
-			float gapDuration = answerDuration*1.5f+2f;
-			while (gapDuration-->0f) {
+			float gapDuration = answerDuration * 1.5f + 2f;
+			while (gapDuration-- > 0f) {
 				audioEntries.add(silenceWav);
 				tick += 1f;
 			}
@@ -92,9 +115,9 @@ public class Main {
 			 */
 			audioEntries.add(data.getAnswerFile());
 			tick += answerDuration;
-			
-			gapDuration = answerDuration+2f;
-			while (gapDuration-->0f) {
+
+			gapDuration = answerDuration + 2f;
+			while (gapDuration-- > 0f) {
 				audioEntries.add(silenceWav);
 				tick += 1f;
 			}
@@ -103,24 +126,32 @@ public class Main {
 			 */
 			audioEntries.add(data.getAnswerFile());
 			tick += answerDuration;
-			
-			for (int trailingSilence=0; trailingSilence<4; trailingSilence++) {
+
+			for (int trailingSilence = 0; trailingSilence < Math.max(3, answerDuration + 2f); trailingSilence++) {
 				audioEntries.add(silenceWav);
 				tick += 1f;
 			}
-			if (tick>60f*30f) {
-				break;
+			
+			CardStats cardStats = card.getCardStats();
+			cardStats.pimsleurSlotInc();
+			long nextInterval = CardUtils.getNextInterval(cardStats.getPimsleurSlot());
+			cardStats.setShowAgainDelay_ms(nextInterval);
+			cardStats.triesRemainingDec();
+			if (cardStats.getTriesRemaining()<1) {
+				cardStats.leitnerBoxInc();
+				discardsDeck.add(card);
 			}
+			
 		}
 		List<String> cmd = new ArrayList<>();
 		cmd.add("sox");
-		for (File audioEntry: audioEntries) {
+		for (File audioEntry : audioEntries) {
 			cmd.add(audioEntry.getAbsolutePath());
 		}
 		File wavOutputFile = new File(EXCERCISES_DIR, "test-output.wav");
 		cmd.add(wavOutputFile.getAbsolutePath());
 		executeCmd(cmd);
-		System.out.println("Total ticks: "+NF.format(tick)+" secs ["+NF.format(tick/60f)+" mins]");
+		System.out.println("Total ticks: " + NF.format(tick) + " secs [" + NF.format(tick / 60f) + " mins]");
 		File mp3OutputFile = new File(EXCERCISES_DIR, "test-output.mp3");
 		cmd.clear();
 		cmd.add("ffmpeg");
@@ -150,8 +181,8 @@ public class Main {
 		try {
 			process = b.start();
 			process.waitFor();
-			if (process.exitValue()!=0) {
-				System.err.println("FATAL: Bad exit value from\n"+StringUtils.join(cmd, " "));
+			if (process.exitValue() != 0) {
+				System.err.println("FATAL: Bad exit value from\n" + StringUtils.join(cmd, " "));
 			}
 			process.destroy();
 		} catch (IOException | InterruptedException e) {
@@ -241,7 +272,7 @@ public class Main {
 	private void loadMainDeck() throws IOException {
 		loadMainDeck(false);
 	}
-	
+
 	private void loadMainDeck(boolean debugSize) throws IOException {
 		StringBuilder debug = new StringBuilder();
 		File jsonFile = new File(DECK_TSV);
