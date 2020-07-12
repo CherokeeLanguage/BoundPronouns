@@ -11,7 +11,7 @@ vti, vta, a	ᎠᎪᏩᏘᎭ	ᎪᏩ͓²Ꮨ̣³Ꭽ	a¹gowh²tị³ha	gowh²tị³h
 vti, vta, u	ᎤᎪᎲᎢ	Ꭺ²Ꮂ²³Ꭲ	u¹go²hv²³ɂi	go²hv²³ɂi	he saw x a while ago	He was seen a while ago		
 vti, vta, a	ᎠᎪᏩᏘᏍᎪᎢ	ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ	a¹gowh²ti²³sgọ³ɂi	gowh²ti²³sgọ³ɂi	he is often seeing x	He is often seen		
 vti, vta, imp, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ	hi²go¹wah²ta	go¹wah²ta	let him see x	Let him be seen		
-vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he recently saw x	he was seen recently		
+vti, vta, a	ᎯᎪᏩᏔ	Ꭺ¹Ꮹ²Ꮤ²	hi²go¹wah²ta²	go¹wah²ta²	he recently saw x	he was recently seen		
 vti, vta, u, inf	ᎤᎪᏩᏛᏗ	ᎪᏩ͓²Ꮫ³Ꮧ	u²gowh²tvh³di	gowh²tvh³di	for him to see x	For him to be seen		
 								
 vti, vta, a	ᎠᎦᏙᏍᏗ	Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ, Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ	a¹kto²³sdi	a¹kto²³sdi, ạ²ga¹to²³sdi	he is looking at x	He is being looked at		
@@ -27,7 +27,7 @@ vti, vta, u	ᎤᏚᎵᎭ	Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ	u¹du²lị³ha	ạ²du²lị³h
 vti, vta, u	ᎤᏚᎸᎲᎢ	Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ	u¹du²lv²hv²³ɂi	ạ²du²lv²hv²³ɂi	He wanted x a while ago	He was wanted a while ago		
 vti, vta, u	ᎤᏚᎵᏍᎪᎢ	Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ	u¹du²li²³sgọ³ɂi	ạ²du²li²³sgọ³ɂi	He often is wanting x	He is often wanted		
 vti, vta, imp, u	ᏣᏚᎳ	Ꭰ̣²Ꮪ²³Ꮃ	jạ²du²³la	ạ²du²³la	Let him want x	Let him be wanted		
-vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he recently wanted x	he was wanted recently		
+vti, vta, u	ᏣᏚᎳ²	Ꭰ̣²Ꮪ²³Ꮃ²	jạ²du²³la²	ạ²du²³la²	he recently wanted x	he was recently wanted		
 vti, vta, u, inf	ᎤᏚᎸᏗ	Ꭰ̣²ᏚᎸ͓²Ꮧ	u²duhl²di	ạ²duhl²di	For him to want x	For him to be wanted		
 								
 vi, a	ᎡᎦ	Ꭱ³Ꭶ	e³ga	e³ga	he is going			
@@ -99,7 +99,7 @@ vi, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he unde
 vi, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago		
 vi, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often understand[s] x	He is often being understood		
 vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood		
-vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he recently understood x	He was understood recently		
+vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he recently understood x	He was recently understood		
 vi, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood		
 								
 vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he recognize[s] x	He is being recognized		
@@ -107,7 +107,7 @@ vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he rec
 vta, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he recognized x a while ago	He was recognized a while ago		
 vta, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he often recognize[s] x	He is often recognized		
 vta, g, imp	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hi²yo²li¹gi	ohl²gi, o²li¹gi	let him recognize x	Let him be recognized		
-vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recently recognized x	He was recognized recently		
+vta, g	ᎯᏲᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hi²yo²li¹ga²	ohl²ga², o²li¹ga²	he recently recognized x	He was recently recognized		
 vta, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to recognize x	For him to be recognized		
 								
 vi, g	ᎦᎴᎦ	³Ꮄ¹Ꭶ	gạɂ³le¹ga	ɂ³le¹ga	he is climbing x			

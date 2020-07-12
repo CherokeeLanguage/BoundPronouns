@@ -33,6 +33,9 @@ import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck {
+	
+	public static final int MIN_VSTEM_COUNT = 2;
+	public static final int MIN_PFORM_VSTEM_COMBO_COUNT = 2;
 
 	public static final int DECK_VERSION = 100;
 
@@ -112,50 +115,56 @@ public class BuildDeck {
 					|| latinStemEntry.startsWith("j");
 			final String vroot_set = challenge[4];
 			final String vroot_chr_set = challenge[2];
-			final String vdef_active = challenge[5];
-			final String vdef_passive = challenge[6];
-			final String vdef_inanimateObjects = challenge[7];
-			final String vdef_animateObjects = challenge[8];
-			String vroot_h = StringUtils.substringBefore(vroot_set, ",");
-			String vroot_h_chr = StringUtils.substringBefore(vroot_chr_set, ",");
-			String vroot_alt = StringUtils.substringAfter(vroot_set, ",");
-			String vroot_alt_chr = StringUtils.substringAfter(vroot_chr_set, ",");
-			if (StringUtils.isBlank(vroot_alt)) {
-				vroot_alt = vroot_h;
+			final String defActiveVoice = challenge[5];
+			final String defPassiveVoice = challenge[6];
+			final String inanimateObjects = challenge[7];
+			final String animateObjects = challenge[8];
+			String vroot_aspirated = StringUtils.substringBefore(vroot_set, ",");
+			String vroot_aspirated_chr = StringUtils.substringBefore(vroot_chr_set, ",");
+			String vroot_deaspirated = StringUtils.substringAfter(vroot_set, ",");
+			String vroot_deaspirated_chr = StringUtils.substringAfter(vroot_chr_set, ",");
+			if (StringUtils.isBlank(vroot_deaspirated)) {
+				vroot_deaspirated = vroot_aspirated;
 			}
-			if (StringUtils.isBlank(vroot_alt_chr)) {
-				vroot_alt_chr = vroot_h_chr;
+			if (StringUtils.isBlank(vroot_deaspirated_chr)) {
+				vroot_deaspirated_chr = vroot_aspirated_chr;
 			}
-			vroot_h = StringUtils.strip(vroot_h);
-			vroot_alt = StringUtils.strip(vroot_alt);
-			vroot_h_chr = StringUtils.strip(vroot_h_chr);
-			vroot_alt_chr = StringUtils.strip(vroot_alt_chr);
+			vroot_aspirated = StringUtils.strip(vroot_aspirated);
+			vroot_deaspirated = StringUtils.strip(vroot_deaspirated);
+			vroot_aspirated_chr = StringUtils.strip(vroot_aspirated_chr);
+			vroot_deaspirated_chr = StringUtils.strip(vroot_deaspirated_chr);
+			
+			boolean adjective = vtypes.contains("adj");
+			
+			boolean imperative;
+			boolean infinitive;
+			if (StringUtils.isBlank(defActiveVoice)) {
+				imperative = defPassiveVoice.toLowerCase().startsWith("let") || vtypes.contains("imp");
+				infinitive = defPassiveVoice.toLowerCase().startsWith("for") || vtypes.contains("inf");
+			} else {
+				imperative = defActiveVoice.toLowerCase().startsWith("let") || vtypes.contains("imp");
+				infinitive = defActiveVoice.toLowerCase().startsWith("for") || vtypes.contains("inf");
+			}
+			
+			final boolean useDiPrefixedForms = adjective || imperative || infinitive;
 
-			boolean v_imp = vdef_active.toLowerCase().startsWith("let");
-			boolean v_inf = vdef_active.toLowerCase().startsWith("for");
-			if (StringUtils.isBlank(vdef_active)) {
-				v_imp = vdef_passive.toLowerCase().startsWith("let");
-				v_inf = vdef_passive.toLowerCase().startsWith("for");
-			}
-			final boolean useDiPrefixedForms = vtypes.contains("adj") || v_imp || v_inf;
-
-			final boolean gStem = vroot_h.startsWith("ɂ");
+			final boolean gStem = vroot_aspirated.startsWith("ɂ");
 			if (gStem) {
-				vroot_h = vroot_h.substring(1);
-				vroot_alt = vroot_alt.substring(1);
-				vroot_h_chr = vroot_h_chr.substring(1);
-				vroot_alt_chr = vroot_alt_chr.substring(1);
+				vroot_aspirated = vroot_aspirated.substring(1);
+				vroot_deaspirated = vroot_deaspirated.substring(1);
+				vroot_aspirated_chr = vroot_aspirated_chr.substring(1);
+				vroot_deaspirated_chr = vroot_deaspirated_chr.substring(1);
 			}
 
-			final boolean aStem = vroot_h.matches("[ạaẠA].*");
-			final boolean eStem = vroot_h.matches("[ẹeẸE].*");
-			final boolean iStem = vroot_h.matches("[ịiỊI].*");
-			final boolean oStem = vroot_h.matches("[ọoỌO].*");
-			final boolean uStem = vroot_h.matches("[ụuỤU].*");
-			final boolean vStem = vroot_h.matches("[ṿvṾV].*");
+			final boolean aStem = vroot_aspirated.matches("[ạaẠA].*");
+			final boolean eStem = vroot_aspirated.matches("[ẹeẸE].*");
+			final boolean iStem = vroot_aspirated.matches("[ịiỊI].*");
+			final boolean oStem = vroot_aspirated.matches("[ọoỌO].*");
+			final boolean uStem = vroot_aspirated.matches("[ụuỤU].*");
+			final boolean vStem = vroot_aspirated.matches("[ṿvṾV].*");
 			final boolean cStem = !(aStem | eStem | iStem | oStem | uStem | vStem);
 
-			setStatus("Please wait, conjugating: " + vroot_h_chr);
+			setStatus("Please wait, conjugating: " + vroot_aspirated_chr);
 			final Iterator<String[]> ipro = pronouns.iterator();
 			while (ipro.hasNext()) {
 				final String[] pronoun = ipro.next();
@@ -172,12 +181,14 @@ public class BuildDeck {
 				final String pTypeSet = pronoun[0];
 				final String pSyllabarySet = pronoun[1];
 				final String pLatinSet = pronoun[2];
-				final String pChrDiPrefixedSet = pronoun[6];
+				final String pSyllabaryDiPrefixedSet = pronoun[6];
 				final String pLatinDiPrefixedSet = pronoun[7];
 
 				final Set<String> ptypes = new HashSet<>();
 				ptypes.addAll(Arrays.asList(pTypeSet.split(",\\s*")));
 
+				boolean deaspirate = ptypes.contains("alt") && !vroot_aspirated.equals(vroot_deaspirated);
+						
 				boolean p_g3rd = false;
 				if (ptypes.contains("g")) {
 					p_g3rd = true;
@@ -188,40 +199,41 @@ public class BuildDeck {
 					continue;
 				}
 				final String vgroup;
-				;
+				
 				final StringBuilder vrootSb = new StringBuilder();
 				final StringBuilder vrootChrSb = new StringBuilder();
-				if (ptypes.contains("alt") && !vroot_h.equals(vroot_alt)) {
-					vrootSb.append(vroot_alt);
-					vrootChrSb.append(vroot_alt_chr);
-					vgroup = vroot_alt_chr + "*";
+				
+				if (deaspirate) {
+					vrootSb.append(vroot_deaspirated);
+					vrootChrSb.append(vroot_deaspirated_chr);
 				} else {
-					vrootSb.append(vroot_h);
-					vrootChrSb.append(vroot_h_chr);
-					vgroup = vroot_h_chr;
+					vrootSb.append(vroot_aspirated);
+					vrootChrSb.append(vroot_aspirated_chr);
 				}
+				
+				vgroup = (gStem?"ɂ":"") + vrootChrSb.toString() + (deaspirate?"*":"");
 
 				d.chr = pSyllabarySet;
 				d.latin = pLatinSet;
 				d.def = "";
 
 				if (useDiPrefixedForms) {
-					if (!StringUtils.isBlank(pChrDiPrefixedSet)) {
-						d.chr = pChrDiPrefixedSet;
+					if (!StringUtils.isBlank(pSyllabaryDiPrefixedSet)) {
+						d.chr = pSyllabaryDiPrefixedSet;
 						d.latin = pLatinDiPrefixedSet;
 					}
 				}
 
 				final String pgroup;
-				if (pSyllabarySet.lastIndexOf(",") != pSyllabarySet.indexOf(",")) {
-					pgroup = StringUtils.substringBeforeLast(pSyllabarySet, ",").trim();
+				if (d.chr.lastIndexOf(",") != d.chr.indexOf(",")) {
+					pgroup = StringUtils.substringBeforeLast(d.chr, ",").trim();
 				} else {
-					pgroup = pSyllabarySet;
+					pgroup = d.chr;
 				}
 
-				selectPronounForm(d, cStem, gStem, pSyllabarySet, pLatinSet, p_g3rd, v_g3rd);
+				selectPronounForm(d, cStem, gStem, p_g3rd, v_g3rd);
 
-				if ((v_imp || v_inf) && aStem) {
+				if ((imperative || infinitive) && aStem) {
 					if (d.chr.equals("Ꮨ̣²")) {
 						// game.log(this, "ti -> t");
 						d.chr = "Ꮤ͓";
@@ -294,13 +306,14 @@ public class BuildDeck {
 					}
 
 					if (vrootSb.length() > 1) {
-						final char vroot_0 = vrootSb.charAt(0);
-						final char vroot_1 = vrootSb.charAt(1);
-						if (vroot_0 == 'ɂ' && // glottal stop followed by tone marking
-								(vroot_1 == '¹' || vroot_1 == '²' || vroot_1 == '³' || vroot_1 == '⁴')) {
+						String vrootLatin = vrootSb.toString();
+						boolean tonedStem = vrootLatin.matches("[¹²³⁴].*");
+						if (tonedStem) {
 							d.chr = d.chr.replaceAll("[¹²³⁴]+$", "");
-							if (!d.chr.endsWith(BoundPronouns.UNDERDOT)) {
-								d.chr += BoundPronouns.UNDERDOT;
+							d.latin = d.latin.replaceAll("[¹²³⁴]+$", "");
+							if (vrootLatin.matches("(¹|²³|³²|⁴).*") && d.latin.matches("(?i).*[ạẹịọụṿ]")) {
+								vrootLatin = vrootLatin.replaceAll("(¹|²³).*", "²");
+								vrootLatin = vrootLatin.replaceAll("(³²|⁴).*", "³");
 							}
 						}
 					}
@@ -404,7 +417,7 @@ public class BuildDeck {
 					addWiPrefix(d);
 				}
 
-				if (v_imp && !vtypes.contains("xwi")) {
+				if (imperative && !vtypes.contains("xwi")) {
 					if (!isIncludesYou(subj, pronounObject)) {
 						addWiPrefix(d);
 					}
@@ -412,7 +425,7 @@ public class BuildDeck {
 
 				d.def = null;
 				if (!StringUtils.isEmpty(subj)) {
-					d.def = vdef_active;
+					d.def = defActiveVoice;
 					if (d.def.startsWith("he ") || d.def.startsWith("He ")) {
 						d.def = d.def.replaceFirst("^[hH]e ", pronoun[3] + " ");
 					}
@@ -456,8 +469,8 @@ public class BuildDeck {
 						d.def = d.def.replaceFirst("^[Ll]et him ", "Let " + subj + " ");
 					}
 
-					if (!StringUtils.isBlank(vdef_inanimateObjects)) {
-						final String[] o = vdef_inanimateObjects.split(",\\s*");
+					if (!StringUtils.isBlank(inanimateObjects)) {
+						final String[] o = inanimateObjects.split(",\\s*");
 						if (pronounObject.equalsIgnoreCase("them-inanimate") && o.length > 1) {
 							String verbObject = o[1];
 							d.def = d.def.replaceAll("\\bx\\b", verbObject);
@@ -467,8 +480,8 @@ public class BuildDeck {
 						} else {
 							d.def = d.def.replaceAll("\\bx\\b", pronounObject);
 						}
-					} else if (!StringUtils.isBlank(vdef_animateObjects)) {
-						final String[] o = vdef_animateObjects.split(",\\s*");
+					} else if (!StringUtils.isBlank(animateObjects)) {
+						final String[] o = animateObjects.split(",\\s*");
 						if (pronounObject.equalsIgnoreCase("them-animate") && o.length > 1) {
 							String verbObject = o[1];
 							d.def = d.def.replaceAll("\\bx\\b", verbObject);
@@ -483,7 +496,7 @@ public class BuildDeck {
 					}
 
 				} else {
-					d.def = vdef_passive;
+					d.def = defPassiveVoice;
 					if (d.def.toLowerCase().startsWith("someone") || d.def.toLowerCase().startsWith("for someone")) {
 						if (d.def.contains(" him")) {
 							d.def = d.def.replaceFirst(" him", " " + pronounObject);
@@ -536,8 +549,9 @@ public class BuildDeck {
 		setStatus("Finished conjugating ...");
 	}
 
-	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, final String syllabary, final String latin,
+	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, 
 			boolean p_g3rd, boolean v_g3rd) {
+		
 
 		/*
 		 * a vs ga select
@@ -561,6 +575,9 @@ public class BuildDeck {
 			return;
 		}
 
+		final String syllabary = d.chr;
+		final String latin = d.latin;
+		
 		if (syllabary.contains(",")) {
 			String tmpSyllabary = syllabary;
 			String pSylConsonant = StringUtils.substringBefore(tmpSyllabary, ",").trim();
@@ -1394,11 +1411,16 @@ public class BuildDeck {
 		Set<String> alwaysKeep = new HashSet<>();
 		alwaysKeep.addAll(Arrays.asList(//
 				"", //
-				"Ꮵ²-, Ꮵ²Ꮿ͓-", "Ꮵ̣²-, Ꭶ͓-", "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-", //
-				"Ꭿ²-, Ꭿ²Ꮿ͓-", "Ꭿ̣²-", "Ꮳ̣²-", "Ꭰ̣²-, Ꭶ̣²-", //
+				"Ꮵ²-, Ꮵ²Ꮿ͓-", //
+				"Ꮵ̣²-, Ꭶ͓-", //
+				"Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-", //
+				"Ꭿ²-, Ꭿ²Ꮿ͓-", //
+				"Ꭿ̣²-", "Ꮳ̣²-", //
+				"Ꭰ̣²-, Ꭶ̣²-", //
 				"Ꭴ¹-, Ꭴ¹Ꮹ͓-"));
+		
 		/*
-		 * split out into buckets based on bound pronoun
+		 * split out into buckets based on bound pronoun and first letter of vstem
 		 */
 		List<Card> tmpDeck = new ArrayList<>(deckToFilter.cards);
 		Map<String, List<Card>> bucketsByPronoun = new HashMap<>();
@@ -1410,6 +1432,10 @@ public class BuildDeck {
 				continue;
 			}
 			String pgroup = card.pgroup;// pgroupBucket(card);
+			String asPlainSyllabary = asPlainSyllabary(card.vgroup);
+			if (!asPlainSyllabary.isEmpty()) {
+				pgroup += " " + asPlainSyllabary.substring(0, 1);
+			}
 			if (!bucketsByPronoun.containsKey(pgroup)) {
 				bucketsByPronoun.put(pgroup, new ArrayList<Card>());
 			}
@@ -1440,8 +1466,7 @@ public class BuildDeck {
 		 * variations, as well as to keep at least a set minimum of each verb stem with
 		 * non-core conjugations.
 		 */
-		final int MIN_VSTEM_COUNT = 4;
-		final int MIN_PFORM_COUNT = 4;
+		
 		while (!bucketsByPronoun.isEmpty()) {
 			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(bucketsByPronoun.values());
 			for (List<Card> bucket : bucketsByPronoun.values()) {
@@ -1455,7 +1480,7 @@ public class BuildDeck {
 			bucketsByPronoun.values().removeIf(new Predicate<List<Card>>() {
 				@Override
 				public boolean test(List<Card> bucket) {
-					return bucket.size() <= MIN_PFORM_COUNT;
+					return bucket.size() <= MIN_PFORM_VSTEM_COMBO_COUNT;
 				}
 			});
 			List<List<Card>> sorted = new ArrayList<>(bucketsByPronoun.values());
