@@ -91,14 +91,13 @@ public class Main {
 			if (!activeDeck.hasCards() && !mainDeck.hasCards()) {
 				break;
 			}
-			if (activeDeck.getNextShowTime() / 1000f > 4 || !activeDeck.hasCards()) {
+			if (activeDeck.getNextShowTime() / 1000f > 5f || !activeDeck.hasCards()) {
 				AudioCard topCard = (AudioCard) mainDeck.topCard();
 				topCard.resetStats();
 				topCard.resetTriesRemaining();
 				activeDeck.add(topCard);
 			}
 			activeDeck.shuffleThenSortByNextSession();
-			activeDeck.updateTimeBy(activeDeck.getNextShowTime());
 			AudioCard card = (AudioCard) activeDeck.topCard();
 			
 			AudioData data = card.getData();
@@ -131,6 +130,8 @@ public class Main {
 				audioEntries.add(silenceWav);
 				tick += 1f;
 			}
+			
+			activeDeck.updateTimeBy((long) (tick*1000f));
 			
 			CardStats cardStats = card.getCardStats();
 			cardStats.pimsleurSlotInc();
