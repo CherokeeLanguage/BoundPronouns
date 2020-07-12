@@ -1,6 +1,15 @@
-2020-07-11 [56d5da38]: (HEAD -> master) update changelog
+2020-07-12 [2f7fcbb8]: (HEAD -> master, origin/master) update changelog
+2020-07-12 [bdc77cb5]: Always reset local tag
+2020-07-12 [171aea29]: always push tags
+2020-07-12 [8dedecd9]: additional work towards generating usable challenge/response audio training.
+2020-07-12 [d88c8513]: conjugation fixes
+2020-07-12 [2c89f652]: Replacement audio
+2020-07-11 [026e7a25]: Initial work on setting up proper exercise interleaving
+2020-07-11 [a294ae5f]: (tag: 3.34) Bump version for release build.
+2020-07-11 [c2b93dfd]: Update git changelog.
+2020-07-11 [56d5da38]: update changelog
 2020-07-11 [e6ce86b5]: audio updates
-2020-07-11 [3114acfc]: (origin/master) text exercise audio creation
+2020-07-11 [3114acfc]: text exercise audio creation
 2020-07-11 [24ffa1d6]: increase min vstem count
 2020-07-11 [d3a2eedc]: (tag: 3.33) Bump version for release build.
 2020-07-11 [f3748e87]: Update git changelog.
