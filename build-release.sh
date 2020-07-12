@@ -72,6 +72,7 @@ echo "$version" > version
 git add version
 git commit -a -m "Bump version for release build." || true
 git tag "${xversion}" || true
+git push --tags
 
 #Build the newly tagged version.
 ./gradlew clean
