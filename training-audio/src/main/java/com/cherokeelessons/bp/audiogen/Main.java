@@ -47,6 +47,7 @@ public class Main {
 	private final AudioDeck chr2enDeck;
 	private final AudioDeck discardsDeck;
 
+	private final Map<String, Integer> voiceSpeekingRates;
 	private final Set<String> voiceVariants;
 	private final List<String> voices = new ArrayList<>();
 
@@ -58,15 +59,27 @@ public class Main {
 		chr2enDeck = new AudioDeck();
 
 		discardsDeck = new AudioDeck();
+		
+		voiceSpeekingRates = new HashMap<>();
+		
 		voiceVariants = new TreeSet<>();
 		// default
 		voiceVariants.addAll(Arrays.asList(""));
 		// magali's choices
-		voiceVariants.addAll(Arrays.asList("Diogo", "f5"));
+		voiceVariants.addAll(Arrays.asList("Diogo", "f5", "f2"));
 		// craig's choices
 		voiceVariants.addAll(Arrays.asList("antonio", "Mr", "robosoft5"));
 		// tommylee's choices
 		voiceVariants.addAll(Arrays.asList("Diogo"));
+		
+		//voice speed adjustments (word per minute espeak -s parameter)
+		voiceSpeekingRates.put("Diogo", 160);
+		voiceSpeekingRates.put("f5", 160);
+		voiceSpeekingRates.put("antonio", 120);
+		voiceSpeekingRates.put("Mr", 175);
+		voiceSpeekingRates.put("robosoft5", 120);
+		voiceSpeekingRates.put("f2", 150);
+		
 	}
 
 	private void buildChr2EnExerciseMp3Files() {
@@ -362,7 +375,7 @@ public class Main {
 			data.setAnswerFile(answerWavFile);
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
-				String voice = nextVoice();
+				String voice = nextVoice(answer);
 				if (!voice.trim().isEmpty()) {
 					voice = "chr+" + voice;
 				} else {
@@ -374,7 +387,7 @@ public class Main {
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
-				String voice = nextVoice();
+				String voice = nextVoice(answer);
 				if (!voice.trim().isEmpty()) {
 					voice = "en-us+" + voice;
 				} else {
@@ -433,7 +446,7 @@ public class Main {
 			data.setAnswerFile(answerWavFile);
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
-				String voice = nextVoice();
+				String voice = nextVoice(challenge);
 				if (!voice.trim().isEmpty()) {
 					voice = "en-us+" + voice;
 				} else {
@@ -445,7 +458,7 @@ public class Main {
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
-				String voice = nextVoice();
+				String voice = nextVoice(challenge);
 				if (!voice.trim().isEmpty()) {
 					voice = "chr+" + voice;
 				} else {
@@ -568,12 +581,23 @@ public class Main {
 				StandardCharsets.UTF_8);
 	}
 
-	public String nextVoice() {
+	public String nextVoice(String englishText) {
 		if (voices.isEmpty()) {
 			voices.addAll(voiceVariants);
 			do {
 				Collections.shuffle(voices, new Random(voiceShuffleSeed++));
 			} while (voices.get(0).equals(previousVoice));
+		}
+		String lc = englishText.toLowerCase();
+		if (lc.contains("mother") && (lc.matches("\bi\b")||lc.matches("\bme\b")||lc.matches("\bwe\b")||lc.matches("\bus\b"))) {
+			if (!voices.get(0).startsWith("f")) {
+				return nextVoice(englishText);
+			}
+		}
+		if (lc.contains("father") && (lc.matches("\bi\b")||lc.matches("\bme\b")||lc.matches("\bwe\b")||lc.matches("\bus\b"))) {
+			if (voices.get(0).startsWith("f")) {
+				return nextVoice(englishText);
+			}
 		}
 		return previousVoice = voices.remove(0);
 	}
