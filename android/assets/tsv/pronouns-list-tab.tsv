@@ -19,8 +19,8 @@ vi, vti, alt	Ꮵ̣²-, Ꭶ͓-	Jị²-, G-	I	it	a			My
 vi, vti	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	A¹gị²-, A¹gw-	I	it	b			My	
 									
 vta, alt	Ꭶ̣²Ꮵ²-, Ꭶ̣²Ꮵ²Ꮿ͓-	Gạ²ji²-, Gạ²ji²y-	I	them-animate					
-vti, alt	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	De²jị²-, De²g-	I	them-inanimate	a	Ꮧ̣²Ꮵ̣²-, Ꮧ̣²Ꭶ͓-	Dị²jị²-, Dị²g-	My	
-vti	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Da¹gị²-, Da¹gw-	I	them-inanimate	b	Ꮧ̣¹Ꭹ̣²-, Ꮧ̣¹Ꮖ͓-	Dị¹gị²-, Dị¹gw-	My	
+vti, alt, de	Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-	De²jị²-, De²g-	I	them-inanimate	a	Ꮧ̣²Ꮵ̣²-, Ꮧ̣²Ꭶ͓-	Dị²jị²-, Dị²g-	My	
+vti, de	Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-	Da¹gị²-, Da¹gw-	I	them-inanimate	b	Ꮧ̣¹Ꭹ̣²-, Ꮧ̣¹Ꮖ͓-	Dị¹gị²-, Dị¹gw-	My	
 	#R2								
 vta	ᏍᎩ̣²-, ᏍᏆ͓-	Sgị²-, Sgw-	You one	me					
 vta, alt	Ꭿ²-, Ꭿ²Ꮿ͓-	Hi²-, Hi²y-	You one	him					
@@ -28,8 +28,8 @@ vi, vti	Ꭿ̣²-	Hị²-	You one	it	a			Your ones
 vi, vti	Ꮳ̣²-	Jạ²-	You one	it	b			Your ones	
 									
 vta, alt	Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-	Gạ²hi²-, Gạ²hi²y-	You one	them-animate					
-vti	Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-	De²hị²-, De²hị²-	You one	them-inanimate	a	Ꮨ̣²-	tị²-	Your ones	
-vti	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	De²jạ²-, De²jạ²-	You one	them-inanimate	b	Ꮧ̣²Ꮳ̣²-	Dị²jạ²-	Your ones	
+vti, de	Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-	De²hị²-, De²hị²-	You one	them-inanimate	a	Ꮨ̣²-	tị²-	Your ones	
+vti, de	Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-	De²jạ²-, De²jạ²-	You one	them-inanimate	b	Ꮧ̣²Ꮳ̣²-	Dị²jạ²-	Your ones	
 	#R3								
 vta	Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-	A¹gị²-, A¹gw-	He	me					
 vta	Ꮳ̣²-, Ꮳ̣²-	Jạ²-, Jạ²-	He	you one					
@@ -43,17 +43,17 @@ vta	Ꭲ¹Ꭹ²-	I¹gi²-	He	us, you all and me
 vta	Ꭳ¹Ꭹ²-	O¹gi²-	He	us, them and me					
 vta	ᏍᏗ²-	Sdi²-	He	you two					
 vta	Ꭲ¹Ꮵ²-	I¹ji²-	He	you all					
-vta, g	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Dạ²-, De²gạ²-	He	them-animate	a	Ꮧ̣²-, Ꮧ̣²Ꭶ̣²-	Dị²-, Dị²gạ²-		
-vti, g	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Dạ²-, De²gạ²-	He	them-inanimate	a	Ꮧ̣²-, Ꮧ̣²Ꭶ̣²-	Dị²-, Dị²gạ²-	His	
-vta	Ꮪ²-, Ꮪ²Ꮹ͓-	Du²-, Du²w-	He	them-animate	b	Ꮷ²-, Ꮷ²Ꮹ͓-	ju²-, ju²w-		
-vti	Ꮪ²-, Ꮪ²Ꮹ͓-	Du²-, Du²w-	He	them-inanimate	b	Ꮷ²-, Ꮷ²Ꮹ͓-	ju²-, ju²w-	His	
+vta, g, de	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Dạ²-, De²gạ²-	He	them-animate	a	Ꮧ̣²-, Ꮧ̣²Ꭶ̣²-	Dị²-, Dị²gạ²-		
+vti, g, de	Ꮣ̣²-, Ꮥ²Ꭶ̣²-	Dạ²-, De²gạ²-	He	them-inanimate	a	Ꮧ̣²-, Ꮧ̣²Ꭶ̣²-	Dị²-, Dị²gạ²-	His	
+vta, de	Ꮪ²-, Ꮪ²Ꮹ͓-	Du²-, Du²w-	He	them-animate	b	Ꮷ²-, Ꮷ²Ꮹ͓-	ju²-, ju²w-		
+vti, de	Ꮪ²-, Ꮪ²Ꮹ͓-	Du²-, Du²w-	He	them-inanimate	b	Ꮷ²-, Ꮷ²Ꮹ͓-	ju²-, ju²w-	His	
 	#R4								
 vta, alt	Ꭱ¹Ꮒ²-	E¹ni²-	You one and I, we	him					
 vi, vti	Ꭲ¹Ꮒ²-	I¹ni²-	You one and I, we	it	a			You one and I, our	
 vi, vti	Ꭹ̣²Ꮒ²-	Gị²ni²-	You one and I, we	it	b			You one and I, our	
 vta, alt	Ꭸ²Ꮒ²-	Ge²ni²-	You one and I, we	them-animate					
-vti	Ꮥ³Ꮒ²-	De³ni²-	You one and I, we	them-inanimate	a	Ꮧ̣³Ꮒ̣²-	Dị³ni²-	You one and I, our	
-vti	Ꮥ²Ꭹ̣²Ꮒ²-	De²gị²ni²-	You one and I, we	them-inanimate	b	Ꮧ̣²Ꭹ̣²Ꮒ²-	Dị²gị²ni²-	You one and I, our	
+vti, de	Ꮥ³Ꮒ²-	De³ni²-	You one and I, we	them-inanimate	a	Ꮧ̣³Ꮒ̣²-	Dị³ni²-	You one and I, our	
+vti, de	Ꮥ²Ꭹ̣²Ꮒ²-	De²gị²ni²-	You one and I, we	them-inanimate	b	Ꮧ̣²Ꭹ̣²Ꮒ²-	Dị²gị²ni²-	You one and I, our	
 	#R5								
 									
 vta, alt	Ꭳ¹ᏍᏗ²-	O¹sdi²-	He and I, we	him					
@@ -61,15 +61,15 @@ vi, vti	Ꭳ¹ᏍᏗ²-	O¹sdi²-	He and I, we	it	a			He and I, our
 vi, vti	Ꭳ¹Ꭹ̣²Ꮒ²-	O¹gị²ni²-	He and I, we	it	b			He and I, our	
 									
 vta, alt	Ꭺ²ᏍᏗ²-	Go²sdi²-	He and I, we	them-animate					
-vti	Ꮩ¹ᏍᏗ²-	Do¹sdi²-	He and I, we	them-inanimate	a	Ꮶ¹ᏍᏗ²-	jo¹sdi²-	He and I, our	
-vti	Ꮩ¹Ꭹ̣²Ꮒ²-	Do¹gị²ni²-	He and I, we	them-inanimate	b	Ꮶ¹Ꭹ̣²Ꮒ²-	jo¹gị²ni²-	He and I, our	
+vti, de	Ꮩ¹ᏍᏗ²-	Do¹sdi²-	He and I, we	them-inanimate	a	Ꮶ¹ᏍᏗ²-	jo¹sdi²-	He and I, our	
+vti, de	Ꮩ¹Ꭹ̣²Ꮒ²-	Do¹gị²ni²-	He and I, we	them-inanimate	b	Ꮶ¹Ꭹ̣²Ꮒ²-	jo¹gị²ni²-	He and I, our	
 	#R6								
 vta, alt	Ꭱ¹Ꮧ²-	E¹di²-	You all and I, we	him					
 vi, vti	Ꭲ¹Ꮧ²-	I¹di²-	You all and I, we	it	a			You all and I, our	
 vi, vti	Ꭲ¹Ꭹ²-	I¹gi²-	You all and I, we	it	b			You all and I, our	
 vta, alt	Ꭸ²Ꮧ²-	Ge²di²-	You all and I, we	them-animate					
-vti	Ꮥ³Ꮧ²-	De³di²-	You all and I, we	them-inanimate	a	Ꮧ̣²Ꮧ̣²-	Dị²di²-	You all and I, our	
-vti	Ꮥ³Ꭹ²-	De³gi²-	You all and I, we	them-inanimate	b	Ꮧ̣²Ꭹ²-	Dị²gi²-	You all and I, our	
+vti, de	Ꮥ³Ꮧ²-	De³di²-	You all and I, we	them-inanimate	a	Ꮧ̣²Ꮧ̣²-	Dị²di²-	You all and I, our	
+vti, de	Ꮥ³Ꭹ²-	De³gi²-	You all and I, we	them-inanimate	b	Ꮧ̣²Ꭹ²-	Dị²gi²-	You all and I, our	
 	#R7								
 									
 vta, alt	Ꭳ¹Ꮵ²-	O¹ji²-	They and I, we	him					
@@ -77,22 +77,22 @@ vi, vti	Ꭳ¹Ꮵ²-	O¹ji²-	They and I, we	it	a			They and I, our
 vi, vti	Ꭳ¹Ꭹ²-	O¹gi²-	They and I, we	it	b			They and I, our	
 									
 vta, alt	Ꭺ²Ꮵ²-	Go²ji²-	They and I, we	them-animate					
-vti	Ꮩ¹Ꮵ²-	Do¹ji²-	They and I, we	them-inanimate	a	Ꮶ¹Ꮵ²-	jo¹ji²-	They and I, our	
-vti	Ꮩ¹Ꭹ²-	Do¹gi²-	They and I, we	them-inanimate	b	Ꮶ¹Ꭹ²-	jo¹gi²-	They and I, our	
+vti, de	Ꮩ¹Ꮵ²-	Do¹ji²-	They and I, we	them-inanimate	a	Ꮶ¹Ꮵ²-	jo¹ji²-	They and I, our	
+vti, de	Ꮩ¹Ꭹ²-	Do¹gi²-	They and I, we	them-inanimate	b	Ꮶ¹Ꭹ²-	jo¹gi²-	They and I, our	
 	#R8								
 									
 vta, alt	Ꭱ¹ᏍᏗ²-	E¹sdi²-	You two	him					
 vi, vti	ᏍᏗ²-	Sdi²-	You two	it				Your twos	
 									
 vta, alt	Ꭸ²ᏍᏗ²-	Ge²sdi²-	You two	them-animate					
-vti	Ꮥ²ᏍᏗ²-	De²sdi²-	You two	them-inanimate		Ꮧ̣²ᏍᏗ²-	Dị²sdi²-	Your twos	
+vti, de	Ꮥ²ᏍᏗ²-	De²sdi²-	You two	them-inanimate		Ꮧ̣²ᏍᏗ²-	Dị²sdi²-	Your twos	
 	#R9								
 									
 vta, alt	Ꭱ¹Ꮵ²-	E¹ji²-	You all	him					
 vi, vti	Ꭲ¹Ꮵ²-	I¹ji²-	You all	it				Your alls	
 									
 vta, alt	Ꭸ²Ꮵ²-	Ge²ji²-	You all	them-animate					
-vti	Ꮥ³Ꮵ²-	De³ji²-	You all	them-inanimate		Ꮧ̣²Ꮵ̣²-	Dị²ji²-	Your alls	
+vti, de	Ꮥ³Ꮵ²-	De³ji²-	You all	them-inanimate		Ꮧ̣²Ꮵ̣²-	Dị²ji²-	Your alls	
 	#R10								
 vta	Ꭼ²Ꭹ̣²-, Ꭼ²Ꮖ͓-, Ꭼ²Ꭹ²-	Gv²gị²-, Gv²gw-	They	me					
 	#	CED CHART SHOWS “geji”, but pg 270 conjugation shows “geja” which matches other documents							
@@ -107,10 +107,10 @@ vta	Ꭸ²Ꭹ²-	Ge²gi²-	They	us, you all and me
 vta	Ꭺ²Ꭹ²-	Go²gi²-	They	us, them and me					
 vta, alt	Ꭸ²ᏍᏗ²-	Ge²sdi²-	They	you two					
 vta, alt	Ꭸ³Ꮵ²-	Ge³ji²-	They	you all					
-vta	Ꮣ¹Ꮒ²-	Da¹ni²-	They	them-animate	a	Ꮧ̣²Ꮒ²-	dị²ni²-		
-vti	Ꮣ¹Ꮒ²-	Da¹ni²-	They	them-inanimate	a	Ꮧ̣²Ꮒ²-	dị²ni²-	Their	
-vta	Ꮪ¹Ꮒ²-	Du¹ni²-	They	them-animate	b	Ꮷ¹Ꮒ²-	ju¹ni²-		
-vti	Ꮪ¹Ꮒ²-	Du¹ni²-	They	them-inanimate	b	Ꮷ¹Ꮒ²-	ju¹ni²-	Their	
+vta, de	Ꮣ¹Ꮒ²-	Da¹ni²-	They	them-animate	a	Ꮧ̣²Ꮒ²-	dị²ni²-		
+vti, de	Ꮣ¹Ꮒ²-	Da¹ni²-	They	them-inanimate	a	Ꮧ̣²Ꮒ²-	dị²ni²-	Their	
+vta, de	Ꮪ¹Ꮒ²-	Du¹ni²-	They	them-animate	b	Ꮷ¹Ꮒ²-	ju¹ni²-		
+vti, de	Ꮪ¹Ꮒ²-	Du¹ni²-	They	them-inanimate	b	Ꮷ¹Ꮒ²-	ju¹ni²-	Their	
 	#Object focus								
 vta	Ꭵ¹Ꭹ̣²-, Ꭵ¹Ꮖ͓-	V¹gị²-, V¹gw-		I					
 vta	Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-	E¹jạ²-, E¹jạ²-		You one					
@@ -142,15 +142,15 @@ vta, ref	Ꭳ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	O¹gị²nạ²da²[d]-	He and I, we	o
 vta, ref	Ꭳ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	O¹gạ²da²[d]-	They and I, we	ourselves	b				
 vta, ref	Ꭴ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	U¹nạ²da²[d]-	They	themselves	b				
 	#Reciprocal	CED pg 298							
-vta, ref	Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-	De³nạ²da²[d]-	You one and I, we	each other	a	Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Dị²nạ²da²[d]-		
-vta, ref	Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-	De³dạ²da²[d]-	You all and I, we	each other	a	Ꮧ̣²Ꮣ̣²Ꮣ²[Ꮣ͓]-	Dị²dạ²da²[d]-		
-vta, ref	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Do¹sdạ²da²[d]-	He and I, we	each other	a	Ꮶ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	jo¹sdạ²da²[d]		
-vta, ref	Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	Do¹jạ²da²[d]-	They and I, we	each other	a	Ꮶ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	jo¹jạ²da²[d]-		
-vta, ref	Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	De²sdạ²da²[d]-	You two	each other		Ꮧ̣²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Dị²sdạ²da²[d]-		
-vta, ref	Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-	De³jạ²da²[d]-	You all	each other		Ꮧ̣²Ꮳ̣²Ꮣ²[Ꮣ͓]-	Dị²jạ²da²[d]-		
-vta, ref	Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Da¹nạ²da²[d]-	They	each other	a	Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Dị²nạda²[d]-		
-vta, ref	Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	De²gị²nạ²da²[d]-	You one and I, we	each other	b	Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Dị²gị²nạ²da²[d]-		
-vta, ref	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	De³gạ²da²[d]-	You all and I, we	each other	b	Ꮧ̣²Ꭶ̣²Ꮣ²[Ꮣ͓]-	Dị²gạ²da²[d]-		
-vta, ref	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Do¹gị²nạ²da²[d]-	He and I, we	each other	b	Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	jo¹gị²nạ²da²[d]-		
-vta, ref	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Do¹gạ²da²[d]-	They and I, we	each other	b	Ꮶ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	jo¹gạ²da²[d]-		
-vta, ref	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Du¹nạ²da²[d]-	They	each other	b	Ꮷ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	ju¹nạ²da²[d]-		
+vta, ref, de	Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-	De³nạ²da²[d]-	You one and I, we	each other	a	Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Dị²nạ²da²[d]-		
+vta, ref, de	Ꮥ³Ꮣ̣²Ꮣ²[Ꮣ͓]-	De³dạ²da²[d]-	You all and I, we	each other	a	Ꮧ̣²Ꮣ̣²Ꮣ²[Ꮣ͓]-	Dị²dạ²da²[d]-		
+vta, ref, de	Ꮩ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Do¹sdạ²da²[d]-	He and I, we	each other	a	Ꮶ¹ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	jo¹sdạ²da²[d]		
+vta, ref, de	Ꮩ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	Do¹jạ²da²[d]-	They and I, we	each other	a	Ꮶ¹Ꮳ̣²Ꮣ²[Ꮣ͓]-	jo¹jạ²da²[d]-		
+vta, ref, de	Ꮥ²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	De²sdạ²da²[d]-	You two	each other		Ꮧ̣²ᏍᏓ̣²Ꮣ²[Ꮣ͓]-	Dị²sdạ²da²[d]-		
+vta, ref, de	Ꮥ³Ꮳ̣²Ꮣ²[Ꮣ͓]-	De³jạ²da²[d]-	You all	each other		Ꮧ̣²Ꮳ̣²Ꮣ²[Ꮣ͓]-	Dị²jạ²da²[d]-		
+vta, ref, de	Ꮣ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Da¹nạ²da²[d]-	They	each other	a	Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Dị²nạda²[d]-		
+vta, ref, de	Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	De²gị²nạ²da²[d]-	You one and I, we	each other	b	Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Dị²gị²nạ²da²[d]-		
+vta, ref, de	Ꮥ³Ꭶ̣²Ꮣ²[Ꮣ͓]-	De³gạ²da²[d]-	You all and I, we	each other	b	Ꮧ̣²Ꭶ̣²Ꮣ²[Ꮣ͓]-	Dị²gạ²da²[d]-		
+vta, ref, de	Ꮩ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	Do¹gị²nạ²da²[d]-	He and I, we	each other	b	Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-	jo¹gị²nạ²da²[d]-		
+vta, ref, de	Ꮩ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	Do¹gạ²da²[d]-	They and I, we	each other	b	Ꮶ¹Ꭶ̣²Ꮣ²[Ꮣ͓]-	jo¹gạ²da²[d]-		
+vta, ref, de	Ꮪ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	Du¹nạ²da²[d]-	They	each other	b	Ꮷ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-	ju¹nạ²da²[d]-		

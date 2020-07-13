@@ -33,7 +33,7 @@ import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck {
-	
+
 	public static final int MIN_VSTEM_COUNT = 2;
 	public static final int MIN_PFORM_VSTEM_COMBO_COUNT = 2;
 
@@ -133,9 +133,9 @@ public class BuildDeck {
 			vroot_deaspirated = StringUtils.strip(vroot_deaspirated);
 			vroot_aspirated_chr = StringUtils.strip(vroot_aspirated_chr);
 			vroot_deaspirated_chr = StringUtils.strip(vroot_deaspirated_chr);
-			
+
 			boolean adjective = vtypes.contains("adj");
-			
+
 			boolean imperative;
 			boolean infinitive;
 			if (StringUtils.isBlank(defActiveVoice)) {
@@ -145,7 +145,7 @@ public class BuildDeck {
 				imperative = defActiveVoice.toLowerCase().startsWith("let") || vtypes.contains("imp");
 				infinitive = defActiveVoice.toLowerCase().startsWith("for") || vtypes.contains("inf");
 			}
-			
+
 			final boolean useDiPrefixedForms = adjective || imperative || infinitive;
 
 			final boolean gStem = vroot_aspirated.startsWith("ɂ");
@@ -188,7 +188,7 @@ public class BuildDeck {
 				ptypes.addAll(Arrays.asList(pTypeSet.split(",\\s*")));
 
 				boolean deaspirate = ptypes.contains("alt") && !vroot_aspirated.equals(vroot_deaspirated);
-						
+
 				boolean p_g3rd = false;
 				if (ptypes.contains("g")) {
 					p_g3rd = true;
@@ -199,10 +199,10 @@ public class BuildDeck {
 					continue;
 				}
 				final String vgroup;
-				
+
 				final StringBuilder vrootSb = new StringBuilder();
 				final StringBuilder vrootChrSb = new StringBuilder();
-				
+
 				if (deaspirate) {
 					vrootSb.append(vroot_deaspirated);
 					vrootChrSb.append(vroot_deaspirated_chr);
@@ -210,8 +210,8 @@ public class BuildDeck {
 					vrootSb.append(vroot_aspirated);
 					vrootChrSb.append(vroot_aspirated_chr);
 				}
-				
-				vgroup = (gStem?"ɂ":"") + vrootChrSb.toString() + (deaspirate?"*":"");
+
+				vgroup = (gStem ? "ɂ" : "") + vrootChrSb.toString() + (deaspirate ? "*" : "");
 
 				d.chr = pSyllabarySet;
 				d.latin = pLatinSet;
@@ -397,19 +397,21 @@ public class BuildDeck {
 				String subj = pronoun[3];
 				String pronounObject = pronoun[4];
 
-				if (!StringUtils.isBlank(subj) && isPluralSubj(subj)) {
-					if (vtypes.contains("xde")) {
-						addDePrefix(d);
-					}
-					if (vtypes.contains("xdi")) {
-						addDiPrefix(d, aStem);
-					}
-				} else if (isPluralSubj(pronounObject)) {
-					if (vtypes.contains("xde")) {
-						addDePrefix(d);
-					}
-					if (vtypes.contains("xdi")) {
-						addDiPrefix(d, aStem);
+				if (!ptypes.contains("de")) {
+					if (!StringUtils.isBlank(subj) && isPluralSubj(subj)) {
+						if (vtypes.contains("xde")) {
+							addDePrefix(d);
+						}
+						if (vtypes.contains("xdi")) {
+							addDiPrefix(d, aStem);
+						}
+					} else if (isPluralSubj(pronounObject)) {
+						if (vtypes.contains("xde")) {
+							addDePrefix(d);
+						}
+						if (vtypes.contains("xdi")) {
+							addDiPrefix(d, aStem);
+						}
 					}
 				}
 
@@ -549,9 +551,7 @@ public class BuildDeck {
 		setStatus("Finished conjugating ...");
 	}
 
-	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, 
-			boolean p_g3rd, boolean v_g3rd) {
-		
+	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, boolean p_g3rd, boolean v_g3rd) {
 
 		/*
 		 * a vs ga select
@@ -577,7 +577,7 @@ public class BuildDeck {
 
 		final String syllabary = d.chr;
 		final String latin = d.latin;
-		
+
 		if (syllabary.contains(",")) {
 			String tmpSyllabary = syllabary;
 			String pSylConsonant = StringUtils.substringBefore(tmpSyllabary, ",").trim();
@@ -1179,6 +1179,7 @@ public class BuildDeck {
 		pluralSubj |= subj.startsWith("they");
 		pluralSubj |= subj.startsWith("They");
 		pluralSubj |= subj.contains(" two");
+		pluralSubj |= subj.contains(" both");
 		pluralSubj |= subj.contains(" all");
 		return pluralSubj;
 	}
@@ -1279,7 +1280,7 @@ public class BuildDeck {
 				pronounCounts.put(pset, new AtomicInteger());
 			}
 			card.setPset(pronounCounts.get(pset).incrementAndGet());
-			
+
 			final String vset = card.vgroup;
 			if (!vset.isEmpty()) {
 				if (!verbStemCounts.containsKey(vset)) {
@@ -1292,10 +1293,10 @@ public class BuildDeck {
 		Collections.sort(deck.cards, new Comparator<Card>() {
 			@Override
 			public int compare(Card a, Card b) {
-				if (a.getPset()!=b.getPset()) {
-					return a.getPset()-b.getPset();
+				if (a.getPset() != b.getPset()) {
+					return a.getPset() - b.getPset();
 				}
-				return a.getVset()-b.getVset();
+				return a.getVset() - b.getVset();
 			}
 		});
 		// assign ids based on card positions in the deck
@@ -1418,7 +1419,7 @@ public class BuildDeck {
 				"Ꭿ̣²-", "Ꮳ̣²-", //
 				"Ꭰ̣²-, Ꭶ̣²-", //
 				"Ꭴ¹-, Ꭴ¹Ꮹ͓-"));
-		
+
 		/*
 		 * split out into buckets based on bound pronoun and first letter of vstem
 		 */
@@ -1441,16 +1442,17 @@ public class BuildDeck {
 			}
 			bucketsByPronoun.get(pgroup).add(card);
 		}
-		
+
 		/*
-		 * Sort each bucket by vset desc, pset desc to weight for removal the most common occurrences first
+		 * Sort each bucket by vset desc, pset desc to weight for removal the most
+		 * common occurrences first
 		 */
-		for (List<Card> bucket: bucketsByPronoun.values()) {
+		for (List<Card> bucket : bucketsByPronoun.values()) {
 			Collections.sort(bucket, new Comparator<Card>() {
 				@Override
 				public int compare(Card a, Card b) {
-					if (a.getVset()==b.getVset()) {
-						return b.getPset()-a.getPset();
+					if (a.getVset() == b.getVset()) {
+						return b.getPset() - a.getPset();
 					}
 					return b.getVset() - a.getVset();
 				}
@@ -1466,7 +1468,7 @@ public class BuildDeck {
 		 * variations, as well as to keep at least a set minimum of each verb stem with
 		 * non-core conjugations.
 		 */
-		
+
 		while (!bucketsByPronoun.isEmpty()) {
 			final Map<String, AtomicInteger> stemCounts = countsPerVerbStem(bucketsByPronoun.values());
 			for (List<Card> bucket : bucketsByPronoun.values()) {
