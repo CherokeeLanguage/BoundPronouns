@@ -2,35 +2,7 @@ package com.cherokeelessons.bp.audiogen;
 
 import java.util.Random;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class AudioGenUtil {
-	private AudioGenUtil() {
-	}
-
-	public static String randomizeEnglishSexes(final String text) {
-		Random r = new Random();
-		String tmp = text;
-		if (r.nextBoolean() && tmp.contains("himself")) {
-			tmp = tmp.replace("He ", "She ");
-			tmp = tmp.replace(" him", " her");
-		}
-		if (r.nextBoolean() && tmp.contains("Himself")) {
-			tmp = tmp.replace("He ", "She ");
-			tmp = tmp.replace("Him", "Her");
-		}
-		if (r.nextBoolean() && tmp.matches(".*\\b[Hh]is\\b.*")) {
-			tmp = tmp.replaceFirst("\\b([Hh])is\\b", "$1er");
-		}
-		if (r.nextBoolean() && !tmp.contains("himself")) {
-			tmp = tmp.replace("He ", "She ");
-		}
-		if (r.nextBoolean() && !tmp.contains("himself")) {
-			tmp = tmp.replace(" him", " her");
-		}
-		return tmp;
-	}
-	
 	public static String alternizeEnglishSexes(final String text) {
 		String tmp = text;
 		if (tmp.contains("himself")) {
@@ -52,18 +24,18 @@ public class AudioGenUtil {
 		return tmp;
 	}
 
-	public static String removeEnglishFixedGenderMarks(String text) {
-		String tmp = text;
-		tmp = tmp.replace("xHe", "He");
-		tmp = tmp.replace("xShe", "She");
-		tmp = tmp.replace("xhe", "he");
-		tmp = tmp.replace("xshe", "she");
+	public static String asEnglishFilename(final String challenge) {
+		String tmp = challenge.toLowerCase();
+		if (tmp.indexOf(".") > 4) {
+			tmp = tmp.substring(0, tmp.indexOf("."));
+		}
+		tmp = tmp.replaceAll("(?i)[^A-Za-z1234\\-]", "-").replaceAll("-+", "-");
 		return tmp;
 	}
 
-	public static String asPhoneticFilename(String challenge) {
+	public static String asPhoneticFilename(final String challenge) {
 		String tmp = challenge.toLowerCase();
-		
+
 		tmp = tmp.replace("ɂ", "-");
 
 		tmp = tmp.replace("¹", "1");
@@ -93,12 +65,38 @@ public class AudioGenUtil {
 		return tmp;
 	}
 
-	public static String asEnglishFilename(String challenge) {
-		String tmp = challenge.toLowerCase();
-		if (tmp.indexOf(".")>4) {
-			tmp = tmp.substring(0, tmp.indexOf("."));
+	public static String randomizeEnglishSexes(final String text) {
+		final Random r = new Random();
+		String tmp = text;
+		if (r.nextBoolean() && tmp.contains("himself")) {
+			tmp = tmp.replace("He ", "She ");
+			tmp = tmp.replace(" him", " her");
 		}
-		tmp = tmp.replaceAll("(?i)[^A-Za-z1234\\-]", "-").replaceAll("-+", "-");
+		if (r.nextBoolean() && tmp.contains("Himself")) {
+			tmp = tmp.replace("He ", "She ");
+			tmp = tmp.replace("Him", "Her");
+		}
+		if (r.nextBoolean() && tmp.matches(".*\\b[Hh]is\\b.*")) {
+			tmp = tmp.replaceFirst("\\b([Hh])is\\b", "$1er");
+		}
+		if (r.nextBoolean() && !tmp.contains("himself")) {
+			tmp = tmp.replace("He ", "She ");
+		}
+		if (r.nextBoolean() && !tmp.contains("himself")) {
+			tmp = tmp.replace(" him", " her");
+		}
 		return tmp;
+	}
+
+	public static String removeEnglishFixedGenderMarks(final String text) {
+		String tmp = text;
+		tmp = tmp.replace("xHe", "He");
+		tmp = tmp.replace("xShe", "She");
+		tmp = tmp.replace("xhe", "he");
+		tmp = tmp.replace("xshe", "she");
+		return tmp;
+	}
+
+	private AudioGenUtil() {
 	}
 }
