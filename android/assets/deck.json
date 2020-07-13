@@ -909,7 +909,7 @@
     "vgroup" : "Ꭱ²Ꮵ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) drink alchoholic drinks" ],
+    "answer" : [ "Let you (1) drink alcoholic drinks" ],
     "challenge" : [ "Ꮤ̣²Ꮪ²³Ꭹ", "tạ²tu²³gi" ],
     "id" : 102,
     "pgroup" : "Ꮨ̣²-",
@@ -918,7 +918,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 2
   }, {
-    "answer" : [ "Let me drink alchoholic drinks" ],
+    "answer" : [ "Let me drink alcoholic drinks" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꭶ̣²Ꮪ²³Ꭹ", "wị²dị²gạɂ²du²³gi" ],
     "id" : 103,
     "pgroup" : "Ꮧ̣²Ꮵ̣²-, Ꮧ̣²Ꭶ͓-",
@@ -954,7 +954,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "Let all of us drink alchoholic drinks" ],
+    "answer" : [ "Let all of us drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꮣ̣²Ꮪ²³Ꭹ", "dị²dạ²tu²³gi" ],
     "id" : 107,
     "pgroup" : "Ꮧ̣²Ꮧ̣²-",
@@ -963,7 +963,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 10
   }, {
-    "answer" : [ "Let you (1) and me drink alchoholic drinks" ],
+    "answer" : [ "Let you (1) and me drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣³Ꮎ̣²Ꮪ²³Ꭹ", "dị³nạ²tu²³gi" ],
     "id" : 108,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -981,7 +981,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "Let him drink alchoholic drinks" ],
+    "answer" : [ "Let him drink alcoholic drinks" ],
     "challenge" : [ "Ꮻ̣²Ꮣ̣²Ꮪ²³Ꭹ", "wị²dạ²tu²³gi" ],
     "id" : 110,
     "pgroup" : "Ꮧ̣²-, Ꮧ̣²Ꭶ̣²-",
@@ -1575,7 +1575,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ",
     "vset" : 11
   }, {
-    "answer" : [ "Let you all drink alchoholic drinks" ],
+    "answer" : [ "Let you all drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮪ²³Ꭹ", "dị²jạ²tu²³gi" ],
     "id" : 187,
     "pgroup" : "Ꮧ̣²Ꮵ̣²-",
@@ -2250,7 +2250,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 2
   }, {
-    "answer" : [ "I recently drank alchoholic drinks" ],
+    "answer" : [ "I recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭶ̣²Ꮪ²³Ꭶ²", "de²gạɂ²du²³ga²" ],
     "id" : 274,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -2511,7 +2511,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ²",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) recently drank alchoholic drinks" ],
+    "answer" : [ "You (1) recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭽ̣²Ꮪ²³Ꭶ²", "de²hạ²tu²³ga²" ],
     "id" : 305,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -2664,7 +2664,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ*",
     "vset" : 16
   }, {
-    "answer" : [ "Let them and me drink alchoholic drinks" ],
+    "answer" : [ "Let them and me drink alcoholic drinks" ],
     "challenge" : [ "Ꮻ̣²Ꮶ¹Ꮳ̣²Ꮪ²³Ꭹ", "wị²jo¹jạ²tu²³gi" ],
     "id" : 325,
     "pgroup" : "Ꮶ¹Ꮵ²-",
@@ -2727,7 +2727,7 @@
     "vgroup" : "Ꭰ²Ꮴ²Ꮅ⁴Ꭲ",
     "vset" : 18
   }, {
-    "answer" : [ "Let him and me drink alchoholic drinks" ],
+    "answer" : [ "Let him and me drink alcoholic drinks" ],
     "challenge" : [ "Ꮻ̣²Ꮶ¹ᏍᏓ̣²Ꮪ²³Ꭹ", "wị²jo¹sdạ²tu²³gi" ],
     "id" : 334,
     "pgroup" : "Ꮶ¹ᏍᏗ²-",
@@ -3609,7 +3609,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ²",
     "vset" : 16
   }, {
-    "answer" : [ "Let them drink alchoholic drinks" ],
+    "answer" : [ "Let them drink alcoholic drinks" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮎ̣²Ꮪ²³Ꭹ", "wị²dị²nạ²tu²³gi" ],
     "id" : 448,
     "pgroup" : "Ꮧ̣²Ꮒ²-",
@@ -4950,7 +4950,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) and I recently drank alchoholic drinks" ],
+    "answer" : [ "You (1) and I recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮪ²³Ꭶ²", "de³nạ²tu²³ga²" ],
     "id" : 684,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -4968,7 +4968,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "All of us recently drank alchoholic drinks" ],
+    "answer" : [ "All of us recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮣ̣²Ꮪ²³Ꭶ²", "de³dạ²tu²³ga²" ],
     "id" : 687,
     "pgroup" : "Ꮥ³Ꮧ²-",
@@ -5004,7 +5004,7 @@
     "vgroup" : "Ꮀ³Ꭲ",
     "vset" : 15
   }, {
-    "answer" : [ "They and I recently drank alchoholic drinks" ],
+    "answer" : [ "They and I recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮩ¹Ꮳ̣²Ꮪ²³Ꭶ²", "do¹jạ²tu²³ga²" ],
     "id" : 693,
     "pgroup" : "Ꮩ¹Ꮵ²-",
@@ -5013,7 +5013,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭶ²",
     "vset" : 15
   }, {
-    "answer" : [ "Let you both drink alchoholic drinks" ],
+    "answer" : [ "Let you both drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²ᏍᏓ̣²Ꮪ²³Ꭹ", "dị²sdạ²tu²³gi" ],
     "id" : 694,
     "pgroup" : "Ꮧ̣²ᏍᏗ²-",
@@ -5076,7 +5076,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 18
   }, {
-    "answer" : [ "He and I recently drank alchoholic drinks" ],
+    "answer" : [ "He and I recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮩ¹ᏍᏓ̣²Ꮪ²³Ꭶ²", "do¹sdạ²tu²³ga²" ],
     "id" : 703,
     "pgroup" : "Ꮩ¹ᏍᏗ²-",
@@ -7461,7 +7461,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 9
   }, {
-    "answer" : [ "They recently drank alchoholic drinks" ],
+    "answer" : [ "They recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣²Ꮪ²³Ꭶ²", "da¹nạ²tu²³ga²" ],
     "id" : 1151,
     "pgroup" : "Ꮣ¹Ꮒ²-",
@@ -7479,7 +7479,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 10
   }, {
-    "answer" : [ "For them and me to drink alchoholic drinks" ],
+    "answer" : [ "For them and me to drink alcoholic drinks" ],
     "challenge" : [ "Ꮶ¹Ꭶ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "jo¹gạ²tu²³gi³²sdi" ],
     "id" : 1153,
     "pgroup" : "Ꮶ¹Ꭹ²-",
@@ -7533,7 +7533,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*",
     "vset" : 12
   }, {
-    "answer" : [ "For all of us to drink alchoholic drinks" ],
+    "answer" : [ "For all of us to drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꭶ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "dị²gạ²tu²³gi³²sdi" ],
     "id" : 1162,
     "pgroup" : "Ꮧ̣²Ꭹ²-",
@@ -7551,7 +7551,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "For you (1) to drink alchoholic drinks", "For you all to drink alchoholic drinks" ],
+    "answer" : [ "For you (1) to drink alcoholic drinks", "For you all to drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "dị²jạ²tu²³gi³²sdi" ],
     "id" : 1167,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -7578,7 +7578,7 @@
     "vgroup" : "Ꮑ̣³Ꭽ",
     "vset" : 15
   }, {
-    "answer" : [ "For me to drink alchoholic drinks" ],
+    "answer" : [ "For me to drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣¹Ꮖ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "dị¹gwạ²tu²³gi³²sdi" ],
     "id" : 1170,
     "pgroup" : "Ꮧ̣¹Ꭹ̣²-, Ꮧ̣¹Ꮖ͓-",
@@ -7650,7 +7650,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 18
   }, {
-    "answer" : [ "For him and me to drink alchoholic drinks" ],
+    "answer" : [ "For him and me to drink alcoholic drinks" ],
     "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮎ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "jo¹gị²nạ²tu²³gi³²sdi" ],
     "id" : 1180,
     "pgroup" : "Ꮶ¹Ꭹ̣²Ꮒ²-",
@@ -7695,7 +7695,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ²",
     "vset" : 19
   }, {
-    "answer" : [ "For you (1) and me to drink alchoholic drinks" ],
+    "answer" : [ "For you (1) and me to drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "dị²gị²nạ²tu²³gi³²sdi" ],
     "id" : 1185,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -8541,7 +8541,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ²",
     "vset" : 11
   }, {
-    "answer" : [ "For them to drink alchoholic drinks" ],
+    "answer" : [ "For them to drink alcoholic drinks" ],
     "challenge" : [ "Ꮷ¹Ꮎ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "ju¹nạ²tu²³gi³²sdi" ],
     "id" : 1358,
     "pgroup" : "Ꮷ¹Ꮒ²-",
@@ -8766,7 +8766,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "I am drinking alchoholic drinks" ],
+    "answer" : [ "I am drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭶ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de²gạɂ²du²³gị³a" ],
     "id" : 1433,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -8856,7 +8856,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) are drinking alchoholic drinks" ],
+    "answer" : [ "You (1) are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭽ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de²hạ¹tu²³gị³a" ],
     "id" : 1456,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -9144,7 +9144,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ²",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I are drinking alchoholic drinks" ],
+    "answer" : [ "You (1) and I are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮎ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de³nạ¹tu²³gị³a" ],
     "id" : 1543,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -9162,7 +9162,7 @@
     "vgroup" : "Ꮀ³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "All of us are drinking alchoholic drinks" ],
+    "answer" : [ "All of us are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮣ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de³dạ¹tu²³gị³a" ],
     "id" : 1547,
     "pgroup" : "Ꮥ³Ꮧ²-",
@@ -9180,7 +9180,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 14
   }, {
-    "answer" : [ "They and I are drinking alchoholic drinks" ],
+    "answer" : [ "They and I are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮩ¹Ꮳ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "do¹jạ¹tu²³gị³a" ],
     "id" : 1553,
     "pgroup" : "Ꮩ¹Ꮵ²-",
@@ -9207,7 +9207,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ",
     "vset" : 18
   }, {
-    "answer" : [ "He and I are drinking alchoholic drinks" ],
+    "answer" : [ "He and I are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮩ¹ᏍᏓ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "do¹sdạ¹tu²³gị³a" ],
     "id" : 1558,
     "pgroup" : "Ꮩ¹ᏍᏗ²-",
@@ -9837,7 +9837,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) drink something alchoholic" ],
+    "answer" : [ "Let you (1) drink something alcoholic" ],
     "challenge" : [ "Ꭽ̣²Ꮪ²³Ꭹ", "hạ²tu²³gi" ],
     "id" : 1688,
     "pgroup" : "Ꭿ̣²-",
@@ -9846,7 +9846,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 1
   }, {
-    "answer" : [ "I recently drank something alchoholic" ],
+    "answer" : [ "I recently drank something alcoholic" ],
     "challenge" : [ "Ꭶ̣²Ꮪ²³Ꭶ²", "gạɂ²du²³ga²" ],
     "id" : 1689,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -10008,7 +10008,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 13
   }, {
-    "answer" : [ "You all recently drank alchoholic drinks" ],
+    "answer" : [ "You all recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮳ̣²Ꮪ²³Ꭶ²", "de³jạ²tu²³ga²" ],
     "id" : 1721,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -10035,7 +10035,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 17
   }, {
-    "answer" : [ "You both recently drank alchoholic drinks" ],
+    "answer" : [ "You both recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ²ᏍᏓ̣²Ꮪ²³Ꭶ²", "de²sdạ²tu²³ga²" ],
     "id" : 1726,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -10179,7 +10179,7 @@
     "vgroup" : "Ꮈ¹ᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "Let him drink something alchoholic" ],
+    "answer" : [ "Let him drink something alcoholic" ],
     "challenge" : [ "Ꮹ̣²Ꮪ²³Ꭹ", "wạ²tu²³gi" ],
     "id" : 1775,
     "pgroup" : "Ꭰ̣²-, Ꭶ̣²-",
@@ -10485,7 +10485,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 8
   }, {
-    "answer" : [ "They are drinking alchoholic drinks" ],
+    "answer" : [ "They are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮣ¹Ꮎ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "da¹nạ¹tu²³gị³a" ],
     "id" : 1873,
     "pgroup" : "Ꮣ¹Ꮒ²-",
@@ -10791,7 +10791,7 @@
     "vgroup" : "Ꭶ²Ꭿ²Ꮵ",
     "vset" : 1
   }, {
-    "answer" : [ "He recently drank something alchoholic" ],
+    "answer" : [ "He recently drank something alcoholic" ],
     "challenge" : [ "Ꭶ̣²Ꮪ²³Ꭶ²", "gạ²tu²³ga²" ],
     "id" : 1934,
     "pgroup" : "Ꭰ̣²-, Ꭶ̣²-",
@@ -10890,7 +10890,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 5
   }, {
-    "answer" : [ "Let all of us drink something alchoholic" ],
+    "answer" : [ "Let all of us drink something alcoholic" ],
     "challenge" : [ "Ꭲ¹Ꮣ̣²Ꮪ²³Ꭹ", "i¹dạ²tu²³gi" ],
     "id" : 1947,
     "pgroup" : "Ꭲ¹Ꮧ²-",
@@ -11439,7 +11439,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) recently drank something alchoholic" ],
+    "answer" : [ "You (1) recently drank something alcoholic" ],
     "challenge" : [ "Ꭽ̣²Ꮪ²³Ꭶ²", "hạ²tu²³ga²" ],
     "id" : 2082,
     "pgroup" : "Ꭿ̣²-",
@@ -11754,7 +11754,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 2
   }, {
-    "answer" : [ "I often am drinking alchoholic drinks" ],
+    "answer" : [ "I often am drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭶ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "de²gạɂ²du²³gi³²sgo³ɂi" ],
     "id" : 2156,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -11853,7 +11853,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I often are drinking alchoholic drinks" ],
+    "answer" : [ "You (1) and I often are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮎ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "de³na¹tu²³gi³²sgo³ɂi" ],
     "id" : 2182,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -11907,7 +11907,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 18
   }, {
-    "answer" : [ "He and I often are drinking alchoholic drinks" ],
+    "answer" : [ "He and I often are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮩ¹ᏍᏓ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "do¹sda¹tu²³gi³²sgo³ɂi" ],
     "id" : 2196,
     "pgroup" : "Ꮩ¹ᏍᏗ²-",
@@ -13140,7 +13140,7 @@
     "vgroup" : "Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "They recently drank something alchoholic" ],
+    "answer" : [ "They recently drank something alcoholic" ],
     "challenge" : [ "Ꭰ¹Ꮎ̣²Ꮪ²³Ꭶ²", "a¹nạ²tu²³ga²" ],
     "id" : 2564,
     "pgroup" : "Ꭰ¹Ꮒ²-",
@@ -13185,7 +13185,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "I drank alchoholic drinks a while ago" ],
+    "answer" : [ "I drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮣ¹Ꮖ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "da¹gwạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2577,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -13194,7 +13194,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) drank alchoholic drinks a while ago" ],
+    "answer" : [ "You (1) drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "de²jạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2580,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -13203,7 +13203,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "All of us drank alchoholic drinks a while ago" ],
+    "answer" : [ "All of us drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮥ³Ꭶ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "de³gạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2582,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -13221,7 +13221,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*",
     "vset" : 12
   }, {
-    "answer" : [ "They and I drank alchoholic drinks a while ago" ],
+    "answer" : [ "They and I drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭶ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "do¹gạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2586,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -13266,7 +13266,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 19
   }, {
-    "answer" : [ "You (1) and I drank alchoholic drinks a while ago" ],
+    "answer" : [ "You (1) and I drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "de²gị²nạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2597,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -13275,7 +13275,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ",
     "vset" : 19
   }, {
-    "answer" : [ "He and I drank alchoholic drinks a while ago" ],
+    "answer" : [ "He and I drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮎ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "do¹gị²nạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2599,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -13320,7 +13320,7 @@
     "vgroup" : "Ᏺ³Ꮟ̣²Ꭽ",
     "vset" : 1
   }, {
-    "answer" : [ "I am drinking something alchoholic" ],
+    "answer" : [ "I am drinking something alcoholic" ],
     "challenge" : [ "Ꭶ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "gạɂ²du²³gị³a" ],
     "id" : 2622,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -13653,7 +13653,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*",
     "vset" : 14
   }, {
-    "answer" : [ "They drank alchoholic drinks a while ago" ],
+    "answer" : [ "They drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮪ¹Ꮎ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "du¹nạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 2711,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -13833,7 +13833,7 @@
     "vgroup" : "Ꮎ̣³Ꭳ³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "Let him and me drink something alchoholic" ],
+    "answer" : [ "Let him and me drink something alcoholic" ],
     "challenge" : [ "Ꮼ¹ᏍᏓ̣²Ꮪ²³Ꭹ", "wo¹sdạ²tu²³gi" ],
     "id" : 2754,
     "pgroup" : "Ꭳ¹ᏍᏗ²-",
@@ -13905,7 +13905,7 @@
     "vgroup" : "ɂ³Ꮯ²Ꮟ̣³Ꭽ",
     "vset" : 1
   }, {
-    "answer" : [ "Let me drink something alchoholic" ],
+    "answer" : [ "Let me drink something alcoholic" ],
     "challenge" : [ "Ꮻ̣²Ꭶ̣²Ꮪ²³Ꭹ", "wị²gạɂ²du²³gi" ],
     "id" : 2771,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -14373,7 +14373,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "You all are drinking alchoholic drinks" ],
+    "answer" : [ "You all are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮳ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de³jạ¹tu²³gị³a" ],
     "id" : 2879,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -14391,7 +14391,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 16
   }, {
-    "answer" : [ "You both are drinking alchoholic drinks" ],
+    "answer" : [ "You both are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ²ᏍᏓ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de²sdạ¹tu²³gị³a" ],
     "id" : 2882,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -14436,7 +14436,7 @@
     "vgroup" : "Ꮈ³²Ꮢ²³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "He is drinking something alchoholic" ],
+    "answer" : [ "He is drinking something alcoholic" ],
     "challenge" : [ "Ꭶ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "gạ¹tu²³gị³a" ],
     "id" : 2888,
     "pgroup" : "Ꭰ̣²-, Ꭶ̣²-",
@@ -14454,7 +14454,7 @@
     "vgroup" : "ɂ³Ꮪ²Ꮕ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) are drinking something alchoholic" ],
+    "answer" : [ "You (1) are drinking something alcoholic" ],
     "challenge" : [ "Ꭽ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "hạ¹tu²³gị³a" ],
     "id" : 2890,
     "pgroup" : "Ꭿ̣²-",
@@ -15399,7 +15399,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²",
     "vset" : 1
   }, {
-    "answer" : [ "I often am drinking something alchoholic" ],
+    "answer" : [ "I often am drinking something alcoholic" ],
     "challenge" : [ "Ꭶ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "gạɂ²du²³gi³²sgo³ɂi" ],
     "id" : 3086,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -15615,7 +15615,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ*",
     "vset" : 1
   }, {
-    "answer" : [ "For you (1) to drink something alchoholic" ],
+    "answer" : [ "For you (1) to drink something alcoholic" ],
     "challenge" : [ "Ꮳ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "jạ²tu²³gi³²sdi" ],
     "id" : 3131,
     "pgroup" : "Ꮳ̣²-",
@@ -15624,7 +15624,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) often are drinking something alchoholic" ],
+    "answer" : [ "You (1) often are drinking something alcoholic" ],
     "challenge" : [ "Ꭽ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "ha¹tu²³gi³²sgo³ɂi" ],
     "id" : 3132,
     "pgroup" : "Ꭿ̣²-",
@@ -15678,7 +15678,7 @@
     "vgroup" : "Ꭶ̣²Ꮵ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "He often is drinking something alchoholic" ],
+    "answer" : [ "He often is drinking something alcoholic" ],
     "challenge" : [ "Ꭶ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "ga¹tu²³gi³²sgo³ɂi" ],
     "id" : 3151,
     "pgroup" : "Ꭰ̣²-, Ꭶ̣²-",
@@ -15741,7 +15741,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You all drank alchoholic drinks a while ago" ],
+    "answer" : [ "You all drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮥ³Ꮳ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "de³jạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 3162,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -16407,7 +16407,7 @@
     "vgroup" : "Ꮧ̣¹Ꮖ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "For him to drink something alchoholic" ],
+    "answer" : [ "For him to drink something alcoholic" ],
     "challenge" : [ "Ꭴ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "u²tu²³gi³²sdi" ],
     "id" : 3307,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -16416,7 +16416,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) drank something alchoholic a while ago" ],
+    "answer" : [ "You (1) drank something alcoholic a while ago" ],
     "challenge" : [ "Ꮳ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "jạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 3309,
     "pgroup" : "Ꮳ̣²-",
@@ -16803,7 +16803,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 8
   }, {
-    "answer" : [ "He drank something alchoholic a while ago" ],
+    "answer" : [ "He drank something alcoholic a while ago" ],
     "challenge" : [ "Ꭴ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "u¹tu²³gi³²sv²³ɂi" ],
     "id" : 3397,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -16830,7 +16830,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "For me to drink something alchoholic" ],
+    "answer" : [ "For me to drink something alcoholic" ],
     "challenge" : [ "Ꭰ¹Ꮖ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "a¹gwạ²tu²³gi³²sdi" ],
     "id" : 3409,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -17100,7 +17100,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "I drank something alchoholic a while ago" ],
+    "answer" : [ "I drank something alcoholic a while ago" ],
     "challenge" : [ "Ꭰ¹Ꮖ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "a¹gwạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 3494,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",

@@ -2,6 +2,8 @@ package com.cherokeelessons.bp.audiogen;
 
 import java.util.Random;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class AudioGenUtil {
 	private AudioGenUtil() {
 	}
@@ -28,6 +30,27 @@ public class AudioGenUtil {
 		}
 		return tmp;
 	}
+	
+	public static String alternizeEnglishSexes(final String text) {
+		String tmp = text;
+		if (tmp.contains("himself")) {
+			tmp = tmp.replace("He ", "He or she ");
+			tmp = tmp.replace(" himself", " himself or herself");
+		}
+		if (tmp.contains("Himself")) {
+			tmp = tmp.replace("He ", "He or she ");
+			tmp = tmp.replace("Himself", "Himself or herself");
+		}
+		if (tmp.matches(".*\\b[Hh]is\\b.*")) {
+			tmp = tmp.replace("His", "His or her");
+			tmp = tmp.replace("his", "his or her");
+		}
+		if (!tmp.contains(" or her")) {
+			tmp = tmp.replace("He ", "He or she ");
+			tmp = tmp.replace(" him", " him or her");
+		}
+		return tmp;
+	}
 
 	public static String removeEnglishFixedGenderMarks(String text) {
 		String tmp = text;
@@ -39,7 +62,8 @@ public class AudioGenUtil {
 	}
 
 	public static String asPhoneticFilename(String challenge) {
-		String tmp = challenge;
+		String tmp = challenge.toLowerCase();
+		
 		tmp = tmp.replace("ɂ", "-");
 
 		tmp = tmp.replace("¹", "1");
@@ -70,7 +94,10 @@ public class AudioGenUtil {
 	}
 
 	public static String asEnglishFilename(String challenge) {
-		String tmp = challenge;
+		String tmp = challenge.toLowerCase();
+		if (tmp.indexOf(".")>4) {
+			tmp = tmp.substring(0, tmp.indexOf("."));
+		}
 		tmp = tmp.replaceAll("(?i)[^A-Za-z1234\\-]", "-").replaceAll("-+", "-");
 		return tmp;
 	}
