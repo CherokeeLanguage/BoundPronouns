@@ -64,21 +64,26 @@ public class Main {
 		
 		voiceVariants = new TreeSet<>();
 		// default
-		voiceVariants.addAll(Arrays.asList(""));
+		voiceVariants.add("");
 		// magali's choices
-		voiceVariants.addAll(Arrays.asList("Diogo", "f5", "f2"));
+		voiceVariants.add("Diogo");
+		voiceVariants.add("f5");
+		voiceVariants.add("f2");
 		// craig's choices
-		voiceVariants.addAll(Arrays.asList("antonio", "Mr", "robosoft5"));
+		voiceVariants.add("antonio");//, "Mr", "robosoft5"));
+		voiceVariants.add("Mr");
+		voiceVariants.add("robosoft5");
+		
 		// tommylee's choices
-		voiceVariants.addAll(Arrays.asList("Diogo"));
+		voiceVariants.add("Diogo");
 		
 		//voice speed adjustments (word per minute espeak -s parameter)
-		voiceSpeekingRates.put("Diogo", 160);
-		voiceSpeekingRates.put("f5", 160);
-		voiceSpeekingRates.put("antonio", 120);
+		voiceSpeekingRates.put("Diogo", 175);
+		voiceSpeekingRates.put("f5", 175);
+		voiceSpeekingRates.put("f2", 175);
+		voiceSpeekingRates.put("antonio", 130);
 		voiceSpeekingRates.put("Mr", 175);
 		voiceSpeekingRates.put("robosoft5", 120);
-		voiceSpeekingRates.put("f2", 150);
 		
 	}
 
@@ -376,36 +381,36 @@ public class Main {
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
 				String voice = nextVoice(answer);
+				int speed;
+				if (voiceSpeekingRates.containsKey(voice)) {
+					speed = voiceSpeekingRates.get(voice);
+				} else {
+					speed = 0;
+				}
 				if (!voice.trim().isEmpty()) {
 					voice = "chr+" + voice;
 				} else {
 					voice = "chr";
 				}
 				System.out.println(" - " + challengeWavFile.getName() + " [" + voice + "]");
-				int speed;
-				if (voiceSpeekingRates.containsKey(voice)) {
-					speed = voiceSpeekingRates.get(voice);
-				} else {
-					speed = 0;
-				}
 				espeak.generateWav(voice, speed, challengeWavFile, challenge);
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
 				String voice = nextVoice(answer);
-				if (!voice.trim().isEmpty()) {
-					voice = "en-us+" + voice;
-				} else {
-					voice = "en-us";
-				}
-				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
 				int speed;
 				if (voiceSpeekingRates.containsKey(voice)) {
 					speed = voiceSpeekingRates.get(voice);
 				} else {
 					speed = 0;
 				}
+				if (!voice.trim().isEmpty()) {
+					voice = "en-us+" + voice;
+				} else {
+					voice = "en-us";
+				}
+				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
 				espeak.generateWav(voice, speed, answerWavFile, answer);
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
@@ -459,36 +464,36 @@ public class Main {
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
 				String voice = nextVoice(challenge);
+				int speed;
+				if (voiceSpeekingRates.containsKey(voice)) {
+					speed = voiceSpeekingRates.get(voice);
+				} else {
+					speed = 0;
+				}
 				if (!voice.trim().isEmpty()) {
 					voice = "en-us+" + voice;
 				} else {
 					voice = "en-us";
 				}
 				System.out.println(" - " + challengeWavFile.getName() + " [" + voice + "]");
-				int speed;
-				if (voiceSpeekingRates.containsKey(voice)) {
-					speed = voiceSpeekingRates.get(voice);
-				} else {
-					speed = 0;
-				}
 				espeak.generateWav(voice, speed, challengeWavFile, challenge);
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
 				String voice = nextVoice(challenge);
-				if (!voice.trim().isEmpty()) {
-					voice = "chr+" + voice;
-				} else {
-					voice = "chr";
-				}
-				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
 				int speed;
 				if (voiceSpeekingRates.containsKey(voice)) {
 					speed = voiceSpeekingRates.get(voice);
 				} else {
 					speed = 0;
 				}
+				if (!voice.trim().isEmpty()) {
+					voice = "chr+" + voice;
+				} else {
+					voice = "chr";
+				}
+				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
 				espeak.generateWav(voice, speed, answerWavFile, answer);
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
