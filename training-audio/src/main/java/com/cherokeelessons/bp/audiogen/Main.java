@@ -382,7 +382,13 @@ public class Main {
 					voice = "chr";
 				}
 				System.out.println(" - " + challengeWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, challengeWavFile, challenge);
+				int speed;
+				if (voiceSpeekingRates.containsKey(voice)) {
+					speed = voiceSpeekingRates.get(voice);
+				} else {
+					speed = 0;
+				}
+				espeak.generateWav(voice, speed, challengeWavFile, challenge);
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
 			}
@@ -394,7 +400,13 @@ public class Main {
 					voice = "en-us";
 				}
 				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, answerWavFile, answer);
+				int speed;
+				if (voiceSpeekingRates.containsKey(voice)) {
+					speed = voiceSpeekingRates.get(voice);
+				} else {
+					speed = 0;
+				}
+				espeak.generateWav(voice, speed, answerWavFile, answer);
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
 				data.setAnswerDuration(durationInSeconds);
@@ -453,7 +465,13 @@ public class Main {
 					voice = "en-us";
 				}
 				System.out.println(" - " + challengeWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, challengeWavFile, challenge);
+				int speed;
+				if (voiceSpeekingRates.containsKey(voice)) {
+					speed = voiceSpeekingRates.get(voice);
+				} else {
+					speed = 0;
+				}
+				espeak.generateWav(voice, speed, challengeWavFile, challenge);
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
 			}
@@ -465,7 +483,13 @@ public class Main {
 					voice = "chr";
 				}
 				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, answerWavFile, answer);
+				int speed;
+				if (voiceSpeekingRates.containsKey(voice)) {
+					speed = voiceSpeekingRates.get(voice);
+				} else {
+					speed = 0;
+				}
+				espeak.generateWav(voice, speed, answerWavFile, answer);
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
 				data.setAnswerDuration(durationInSeconds);

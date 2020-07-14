@@ -37,12 +37,16 @@ public class ESpeakNg {
 		}
 	}
 
-	public void generateWav(final String voice, final File wavFile, final String text) {
+	public void generateWav(final String voice, final int speed, final File wavFile, final String text) {
 		wavFile.getParentFile().mkdirs();
 		final List<String> cmd = new ArrayList<>();
 
 		cmd.add(espeakNg.getAbsolutePath());
 		cmd.add("-z"); // trim trailing silence off of audio
+		if (speed>0) {
+			cmd.add("-s");
+			cmd.add(""+speed);
+		}
 		cmd.add("-w");
 		cmd.add(wavFile.getAbsolutePath());
 		if (voice != null && !voice.trim().isEmpty()) {
