@@ -1099,7 +1099,7 @@ public class LearningSession extends ChildScreen {
 			
 			/*
 			 * If student has been using both the stem and the pronoun in other challenges
-			 * above the threshold, assume student can figure the term out without
+			 * above the threshold, assume student can figure out the phrase without
 			 * introducing as a new card.
 			 */
 			if (pSkill > 8 && vSkill > 8) {
