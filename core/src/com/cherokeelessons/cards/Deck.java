@@ -37,10 +37,7 @@ public class Deck {
 		if (correct_in_a_row < 0) {
 			correct_in_a_row = 0;
 		}
-		if (correct_in_a_row > pimsleur_intervals.size() - 1) {
-			correct_in_a_row = pimsleur_intervals.size() - 1;
-		}
-		return pimsleur_intervals.get(correct_in_a_row);
+		return pimsleur_intervals.get(correct_in_a_row % pimsleur_intervals.size());
 	}
 
 	/**

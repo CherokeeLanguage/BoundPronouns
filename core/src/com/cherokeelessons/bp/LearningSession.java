@@ -168,7 +168,7 @@ public class LearningSession extends ChildScreen {
 			}
 
 			/*
-			 * Reset as new cards that are at box 0 and were wrong alot
+			 * Reset as new cards that are at box 0 and were wrong a lot
 			 */
 			resetAsNew(current_due);
 
@@ -203,14 +203,6 @@ public class LearningSession extends ChildScreen {
 			for (final ActiveCard card : current_due.deck) {
 				card.resetTriesRemaining();
 			}
-
-			/*
-			 * time-shift all cards by an additional seven days to pull in more cards if
-			 * this is an extra practice session
-			 */
-			// if (isExtraPractice) {
-			// updateTime(current_due, ONE_DAY_ms * 7l);
-			// }
 
 			/*
 			 * mark cards already in the active deck
@@ -494,9 +486,9 @@ public class LearningSession extends ChildScreen {
 
 			if (activeCard == null) {
 				if (elapsed < info.settings.sessionLength.getSeconds()) {
-					if (current_discards.deck.size() < IncrementDeckBySize) {
+					if (current_discards.deck.size() < INCREMENT_DECK_BY_SIZE) {
 						log.info("not enough discards remaining...");
-						addCards(IncrementDeckBySize, current_active);
+						addCards(INCREMENT_DECK_BY_SIZE, current_active);
 						Gdx.app.postRunnable(showACard);
 						return;
 					}
@@ -504,7 +496,7 @@ public class LearningSession extends ChildScreen {
 					final long shift_by_ms = getMinShiftTimeOf(current_discards);
 					log.info("shifting discards to zero point: " + shift_by_ms / ONE_SECOND_ms);
 					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
-						addCards(IncrementDeckBySize, current_active);
+						addCards(INCREMENT_DECK_BY_SIZE, current_active);
 					}
 					updateTime(current_discards, shift_by_ms);
 					Gdx.app.postRunnable(showACard);
@@ -525,7 +517,7 @@ public class LearningSession extends ChildScreen {
 				 */
 				log.info("Forcing discards to be time shifted.");
 				final long shift_by_ms = getMinShiftTimeOf(current_discards);
-				addCards(IncrementDeckBySize, current_active);
+				addCards(INCREMENT_DECK_BY_SIZE, current_active);
 				updateTime(current_discards, shift_by_ms);
 				Gdx.app.postRunnable(showACard);
 				return;
@@ -679,7 +671,7 @@ public class LearningSession extends ChildScreen {
 		}
 	};
 
-	private static final int IncrementDeckBySize = 3;
+	private static final int INCREMENT_DECK_BY_SIZE = 2;
 
 	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
 
@@ -1080,9 +1072,10 @@ public class LearningSession extends ChildScreen {
 			activeCard.noErrors = true;
 			activeCard.newCard = true;
 			activeCard.pgroup = next.pgroup;
-			activeCard.show_again_ms = 0;
+			activeCard.show_again_ms = Deck.getNextInterval(0);
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
+			activeCard.resetTriesRemaining();
 			
 			int pSkill;
 			if (!pCounts.containsKey(activeCard.pgroup)) {
@@ -1097,28 +1090,31 @@ public class LearningSession extends ChildScreen {
 				vSkill = vCounts.get(activeCard.vgroup).get();
 			}
 			
+			log.info("Skill levels: "+activeCard.pgroup+"="+pSkill+", "+activeCard.vgroup+"="+vSkill);
+			
 			/*
 			 * If student has been using both the stem and the pronoun in other challenges
 			 * above the threshold, assume student can figure out the phrase without
-			 * introducing as a new card.
+			 * introducing it as a new card.
 			 */
-			if (pSkill > 8 && vSkill > 3) {
+			if (pSkill > 3 && vSkill > 2) {
 				/*
-				 * Should be at a high skill level, only try the new card once, and don't
+				 * Should be proficiently skilled at this level, only try the new card once, and don't
 				 * introduce card as "new"
 				 */
 				activeCard.tries_remaining = 1;
 				activeCard.newCard = false;
-			} else if (pSkill > 4 && vSkill > 2) {
+				log.info("Proficient mode active for: "+activeCard.pgroup+" "+activeCard.vgroup);
+			} else if (pSkill > 2 && vSkill > 2) {
 				/*
-				 * Should be at a moderate skill level, reduce tries per new card, and don't
+				 * Should have some skill at this level, reduce tries per new card, and don't
 				 * introduce card as "new"
 				 */
-				activeCard.resetTriesRemaining();
 				if (activeCard.tries_remaining > 1) {
 					activeCard.tries_remaining -= 1;
 				}
 				activeCard.newCard = false;
+				log.info("Skilled mode active for: "+activeCard.pgroup+" "+activeCard.vgroup);
 			}
 
 			active.deck.add(activeCard);
@@ -1154,17 +1150,6 @@ public class LearningSession extends ChildScreen {
 			ipending.remove();
 		}
 
-	}
-
-	private int getAvgLeitnerBox(ActiveDeck deck) {
-		if (deck.deck.isEmpty()) {
-			return 0;
-		}
-		int box = 0;
-		for (ActiveCard card : deck.deck) {
-			box += card.box;
-		}
-		return box / deck.deck.size();
 	}
 
 	private Dialog dialogYN(final String title, String message, final Runnable yes, final Runnable no) {
