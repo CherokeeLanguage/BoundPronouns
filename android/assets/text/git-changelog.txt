@@ -1,4 +1,7 @@
-2020-07-15 [77a5f69a]: (HEAD -> master) Updated audio files.
+2020-07-15 [8762de41]: (HEAD -> master) convenience script to rebuild deck, rebuild audio, and resync to assets folder the audio
+2020-07-15 [7bb05032]: be alot more aggresive with advanced students
+2020-07-15 [6ea47669]: Update git changelog.
+2020-07-15 [77a5f69a]: Updated audio files.
 2020-07-15 [e51a27bd]: Updated master deck file.
 2020-07-15 [0b1715e8]: challenge text fixes
 2020-07-15 [06c4a6fb]: (origin/master) misc deck fixups
