@@ -1078,8 +1078,18 @@ public class LearningSession extends ChildScreen {
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
 			
-			int pSkill = pCounts.get(activeCard.pgroup).get();
-			int vSkill = vCounts.get(activeCard.vgroup).get();
+			int pSkill;
+			if (!pCounts.containsKey(activeCard.pgroup)) {
+				pSkill = 0;
+			} else {
+				pSkill = pCounts.get(activeCard.pgroup).get();
+			}
+			int vSkill;
+			if (!vCounts.containsKey(activeCard.vgroup)) {
+				vSkill = 0;
+			} else {
+				vSkill = vCounts.get(activeCard.vgroup).get();
+			}
 			
 			/*
 			 * If student has been using both the stem and the pronoun in other challenges
