@@ -252,7 +252,7 @@ public class LearningSession extends ChildScreen {
 		}
 
 		private void calculatePracticeCounts() {
-			log.info("Calculating Practive Count ...");
+			log.info("Calculating Practice Counts ...");
 			for (ActiveCard card: current_due.deck) {
 				if (!pCounts.containsKey(card.pgroup)) {
 					pCounts.put(card.pgroup, new AtomicInteger());
