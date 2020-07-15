@@ -82,18 +82,6 @@ public class LearningSession extends ChildScreen {
 				current_due.deck = new ActiveDeck().deck;
 				current_due.lastrun = 0;
 			}
-			for (ActiveCard card: current_due.deck) {
-				if (!pCounts.containsKey(card.pgroup)) {
-					pCounts.put(card.pgroup, new AtomicInteger());
-				}
-				pCounts.get(card.pgroup).incrementAndGet();
-				if (!vCounts.containsKey(card.vgroup)) {
-					vCounts.put(card.vgroup,  new AtomicInteger());
-				}
-				if (!StringUtils.isBlank(card.vgroup)) {
-					vCounts.get(card.vgroup).incrementAndGet();
-				}
-			}
 			stage.addAction(Actions.run(processActiveCards));
 		}
 	}
@@ -146,10 +134,12 @@ public class LearningSession extends ChildScreen {
 
 		@Override
 		public void run() {
+			calculatePracticeCounts();
+			
 			nodupes.clear();
 			log.info("Processing Active Cards ...");
 
-			final int needed = InitialDeckSize;
+			final int needed = INITIAL_ACTIVE_DECK_SIZE;
 
 			/*
 			 * time-shift all cards by exactly one day + one extra hour for safety
@@ -259,6 +249,22 @@ public class LearningSession extends ChildScreen {
 			stage.addAction(Actions.run(showACard));
 
 			log.info("Elapsed :" + elapsed);
+		}
+
+		private void calculatePracticeCounts() {
+			log.info("Calculating Practive Count ...");
+			for (ActiveCard card: current_due.deck) {
+				if (!pCounts.containsKey(card.pgroup)) {
+					pCounts.put(card.pgroup, new AtomicInteger());
+				}
+				pCounts.get(card.pgroup).incrementAndGet();
+				if (!vCounts.containsKey(card.vgroup)) {
+					vCounts.put(card.vgroup,  new AtomicInteger());
+				}
+				if (!StringUtils.isBlank(card.vgroup)) {
+					vCounts.get(card.vgroup).incrementAndGet();
+				}
+			}
 		}
 
 		private void truncateToNearestMinute(final List<ActiveCard> deck) {
@@ -677,7 +683,7 @@ public class LearningSession extends ChildScreen {
 
 	private static final String INFO_JSON = BoundPronouns.INFO_JSON;
 
-	private static final int InitialDeckSize = 5;
+	private static final int INITIAL_ACTIVE_DECK_SIZE = 5;
 
 	private static final long ONE_DAY_ms;
 	private static final long ONE_HOUR_ms;
