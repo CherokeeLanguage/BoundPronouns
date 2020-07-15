@@ -1,10 +1,19 @@
-2020-07-15 [8762de41]: (HEAD -> master) convenience script to rebuild deck, rebuild audio, and resync to assets folder the audio
+2020-07-15 [e634ca65]: (HEAD -> master) Updated audio files.
+2020-07-15 [52c18fab]: 	modified:   .gitignore
+2020-07-15 [9a1017a9]: (origin/master) session behavior adjustments for more advanced students
+2020-07-15 [1d6cc9eb]: adjust threshold counts
+2020-07-15 [a1aef1f6]: doc fix
+2020-07-15 [4f261cb3]: typo
+2020-07-15 [8b508202]: move skill level counting code
+2020-07-15 [9aa449cb]: meh... fix introduced NPE condition
+2020-07-15 [01883e81]: Update git changelog.
+2020-07-15 [8762de41]: convenience script to rebuild deck, rebuild audio, and resync to assets folder the audio
 2020-07-15 [7bb05032]: be alot more aggresive with advanced students
 2020-07-15 [6ea47669]: Update git changelog.
 2020-07-15 [77a5f69a]: Updated audio files.
 2020-07-15 [e51a27bd]: Updated master deck file.
 2020-07-15 [0b1715e8]: challenge text fixes
-2020-07-15 [06c4a6fb]: (origin/master) misc deck fixups
+2020-07-15 [06c4a6fb]: misc deck fixups
 2020-07-13 [f3d4fc98]: speed adjustments
 2020-07-13 [eea03a73]: remove temp file
 2020-07-13 [68a03dc7]: new audio
