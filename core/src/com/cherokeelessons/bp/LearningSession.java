@@ -4,11 +4,14 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
@@ -59,24 +62,38 @@ import com.cherokeelessons.util.RandomName;
 
 public class LearningSession extends ChildScreen {
 
+	private Map<String, AtomicInteger> vCounts;
+	private Map<String, AtomicInteger> pCounts;
 	private class ActiveDeckLoader implements Runnable {
 		@Override
 		public void run() {
 			log.info("Loading Active Deck ...");
+			pCounts = new HashMap<>();
+			vCounts = new HashMap<>();
 			if (!slot.child(ACTIVE_DECK_JSON).exists()) {
 				json.toJson(new ActiveDeck(), slot.child(ACTIVE_DECK_JSON));
 			}
-			
 			try {
 				final ActiveDeck tmp = json.fromJson(ActiveDeck.class, slot.child(ACTIVE_DECK_JSON));
 				current_due.deck = tmp.deck;
 				current_due.lastrun = tmp.lastrun;
 				Collections.sort(current_due.deck, byShowTime);
 			} catch (Exception e) {
-				current_due.deck=new ActiveDeck().deck;
-				current_due.lastrun=0;
+				current_due.deck = new ActiveDeck().deck;
+				current_due.lastrun = 0;
 			}
-
+			for (ActiveCard card: current_due.deck) {
+				if (!pCounts.containsKey(card.pgroup)) {
+					pCounts.put(card.pgroup, new AtomicInteger());
+				}
+				pCounts.get(card.pgroup).incrementAndGet();
+				if (!vCounts.containsKey(card.vgroup)) {
+					vCounts.put(card.vgroup,  new AtomicInteger());
+				}
+				if (!StringUtils.isBlank(card.vgroup)) {
+					vCounts.get(card.vgroup).incrementAndGet();
+				}
+			}
 			stage.addAction(Actions.run(processActiveCards));
 		}
 	}
@@ -1060,23 +1077,34 @@ public class LearningSession extends ChildScreen {
 			activeCard.show_again_ms = 0;
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
-			int skillLevel1 = getMaxLeitnerBox(current_discards);
-			int skillLevel2 = getMaxLeitnerBox(active);
-			int skillLevel3 = getMaxLeitnerBox(current_done);
-			if (skillLevel1<3 && skillLevel2<3 && skillLevel3<3) {
-				activeCard.resetTriesRemaining();
-			} else if (skillLevel1<5 && skillLevel2<5 && skillLevel3<5) {
-				activeCard.resetTriesRemaining();
-				if (activeCard.tries_remaining>1) {
-					activeCard.tries_remaining--;
-				}
-			} else {
-				activeCard.resetTriesRemaining();
-				if (activeCard.tries_remaining>2) {
-					activeCard.tries_remaining-=2;
-				}
-			}
 			
+			int pSkill = pCounts.get(activeCard.pgroup).get();
+			int vSkill = vCounts.get(activeCard.vgroup).get();
+			
+			/*
+			 * If student has been using both the stem and the pronoun in other challenges
+			 * above the threshold, assume student can figure the term out without
+			 * introducing as a new card.
+			 */
+			if (pSkill > 8 && vSkill > 8) {
+				/*
+				 * Should be at a high skill level, only try the new card once, and don't
+				 * introduce card as "new"
+				 */
+				activeCard.tries_remaining = 1;
+				activeCard.newCard = false;
+			} else if (pSkill > 4 && vSkill > 4) {
+				/*
+				 * Should be at a moderate skill level, reduce tries per new card, and don't
+				 * introduce card as "new"
+				 */
+				activeCard.resetTriesRemaining();
+				if (activeCard.tries_remaining > 1) {
+					activeCard.tries_remaining -= 1;
+				}
+				activeCard.newCard = false;
+			}
+
 			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
@@ -1112,15 +1140,15 @@ public class LearningSession extends ChildScreen {
 
 	}
 
-	private int getMaxLeitnerBox(ActiveDeck deck) {
+	private int getAvgLeitnerBox(ActiveDeck deck) {
 		if (deck.deck.isEmpty()) {
 			return 0;
 		}
 		int box = 0;
-		for (ActiveCard card: deck.deck) {
-			box = Math.max(card.box, box);
+		for (ActiveCard card : deck.deck) {
+			box += card.box;
 		}
-		return box;
+		return box / deck.deck.size();
 	}
 
 	private Dialog dialogYN(final String title, String message, final Runnable yes, final Runnable no) {
@@ -1177,8 +1205,6 @@ public class LearningSession extends ChildScreen {
 			dskin = null;
 		}
 	}
-
-	
 
 	private Card getCardByPronounVstemCombo(final String pgroup, final String vgroup) {
 		for (final Card card : game.deck.cards) {
