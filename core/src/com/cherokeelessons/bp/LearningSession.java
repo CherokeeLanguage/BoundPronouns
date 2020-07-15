@@ -153,7 +153,7 @@ public class LearningSession extends ChildScreen {
 			final Iterator<ActiveCard> ipending = current_due.deck.iterator();
 			while (ipending.hasNext()) {
 				final ActiveCard active = ipending.next();
-				if (getCardById(active.pgroup, active.vgroup) != null) {
+				if (getCardByPronounVstemCombo(active.pgroup, active.vgroup) != null) {
 					continue;
 				}
 				ipending.remove();
@@ -508,7 +508,7 @@ public class LearningSession extends ChildScreen {
 				return;
 			}
 			previousCard = activeCard;
-			final Card deckCard = new Card(getCardById(activeCard.pgroup, activeCard.vgroup));
+			final Card deckCard = new Card(getCardByPronounVstemCombo(activeCard.pgroup, activeCard.vgroup));
 			final float sessionSeconds = info.settings.sessionLength.getSeconds();
 			if (activeCard.newCard) {
 				elapsed_tick_on = false;
@@ -889,6 +889,7 @@ public class LearningSession extends ChildScreen {
 						final TextButton tb = (TextButton) b;
 						final Object userObject = tb.getUserObject();
 						if (userObject != null && userObject instanceof Answer) {
+							elapsed_tick_on = false;
 							final Answer tracked_answer = (Answer) userObject;
 							if (!tb.isChecked() && !tracked_answer.correct) {
 								tb.addAction(Actions.fadeOut(.2f));
@@ -1059,7 +1060,23 @@ public class LearningSession extends ChildScreen {
 			activeCard.show_again_ms = 0;
 			activeCard.vgroup = next.vgroup;
 			resetCorrectInARow(activeCard);
-			activeCard.resetTriesRemaining();
+			int skillLevel1 = getMaxLeitnerBox(current_discards);
+			int skillLevel2 = getMaxLeitnerBox(active);
+			int skillLevel3 = getMaxLeitnerBox(current_done);
+			if (skillLevel1<3 && skillLevel2<3 && skillLevel3<3) {
+				activeCard.resetTriesRemaining();
+			} else if (skillLevel1<5 && skillLevel2<5 && skillLevel3<5) {
+				activeCard.resetTriesRemaining();
+				if (activeCard.tries_remaining>1) {
+					activeCard.tries_remaining--;
+				}
+			} else {
+				activeCard.resetTriesRemaining();
+				if (activeCard.tries_remaining>2) {
+					activeCard.tries_remaining-=2;
+				}
+			}
+			
 			active.deck.add(activeCard);
 			needed--;
 			nodupes.add(unique_id);
@@ -1093,6 +1110,17 @@ public class LearningSession extends ChildScreen {
 			ipending.remove();
 		}
 
+	}
+
+	private int getMaxLeitnerBox(ActiveDeck deck) {
+		if (deck.deck.isEmpty()) {
+			return 0;
+		}
+		int box = 0;
+		for (ActiveCard card: deck.deck) {
+			box = Math.max(card.box, box);
+		}
+		return box;
 	}
 
 	private Dialog dialogYN(final String title, String message, final Runnable yes, final Runnable no) {
@@ -1152,7 +1180,7 @@ public class LearningSession extends ChildScreen {
 
 	
 
-	private Card getCardById(final String pgroup, final String vgroup) {
+	private Card getCardByPronounVstemCombo(final String pgroup, final String vgroup) {
 		for (final Card card : game.deck.cards) {
 			if (!card.pgroup.equals(pgroup)) {
 				continue;
@@ -1314,12 +1342,12 @@ public class LearningSession extends ChildScreen {
 				continue;
 			}
 			card.newCard = true;
-			log.info("Resetting as new: " + getCardById(card.pgroup, card.vgroup).challenge.toString());
+			log.info("Resetting as new: " + getCardByPronounVstemCombo(card.pgroup, card.vgroup).challenge.toString());
 		}
 	}
 
 	public void resetCorrectInARow(final ActiveCard card) {
-		final Card dcard = getCardById(card.pgroup, card.vgroup);
+		final Card dcard = getCardByPronounVstemCombo(card.pgroup, card.vgroup);
 		if (dcard == null) {
 			card.resetCorrectInARow(new ArrayList<String>());
 			return;

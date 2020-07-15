@@ -34,7 +34,7 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck {
 
-	public static final int MIN_VSTEM_COUNT = 2;
+	public static final int MIN_VSTEM_COUNT = 4;
 	public static final int MIN_PFORM_VSTEM_COMBO_COUNT = 2;
 
 	public static final int DECK_VERSION = 100;
@@ -817,7 +817,7 @@ public class BuildDeck {
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )is ", "$1$2are ");
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )was ", "$1$2were ");
 		d.def = d.def.replaceAll("([Ww]e)( .*? | )has ", "$1$2have ");
-
+		
 		d.def = d.def.replaceAll("([Yy]ou)( .*? | )is ", "$1$2are ");
 		d.def = d.def.replaceAll("([Yy]ou)( .*? | )was ", "$1$2were ");
 		d.def = d.def.replaceAll("([Yy]ou)( .*? | )has ", "$1$2have ");
@@ -859,6 +859,13 @@ public class BuildDeck {
 		d.def = d.def.replace("You two often has", "You two often have");
 		d.def = d.def.replace("You all often has", "You all often have");
 		d.def = d.def.replace("They often has", "They often have");
+		
+		d.def = d.def.replace("and I usually has", "and I usually have");
+		d.def = d.def.replace("I usually has", "I usually have");
+		d.def = d.def.replace("You one usually has", "You one usually have");
+		d.def = d.def.replace("You two usually has", "You two usually have");
+		d.def = d.def.replace("You all usually has", "You all usually have");
+		d.def = d.def.replace("They usually has", "They usually have");
 
 		if (d.def.startsWith("Someone")) {
 			d.def = d.def.replaceAll("\\b[Hh]e\\b", "him");
@@ -1248,7 +1255,7 @@ public class BuildDeck {
 
 	private void sortThenSaveDeck() throws FileNotFoundException, IOException {
 		/*
-		 * Presort deck by syllabary length, ascending
+		 * Presort deck by challenge length ascending, then challenge value ascending
 		 */
 		Collections.sort(deck.cards, new Comparator<Card>() {
 			@Override
@@ -1270,17 +1277,47 @@ public class BuildDeck {
 			}
 		});
 		/*
-		 * assign sets based on order and pronoun verb unique counts
+		 * assign psets based on order and pronoun unique counts
 		 */
 		final Map<String, AtomicInteger> pronounCounts = new HashMap<>();
+		for (final Card card : deck.cards) {
+			final String pgroup = card.pgroup;
+			if (!pronounCounts.containsKey(pgroup)) {
+				pronounCounts.put(pgroup, new AtomicInteger(1));
+			}
+			if (!StringUtils.isBlank(card.vgroup)) {
+				card.setPset(pronounCounts.get(pgroup).incrementAndGet());
+			}
+		}
+		/*
+		 * resort deck by assigned pset, vset length, and challenge length
+		 */
+		Collections.sort(deck.cards, new Comparator<Card>() {
+			@Override
+			public int compare(final Card a, final Card b) {
+				String c1 = a.challenge.get(0);
+				int p1 = a.getPset();
+				String v1 = a.vgroup;
+				String c2 = b.challenge.get(0);
+				int p2 = b.getPset();
+				String v2 = b.vgroup;
+				if (p1 != p2) {
+					return p1 - p2;
+				}
+				if (v1.length()!=v2.length()) {
+					return Integer.compare(v1.length(), v2.length());
+				}
+				if (c1.length() != c2.length()) {
+					return Integer.compare(c1.length(), c2.length());
+				}
+				return v1.compareToIgnoreCase(v2);
+			}
+		});
+		/*
+		 * Assign vsets based on order and verb unique counts
+		 */
 		final Map<String, AtomicInteger> verbStemCounts = new HashMap<>();
 		for (final Card card : deck.cards) {
-			final String pset = card.pgroup;
-			if (!pronounCounts.containsKey(pset)) {
-				pronounCounts.put(pset, new AtomicInteger());
-			}
-			card.setPset(pronounCounts.get(pset).incrementAndGet());
-
 			final String vset = card.vgroup;
 			if (!vset.isEmpty()) {
 				if (!verbStemCounts.containsKey(vset)) {
@@ -1305,6 +1342,15 @@ public class BuildDeck {
 		}
 
 		reduceDeckSize(deck);
+		/*
+		 * Assign new IDs on the reduced set of cards
+		 */
+		System.out.println("Assigning final IDs");
+		int id=0;
+		for (Card card: deck.cards) {
+			card.id=++id;
+		}
+		System.out.println("Final id: "+id);
 
 		deck.version = DECK_VERSION;
 		deck.size = deck.cards.size();
@@ -1421,26 +1467,31 @@ public class BuildDeck {
 				"Ꭴ¹-, Ꭴ¹Ꮹ͓-"));
 
 		/*
-		 * split out into buckets based on bound pronoun and first letter of vstem
+		 * split out into buckets based on bound pronoun and first letter of vstem and
+		 * whether the stem is deaspirated
 		 */
 		List<Card> tmpDeck = new ArrayList<>(deckToFilter.cards);
 		Map<String, List<Card>> bucketsByPronoun = new HashMap<>();
 		Iterator<Card> iter = tmpDeck.iterator();
 		while (iter.hasNext()) {
 			Card card = iter.next();
-			if (alwaysKeep.contains(card.pgroup)) {
-				// cards in the always keep list aren't eligible for removal
-				continue;
-			}
 			String pgroup = card.pgroup;// pgroupBucket(card);
 			String asPlainSyllabary = asPlainSyllabary(card.vgroup);
 			if (!asPlainSyllabary.isEmpty()) {
 				pgroup += " " + asPlainSyllabary.substring(0, 1);
 			}
+			if (card.vgroup.endsWith("*")) {
+				pgroup+="*";
+			}
 			if (!bucketsByPronoun.containsKey(pgroup)) {
 				bucketsByPronoun.put(pgroup, new ArrayList<Card>());
 			}
-			bucketsByPronoun.get(pgroup).add(card);
+			/*
+			 * Certain cards are in the always keep set.
+			 */
+			if (!alwaysKeep.contains(card.pgroup)) {
+				bucketsByPronoun.get(pgroup).add(card);
+			}
 		}
 
 		/*
@@ -1543,7 +1594,6 @@ public class BuildDeck {
 			sb.append(NumberFormat.getInstance().format(bucketsByPronoun.get(bucket).size()));
 			sb.append("\n");
 		}
-//		System.out.println(sb.toString());
 	}
 
 	private String pgroupBucket(Card card) {
