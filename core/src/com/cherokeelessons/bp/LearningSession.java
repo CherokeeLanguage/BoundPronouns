@@ -1102,14 +1102,14 @@ public class LearningSession extends ChildScreen {
 			 * above the threshold, assume student can figure out the phrase without
 			 * introducing as a new card.
 			 */
-			if (pSkill > 8 && vSkill > 8) {
+			if (pSkill > 8 && vSkill > 3) {
 				/*
 				 * Should be at a high skill level, only try the new card once, and don't
 				 * introduce card as "new"
 				 */
 				activeCard.tries_remaining = 1;
 				activeCard.newCard = false;
-			} else if (pSkill > 4 && vSkill > 4) {
+			} else if (pSkill > 4 && vSkill > 2) {
 				/*
 				 * Should be at a moderate skill level, reduce tries per new card, and don't
 				 * introduce card as "new"
