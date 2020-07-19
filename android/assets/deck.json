@@ -1413,7 +1413,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "Your ones things", "Your alls things" ],
+    "answer" : [ "Your things", "You all, your things" ],
     "challenge" : [ "Ꮧ̣²Ꮳ²Ꮴ²Ꮅ⁴Ꭲ", "dị²jạ²je²li⁴ɂi" ],
     "id" : 158,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -3465,7 +3465,7 @@
     "vgroup" : "ɂ¹Ꮯ²³Ꮜ",
     "vset" : 9
   }, {
-    "answer" : [ "Your twos things" ],
+    "answer" : [ "You both, your things" ],
     "challenge" : [ "Ꮧ̣²ᏍᏓ²Ꮴ²Ꮅ⁴Ꭲ", "dị²sdạ²je²li⁴ɂi" ],
     "id" : 386,
     "pgroup" : "Ꮧ̣²ᏍᏗ²-",
@@ -6687,7 +6687,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 11
   }, {
-    "answer" : [ "Your ones thing" ],
+    "answer" : [ "Your thing" ],
     "challenge" : [ "Ꮳ²Ꮴ²Ꮅ⁴Ꭲ", "jạ²je²li⁴ɂi" ],
     "id" : 744,
     "pgroup" : "Ꮳ̣²-",
@@ -7002,7 +7002,7 @@
     "vgroup" : "ɂᎷ¹Ꭶ²",
     "vset" : 2
   }, {
-    "answer" : [ "I usually am going" ],
+    "answer" : [ "I am usually going" ],
     "challenge" : [ "Ꭸ³Ꭺ̣³Ꭲ", "ge³gọ³ɂi" ],
     "id" : 779,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -10836,7 +10836,7 @@
     "vgroup" : "Ꭿ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "I usually am eating flexible things" ],
+    "answer" : [ "I am usually eating flexible things" ],
     "challenge" : [ "Ꮥ²Ꮵ̣²Ᏸ³ᏍᎪ³Ꭲ", "de²jị²ye³sgo³ɂi" ],
     "id" : 1205,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -11061,7 +11061,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*",
     "vset" : 10
   }, {
-    "answer" : [ "I usually am wanting myself" ],
+    "answer" : [ "I am usually wanting myself" ],
     "challenge" : [ "Ꭰ¹Ꮖ̣²Ꮣ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "a¹gwạ²dạ²du²li²³sgọ³ɂi" ],
     "id" : 1230,
     "pgroup" : "Ꭰ¹Ꮖ̣²Ꮣ²[Ꮣ͓]-",
@@ -11853,7 +11853,7 @@
     "vgroup" : "Ꮎ̣³Ꭵ²³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "I usually am drinking drinks" ],
+    "answer" : [ "I am usually drinking drinks" ],
     "challenge" : [ "Ꮥ²Ꭶ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ", "de²ga¹di²tạ²sgo³ɂi" ],
     "id" : 1318,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -12177,7 +12177,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "I usually am drinking alcoholic drinks" ],
+    "answer" : [ "I am usually drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭶ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "de²gạɂ²du²³gi³²sgo³ɂi" ],
     "id" : 1354,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -12519,7 +12519,7 @@
     "vgroup" : "Ꮈ¹ᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "I usually am climbing it" ],
+    "answer" : [ "I am usually climbing it" ],
     "challenge" : [ "Ꮵ̣Ꮄ¹Ꭺ³Ꭲ", "jị³le¹go³ɂi" ],
     "id" : 1392,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -14706,7 +14706,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮦ³ᏍᏗ",
     "vset" : 1
   }, {
-    "answer" : [ "I usually am eating something flexible" ],
+    "answer" : [ "I am usually eating something flexible" ],
     "challenge" : [ "Ꮵ̣²Ᏸ³ᏍᎪ³Ꭲ", "jị²ye³sgo³ɂi" ],
     "id" : 1635,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -14868,7 +14868,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 35
   }, {
-    "answer" : [ "I usually am wanting you (1)" ],
+    "answer" : [ "I am usually wanting you (1)" ],
     "challenge" : [ "Ꭼ²Ꮿ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "gv²yạ²du²li²³sgọ³ɂi" ],
     "id" : 1653,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -14913,7 +14913,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 41
   }, {
-    "answer" : [ "I usually am wanting him" ],
+    "answer" : [ "I am usually wanting him" ],
     "challenge" : [ "Ꮵ²Ꮿ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "ji²yạ²du²li²³sgọ³ɂi" ],
     "id" : 1658,
     "pgroup" : "Ꮵ²-, Ꮵ²Ꮿ͓-",
@@ -15723,7 +15723,7 @@
     "vgroup" : "ɂ³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "I usually am drinking something" ],
+    "answer" : [ "I am usually drinking something" ],
     "challenge" : [ "Ꭶ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ", "ga¹di²tạ²sgo³ɂi" ],
     "id" : 1748,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -15813,7 +15813,7 @@
     "vgroup" : "ᏍᏛ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "I usually am drinking something alcoholic" ],
+    "answer" : [ "I am usually drinking something alcoholic" ],
     "challenge" : [ "Ꭶ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "gạɂ²du²³gi³²sgo³ɂi" ],
     "id" : 1758,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -17406,7 +17406,7 @@
     "vgroup" : "ɂ³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "I usually am eating something rod shaped" ],
+    "answer" : [ "I am usually eating something rod shaped" ],
     "challenge" : [ "Ꮵ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "jị¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1935,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -18288,7 +18288,7 @@
     "vgroup" : "Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ",
     "vset" : 3
   }, {
-    "answer" : [ "I usually am hungry" ],
+    "answer" : [ "I am usually hungry" ],
     "challenge" : [ "Ꭰ¹Ꭹ̣²Ᏺ³Ꮟ²ᏍᎪ³Ꭲ", "a¹gị²yo³si²sgo³ɂi" ],
     "id" : 2033,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -19044,7 +19044,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ",
     "vset" : 40
   }, {
-    "answer" : [ "I usually am wanting it", "He usually is wanting me" ],
+    "answer" : [ "I am usually wanting it", "He usually is wanting me" ],
     "challenge" : [ "Ꭰ¹Ꮖ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "a¹gwạ²du²li²³sgọ³ɂi" ],
     "id" : 2117,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
