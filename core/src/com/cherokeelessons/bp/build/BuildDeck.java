@@ -545,10 +545,37 @@ public class BuildDeck {
 				} else {
 					c.answer.add(d.def);
 				}
-
+				mergeSelectedDefinitions(c.answer);
 			}
 		}
 		setStatus("Finished conjugating ...");
+	}
+
+	private void mergeSelectedDefinitions(List<String> answers) {
+		Set<String> forMerging = new HashSet<>();
+		for (String answer: answers) {
+			if (answer.contains(" (animate)")) {
+				String tmp = answer.replace(" (animate)", " (inanimate)");
+				if (answers.contains(tmp)) {
+					forMerging.add(answer);
+					continue;
+				}
+			}
+			if (answer.contains(" (inanimate)")) {
+				String tmp = answer.replace(" (inanimate)", " (animate)");
+				if (answers.contains(tmp)) {
+					forMerging.add(answer);
+					continue;
+				}
+			}
+		}
+		if (forMerging.size()>1) {
+			answers.removeAll(forMerging);
+			String tmp = forMerging.iterator().next();
+			tmp = tmp.replace(" (animate)", "").trim();
+			tmp = tmp.replace(" (inanimate)", "").trim();
+			answers.add(tmp);
+		}
 	}
 
 	private void selectPronounForm(DataSet d, boolean cStem, boolean gStem, boolean p_g3rd, boolean v_g3rd) {
@@ -827,6 +854,7 @@ public class BuildDeck {
 		d.def = d.def.replaceAll(" both has ", " both have ");
 
 		d.def = d.def.replace("and I is", "and I are");
+		d.def = d.def.replace("and I usually is", "and I usually am");
 		d.def = d.def.replace("I is", "I am");
 		d.def = d.def.replace("You one is", "You one are");
 		d.def = d.def.replace("You two is", "You two are");
@@ -845,6 +873,13 @@ public class BuildDeck {
 		d.def = d.def.replace("You two often is", "You two often are");
 		d.def = d.def.replace("You all often is", "You all often are");
 		d.def = d.def.replace("They often is", "They often are");
+		
+		d.def = d.def.replace("and I usually is", "and I usually are");
+		d.def = d.def.replace("I usually is", "I usually am");
+		d.def = d.def.replace("You one usually is", "You one usually are");
+		d.def = d.def.replace("You two usually is", "You two usually are");
+		d.def = d.def.replace("You all usually is", "You all usually are");
+		d.def = d.def.replace("They usually is", "They usually are");
 
 		d.def = d.def.replace("and I has", "and I have");
 		d.def = d.def.replace("I has", "I have");
@@ -1154,10 +1189,38 @@ public class BuildDeck {
 		}
 
 		addConjugatedChallengesToDeck();
+		
+		mergeSelvesAndEachOther();
 
 		setStatus("Saving ...");
 
 		sortThenSaveDeck();
+	}
+
+	private void mergeSelvesAndEachOther() {
+		for (Card card: deck.cards) {
+			if (card.answer.size()<2) {
+				continue;
+			}
+			boolean hasEachOther=false;
+			for (String a: card.answer) {
+				if (a.toLowerCase().contains("each other")) {
+					hasEachOther=true;
+					break;
+				}
+			}
+			if (!hasEachOther) {
+				continue;
+			}
+			Iterator<String> iter = card.answer.iterator();
+			while (iter.hasNext()) {
+				final String next = iter.next();
+				if (next.toLowerCase().contains("selves")) {
+					iter.remove();
+					continue;
+				}
+			}
+		}
 	}
 
 	private Card getCardByLatinChallenge(final String latin, @SuppressWarnings("hiding") final Deck deck) {
