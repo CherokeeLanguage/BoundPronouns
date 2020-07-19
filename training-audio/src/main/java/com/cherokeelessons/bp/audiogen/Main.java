@@ -23,6 +23,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
@@ -395,7 +396,13 @@ public class Main {
 			process = b.start();
 			process.waitFor();
 			if (process.exitValue() != 0) {
-				System.err.println("FATAL: Bad exit value from\n" + strCmd);
+				System.err.println("FATAL: Bad exit value from:\n   " + strCmd);
+				System.out.println();
+				IOUtils.copy(process.getInputStream(), System.out);
+				System.out.println();
+				IOUtils.copy(process.getErrorStream(), System.err);
+				System.out.println();
+				throw new RuntimeException("FATAL: Bad exit value from " + strCmd);
 			}
 			process.destroy();
 		} catch (IOException | InterruptedException e) {
@@ -571,8 +578,9 @@ public class Main {
 	}
 
 	private File generateSilenceWav() {
-		final File silenceWav = new File(EXCERCISES_DIR, "silence-1-second.wav");
 		EXCERCISES_DIR.mkdirs();
+		final File silenceWav = new File(EXCERCISES_DIR, "silence-1-second.wav");
+		FileUtils.deleteQuietly(silenceWav);
 		final List<String> cmd = Arrays.asList("sox", "-n", "-r", "22050", //
 				"-c", "1", silenceWav.getAbsolutePath(), "trim", "0.0", "1.0");
 		executeCmd(cmd);
@@ -581,6 +589,7 @@ public class Main {
 
 	private File generateNewPhrase() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "here-is-a-new-phrase.wav");
+		FileUtils.deleteQuietly(newPhrase);
 		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is a new phrase to learn. Listen carefully:");
 		List<String> cmd = new ArrayList<>();
 		cmd.add("ffmpeg");
@@ -589,6 +598,25 @@ public class Main {
 		cmd.add(tmp.getAbsolutePath());
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		return newPhrase;
+	}
+	
+	private File listenAgain() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "listen-again.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here it is again. Listen carefully:");
+		List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
 		cmd.add("normalize-audio");
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
@@ -597,6 +625,7 @@ public class Main {
 
 	private File generateTranslatePhrase() throws IOException {
 		final File translateIntoEnglish = new File(EXCERCISES_DIR, "translate-into-english.wav");
+		FileUtils.deleteQuietly(translateIntoEnglish);
 		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Translate into English:");
 		List<String> cmd = new ArrayList<>();
 		cmd.add("ffmpeg");
@@ -605,6 +634,7 @@ public class Main {
 		cmd.add(tmp.getAbsolutePath());
 		cmd.add(translateIntoEnglish.getAbsolutePath());
 		executeCmd(cmd);
+		cmd.clear();
 		cmd.add("normalize-audio");
 		cmd.add(translateIntoEnglish.getAbsolutePath());
 		executeCmd(cmd);

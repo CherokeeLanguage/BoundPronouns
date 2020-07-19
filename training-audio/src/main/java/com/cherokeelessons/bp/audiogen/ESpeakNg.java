@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 /**
  * <a href=
@@ -33,6 +34,15 @@ public class ESpeakNg {
 		try {
 			process = b.start();
 			process.waitFor();
+			if (process.exitValue() != 0) {
+				System.err.println("FATAL: Bad exit value from:\n   " + cmd.toString());
+				System.out.println();
+				IOUtils.copy(process.getInputStream(), System.out);
+				System.out.println();
+				IOUtils.copy(process.getErrorStream(), System.err);
+				System.out.println();
+				throw new RuntimeException("FATAL: Bad exit value from " + cmd.toString());
+			}
 			process.destroy();
 		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
