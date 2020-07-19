@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+
 /**
  * <a href=
  * "https://github.com/espeak-ng/espeak-ng/blob/master/src/espeak-ng.1.ronn">espeak-ng
@@ -37,8 +39,18 @@ public class ESpeakNg {
 		}
 	}
 
-	public void generateWav(final String voice, final int speed, final File wavFile, final String text) {
+	public void generateWav(final String voice, final int speed, final File wavFile, final String text) throws IOException {
+		File cacheDir = new File("espeak-ng/cache");
+		cacheDir.mkdirs();
+		File cachedFile = new File(cacheDir, (voice==null?"":voice.trim())+"_"+ wavFile.getName());
+		
 		wavFile.getParentFile().mkdirs();
+		
+		if (cachedFile.canRead()) {
+			FileUtils.copyFile(cachedFile, wavFile);
+			return;
+		}
+		
 		final List<String> cmd = new ArrayList<>();
 
 		cmd.add(espeakNg.getAbsolutePath());
@@ -48,7 +60,7 @@ public class ESpeakNg {
 			cmd.add(""+speed);
 		}
 		cmd.add("-w");
-		cmd.add(wavFile.getAbsolutePath());
+		cmd.add(cachedFile.getAbsolutePath());
 		if (voice != null && !voice.trim().isEmpty()) {
 			cmd.add("-v");
 			cmd.add(voice);
@@ -58,7 +70,9 @@ public class ESpeakNg {
 
 		cmd.clear();
 		cmd.add("normalize-audio");
-		cmd.add(wavFile.getAbsolutePath());
+		cmd.add(cachedFile.getAbsolutePath());
 		executeCmd(cmd);
+		
+		FileUtils.copyFile(cachedFile, wavFile);
 	}
 }

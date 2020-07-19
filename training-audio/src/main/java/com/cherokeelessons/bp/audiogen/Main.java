@@ -581,12 +581,15 @@ public class Main {
 
 	private File generateNewPhrase() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "here-is-a-new-phrase.wav");
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is a new phrase to learn:");
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is a new phrase to learn. Listen carefully:");
 		List<String> cmd = new ArrayList<>();
 		cmd.add("ffmpeg");
 		cmd.add("-y");
 		cmd.add("-i");
 		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.add("normalize-audio");
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
 		return newPhrase;
@@ -600,6 +603,9 @@ public class Main {
 		cmd.add("-y");
 		cmd.add("-i");
 		cmd.add(tmp.getAbsolutePath());
+		cmd.add(translateIntoEnglish.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.add("normalize-audio");
 		cmd.add(translateIntoEnglish.getAbsolutePath());
 		executeCmd(cmd);
 		return translateIntoEnglish;
@@ -649,6 +655,12 @@ public class Main {
 					englishText = StringUtils.capitalize(englishText);
 					if (!englishText.matches(".*[.?!]")) {
 						englishText += ".";
+					}
+					if (englishText.contains(" (")) {
+						//English text pronunciation adjustments
+						englishText = englishText.replace(" (1)", " one");
+						englishText = englishText.replace(" (animate)", ", animate");
+						englishText = englishText.replace(" (inanimate)", ", inanimate");
 					}
 					/*
 					 * Each deck gets its own set of cards.
