@@ -109,6 +109,8 @@ public class Main {
 		final File silenceWav = generateSilenceWav();
 		final File newPhrase = generateNewPhrase();
 		final File translatePhrase = generateTranslatePhrase();
+		final File listenAgain = listenAgain();
+		final File itsTranslationIs = itsTranslationIs();
 		final List<File> audioEntries = new ArrayList<>();
 		String prevCardId = "";
 		float tick = 0f;
@@ -158,8 +160,12 @@ public class Main {
 			if (newCard) {
 				card.getCardStats().setNewCard(false);
 				audioEntries.add(newPhrase);
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
 			} else {
 				audioEntries.add(translatePhrase);
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
 			}
 			/*
 			 * First challenge.
@@ -176,12 +182,19 @@ public class Main {
 				deltaTick += 1f;
 				audioEntries.add(silenceWav);
 				deltaTick += 1f;
+				audioEntries.add(listenAgain);
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
 				audioEntries.add(data.getChallengeFile());
 				deltaTick += data.getChallengeDuration();
 				audioEntries.add(silenceWav);
 				deltaTick += 1f;
 				audioEntries.add(silenceWav);
 				deltaTick += 1f;
+				audioEntries.add(itsTranslationIs);
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
+				
 			} else {
 				float gapDuration = answerDuration * 1.1f + 2f;
 				while (gapDuration-- > 0f) {
@@ -216,6 +229,13 @@ public class Main {
 			}
 			tick += deltaTick;
 		}
+		audioEntries.add(silenceWav);
+		audioEntries.add(silenceWav);
+		audioEntries.add(silenceWav);
+		audioEntries.add(thisConcludesThisExercise());
+		audioEntries.add(silenceWav);
+		audioEntries.add(silenceWav);
+		
 		final File wavOutputFile = new File(tmpDir,
 				"chr2en-graduated-interval-recall-test-output-" + LocalDate.now().toString() + ".wav");
 		for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 200)) {
@@ -248,6 +268,24 @@ public class Main {
 		cmd.add("6");
 		cmd.add(mp3OutputFile.getAbsolutePath());
 		executeCmd(cmd);
+	}
+
+	private File thisConcludesThisExercise() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "concludes-this-exercise.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "This concludes this exercise.");
+		List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		return newPhrase;
 	}
 
 	private void buildEn2ChrExerciseMp3Files() {
@@ -608,7 +646,25 @@ public class Main {
 	private File listenAgain() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "listen-again.wav");
 		FileUtils.deleteQuietly(newPhrase);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here it is again. Listen carefully:");
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is the phrase again:");
+		List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		return newPhrase;
+	}
+	
+	private File itsTranslationIs() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "its-translation-is.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here it is in English:");
 		List<String> cmd = new ArrayList<>();
 		cmd.add("ffmpeg");
 		cmd.add("-y");
