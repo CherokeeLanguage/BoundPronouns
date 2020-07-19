@@ -473,7 +473,7 @@ public class BuildDeck {
 
 					if (!StringUtils.isBlank(inanimateObjects)) {
 						final String[] o = inanimateObjects.split(",\\s*");
-						if (pronounObject.equalsIgnoreCase("them-inanimate") && o.length > 1) {
+						if (pronounObject.equalsIgnoreCase("them (inanimate)") && o.length > 1) {
 							String verbObject = o[1];
 							d.def = d.def.replaceAll("\\bx\\b", verbObject);
 						} else if (pronounObject.equalsIgnoreCase("it")) {
@@ -484,7 +484,7 @@ public class BuildDeck {
 						}
 					} else if (!StringUtils.isBlank(animateObjects)) {
 						final String[] o = animateObjects.split(",\\s*");
-						if (pronounObject.equalsIgnoreCase("them-animate") && o.length > 1) {
+						if (pronounObject.equalsIgnoreCase("them (animate)") && o.length > 1) {
 							String verbObject = o[1];
 							d.def = d.def.replaceAll("\\bx\\b", verbObject);
 						} else if (pronounObject.equalsIgnoreCase("him")) {
@@ -906,13 +906,13 @@ public class BuildDeck {
 		 */
 		if (!d.def.contains("often")) {
 			if (d.def.startsWith("Let")) {
-				d.def = d.def.replace("recognize each other", "become acquainted");
+				d.def = d.def.replace("recognize each other", "be acquainted");
 			}
 			if (d.def.startsWith("For")) {
-				d.def = d.def.replace("recognize each other", "become acquainted");
+				d.def = d.def.replace("recognize each other", "be acquainted");
 			}
-			d.def = d.def.replace("recognized each other recently", "became acquainted recently");
-			d.def = d.def.replace("recognized each other a while ago", "became acquainted a while ago");
+			d.def = d.def.replace("recognized each other recently", "were acquainted recently");
+			d.def = d.def.replace("recognized each other a while ago", "were acquainted a while ago");
 			d.def = d.def.replace("recognize each other", "are acquainted");
 		}
 
@@ -1260,9 +1260,7 @@ public class BuildDeck {
 		Collections.sort(deck.cards, new Comparator<Card>() {
 			@Override
 			public int compare(final Card a, final Card b) {
-				String c1 = a.challenge.get(0);
 				String v1 = a.vgroup.trim();
-				String c2 = b.challenge.get(0);
 				String v2 = b.vgroup.trim();
 				if (v1.isEmpty() != v2.isEmpty()) {
 					if (v1.isEmpty()) {
@@ -1270,8 +1268,12 @@ public class BuildDeck {
 					}
 					return 1;
 				}
-				if (c1.length() != c2.length()) {
-					return Integer.compare(c1.length(), c2.length());
+				String c1 = a.challenge.get(0);
+				String c2 = b.challenge.get(0);
+				int s1 = c1.replaceAll("[¹²³⁴]", "").length();
+				int s2 = c2.replaceAll("[¹²³⁴]", "").length();
+				if (s1 != s2) {
+					return Integer.compare(s1, s2);
 				}
 				return c1.compareToIgnoreCase(c2);
 			}

@@ -38,11 +38,11 @@ vi, imp, a	ᎮᎾ	Ꭱ¹Ꮎ	he¹na	e¹na	Let him go
 vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he recently went			
 vi, u, inf	ᎤᏪᏅᏍᏗ	Ꭱ²Ꮕ¹ᏍᏗ	ụ²we²nv¹sdi	e²nv¹sdi	For him to go			
 								
-vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		a solid object, solid objects	
-	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		a solid object, solid objects	
-vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		a solid object, solid objects	
-vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He usually has x		a solid object, solid objects	
-vti, u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		a solid object, solid objects	
+vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		something solid, solid things	
+	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		something solid, solid things	
+vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		something solid, solid things	
+vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He usually has x		something solid, solid things	
+vti, u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		something solid, solid things	
 								
 vti, u	ᎤᎾᎠ	Ꮎ̣³Ꭰ	u¹nạ³ɂa	nạ³ɂa	He has x		something flexible, flexible things	
 	ᎠᎩᎾᎠ	Ꮎ̣³Ꭰ	a¹gị²nạ³a	nạ³a	I have x		something flexible, flexible things	
@@ -94,13 +94,13 @@ vi, xdi, imp, u	ᏣᏔᏕᎬᎦ	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ	tstạ²de²gv¹ga	tạ²de
 vi, xde, u	ᏣᏔᏕᎬᎦ²	Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²	tstạ²de²gv¹ga²	tạ²de²gv¹ga²	he was recently thirsty			
 vi, xdi, u, inf	ᎤᏔᏕᎪᏗ	Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ	u²tạ²de²³go³²di	tạ²de²³go³²di	For him to be thirsty			
 								
-vi, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he understand[s] x	He is being understood		
-	ᎪᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	go²li¹ga	o²li¹ga	I understand[s] x	I am being understood		
-vi, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago		
-vi, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he usually understand[s] x	He is often being understood		
-vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood		
-vi, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he recently understood x	He was recently understood		
-vi, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood		
+vti, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he understand[s] x	He is being understood	it, things	
+	ᎪᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	go²li¹ga	o²li¹ga	I understand[s] x	I am being understood	it, things	
+vti, u	ᎤᏬᎵᏨᎢ	ᎣᎵ͓²Ꮸ²³Ꭲ, Ꭳ²Ꮅ¹Ꮸ²³Ꭲ	u¹wohl²jv²³ɂi	ohl²jv²³ɂi, o²li²jv²³ɂi	he understood x a while ago	He was understood a while ago	it, things	
+vti, g	ᎪᎵᎪᎢ	ᎣᎵ͓²Ꭺ³Ꭲ, Ꭳ²Ꮅ²Ꭺ³Ꭲ	gohl²go³ɂi	ohl²go³ɂi, o²li²go³ɂi	he usually understand[s] x	He is often being understood	it, things	
+vti, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭹ, Ꭳ²Ꮅ¹Ꭹ	hohl²gi	ohl²gi, o²li¹gi	let him understand x	Let him be understood	it, things	
+vti, g	ᎰᎵᎩ	ᎣᎵ͓²Ꭶ², Ꭳ²Ꮅ¹Ꭶ²	hohl²ga²	ohl²ga², o²li¹ga²	he recently understood x	He was recently understood	it, things	
+vti, u, inf	ᎤᏬᏟᏍᏗ	Ꭳ²Ꮅ³ᏍᏗ	ụ²wo²hlị³sdi	o²hlị³sdi, o²li³sdi	for him to understand x	For him to be understood	it, things	
 								
 vta, g	ᎪᎵᎦ	ᎣᎵ͓²Ꭶ, Ꭳ²Ꮅ¹Ꭶ	gohl²ga	ohl²ga, o²li¹ga	he recognize[s] x	He is being recognized		
 	ᏣᏲᎵᎦ	Ꭳ²Ꮅ¹Ꭶ	ji²yo²li¹ga	o²li¹ga	I recognize[s] x	I am being recognized		
@@ -125,7 +125,7 @@ n	ᎥᏍᎩᎾ	Ꭵ¹ᏍᎩ̣²Ꮎ	v¹sgị²na	v¹sgị²na	That, Those; They, T
 								
 vi, u	ᎤᏩᏌ	Ꭵ²³Ꮜ	ụ²wa²³sa	v²³sa	Himself			
 vi, u	ᎤᏩᏌ	Ꭵ⁴Ꮜ	ụ²wa⁴sa	v⁴sa	He alone			
-vti, u, adj	ᎤᏤᎵᎢ	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	u²je²li⁴ɂi	ạ²je²li⁴ɂi	His x		(it is), (they are)	
+vti, u, adj	ᎤᏤᎵᎢ	Ꭰ²Ꮴ²Ꮅ⁴Ꭲ	u²je²li⁴ɂi	ạ²je²li⁴ɂi	His x		item, items	
 								
 n	ᎠᎵᎢ	Ꭰ²Ꮅ̣²Ꭲ	a²lị²ɂi	a²lị²ɂi	Friendship			
 								
