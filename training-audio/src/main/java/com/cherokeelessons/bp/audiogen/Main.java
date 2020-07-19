@@ -47,7 +47,8 @@ public class Main {
 	private final AudioDeck chr2enDeck;
 	private final AudioDeck discardsDeck;
 
-	private final Map<String, Integer> voiceSpeekingRates;
+	private final Map<String, Integer> chrVoiceSpeekingRates;
+	private final Map<String, Integer> enVoiceSpeekingRates;
 	private final Set<String> voiceVariants;
 	private final List<String> voices = new ArrayList<>();
 
@@ -59,41 +60,54 @@ public class Main {
 		chr2enDeck = new AudioDeck();
 
 		discardsDeck = new AudioDeck();
-		
-		voiceSpeekingRates = new HashMap<>();
-		
+
+		chrVoiceSpeekingRates = new HashMap<>();
+		enVoiceSpeekingRates = new HashMap<>();
+
 		voiceVariants = new TreeSet<>();
 		// default
-		voiceVariants.add("");
+//		voiceVariants.add("");
 		// magali's choices
-		voiceVariants.add("Diogo");
+//		voiceVariants.add("Diogo");
 		voiceVariants.add("f5");
+//		voiceVariants.add("f5");
 		voiceVariants.add("f2");
 		// craig's choices
-		voiceVariants.add("antonio");//, "Mr", "robosoft5"));
+//		voiceVariants.add("antonio");//, "Mr", "robosoft5"));
 		voiceVariants.add("Mr");
-		voiceVariants.add("robosoft5");
-		
+//		voiceVariants.add("robosoft5");
+
 		// tommylee's choices
-		voiceVariants.add("Diogo");
-		
-		//voice speed adjustments (word per minute espeak -s parameter)
-		voiceSpeekingRates.put("Diogo", 175);
-		voiceSpeekingRates.put("f5", 175);
-		voiceSpeekingRates.put("f2", 175);
-		voiceSpeekingRates.put("antonio", 130);
-		voiceSpeekingRates.put("Mr", 175);
-		voiceSpeekingRates.put("robosoft5", 120);
-		
+//		voiceVariants.add("Diogo");
+
+		// voice speed adjustments (word per minute espeak -s parameter)
+		chrVoiceSpeekingRates.put("", 200);
+		chrVoiceSpeekingRates.put("Diogo", 200);
+		chrVoiceSpeekingRates.put("f5", 200);
+		chrVoiceSpeekingRates.put("f2", 200);
+		chrVoiceSpeekingRates.put("antonio", 100);
+		chrVoiceSpeekingRates.put("Mr", 170);
+		chrVoiceSpeekingRates.put("robosoft5", 90);
+
+		enVoiceSpeekingRates.put("", 90);
+		enVoiceSpeekingRates.put("Diogo", 90);
+		enVoiceSpeekingRates.put("f5", 90);
+		enVoiceSpeekingRates.put("f2", 90);
+		enVoiceSpeekingRates.put("antonio", 90);
+		enVoiceSpeekingRates.put("Mr", 90);
+		enVoiceSpeekingRates.put("robosoft5", 90);
 	}
 
-	private void buildChr2EnExerciseMp3Files() {
+	private void buildChr2EnExerciseMp3Files() throws IOException {
+		System.out.println("=== buildChr2EnExerciseMp3Files");
 		final AudioDeck activeDeck = new AudioDeck();
 
 		final File tmpDir = new File(EXCERCISES_DIR, "chr2en");
 		FileUtils.deleteQuietly(tmpDir);
 		tmpDir.mkdirs();
 		final File silenceWav = generateSilenceWav();
+		final File newPhrase = generateNewPhrase();
+		final File translatePhrase = generateTranslatePhrase();
 		final List<File> audioEntries = new ArrayList<>();
 		String prevCardId = "";
 		float tick = 0f;
@@ -101,11 +115,13 @@ public class Main {
 		/*
 		 * Seed cards.
 		 */
-		for (int ix = 0; ix < 3 && chr2enDeck.hasCards(); ix++) {
+//		SessionUtil session = new SessionUtil(chr2enDeck, 5);
+		for (int ix = 0; ix < 2 && chr2enDeck.hasCards(); ix++) {
 			final AudioCard topCard = (AudioCard) chr2enDeck.topCard();
 			topCard.resetStats();
-			topCard.resetTriesRemaining(6);
+			topCard.resetTriesRemaining(5);
 			topCard.getCardStats().setShowAgainDelay_ms(ix * 5000l);
+			topCard.getCardStats().setNewCard(true);
 			activeDeck.add(topCard);
 		}
 
@@ -117,7 +133,8 @@ public class Main {
 			if (!activeDeck.hasCards() || activeDeck.getNextShowTime() > 5000l) {
 				final AudioCard topCard = (AudioCard) chr2enDeck.topCard();
 				topCard.resetStats();
-				topCard.resetTriesRemaining(6);
+				topCard.resetTriesRemaining(5);
+				topCard.getCardStats().setNewCard(true);
 				activeDeck.add(topCard);
 			}
 			sortDeckByShowAgainDelay(activeDeck);
@@ -127,7 +144,8 @@ public class Main {
 			if (cardId.equals(prevCardId)) {
 				card = (AudioCard) chr2enDeck.topCard();
 				card.resetStats();
-				card.resetTriesRemaining(6);
+				card.resetTriesRemaining(5);
+				card.getCardStats().setNewCard(true);
 				cardId = card.id();
 				activeDeck.add(card);
 			}
@@ -135,26 +153,49 @@ public class Main {
 
 			final AudioData data = card.getData();
 
+			final boolean newCard = card.getCardStats().isNewCard();
+			if (newCard) {
+				card.getCardStats().setNewCard(false);
+				audioEntries.add(newPhrase);
+			} else {
+				audioEntries.add(translatePhrase);
+			}
 			/*
 			 * First challenge.
 			 */
 			audioEntries.add(data.getChallengeFile());
 			deltaTick += data.getChallengeDuration();
 
+			/*
+			 * Repeat challenge if new card
+			 */
 			final float answerDuration = data.getAnswerDuration();
-			float gapDuration = answerDuration * 1.5f + 2f;
-			while (gapDuration-- > 0f) {
+			if (newCard) {
 				audioEntries.add(silenceWav);
 				deltaTick += 1f;
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
+				audioEntries.add(data.getChallengeFile());
+				deltaTick += data.getChallengeDuration();
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
+				audioEntries.add(silenceWav);
+				deltaTick += 1f;
+			} else {
+				float gapDuration = answerDuration * 1.1f + 2f;
+				while (gapDuration-- > 0f) {
+					audioEntries.add(silenceWav);
+					deltaTick += 1f;
+				}
 			}
-
+			
 			/*
-			 * First answer.
+			 * The answer.
 			 */
 			audioEntries.add(data.getAnswerFile());
 			deltaTick += answerDuration;
 
-			for (int trailingSilence = 0; trailingSilence < Math.max(3, answerDuration + 2f); trailingSilence++) {
+			for (int trailingSilence = 0; trailingSilence < 3f; trailingSilence++) {
 				audioEntries.add(silenceWav);
 				deltaTick += 1f;
 			}
@@ -176,7 +217,7 @@ public class Main {
 		}
 		final File wavOutputFile = new File(tmpDir,
 				"chr2en-graduated-interval-recall-test-output-" + LocalDate.now().toString() + ".wav");
-		for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 100)) {
+		for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 200)) {
 			final List<String> cmd = new ArrayList<>();
 			cmd.add("sox");
 			final File tmp1 = new File(tmpDir, "temp1.wav");
@@ -341,19 +382,20 @@ public class Main {
 		generateChr2EnWavFiles();
 		buildChr2EnExerciseMp3Files();
 
-		generateEn2ChrWavFiles();
-		buildEn2ChrExerciseMp3Files();
+//		generateEn2ChrWavFiles();
+//		buildEn2ChrExerciseMp3Files();
 //		generateDurationsReport();
 	}
 
 	private void executeCmd(final List<String> cmd) {
+		final String strCmd = StringUtils.join(cmd, " ");
 		final ProcessBuilder b = new ProcessBuilder(cmd);
 		Process process;
 		try {
 			process = b.start();
 			process.waitFor();
 			if (process.exitValue() != 0) {
-				System.err.println("FATAL: Bad exit value from\n" + StringUtils.join(cmd, " "));
+				System.err.println("FATAL: Bad exit value from\n" + strCmd);
 			}
 			process.destroy();
 		} catch (IOException | InterruptedException e) {
@@ -362,6 +404,7 @@ public class Main {
 	}
 
 	private void generateChr2EnWavFiles() throws UnsupportedAudioFileException, IOException {
+		System.out.println("=== generateChr2EnWavFiles");
 		voiceShuffleSeed = 0;
 		final File wavTmpDir = new File(WAVS_DIR, "chr2en");
 		FileUtils.deleteQuietly(wavTmpDir);
@@ -382,8 +425,8 @@ public class Main {
 			if (!already.contains(challenge)) {
 				String voice = nextVoice(answer);
 				int speed;
-				if (voiceSpeekingRates.containsKey(voice)) {
-					speed = voiceSpeekingRates.get(voice);
+				if (chrVoiceSpeekingRates.containsKey(voice)) {
+					speed = chrVoiceSpeekingRates.get(voice);
 				} else {
 					speed = 0;
 				}
@@ -400,8 +443,8 @@ public class Main {
 			if (!already.contains(answer)) {
 				String voice = nextVoice(answer);
 				int speed;
-				if (voiceSpeekingRates.containsKey(voice)) {
-					speed = voiceSpeekingRates.get(voice);
+				if (enVoiceSpeekingRates.containsKey(voice)) {
+					speed = enVoiceSpeekingRates.get(voice);
 				} else {
 					speed = 0;
 				}
@@ -410,8 +453,35 @@ public class Main {
 				} else {
 					voice = "en-us";
 				}
-				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, speed, answerWavFile, answer);
+				System.out.println(" - " + answerWavFile.getName());
+				//espeak.generateWav(voice, speed, answerWavFile, answer);
+				if (voice.contains("+f")) {
+					File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
+					List<String> cmd = new ArrayList<>();
+					cmd.add("ffmpeg");
+					cmd.add("-y");
+					cmd.add("-i");
+					cmd.add(tmp.getAbsolutePath());
+					cmd.add(answerWavFile.getAbsolutePath());
+					executeCmd(cmd);
+					cmd.clear();
+					cmd.add("normalize-audio");
+					cmd.add(answerWavFile.getAbsolutePath());
+					executeCmd(cmd);
+				} else {
+					File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
+					List<String> cmd = new ArrayList<>();
+					cmd.add("ffmpeg");
+					cmd.add("-y");
+					cmd.add("-i");
+					cmd.add(tmp.getAbsolutePath());
+					cmd.add(answerWavFile.getAbsolutePath());
+					executeCmd(cmd);
+					cmd.clear();
+					cmd.add("normalize-audio");
+					cmd.add(answerWavFile.getAbsolutePath());
+					executeCmd(cmd);
+				}
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
 				data.setAnswerDuration(durationInSeconds);
@@ -464,27 +534,25 @@ public class Main {
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
 				String voice = nextVoice(challenge);
-				int speed;
-				if (voiceSpeekingRates.containsKey(voice)) {
-					speed = voiceSpeekingRates.get(voice);
-				} else {
-					speed = 0;
-				}
 				if (!voice.trim().isEmpty()) {
 					voice = "en-us+" + voice;
 				} else {
 					voice = "en-us";
 				}
-				System.out.println(" - " + challengeWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, speed, challengeWavFile, challenge);
+				System.out.println(" - " + challengeWavFile.getName());
+				if (voice.contains("+f")) {
+					AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, challenge);
+				} else {
+					AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, challenge);
+				}
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
 				String voice = nextVoice(challenge);
 				int speed;
-				if (voiceSpeekingRates.containsKey(voice)) {
-					speed = voiceSpeekingRates.get(voice);
+				if (chrVoiceSpeekingRates.containsKey(voice)) {
+					speed = chrVoiceSpeekingRates.get(voice);
 				} else {
 					speed = 0;
 				}
@@ -509,6 +577,32 @@ public class Main {
 				"-c", "1", silenceWav.getAbsolutePath(), "trim", "0.0", "1.0");
 		executeCmd(cmd);
 		return silenceWav;
+	}
+
+	private File generateNewPhrase() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "here-is-a-new-phrase.wav");
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is a new phrase to learn:");
+		List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		return newPhrase;
+	}
+
+	private File generateTranslatePhrase() throws IOException {
+		final File translateIntoEnglish = new File(EXCERCISES_DIR, "translate-into-english.wav");
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Translate into English:");
+		List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(translateIntoEnglish.getAbsolutePath());
+		executeCmd(cmd);
+		return translateIntoEnglish;
 	}
 
 	private float getDuration(final File answerWavFile) throws UnsupportedAudioFileException, IOException {
@@ -564,7 +658,7 @@ public class Main {
 					if (cardsForCherokeeAnswers.containsKey(englishText)) {
 						toChrCard = cardsForCherokeeAnswers.get(englishText);
 						toChrData = toChrCard.getData();
-						toChrData.setAnswer(toChrData.getAnswer() + " " + cherokeeText);
+						toChrData.setAnswer(toChrData.getAnswer() + ", " + cherokeeText);
 						cardsForCherokeeAnswers.put(englishText, toChrCard);
 					} else {
 						toChrCard = new AudioCard();
@@ -586,7 +680,7 @@ public class Main {
 					if (cardsForEnglishAnswers.containsKey(cherokeeText)) {
 						toEnCard = cardsForEnglishAnswers.get(cherokeeText);
 						toEnData = toEnCard.getData();
-						toEnData.setAnswer(toEnData.getAnswer() + " " + englishText);
+						toEnData.setAnswer(toEnData.getAnswer() + " Or, " + englishText);
 					} else {
 						toEnCard = new AudioCard();
 						toEnData = new AudioData();
@@ -615,15 +709,17 @@ public class Main {
 			voices.addAll(voiceVariants);
 			do {
 				Collections.shuffle(voices, new Random(voiceShuffleSeed++));
-			} while (voices.get(0).equals(previousVoice));
+			} while (voices.get(0).equals(previousVoice) && voiceVariants.size() > 2);
 		}
 		String lc = englishText.toLowerCase();
-		if (lc.contains("mother") && (lc.matches("\bi\b")||lc.matches("\bme\b")||lc.matches("\bwe\b")||lc.matches("\bus\b"))) {
+		if (lc.contains("mother")
+				&& (lc.matches("\bi\b") || lc.matches("\bme\b") || lc.matches("\bwe\b") || lc.matches("\bus\b"))) {
 			if (!voices.get(0).startsWith("f")) {
 				return nextVoice(englishText);
 			}
 		}
-		if (lc.contains("father") && (lc.matches("\bi\b")||lc.matches("\bme\b")||lc.matches("\bwe\b")||lc.matches("\bus\b"))) {
+		if (lc.contains("father")
+				&& (lc.matches("\bi\b") || lc.matches("\bme\b") || lc.matches("\bwe\b") || lc.matches("\bus\b"))) {
 			if (voices.get(0).startsWith("f")) {
 				return nextVoice(englishText);
 			}
