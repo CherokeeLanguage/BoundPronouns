@@ -9,7 +9,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "He + you two" ],
+    "answer" : [ "He + you both" ],
     "challenge" : [ "ᏍᏗ²-", "Sdi²-" ],
     "id" : 2,
     "pgroup" : "ᏍᏗ²-",
@@ -405,7 +405,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "They + you two" ],
+    "answer" : [ "They + you both" ],
     "challenge" : [ "Ꭸ²ᏍᏗ²-", "Ge²sdi²-" ],
     "id" : 46,
     "pgroup" : "Ꭸ²ᏍᏗ²-",
@@ -477,7 +477,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "You one or two + us two" ],
+    "answer" : [ "You one or two + us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮒ²-", "Sgị²ni²-" ],
     "id" : 54,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -927,7 +927,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "I + you two" ],
+    "answer" : [ "I + you both" ],
     "challenge" : [ "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-", "Sdv²-, Sdv²y-" ],
     "id" : 104,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -936,7 +936,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "We two + you one or you two" ],
+    "answer" : [ "We two + you one or you both" ],
     "challenge" : [ "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-", "Sdv²-, Sdv²y-" ],
     "id" : 105,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -5283,7 +5283,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 17
   }, {
-    "answer" : [ "Let you (1) or both recognize us two" ],
+    "answer" : [ "Let you (1) or both recognize us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮓ²Ꮅ¹Ꭹ", "sgị²no²li¹gi" ],
     "id" : 588,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -5760,7 +5760,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ²",
     "vset" : 5
   }, {
-    "answer" : [ "For me to recognize you both", "For we two to recognize you (1) or both" ],
+    "answer" : [ "For me to recognize you both", "For we two to recognize you (1) or you both" ],
     "challenge" : [ "ᏍᏛ²Ᏺ²Ꮅ³ᏍᏗ", "sdv²yo²li³sdi" ],
     "id" : 641,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -6426,7 +6426,7 @@
     "vgroup" : "ɂᎧ̣²Ꮀ³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "I recognized you both a while ago", "We two recognized you (1) or both a while ago" ],
+    "answer" : [ "I recognized you both a while ago", "We two recognized you (1) or you both a while ago" ],
     "challenge" : [ "ᏍᏛ²Ᏺ²Ꮅ¹Ꮸ²³Ꭲ", "sdv²yo²li²jv²³ɂi" ],
     "id" : 715,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -6849,7 +6849,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 34
   }, {
-    "answer" : [ "Let you (1) or both want us two" ],
+    "answer" : [ "Let you (1) or both want us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ̣²Ꮪ²³Ꮃ", "sgị²nạ²du²³la" ],
     "id" : 762,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -8100,7 +8100,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 12
   }, {
-    "answer" : [ "For me to see you both", "For we two to see you (1) or both" ],
+    "answer" : [ "For me to see you both", "For we two to see you (1) or you both" ],
     "challenge" : [ "ᏍᏛ²ᎪᏩ͓²Ꮫ³Ꮧ", "sdv²gowh²tvh³di" ],
     "id" : 901,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -8334,7 +8334,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 43
   }, {
-    "answer" : [ "You (1) or both recently wanted us two" ],
+    "answer" : [ "You (1) or both recently wanted us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ̣²Ꮪ²³Ꮃ²", "sgị²nạ²du²³la²" ],
     "id" : 927,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -9882,7 +9882,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "I am seeing you both", "We two are seeing you (1) or both" ],
+    "answer" : [ "I am seeing you both", "We two are seeing you (1) or you both" ],
     "challenge" : [ "ᏍᏛ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "sdv²gowh²tị³ha" ],
     "id" : 1099,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -9981,7 +9981,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 46
   }, {
-    "answer" : [ "Let you (1) or both see us two" ],
+    "answer" : [ "Let you (1) or both see us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ", "sgị²ni²go¹wah²ta" ],
     "id" : 1110,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -10755,7 +10755,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 21
   }, {
-    "answer" : [ "I am wanting you both", "We two are wanting you (1) or both" ],
+    "answer" : [ "I am wanting you both", "We two are wanting you (1) or you both" ],
     "challenge" : [ "ᏍᏛ²Ꮿ̣²Ꮪ²Ꮅ̣³Ꭽ", "sdv²yạ²du²lị³ha" ],
     "id" : 1196,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -11241,7 +11241,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 24
   }, {
-    "answer" : [ "I wanted you both a while ago", "We two wanted you (1) or both a while ago" ],
+    "answer" : [ "I wanted you both a while ago", "We two wanted you (1) or you both a while ago" ],
     "challenge" : [ "ᏍᏛ²Ꮿ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "sdv²yạ²du²lv²hv²³ɂi" ],
     "id" : 1250,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -12762,7 +12762,7 @@
     "vgroup" : "Ᏺ³Ꮟ̣²Ꭽ",
     "vset" : 1
   }, {
-    "answer" : [ "For me to look at you both", "For we two to look at you (1) or both" ],
+    "answer" : [ "For me to look at you both", "For we two to look at you (1) or you both" ],
     "challenge" : [ "ᏍᏛ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "sdv²yạ²ga¹to²³sdoh³di" ],
     "id" : 1419,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -13275,7 +13275,7 @@
     "vgroup" : "ɂᎧ̣²Ꮀ³Ꭲ",
     "vset" : 39
   }, {
-    "answer" : [ "I usually have you both", "We two usually have you (1) or both" ],
+    "answer" : [ "I usually have you both", "We two usually have you (1) or you both" ],
     "challenge" : [ "Ꮥ²ꮝꮫ²ꮿ͓Ꭷ̣²Ꮀ³Ꭲ", "de²sdv²ya²kạ²ho³ɂi" ],
     "id" : 1476,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -13518,7 +13518,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 39
   }, {
-    "answer" : [ "I had you both a while ago", "We two had you (1) or both a while ago" ],
+    "answer" : [ "I had you both a while ago", "We two had you (1) or you both a while ago" ],
     "challenge" : [ "Ꮥ²ꮝꮫ²ꮿ͓Ꭷ̣²Ꮂ²³Ꭲ", "de²sdv²ya²kạ²hv²³ɂi" ],
     "id" : 1503,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -13914,7 +13914,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ",
     "vset" : 6
   }, {
-    "answer" : [ "I looked at you both a while ago", "We two looked at you (1) or both a while ago" ],
+    "answer" : [ "I looked at you both a while ago", "We two looked at you (1) or you both a while ago" ],
     "challenge" : [ "ᏍᏛ²Ꮿ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "sdv²ya¹ga¹to²³stạ³nv²³ɂi" ],
     "id" : 1547,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -14085,7 +14085,7 @@
     "vgroup" : "ɂᎧ̣²Ꭾ³ᏍᏗ",
     "vset" : 40
   }, {
-    "answer" : [ "You (1) or both have us two" ],
+    "answer" : [ "You (1) or both have us both" ],
     "challenge" : [ "Ꮥ²ᏍᎩ̣²Ꮒ²Ꭷ̣³Ꭽ", "de²sgị²ni²kạ³ha" ],
     "id" : 1566,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -15021,7 +15021,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 18
   }, {
-    "answer" : [ "Let you (1) or both look at us two" ],
+    "answer" : [ "Let you (1) or both look at us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "sgị²nạ²ga¹to²³sda" ],
     "id" : 1670,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -16713,7 +16713,7 @@
     "vgroup" : "Ꮑ²Ꮂ²³Ꭲ",
     "vset" : 20
   }, {
-    "answer" : [ "You (1) or both usually have us two" ],
+    "answer" : [ "You (1) or both usually have us both" ],
     "challenge" : [ "Ꮥ²ᏍᎩ̣²Ꮒ²Ꭷ̣²Ꮀ³Ꭲ", "de²sgị²ni²kạ²ho³ɂi" ],
     "id" : 1858,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -17127,7 +17127,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 16
   }, {
-    "answer" : [ "For you (1) or both to look at us two" ],
+    "answer" : [ "For you (1) or both to look at us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "sgị²nạ²ga¹to²³sdoh³di" ],
     "id" : 1904,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -17523,7 +17523,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 29
   }, {
-    "answer" : [ "You (1) or both will be having us two" ],
+    "answer" : [ "You (1) or both will be having us both" ],
     "challenge" : [ "Ꮥ²ᏍᎩ̣²Ꮒ²Ꭷ̣²Ꭾ³ᏍᏗ", "de²sgị²ni²kạ²he³sdi" ],
     "id" : 1948,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
