@@ -854,7 +854,7 @@ public class BuildDeck {
 		d.def = d.def.replaceAll(" both has ", " both have ");
 
 		d.def = d.def.replace("and I is", "and I are");
-		d.def = d.def.replace("and I usually is", "and I usually am");
+		d.def = d.def.replace("and I usually is", "and I am usually");
 		d.def = d.def.replace("I is", "I am");
 		d.def = d.def.replace("You one is", "You one are");
 		d.def = d.def.replace("You two is", "You two are");
@@ -874,8 +874,8 @@ public class BuildDeck {
 		d.def = d.def.replace("You all often is", "You all often are");
 		d.def = d.def.replace("They often is", "They often are");
 		
-		d.def = d.def.replace("and I usually is", "and I usually are");
-		d.def = d.def.replace("I usually is", "I usually am");
+		d.def = d.def.replace("and I usually is", "and I am usually");
+		d.def = d.def.replace("I usually is", "I am usually");
 		d.def = d.def.replace("You one usually is", "You one usually are");
 		d.def = d.def.replace("You two usually is", "You two usually are");
 		d.def = d.def.replace("You all usually is", "You all usually are");
