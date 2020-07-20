@@ -14,17 +14,30 @@ import com.cherokeelessons.deck.CardStats;
 import com.cherokeelessons.deck.CardUtils;
 
 public class SessionUtil {
-	private final Map<String, AtomicInteger> vCounts;
-	private final Map<String, AtomicInteger> pCounts;
-	
 	public static final int FULLY_LEARNED_BOX = 10;
-
 	public static final int PROFICIENT_BOX = 5;
 
 	public static final int JUST_LEARNED_BOX = 1;
-	
+
+	private static Comparator<AudioCard> byShowTimeChunks = (o1, o2) -> {
+		final CardStats s1 = o1.getCardStats();
+		final CardStats s2 = o2.getCardStats();
+		long diff = s1.getShowAgainDelay_ms() - s2.getShowAgainDelay_ms();
+		if (diff < 0) {
+			diff = -diff;
+		}
+		if (diff < 60l * 1000l) {
+			return 0;
+		}
+		return s1.getShowAgainDelay_ms() > s2.getShowAgainDelay_ms() ? 1 : -1;
+	};
+
+	private final Map<String, AtomicInteger> vCounts;
+
+	private final Map<String, AtomicInteger> pCounts;
+
 	private final Set<String> nodupes = new HashSet<>();
-	
+
 	/**
 	 * currently being looped through for display
 	 */
@@ -45,17 +58,22 @@ public class SessionUtil {
 	 * holding area for cards that are "due" but deck size says don't show yet
 	 */
 	private final AudioDeck current_due = new AudioDeck();
-
 	private final AudioDeck mainDeck;
+
 	private final int showCount;
-	
-	public SessionUtil(AudioDeck mainDeck, int showsPerChallenge) {
+
+	/**
+	 * time since last "shuffle"
+	 */
+	private float sinceLastNextCard_elapsed = 0f;
+
+	public SessionUtil(final AudioDeck mainDeck, final int showsPerChallenge) {
 		this.mainDeck = mainDeck;
-		this.pCounts=new HashMap<String, AtomicInteger>();
-		this.vCounts=new HashMap<String, AtomicInteger>();
+		this.pCounts = new HashMap<>();
+		this.vCounts = new HashMap<>();
 		this.showCount = showsPerChallenge;
 	}
-	
+
 	/**
 	 * add this many cards to the Current Active Deck first from the current Active
 	 * Deck then from the master Deck set
@@ -107,7 +125,7 @@ public class SessionUtil {
 			cardStats.setNewCard(true);
 			cardStats.setShowAgainDelay_ms(CardUtils.getNextInterval(0));
 			activeCard.resetTriesRemaining(showCount);
-			
+
 //			int pSkill;
 //			if (!pCounts.containsKey(activeCard.getData().)) {
 //				pSkill = 0;
@@ -120,9 +138,9 @@ public class SessionUtil {
 //			} else {
 //				vSkill = vCounts.get(activeCard.vgroup).get();
 //			}
-//			
+//
 //			System.out.println("Skill levels: "+activeCard.pgroup+"="+pSkill+", "+activeCard.vgroup+"="+vSkill);
-			
+
 			/*
 			 * If student has been using both the stem and the pronoun in other challenges
 			 * above the threshold, assume student can figure out the phrase without
@@ -183,7 +201,7 @@ public class SessionUtil {
 		}
 
 	}
-	
+
 	private Card getCardByPronounVstemCombo(final String pgroup, final String vgroup) {
 //		for (final Card card : game.getCards().cards) {
 //			if (!card.pgroup.equals(pgroup)) {
@@ -196,7 +214,7 @@ public class SessionUtil {
 //		}
 		return null;
 	}
-	
+
 	/**
 	 * Calculates amount of ms needed to shift by to move deck to "0" point.
 	 *
@@ -225,12 +243,7 @@ public class SessionUtil {
 		}
 		return by;
 	}
-	
-	/**
-	 * time since last "shuffle"
-	 */
-	private float sinceLastNextCard_elapsed = 0f;
-	
+
 	public AudioCard getNextCard() {
 		if (current_active.getCards().size() == 0) {
 			updateTime(current_discards, (long) (sinceLastNextCard_elapsed * 1000f));
@@ -247,16 +260,18 @@ public class SessionUtil {
 					continue;
 				}
 				if (cardStats.isCorrect()) {
-					cardStats.leitnerBoxInc();;
+					cardStats.leitnerBoxInc();
 					current_done.getCards().add(discard);
-					cardStats.setShowAgainDelay_ms(cardStats.getShowAgainDelay_ms()+CardUtils.getNextSessionInterval_ms(cardStats.getLeitnerBox()));
+					cardStats.setShowAgainDelay_ms(cardStats.getShowAgainDelay_ms()
+							+ CardUtils.getNextSessionInterval_ms(cardStats.getLeitnerBox()));
 					discards.remove();
 					System.out.println("Bumped Card: " + discard.getData().getChallenge());
 					continue;
 				}
 				cardStats.leitnerBoxDec();
 				current_done.getCards().add(discard);
-				cardStats.setShowAgainDelay_ms(cardStats.getShowAgainDelay_ms()+CardUtils.getNextSessionInterval_ms(cardStats.getLeitnerBox()));
+				cardStats.setShowAgainDelay_ms(cardStats.getShowAgainDelay_ms()
+						+ CardUtils.getNextSessionInterval_ms(cardStats.getLeitnerBox()));
 				discards.remove();
 				System.out.println("Retired Card: " + discard.getData().getChallenge());
 				return getNextCard();
@@ -309,7 +324,7 @@ public class SessionUtil {
 		}
 		current_discards.getCards().remove(card);
 	}
-	
+
 	/**
 	 * time-shift all cards by time since last recorded run.
 	 *
@@ -321,23 +336,7 @@ public class SessionUtil {
 		while (istat.hasNext()) {
 			final AudioCard next = istat.next();
 			final CardStats cardStats = next.getCardStats();
-			cardStats.setShowAgainDelay_ms(cardStats.getShowAgainDelay_ms()-ms);
+			cardStats.setShowAgainDelay_ms(cardStats.getShowAgainDelay_ms() - ms);
 		}
 	}
-	
-	private static Comparator<AudioCard> byShowTimeChunks = new Comparator<AudioCard>() {
-		@Override
-		public int compare(final AudioCard o1, final AudioCard o2) {
-			final CardStats s1 = o1.getCardStats();
-			final CardStats s2 = o2.getCardStats();
-			long diff = s1.getShowAgainDelay_ms() - s2.getShowAgainDelay_ms();
-			if (diff < 0) {
-				diff = -diff;
-			}
-			if (diff < 60l * 1000l) {
-				return 0;
-			}
-			return s1.getShowAgainDelay_ms() > s2.getShowAgainDelay_ms() ? 1 : -1;
-		}
-	};
 }

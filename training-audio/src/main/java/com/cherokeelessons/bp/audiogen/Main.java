@@ -32,7 +32,7 @@ import com.cherokeelessons.deck.CardStats;
 import com.cherokeelessons.deck.CardUtils;
 
 public class Main {
-	
+
 	public static final String UNDERDOT = "\u0323";
 
 	private static final NumberFormat NF = NumberFormat.getInstance();
@@ -280,27 +280,6 @@ public class Main {
 		executeCmd(cmd);
 	}
 
-	private AudioData thisConcludesThisExercise() throws IOException {
-		final File newPhrase = new File(EXCERCISES_DIR, "concludes-this-exercise.wav");
-		FileUtils.deleteQuietly(newPhrase);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "This concludes this exercise.");
-		List<String> cmd = new ArrayList<>();
-		cmd.add("ffmpeg");
-		cmd.add("-y");
-		cmd.add("-i");
-		cmd.add(tmp.getAbsolutePath());
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		cmd.clear();
-		cmd.add("normalize-audio");
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		AudioData data = new AudioData();
-		data.setAnswerFile(newPhrase);
-		data.setAnswerDuration(getDuration(newPhrase));
-		return data;
-	}
-
 	private void buildEn2ChrExerciseMp3Files() {
 		final AudioDeck activeDeck = new AudioDeck();
 
@@ -514,8 +493,8 @@ public class Main {
 				System.out.println(" - " + answerWavFile.getName());
 				// espeak.generateWav(voice, speed, answerWavFile, answer);
 				if (voice.contains("+f")) {
-					File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
-					List<String> cmd = new ArrayList<>();
+					final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
+					final List<String> cmd = new ArrayList<>();
 					cmd.add("ffmpeg");
 					cmd.add("-y");
 					cmd.add("-i");
@@ -527,8 +506,8 @@ public class Main {
 					cmd.add(answerWavFile.getAbsolutePath());
 					executeCmd(cmd);
 				} else {
-					File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
-					List<String> cmd = new ArrayList<>();
+					final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
+					final List<String> cmd = new ArrayList<>();
 					cmd.add("ffmpeg");
 					cmd.add("-y");
 					cmd.add("-i");
@@ -628,6 +607,28 @@ public class Main {
 		}
 	}
 
+	private AudioData generateNewPhrase() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "here-is-a-new-phrase.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR,
+				"Here is a new phrase to learn. Listen carefully:");
+		final List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		final AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
+	}
+
 	private AudioData generateSilenceWav() {
 		EXCERCISES_DIR.mkdirs();
 		final File silenceWav = new File(EXCERCISES_DIR, "silence-1-second.wav");
@@ -635,81 +636,17 @@ public class Main {
 		final List<String> cmd = Arrays.asList("sox", "-n", "-r", "22050", //
 				"-c", "1", silenceWav.getAbsolutePath(), "trim", "0.0", "1.0");
 		executeCmd(cmd);
-		AudioData data = new AudioData();
+		final AudioData data = new AudioData();
 		data.setAnswerFile(silenceWav);
 		data.setAnswerDuration(getDuration(silenceWav));
-		return data;
-	}
-
-	private AudioData generateNewPhrase() throws IOException {
-		final File newPhrase = new File(EXCERCISES_DIR, "here-is-a-new-phrase.wav");
-		FileUtils.deleteQuietly(newPhrase);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR,
-				"Here is a new phrase to learn. Listen carefully:");
-		List<String> cmd = new ArrayList<>();
-		cmd.add("ffmpeg");
-		cmd.add("-y");
-		cmd.add("-i");
-		cmd.add(tmp.getAbsolutePath());
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		cmd.clear();
-		cmd.add("normalize-audio");
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		AudioData data = new AudioData();
-		data.setAnswerFile(newPhrase);
-		data.setAnswerDuration(getDuration(newPhrase));
-		return data;
-	}
-
-	private AudioData listenAgain() throws IOException {
-		final File newPhrase = new File(EXCERCISES_DIR, "listen-again.wav");
-		FileUtils.deleteQuietly(newPhrase);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is the phrase again:");
-		List<String> cmd = new ArrayList<>();
-		cmd.add("ffmpeg");
-		cmd.add("-y");
-		cmd.add("-i");
-		cmd.add(tmp.getAbsolutePath());
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		cmd.clear();
-		cmd.add("normalize-audio");
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		AudioData data = new AudioData();
-		data.setAnswerFile(newPhrase);
-		data.setAnswerDuration(getDuration(newPhrase));
-		return data;
-	}
-
-	private AudioData itsTranslationIs() throws IOException {
-		final File newPhrase = new File(EXCERCISES_DIR, "its-translation-is.wav");
-		FileUtils.deleteQuietly(newPhrase);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here it is in English:");
-		List<String> cmd = new ArrayList<>();
-		cmd.add("ffmpeg");
-		cmd.add("-y");
-		cmd.add("-i");
-		cmd.add(tmp.getAbsolutePath());
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		cmd.clear();
-		cmd.add("normalize-audio");
-		cmd.add(newPhrase.getAbsolutePath());
-		executeCmd(cmd);
-		AudioData data = new AudioData();
-		data.setAnswerFile(newPhrase);
-		data.setAnswerDuration(getDuration(newPhrase));
 		return data;
 	}
 
 	private AudioData generateTranslatePhrase() throws IOException {
 		final File translateIntoEnglish = new File(EXCERCISES_DIR, "translate-into-english.wav");
 		FileUtils.deleteQuietly(translateIntoEnglish);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Translate into English:");
-		List<String> cmd = new ArrayList<>();
+		final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Translate into English:");
+		final List<String> cmd = new ArrayList<>();
 		cmd.add("ffmpeg");
 		cmd.add("-y");
 		cmd.add("-i");
@@ -720,7 +657,7 @@ public class Main {
 		cmd.add("normalize-audio");
 		cmd.add(translateIntoEnglish.getAbsolutePath());
 		executeCmd(cmd);
-		AudioData data = new AudioData();
+		final AudioData data = new AudioData();
 		data.setAnswerFile(translateIntoEnglish);
 		data.setAnswerDuration(getDuration(translateIntoEnglish));
 		return data;
@@ -741,6 +678,48 @@ public class Main {
 		return durationInSeconds;
 	}
 
+	private AudioData itsTranslationIs() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "its-translation-is.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here it is in English:");
+		final List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		final AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
+	}
+
+	private AudioData listenAgain() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "listen-again.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is the phrase again:");
+		final List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		final AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
+	}
+
 	private void loadMainDecks() throws IOException {
 		final StringBuilder reviewSheetChr2En = new StringBuilder();
 		final StringBuilder reviewSheetEn2Chr = new StringBuilder();
@@ -759,8 +738,8 @@ public class Main {
 					System.out.println("; " + line);
 					continue;
 				}
-				String verbStem = fields[VERB_STEM].replaceAll("[¹²³⁴"+UNDERDOT+"]", "").trim();
-				String boundPronoun = fields[PRONOUN].replaceAll("[¹²³⁴"+UNDERDOT+"]", "").trim();
+				final String verbStem = fields[VERB_STEM].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
+				final String boundPronoun = fields[PRONOUN].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
 				String cherokeeText = fields[CHEROKEE_TEXT].trim();
 				if (cherokeeText.isEmpty()) {
 					continue;
@@ -850,14 +829,14 @@ public class Main {
 				StandardCharsets.UTF_8);
 	}
 
-	public String nextVoice(String englishText) {
+	public String nextVoice(final String englishText) {
 		if (voices.isEmpty()) {
 			voices.addAll(voiceVariants);
 			do {
 				Collections.shuffle(voices, new Random(voiceShuffleSeed++));
 			} while (voices.get(0).equals(previousVoice) && voiceVariants.size() > 2);
 		}
-		String lc = englishText.toLowerCase();
+		final String lc = englishText.toLowerCase();
 		if (lc.contains("mother")
 				&& (lc.matches("\bi\b") || lc.matches("\bme\b") || lc.matches("\bwe\b") || lc.matches("\bus\b"))) {
 			if (!voices.get(0).startsWith("f")) {
@@ -888,6 +867,27 @@ public class Main {
 			}
 			return (int) o1.getCardStats().getShowAgainDelay_ms() - (int) o2.getCardStats().getShowAgainDelay_ms();
 		});
+	}
+
+	private AudioData thisConcludesThisExercise() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "concludes-this-exercise.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "This concludes this exercise.");
+		final List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		final AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
 	}
 
 }

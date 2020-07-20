@@ -49,25 +49,26 @@ public class ESpeakNg {
 		}
 	}
 
-	public void generateWav(final String voice, final int speed, final File wavFile, final String text) throws IOException {
-		File cacheDir = new File("espeak-ng/cache");
+	public void generateWav(final String voice, final int speed, final File wavFile, final String text)
+			throws IOException {
+		final File cacheDir = new File("espeak-ng/cache");
 		cacheDir.mkdirs();
-		File cachedFile = new File(cacheDir, (voice==null?"":voice.trim())+"_"+ wavFile.getName());
-		
+		final File cachedFile = new File(cacheDir, (voice == null ? "" : voice.trim()) + "_" + wavFile.getName());
+
 		wavFile.getParentFile().mkdirs();
-		
+
 		if (cachedFile.canRead()) {
 			FileUtils.copyFile(cachedFile, wavFile);
 			return;
 		}
-		
+
 		final List<String> cmd = new ArrayList<>();
 
 		cmd.add(espeakNg.getAbsolutePath());
 		cmd.add("-z"); // trim trailing silence off of audio
-		if (speed>0) {
+		if (speed > 0) {
 			cmd.add("-s");
-			cmd.add(""+speed);
+			cmd.add("" + speed);
 		}
 		cmd.add("-w");
 		cmd.add(cachedFile.getAbsolutePath());
@@ -82,7 +83,7 @@ public class ESpeakNg {
 		cmd.add("normalize-audio");
 		cmd.add(cachedFile.getAbsolutePath());
 		executeCmd(cmd);
-		
+
 		FileUtils.copyFile(cachedFile, wavFile);
 	}
 }

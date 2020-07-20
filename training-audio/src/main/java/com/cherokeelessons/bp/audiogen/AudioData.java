@@ -7,25 +7,10 @@ import com.cherokeelessons.deck.ICardData;
 public class AudioData implements ICardData {
 
 	private String boundPronoun;
-	public String getBoundPronoun() {
-		return boundPronoun;
-	}
-
-	public void setBoundPronoun(String boundPronoun) {
-		this.boundPronoun = boundPronoun;
-	}
-
-	public String getVerbStem() {
-		return verbStem;
-	}
-
-	public void setVerbStem(String verbStem) {
-		this.verbStem = verbStem;
-	}
-
 	private String verbStem;
-	
+
 	private File answerFile;
+
 	private File challengeFile;
 
 	private String id;
@@ -39,7 +24,6 @@ public class AudioData implements ICardData {
 	 * Duration of the answer audio in ms.
 	 */
 	private float answerDuration;
-
 	/**
 	 * The challenge phrase needing translating into Cherokee.
 	 */
@@ -73,6 +57,10 @@ public class AudioData implements ICardData {
 		return answerFile;
 	}
 
+	public String getBoundPronoun() {
+		return boundPronoun;
+	}
+
 	public String getChallenge() {
 		return challenge;
 	}
@@ -83,6 +71,10 @@ public class AudioData implements ICardData {
 
 	public File getChallengeFile() {
 		return challengeFile;
+	}
+
+	public String getVerbStem() {
+		return verbStem;
 	}
 
 	@Override
@@ -100,6 +92,10 @@ public class AudioData implements ICardData {
 
 	public void setAnswerFile(final File answerFile) {
 		this.answerFile = answerFile;
+	}
+
+	public void setBoundPronoun(final String boundPronoun) {
+		this.boundPronoun = boundPronoun;
 	}
 
 	public void setChallenge(final String challenge) {
@@ -120,6 +116,10 @@ public class AudioData implements ICardData {
 			tmp = "0" + tmp;
 		}
 		this.id = tmp;
+	}
+
+	public void setVerbStem(final String verbStem) {
+		this.verbStem = verbStem;
 	}
 
 	@Override
