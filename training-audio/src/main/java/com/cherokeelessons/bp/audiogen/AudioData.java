@@ -6,6 +6,25 @@ import com.cherokeelessons.deck.ICardData;
 
 public class AudioData implements ICardData {
 
+	private String boundPronoun;
+	public String getBoundPronoun() {
+		return boundPronoun;
+	}
+
+	public void setBoundPronoun(String boundPronoun) {
+		this.boundPronoun = boundPronoun;
+	}
+
+	public String getVerbStem() {
+		return verbStem;
+	}
+
+	public void setVerbStem(String verbStem) {
+		this.verbStem = verbStem;
+	}
+
+	private String verbStem;
+	
 	private File answerFile;
 	private File challengeFile;
 

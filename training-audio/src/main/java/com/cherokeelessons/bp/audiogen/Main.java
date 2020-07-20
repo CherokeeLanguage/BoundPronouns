@@ -32,11 +32,15 @@ import com.cherokeelessons.deck.CardStats;
 import com.cherokeelessons.deck.CardUtils;
 
 public class Main {
+	
+	public static final String UNDERDOT = "\u0323";
 
 	private static final NumberFormat NF = NumberFormat.getInstance();
 	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final File EXCERCISES_DIR = new File("tmp/excercises");
 	private static final String DECK_TSV = "../android/assets/review-sheet.tsv";
+	private static final int PRONOUN = 3;
+	private static final int VERB_STEM = 4;
 	private static final int CHEROKEE_TEXT = 6;
 	private static final int ENGLISH_TEXT_START = 7;
 
@@ -106,11 +110,12 @@ public class Main {
 		final File tmpDir = new File(EXCERCISES_DIR, "chr2en");
 		FileUtils.deleteQuietly(tmpDir);
 		tmpDir.mkdirs();
-		final File silenceWav = generateSilenceWav();
-		final File newPhrase = generateNewPhrase();
-		final File translatePhrase = generateTranslatePhrase();
-		final File listenAgain = listenAgain();
-		final File itsTranslationIs = itsTranslationIs();
+		final AudioData audioSilence = generateSilenceWav();
+		final AudioData audioNewPhrase = generateNewPhrase();
+		final AudioData audioTranslatePhrase = generateTranslatePhrase();
+		final AudioData audioListenAgain = listenAgain();
+		final AudioData audioItsTranslationIs = itsTranslationIs();
+		final AudioData audioExerciseConclusion = thisConcludesThisExercise();
 		final List<File> audioEntries = new ArrayList<>();
 		String prevCardId = "";
 		float tick = 0f;
@@ -128,7 +133,8 @@ public class Main {
 			activeDeck.add(topCard);
 		}
 
-		while (tick < 60f * 60f) {
+		final float trailingBuffer = audioExerciseConclusion.getAnswerDuration() + 5f;
+		while (tick < 60f * 60f - trailingBuffer) {
 			float deltaTick = 0f;
 			if (!activeDeck.hasCards() && !chr2enDeck.hasCards()) {
 				break;
@@ -159,12 +165,14 @@ public class Main {
 			final boolean newCard = card.getCardStats().isNewCard();
 			if (newCard) {
 				card.getCardStats().setNewCard(false);
-				audioEntries.add(newPhrase);
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioNewPhrase.getAnswerFile());
+				deltaTick += audioNewPhrase.getAnswerDuration();
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
 			} else {
-				audioEntries.add(translatePhrase);
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioTranslatePhrase.getAnswerFile());
+				deltaTick += audioTranslatePhrase.getAnswerDuration();
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
 			}
 			/*
@@ -178,31 +186,33 @@ public class Main {
 			 */
 			final float answerDuration = data.getAnswerDuration();
 			if (newCard) {
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
-				audioEntries.add(listenAgain);
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioListenAgain.getAnswerFile());
+				deltaTick += audioListenAgain.getAnswerDuration();
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
 				audioEntries.add(data.getChallengeFile());
 				deltaTick += data.getChallengeDuration();
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
-				audioEntries.add(itsTranslationIs);
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioItsTranslationIs.getAnswerFile());
+				deltaTick += audioItsTranslationIs.getAnswerDuration();
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
-				
+
 			} else {
 				float gapDuration = answerDuration * 1.1f + 2f;
 				while (gapDuration-- > 0f) {
-					audioEntries.add(silenceWav);
+					audioEntries.add(audioSilence.getAnswerFile());
 					deltaTick += 1f;
 				}
 			}
-			
+
 			/*
 			 * The answer.
 			 */
@@ -210,7 +220,7 @@ public class Main {
 			deltaTick += answerDuration;
 
 			for (int trailingSilence = 0; trailingSilence < 3f; trailingSilence++) {
-				audioEntries.add(silenceWav);
+				audioEntries.add(audioSilence.getAnswerFile());
 				deltaTick += 1f;
 			}
 
@@ -229,13 +239,13 @@ public class Main {
 			}
 			tick += deltaTick;
 		}
-		audioEntries.add(silenceWav);
-		audioEntries.add(silenceWav);
-		audioEntries.add(silenceWav);
-		audioEntries.add(thisConcludesThisExercise());
-		audioEntries.add(silenceWav);
-		audioEntries.add(silenceWav);
-		
+		audioEntries.add(audioSilence.getAnswerFile());
+		audioEntries.add(audioSilence.getAnswerFile());
+		audioEntries.add(audioSilence.getAnswerFile());
+		audioEntries.add(audioExerciseConclusion.getAnswerFile());
+		audioEntries.add(audioSilence.getAnswerFile());
+		audioEntries.add(audioSilence.getAnswerFile());
+
 		final File wavOutputFile = new File(tmpDir,
 				"chr2en-graduated-interval-recall-test-output-" + LocalDate.now().toString() + ".wav");
 		for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 200)) {
@@ -270,7 +280,7 @@ public class Main {
 		executeCmd(cmd);
 	}
 
-	private File thisConcludesThisExercise() throws IOException {
+	private AudioData thisConcludesThisExercise() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "concludes-this-exercise.wav");
 		FileUtils.deleteQuietly(newPhrase);
 		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "This concludes this exercise.");
@@ -285,7 +295,10 @@ public class Main {
 		cmd.add("normalize-audio");
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
-		return newPhrase;
+		AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
 	}
 
 	private void buildEn2ChrExerciseMp3Files() {
@@ -294,7 +307,7 @@ public class Main {
 		final File tmpDir = new File(EXCERCISES_DIR, "en2chr");
 		FileUtils.deleteQuietly(tmpDir);
 		tmpDir.mkdirs();
-		final File silenceWav = generateSilenceWav();
+		final AudioData silenceWav = generateSilenceWav();
 		final List<File> audioEntries = new ArrayList<>();
 		String prevCardId = "";
 		float tick = 0f;
@@ -340,7 +353,7 @@ public class Main {
 			final float answerDuration = data.getAnswerDuration();
 			float gapDuration = answerDuration * 1.5f + 2f;
 			while (gapDuration-- > 0f) {
-				audioEntries.add(silenceWav);
+				audioEntries.add(silenceWav.getAnswerFile());
 				deltaTick += 1f;
 			}
 
@@ -352,7 +365,7 @@ public class Main {
 
 			gapDuration = answerDuration + 2f;
 			while (gapDuration-- > 0f) {
-				audioEntries.add(silenceWav);
+				audioEntries.add(silenceWav.getAnswerFile());
 				deltaTick += 1f;
 			}
 			/*
@@ -362,7 +375,7 @@ public class Main {
 			deltaTick += answerDuration;
 
 			for (int trailingSilence = 0; trailingSilence < Math.max(3, answerDuration + 2f); trailingSilence++) {
-				audioEntries.add(silenceWav);
+				audioEntries.add(silenceWav.getAnswerFile());
 				deltaTick += 1f;
 			}
 
@@ -499,7 +512,7 @@ public class Main {
 					voice = "en-us";
 				}
 				System.out.println(" - " + answerWavFile.getName());
-				//espeak.generateWav(voice, speed, answerWavFile, answer);
+				// espeak.generateWav(voice, speed, answerWavFile, answer);
 				if (voice.contains("+f")) {
 					File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
 					List<String> cmd = new ArrayList<>();
@@ -615,20 +628,24 @@ public class Main {
 		}
 	}
 
-	private File generateSilenceWav() {
+	private AudioData generateSilenceWav() {
 		EXCERCISES_DIR.mkdirs();
 		final File silenceWav = new File(EXCERCISES_DIR, "silence-1-second.wav");
 		FileUtils.deleteQuietly(silenceWav);
 		final List<String> cmd = Arrays.asList("sox", "-n", "-r", "22050", //
 				"-c", "1", silenceWav.getAbsolutePath(), "trim", "0.0", "1.0");
 		executeCmd(cmd);
-		return silenceWav;
+		AudioData data = new AudioData();
+		data.setAnswerFile(silenceWav);
+		data.setAnswerDuration(getDuration(silenceWav));
+		return data;
 	}
 
-	private File generateNewPhrase() throws IOException {
+	private AudioData generateNewPhrase() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "here-is-a-new-phrase.wav");
 		FileUtils.deleteQuietly(newPhrase);
-		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is a new phrase to learn. Listen carefully:");
+		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR,
+				"Here is a new phrase to learn. Listen carefully:");
 		List<String> cmd = new ArrayList<>();
 		cmd.add("ffmpeg");
 		cmd.add("-y");
@@ -640,10 +657,13 @@ public class Main {
 		cmd.add("normalize-audio");
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
-		return newPhrase;
+		AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
 	}
-	
-	private File listenAgain() throws IOException {
+
+	private AudioData listenAgain() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "listen-again.wav");
 		FileUtils.deleteQuietly(newPhrase);
 		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here is the phrase again:");
@@ -658,10 +678,13 @@ public class Main {
 		cmd.add("normalize-audio");
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
-		return newPhrase;
+		AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
 	}
-	
-	private File itsTranslationIs() throws IOException {
+
+	private AudioData itsTranslationIs() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "its-translation-is.wav");
 		FileUtils.deleteQuietly(newPhrase);
 		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Here it is in English:");
@@ -676,10 +699,13 @@ public class Main {
 		cmd.add("normalize-audio");
 		cmd.add(newPhrase.getAbsolutePath());
 		executeCmd(cmd);
-		return newPhrase;
+		AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
 	}
 
-	private File generateTranslatePhrase() throws IOException {
+	private AudioData generateTranslatePhrase() throws IOException {
 		final File translateIntoEnglish = new File(EXCERCISES_DIR, "translate-into-english.wav");
 		FileUtils.deleteQuietly(translateIntoEnglish);
 		File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR, "Translate into English:");
@@ -694,11 +720,19 @@ public class Main {
 		cmd.add("normalize-audio");
 		cmd.add(translateIntoEnglish.getAbsolutePath());
 		executeCmd(cmd);
-		return translateIntoEnglish;
+		AudioData data = new AudioData();
+		data.setAnswerFile(translateIntoEnglish);
+		data.setAnswerDuration(getDuration(translateIntoEnglish));
+		return data;
 	}
 
-	private float getDuration(final File answerWavFile) throws UnsupportedAudioFileException, IOException {
-		final AudioFileFormat audioFileFormat = AudioSystem.getAudioFileFormat(answerWavFile);
+	private float getDuration(final File answerWavFile) {
+		AudioFileFormat audioFileFormat;
+		try {
+			audioFileFormat = AudioSystem.getAudioFileFormat(answerWavFile);
+		} catch (UnsupportedAudioFileException | IOException e) {
+			return 0f;
+		}
 		final AudioFormat format = audioFileFormat.getFormat();
 		final long audioFileLength = audioFileFormat.getFrameLength();
 		// int frameSize = format.getFrameSize();
@@ -725,6 +759,8 @@ public class Main {
 					System.out.println("; " + line);
 					continue;
 				}
+				String verbStem = fields[VERB_STEM].replaceAll("[¹²³⁴"+UNDERDOT+"]", "").trim();
+				String boundPronoun = fields[PRONOUN].replaceAll("[¹²³⁴"+UNDERDOT+"]", "").trim();
 				String cherokeeText = fields[CHEROKEE_TEXT].trim();
 				if (cherokeeText.isEmpty()) {
 					continue;
@@ -743,7 +779,7 @@ public class Main {
 						englishText += ".";
 					}
 					if (englishText.contains(" (")) {
-						//English text pronunciation adjustments
+						// English text pronunciation adjustments
 						englishText = englishText.replace(" (1)", " one");
 						englishText = englishText.replace(" (animate)", ", animate");
 						englishText = englishText.replace(" (inanimate)", ", inanimate");
@@ -761,6 +797,8 @@ public class Main {
 					} else {
 						toChrCard = new AudioCard();
 						toChrData = new AudioData();
+						toChrData.setBoundPronoun(boundPronoun);
+						toChrData.setVerbStem(verbStem);
 						toChrData.setAnswer(cherokeeText);
 						toChrData.setAnswerDuration(0);
 						toChrData.setChallenge(englishText);
@@ -782,6 +820,8 @@ public class Main {
 					} else {
 						toEnCard = new AudioCard();
 						toEnData = new AudioData();
+						toEnData.setBoundPronoun(boundPronoun);
+						toEnData.setVerbStem(verbStem);
 						toEnData.setAnswer(englishText);
 						toEnData.setAnswerDuration(0);
 						toEnData.setChallenge(cherokeeText);
@@ -791,8 +831,16 @@ public class Main {
 						cardsForEnglishAnswers.put(cherokeeText, toEnCard);
 						chr2enDeck.add(toEnCard);
 					}
-					reviewSheetChr2En.append(
-							toEnData.id() + "\t" + toEnData.getChallenge() + "\t" + toEnData.getAnswer() + "\n");
+					reviewSheetChr2En.append(toEnData.id());
+					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append(toEnData.getBoundPronoun());
+					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append(toEnData.getVerbStem());
+					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append(toEnData.getChallenge());
+					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append(toEnData.getAnswer());
+					reviewSheetChr2En.append("\n");
 				}
 			}
 		}
