@@ -126,20 +126,20 @@ public class SessionUtil {
 			cardStats.setShowAgainDelay_ms(CardUtils.getNextInterval(0));
 			activeCard.resetTriesRemaining(showCount);
 
-//			int pSkill;
-//			if (!pCounts.containsKey(activeCard.getData().)) {
-//				pSkill = 0;
-//			} else {
-//				pSkill = pCounts.get(activeCard.pgroup).get();
-//			}
-//			int vSkill;
-//			if (!vCounts.containsKey(activeCard.vgroup)) {
-//				vSkill = 0;
-//			} else {
-//				vSkill = vCounts.get(activeCard.vgroup).get();
-//			}
-//
-//			System.out.println("Skill levels: "+activeCard.pgroup+"="+pSkill+", "+activeCard.vgroup+"="+vSkill);
+			int pSkill;
+			if (!pCounts.containsKey(activeCard.getData().getBoundPronoun())) {
+				pSkill = 0;
+			} else {
+				pSkill = pCounts.get(activeCard.getData().getBoundPronoun()).get();
+			}
+			int vSkill;
+			if (!vCounts.containsKey(activeCard.getData().getVerbStem())) {
+				vSkill = 0;
+			} else {
+				vSkill = vCounts.get(activeCard.getData().getVerbStem()).get();
+			}
+
+			System.out.println("Skill levels: "+activeCard.getData().getBoundPronoun()+"="+pSkill+", "+activeCard.getData().getVerbStem()+"="+vSkill);
 
 			/*
 			 * If student has been using both the stem and the pronoun in other challenges
