@@ -1,0 +1,16 @@
+### English, British
+
+* https://github.com/awsdocs/amazon-polly-developer-guide/blob/master/doc_source/ph-table-english-uk.md
+
+
+### English, US
+
+* https://github.com/awsdocs/amazon-polly-developer-guide/blob/master/doc_source/ph-table-english-us.md
+
+Portuguese, Brazilian
+
+* https://github.com/awsdocs/amazon-polly-developer-guide/blob/master/doc_source/ph-table-portuguese-br.md
+
+Spanish, US
+
+* https://github.com/awsdocs/amazon-polly-developer-guide/blob/master/doc_source/ph-table-spanish-us.md
