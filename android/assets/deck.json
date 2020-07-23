@@ -2268,7 +2268,7 @@
     "vgroup" : "Ꭱ¹Ꮎ²",
     "vset" : 3
   }, {
-    "answer" : [ "You all and I, ourselves" ],
+    "answer" : [ "Ourselves, you all and I" ],
     "challenge" : [ "Ꭲ¹Ꭼ²³Ꮜ", "i¹gv²³sa" ],
     "id" : 253,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -2322,7 +2322,7 @@
     "vgroup" : "ɂ¹Ꮯ²³Ꮜ²",
     "vset" : 3
   }, {
-    "answer" : [ "They and I, our things" ],
+    "answer" : [ "Our things, they and I" ],
     "challenge" : [ "Ꮶ¹Ꭶ²Ꮴ²Ꮅ⁴Ꭲ", "jo¹gạ²je²li⁴ɂi" ],
     "id" : 259,
     "pgroup" : "Ꮶ¹Ꭹ²-",
@@ -2367,7 +2367,7 @@
     "vgroup" : "Ꭱ¹Ꮎ²",
     "vset" : 4
   }, {
-    "answer" : [ "They and I, ourselves" ],
+    "answer" : [ "Ourselves, they and I" ],
     "challenge" : [ "Ꭳ¹Ꭼ²³Ꮜ", "o¹gv²³sa" ],
     "id" : 264,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -2529,7 +2529,7 @@
     "vgroup" : "ɂ¹Ꮯ²³Ꮜ²",
     "vset" : 5
   }, {
-    "answer" : [ "You all and I, our things" ],
+    "answer" : [ "Our things, you all and I" ],
     "challenge" : [ "Ꮧ̣²Ꭶ²Ꮴ²Ꮅ⁴Ꭲ", "dị²gạ²je²li⁴ɂi" ],
     "id" : 282,
     "pgroup" : "Ꮧ̣²Ꭹ²-",
@@ -2556,7 +2556,7 @@
     "vgroup" : "Ꭵ³²Ꮿ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) and I, ourselves" ],
+    "answer" : [ "Ourselves, you (1) and I" ],
     "challenge" : [ "Ꭹ̣²Ꮕ²³Ꮜ", "gị²nv²³sa" ],
     "id" : 285,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -2637,7 +2637,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 6
   }, {
-    "answer" : [ "He and I, ourselves" ],
+    "answer" : [ "Ourselves, he and I" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮕ²³Ꮜ", "o¹gị²nv²³sa" ],
     "id" : 294,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -2682,7 +2682,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ²*",
     "vset" : 7
   }, {
-    "answer" : [ "He and I, our things" ],
+    "answer" : [ "Our things, he and I" ],
     "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮎ²Ꮴ²Ꮅ⁴Ꭲ", "jo¹gị²nạ²je²li⁴ɂi" ],
     "id" : 299,
     "pgroup" : "Ꮶ¹Ꭹ̣²Ꮒ²-",
@@ -2709,7 +2709,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) and I, our things" ],
+    "answer" : [ "Our things, you (1) and I" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ²Ꮴ²Ꮅ⁴Ꭲ", "dị²gị²nạ²je²li⁴ɂi" ],
     "id" : 302,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
