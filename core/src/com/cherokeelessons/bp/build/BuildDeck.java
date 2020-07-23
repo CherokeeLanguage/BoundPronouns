@@ -979,6 +979,17 @@ public class BuildDeck {
 		d.def = d.def.replace("let we", "let us");
 
 		/**
+		 * a bit of reordering
+		 */
+		d.def = d.def.replaceAll("Y(.*), ourselves", "Ourselves, y$1");
+		d.def = d.def.replaceAll("T(.*), ourselves", "Ourselves, t$1");
+		d.def = d.def.replaceAll("H(.*), ourselves", "Ourselves, h$1");
+		
+		d.def = d.def.replaceAll("Y(.*), our (.*)", "Our $2, y$1");
+		d.def = d.def.replaceAll("T(.*), our (.*)", "Our $2, t$1");
+		d.def = d.def.replaceAll("H(.*), our (.*)", "Our $2, h$1");
+		
+		/**
 		 * Final replacements.
 		 */
 		d.def = d.def.replace("you one or you two", "you one or both");
