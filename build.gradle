@@ -15,8 +15,18 @@ buildscript {
 
 
 allprojects {
-    version = '3.35'
     apply plugin: "eclipse"
+    version = '3.35'
+
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	
+	if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
+		tasks.withType(JavaCompile) {
+		    options.compilerArgs.addAll(["--release", "8"])
+		}
+	}
+	
 	eclipse {
 	    classpath {
 	       downloadSources=true
@@ -43,7 +53,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java-library"
-	sourceCompatibility = 1.7
+	//sourceCompatibility = 1.7
 	archivesBaseName = 'BoundPronouns'
 
     dependencies {
@@ -62,7 +72,7 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
-	sourceCompatibility = 1.7
+	//sourceCompatibility = 1.7
     configurations { natives }
 
     dependencies {
@@ -97,7 +107,7 @@ project(":ios") {
     apply plugin: "robovm"
 	apply plugin: "eclipse-wtp"
 	
-    sourceCompatibility = 1.7
+    //sourceCompatibility = 1.7
 
   dependencies {
         compile project(":core")
@@ -118,7 +128,7 @@ project(":ios") {
 project(":core") {
     apply plugin: "java"
     apply plugin: "eclipse-wtp"
-	sourceCompatibility = 1.7
+	//sourceCompatibility = 1.7
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
