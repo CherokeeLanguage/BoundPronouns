@@ -8,7 +8,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.9'
     }
 }
@@ -18,15 +18,6 @@ allprojects {
     apply plugin: "eclipse"
     version = '3.35'
 
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
-	
-	if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
-		tasks.withType(JavaCompile) {
-		    options.compilerArgs.addAll(["--release", "8"])
-		}
-	}
-	
 	eclipse {
 	    classpath {
 	       downloadSources=true
@@ -53,7 +44,15 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java-library"
-	//sourceCompatibility = 1.7
+    
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
+		tasks.withType(JavaCompile) {
+		    options.compilerArgs.addAll(["--release", "8"])
+		}
+	}
+	
 	archivesBaseName = 'BoundPronouns'
 
     dependencies {
@@ -72,7 +71,15 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
-	//sourceCompatibility = 1.7
+
+	//sourceCompatibility = JavaVersion.VERSION_1_8
+	//targetCompatibility = JavaVersion.VERSION_1_8
+	//if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
+	//	tasks.withType(JavaCompile) {
+	//	    options.compilerArgs.addAll(["--release", "8"])
+	//	}
+	//}
+
     configurations { natives }
 
     dependencies {
@@ -107,7 +114,14 @@ project(":ios") {
     apply plugin: "robovm"
 	apply plugin: "eclipse-wtp"
 	
-    //sourceCompatibility = 1.7
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
+		tasks.withType(JavaCompile) {
+		    options.compilerArgs.addAll(["--release", "8"])
+		}
+	}
+
 
   dependencies {
         compile project(":core")
@@ -128,7 +142,15 @@ project(":ios") {
 project(":core") {
     apply plugin: "java"
     apply plugin: "eclipse-wtp"
-	//sourceCompatibility = 1.7
+
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	if (JavaVersion.current() > JavaVersion.VERSION_1_8) {
+		tasks.withType(JavaCompile) {
+		    options.compilerArgs.addAll(["--release", "8"])
+		}
+	}
+
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
