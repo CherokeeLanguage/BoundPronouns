@@ -10,12 +10,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
@@ -34,8 +34,21 @@ import com.cherokeelessons.deck.CardUtils;
 
 public class Main {
 
-	private static final int TRIES_PER_CARD = 24;
-	private static final int MAX_NEW_CARDS_PER_SESSION = 10;
+	private static final boolean USE_DEBUG_DECK = false;
+	private static final int DEBUG_DECK_SIZE = 100;
+
+	private static final int SESSIONS_TO_CREATE = 3;
+
+	private static final int MAX_TRIES_PER_REVIEW_CARD = 10;
+	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 4;
+
+	private static final int MAX_TRIES_PER_NEW_CARD = 20;
+	private static final int TRIES_PER_NEW_CARD_DECREMENT = 2;
+
+	private static final int BASE_NEW_CARDS_PER_SESSION = 10;
+	private static final int NEW_CARDS_INCREMENT = 2;
+
+	private static final int REVIEW_CARDS_PER_SESSION = 25;
 
 	public static final String UNDERDOT = "\u0323";
 
@@ -58,6 +71,9 @@ public class Main {
 	private final AudioDeck discardsDeck;
 	private final AudioDeck finishedDeck;
 	private final AudioDeck activeDeck;
+
+	private final Map<String, AtomicInteger> vstemCounts;
+	private final Map<String, AtomicInteger> pboundCounts;
 
 	private final Map<String, Integer> chrVoiceSpeekingRates;
 	private final Map<String, Integer> enVoiceSpeekingRates;
@@ -111,237 +127,430 @@ public class Main {
 		enVoiceSpeekingRates.put("antonio", 90);
 		enVoiceSpeekingRates.put("Mr", 90);
 		enVoiceSpeekingRates.put("robosoft5", 90);
+
+		vstemCounts = new HashMap<String, AtomicInteger>();
+		pboundCounts = new HashMap<String, AtomicInteger>();
 	}
 
 	private AudioData audioSilence;
+	private int reviewCount = 0;
+
+	private void saveStemCounts(AudioDeck deck) {
+		vstemCounts.clear();
+		pboundCounts.clear();
+		for (AudioCard card : deck.getCards()) {
+			AudioData data = card.getData();
+			String bp = data.getBoundPronoun();
+			if (bp.trim().isEmpty()) {
+				continue;
+			}
+			if (!pboundCounts.containsKey(bp)) {
+				pboundCounts.put(bp, new AtomicInteger());
+			}
+			pboundCounts.get(bp).incrementAndGet();
+			String vs = data.getVerbStem();
+			if (!vstemCounts.containsKey(vs)) {
+				vstemCounts.put(vs, new AtomicInteger());
+			}
+			vstemCounts.get(vs).incrementAndGet();
+		}
+//		for (Entry<String, AtomicInteger> e: pboundCounts.entrySet()) {
+//			if (e.getValue().get()>2) {
+//				System.out.println("   p: "+e.getKey()+" = "+e.getValue().get());
+//			}
+//		}
+	}
+
+	private boolean skipNew(AudioCard card) {
+		AudioData data = card.getData();
+		String bp = data.getBoundPronoun();
+		if (!pboundCounts.containsKey(bp)) {
+			return false;
+		}
+		String vs = data.getVerbStem();
+		if (!vstemCounts.containsKey(vs)) {
+			return false;
+		}
+		return pboundCounts.get(bp).get() > 2 && vstemCounts.get(vs).get() > 4;
+	}
+
 	private void buildChr2EnExerciseMp3Files() throws IOException {
 		System.out.println("=== buildChr2EnExerciseMp3Files");
-		
+
+		/*
+		 * using in functions
+		 */
 		audioSilence = generateSilenceWav();
 
 		final File tmpDir = new File(EXCERCISES_DIR, "chr2en");
 		FileUtils.deleteQuietly(tmpDir);
 		tmpDir.mkdirs();
 
+		/*
+		 * lead in audio
+		 */
+		AudioData lc1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.LANGUAGE_CULTURE_1,
+				new File(EXCERCISES_DIR, "language-culture-1.wav"));
+		/*
+		 * lead in audio
+		 */
+		AudioData intro2 = EnglishAudio.createEnglishAudioFor(EnglishAudio.KEEP_GOING,
+				new File(EXCERCISES_DIR, "intro-2.wav"));
+		/*
+		 * lead in audio
+		 */
+		AudioData intro1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.INTRO_1,
+				new File(EXCERCISES_DIR, "intro-1-these.wav"));
+		/*
+		 * lead in audio
+		 */
+		AudioData begin1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.BEGIN,
+				new File(EXCERCISES_DIR, "begin-1.wav"));
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioNewPhrase = generateNewPhrase();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioNewPhraseShort = generateNewPhraseShort();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioTranslatePhrase = generateTranslatePhrase();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioTranslatePhraseShort = generateTranslatePhraseShort();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioListenAgain = listenAgain();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioListenAgainShort = listenAgainShort();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioItsTranslationIs = itsTranslationIs();
+		/*
+		 * in exercise audio
+		 */
 		final AudioData audioItsTranslationIsShort = inEnglish();
+
+		/*
+		 * trailing audio
+		 */
 		final AudioData audioExerciseConclusion = thisConcludesThisExercise();
+		/*
+		 * trailing audio
+		 */
+		AudioData copy1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.COPY_1,
+				new File(EXCERCISES_DIR, "copyright-1.wav"));
+		/*
+		 * trailing audio
+		 */
+		AudioData copy2 = EnglishAudio.createEnglishAudioFor(EnglishAudio.COPY_2,
+				new File(EXCERCISES_DIR, "copyright-2.wav"));
 
-		final List<File> audioEntries = new ArrayList<>();
-		String prevCardId = "";
-		float tick = 0f;
+		for (int exerciseSet = 0; exerciseSet < SESSIONS_TO_CREATE; exerciseSet++) {
+			System.out.println("=== EXERCISE SET: " + (exerciseSet + 1));
+			final List<File> audioEntries = new ArrayList<>();
+			String prevCardId = "";
 
-		int newCardCount = 0;
-		int challengeCardCount = 0;
-		List<String> challenges = new ArrayList<>();
-		final float trailingBuffer = audioExerciseConclusion.getAnswerDuration() + 5f;
-		maxCardsReached = false;
-		
-		tick += addSilence(3f, audioEntries);
-		//intro verbiage
-		AudioData lc1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.LANGUAGE_CULTURE_1, new File(EXCERCISES_DIR, "language-culture-1.wav"));
-		audioEntries.add(lc1.getAnswerFile());
-		tick += lc1.getAnswerDuration();
-		tick += addSilence(2f, audioEntries);
-		
-		AudioData copy1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.COPY_1, new File(EXCERCISES_DIR, "copyright-1.wav"));
-		//added at END
-		tick += copy1.getAnswerDuration();
-		tick += addSilence(2f, audioEntries);
-		
-		AudioData copy2 = EnglishAudio.createEnglishAudioFor(EnglishAudio.COPY_2, new File(EXCERCISES_DIR, "copyright-2.wav"));
-		//added at END
-		tick += copy2.getAnswerDuration();
-		tick += addSilence(2f, audioEntries);
-		
-		AudioData intro2 = EnglishAudio.createEnglishAudioFor(EnglishAudio.KEEP_GOING, new File(EXCERCISES_DIR, "intro-2.wav"));
-		audioEntries.add(intro2.getAnswerFile());
-		tick += intro2.getAnswerDuration();
-		tick += addSilence(3f, audioEntries);
-		
-		AudioData intro1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.INTRO_1, new File(EXCERCISES_DIR, "intro-1.wav"));
-		audioEntries.add(intro1.getAnswerFile());
-		tick += intro1.getAnswerDuration();
-		tick += addSilence(2f, audioEntries);
-		
-		
-		AudioData begin1 = EnglishAudio.createEnglishAudioFor(EnglishAudio.BEGIN, new File(EXCERCISES_DIR, "begin-1.wav"));
-		audioEntries.add(begin1.getAnswerFile());
-		tick += begin1.getAnswerDuration();
-		tick += addSilence(3f, audioEntries);
-		
-		while (tick < 60f * 60f - trailingBuffer) {
-			float deltaTick = 0f;
-
-			AudioCard card = getNextCard(prevCardId);
-			if (card == null) {
-				break;
-			}
-			final String cardId = card.id();
-			CardStats cardStats = card.getCardStats();
-			final boolean newCard = cardStats.isNewCard();
-			float extraDelay = cardStats.getShowAgainDelay_ms()/1000l;
-			final AudioData data = card.getData();
-
-			if (cardId.equals(prevCardId)) {
-				card.getCardStats().setShowAgainDelay_ms(32000l);
-				continue;
-			}
-			prevCardId = cardId;
-
-//			System.out.println(data.id() + ") " + (newCard ? "* " : "") + data.getAnswer() + " " + NF.format(tick));
-
-			challenges.add(newCard ? "* "
-					: "" + card.getData().getChallenge() + ": " + card.getData().getAnswer() + " [" + NF.format(tick)
-							+ " secs]");
-
-			if (newCard) {
-				if (++newCardCount >= MAX_NEW_CARDS_PER_SESSION) {
-					maxCardsReached = true;
-				}
-				deltaTick += addSilence(2, audioEntries);
-				card.getCardStats().setNewCard(false);
-				if (newCardCount < 6) {
-					audioEntries.add(audioNewPhrase.getAnswerFile());
-					deltaTick += audioNewPhrase.getAnswerDuration();
-				} else {
-					audioEntries.add(audioNewPhraseShort.getAnswerFile());
-					deltaTick += audioNewPhraseShort.getAnswerDuration();
-				}
-				deltaTick += addSilence(1, audioEntries);
-			} else {
-				challengeCardCount++;
-
-				//extra leadin silence based on when card was supposed to show again
-				if (extraDelay>0) {
-					deltaTick += addSilence(Math.min(7f, extraDelay), audioEntries);
-				}
-				
-				if (challengeCardCount < 16) {
-					audioEntries.add(audioTranslatePhrase.getAnswerFile());
-					deltaTick += audioTranslatePhrase.getAnswerDuration();
-				} else {
-					audioEntries.add(audioTranslatePhraseShort.getAnswerFile());
-					deltaTick += audioTranslatePhraseShort.getAnswerDuration();
-				}
-				deltaTick += addSilence(1, audioEntries);
-			}
-			/*
-			 * First challenge.
-			 */
-			audioEntries.add(data.getChallengeFile());
-			deltaTick += data.getChallengeDuration();
+			float tick = 0f;
 
 			/*
-			 * Repeat challenge if new card
+			 * Account for trailing audio lengths
 			 */
-			final float answerDuration = data.getAnswerDuration();
-			if (newCard) {
-				deltaTick += addSilence(2, audioEntries);
-				if (newCardCount < 8) {
-					audioEntries.add(audioListenAgain.getAnswerFile());
-					deltaTick += audioListenAgain.getAnswerDuration();
-				} else {
-					audioEntries.add(audioListenAgainShort.getAnswerFile());
-					deltaTick += audioListenAgainShort.getAnswerDuration();
+			// added at END
+			tick += copy1.getAnswerDuration();
+			tick += addSilence(2f, audioEntries);
+
+			// added at END
+			tick += copy2.getAnswerDuration();
+			tick += addSilence(2f, audioEntries);
+
+			tick += 3f;
+			tick += audioExerciseConclusion.getAnswerDuration();
+			tick += 3f;
+
+			tick += copy1.getAnswerDuration();
+			tick += 2f;
+
+			tick += copy2.getAnswerDuration();
+			tick += 3f;
+
+			/*
+			 * leadin silence
+			 */
+			tick += addSilence(1f, audioEntries);
+
+			/*
+			 * Start with pre-lesson verbiage.
+			 */
+
+			File wavFile = new File(EXCERCISES_DIR, "cherokee-cram-session-" + (exerciseSet + 1) + ".wav");
+			AudioData cherokeeCramSessionMarker = EnglishAudio
+					.createEnglishAudioFor("Cherokee Language Cram Session " + (exerciseSet + 1), wavFile);
+			audioEntries.add(cherokeeCramSessionMarker.getAnswerFile());
+			tick += cherokeeCramSessionMarker.getAnswerDuration();
+			tick += addSilence(1f, audioEntries);
+
+			if (exerciseSet == 0) {
+				audioEntries.add(lc1.getAnswerFile());
+				tick += lc1.getAnswerDuration();
+				tick += addSilence(2f, audioEntries);
+
+				audioEntries.add(intro2.getAnswerFile());
+				tick += intro2.getAnswerDuration();
+				tick += addSilence(3f, audioEntries);
+
+				audioEntries.add(intro1.getAnswerFile());
+				tick += intro1.getAnswerDuration();
+				tick += addSilence(2f, audioEntries);
+			}
+
+			audioEntries.add(begin1.getAnswerFile());
+			tick += begin1.getAnswerDuration();
+			tick += addSilence(3f, audioEntries);
+
+			/*
+			 * A single audio lesson file.
+			 */
+			int newCardCount = 0;
+			int introducedCardCount = 0;
+			int hiddenCardCount = 0;
+			int challengeCardCount = 0;
+			List<String> challenges = new ArrayList<>();
+			maxCardsReached = false;
+			reviewCount = 0;
+			updateTime(finishedDeck, 60f * 60f * 24f /* one day seconds */);
+			sortDeckByShowAgainDelay(finishedDeck);
+			saveStemCounts(finishedDeck);
+			if (finishedDeck.hasCards()) {
+				System.out.println("--- Have " + NF.format(finishedDeck.getCards().size())
+						+ " previously finished cards for possible use.");
+			}
+
+			final int maxNewCardsThisSession = BASE_NEW_CARDS_PER_SESSION + exerciseSet * NEW_CARDS_INCREMENT;
+
+			while (tick < 60f * 60f) {
+				float deltaTick = 0f;
+
+				AudioCard card = getNextCard(exerciseSet, prevCardId);
+				if (card == null) {
+					break;
 				}
-				deltaTick += addSilence(2, audioEntries);
+				final String cardId = card.id();
+				CardStats cardStats = card.getCardStats();
+				final boolean newCard = cardStats.isNewCard();
+				final boolean introduceCard = cardStats.isNewCard() && !skipNew(card);
+
+				float extraDelay = cardStats.getShowAgainDelay_ms() / 1000l;
+				final AudioData data = card.getData();
+
+				if (cardId.equals(prevCardId)) {
+					card.getCardStats().setShowAgainDelay_ms(32000l);
+					continue;
+				}
+				prevCardId = cardId;
+
+				if (newCard) {
+					if (introduceCard) {
+						System.out.println("   Introduced card: " + data.getChallenge() + " ["
+								+ cardStats.getTriesRemaining() + "]");
+						challenges.add(card.getData().getChallenge() + ": " + card.getData().getAnswer() + " ["
+								+ cardStats.getTriesRemaining() + "]");
+					} else {
+						cardStats.setNewCard(false);
+						card.resetTriesRemaining(Math.max(MAX_TRIES_PER_REVIEW_CARD / 2,
+								MAX_TRIES_PER_REVIEW_CARD - TRIES_PER_REVIEW_CARD_DECREMENT * exerciseSet));
+						System.out.println("   Hidden new card: " + data.getChallenge() + ": "
+								+ card.getData().getAnswer() + " [" + cardStats.getTriesRemaining() + "]");
+					}
+
+				}
+
+				if (newCard) {
+					if (introduceCard) {
+						introducedCardCount++;
+					} else {
+						hiddenCardCount++;
+					}
+					if (++newCardCount >= maxNewCardsThisSession) {
+						maxCardsReached = true;
+					}
+					deltaTick += addSilence(2, audioEntries);
+					card.getCardStats().setNewCard(false);
+					if (newCardCount < 6 && exerciseSet == 0) {
+						audioEntries.add(audioNewPhrase.getAnswerFile());
+						deltaTick += audioNewPhrase.getAnswerDuration();
+					} else {
+						audioEntries.add(audioNewPhraseShort.getAnswerFile());
+						deltaTick += audioNewPhraseShort.getAnswerDuration();
+					}
+					deltaTick += addSilence(1, audioEntries);
+				} else {
+					challengeCardCount++;
+
+					// extra leadin silence based on when card was supposed to show again
+					if (extraDelay > 0) {
+						deltaTick += addSilence(Math.min(7f, extraDelay), audioEntries);
+					}
+
+					if (challengeCardCount < 16 && exerciseSet == 0) {
+						audioEntries.add(audioTranslatePhrase.getAnswerFile());
+						deltaTick += audioTranslatePhrase.getAnswerDuration();
+					} else {
+						audioEntries.add(audioTranslatePhraseShort.getAnswerFile());
+						deltaTick += audioTranslatePhraseShort.getAnswerDuration();
+					}
+					deltaTick += addSilence(1, audioEntries);
+				}
+				/*
+				 * First challenge.
+				 */
 				audioEntries.add(data.getChallengeFile());
 				deltaTick += data.getChallengeDuration();
-				deltaTick += addSilence(2, audioEntries);
-				if (newCardCount < 10) {
-					audioEntries.add(audioItsTranslationIs.getAnswerFile());
-					deltaTick += audioItsTranslationIs.getAnswerDuration();
+
+				/*
+				 * Repeat challenge if new card
+				 */
+				final float answerDuration = data.getAnswerDuration();
+				if (introduceCard) {
+					deltaTick += addSilence(2, audioEntries);
+					if (newCardCount < 8 && exerciseSet == 0) {
+						audioEntries.add(audioListenAgain.getAnswerFile());
+						deltaTick += audioListenAgain.getAnswerDuration();
+					} else {
+						audioEntries.add(audioListenAgainShort.getAnswerFile());
+						deltaTick += audioListenAgainShort.getAnswerDuration();
+					}
+					deltaTick += addSilence(2, audioEntries);
+					audioEntries.add(data.getChallengeFile());
+					deltaTick += data.getChallengeDuration();
+					deltaTick += addSilence(2, audioEntries);
+					if (newCardCount < 10 && exerciseSet == 0) {
+						audioEntries.add(audioItsTranslationIs.getAnswerFile());
+						deltaTick += audioItsTranslationIs.getAnswerDuration();
+					} else {
+						audioEntries.add(audioItsTranslationIsShort.getAnswerFile());
+						deltaTick += audioItsTranslationIsShort.getAnswerDuration();
+					}
+					deltaTick += addSilence(2, audioEntries);
 				} else {
-					audioEntries.add(audioItsTranslationIsShort.getAnswerFile());
-					deltaTick += audioItsTranslationIsShort.getAnswerDuration();
+					float gapDuration = answerDuration * 1.1f + 2f;
+					deltaTick += addSilence(gapDuration, audioEntries);
 				}
-				deltaTick += addSilence(2, audioEntries);
-			} else {
-				float gapDuration = answerDuration * 1.1f + 2f;
-				deltaTick += addSilence(gapDuration, audioEntries);
+
+				/*
+				 * The answer.
+				 */
+				audioEntries.add(data.getAnswerFile());
+				deltaTick += answerDuration;
+
+				// trailing silence
+				if (exerciseSet == 0) {
+					deltaTick += addSilence(3f, audioEntries);
+				} else if (exerciseSet < 5) {
+					deltaTick += addSilence(2f, audioEntries);
+				} else {
+					deltaTick += addSilence(1f, audioEntries);
+				}
+
+				updateTime(activeDeck, deltaTick);
+				updateTime(discardsDeck, deltaTick);
+				updateTime(finishedDeck, deltaTick);
+
+				cardStats.pimsleurSlotInc();
+				final long nextInterval = CardUtils.getNextInterval(cardStats.getPimsleurSlot())
+						+ (long) (deltaTick * 1000l);
+				cardStats.setShowAgainDelay_ms(nextInterval);
+				tick += deltaTick;
 			}
 
+			bumpCompletedCards();
 			/*
-			 * The answer.
+			 * Move all into discards - session time is up
 			 */
-			audioEntries.add(data.getAnswerFile());
-			deltaTick += answerDuration;
-
-			//trailing silence
-			deltaTick += addSilence(3f, audioEntries);
-			
-			updateTime(activeDeck, deltaTick);
-			updateTime(discardsDeck, deltaTick);
-
-			final long nextInterval = CardUtils.getNextInterval(cardStats.getPimsleurSlot())
-					+ (long) (deltaTick * 1000l);
-			cardStats.setShowAgainDelay_ms(nextInterval);
-			cardStats.triesRemainingDec();
-			cardStats.pimsleurSlotInc();
-			if (cardStats.getTriesRemaining() < 1) {
-				cardStats.leitnerBoxInc();
+			int secondsOffset = 0;
+			for (AudioCard card : new ArrayList<>(activeDeck.getCards())) {
 				discardsDeck.add(card);
 			}
-			tick += deltaTick;
+			if (activeDeck.hasCards()) {
+				throw new IllegalStateException("Active Deck has cards after session reset!");
+			}
+			for (AudioCard card : new ArrayList<>(discardsDeck.getCards())) {
+				CardStats cardStats = card.getCardStats();
+				if (cardStats.getShown() >= cardStats.getTriesRemaining()) {
+					/* Early bump, used at least 50% of total max uses. */
+					cardStats.setTriesRemaining(0);
+					bumpCompletedCards();
+					continue;
+				}
+				cardStats.setShowAgainDelay_ms(secondsOffset += 1000);
+				finishedDeck.add(card);
+			}
+			if (discardsDeck.hasCards()) {
+				throw new IllegalStateException("Discard Deck has cards after session reset!");
+			}
 
-			mostRecentSessionElapsed = deltaTick;
-		}
+			System.out.println("TOTAL INTRODUCED CARDS IN SET: " + introducedCardCount);
+			System.out.println("TOTAL HIDDEN NEW CARDS IN SET: " + hiddenCardCount);
+			System.out.println("TOTAL NEW CARDS IN SET: " + newCardCount + " out of a possible allowed "
+					+ maxNewCardsThisSession);
 
-		System.out.println("TOTAL NEW CARDS IN SET: " + newCardCount);
+			FileUtils.writeLines(new File("tmp/challenges-" + exerciseSet + ".txt"), StandardCharsets.UTF_8.name(),
+					challenges);
 
-		FileUtils.writeLines(new File("tmp/challenges.txt"), StandardCharsets.UTF_8.name(), challenges);
+			addSilence(3f, audioEntries);
+			audioEntries.add(audioExerciseConclusion.getAnswerFile());
+			addSilence(3f, audioEntries);
 
-		addSilence(3f, audioEntries);
-		audioEntries.add(audioExerciseConclusion.getAnswerFile());
-		addSilence(3f, audioEntries);
-		
-		audioEntries.add(copy1.getAnswerFile());
-		addSilence(2f, audioEntries);
-		
-		audioEntries.add(copy2.getAnswerFile());
-		addSilence(3f, audioEntries);
+			audioEntries.add(copy1.getAnswerFile());
+			addSilence(2f, audioEntries);
 
-		final File wavOutputFile = new File(tmpDir,
-				"chr2en-graduated-interval-recall-test-output-" + LocalDate.now().toString() + ".wav");
-		for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 200)) {
+			audioEntries.add(copy2.getAnswerFile());
+			addSilence(3f, audioEntries);
+
+			final File wavOutputFile = new File(tmpDir, "chr2en-gir-" + LocalDate.now().toString() + "-"
+					+ StringUtils.leftPad("" + (1 + exerciseSet), 4, "0") + ".wav");
+			for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 500)) {
+				final List<String> cmd = new ArrayList<>();
+				cmd.add("sox");
+				final File tmp1 = new File(tmpDir, "temp1.wav");
+				FileUtils.deleteQuietly(tmp1);
+				if (wavOutputFile.exists()) {
+					wavOutputFile.renameTo(tmp1);
+					cmd.add(tmp1.getAbsolutePath());
+				}
+				for (final File audioEntry : audioEntriesSublist) {
+					cmd.add(audioEntry.getAbsolutePath());
+				}
+				cmd.add(wavOutputFile.getAbsolutePath());
+				executeCmd(cmd);
+				FileUtils.deleteQuietly(tmp1);
+			}
+			System.out.println("Total ticks: " + NF.format(tick) + " secs [" + NF.format(tick / 60f) + " mins]");
+			final File mp3OutputFile = new File(tmpDir, "chr2en-gir-" + LocalDate.now().toString() + "-"
+					+ StringUtils.leftPad("" + (1 + exerciseSet), 4, "0") + ".mp3");
 			final List<String> cmd = new ArrayList<>();
-			cmd.add("sox");
-			final File tmp1 = new File(tmpDir, "temp1.wav");
-			FileUtils.deleteQuietly(tmp1);
-			if (wavOutputFile.exists()) {
-				wavOutputFile.renameTo(tmp1);
-				cmd.add(tmp1.getAbsolutePath());
-			}
-			for (final File audioEntry : audioEntriesSublist) {
-				cmd.add(audioEntry.getAbsolutePath());
-			}
+			cmd.add("ffmpeg");
+			cmd.add("-y");
+			cmd.add("-i");
 			cmd.add(wavOutputFile.getAbsolutePath());
+			cmd.add("-codec:a");
+			cmd.add("libmp3lame");
+			cmd.add("-qscale:a");
+			cmd.add("6");
+			cmd.add(mp3OutputFile.getAbsolutePath());
 			executeCmd(cmd);
-			FileUtils.deleteQuietly(tmp1);
+			wavOutputFile.delete();
 		}
-		System.out.println("Total ticks: " + NF.format(tick) + " secs [" + NF.format(tick / 60f) + " mins]");
-		final File mp3OutputFile = new File(tmpDir,
-				"chr2en-graduated-interval-recall-test-output-" + LocalDate.now().toString() + ".mp3");
-		final List<String> cmd = new ArrayList<>();
-		cmd.add("ffmpeg");
-		cmd.add("-y");
-		cmd.add("-i");
-		cmd.add(wavOutputFile.getAbsolutePath());
-		cmd.add("-codec:a");
-		cmd.add("libmp3lame");
-		cmd.add("-qscale:a");
-		cmd.add("6");
-		cmd.add(mp3OutputFile.getAbsolutePath());
-		executeCmd(cmd);
 	}
-	
+
 	private float addSilence(float seconds, List<File> audioEntries) {
 		float deltaTick = 0f;
 		for (int trailingSilence = 0; trailingSilence < seconds; trailingSilence++) {
@@ -351,83 +560,98 @@ public class Main {
 		return deltaTick;
 	}
 
-	private float mostRecentSessionElapsed = 0f;
-
-	private float getNextActiveCardDelay() {
-		if (!activeDeck.hasCards()) {
-			return 0f;
-		}
-		return activeDeck.topCard().getCardStats().getShowAgainDelay_ms()/1000f;
-	}
-	private AudioCard getNextCard(String prevCardId) {
+	private AudioCard getNextCard(int exerciseSet, String prevCardId) {
+		bumpCompletedCards();
 		if (activeDeck.hasCards()) {
-			AudioCard card = activeDeck.getCards().remove(0);
+			AudioCard card = (AudioCard) activeDeck.topCard();
 			discardsDeck.add(card);
 			if (!card.id().equals(prevCardId)) {
+				CardStats cardStats = card.getCardStats();
+				cardStats.triesRemainingDec();
+				cardStats.setShown(cardStats.getShown() + 1);
 				return card;
 			}
 			if (activeDeck.hasCards()) {
-				return getNextCard(prevCardId);
+				return getNextCard(exerciseSet, prevCardId);
 			}
 		}
-		bumpCompletedCards();
-		float extraDelay = discardsDeck.getNextShowTime()/1000f;
-		updateTime(discardsDeck, discardsDeck.getNextShowTime()/1000f);
+		// see if we can pull in a review card
+		if (finishedDeck.getNextShowTime() <= 0 && finishedDeck.hasCards()
+				&& reviewCount < (REVIEW_CARDS_PER_SESSION + exerciseSet * 2)) {
+			reviewCount++;
+			AudioCard reviewCard = (AudioCard) finishedDeck.topCard();
+			CardStats cardStats = reviewCard.getCardStats();
+			cardStats.setNewCard(false);
+			reviewCard.resetStats();
+			reviewCard.resetTriesRemaining(Math.max(MAX_TRIES_PER_REVIEW_CARD / 2,
+					MAX_TRIES_PER_REVIEW_CARD - TRIES_PER_REVIEW_CARD_DECREMENT * exerciseSet));
+			discardsDeck.add(reviewCard);
+			System.out.println("   Review card: " + reviewCard.getData().getChallenge() + " ["
+					+ reviewCard.getCardStats().getTriesRemaining() + "]");
+			return reviewCard;
+		}
+		long extraDelay = discardsDeck.getNextShowTime();
+		updateTime(discardsDeck, extraDelay);
 		scanForCardsToShowAgain();
 		if (!maxCardsReached && chr2enDeck.hasCards()) {
-			AudioCard newCard = chr2enDeck.getCards().remove(0);
+			AudioCard newCard = (AudioCard) chr2enDeck.topCard();
 			newCard.getCardStats().setNewCard(true);
-			newCard.resetTriesRemaining(TRIES_PER_CARD);
-			activeDeck.add(newCard);
+			newCard.resetTriesRemaining(Math.max(MAX_TRIES_PER_NEW_CARD / 2,
+					MAX_TRIES_PER_NEW_CARD - TRIES_PER_NEW_CARD_DECREMENT * exerciseSet));
+			discardsDeck.add(newCard);
+			return newCard;
 		}
 		if (!activeDeck.hasCards()) {
 			return null;
 		}
-		sortActiveDeckByShowAgainDelay();
-		AudioCard card = activeDeck.getCards().remove(0);
+		sortDeckByShowAgainDelay(activeDeck);
+		AudioCard card = (AudioCard) activeDeck.topCard();
 		discardsDeck.add(card);
-		card.getCardStats().setShowAgainDelay_ms((long) (1000l*extraDelay));
+		card.getCardStats().setShowAgainDelay_ms(extraDelay);
+		CardStats cardStats = card.getCardStats();
+		cardStats.triesRemainingDec();
+		cardStats.setShown(cardStats.getShown() + 1);
 		return card;
 	}
 
-	private void updateTime(AudioDeck deck, float elapsed) {
+	private void updateTime(AudioDeck deck, float delta) {
+		updateTime(deck, (long) (1000l * delta));
+	}
+
+	private void updateTime(AudioDeck deck, long delta) {
 		for (AudioCard card : deck.getCards()) {
 			long showAgainDelay_ms = card.getCardStats().getShowAgainDelay_ms();
-			showAgainDelay_ms -= elapsed * 1000l;
+			showAgainDelay_ms -= delta;
 			card.getCardStats().setShowAgainDelay_ms(Math.max(showAgainDelay_ms, 0));
 		}
 	}
 
 	private void scanForCardsToShowAgain() {
-		Iterator<AudioCard> discardIter = discardsDeck.getCards().iterator();
-		while (discardIter.hasNext()) {
-			final AudioCard tmp = discardIter.next();
+		for (final AudioCard tmp : new ArrayList<>(discardsDeck.getCards())) {
 			final CardStats discardStats = tmp.getCardStats();
 			if (discardStats.getShowAgainDelay_ms() > 0) {
 				continue;
 			}
-			activeDeck.getCards().add(tmp);
-			discardIter.remove();
+			activeDeck.add(tmp);
 		}
 	}
 
 	private void bumpCompletedCards() {
-		Iterator<AudioCard> discardIter = discardsDeck.getCards().iterator();
-		while (discardIter.hasNext()) {
-			final AudioCard tmp = discardIter.next();
-			final CardStats discardStats = tmp.getCardStats();
-			if (discardStats.getTriesRemaining() < 1) {
-				discardStats.leitnerBoxInc();
-				discardStats.setShowAgainDelay_ms(CardUtils.getNextSessionInterval_ms(discardStats.getLeitnerBox()));
-				finishedDeck.getCards().add(tmp);
-				discardIter.remove();
-//				System.out.println(
-//						" --- Bumped Card: " + discardData.getBoundPronoun() + " " + discardData.getVerbStem());
+		for (final AudioCard card : new ArrayList<>(discardsDeck.getCards())) {
+			final CardStats cardStats = card.getCardStats();
+			if (cardStats.getTriesRemaining() < 1) {
+				int leitnerBox = cardStats.getLeitnerBox();
+				long nextSessionInterval_ms = CardUtils.getNextSessionInterval_ms(leitnerBox);
+				cardStats.setShowAgainDelay_ms(nextSessionInterval_ms);
+				finishedDeck.add(card);
+//				System.out.println("   Bumping " + card.getData().getChallenge() + " to box " + (leitnerBox+1));
+				cardStats.leitnerBoxInc();
 			}
 		}
 	}
 
 	private void buildEn2ChrExerciseMp3Files() {
+		int exerciseSet = 0;
 		final AudioDeck activeDeck = new AudioDeck();
 
 		final File tmpDir = new File(EXCERCISES_DIR, "en2chr");
@@ -444,7 +668,8 @@ public class Main {
 		for (int ix = 0; ix < 3 && en2chrDeck.hasCards(); ix++) {
 			final AudioCard topCard = (AudioCard) en2chrDeck.topCard();
 			topCard.resetStats();
-			topCard.resetTriesRemaining(TRIES_PER_CARD);
+			topCard.resetTriesRemaining(Math.max(MAX_TRIES_PER_NEW_CARD / 2,
+					MAX_TRIES_PER_NEW_CARD - TRIES_PER_NEW_CARD_DECREMENT * exerciseSet));
 			topCard.getCardStats().setShowAgainDelay_ms(ix * 5000l);
 			activeDeck.add(topCard);
 		}
@@ -457,17 +682,19 @@ public class Main {
 			if (!activeDeck.hasCards() || activeDeck.getNextShowTime() > 5000l) {
 				final AudioCard topCard = (AudioCard) en2chrDeck.topCard();
 				topCard.resetStats();
-				topCard.resetTriesRemaining(TRIES_PER_CARD);
+				topCard.resetTriesRemaining(Math.max(MAX_TRIES_PER_NEW_CARD / 2,
+						MAX_TRIES_PER_NEW_CARD - TRIES_PER_NEW_CARD_DECREMENT * exerciseSet));
 				activeDeck.add(topCard);
 			}
-			sortActiveDeckByShowAgainDelay();
+			sortDeckByShowAgainDelay(activeDeck);
 			AudioCard card = (AudioCard) activeDeck.topCard();
 			String cardId = card.id();
 
 			if (cardId.equals(prevCardId)) {
 				card = (AudioCard) en2chrDeck.topCard();
 				card.resetStats();
-				card.resetTriesRemaining(TRIES_PER_CARD);
+				card.resetTriesRemaining(Math.max(MAX_TRIES_PER_NEW_CARD / 2,
+						MAX_TRIES_PER_NEW_CARD - TRIES_PER_NEW_CARD_DECREMENT * exerciseSet));
 				cardId = card.id();
 				activeDeck.add(card);
 			}
@@ -510,14 +737,9 @@ public class Main {
 
 			final CardStats cardStats = card.getCardStats();
 
+			cardStats.pimsleurSlotInc();
 			final long nextInterval = CardUtils.getNextInterval(cardStats.getPimsleurSlot());
 			cardStats.setShowAgainDelay_ms(nextInterval);
-			cardStats.triesRemainingDec();
-			cardStats.pimsleurSlotInc();
-			if (cardStats.getTriesRemaining() < 1) {
-				cardStats.leitnerBoxInc();
-				discardsDeck.add(card);
-			}
 			tick += deltaTick;
 		}
 		final File wavOutputFile = new File(tmpDir,
@@ -595,7 +817,7 @@ public class Main {
 		final File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
 		final ESpeakNg espeak = new ESpeakNg(espeakNgBin);
 		final Set<String> already = new HashSet<>();
-		for (final AudioCard card : chr2enDeck.getCards()) {
+		for (final AudioCard card : new ArrayList<>(chr2enDeck.getCards())) {
 			final AudioData data = card.getData();
 			final String answer = AudioGenUtil
 					.removeEnglishFixedGenderMarks(AudioGenUtil.alternizeEnglishSexes(data.getAnswer()));
@@ -677,7 +899,7 @@ public class Main {
 		sb.append("\t");
 		sb.append("Duration");
 		sb.append("\n");
-		for (final AudioCard card : en2chrDeck.getCards()) {
+		for (final AudioCard card : new ArrayList<>(en2chrDeck.getCards())) {
 			final AudioData data = card.getData();
 			sb.append(data.getChallengeFile().getName());
 			sb.append("\t");
@@ -698,7 +920,7 @@ public class Main {
 		final File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
 		final ESpeakNg espeak = new ESpeakNg(espeakNgBin);
 		final Set<String> already = new HashSet<>();
-		for (final AudioCard card : en2chrDeck.getCards()) {
+		for (final AudioCard card : new ArrayList<>(en2chrDeck.getCards())) {
 			final AudioData data = card.getData();
 			final String answer = data.getAnswer();
 			String challenge = data.getChallenge();
@@ -944,8 +1166,6 @@ public class Main {
 		return data;
 	}
 
-	private static final boolean USE_DEBUG_DECK = true;
-
 	private void loadMainDecks() throws IOException {
 		final StringBuilder reviewSheetChr2En = new StringBuilder();
 		final StringBuilder reviewSheetEn2Chr = new StringBuilder();
@@ -970,9 +1190,9 @@ public class Main {
 				 * tag the boundPronoun with the stem's lead character so that pronunciation
 				 * based counting of sets happens
 				 */
-				if (!verbStem.isEmpty()) {
-					boundPronoun += verbStem.substring(0, 1);
-				}
+//				if (!verbStem.isEmpty()) {
+//					boundPronoun += verbStem.substring(0, 1);
+//				}
 
 				String cherokeeText = fields[CHEROKEE_TEXT].trim();
 				if (cherokeeText.isEmpty()) {
@@ -1059,7 +1279,7 @@ public class Main {
 					reviewSheetChr2En.append(toEnData.getAnswer());
 					reviewSheetChr2En.append("\n");
 				}
-				if (USE_DEBUG_DECK && chr2enDeck.size() > 25) {
+				if (USE_DEBUG_DECK && chr2enDeck.size() >= DEBUG_DECK_SIZE) {
 					break;
 				}
 			}
@@ -1093,8 +1313,8 @@ public class Main {
 		return previousVoice = voices.remove(0);
 	}
 
-	private void sortActiveDeckByShowAgainDelay() {
-		final List<AudioCard> cards = activeDeck.getCards();
+	private void sortDeckByShowAgainDelay(AudioDeck deck) {
+		final List<AudioCard> cards = deck.getCards();
 		Collections.shuffle(cards);
 		Collections.sort(cards, (o1, o2) -> {
 			if (o1 == o2) {
@@ -1106,7 +1326,7 @@ public class Main {
 			if (o2 == null) {
 				return 1;
 			}
-			return (int) o1.getCardStats().getShowAgainDelay_ms() - (int) o2.getCardStats().getShowAgainDelay_ms();
+			return Long.compare(o1.getCardStats().getShowAgainDelay_ms(), o2.getCardStats().getShowAgainDelay_ms());
 		});
 	}
 
