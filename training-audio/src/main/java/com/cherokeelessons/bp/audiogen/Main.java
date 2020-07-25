@@ -37,7 +37,7 @@ public class Main {
 	private static final boolean USE_DEBUG_DECK = false;
 	private static final int DEBUG_DECK_SIZE = 100;
 
-	private static final int SESSIONS_TO_CREATE = 3;
+	private static final int SESSIONS_TO_CREATE = 2;
 
 	private static final int MAX_TRIES_PER_REVIEW_CARD = 10;
 	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 4;
@@ -55,9 +55,10 @@ public class Main {
 	private static final NumberFormat NF = NumberFormat.getInstance();
 	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final File EXCERCISES_DIR = new File("tmp/excercises");
-	private static final String DECK_TSV = "../android/assets/review-sheet.tsv";
+	private static final String DECK_TSV = "osiyo-tohiju-then-what.tsv";// "../android/assets/review-sheet.tsv";
 	private static final int PRONOUN = 3;
 	private static final int VERB_STEM = 4;
+	private static final int SEX = 5;
 	private static final int CHEROKEE_TEXT = 6;
 	private static final int ENGLISH_TEXT_START = 7;
 
@@ -287,15 +288,39 @@ public class Main {
 			 */
 			tick += addSilence(1f, audioEntries);
 
+			File wavFile;
+			AudioData tmpData;
+			/*
+			 * Exercise set title
+			 */
+			wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
+			tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
+			audioEntries.add(tmpData.getAnswerFile());
+			tick += tmpData.getAnswerDuration();
+			tick += addSilence(1f, audioEntries);
+
+			/*
+			 * Source notice
+			 */
+			if (exerciseSet == 0) {
+				wavFile = new File(EXCERCISES_DIR,
+						"source-is-conversation-starters-book-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"These lessons closely follow the book entitled, 'Conversation Starters in Cherokee', by Prentice Robinson. The pronunciations are based on the pronunciation markings as found in the official Cherokee English Dictionary - 1st Edition.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+			}
+
 			/*
 			 * Start with pre-lesson verbiage.
 			 */
 
-			File wavFile = new File(EXCERCISES_DIR, "cherokee-cram-session-" + (exerciseSet + 1) + ".wav");
-			AudioData cherokeeCramSessionMarker = EnglishAudio
-					.createEnglishAudioFor("Cherokee Language Cram Session " + (exerciseSet + 1), wavFile);
-			audioEntries.add(cherokeeCramSessionMarker.getAnswerFile());
-			tick += cherokeeCramSessionMarker.getAnswerDuration();
+			wavFile = new File(EXCERCISES_DIR, "session-" + (exerciseSet + 1) + ".wav");
+			tmpData = EnglishAudio.createEnglishAudioFor("Session " + (exerciseSet + 1), wavFile);
+			audioEntries.add(tmpData.getAnswerFile());
+			tick += tmpData.getAnswerDuration();
 			tick += addSilence(1f, audioEntries);
 
 			if (exerciseSet == 0) {
@@ -499,8 +524,8 @@ public class Main {
 
 			System.out.println("TOTAL INTRODUCED CARDS IN SET: " + introducedCardCount);
 			System.out.println("TOTAL HIDDEN NEW CARDS IN SET: " + hiddenCardCount);
-			System.out.println("TOTAL NEW CARDS IN SET: " + newCardCount + " out of a possible allowed "
-					+ maxNewCardsThisSession);
+			System.out.println(
+					"TOTAL NEW CARDS IN SET: " + newCardCount + " out of a possible allowed " + maxNewCardsThisSession);
 
 			FileUtils.writeLines(new File("tmp/challenges-" + exerciseSet + ".txt"), StandardCharsets.UTF_8.name(),
 					challenges);
@@ -830,7 +855,14 @@ public class Main {
 			data.setAnswerFile(answerWavFile);
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
-				String voice = nextVoice(answer);
+				SexualGender sex = SexualGender.NOT_SPECIFIED;
+				if (data.getSex().toLowerCase().startsWith("female")) {
+					sex = SexualGender.FEMALE;
+				}
+				if (data.getSex().toLowerCase().startsWith("male")) {
+					sex = SexualGender.MALE;
+				}
+				String voice = nextVoice(challenge, sex);
 				int speed;
 				if (chrVoiceSpeekingRates.containsKey(voice)) {
 					speed = chrVoiceSpeekingRates.get(voice);
@@ -847,7 +879,14 @@ public class Main {
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
-				String voice = nextVoice(answer);
+				SexualGender sex = SexualGender.NOT_SPECIFIED;
+				if (data.getSex().toLowerCase().startsWith("female")) {
+					sex = SexualGender.FEMALE;
+				}
+				if (data.getSex().toLowerCase().startsWith("male")) {
+					sex = SexualGender.MALE;
+				}
+				String voice = nextVoice(challenge, sex);
 				if (!voice.trim().isEmpty()) {
 					voice = "en-us+" + voice;
 				} else {
@@ -932,7 +971,14 @@ public class Main {
 			data.setAnswerFile(answerWavFile);
 			data.setChallengeFile(challengeWavFile);
 			if (!already.contains(challenge)) {
-				String voice = nextVoice(challenge);
+				SexualGender sex = SexualGender.NOT_SPECIFIED;
+				if (data.getSex().toLowerCase().startsWith("female")) {
+					sex = SexualGender.FEMALE;
+				}
+				if (data.getSex().toLowerCase().startsWith("male")) {
+					sex = SexualGender.MALE;
+				}
+				String voice = nextVoice(challenge, sex);
 				if (!voice.trim().isEmpty()) {
 					voice = "en-us+" + voice;
 				} else {
@@ -948,7 +994,14 @@ public class Main {
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
-				String voice = nextVoice(challenge);
+				SexualGender sex = SexualGender.NOT_SPECIFIED;
+				if (data.getSex().toLowerCase().startsWith("female")) {
+					sex = SexualGender.FEMALE;
+				}
+				if (data.getSex().toLowerCase().startsWith("male")) {
+					sex = SexualGender.MALE;
+				}
+				String voice = nextVoice(challenge, sex);
 				int speed;
 				if (chrVoiceSpeekingRates.containsKey(voice)) {
 					speed = chrVoiceSpeekingRates.get(voice);
@@ -1202,6 +1255,9 @@ public class Main {
 				if (!cherokeeText.matches(".*[,.?!]")) {
 					cherokeeText += ".";
 				}
+
+				String sex = fields[SEX].trim();
+
 				for (int ix = ENGLISH_TEXT_START; ix < fields.length; ix++) {
 					String englishText = fields[ix].trim();
 					if (englishText.isEmpty()) {
@@ -1237,6 +1293,7 @@ public class Main {
 						toChrData.setChallenge(englishText);
 						toChrData.setChallengeDuration(0);
 						toChrData.setId(++idEn2Chr);
+						toChrData.setSex(sex);
 						toChrCard.setData(toChrData);
 						cardsForCherokeeAnswers.put(englishText, toChrCard);
 						en2chrDeck.add(toChrCard);
@@ -1264,6 +1321,7 @@ public class Main {
 						toEnData.setChallenge(cherokeeText);
 						toEnData.setChallengeDuration(0);
 						toEnData.setId(++idChr2En);
+						toEnData.setSex(sex);
 						toEnCard.setData(toEnData);
 						cardsForEnglishAnswers.put(cherokeeText, toEnCard);
 						chr2enDeck.add(toEnCard);
@@ -1290,7 +1348,11 @@ public class Main {
 				StandardCharsets.UTF_8);
 	}
 
-	public String nextVoice(final String englishText) {
+	public static enum SexualGender {
+		FEMALE, MALE, NOT_SPECIFIED;
+	}
+
+	public String nextVoice(final String englishText, final SexualGender sex) {
 		if (voices.isEmpty()) {
 			voices.addAll(voiceVariants);
 			do {
@@ -1298,16 +1360,16 @@ public class Main {
 			} while (voices.get(0).equals(previousVoice) && voiceVariants.size() > 2);
 		}
 		final String lc = englishText.toLowerCase();
-		if (lc.contains("mother")
-				&& (lc.matches("\bi\b") || lc.matches("\bme\b") || lc.matches("\bwe\b") || lc.matches("\bus\b"))) {
+		if (SexualGender.FEMALE.equals(sex)) {
 			if (!voices.get(0).startsWith("f")) {
-				return nextVoice(englishText);
+				voices.remove(0);
+				return nextVoice(englishText, sex);
 			}
 		}
-		if (lc.contains("father")
-				&& (lc.matches("\bi\b") || lc.matches("\bme\b") || lc.matches("\bwe\b") || lc.matches("\bus\b"))) {
+		if (SexualGender.MALE.equals(sex)) {
 			if (voices.get(0).startsWith("f")) {
-				return nextVoice(englishText);
+				voices.remove(0);
+				return nextVoice(englishText, sex);
 			}
 		}
 		return previousVoice = voices.remove(0);

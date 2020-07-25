@@ -14,6 +14,8 @@ public class AudioData implements ICardData {
 	private File challengeFile;
 
 	private String id;
+	
+	private String sex;
 
 	/**
 	 * The answer to be rendered by espeak-ng in Cherokee.
@@ -125,6 +127,14 @@ public class AudioData implements ICardData {
 	@Override
 	public String sortKey() {
 		return null;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 }
