@@ -34,7 +34,7 @@ import com.cherokeelessons.util.JsonConverter;
 
 public class BuildDeck {
 
-	public static final int MIN_VSTEM_COUNT = 4;
+	public static final int MIN_VSTEM_COUNT = 2;
 	public static final int MIN_PFORM_VSTEM_COMBO_COUNT = 2;
 
 	public static final int DECK_VERSION = 100;
@@ -1533,14 +1533,15 @@ public class BuildDeck {
 	private void reduceDeckSize(Deck deckToFilter) {
 		Set<String> alwaysKeep = new HashSet<>();
 		alwaysKeep.addAll(Arrays.asList(//
-				"", //
-				"Ꮵ²-, Ꮵ²Ꮿ͓-", //
-				"Ꮵ̣²-, Ꭶ͓-", //
-				"Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-", //
-				"Ꭿ²-, Ꭿ²Ꮿ͓-", //
-				"Ꭿ̣²-", "Ꮳ̣²-", //
-				"Ꭰ̣²-, Ꭶ̣²-", //
-				"Ꭴ¹-, Ꭴ¹Ꮹ͓-"));
+				"" //, //
+//				"Ꮵ²-, Ꮵ²Ꮿ͓-", //
+//				"Ꮵ̣²-, Ꭶ͓-", //
+//				"Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-", //
+//				"Ꭿ²-, Ꭿ²Ꮿ͓-", //
+//				"Ꭿ̣²-", "Ꮳ̣²-", //
+//				"Ꭰ̣²-, Ꭶ̣²-", //
+//				"Ꭴ¹-, Ꭴ¹Ꮹ͓-"
+				));
 
 		/*
 		 * split out into buckets based on bound pronoun and first letter of vstem and

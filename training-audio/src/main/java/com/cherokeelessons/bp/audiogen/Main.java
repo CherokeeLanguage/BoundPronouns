@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,25 +39,29 @@ public class Main {
 	private static final boolean USE_DEBUG_DECK = false;
 	private static final int DEBUG_DECK_SIZE = 100;
 
-	private static final int SESSIONS_TO_CREATE = 2;
+	private static final int SESSIONS_TO_CREATE = 10;
 
 	private static final int MAX_TRIES_PER_REVIEW_CARD = 10;
-	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 4;
+	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 0;
 
-	private static final int MAX_TRIES_PER_NEW_CARD = 20;
-	private static final int TRIES_PER_NEW_CARD_DECREMENT = 2;
+	private static final int MAX_TRIES_PER_NEW_CARD = 10;
+	private static final int TRIES_PER_NEW_CARD_DECREMENT = 0;
 
 	private static final int BASE_NEW_CARDS_PER_SESSION = 10;
 	private static final int NEW_CARDS_INCREMENT = 2;
 
-	private static final int REVIEW_CARDS_PER_SESSION = 25;
+	private static final int REVIEW_CARDS_PER_SESSION = 15;
 
 	public static final String UNDERDOT = "\u0323";
 
 	private static final NumberFormat NF = NumberFormat.getInstance();
 	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final File EXCERCISES_DIR = new File("tmp/excercises");
-	private static final String DECK_TSV = "osiyo-tohiju-then-what.tsv";// "../android/assets/review-sheet.tsv";
+//	private static final String DECK_TSV = "two-men-hunting.tsv";// "../android/assets/review-sheet.tsv";
+	//private static final String DECK_TSV = "osiyo-tohiju-then-what.tsv";// "../android/assets/review-sheet.tsv";
+	private static final String DECK_TSV = "x1.tsv";
+	private static final boolean sortDeckBySize = true;
+	private static final boolean autoSplitCherokee = true;
 	private static final int PRONOUN = 3;
 	private static final int VERB_STEM = 4;
 	private static final int SEX = 5;
@@ -290,23 +296,69 @@ public class Main {
 
 			File wavFile;
 			AudioData tmpData;
-			/*
-			 * Exercise set title
-			 */
-			wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
-			tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
-			audioEntries.add(tmpData.getAnswerFile());
-			tick += tmpData.getAnswerDuration();
-			tick += addSilence(1f, audioEntries);
+			
+//			wavFile = new File(EXCERCISES_DIR, "two-hungers-session-" + (exerciseSet + 1) + ".wav");
+//			tmpData = EnglishAudio.createEnglishAudioFor("The Two Hunters in Cherokee.", wavFile);
+//			audioEntries.add(tmpData.getAnswerFile());
+//			tick += tmpData.getAnswerDuration();
+//			tick += addSilence(1f, audioEntries);
 
 			/*
 			 * Source notice
 			 */
-			if (exerciseSet == 0) {
+			if (false && exerciseSet == 0) {
+				wavFile = new File(EXCERCISES_DIR,
+						"source-is-ced-two-hunters-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"These sessions closely follow the vocabulary from the story entitled, 'Two Hunters', as recorded in the Cherokee English Dictionary, 1st edition.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				wavFile = new File(EXCERCISES_DIR,
+						"will-understand-two-hunters-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"By the time you have completed these exercises you should be able to understand the full spoken story without any difficulty.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+			}
+			
+			if (false && exerciseSet == 0) {
+				/*
+				 * Exercise set title before describing source
+				 */
+				wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				
 				wavFile = new File(EXCERCISES_DIR,
 						"source-is-conversation-starters-book-" + (exerciseSet + 1) + ".wav");
 				tmpData = EnglishAudio.createEnglishAudioFor(
-						"These lessons closely follow the book entitled, 'Conversation Starters in Cherokee', by Prentice Robinson. The pronunciations are based on the pronunciation markings as found in the official Cherokee English Dictionary - 1st Edition.",
+						"These sessions closely follow the book entitled, 'Conversation Starters in Cherokee', by Prentice Robinson. The pronunciations are based on the pronunciation markings as found in the official Cherokee English Dictionary - 1st Edition.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+			}
+			
+			if (exerciseSet == 0 && DECK_TSV.equalsIgnoreCase("x1.tsv")) {
+				/*
+				 * Exercise set title before describing source
+				 */
+				wavFile = new File(EXCERCISES_DIR, "ced-session-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor("C.E.D. Vocabulary Cram.", wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				
+				wavFile = new File(EXCERCISES_DIR,
+						"source-is-ced-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"These sessions use vocabulary taken from the Cherokee English Dictionary, 1st Edition.. The pronunciations are based on the pronunciation markings as found in the dictionary.",
 						wavFile);
 				audioEntries.add(tmpData.getAnswerFile());
 				tick += tmpData.getAnswerDuration();
@@ -316,12 +368,6 @@ public class Main {
 			/*
 			 * Start with pre-lesson verbiage.
 			 */
-
-			wavFile = new File(EXCERCISES_DIR, "session-" + (exerciseSet + 1) + ".wav");
-			tmpData = EnglishAudio.createEnglishAudioFor("Session " + (exerciseSet + 1), wavFile);
-			audioEntries.add(tmpData.getAnswerFile());
-			tick += tmpData.getAnswerDuration();
-			tick += addSilence(1f, audioEntries);
 
 			if (exerciseSet == 0) {
 				audioEntries.add(lc1.getAnswerFile());
@@ -336,10 +382,42 @@ public class Main {
 				tick += intro1.getAnswerDuration();
 				tick += addSilence(2f, audioEntries);
 			}
-
+			
+			/*
+			 * Exercise set title
+			 */
+			if (DECK_TSV.equalsIgnoreCase("x1.tsv")) {
+				wavFile = new File(EXCERCISES_DIR, "ced-session-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor("C.E.D. Vocabulary Cram.", wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+			}
+			if (false) {
+				wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+			}
+			
+			
+			/*
+			 * Indicate which session
+			 */
+			wavFile = new File(EXCERCISES_DIR, "session-" + (exerciseSet + 1) + ".wav");
+			tmpData = EnglishAudio.createEnglishAudioFor("Session " + (exerciseSet + 1), wavFile);
+			audioEntries.add(tmpData.getAnswerFile());
+			tick += tmpData.getAnswerDuration();
+			tick += addSilence(1f, audioEntries);
+			
+			/*
+			 * Let us begin
+			 */
 			audioEntries.add(begin1.getAnswerFile());
 			tick += begin1.getAnswerDuration();
 			tick += addSilence(3f, audioEntries);
+
 
 			/*
 			 * A single audio lesson file.
@@ -395,7 +473,6 @@ public class Main {
 						System.out.println("   Hidden new card: " + data.getChallenge() + ": "
 								+ card.getData().getAnswer() + " [" + cardStats.getTriesRemaining() + "]");
 					}
-
 				}
 
 				if (newCard) {
@@ -410,8 +487,14 @@ public class Main {
 					deltaTick += addSilence(2, audioEntries);
 					card.getCardStats().setNewCard(false);
 					if (newCardCount < 6 && exerciseSet == 0) {
-						audioEntries.add(audioNewPhrase.getAnswerFile());
-						deltaTick += audioNewPhrase.getAnswerDuration();
+						if (newCardCount==1) {
+							AudioData firstNewPhrase = generateFirstNewPhrase();
+							audioEntries.add(firstNewPhrase.getAnswerFile());
+							deltaTick += firstNewPhrase.getAnswerDuration();
+						} else {
+							audioEntries.add(audioNewPhrase.getAnswerFile());
+							deltaTick += audioNewPhrase.getAnswerDuration();
+						}
 					} else {
 						audioEntries.add(audioNewPhraseShort.getAnswerFile());
 						deltaTick += audioNewPhraseShort.getAnswerDuration();
@@ -530,6 +613,9 @@ public class Main {
 			FileUtils.writeLines(new File("tmp/challenges-" + exerciseSet + ".txt"), StandardCharsets.UTF_8.name(),
 					challenges);
 
+			/*
+			 * Per session trailing audio
+			 */
 			addSilence(3f, audioEntries);
 			audioEntries.add(audioExerciseConclusion.getAnswerFile());
 			addSilence(3f, audioEntries);
@@ -538,6 +624,12 @@ public class Main {
 			addSilence(2f, audioEntries);
 
 			audioEntries.add(copy2.getAnswerFile());
+			addSilence(3f, audioEntries);
+			
+			final AudioData produced = EnglishAudio.createEnglishAudioFor(
+					"This audio file was produced on "+LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))+" by Michael Conrad.",
+					new File(EXCERCISES_DIR, "produced-" + (exerciseSet + 1) + "-"+LocalDate.now().toString()+".wav"));
+			audioEntries.add(produced.getAnswerFile());
 			addSilence(3f, audioEntries);
 
 			final File wavOutputFile = new File(tmpDir, "chr2en-gir-" + LocalDate.now().toString() + "-"
@@ -803,13 +895,38 @@ public class Main {
 
 	public void execute() throws IOException, UnsupportedAudioFileException {
 		loadMainDecks();
-
+		if (sortDeckBySize) {
+			sortMainDecks();
+		}
 		generateChr2EnWavFiles();
 		buildChr2EnExerciseMp3Files();
 
 //		generateEn2ChrWavFiles();
 //		buildEn2ChrExerciseMp3Files();
 //		generateDurationsReport();
+	}
+
+	private void sortMainDecks() {
+		Collections.sort(chr2enDeck.getCards(), (a,b)->{
+			AudioData d1 = a.getData();
+			AudioData d2 = b.getData();
+			String c1 = d1.getChallenge();
+			String c2 = d2.getChallenge();
+			if (c1.length()!=c2.length()) {
+				return Integer.compare(c1.length(), c2.length());
+			}
+			return c1.compareToIgnoreCase(c2); 
+		});
+		Collections.sort(en2chrDeck.getCards(), (a,b)->{
+			AudioData d1 = a.getData();
+			AudioData d2 = b.getData();
+			String c1 = d1.getAnswer();
+			String c2 = d2.getAnswer();
+			if (c1.length()!=c2.length()) {
+				return Integer.compare(c1.length(), c2.length());
+			}
+			return c1.compareToIgnoreCase(c2); 
+		});
 	}
 
 	private void executeCmd(final List<String> cmd) {
@@ -1043,6 +1160,28 @@ public class Main {
 		data.setAnswerDuration(getDuration(newPhrase));
 		return data;
 	}
+	
+	private AudioData generateFirstNewPhrase() throws IOException {
+		final File newPhrase = new File(EXCERCISES_DIR, "here-is-first-new-phrase.wav");
+		FileUtils.deleteQuietly(newPhrase);
+		final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.INSTRUCTOR,
+				"Here is your first phrase to learn for this session. Listen carefully:");
+		final List<String> cmd = new ArrayList<>();
+		cmd.add("ffmpeg");
+		cmd.add("-y");
+		cmd.add("-i");
+		cmd.add(tmp.getAbsolutePath());
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		cmd.clear();
+		cmd.add("normalize-audio");
+		cmd.add(newPhrase.getAbsolutePath());
+		executeCmd(cmd);
+		final AudioData data = new AudioData();
+		data.setAnswerFile(newPhrase);
+		data.setAnswerDuration(getDuration(newPhrase));
+		return data;
+	}
 
 	private AudioData generateNewPhraseShort() throws IOException {
 		final File newPhrase = new File(EXCERCISES_DIR, "short-a-new-phrase.wav");
@@ -1251,6 +1390,9 @@ public class Main {
 				if (cherokeeText.isEmpty()) {
 					continue;
 				}
+				if (cherokeeText.contains(",") && autoSplitCherokee) {
+					cherokeeText = cherokeeText.substring(0, cherokeeText.indexOf(",")).trim();
+				}
 				cherokeeText = StringUtils.capitalize(cherokeeText);
 				if (!cherokeeText.matches(".*[,.?!]")) {
 					cherokeeText += ".";
@@ -1263,9 +1405,18 @@ public class Main {
 					if (englishText.isEmpty()) {
 						continue;
 					}
-					englishText = StringUtils.capitalize(englishText);
 					if (!englishText.matches(".*[,.?!]")) {
 						englishText += ".";
+					}
+					if (englishText.contains("v.t.")||englishText.contains("v.i.")) {
+						englishText=englishText.replaceAll("(?i)v\\.\s*t\\.\s*", "");
+						englishText=englishText.replaceAll("(?i)v\\.\s*i\\.\s*", "");
+					}
+					if (englishText.contains("1.")) {
+						englishText = englishText.replaceAll("\\b1\\.", "");
+						englishText = englishText.replaceAll("\\b2\\.", ". Or, ");
+						englishText = englishText.replaceAll("\\b3\\.", ". Or, ");
+						englishText = englishText.replaceAll("\\b4\\.", ". Or, ");
 					}
 					if (englishText.contains(" (")) {
 						// English text pronunciation adjustments
@@ -1273,6 +1424,24 @@ public class Main {
 						englishText = englishText.replace(" (animate)", ", animate");
 						englishText = englishText.replace(" (inanimate)", ", inanimate");
 					}
+					if (englishText.contains("/")) {
+						englishText = englishText.replace("/", " or ");
+					}
+					if (englishText.contains(", i")) {
+						englishText = englishText.replace(", it", " or it");
+					}
+					if (englishText.contains("'s")) {
+						englishText = englishText.replace("he's", "he is");
+						englishText = englishText.replace("she's", "she is");
+						englishText = englishText.replace("it's", "it is");
+						englishText = englishText.replace("He's", "He is");
+						englishText = englishText.replace("She's", "She is");
+						englishText = englishText.replace("It's", "It is");
+					}
+					if (englishText.contains("'re")) {
+						englishText = englishText.replace("'re", " are");
+					}
+					englishText = StringUtils.capitalize(englishText);
 					/*
 					 * Each deck gets its own set of cards.
 					 */

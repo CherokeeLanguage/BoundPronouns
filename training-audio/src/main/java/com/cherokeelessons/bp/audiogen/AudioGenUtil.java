@@ -2,24 +2,33 @@ package com.cherokeelessons.bp.audiogen;
 
 import java.util.Random;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class AudioGenUtil {
 	public static String alternizeEnglishSexes(final String text) {
-		String tmp = text;
+		String tmp = StringUtils.normalizeSpace(text);
+		if (tmp.toLowerCase().contains("brother")) {
+			return tmp;
+		}
+		if (tmp.toLowerCase().contains("sister")) {
+			return tmp;
+		}
 		if (tmp.contains("himself")) {
-			tmp = tmp.replace("He ", "He or she ");
-			tmp = tmp.replace(" himself", " himself or herself");
+			tmp = tmp.replaceAll("(?i)(He )", "$1or she ");
+			tmp = tmp.replaceAll("(?i)( himself)", "$1 or herself");
 		}
 		if (tmp.contains("Himself")) {
-			tmp = tmp.replace("He ", "He or she ");
-			tmp = tmp.replace("Himself", "Himself or herself");
+			tmp = tmp.replaceAll("(?i)\\b(He )", "$1or she ");
+			tmp = tmp.replaceAll("(?i)\\b(Himself)", "$1 or herself");
 		}
 		if (tmp.matches(".*\\b[Hh]is\\b.*")) {
-			tmp = tmp.replace("His", "His or her");
-			tmp = tmp.replace("his", "his or her");
+			tmp = tmp.replaceAll("(?i)\\b(His)", "$1 or her");
+		}
+		if (!tmp.contains(" or she")) {
+			tmp = tmp.replaceAll("(?i)\\b(He )", "$1or she ");
 		}
 		if (!tmp.contains(" or her")) {
-			tmp = tmp.replace("He ", "He or she ");
-			tmp = tmp.replace(" him", " him or her");
+			tmp = tmp.replaceAll("(?i)( him)", "$1 or her");
 		}
 		return tmp;
 	}
