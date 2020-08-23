@@ -21,15 +21,15 @@ public class CherokeeUtils {
 
 		File convertFile = new File("osiyo-tohiju-then-what.tsv");
 		if (convertFile.exists()) {
-			List<String> mcs = new ArrayList<String>();
+			List<String> mco = new ArrayList<String>();
 			List<String> lines = FileUtils.readLines(convertFile, StandardCharsets.UTF_8);
 			for (String line : lines) {
 				if (line.trim().isEmpty()) {
 					continue;
 				}
-				mcs.add(ced2mcs(line));
+				mco.add(ced2mco(line));
 			}
-			FileUtils.writeLines(new File("tmp/osiyo-tohiju-then-what.txt"), StandardCharsets.UTF_8.name(), mcs);
+			FileUtils.writeLines(new File("tmp/osiyo-tohiju-then-what.txt"), StandardCharsets.UTF_8.name(), mco);
 			System.out.println("Converted contents of file");
 			return;
 		}
@@ -57,7 +57,7 @@ public class CherokeeUtils {
 			System.out.println();
 			System.out.println(a);
 			// + "\n ->\n" +
-			System.out.println(ced2mcs(a));
+			System.out.println(ced2mco(a));
 		}
 		System.out.println("_______________");
 		System.out.println();
@@ -68,7 +68,7 @@ public class CherokeeUtils {
 	 * <br>
 	 * Replacements <b>must</b> be performed long to short!
 	 */
-	private static String[][] cedtones2mcs = { //
+	private static String[][] cedtones2mco = { //
 			{ "²³", "\u030C" }, { "³²", "\u0302" }, //
 			{ "¹", "\u0300" }, { "²", "" }, //
 			{ "³", "\u0301" }, { "⁴", "\u030b" }//
@@ -85,58 +85,58 @@ public class CherokeeUtils {
 	 * @param ced
 	 * @return
 	 */
-	public static String ced2mcs(final String cedOrthography) {
+	public static String ced2mco(final String cedOrthography) {
 		/*
 		 * Convert text to "decomposed" form so that we can use combining diacritics
 		 * freely.
 		 */
-		String mcs = Normalizer.normalize(cedOrthography, Normalizer.Form.NFD);
+		String mco = Normalizer.normalize(cedOrthography, Normalizer.Form.NFD);
 
 		/*
 		 * first mark any vowels not followed by a tone mark as explicitly short.
 		 */
-		mcs = mcs.replaceAll("(?i)([aeiouv])([^¹²³⁴\u0323]+)", "$1\u0323$2");
+		mco = mco.replaceAll("(?i)([aeiouv])([^¹²³⁴\u0323]+)", "$1\u0323$2");
 
 		/*
 		 * look for word final vowels followed by tone that need to be marked short
 		 */
-		mcs = mcs.replaceAll("(?i)([aeiouv])([¹²³⁴]+)$", "$1\u0323$2");
+		mco = mco.replaceAll("(?i)([aeiouv])([¹²³⁴]+)$", "$1\u0323$2");
 
-		mcs = mcs.replaceAll("(?i)([aeiouv])([¹²³⁴]+)([^¹²³⁴a-zɂ])", "$1\u0323$2$3");
+		mco = mco.replaceAll("(?i)([aeiouv])([¹²³⁴]+)([^¹²³⁴a-zɂ])", "$1\u0323$2$3");
 
 		/*
 		 * move any tone marks to be immediately after their appropriate vowel
 		 */
-		mcs = mcs.replaceAll("(?i)([^aeiouv\u0323¹²³⁴]+)([¹²³⁴]+)", "$2$1");
+		mco = mco.replaceAll("(?i)([^aeiouv\u0323¹²³⁴]+)([¹²³⁴]+)", "$2$1");
 
 		/*
 		 * Convert long vowels into vowel + tone + colon forms.
 		 */
-		mcs = mcs.replaceAll("(?i)([aeiouv])([¹²³⁴]+)", "$1$2:");
+		mco = mco.replaceAll("(?i)([aeiouv])([¹²³⁴]+)", "$1$2:");
 
 		/*
 		 * Strip out the combining lower dots, leaving the short vowels in correct form
 		 */
-		mcs = mcs.replace("\u0323", "");
+		mco = mco.replace("\u0323", "");
 
 		/*
 		 * Special corner-case divergence from published standard. If the final tone on
 		 * an open word vowel is ², mark it with a macron, as the normal unmarked tone
 		 * is usually ⁴³.
 		 */
-		mcs = mcs.replaceAll("(?i)([aeiouv])²$", "$1\u0304");
+		mco = mco.replaceAll("(?i)([aeiouv])²$", "$1\u0304");
 
-		mcs = mcs.replaceAll("(?i)([aeiouv])²([^a-zɂ¹²³⁴:])", "$1\u0304$2");
+		mco = mco.replaceAll("(?i)([aeiouv])²([^a-zɂ¹²³⁴:])", "$1\u0304$2");
 
 		/*
 		 * Convert the tones into combining diacritics
 		 */
-		for (String[] re : cedtones2mcs) {
-			mcs = mcs.replace(re[0], re[1]);
+		for (String[] re : cedtones2mco) {
+			mco = mco.replace(re[0], re[1]);
 		}
 		/*
-		 * Finally, convert to fully composed form and return the MCS phonemic value.
+		 * Finally, convert to fully composed form and return the MCO phonemic value.
 		 */
-		return Normalizer.normalize(mcs, Normalizer.Form.NFC);
+		return Normalizer.normalize(mco, Normalizer.Form.NFC);
 	}
 }
