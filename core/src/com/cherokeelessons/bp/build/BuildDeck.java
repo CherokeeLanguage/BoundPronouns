@@ -59,13 +59,13 @@ public class BuildDeck {
 	private String status = "";
 
 	private final File deckFile;
-	private final File forEspeak;
+	private final File forTts;
 	private final File checkSheet;
 
 	public BuildDeck(final File assetsFolder) {
 		deckFile = new File(assetsFolder, "deck.json");
-		forEspeak = new File(assetsFolder, "espeak.tsv");
-		checkSheet = new File(assetsFolder, "review-sheet.tsv");
+		forTts = new File(assetsFolder, "cherokee-tts.txt");
+		checkSheet = new File(assetsFolder, "review-sheet.txt");
 	}
 
 	private void addConjugatedChallengesToDeck() {
@@ -1439,8 +1439,8 @@ public class BuildDeck {
 			json.toJson(deckFile, deck);
 		}
 
-		if (forEspeak.exists()) {
-			forEspeak.delete();
+		if (forTts.exists()) {
+			forTts.delete();
 		}
 
 		if (checkSheet.exists()) {
@@ -1450,7 +1450,7 @@ public class BuildDeck {
 		appendText(checkSheet, "ID\tPSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
 
 		final Set<String> already = new HashSet<>();
-		final StringBuilder espeak = new StringBuilder();
+		final StringBuilder tts = new StringBuilder();
 		final StringBuilder check = new StringBuilder();
 		int maxAnswers = 0;
 		for (final Card card : deck.cards) {
@@ -1472,22 +1472,22 @@ public class BuildDeck {
 			if (challenge.trim().endsWith("-")) {
 				continue;
 			}
-			espeak.append(syllabary);
-			espeak.append("\t");
-			espeak.append(challenge);
-			espeak.append("\t");
-			final String asFilename;
-			if (!challenge.isEmpty() && !challenge.endsWith("-")) {
-				asFilename = asFilename(challenge);
-				espeak.append(asFilename);
+			final String answer;
+			if (!card.answer.isEmpty()) {
+				answer = String.join("; ", card.answer);
 			} else {
-				asFilename = "";
+				answer="";
 			}
-			espeak.append("\n");
+			tts.append(syllabary);
+			tts.append("\t");
+			tts.append(CherokeeUtils.ced2mco(challenge));
+			tts.append("\t");
+			tts.append(answer);
+			tts.append("\n");
 
-			appendText(forEspeak, espeak.toString());
+			appendText(forTts, tts.toString());
 
-			espeak.setLength(0);
+			tts.setLength(0);
 
 			check.append(card.id);
 			check.append("\t");
@@ -1517,10 +1517,6 @@ public class BuildDeck {
 				throw new RuntimeException("DUPLICATE CHALLENGE: " + challenge);
 			}
 			already.add(challenge);
-			if (!asFilename.isEmpty() && already.contains(asFilename)) {
-				throw new RuntimeException("DUPLICATE FILENAME: " + asFilename);
-			}
-			already.add(asFilename);
 		}
 	}
 

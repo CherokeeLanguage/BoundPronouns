@@ -1,4 +1,4 @@
-package com.cherokeelessons.bp.audiogen;
+package com.cherokeelessons.bp.build;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,8 +6,6 @@ import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
 
 public class CherokeeUtils {
 
@@ -18,21 +16,6 @@ public class CherokeeUtils {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-
-		File convertFile = new File("animals-game.txt");
-		if (convertFile.exists()) {
-			List<String> mco = new ArrayList<String>();
-			List<String> lines = FileUtils.readLines(convertFile, StandardCharsets.UTF_8);
-			for (String line : lines) {
-				if (line.trim().isEmpty()) {
-					continue;
-				}
-				mco.add(ced2mco(line));
-			}
-			FileUtils.writeLines(new File("tmp/animals-game.txt"), StandardCharsets.UTF_8.name(), mco);
-			System.out.println("Converted contents of file");
-			return;
-		}
 
 		String[] cedTest = { //
 				"U²sgal²sdi ạ²dv¹ne²³li⁴sgi.", //
@@ -139,6 +122,6 @@ public class CherokeeUtils {
 		/*
 		 * Finally, convert to fully composed form and return the MCO phonemic value.
 		 */
-		return Normalizer.normalize(mco, Normalizer.Form.NFC);
+		return Normalizer.normalize(mco, Normalizer.Form.NFD);
 	}
 }
