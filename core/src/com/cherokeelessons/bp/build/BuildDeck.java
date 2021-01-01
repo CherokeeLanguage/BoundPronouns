@@ -1459,13 +1459,13 @@ public class BuildDeck {
 		for (final Card card : deck.cards) {
 			final String syllabary;
 			if (card.challenge.size() > 0) {
-				syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0)));
+				syllabary = asPlainSyllabary(StringUtils.defaultString(card.challenge.get(0))).trim();
 			} else {
 				syllabary = "";
 			}
 			final String challenge;
 			if (card.challenge.size() > 1) {
-				challenge = StringUtils.defaultString(card.challenge.get(1));
+				challenge = StringUtils.defaultString(card.challenge.get(1)).trim();
 			} else {
 				challenge = "";
 			}
@@ -1474,15 +1474,27 @@ public class BuildDeck {
 			}
 			final String answer;
 			if (!card.answer.isEmpty()) {
-				answer = String.join("; ", card.answer);
+				answer = String.join("; ", card.answer).trim();
 			} else {
 				answer="";
 			}
 			tts.append(syllabary);
+			
 			tts.append("\t");
 			tts.append(CherokeeUtils.ced2mco(challenge));
+			
 			tts.append("\t");
 			tts.append(answer);
+			
+			final String asFilename;
+			if (!challenge.isEmpty() && !challenge.endsWith("-")) {
+				asFilename = asFilename(challenge);
+				tts.append("\t");
+				tts.append(asFilename);
+			} else {
+				asFilename = "";
+			}
+			
 			tts.append("\n");
 
 			appendText(forTts, tts.toString());
