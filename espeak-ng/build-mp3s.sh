@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "DEPRECATED"
+exit -1
+
 export LC_ALL=C
 
 set -e
