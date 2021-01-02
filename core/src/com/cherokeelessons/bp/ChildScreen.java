@@ -111,11 +111,6 @@ public class ChildScreen implements Screen, InputProcessor {
 	}
 
 	@Override
-	public boolean scrolled(final int amount) {
-		return false;
-	}
-
-	@Override
 	public void show() {
 		multi.addProcessor(this);
 		multi.addProcessor(stage);
@@ -134,6 +129,11 @@ public class ChildScreen implements Screen, InputProcessor {
 
 	@Override
 	public boolean touchUp(final int screenX, final int screenY, final int pointer, final int button) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(float amountX, float amountY) {
 		return false;
 	}
 
