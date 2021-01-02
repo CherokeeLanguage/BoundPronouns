@@ -96,6 +96,7 @@ public class BoundPronouns extends Game {
 	public static final String DOT = "•";
 	public static final String RDQUOTE = "”";
 	public static final String LDQUOTE = "“";
+	public static final String ALERT = "\u26A0";
 	public static final String SPECIALS;
 	public static final String IMG_SCROLLBAR = "scrollpane/basic-vbar.png";
 	public static final String IMG_SCROLLBUTTON = "scrollpane/basic-vbutton.png";
@@ -118,17 +119,22 @@ public class BoundPronouns extends Game {
 	public static final String SND_DING = "audio/ding.mp3";
 
 	public static final float BACK_WIDTH = 168f;
+
+	private static final String RIGHT_FINGER = "\u261E";
 	static {
 		SPECIALS = DSUNDERLINE + DUNDERDOT + DUNDERLINE + OVERLINE + STHRU + UNDERCIRCLE + UNDERCUBE + UNDERDOT
 				+ UNDERLINE + UNDERX + BACK_ARROW + DIAMOND + TRIANGLE_ASC + TRIANGLE_DESC + HEAVY_BALLOT_X
-				+ HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW + DOT + LDQUOTE + RDQUOTE;
+				+ HEAVY_CHECK_MARK + LEFT_ARROW + RIGHT_ARROW + DOT + LDQUOTE + RDQUOTE + ALERT + RIGHT_FINGER;
 		ClearColor = new Color((float) 0xb3 / (float) 0xff, (float) 0xb3 / (float) 0xff, (float) 0xb1 / (float) 0xff,
 				1);
+		MCO = "áéíóúv́ÁÉÌÓÚV́àèìòùv̀ÀÈÌÒÙV̀ǎěǐǒǔv̌ǍĚǏǑǓV̌âêîôûv̂ÂÊÎÔÛV̂a̋e̋i̋őűv̋A̋E̋I̋ŐŰV̋āēīōūv̄ĀĒĪŌŪV̄\u0300\u0301\u0302\u030B\u030C";
 	}
 	private static Preferences prefs;
 	private static final List<DataSet> pronouns = new ArrayList<>();
 	public static final String INFO_JSON = "info.json";
 	public static final String CredentialsFolder = ".config/CherokeeBoundPronouns/GooglePlayGameServices/";
+
+	private static final String MCO;
 
 	private static Rectangle fittedSize() {
 		final int h = Gdx.graphics.getHeight();
@@ -284,6 +290,12 @@ public class BoundPronouns extends Game {
 			}
 		}
 		for (final char c : SPECIALS.toCharArray()) {
+			final String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		for (final char c : MCO.toCharArray()) {
 			final String valueOf = String.valueOf(c);
 			if (!defaultChars.contains(valueOf)) {
 				defaultChars += valueOf;
