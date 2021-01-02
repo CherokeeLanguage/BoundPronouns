@@ -378,8 +378,8 @@ public class BoundPronouns extends Game {
 		addFonts();
 	}
 
-	public void loadEspeakMap() {
-		final String text = Gdx.files.internal("espeak.tsv").readString("UTF-8");
+	public void loadTtsMap() {
+		final String text = Gdx.files.internal("cherokee-tts.txt").readString("UTF-8");
 		final String[] lines = text.split("\n");
 		for (final String line : lines) {
 			if (!line.contains("\t") || line.isEmpty()) {
@@ -389,11 +389,11 @@ public class BoundPronouns extends Game {
 			if (columns == null) {
 				continue;
 			}
-			if (columns.length < 3) {
+			if (columns.length < 5) {
 				continue;
 			}
-			final String pronounce = columns[1];
-			final String filename = columns[2];
+			final String pronounce = columns[2];
+			final String filename = columns[4];
 			audioFiles.put(pronounce, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
 		}
 	}

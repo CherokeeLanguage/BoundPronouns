@@ -1484,6 +1484,9 @@ public class BuildDeck {
 			tts.append(CherokeeUtils.ced2mco(challenge));
 			
 			tts.append("\t");
+			tts.append(challenge);
+			
+			tts.append("\t");
 			tts.append(answer);
 			
 			final String asFilename;

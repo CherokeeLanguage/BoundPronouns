@@ -130,7 +130,7 @@ public class MainScreen implements Screen, InputProcessor {
 
 	public MainScreen(final BoundPronouns boundPronouns) {
 		game = boundPronouns;
-		game.loadEspeakMap();
+		game.loadTtsMap();
 		skin = game.manager.get(BoundPronouns.SKIN, Skin.class);
 		multi = new InputMultiplexer();
 		stage = new Stage();
