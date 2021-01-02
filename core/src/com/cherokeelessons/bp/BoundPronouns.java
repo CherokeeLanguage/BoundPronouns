@@ -392,7 +392,7 @@ public class BoundPronouns extends Game {
 			if (columns.length < 5) {
 				continue;
 			}
-			final String pronounce = columns[2];
+			final String pronounce = columns[1];
 			final String filename = columns[4];
 			audioFiles.put(pronounce, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
 		}

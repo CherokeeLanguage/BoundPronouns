@@ -1,3 +1,8 @@
+3.36
+
+Tacotron2 replacement audio. No longer using espeak-ng.
+Update pronunciations to be displayed in Modified Community Orthography as used by Uchihara, etc.
+
 3.35
 
 Conjugation fixes.
