@@ -36,6 +36,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.bp.build.CherokeeUtils;
 import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.SlotInfo;
 
@@ -342,7 +343,7 @@ public abstract class NewCardDialog extends Dialog {
 				game.log(this, latin.length() + "");
 				serif_style = new LabelStyle(game.getFont(Font.SerifLLarge), chr_san_large.fontColor);
 			}
-			msg = new Label(latin, serif_style);
+			msg = new Label(CherokeeUtils.ced2mco_nfc(latin), serif_style);
 			msg.setAlignment(Align.center);
 			msg.setWrap(true);
 			challenge_top.add(msg).fill().expand();

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class CherokeeUtils {
 			System.out.println();
 			System.out.println(a);
 			// + "\n ->\n" +
-			System.out.println(ced2mco(a));
+			System.out.println(ced2mco_nfc(a));
 		}
 		System.out.println("_______________");
 		System.out.println();
@@ -63,12 +64,23 @@ public class CherokeeUtils {
 
 	/**
 	 * Converts CED Orthography phonemics to Modified Community Orthography
-	 * phonemics.
+	 * phonemics. UTF decomposed form.
 	 * 
 	 * @param ced
 	 * @return
 	 */
-	public static String ced2mco(final String cedOrthography) {
+	public static String ced2mco_nfd(final String cedOrthography) {
+		return Normalizer.normalize(ced2mco_nfc(cedOrthography), Form.NFD);
+	}
+	
+	/**
+	 * Converts CED Orthography phonemics to Modified Community Orthography
+	 * phonemics. UTF composed form.
+	 * 
+	 * @param ced
+	 * @return
+	 */
+	public static String ced2mco_nfc(final String cedOrthography) {
 		/*
 		 * Convert text to "decomposed" form so that we can use combining diacritics
 		 * freely.
@@ -122,6 +134,6 @@ public class CherokeeUtils {
 		/*
 		 * Finally, convert to fully composed form and return the MCO phonemic value.
 		 */
-		return Normalizer.normalize(mco, Normalizer.Form.NFD);
+		return Normalizer.normalize(mco, Normalizer.Form.NFC);
 	}
 }

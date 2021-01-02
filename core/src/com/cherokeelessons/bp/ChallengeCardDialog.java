@@ -36,6 +36,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.bp.build.CherokeeUtils;
 import com.cherokeelessons.cards.ActiveCard;
 import com.cherokeelessons.cards.Answer;
 import com.cherokeelessons.cards.Answer.AnswerList;
@@ -336,7 +337,7 @@ public abstract class ChallengeCardDialog extends Dialog {
 			syllabary = i.next();
 		}
 		if (i.hasNext()) {
-			latin = i.next();
+			latin = CherokeeUtils.ced2mco_nfc(i.next());
 		}
 		if (settings.display.equals(SlotInfo.DisplayMode.NONE)) {
 			latin = "";

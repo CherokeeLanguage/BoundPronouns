@@ -2,6 +2,8 @@ package com.cherokeelessons.bp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -276,31 +278,36 @@ public class BoundPronouns extends Game {
 	}
 
 	private void addFreeSerifFor(final int size, final Font fontname) {
-		String defaultChars = FreeTypeFontGenerator.DEFAULT_CHARS;
+		String defaultChars = "";
+		
+		String tmp = Normalizer.normalize(FreeTypeFontGenerator.DEFAULT_CHARS, Form.NFC);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		
+		tmp = Normalizer.normalize(FreeTypeFontGenerator.DEFAULT_CHARS, Form.NFD);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		
 		for (char c = 'Ꭰ'; c <= 'Ᏼ'; c++) {
 			final String valueOf = String.valueOf(c);
 			if (!defaultChars.contains(valueOf)) {
 				defaultChars += valueOf;
 			}
 		}
-		for (final char c : "ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ".toCharArray()) {
-			final String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		for (final char c : SPECIALS.toCharArray()) {
-			final String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
-		for (final char c : MCO.toCharArray()) {
-			final String valueOf = String.valueOf(c);
-			if (!defaultChars.contains(valueOf)) {
-				defaultChars += valueOf;
-			}
-		}
+		
+		tmp = Normalizer.normalize("ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ", Form.NFC);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		tmp = Normalizer.normalize("ạẹịọụṿẠẸỊỌỤṾ¹²³⁴ɂ", Form.NFD);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		
+		tmp = Normalizer.normalize(SPECIALS, Form.NFC);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		tmp = Normalizer.normalize(SPECIALS, Form.NFD);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		
+		tmp = Normalizer.normalize(MCO, Form.NFC);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+		tmp = Normalizer.normalize(MCO, Form.NFD);
+		defaultChars = addUniqueChars(tmp, defaultChars);
+
 		final FreeTypeFontLoaderParameter font = new FreeTypeFontLoaderParameter();
 		font.fontFileName = "otf/FreeSerif.otf";
 		font.fontParameters.borderGamma = 1.0f;
@@ -316,6 +323,16 @@ public class BoundPronouns extends Game {
 		font.fontParameters.spaceY = 1;
 		manager.load(fontname.name() + ".ttf", BitmapFont.class, font);
 		return;
+	}
+
+	private String addUniqueChars(String tmp, String defaultChars) {
+		for (final char c : tmp.toCharArray()) {
+			final String valueOf = String.valueOf(c);
+			if (!defaultChars.contains(valueOf)) {
+				defaultChars += valueOf;
+			}
+		}
+		return defaultChars;
 	}
 
 	public void click() {
@@ -404,7 +421,7 @@ public class BoundPronouns extends Game {
 			if (columns.length < 5) {
 				continue;
 			}
-			final String pronounce = columns[1];
+			final String pronounce = columns[2];
 			final String filename = columns[4];
 			audioFiles.put(pronounce, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
 		}

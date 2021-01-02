@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,9 +81,9 @@ public class BuildDeck {
 			vtypes.addAll(Arrays.asList(challenge[0].split(",\\s*")));
 
 			if (vtypes.contains("n")) {
-				final String latinCitationEntry = challenge[3];
+				final String pronounceEntry = challenge[3];
 				final String chrCitationEntry = challenge[2];
-				final String cardLookupKey = latinCitationEntry;
+				final String cardLookupKey = pronounceEntry;
 				setStatus("Please wait, adding term: " + chrCitationEntry);
 				Card c = getCardByLatinChallenge(cardLookupKey, deck);
 				if (c == null) {
@@ -93,7 +95,7 @@ public class BuildDeck {
 				// chr
 				c.challenge.add(chrCitationEntry);
 				// latin
-				c.challenge.add(latinCitationEntry);
+				c.challenge.add(pronounceEntry);
 				for (final String def : challenge[5].split(";")) {
 					c.answer.add(StringUtils.strip(def));
 				}
@@ -1160,7 +1162,7 @@ public class BuildDeck {
 			 */
 			chr = chr.replace("[", "").replace("]", "");
 			latin = latin.replace("[", "").replace("]", "");
-			setStatus("Create pronoun card for " + chr);
+			setStatus("Create pronoun card for " + chr +  " " + latin);
 			String defin = pronounRecord[3] + " + " + pronounRecord[4];
 			if (StringUtils.isBlank(pronounRecord[3])) {
 				final String tmp = pronounRecord[4];
@@ -1185,13 +1187,13 @@ public class BuildDeck {
 				chr = prevChr;
 			}
 
-			Card c = getCardByLatinChallenge(chr.toString(), deck);
+			Card c = getCardByLatinChallenge(latin, deck);
 			if (c == null) {
 				c = new Card();
 				c.pgroup = pgroup;
 				c.vgroup = "";
-				c.challenge.add(chr.toString());
-				c.challenge.add(latin.toString());
+				c.challenge.add(chr);
+				c.challenge.add(latin);
 				deck.cards.add(c);
 			}
 			c.answer.add(defin);
@@ -1481,7 +1483,7 @@ public class BuildDeck {
 			tts.append(syllabary);
 			
 			tts.append("\t");
-			tts.append(CherokeeUtils.ced2mco(challenge));
+			tts.append(CherokeeUtils.ced2mco_nfd(challenge));
 			
 			tts.append("\t");
 			tts.append(challenge);
@@ -1500,7 +1502,7 @@ public class BuildDeck {
 			
 			tts.append("\n");
 
-			appendText(forTts, tts.toString());
+			appendText(forTts, Normalizer.normalize(tts.toString(), Form.NFC));
 
 			tts.setLength(0);
 

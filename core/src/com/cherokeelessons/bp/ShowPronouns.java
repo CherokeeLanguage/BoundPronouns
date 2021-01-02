@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.cherokeelessons.bp.BoundPronouns.Font;
+import com.cherokeelessons.bp.build.CherokeeUtils;
 import com.cherokeelessons.bp.build.DataSet;
 
 public class ShowPronouns extends ChildScreen {
@@ -111,16 +112,16 @@ public class ShowPronouns extends ChildScreen {
 			switch (by) {
 			case Definition:
 				String string = definition.getText().toString() + "|" + syllabary.getText().toString() + "|"
-						+ latin.getText().toString();
+						+ CherokeeUtils.ced2mco_nfc(latin.getText().toString());
 				string = cleanup(string);
 				return string.toLowerCase();
 			case Latin:
-				String string2 = latin.getText().toString() + "|" + definition.getText().toString() + "|"
+				String string2 = CherokeeUtils.ced2mco_nfc(latin.getText().toString()) + "|" + definition.getText().toString() + "|"
 						+ syllabary.getText().toString();
 				string2 = cleanup(string2);
 				return string2.toLowerCase();
 			case Syllabary:
-				String string3 = syllabary.getText().toString() + "|" + latin.getText().toString() + "|"
+				String string3 = CherokeeUtils.ced2mco_nfc(syllabary.getText().toString()) + "|" + latin.getText().toString() + "|"
 						+ definition.getText().toString();
 				string3 = cleanup(string3);
 				return string3.toLowerCase();
@@ -288,7 +289,7 @@ public class ShowPronouns extends ChildScreen {
 			actor = new Label(data.chr, ls);
 			dr.syllabary = actor;
 
-			actor = new Label(data.latin, ls);
+			actor = new Label(CherokeeUtils.ced2mco_nfc(data.latin), ls);
 			dr.latin = actor;
 
 			actor = new Label(data.def, ls);
