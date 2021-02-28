@@ -26,9 +26,11 @@ if ! git diff-index --quiet HEAD --; then
     exit -1
 fi
 
-#Always rebuild and resync audio.
-bash ./espeak-ng/build-mp3s.sh
-bash ./espeak-ng/sync-mp3s.sh
+
+#Disabled: was "Always rebuild and resync audio."
+#Now using Tacotron generated audio.
+# bash ./espeak-ng/build-mp3s.sh
+# bash ./espeak-ng/sync-mp3s.sh
 #Always re-add audio files if any changed.
 git add android/assets/mp3-challenges
 git commit -m "Updated audio files." || true #ignore if no changes to commit.
@@ -51,8 +53,6 @@ fi
 
 #Make sure we have an up-to-date git log in the text folder as "git-changelog.txt"
 git log --simplify-merges --pretty=format:"%ad [%h]:%d %s" --abbrev-commit --date=short > android/assets/text/git-changelog.txt
-git add android/assets/text/git-changelog.txt
-git commit android/assets/text/git-changelog.txt -m "Update git changelog." || true
 
 version=$(head -n1 version)
 version=$(($version + 1 ))
