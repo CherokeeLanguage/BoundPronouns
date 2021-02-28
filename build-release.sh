@@ -14,7 +14,7 @@ cd "$(dirname "$0")"
 #Always auto commit the conjugation table data via git
 git add android/assets/deck.json
 # git add android/assets/espeak.tsv
-git add android/assets/review-sheet.tsv
+# git add android/assets/review-sheet.tsv
 git commit -m "Updated master deck file." || true #ignore if no changes to commit.
 
 
