@@ -1,0 +1,1621 @@
+0001|Boy.|Ạ²chu⁴ja.
+0002|Wood.|Ạ²da.
+0003|It is bouncing.|A¹dạ²de³ga.
+0004|He is limping.|A¹dạ²de³ga.
+0005|He is bouncing it.|A¹dạ²di²³nv³²dị²ha.
+0006|He is putting on a belt.|A¹da³dlo²hị³ha.
+0007|Belt.|Ạ²da¹dlo²³sdi.
+0008|Prayer.|Ạ²da²do²³li³²sdi.
+0009|He is praying.|A¹da²do²³li³²sdị²ha.
+0010| tender  . Or,  very young, new.|Ạ³dạ²ge⁴ɂi.
+0011|Love.|Ạ²da²geyh²di.
+0012|Thing that kills.|Ạ²da²³hị²hi.
+0013|Purse.|Ạ²da²hlị²ne³sahl²di.
+0014|Gift.|Ạ²da²³hneh²di.
+0015|He is fanning himself.|A¹dạ²hno³yẹ²ha.
+0016|Fan.|Ạ²dạ²hno²yo.
+0017|He is visiting.|A¹da²hwah²tv²hi²³do³²ha.
+0018|He is stretching.|A¹da²hya³²sdị²ha.
+0019|Cancer.|Ạ²da²hye⁴sgi.
+0020|He is denying him or it.|A¹dạ²hyị³ha.
+0021|He is committing adultery.|A¹da²hyo³nẹ²ha.
+0022|Adultery.|Ạ²da²hyo²neh³di.
+0023|Adulterer.|Ạ²da²hyo²ne⁴hi.
+0024|It is ripping.|A¹da²jạ²gạ²lị³ha.
+0025|Something that stings.|Ạ²da²jvy⁴sgi.
+0026|He is looking at himself in a mirror.|A¹da²kẹ³ha.
+0027|Mirror.|Ạ²da²keh³di.
+0028|It is beginning.|A¹dạ²le²nị³ha.
+0029|He is shopping.|A¹da²na²ne³sv²hṿ³sga.
+0030|Store.|A¹da²nạɂ³nv⁴ɂi.
+0031|He is taking off running.|A¹dạ²naw³²sdị³ha.
+0032|He or it is changing.|A¹dạ²ne²³dli³yṿ²ɂa.
+0033|He is taking turns with him.|A¹dạ²ne²³dli³yv¹sdị²ha.
+0034| alternate  . Or,  substitute.|Ạ²dạ²ne²³dli³yv¹sdi⁴sgi.
+0035|Provisions, supplies.|A¹da²ne²hlv⁴ɂi.
+0036|Building.|A¹da²ne²³lv⁴ɂi.
+0037|Heart.|Ạ²danh²do.
+0038|He is thinking.|A¹danh²tẹ³ha.
+0039|Thought.|Ạ²danh²³teh²di.
+0040| he is pondering it  . Or,  he is considering.|A¹danh²te²³hi³lọ²ɂa.
+0041|He or it is making noise.|A¹dạ²no²hyv²hlị²sdị³ha.
+0042|He is crawling.|A¹dan²si²³ni.
+0043|It is twisting.|A¹dạ²nu³te²yọ³ha.
+0044|He or it is moving from one place to another.|A¹dạɂ³nv²ɂa.
+0045|He is ordering it.|A¹dạ²nv²³sga.
+0046|Kitchen.|Ạ²da²sdayh¹di⁴i.
+0047|She is cooking a meal.|A¹da²sda³²yv²hv³sga.
+0048|Magician.|Ạda²³we³hi.
+0049|Magical.|Ạ²da²³we⁴hi.
+0050|Flame.|Ạ²dạ²we²³lạ²gi¹sgi.
+0051|Gunpowder.|Ạ²dạ²we²lạ²gi¹sgi.
+0052|He is resting.|A¹dạ²we³so²lv²³sdị³ha.
+0053|Adam.|A²³dạ³wi.
+0054| he is bathing  . Or,  he is swimming.|A¹dạ²wo³ɂa.
+0055|Swimming pool.|Ạ²dạ²wo¹sdi⁴ɂi.
+0056|Television.|Ạ²dạ²yv²³lạ²tṿ²sgi.
+0057|He is giving him a long  object.|A¹de³ha.
+0058|He is learning, he is learning it.|A¹de²hloh²gwạ³ɂa.
+0059|He is embarrassing him.|A¹de²ho²³hị³sdị²ha.
+0060|He is embarrassed.|A¹de²ho²³sga.
+0061|He is being born.|A¹de²hṿ³sga.
+0062|Money.|Ạ²de²³la.
+0063|Bank.|Ạ²del²³diyh²di⁴ɂi.
+0064|California.|Ạ²del²³ju²³hlv⁴ɂi.
+0065|He is finding it out.|A¹de²lọ²ho²sga.
+0066|Dollars.|Ạ³de²lv⁴ɂi.
+0067|He is diving.|A¹de²tṿ³sga.
+0068| he is going around a curve  . Or,  he is turning off the road  . Or,  he is circling it.|A¹de³yọ²ha.
+0069|Curve.|A¹de³yọ²hv⁴ɂi.
+0070|He is laying a long object down.|A¹dị³ɂa.
+0071|He is rising from a prone position.|A¹di²dị³ha.
+0072|He is scattering it.|A¹di²gạ²le²³yạ³ɂa.
+0073|It is scattering.|A¹di²gạ²le²³yo³²ga.
+0074|He or it is spinning, rotating.|A¹di³gwạ²lv²de³yọ²ha.
+0075|He is saying it.|A¹dị²ha.
+0076|He is running over him or it.|A¹di²³nv³²dị²ha.
+0077|He is hiding.|A¹di²sgạ²hlṿ³sga.
+0078|He is leaving a long object behind.|A¹di³²si²yạ³ɂa.
+0079|Something to drink.|Ạ²di²³tạ²sdi.
+0080|He is drinking it.|A¹di²tạ³sga.
+0081|Spoon.|Ạ²di²toh³di.
+0082| rubber,  . Or,  chewing gum.|A²dla.
+0083|He is scratching.|A¹dlạ²go²³sga.
+0084|Pocket.|A²dlạwạɂ³dv⁴ɂi.
+0085|He is turning off the road.|A¹dle³ɂa.
+0086|He is taking revenge against him.|A¹dle³chẹ²ha.
+0087|Revenge.|Ạ²dle¹ɂị³sdi.
+0088|Apron.|Ạ²dle¹sạ²do.
+0089|He is pouring liquid in a container.|A¹dlị³ɂa.
+0090|Earring.|Ạ²dlị²ɂạ²do.
+0091|He is drawing a liquid out of a container.|A¹dli²³ha.
+0089|He is pouring liquid in a container.|A¹dlị³ɂa., A¹dli³²sdị²ha.
+0092|He is crying.|A¹dlo²hyị³ha.
+0093|He is getting off.|A¹dloy²sga.
+0094|He is bragging.|A¹dlv²³kwsga.
+0095|He is catching up with him or it.|A¹dlv²tạ³sga.
+0096|Walking cane.|Ạ²do²lạ²nv³sdi.
+0097|Sorcerer.|A²do²³ni⁴sgi.
+0098|Freedom.|Ạ²du²dạ²le⁴sdi.
+0099| Dutch, . Or,  German.|Ạ²dṿ²ji.
+0100|He is doing it.|A¹dv³nẹ²ha.
+0101|He is acting silly.|A¹dv³ne²lị³ha.
+0102|Actor.|Ạ²dv¹ne²³li⁴sgi.
+0103| he is preparing it.  . Or,  he is getting ready.|A¹dv²nv³ɂị²sdị³ha.
+0104|Eager.|Ạ²gạ²hli⁴yi.
+0105|  he is breaking a flexible object, . Or,  He is cutting a flexible object.|A¹gal³²sga.
+0106|He is licking it.|A¹gạ²na²³dị³ɂa.
+0107|Doctor.|Ạ²gạɂ³nạ²kti.
+0108|He is warming it.|A¹ga²nawh²dị³ha.
+0109|It is getting warmer.|A¹ga²nạ²wo²sga.
+0110|It is raining.|A¹ga²sga.
+0111|A person who has been chosen.|Ạ²ga¹su²ye⁴da.
+0112|Seine.|Ạ²ga²yạ²lu³di.
+0113|Old woman.|Ạ²gạ²yv²³lị³ge⁴ɂi.
+0114|Over there.|A³ge⁴.
+0115|Woman.|Ạ²ge²³hya.
+0116|Girl.|Ạ²ge²hyu⁴ja.
+0117| he is picking it up  . Or,  he is getting it.|A¹gi³ɂa.
+0118|Agony, pain.|Ạ²gi²hli⁴yi.
+0119|He is in agony, pain.|A¹gi²hli²³yo³²ga.
+0120|He is chewing it.|A¹gi³²sdọ²ɂa.
+0121|Female animal.|Ạ²gi²³si.
+0122|He is burning him or it.|A¹gọ³hṿ²sdị³ha.
+0123|He or it is burning.|A¹gọ³hṿ²sga.
+0124|Perch.|Ạ²go²la.
+0125| he is reading, . Or,  he is examining him or it.|A¹go²li²³yẹ³ɂa.
+0126|Famine.|Ạ²go²na.
+0127|He is target practicing.|A³go²nị³ha.
+0128|Lettuce.|Ạ²go³sdạ²gi³²sdi.
+0129|Raw.|Ạ²go⁴sdi.
+0130|He sees him or it.|A¹gowh²tị³ha.
+0131|Sight.|Ạ²gowh²³tvh²di.
+0132|He is showing it to him.|A¹gowh²tvh²dị³ha.
+0133|His forehead.|Ạ²gv²dạ²ge⁴ni.
+0134| he is cutting it, . Or,  he is slicing it.|A¹gv²hạ²lị³ha.
+0135|He is chopping it up.|A¹gv²hạ³luy³²sga.
+0136|A piece of something that's been cut.|Ạ²gv²hạ²lv⁴da.
+0137|Black person, Negro.|Ạ²gv²³hnạ³ge⁴ɂi.
+0138|He is scolding him.|A¹gv²sgo²³lv³²sga.
+0139|He is washing his face.|A¹gv²sgwo³ɂa.
+0140|Loudmouth.|Ạ²hạ²la⁴da.
+0141|  he is diverting him or it, . Or,  he is flagging him or it down.|A¹hạ²lu²³gị³ɂha.
+0142|Here.|Ạ³hạ²ni.
+0143|Deer.|Ạ²hạ²wi.
+0144|He is smothering him or it.|A¹hạ²wo³sdị²ha.
+0145|Easy.|Ạ²hi⁴da.
+0146|He is handling it, he has it in his hand.|A¹hi²³do³²ha.
+0147|He is killing him or it.|A¹hị³ha.
+0148|He has possession of a vehicle.|A¹hịɂ³le²ha.
+0149|Steering wheel.|Ạ²hịɂ²lv¹sdi⁴ɂi.
+0150|He is leaving it behind.|A¹hi²yạ³ɂa.
+0151|He is placing it on something.|A¹hlạ²hṿ³sga.
+0152|He is taking off flying or its flying away.|A¹hlạ²wi²dị³ha.
+0153|Something that flies away.|Ạ²hlạ²wi²di⁴sgi.
+0154|He is making him or it fly.|A¹hlạ²wi²tdị³ha.
+0155|Person who makes it fly.|Ạ²hlạ²wi²tdi⁴sgi.
+0156|He is having a nightmare.|A¹hlị²gi³ɂa.
+0157|Its taking time.|A¹hlị³ɂị²li²³do³²ha.
+0158|He is measuring it.|A¹hli²lo³ɂa.
+0159|Ruler.|Ạ²hli²lo⁴sdi.
+0160|It is bending.|A¹hlị²yvhgwidvsga.
+0161|He is snorting.|A¹hlị²yv²³sạ³naw¹sdị³ha.
+0162|He is preaching.|Ahl¹jạ²do²³hṿ³sga.
+0163|Preacher.|Ahl²jạ²do⁴hṿ²sgi.
+0164|It is shattering.|Ahl¹ko²dv²sga.
+0165|He is shattering it.|Ahl¹ko²tdị³ha.
+0166|Phonograph record.|Ạ³hloh²di.
+0167|He is beating him at a game.|A¹hlo²sga.
+0168|He is combing his hair.|Ahl¹tạ²wo³ɂa.
+0169|Comb.|Ahl²tạ²wo³sdi.
+0170|He is changing his shirt.|A¹hnạ²wạ³ɂi²yv³ɂa.
+0171|He is taking his shirt, coat off.|A¹hnạ²we³ɂa.
+0172|Shirt.|Ạ²hnạ²wo.
+0173|He is putting on a shirt.|A¹hnạ²wo³ɂa.
+0174|He is giving it to him.|A¹hnẹ²ha.
+0175|He is wrestling.|A³hne²³hị³ha.
+0176|He is interpreting, translating it.|A¹hnehl³dị²ha.
+0177|Interpretation, translation.|A²hnehl³tanvɂi.
+0178|He is frolicking.|A¹hne²jọ³sga.
+0179|He is building a house.|A¹hne³sgẹ²ha.
+0180| he is leaving  . Or,  it is starting.|A¹hnị²gị³ɂa.
+0181|He is starting it.|A¹hnị²gi³²sdị²ha.
+0182|He is carrying a long object on his shoulder.|A¹hnọ²hli²³ne³²ga.
+0183|His mouth.|Ạ²ho⁴li.
+0184|He is putting a long object in liquid.|A¹hu²dị³ɂa.
+0185|Stove pipe, lamp chimney.|Ạ²hu¹jạ²wo²³lạ³dv⁴di.
+0186|Chimney.|A¹hu³jạ²wo²³lạ³dv⁴i.
+0187|Drum.|Ạ²hu²li.
+0188|He is hitting him on the mouth.|A¹hu²lv³nị²ha.
+0189|He is moving it from one place to another.|A¹hv³ɂa.
+0190|He is setting it down.|A¹hṿ³sga.
+0191|He is finding him or it.|A¹hwah²tị³ha.
+0192|He is visiting him.|A¹hwah²tv²hi²³do³²ha.
+0193|He is taking it somewhere.|A¹hwi²di³ha.
+0194|He is planting it.|A¹hwị²sga.
+0195|Necktie.|A²hyạ²dlv⁴di.
+0196|He is peeling it.|A¹hyah²ke²³tsga.
+0197|Necklace.|A³hyahl²di.
+0198| he is calling him, inviting him. . Or,  he is receiving, getting him.|A¹hyạ²nị³ha.
+0199|He is taking it somewhere by hand.|A¹hye³ga.
+0200|He is holding it in his hand.|A¹hyẹ²ha.
+0201|He is quilting it.|A¹hyeh²gạ²hlv³sga.
+0202| he is making an incision . Or,  he is operating on him.|A¹hye²³hlọ³ha.
+0203| he is imitating him or it . Or,  he is mocking him.|A¹hye²li³ɂa.
+0204|Knife.|Ạ²hyel²sdi.
+0205|He is looking for him.|A¹hyọ³ha.
+0206|It is thundering.|A¹hyv²dạ²gwạ²lọ³ɂa.
+0207|Thunder.|Ạ²hyv²dạ²gwạ²lo¹sgi.
+0208| refrigerator . Or,  air conditioner.|Ạ²hyv²dlạ²di¹sdi⁴sgi.
+0209|Ladder.|Ạ²hyvh²dlo.
+0210| he is bending it  . Or,  she is hemming it.|A¹hyvh²gwị³dv³²sga.
+0211|His neck, throat.|Ạ²hyvh²je⁴ni.
+0212|He is kicking him or it.|A¹hyvh²te³ɂa.
+0213|Prisoner, captive.|Ạ²hyv⁴ki.
+0214|He is capturing him.|A¹hyv²³ki³dị²ɂa.
+0215|He is hitting him on the nose.|A¹hyv²³sde³lu²hṿ²sga.
+0216|He is choking him.|A¹hyṿ²sgi²³yi³ha.
+0217|He is walking.|A³ɂi.
+0218|Fish.|Ạ²jạɂ²di.
+0219|Choctaw.|Ạ²jah²da.
+0220|It is hatching.|A¹jạ³ɂị²ɂa.
+0221|He is dressing up.|A¹jạ²nv²sga.
+0222|He is getting in a car, box, etc.|A¹jạ³ɂṿ²sga.
+0223|Grave.|A¹je²³li³²sdv⁴ɂi.
+0224|He is acting like him.|A¹je²lv²sga.
+0225|Mattress.|Ạ²je²sdo.
+0226|Fire.|Ạ²ji²³la.
+0227|Watercress.|Ạ²ji²³la.
+0228|Catholic.|Ạ²ji²³la Ge³hlọ²hi.
+0229|Match.|Ạ²ji²³la go³hlvh²di.
+0230|In the fire.|Ạ²ji²lv⁴hi.
+0231|It is blooming.|A¹ji²lv²sga.
+0232|Flower.|Ạ²ji²lv⁴sgi.
+0233|Cedar.|Ạ²jị²na.
+0234|Light a fire, match.|A¹ji³slṿ²sga.
+0235|He is blowing, he is blowing on it.|A¹jo³tạ²sga.
+0236|He is turning on a light.|A¹jv²stṿ³sga.
+0237|Lamp, light.|Ạ²jvy⁴sdi.
+0238|Badge . Or, pin.|Ạ²kạ²ne²³sdi.
+0239|His hip.|A²kạ²sge⁴ni.
+0240|He is chasing him or it.|A¹ke²³he³²ga.
+0241|Steps, stairs.|Ạ²kị²hlọ³sv¹sdi⁴ɂi.
+0242|Pill.|Ạ³kị²sdi.
+0243|He is swallowing it.|A¹kị²sga.
+0244|Elbow.|Ạ²kị²yu²sge.
+0245|His elbow.|Ạ²kị²yu²sge⁴ni.
+0246|He is shoveling it.|A¹ko²³dẹ³ɂa.
+0247|Shovel, spade.|Ạ²ko²³de⁴sdi.
+0248|Left.|Ạ²ksgạ²ni.
+0249|Lefthanded.|Ạ²ksgạ³ni⁴da.
+0250|He is going down hill.|A¹ksọ³sga.
+0251|Downhill route.|A¹kso²sgv⁴ɂi.
+0252|Eye.|Ạ²kta.
+0253|He knows how.|A¹ktạ²ha.
+0254|Witness.|Ạ³ktạ²hi.
+0255|Knowledgeable.|Ạ³ktạ²hnạ²ɂi.
+0256|He is winking.|A¹kta³²sdị²ha.
+0257|He is hitting him on the eye.|A¹kte²lu²hṿ³sga.
+0258|Scenery.|Ạ²kte²³na³²sdi⁴ɂi.
+0259|He is looking around.|A¹kte³nọ²ha.
+0260|He is peeking through.|A¹ktị²ha.
+0261|He is waiting for him or it.|A¹kti²³ya.
+0262|Guard.|Ạ²kti⁴yi.
+0263|Telescope.|Ạktoh²di.
+0264|He is becoming wise.|A¹kto³²hṿ²sga.
+0265|His eye.|Ạ²kto⁴li.
+0266|He is looking at him or it.|A¹kto²³sdi.
+0267|Wisdom.|Ạ²ktọ²ɂṿ²hị³sdi.
+0268|He or it is going through it.|A¹ktv³le²sga.
+0269|He is dipping liquid.|A¹ku²³gị³ɂa.
+0270|Dipper.|Ạ²ku²³gi⁴sdi.
+0271|He is paying.|A¹kwị²yị³ha.
+0272|He is paying him.|A¹kwị²yv³ɂe²ha.
+0273|Pillow.|Ạ²kwsdo.
+0274|He is tromping on him or it,   he is speaking badly of him.|A¹la³²sdạ²ɂe²ha.
+0275|He is stepping on him or it.|A¹la³²sdṿ²sga.
+0276|He is playing ball.|A¹la³²sgạ²lị³ha.
+0277|Ball player.|Ạ²la¹sgạ²li⁴sgi.
+0278|He is taking a step.|A¹la³²sgṿ²ɂa.
+0279|Law suit.|Ạ²la¹suhl²³di.
+0280|Shoe.|Ạ²la¹su²³lo.
+0281|Almost.|Ạ²le.
+0282|And, or.|Ạ²le.
+0283|He is placing a long object in an upright position.|A¹leh²dị³ha.
+0284|He is standing in a certain spot.|A¹le²hṿ³sga.
+0285|He or it is stopping.|A¹le²hwị²sdị³ha.
+0286|He is stopping him or it.|A¹le²hwị²sdoh³dị³ha.
+0287|He is starting or beginning.|A¹le²nị³ha.
+0288|It is boiling.|A¹lị²dlị³ha.
+0289|Sweat.|A²li.
+0290|Headband.|Ạ²lị²gv²dạ²no²³sdoh²di.
+0291|Mask.|Ạ²lị²gv²du²lo.
+0292|He is thanking him.|A¹li²he²³li³²chẹ²ha.
+0293|He is happy or thankful.|A¹li²he²³li³²ga.
+0294|Friendship.|A²lị²ɂi.
+0295|He is exchanging or trading it.|A¹lị³ɂi²dị³ɂa.
+0296|He is running away, he is escaping.|A¹lị²ti³ɂa.
+0297|Glove.|Ạ²lị²ye¹su²lo.
+0298|He is taking his ring off.|A¹lị²ye³²su²stgi³ɂa.
+0299|Ring.|Ạ²lị²ye¹su²³sto.
+0300|He is putting a ring on his finger.|A¹lị²ye³²su²stṿ³sga.
+0301|Sock.|A²li²³yo.
+0302|He is spitting.|A¹lji³kwsga.
+0303|He or it is ascending, raising.|Al¹sạ²lạ²dị³ɂa.
+0304| food  . Or,  groceries.|Al³sdayh¹di.
+0305|He is eating a meal.|Al¹sda³²yv²hṿ³sga.
+0306|He is helping.|Al¹sde²lị³ha.
+0307|He is taking off his cap.|Al¹sdu²³lẹ³ɂa.
+0308|He is washing his hair.|Al¹sdu²³le³ha.
+0309|He is putting on a cap.|Al¹sdu²³lị³ɂa.
+0310|Cap.|Al²sdu²lo.
+0311|He is taking a seat.|Al¹sdv²hlụ³sga.
+0312|He is shaking his head.|Al¹sdv²hnị³ha.
+0313|He is dancing.|Al¹sgi³ɂa.
+0314|He is permitting him.|Al¹sgohl²da³²nẹ²ha.
+0315|He is nodding his head.|Al¹sgu³²sga.
+0316|It is ending.|Al¹sgwạ²dị³ɂa.
+0317|He is sticking his head out.|Al¹sgwạ²lu²³dị³ɂa.
+0318|He is taking his hat off.|Al¹sgwe³tuh²gi³ɂa.
+0319|He is putting his hat on.|Al¹sgwe³tụ²hṿ³ga.
+0320|Hat.|Al²sgwe¹tụ²wo.
+0321| he is setting a goal . Or,   he is aiming.|Al¹so²³sdị³ha.
+0322|Water.|Ạ²ma.
+0323|Salt.|A³ma.
+0324|Water well.|Ạ²mahl³di⁴ɂi.
+0325|Waterbucket.|Ạ²mahl³doh²di.
+0326|United States.|Ạ²mạ³ye³hli.
+0327|In water, into water.|Ạ²ma²³yi.
+0328| shore . Or,  bank.|Ạ²ma²yuhl⁴di.
+0329|Ocean.|Ạ²me³gwo⁴ɂi.
+0330|Contest.|A¹nạ²da²go²nạ²tdi²³sgv⁴ɂi.
+0331|They are gathering.|A¹nạ²da³hli²sị³ha.
+0332|It is lightening.|A¹na³²ga²lị³ha.
+0333| lightning  . Or,  electricity  . Or,  battery.|Ạ²na¹ga²li²³sgi.
+0334|Doll.|A¹nehl²³di.
+0335|He is attempting it.|A³nehl²dị³ha.
+0336|He is getting married.|A¹ne²³lạ³dị²ɂa.
+0337|He is remembering him or it.|Anh¹dạ²dị³ɂa.
+0338|Strawberry.|Ạɂ³ni.
+0339|Her husband.|Ạ²ni²ne⁴li.
+0340|Mexico.|Ạ²ni²sgwa²ni⁴ɂi.
+0341|Military service.|Ạ²ni²yọ³sgi⁴ɂi.
+0342|May.|An¹sgv²ti.
+0343|March.|Ạ²nv²hyi.
+0344|He is setting a trap.|A¹sạ²dv³²sga.
+0345|He is lifting him, raising him or it.|A¹sạ²lạ²dị³ɂa.
+0346|Smart.|Ạ²sạ²ma⁴di.
+0347|Dress.|A¹sạ²no.
+0348| he is making it crisp  . Or,  he is starching it.|A¹sdạ²gayh²dị³ha.
+0349|It is becoming crisp.|A¹sdạ²gạ²yv²hị³ha.
+0350|Line.|A¹sdạ²nv²hnv⁴ɂi.
+0351|He is drawing a line.|A¹sdạ²nv²hnṿ³sga.
+0352|He is following him or it.|A¹sda³²wạ²de³ga.
+0353|He is helping him.|A¹sde²lị³ha.
+0354|He is braiding it.|A¹sde³yọ²ha.
+0355|He is eating a long object.|A¹sdi²³gị³ɂa.
+0356|He is crushing it.|A¹sdo³ɂa.
+0357|Crusher.|Ạ²sdo¹sgi⁴ɂi.
+0358| he is closing it  . Or,  he is jailing him.|A¹sdu³²hṿ²sga.
+0359|He is opening it.|A¹sdụ³ɂị²ɂa.
+0360|Sandwich.|Ạ²sdv²³hạ²hli.
+0361|He is sandwiching it.|A¹sdv²³hạ³hlṿ²sga.
+0362|Maybe, perhaps.|A²se³dv³.
+0363|Peculiar.|Ạ²se⁴gi.
+0364|He is showing him.|A¹sẹ²he³ha.
+0365|But.|A²se³hno.
+0366|Withdrawn.|A¹se²³sv⁴da.
+0367|He is reprimanding him.|A¹sga³²ga.
+0368|He is afraid.|A¹sga³²ha.
+0369|He is biting him or it.|A¹sgahl²ga.
+0370|Evil, sin.|Ạ²sgạ²hni.
+0371|Sinner.|Ạ²sgạ²na⁴ɂi.
+0372|He is committing a crime, sin.|A¹sgạ²nv³²ga.
+0373|Man.|Ạ²sgạ²ya.
+0374|Handsome.|Ạ²sgạ²ye²gv⁴sda.
+0375|Officer.|Ạ²sgạ²ye²gv²³sda.
+0376|Demon, devil.|Ạ²sgi²³na.
+0377|He is dreaming about him or it.|A¹sgi²tsga.
+0378|He is gnawing it.|A¹sgo²gị³ɂa.
+0379|He is mourning for him or it.|A¹sgo²³hnị³ha.
+0380|He is rubbing him or it.|A¹sgo²li²³yẹ³ɂa.
+0381|He is erasing it.|A¹sgo²³lv³di²ɂa.
+0382|Eraser.|A¹sgo²³lv⁴di¹sdi.
+0383|It is fading.|A¹sgo²³lv³²ga.
+0384|He is digging it.|A¹sgo²³sga.
+0385|His shin.|A²sgv²da²ge⁴ni.
+0386|He is finishing it.|A¹sgwạ²dị³ɂa.
+0387|His side.|Ạ²sgwa²ge⁴ni.
+0388|He is catching a falling person, object.|A¹sgwa³²hlẹ²ɂa.
+0389|Short.|Ạ²sgwạ²la⁴ɂi.
+0390| it is getting shorter . Or,  he is getting short on.|A¹sgwạ²lo³²ga.
+0391|He is breaking a long object.|A¹sgwal³²sga.
+0392|He is hitting him on the head with a long object.|A¹sgwạ²lv³nị²ha.
+0393|Mexican.|Ạ²sgwa⁴ni.
+0394|He is amazed.|A¹sgwạ²nị²go²³sga.
+0395|He is sucking it.|A¹sgwạ²nu³²tsga.
+0396|He is hitting him on the abdomen with a long object.|A¹sgwo²hạ²lv³nị²ha.
+0397|He is placing his hand on him or it.|A¹sih²tạ²dị³ɂa.
+0398|He is slapping him or it.|A¹sih²tv³nị²ha.
+0399|He is backing up.|A³si²ne³ga.
+0400|Backwards.|A¹si²ni.
+0401|Individual, one person.|Ạ²sị²yv⁴wi.
+0402|His head.|Ạ²sko⁴li.
+0403|He is roping him or it.|A¹slạ²dị³ɂa.
+0404|He is building a fence.|A¹so²³hyọ³ha.
+0405|Fence.|A¹so²³hyv⁴ɂi.
+0406|He is waving his hand.|A¹so²lv²dạ²gi³ɂa.
+0407|He is pressing down on him or it.|A¹son³²sdị³ha.
+0408|He is wounding him or it.|A¹so²nv²sga.
+0409| string . Or,  thread.|Ạ²sti.
+0410|He is sopping it.|A¹su³ɂa.
+0411|He is fishing.|A¹su²³hṿ³sga.
+0412|He is painting it.|A¹su²³hwị³sga.
+0413|He is changing his pants.|A³su²lạ³ɂi²yv³ɂa.
+0414|He is taking his pants off.|A³su²le³ɂa.
+0415|He is putting his pants on.|A³su²lị³ɂa.
+0416|He is quitting.|A¹su²lị²go³ga.
+0417|Pants.|A¹su²lo.
+0418|Gravy.|Ạ²su³sdi.
+0419|He is choosing him or it.|A¹su²ye³ɂa.
+0420|He is stirring it.|A¹su³yẹ²ha.
+0421|He is mixing it in.|A¹su²yṿ³sga.
+0422|It smells.|A¹sv³²ga.
+0423|Sawmill.|Ạ²sv²gwạ²lo¹sgi⁴ɂi.
+0424|Bridge.|A¹svh²dlv⁴ɂi.
+0425|He is touching him or it.|A¹sv²hnị³ɂha.
+0426| he or it is using it up . Or,  he is drinking, eating it up.|A¹sṿ²hṿ³sga.
+0427|Nighthawk.|Ạ²sv²no²³yi.
+0428|Young woman.|A⁴ta.
+0429|Rage.|Ạ²tạ²hlạ²wo²hị²sdi.
+0430|He is holding his breath.|A¹tạ²hwo³sdị²ha.
+0431|He is mooring a boat.|A¹tạ²lạ²dị³ɂa.
+0432|He is drilling a hole.|A¹tạ²le²sga.
+0433|Hole.|A¹tạ²le²sv⁴ɂi.
+0434|It is steaming.|A¹ta²no²³le³²ga.
+0435|Adolescent girl.|A²tạ²nu⁴ja.
+0436|It is exploding.|A¹tạ²sgi³ɂa.
+0437|He is exploding it.|A¹tạ²sgi³sdi²ha.
+0438|Explosive.|Ạ²tạ²sgi⁴sgi.
+0439|He is kissing her.|A¹tạ²we²³dọ³ɂṿ²sga.
+0440|He is combing someone's hair.|A¹tạ²wo³ɂa.
+0441|He is asking for it.|A¹tạ²yo²hị³ha.
+0442|He is joining.|A¹tẹ²lạ²dị³ɂa.
+0443|Dish, plate.|Ạte²li²³do.
+0444|He is shaking him or it.|A¹te³lv²hṿ³sga.
+0445|Shirt, blouse.|Ạ³tihl²di.
+0446|He is leading him.|A¹tị³hni.
+0447|He is arguing.|A¹tị²yo²³hị³ha.
+0448|Argument.|Ạ²tị²yo²³sdi.
+0449|He is running.|A¹tli.
+0450| he is racing . Or,  he is running for office.|A¹toh²gi²³yạ³ɂa.
+0451| candidate . Or,  racer.|Ạ¹toh²gi³ya¹sgi.
+0452|Borrowed.|Ạ²to²³lị²da.
+0453|He is loaning it to him.|A¹tol²sdị³ha.
+0454|He is borrowing him or it.|A¹tol²sga.
+0455|He is taking a bite.|A¹tsde³ɂa.
+0456|He is lying.|Ạ²tsgo³ɂṿ²sga.
+0457|Alcoholic beverage.|Ạ²tu²³gi⁴sdi.
+0458|He is promising.|A¹tụ³ɂị²sdị³ha.
+0459|He is listening to it, him.|A¹tv²da³²sdị²ha.
+0460| he is asking him a question., . Or,  he is asking a question.|A¹tv²³dv³hṿ²sga.
+0461|He hears him or it.|A¹tv²gi³ɂa.
+0462|He or it is growing.|A¹tṿ²sga.
+0463|Young man.|Ạ²wi⁴na.
+0464|Adolescent boy.|Ạ²wi²nu⁴ja.
+0465|Eagle.|Ạ²wo²³hạɂ³li.
+0466|He is inside.|A¹yạ³a.
+0467|Fast.|A²yạ²nu⁴li.
+0468|He is distributing it.|A¹ya³²tọ²hị³ha.
+0469| one who distributes, . Or,  deacon.|Ạ³ya¹tọ²hị²hi.
+0470|Chapter.|A¹ya³²tọ²hlv⁴ɂi.
+0471|He is waking up.|A¹ye³ga.
+0472| center, middle., . Or,  half., . Or,  half dollar.|Ạ²ye⁴hli.
+0473|He is waking him up.|A¹ye³ɂị²sdị²ha.
+0474|His body.|Ạ²ye²lv⁴ɂi.
+0475| he is getting a long object., . Or,  he is picking up a long object.|A¹yị³ha.
+0476|Floor.|A¹yo²da²³hlạ²hv⁴ɂi.
+0477| it is breaking  . Or,  he is becoming spoiled.|A¹yo³ga.
+0478|He is shooting him or it.|A¹yo²hị³ha.
+0479|He is taking a break.|A¹yọ³hị²sdị³ha.
+0480| child, . Or,  small object.|Ạ²yo⁴hli.
+0481| he is whittiling it., . Or,  he is carving it., . Or,  he is hewing it.|A¹yo²hlṿ³sga.
+0482|Death.|Ạ²yo²hu²hị²sdi.
+0483|He is breaking it up.|A¹yọ³ɂi²sdị³ha.
+0484|He is greeting him.|A¹yo³lị²ha.
+0485| he is breaking it., . Or,  he is spoiling him.|A¹yo³sdị²ha.
+0486|Soldier.|Ạ³yọ²sgi.
+0487|He or it is destroying it.|A¹yo³stạ²nọ³hṿ³sga.
+0488|Lame, crippled.|Ạ²yọ²ɂu⁴hli.
+0489|He is entering it.|A¹yv²hị³ha.
+0490|He is finding a long object.|A¹yv²hwah²tị³ha.
+0491|He is taking a long object somewhere.|A¹yv²hwi²dị³ha.
+0492|Entrance.|Ạ¹yv²sdoh³di⁴ɂi.
+0493|Person, human, people.|Ạ²yv²wi.
+0494|Indian.|Ạ²yv²wi²ya⁴ɂi.
+0495|White person.|Ạ²yv³wụ³ne²ga.
+0496|Eight.|Chạ²ne²³la.
+0497|Coal.|Chị²no²sga.
+0498|Flea.|Chuh²ga.
+0499|He is making an X.|Da¹da²hnaw³²sdị³ha.
+0500|Crossroads.|Da¹da²hnaw³²sdv⁴ɂi nv²no²³hi.
+0501|He is conjuring.|Da¹da²hne²se³ɂa.
+0502|He is accepting him or it.|Da¹dạ²ni²lv³ga.
+0503|He is dodging.|Da¹dạ²nv²³di³²sdị²ha.
+0504|He is performing a baptism.|Da¹da²wo³ɂa.
+0505|He is giving up.|Da¹da²yọ³sga.
+0506|He is teaching.|Da¹de²yo²³hṿ³sga.
+0507|He is weeping.|Da¹dlo²hyị³ha.
+0508|He is being married.|Da¹gạ²chv³sdị²ha.
+0509| oyster, . Or,  pearl, . Or,  pimple.|Dạ²gv²³na.
+0510|He is setting a price.|Da¹gv²wahl²dị³ha.
+0511|Car, wagon.|Dạ²gwạ²le³la.
+0512|He or it is rocking.|Da¹hlih²gẹ³ha.
+0513| he is drawing a picture of him or it; . Or,  he is photographing him or it.|Da¹hli²lo³sdị²ha.
+0514|He is conversing.|Da¹hlị²no²hẹ³ha.
+0515|He is jumping.|Dahl¹tạ²de³ga.
+0516|War.|Da²hnạ²wa.
+0517|He is changing clothes.|Da¹hnạ²wạ³ɂi²yv³ɂa.
+0518|He is undressing.|Da¹hnạ²we³ɂa.
+0519|He is putting on clothes.|Da¹hnạ²wo³ɂa.
+0520|Vian.|Da²hnu³go⁴ɂi.
+0521| he is tickling him; . Or,  he is spurring a horse.|Da¹hyv²³gị³ɂa.
+0522|Better.|Da¹je²³hla.
+0523|He is squatting.|Da³jị²hlụ³sga.
+0524|He is tying it.|Da¹kạ²ne²³hị³ha.
+0525|He is untying it.|Da¹kạ²ne²³hyị³ha.
+0526|He is looking after him.|Da¹kạ²no²wạ²di²³do³²ha.
+0527|He is becoming blind.|Da¹ke²³wa³²ga.
+0528|Terrapin.|Dạ²ksi.
+0529| padlock . Or,  door knob.|Dạ²ksi.
+0530| he is making smoke; . Or,  it is smoking.|Da¹ksv³sdị³ha.
+0531|He is blinking.|Da¹ktạ²naw³²sga.
+0532|He is closing his eyes.|Da¹kta³²sdị²ha.
+0533|He is attacking him or it.|Da¹kti²³le³²ga.
+0534|He is taking off his glasses.|Da¹ktị²nv²de³ɂa.
+0535|He is putting on glasses.|Da¹ktị²nv²tṿ³sga.
+0536|He is shelling corn.|Da¹ktlị³ha.
+0537|He is snoring.|Da¹kwạ²la²gi³ɂa.
+0538|Turnip.|Dạ²kwsạ³ni.
+0539|Woodpecker.|Dạ²la²la.
+0540|He is putting on shoes.|Da¹la³²su²hlṿ³sga.
+0541|He is changing shoes.|Da¹la³²su²lạ³ɂi²yv³ɂa.
+0542|He is taking off his shoes.|Da¹la³²su²le³ɂa.
+0543|He is recuperating.|Da¹le²hi²³sị³ha.
+0544|Tahlequah.|Dạ²lị³gwa.
+0545|He is taking off his gloves.|Da¹lị²ye³²su²le³ɂa.
+0546|He is putting his gloves on.|Da¹lị²ye³²su²lị³ɂa.
+0547|He is taking off his socks.|Da¹li²³yo³gị²ɂa.
+0548|He is putting on his socks.|Da¹li²³yo³hị²a.
+0549|He is changing his socks.|Da¹li²³yo³sị²ha.
+0550| he is aiming at him or it  2 . he is aiming it.|Dal¹so²sdị³ha.
+0551|Horsefly.|Da²mạ³ga.
+0552|They are having a trial.|Da¹nạ²da²hịɂ³li²³do³²ha.
+0553| they are meeting . Or,  they are meeting someone.|Da¹nạ²dlo²sga.
+0554|They are separating.|Da¹nạ²gạ²le²nị³ha.
+0555|He is playing with him or it.|Da³nehl²dị³ha.
+0556|He is playing.|Da³ne²lo²³hṿ³sga.
+0557|They are having church services.|Da¹ni²la³²wi¹ga.
+0558|Christmas.|Da¹ni²sdạ²yo²hị²hv⁴ɂi.
+0559|They are adjourning.|Da¹ni²ye²li²sga.
+0560| he is shooting at him  . Or,  he is shooting.|Da¹sdạ²yo²hị³ha.
+0561|He is splitting it.|Da¹sdlu³²sga.
+0562|He is counting it, them.|Da¹sẹ²hị³ha.
+0563| he is cursing him or it  . Or,  he is cursing.|Da¹sgi²³na³dị²ɂa.
+0564| he is clapping his hands . Or,  he is applauding.|Da¹sih²tv³nị²ha.
+0565|He is getting exhausted.|Da³stạ²ye²sga.
+0566|It is barking.|Da¹sụ²hwị³sga.
+0567|He is scheduling time.|Da¹sv²sdị³ha.
+0568|He is ironing.|Da¹te²³sga.
+0569|Flint.|Dạ²wi²³sgạ³la.
+0570|Slippery.|Dạ²wi²sgv⁴hi.
+0571|Mushroom.|Dạ²wo³li.
+0572|Cork.|Dạ²wo³lị²yu⁴sdi.
+0573|He is releasing him.|Da¹yọ³sga.
+0574|Sack.|De³gahl²di.
+0575|He is slamming him or it.|De²gạ³lv²dv²³ni³²sdị²ha.
+0576| he is advertising it  . Or,  he is announcing it.|De²gạ³no²jạ²hlṿ³sga.
+0577|He is deciding.|De²gu³kdị³ha.
+0578|June.|De²hạ²lu²³yi.
+0579|He is turning or it over.|De²kạ³lih²gwạ²de³ga.
+0580|He is singing.|De²kạ³no²gi³ɂa.
+0581|He is clawing him.|De²kạ³nugosga.
+0582|Marriage.|Di²chv³sdi.
+0583|Murderer.|Di²da³hị²hi.
+0584|Courthouse.|Di²da²hịɂ²li²³da³²sdi⁴ɂi.
+0585| camera  . Or,  photographer.|Di²da²hli²lo¹sdi⁴sgi.
+0586| picture  . Or,  photograph.|Di²da²hli²lo¹stạ²nv⁴ɂi.
+0587|Cross.|Di²da³hna¹wị²da.
+0588|Conjurer.|Di²da²hne²se⁴sgi.
+0589|Medicine man.|Di²da²hnv²wi⁴sgi.
+0590|Surgeon.|Di²da²hye²³hlọ²hi.
+0591|At home.|Di²da³ne²lv⁴ɂi.
+0592|False teeth, dentures.|Di³danh²tọ²sdi.
+0593|Cemetery.|Di²da²ni²³soh³di⁴ɂi.
+0594|Policeman.|Di²da²ni²³yi⁴sgi.
+0595|Cook.|Di²da²sda¹yv²³hṿ²sgi.
+0596|Barber.|Di²da²sdo²ye⁴sgi.
+0597|Jail.|Di²da²sdu¹di⁴ɂi.
+0598|Leader.|Di²da²tị²hni²do⁴hi.
+0599|Lender.|Di²da²tol²sdi⁴sgi.
+0600|Baptist.|Di²da²wo⁴sgi.
+0601|Student.|Di²de²³hlo²gwa¹sgi.
+0602|Teacher.|Di²de²hyo²³hṿ²sgi.
+0603|Toward.|Di³dla.
+0604|Meeting place.|Di²dlo²hị²sdi⁴i.
+0605|Excuse.|Di²dlv²kwị³sdoh²di.
+0606|Church.|Dị²gạ²la¹wị²sdi⁴ɂi.
+0607|Farmer.|Dị²gạ²lo²gi⁴sgi.
+0608|Dumplings.|Dị²gạ²lv¹nv²hi.
+0609|Announcement.|Dị²gạ²no²³jahl²di.
+0610|Pantry.|Dị²gan²so¹di⁴ɂi.
+0611|His ribs.|Dị²gạ²nu²lạ²ji.
+0612|Oven.|Dị²ga¹tdi⁴ɂi.
+0613|Gig.|Dị²ga²tị³sdi.
+0614| papers  . Or,  book.|Dị²go²hwe²li.
+0615|Pencil.|Dị²go²hwe²³lo¹di.
+0616|Mud dauber.|Dị¹guhl¹di²³sgi.
+0617|Judge.|Dị²gu²kdi⁴sgi.
+0618|One that kills.|Di³hị²hi.
+0619|Telephone.|Di²hlị²no²heh²di⁴ɂi.
+0620|Jumper.|Dihl²tạ²de⁴gi.
+0621|Clothing, clothes.|Di²hnạ²wo.
+0622|Wrestler.|Di¹hne²³hị²hi.
+0623|Carpenter.|Di²hne¹sge⁴sgi.
+0624|Spurs.|Di²hyv²³gi¹sdi.
+0625|East.|Dị²kạ²lv²³gv⁴ɂi.
+0626| song book  . Or,  musical instrument.|Dị²kạ²no²gi⁴sdi.
+0627|Angel.|Di²kạ²no²wạ²di²do⁴hi.
+0628|Law.|Di²kạ²no²wạ²dv³sdi.
+0629| fireman  . Or,  firetruck.|Dị²kdlạ²di¹sgi.
+0630|Sharpener.|Dị²kdlvh³di.
+0631|Blind.|Di²ke⁴wi.
+0632|Eyeglasses.|Di²ktị²nv⁴tdi.
+0633|Binoculars.|Dị³ktoh²di.
+0634|Playing cards.|Di²kwạ²nạ²yo²³sdi.
+0635|Pepper.|Di²kwạ²yo⁴di.
+0636|Scissors.|Dil²sdoyh²di.
+0637|Toy.|Di¹nehl³doh²di.
+0638| enemies  . Or,  his enemy.|Di²ni²da³hnạ²wi.
+0639|Dresser.|Di¹se²³hị³sdi⁴i.
+0640|Numbers.|Di²sẹ³sdi.
+0641|Paint.|Di²su²³hwị³sdi.
+0642|Drill.|Di²tạ²le²³sdi.
+0643|Iron.|Di²te²³sdi.
+0644|Lawyer.|Di²tị²yo²³hị²hi.
+0645|Bat.|Dla²me²ha.
+0646|Leech.|Dla²nu³si.
+0647|Bluejay.|Dlayh¹ga.
+0648|Jay.|Dlayh¹gv⁴ɂi.
+0649| garden, field  . Or,  meadow, pasture.|Dlo²ge⁴si.
+0650|Purple martin.|Dlu¹dlu.
+0651|Approximately.|Dlv.
+0652|Somewhere.|Dlv.
+0653|Sunday.|Do²³dạ³gwa¹sgv⁴ɂi.
+0654|Saturday.|Do²³dạ³gwi²de⁴na.
+0655|Monday.|Do²³dạ³gwọ²hnvɂi.
+0656|Really, very.|Do²hị²yu.
+0657|Mosquito.|Do²sa.
+0658|Ant.|Do²sv²³dạɂ³li.
+0659|Outside.|Do²³yi.
+0656|Really, very.|Do²hị²yu., Do²yu⁴.
+0660|His family.|Du¹da²tị²hnạ²ɂv⁴ɂi.
+0661|He is confronted with it.|Du¹dlo²sga.
+0662|He is called, he is named.|Du¹do²ɂa.
+0663|He is staggering.|Du¹do³²kdị³ha.
+0664|He is getting a rash.|Du¹gwe²no³tị²sga.
+0665|He has horns.|Duhl¹ga.
+0666|He is sneezing.|Du¹hyv²³sdoy³²sga.
+0667|He is vomiting.|Du¹ksdị²ha.
+0668|He is wearing glasses.|Du²ktị²nv²ta.
+0669|He is wearing shoes.|Du¹la³²su²hla.
+0670|September.|Du²li¹sdi.
+0671|He is wearing gloves.|Du¹lị²ye³²su²la.
+0672|He is wearing socks.|Du¹li²³yo³ha.
+0673|He is working.|Du¹lv²³hwị³sda¹nẹ²ha.
+0674|October.|Du¹ninh²di.
+0675|He is making footsteps.|Du³sdạ²no²hyvh²ga.
+0676|He is tired.|Du¹yạ²we³ga.
+0677|The truth.|Du¹yu²kdv⁴ɂi.
+0678| he is walking around., . Or,  he is here.|E²do³ha.
+0679|He is going.|E³ga.
+0680|Huge, large.|E⁴gwa.
+0681|Sea.|E²gwo²³ni.
+0682|He lives.|E²³ha.
+0683|Resident, dweller.|E⁴hi.
+0684|Indigenous.|E²hi²ya⁴ɂi.
+0685|Quiet.|E²hlạ²we⁴ɂi.
+0686| down, . Or,  on foot.|E²lạ²di.
+0687|He thinks so.|E¹lị³a.
+0688|Enough or it is enough.|E²li⁴gwu.
+0689|It is possible.|E²li⁴gwu.
+0690|It seems that.|E⁴li¹sdi.
+0691|Straight.|Ga²chị²no⁴sda.
+0692|He is straightening it.|Ga²chị²no²sị³ha.
+0693| soil  . Or,  land.|Ga²³da.
+0694|Flag.|Ga¹dạɂ³di.
+0695|Crock.|Ga²³dạ³gu¹gu.
+0696|Clay.|Ga²dạ²gwạ³la.
+0697|Dirty.|Ga²da²ha⁴ɂi.
+0698|He is plowing it.|Ga²dạ²lu²³gị³ɂa.
+0699|Plow.|Ga²dạ²lu³go¹di.
+0700|He is turning it.|Ga²dey²³sdị²ha.
+0701|His heel.|Ga¹di²ge⁴ni.
+0702|He is spinning it.|Ga²di³gwạ²lv²dey²³sdị²ha.
+0703|He is strapping it.|Ga³dlo²hị³ha.
+0704|He is standing.|Gạ²do³²ga.
+0705|On the ground.|Ga²do⁴hi.
+0706|Why.|Gạ²do¹hv³.
+0707|He is pitying him.|Ga²do²³li³²ga.
+0708|Which.|Gạ²do² u⁴sdi.
+0709|Bread.|Ga⁴du.
+0710|On top.|Gạ²du³.
+0711|Town.|Ga²du³hv⁴ɂi.
+0712|He is baking it.|Ga³du²hṿ³sga.
+0713|Wet.|Ga¹du²li⁴da.
+0714|Hill.|Gạ²du⁴si.
+0715|Cake.|Ga³du² u²gạ²na⁴sda.
+0716|He is hanging up a flexible object.|Gạ²dv³ɂṿ²sga.
+0717|Cucumber.|Ga²³gạ³ma.
+0718|Paddle, oar.|Ga²gạ²we²³sdi.
+0719|He is rowing, paddling.|Ga²gạ²we²³sga.
+0720|Heavy.|Ga²ge⁴da.
+0721|Who.|Ga³go².
+0722|Wheel.|Ga³gwạ²tdi.
+0723|He is pecking it.|Ga²gwạ²yo²hị³ha.
+0724|Wedge.|Ga²hạ²tdi.
+0725|He is putting it into a container.|Gahl²dị³ha.
+0726|Container.|Gahl³doh²di.
+0727|Seven.|Gahl²gwo²³gi.
+0728|Seventh.|Gahl²gwo²gi²ne⁴ɂi.
+0729|Arrow.|Ga³hlị²da.
+0730|He is sleeping.|Gạ²hlị³ha.
+0731|He is gathering it.|Ga³hli²sị³ha.
+0732|Bow.|Gahl²jạɂ²di.
+0733|House.|Gahl²jo²³de.
+0734|Roofing.|Gahl²jo³tdoh²di.
+0735|Tent.|Gahl²jo²tv⁴ɂi.
+0736|He is piling it up.|Ga³hlụ²sga.
+0737|He is tying him or it up.|Gạ²hlv³ɂị²ha.
+0738|He is putting it in a hole or a container.|Gạ²hlṿ³sga.
+0739|He is sleepy, he is going to sleep.|Gạ²hlv²sga.
+0740|He is taking a flexible object somewhere by hand.|Gạ²hne³ga.
+0741|He is holding a flexible object.|Gạ²hnẹ³ha.
+0742|He is handling a flexible object.|Gạ²hni²³do³²ha.
+0743|Collar.|Ga²hyạɂ³dlv⁴ɂi.
+0744|Saddle.|Ga²hyạ²hu²lo.
+0745|He is eating a flexible object.|Ga²hye³ɂa.
+0746|Something flexible to eat.|Ga²hye⁴sdi.
+0747|He is ripping it.|Ga²jạ²gạ²lị³ha.
+0748|He is scratching him or it.|Ga²jạ²lị²go²³sga.
+0467|Fast.|A²yạ²nu⁴li., Ga²jạ²nu⁴li.
+0749| he is pricking him or it  . Or,  he is giving him an injection.|Ga²jạ²yo²hị³ha.
+0750|He is wringing it out.|Ga³jv²wa³²sdị²ha.
+0751|He is stinging it.|Ga²jvy³sga.
+0752|He is leaving a living thing behind.|Ga²kạ²hi²yạ³ɂa.
+0753|He is giving him a living thing.|Ga²ka³²nẹ²ha.
+0754|He is wrapping him or it.|Ga²kwe²nv²sga.
+0755|He is putting a long object in a container.|Gạ²lạ³dị³ɂa.
+0756|Street.|Gạ²lạ²nv²dv⁴ɂi.
+0757|He is climbing it.|Gạɂ³le¹ga.
+0758|Blacksnake.|Gạɂ²le¹gi.
+0759|His ear.|Gạɂ²le⁴ni.
+0760|He is burning.|Gạ²le³yv²sga.
+0761|A long object is falling from an upright position.|Gạ²le²yv²³sga.
+0762|He is climbing around.|Gạɂ³li²do³ha.
+0763|He is taking a long object out of a container.|Gạ²li²³ha.
+0764|Fat.|Gạ²lị²jo³hị²da.
+0765|He is spanking him.|Gạ²li³ɂv²hnị³ha.
+0766|He is hoeing it.|Gạ²lo²gi³ɂa.
+0767|Hoe.|Gạ²lo²go¹di.
+0768|Gun.|Gạ²lo¹gwe.
+0769|Doorway, door.|Gạ²lo²hị²sdi⁴ɂi.
+0770|August.|Gạɂ²lo²hni.
+0771| He is bluffing him. . Or,  he is deceiving him . Or,  he is tricking him.|Gạ²lo²na³²sdị²ha.
+0772|He is oiling it.|Gạ²lo²³nẹ³ɂa.
+0773|He is making him fall from an elevated psition.|Gạ²lonh³dị²ha.
+0774|He is cheating.|Gạ²lo²nu²he²³ha.
+0775|He is falling from an elevated position.|Gạ²lo³²sga.
+0776|He is arriving.|Gạɂ³luh²ga.
+0777| it is lacking . Or,  it is missing.|Gạ²lu²³lo³²ga.
+0778|Axe.|Gạ²luy¹sdi.
+0779|Bed bug.|Gạ²luy¹sdi.
+0780|He is chopping it.|Gạ²luy³²sga.
+0781|Container for something flexible.|Gạ²lv³doh²di.
+0782|He is beating him up.|Gạ²lv³hnị²ha.
+0783|Heaven.|Gạ²lv²³lạ³di.
+0784|High.|Gạ²lv³lạ²di.
+0785|Above.|Gạ²lv²³lạ³di²dla.
+0786|Higher.|Gạ²lv²³lạ³dị²ge⁴ɂi.
+0787|Sky.|Gạ²lv²lo⁴ɂi.
+0788|He is putting a flexible object in a hole or in a container.|Gạ²lv³sga.
+0789|He is selling it.|Gạ²nạ²de³ga.
+0790|Livestock.|Gạ²na¹hlạ³ɂi.
+0791|He is hiring him.|Gạ²na³²hlṿ²sga.
+0792|Lazy.|Ga¹na⁴li.
+0793|Castrated horse, dog sheep, etc.|Ga¹nạɂ³li.
+0794|He is finding a flexible object.|Gạ²nawh³²tị³ha.
+0795|Dangerous.|Gạ³nạ²ye¹gi.
+0796| he is getting a flexible object  . Or,  he is picking up a flexible object.|Gạ²ne³ɂa.
+0797|He is changing it.|Gạ²ne²³dli³yṿ²ɂa.
+0798|Skin.|Gạ²ne¹ga.
+0799|He is peeling, skinning him or it.|Gạ²ne³gạ²lị³ha.
+0800| he is getting some liquid  . Or,  he is picking up some liquid.|Gạ²ne²gi³ɂa.
+0801|He is bewitching him.|Gạ²ne²³gu³di²ɂa.
+0802|He is holding the long object in his hand.|Ga²nẹ³ha.
+0803|He is leaving some liquid.|Gạ²ne²hi²ya³ɂa.
+0804|He is giving him some liquid.|Gạ²ne²hne³ha.
+0805|He is finding some liquid.|Gạ²ne²hwah²tị³ha.
+0806|He is taking some liquid somewhere.|Gạ²ne²hwi²dị³ha.
+0807|His chest.|Gạ²ne²ji⁴ɂi.
+0808|Married person.|Gạ²ne⁴li.
+0809|It is freezing.|Gạ²ne²³sdạ³lạ²dị²ɂa.
+0810|It is hailing.|Gạ²ne²soy³²sga.
+0811|Saw.|Ganh²doh³gi.
+0812|His tooth.|Ganh²doh³gv⁴ɂi.
+0813|He is lying down.|Ganh²ga.
+0814|His tongue.|Ganh¹go³ɂi.
+0815|He is agitating liquid.|Ganh²gwạ³ɂe²ha.
+0816|He is taking a liquid somewhere by hand.|Ganh²je³ga.
+0817|He is holding some liquid.|Ganh²jẹ³ha.
+0818|He is handling some liquid.|Ganh²ji²³do³²ha.
+0819|Salesman.|Ganh²tạ²ni²do⁴hi.
+0820| bullet  . Or,  lead.|Gạɂ³ni.
+0821|His tail.|Gạ²ni³dạɂ²dv⁴i.
+0822|He is handling a long object.|Ga²ni²³do³²ha.
+0823|He hates him.|Gạ²nị²gwa³²tị²ha.
+0824|He is setting up a bed.|Gạ²ni²hlạ³dị³ɂa.
+0825|Bedstead.|Gạ²ni²hlạ²di³²sdi.
+0826|Bed.|Gạ²ni²hli.
+0827| he is pleading . Or,  he is urging.|Gạ²ni²³lạ³dị²ɂa.
+0828|He is burying him.|Gạɂ³ni²sị³ha.
+0829| he is catching him . Or,  he is arresting him . Or,  he is playing catcher.|Gạɂ³ni²yị³ha.
+0830|Catcher.|Gạɂ²ni²³yi⁴sgi.
+0831|He is hunting.|Gạ²no²hạ²li²³do³²ha.
+0832|Hunter.|Gạ²no²hạ²li²do⁴hi.
+0833|He or it is flying.|Gạ²no²hi²³li.
+0834|It is flooding.|Gạ²no²hu²³gị³ɂa.
+0835|He is causing it to sound.|Gạ²no²hyv²hlị²sdị³ha.
+0836|Leather.|Gạ²no¹ji.
+0837|He is stealing it.|Gạ²no²sgi³ɂa.
+0838|Stolen.|Gạ²no²sgi⁴da.
+0839|Thief.|Gạ²no²sgi⁴sgi.
+0840| he or it is sinking  . Or,  he or it is being buried.|Gạ²no²³yv³²ga.
+0841|He is pulling him or it.|Gan²sạ²ne³ɂa.
+0842|Stick.|Gan²sda.
+0843| he is dragging him or it . Or,  he is towing it.|Gan²si²³ne³²ga.
+0844|He is exiting.|Gạ²nu²go³ga.
+0845|Spring.|Gạ²nu²go³gv⁴ɂi.
+0846|Exit.|Gạ²nu²gọ²ɂị²sdoh³di⁴ɂ.
+0847|Grass, weed.|Gạ²nu²³lv.
+0848|Lawn mower.|Gạ²nu²³lv a³gal¹sdi.
+0849|He is twisting him or it.|Gạ²nu³te²yọ³ha.
+0850|He is missing him or it.|Gạ²nv²³dị³ɂa.
+0851|His breast.|Gạ²nv²di⁴ɂi.
+0852|He is falling from an upright  position.|Gạ²nv³ga.
+0853|He is cleaning him or it.|Gạ²nv²gạ²lị³ha.
+0854|He is hammering it.|Gạ²nv²gwạ²lo³ɂa.
+0855|Hammer.|Gạ²nv²gwạ²lo⁴sdi.
+0856|A blacksmith shop.|Gạ²nv²gwa²lo¹sgi⁴ɂi.
+0857|Long.|Gạ²nv²hi⁴da.
+0858| he is tying up a leg . Or,  he is applying a break.|Gạ²nv³hlo²hị³ha.
+0859|Route.|Gạ²nv²hnv⁴ɂi.
+0860|He is tossing about.|Gạ²nv³ji²do³ha.
+0861|He is giving him a flexible object.|Gạ²nv³nẹ²ha.
+0862|Pipe.|Gạ²nv²no²wa.
+0863|Leg.|Gạ²nv¹sge.
+0864|His leg.|Gạ²nv¹sge⁴ni.
+0865|His shoulder.|Gạ²nv²wo⁴ɂi.
+0866|He is pushing him or it.|Ga²sạ²do³²sga.
+0867|He is rolling him or it.|Ga²sạ²gwạ²le²³hị³ha.
+0868|Round.|Ga²³sạ³gwạ²lv⁴ɂi.
+0869|Coat.|Ga¹sạ²le²³ni.
+0870|Roof.|Ga¹sạ²na²li.
+0871|Chair, table.|Ga²sgị²lo.
+0872|Dining table.|Ga²sgị²lo al²sdayv¹hv⁴ɂsga.
+0873|Rocking chair.|Ga²sgị²lo di²hlih²ge⁴sgi.
+0874|On a chair, table.|Ga²sgị²lv⁴ɂi.
+0875|It is dripping.|Ga³sgwọ²ɂi²ha.
+0876|Humpbacked.|Ga³soh²gwạ²ti.
+0877|His back.|Ga²sọ²hi⁴ɂi.
+0878|He is whistling.|Ga²svnh²ga.
+0736|He is piling it up.|Ga³hlụ²sga., Ga³sv²tṿ³sga.
+0879|It is hanging.|Gạ²ta.
+0880|Button.|Gạ²tdi.
+0881|Cooking pan.|Ga²te³sạɂ²di.
+0882|He is stabbing him or it.|Ga²tị³ha.
+0883|Stompgrounds.|Ga²³ti³yo⁴ɂi.
+0884|Tail.|Ga¹toh²ga.
+0885|He is hanging it up.|Gạ²tṿ³sga.
+0886|He is joking, he is teasing.|Gạ²we³hlị²ha.
+0887|He is resting him.|Gạ²we³so²lv²³sdị³ha.
+0888| he is bathing him . Or,  he is baptizing him.|Gạ²wo³ɂa.
+0889|He is replying.|Gạ²wo²³hị³li²yṿ²ɂa.
+0890|He is lecturing him.|Gạ²wonh³dị³ha.
+0891|Gossip.|Gạ²wo¹ni²³da.
+0892|He is speaking.|Gạ²wo³nị²ha.
+0893|Cantaloupe, muskmelon.|Gaw²sv¹gi.
+0894|His finger.|Ga³ye²sạɂdv⁴ɂi.
+0895|He is sewing it.|Ga²yew²sga.
+0896|Sewing machine.|Ga²yew²sgi⁴ɂi.
+0897|Liar.|Gayh²go⁴gi.
+0898|Lie.|Gayh²go¹gi.
+0899|Small quantity.|Ga¹yo⁴hli.
+0900|Already.|Ga³yu²la.
+0901|He is feeding him or it.|Ge²hlọ³ha.
+0902|He or it is howling, screaming, yelling, etc.|Ge²hlụ²hṿ³sga.
+0903|Wild.|Ge³hyah²tạ²hi.
+0904|Downstream.|Gẹ²ɂi.
+0905|Clinic.|Ge²jị²go²li²³ye³²di⁴ɂi.
+0906|He is leading it by a leash.|Ge²li²³si³ne²ha.
+0907|Pie.|Ge²li⁴stgi.
+0908|Crowbar.|Ge²ti²lo⁴sdi.
+0909|Post.|Ge³tṿ²sdi.
+0910|Blood.|Gi²³ga.
+0911|He has a nosebleed.|Gi²³ga de²kạ³yv²³sgwọ³ɂị²ha.
+0912|Red.|Gi²³gạ³ge.
+0913|Loose hair.|Giɂ²hla.
+0914|Dog.|Gi²hli.
+0915|Hounddog.|Gi²hli dị²gạɂ²le²³nv³hi²da.
+0916|English.|Gị²li²si.
+0845|Spring.|Gạ²nu²go³gv⁴ɂi., Go²ge⁴yi.
+0917|Summer.|Go²gi.
+0918|A long time.|Go²hi⁴da.
+0919|He is leading him by the hand.|Go²hi²³ne³²ga.
+0920| he is agreeing with him . Or,  he is vouching for him.|Go²hiyh²da³²nẹ²ha.
+0921|Belief, faith.|Go²hiyh²di.
+0922|He is recognizing him.|Gohl²ga.
+0923|He understands it.|Gohl²ga.
+0924|His acqaintance.|Gohl⁴gi.
+0925|Butter.|Go²hlv²hnv⁴ɂi.
+0926|He is getting full.|Go²hlṿ³sga.
+0927|He is making it.|Go¹hlv²sga.
+0928|Something.|Go²hu⁴sdi.
+0929| paper . Or,  letter.|Go²hwe²li.
+0930|He is writing it.|Go²hwe²³li³ɂa.
+0931|Greasy.|Gọ²ɂi⁴.
+0932| grease . Or,  oil.|Gọ²ɂi.
+0931|Greasy.|Gọ²ɂi⁴., Gọ²ɂi²ha⁴ɂi.
+0933|He is pulling a trigger.|Go³²jạ²ne³ɂa.
+0934|Trigger.|Go¹jạ²ne¹sdi⁴ɂi.
+0935|Cigarette.|Go⁴ksdi.
+0936|He is smoking it.|Go²ksga.
+0937|Winter.|Go⁴la.
+0938|Pneumonia.|Go²³le²³hi.
+0939|Sharp.|Go²³sda¹yi.
+0940|Dull.|Go²sdi¹yu⁴hli.
+0941|He is batting it.|Go²sdv³ni²ha.
+0645|Bat.|Dla²me²ha., Go²sdv³ni¹sdi.
+0942|He is saying to him.|Go¹sẹ³ha.
+0943|It is swelling.|Go²tị²sga.
+0944|He is building a fire.|Go²³tṿ³sga.
+0945| he is unhitching him or it . Or,  he is unhooking it . Or,  he is unplugging it.|Gu²dạ²le³ɂa.
+0946| he is hitching him or it up . Or,  he is hooking it up . Or,  he is plugging it in.|Gu²dạ²lv³²sga.
+0947|Bottle.|Gu¹gu.
+0948|Tick.|Gu¹gu.
+0949|Bartlesville.|Gu¹gu⁴ɂi.
+0950|He is putting a handle on a tool.|Gu²hạ²hlṿ³sga.
+0951|Quail.|Gu²hgwe.
+0952|He is washing it.|Gu²hi²lo³ɂa.
+0953|He is accusing him.|Gu²hi²³sdị³ha.
+0954|Lid.|Gu¹hlv³di.
+0955| he is covering it . Or,  he is putting a lid on it.|Gu³hlṿ²sga.
+0956|He is putting it in water.|Gu²hṿ³sga.
+0957|Acorn.|Gu²le.
+0958|Mourning dove.|Gu²le di²sgo²³hnị²hi.
+0959|Muskogee.|Gu²so⁴ɂi.
+0960|He is picking him or it up.|Gu²te³ɂa.
+0961|It is snowing.|Gu²tị³ha.
+0962|Watermelon.|Gv²gi¹sdi.
+0963|He is sifting it.|Gv²gu²³sdị³ha.
+0964|It is leaking.|Gv²gu²³sga.
+0965|With, by means of.|Gvh⁴di.
+0966|Bobcat.|Gv²he.
+0967|He is alive.|Gv²hna.
+0968|Active.|Gṿ³hnạ²gal²sdi.
+0969|Black.|Gv²³hnạ³ge⁴ɂi.
+0970| he is hitting, striking him or it . Or,  he is knocking.|Gv²hnị³ha.
+0971|Alive.|Gv²hno⁴da.
+0972|His life.|Gv²hnv⁴ɂi.
+0973|Whole.|Gv²hwạ²no⁴sda.
+0974|Fried.|Gv²jạ²hlạ³nv⁴hi.
+0975|He is frying it.|Gv²jạ²hlṿ³sga.
+0976|Turkey.|Gv³na.
+0977|He is melting it.|Gv¹nawh²dị³ha.
+0978|It is melting.|Gv²nạ²wo²sga.
+0979|Broom.|Gv²no²sạ³sdi.
+0980|He is sweeping it.|Gv²no²sa³sga.
+0981|He is hiding it.|Gv¹sgạ²hlṿ³sga.
+0982|He is hiding a long object.|Gv²sgạ²lạ³dị³ɂa.
+0983|He is cracking it.|Gv²sgwạ²lo³ɂa.
+0984|He is putting it into a fire.|Gv²tṿ³sga.
+0985|All around.|Gv²wa²tu³hwị²da.
+0986|Where.|Ha²dlv.
+0987|Under.|Hạ²wi⁴ni.
+0988|Underneath.|Hạ²wi³ni di³dla.
+0989|Meat.|Hạ²wi²ya.
+0990|Don't.|He¹sdi.
+0991|This, these.|Hị²ɂa.
+0992|When.|Hị²la³²yv⁴ɂi.
+0993|Five.|Hị²sgi.
+0994|No, not.|Hla.
+0995|Nothing.|Hlạ³ go²hu⁴sdi.
+0996|Nowhere.|Hlạ³ ị²lvh³dlv.
+0997|Never.|Hlạ³ ị²lv²³hị³yu.
+0998|No one.|Hlạ³ kị²lo.
+0999|Mud.|Hlạ²wo¹tu.
+1000|For a while.|Hle⁴ga.
+1001|Soon.|Hle²ki³.
+0990|Don't.|He¹sdi., Hle¹sdi.
+1002|Tree.|Hlgv⁴ɂi.
+1003|Lion.|Hlv²dạ²ji.
+1004|Okay.|Họ²wa.
+1005|Board.|Hyah²te²³na.
+1006|Narrow.|Hyah²to⁴hli.
+1007|Quilt.|Hyeh²gạ²hli.
+1008|Day.|I²ga.
+1009|Some.|I²³ga³da.
+1010|He is returning.|I²³gạɂ³luh²ga.
+1011|In length.|I²³gạ³nv²hi⁴da.
+1012|Height.|I²³gạ²ti.
+1013|Length of time.|I²³go³hi⁴da.
+1014|Until.|I²³go³hi⁴da.
+1015|Area.|I²³gv³nạ²de⁴na.
+1016|Earlier than.|Ị²gv²³yi.
+1017|First.|Ị²gv²yi⁴ɂi.
+1018|Green.|Ị²jẹ³ɂị²yu⁴sdi.
+1019|Both.|I²³ju³la.
+1020|Size.|Ị³kị²da.
+1021|Ever.|Ị²lv²³hị³yu⁴ɂi.
+1022|Few.|Ị²lv⁴sgi.
+1023|Far.|I⁴na.
+1024|Snake.|I²³nạ³da.
+1025|Forest, wilderness.|I²³nạ³ge⁴ɂi.
+1026|Too far.|I²nv²hi.
+1027|Flour.|I²sa.
+1028|Inch.|Ị³sih²tạ²di¹sdi.
+1029|Pumpkin.|I²ya.
+1030|Cent.|Ị²yạ³danh³teh³di.
+1031|Thousand.|Ị²yạ³gạ²yv⁴li.
+1032|Minute.|Ị²yạ³tạ²hwo¹stạ²nv⁴ɂi.
+1033| apart  . Or,  often.|Ị²yu³da⁴li.
+1034|Weeks.|Ị²yu³nạ²do²³dạ²gwa¹sdi.
+1035|Like.|Ị²yu⁴sdi.
+1036|O'clock.|Ị²yụ³wa²hnị²lv⁴ɂi.
+1037|Time, times.|Ị²yụ³wa⁴kdi.
+1038|Cherokee.|Jạ²lạ²gi.
+1039|North Carolina.|Jạ²lạ²gụ³we²ti⁴ɂi.
+1040|Chickadee.|Jị²gị²ɂlị²li.
+1041|Chewing gum.|Ji²lạ²li.
+1042|Jesus.|Ji²³sa.
+1043|Rabbit.|Ji²sdu.
+1044|Crayfish.|Ji³sdv²na.
+1045|Scorpion.|Ji³sdv²na ạ²da²jvy⁴sgi.
+1046|Bird.|Ji³sgwa.
+1047|Robin.|Ji²³sgwo³²gwo.
+1048|Chicken.|Jị²ta²³ga.
+1049|Rooster.|Jị²ta²³ga ạ²chv²ya.
+1050|Boat, airplane.|Ji²³yu.
+1051|Pilot.|Ji²³yu di²hlạ²wi²tdi⁴sgi.
+1052|Upstream.|Jo²gi.
+1053|Three.|Jọ²ɂi.
+1054|Third.|Jọ²ɂi²ne⁴ɂi.
+1055|Wednesday.|Jọ²ɂi²nẹ⁴ I²ga.
+1056|Tobacco.|Jo²la.
+1057|Window.|Jo²³lạ²ni.
+1058|Different, various.|Ju²dạ²le²hnv⁴da.
+1059|Chairman, president.|Ju²da²³tị²hnạ²ɂi.
+1060|South.|Ju²³ga³nạ²wv⁴ɂi.
+1061|Cabbage.|Ju²ganh²de²³na.
+1062|Centipede.|Ju²gạ²no¹ji.
+1063|Price.|Ju²gv²³wahl²di.
+1064|Wealth.|Ju²gv²wahl²di.
+1065|In the past, formerly.|Ju²³hlị³ɂị²lv³stạ²nv⁴ɂi.
+1066|Sour.|Ju²hnạ²jo⁴sdi.
+1067|His clothes.|Ju²hnạ²wo.
+1068|North.|Ju²³hyv³dlv⁴ɂi.
+1069|Barbed, thorny.|Ju²jạ²yo⁴sdi.
+1070|Bull.|Ju²kạ²nv¹sde²³na.
+1071|Smoky.|Ju²ksv⁴sdi.
+1072|Smoke.|Ju²ksv²³sdi.
+1073|Copperhead.|Ju²ktạ²ji³sdạ²hli.
+1074|Alligator.|Ju²la¹sgi.
+1075| cast iron,  . Or,  a sort of cast iron pot.|Ju²la¹sgi.
+1076|Brave.|Ju²lị²chv²³ya¹sdi.
+1077|Deaf.|Ju²lị²ɂe⁴na.
+1078|Catfish.|Ju²li¹sdạ²na²li.
+1079|Striped.|Ju²lohl⁴di.
+1080|Nightly.|Jul²sị²hnv⁴da.
+1081|Worker.|Ju²lv²³hwị³sda¹ne⁴hi.
+0597|Jail.|Di²da²sdu¹di⁴ɂi., Ju²nạ²da²sdu¹di⁴ɂi.
+1082|School.|Ju²nạ²de²hloh²gwa¹sdi⁴ɂi.
+1083|Restaurant, cafe.|Ju¹nal¹sdayh¹di⁴ɂi.
+1084|Friday.|Junh²gi²lo⁴sdi.
+1085|Hospital.|Ju²ni²dlv¹gi⁴ɂi.
+1086|Hotel, motel.|Ju²ni²sv²sdi⁴ɂi.
+1087|Days.|Ju²sv²³hị²da.
+1088|His home.|Jụ²we³nv¹sv⁴ɂi.
+1089|Hell.|Jv²sgi²no.
+1090|February.|Ka²gạɂ²li.
+1091|Coffee.|Ka²³hwi.
+1092|Full.|Kạ²li⁴ɂi.
+1093|Locust tree.|Kạ²lo¹gwe²³kdi.
+1094|Locust Grove.|Kạ²lo¹gwe²³kdi⁴ɂi.
+1095| sugar  . Or,  candy.|Kal²se²³ji.
+1096|Month.|Kạɂ²lv⁴ɂi.
+1097|Butterfly.|Kạ²ma²ma.
+1098|Elephant.|Kạ²ma²ma.
+1099|Wasp.|Kạ²nạ²ji¹sde²³ji.
+1100|He is ascending an incline.|Kạ²nạ²lu²sga.
+1101|Uphill.|Kạ²nạ²lu²sgv⁴ɂi.
+1102|Anger.|Kạ²na²³lṿ³ɂị²sdi.
+1103|He is making him angry.|Kạ²na²³lv³sdị²ha.
+1104|Spider.|Kạ²nạɂ²ne²³sgi.
+1105|His toe.|Kạ²na³²sạɂ²dv⁴ɂi.
+1106|He is rooting it out.|Kạ²na³²sde²dlị³ha.
+1107|Pick.|Kạ²na¹sdehl²³di.
+1108|He is cold.|Kạ²nạ²wo³²ga.
+1109| he is speaking  . Or,  he is answering.|Kạ²ne³ga.
+1110|He is prying it.|Kạ²ne³gwạ²dị³ha.
+1111|He is accumulating it, he is increasing it.|Kạ²neh²gwo³ɂa.
+1112|It is accumulating or it is increasing.|Kạ²neh²gwo³ga.
+1113|He is mentioning it.|Kạ²ne³ɂị²sdị³ha.
+1114|Box.|Kạ²ne¹sạ³ɂi.
+1115|Nest.|Kạ²ne²³sda³²hlạ²hv⁴ɂi.
+1116|Hay.|Kạ²ne¹sga.
+1117|His knee.|Kạ²nị²ge⁴ni.
+1118|He is collecting from him.|Kạ²nị²hlṿ³sga.
+1119|Rat.|Kạ²nị²kwsa.
+1120| arm, . Or,  wing.|Kạ²no²ge.
+1121| his arm, . Or,  its wing.|Kạ²no²ge⁴ni.
+1122| news, . Or,  gospel.|Kạ²no²he²³da.
+1123|He is telling it.|Kạ²no²hẹ³ha.
+1124|He is omitting him or it.|Kạ²no²³hi³yạ²ɂha.
+1125|Passover supper.|Kạ²no²³hi³ye⁴gi.
+1126|He is fanning him or it.|Kạ²no³yẹ²ha.
+1127|Sassafras.|Kan²sdạ²ji.
+1128|Blackberries.|Kạ²nu¹gạ²hli.
+1129|Bullfrog.|Kạ²nu²na.
+1130|It is misting.|Kạ²nu³yo²lạ³dị³ɂa.
+1131|He is straining it.|Kạ²nv³so²lv²³sdị³ha.
+1132|Room.|Kạ²nv³su²lv⁴ɂi.
+1133| he is curing, doctoring him, . Or,  he is soldering, welding it.|Kạ²nv²³wị³ɂa.
+1134|April.|Kạ²wo²hni.
+1135|He is breathing.|Ka²wo²lạ²de³ɂa.
+1136|Duck.|Kạ²wo²³nu.
+1137|His nose.|Kạ²yv²so⁴li.
+1138|He is using it.|Kdị³ha.
+1139|He is putting out a fire, a light.|Kdlạ²dị³ɂha.
+1140|He is sharpening it.|Kdlị³ha.
+1141|He is mingling with a group.|Kẹ²lạ³di³do¹ha.
+1142|Member.|Ke⁴li.
+1143|Camel.|Ke²³mị³li.
+1144|He is linking it.|Kị²hlṿ³sga.
+1145|Later.|Kị²la.
+1146| early in, . Or,  not long ago.|Kị²la⁴.
+1147|Pretty soon.|Kị²lạ³gwu.
+1148|Immediately.|Kị²lạ³gwu ị²yv⁴da.
+1149|Someone.|Kị²lo⁴.
+1150|Chipmunk.|Kị²yu³²ga.
+1151|He is shaking a flexible object.|Kjạ²gṿ³ɂṿ²sga.
+1152|Spade.|Ko²de⁴sgi.
+1153|Crow.|Ko³ga.
+1154|A while ago.|Ko¹hi⁴.
+1155|Later, after a while.|Ko¹hi³²yv⁴ɂi.
+1156|Bone.|Ko²³la.
+1157| ashes, . Or,  dust.|Ko¹sdu.
+1158|Dusty.|Ko¹sdu²ha⁴ɂi.
+1159|He is hanging up a long object.|Kto³sạ²dị³ɂa.
+1160|Mulberries.|Kụ²wa.
+1161|Sycamore.|Kụ²wạ³ju³ne²ga.
+1162|Huckleberries.|Kụ²wa²ya.
+1163|Pryor.|Kụ²wa²yo⁴ɂi.
+1164|July.|Kụ²ye²gwo²³na.
+1165|Raccoon.|Kv²³hli.
+1166|In view.|Kv²hnị³ge¹sv⁴ɂi.
+1167|Peach.|Kwạ²na.
+1168|Cobra.|Kwan²dạ³yo²³ha.
+1169|Plum.|Kwạ²nun³sdị²ɂi.
+0142|Here.|Ạ³hạ²ni., Na.
+1170|That, those.|Na.
+1171|Then.|Na¹hị²yu⁴ɂi.
+1172|Near, close.|Nạ²ɂv.
+1173|Hominy.|Ne²³wạ²da.
+1174|Look!|Ni.
+1175|All.|Nị²ga⁴da.
+1176| he is saying it  . Or,  it is barking, meowing, whinnying, cooing, etc.|Nị²gạ²wẹ²ɂa.
+1177|Always.|Nị²go²³hi³lv⁴ɂi.
+1178|He is taking it off.|Nị²gvnh³de³ɂa.
+1179|He is putting it on.|Nị²gvnh³dị³ha.
+1180|You.|Nị²hi.
+1181|All over, everywhere.|Nị²kv⁴ɂi.
+1182|Now.|No²³gwu.
+1183|And then.|No²³gwụ³le.
+1184|Pine.|Noh²ji.
+1185|Star.|Nọ²kwsi.
+1186|Sand.|No²ya.
+1187|Different.|Nu²³dạ³le⁴ɂi.
+1188|Insane, without a mind.|Nu²danh³tv⁴na.
+1189|As quickly as possible.|Nu¹hli²³sdv⁴ɂi.
+1190|Hurry.|Nu⁴la.
+1191|Come here.|Nu²³la.
+1192|Potato.|Nu²³na.
+1193|New York.|Nu²³ya³gi.
+1194|Sun, moon.|Nv²da.
+1195|November.|Nv²dạ²de²³gwa.
+1196|Calendar.|Nv²da di²sẹ³sdi.
+1197|Texas.|Nv²³da³gi.
+1198|On the moon, sun.|Nv²do⁴hi.
+1199|Four.|Nvh²gi.
+1200|Fourth.|Nvh²gi²ne⁴ɂi.
+1201|Thursday.|Nvh²gi²ne⁴ Iɂ²ga.
+1202|Road.|Nv²no²³hi.
+1203|Peace.|Nvwh²to²hi²yạ²da.
+1204|Medicine.|Nv²wo³²ti.
+1205|Rock.|Nv¹ya.
+1206|Brick.|Nv¹ya ạ²tv²da¹nv⁴ɂi.
+1207|Rocky.|Nv¹yo⁴hi.
+1208|Mountain.|O¹dạ²lv⁴ɂi.
+1209|Oklahoma.|O²gạ²la²ho²³ma.
+1210|Groundhog.|O²gạ²na.
+1211|Soap.|O²hla.
+1212|After.|O²hni.
+1213|Behind, towards the back.|O²hni di³dla.
+1214| adj. good., . Or,  adv. Well.|O⁴sda.
+1215|Fairly well.|O²si³.
+1216|Stove.|O³si.
+1217|Cook stove, range.|O³si ạ²da²sdayh¹di⁴ɂi.
+1218|Heating stove.|O³si ạ²ga²nạ²wo²hị²sdi⁴ɂ.
+1219|All right, just fine.|O²si²³gwu.
+1220|Hello.|O²sị³yo.
+1221|Trap.|Sạ²dv³di.
+1222|One.|Sa¹gwu⁴.
+1223|Blue.|Sạ²ko²³nị³ge⁴ɂi.
+1224|Persimmon.|Sạ²li.
+1225|Snapping turtle.|Sạ²lị³gu³gi.
+1226|Squirrel.|Sạ²lo²³li.
+1227|Goose.|Sa²sa.
+1228|Hard, difficult.|Sda⁴ya.
+1229|Rope.|Sde²yị³da.
+1230|A little.|Sdi²³kị²da.
+1231|Door, gate.|Sdu¹di.
+1232|Key.|Sdụ²ɂi³sdi.
+1233|Satan.|Se²³dạ³ni.
+1234|Walnut.|Se²³di.
+1235|Green snake.|Se²³lạ³gwo²ya.
+1236|Corn.|Se²³lu.
+1237|Popcorn.|Se²³lu anh²tạ²sgi¹sgi.
+1238|Corn meal.|Se²³lu i²sa.
+1239|Corncob.|Se²³lu u²da.
+1240|Yes, that's it.|Sgị³dv⁴.
+1241|Ten.|Sgo²³hi.
+1242|Tenth.|Sgo²hi²ne⁴ɂi.
+1243|One hundred.|Sgo²³hị³tsgwa.
+1244|Ball.|Sgwa¹hle⁴sdi.
+1245|New Mexico.|Sgwa²³nị³je¹sdv⁴ɂi.
+1246|Fist.|Sgwe²hnv⁴ɂi.
+1247|Also.|Sgwu³.
+1248|Wait.|Si.
+1249|Yet, still.|Si.
+1250|One day.|Si⁴ga.
+1251|Katydid.|Sị²gị²gi.
+1252|Again, more.|Si²³gwu.
+1253|Pig.|Sih²gwa.
+1254|Than.|Si²³hnv.
+1255|One month.|Si²nv⁴da.
+1256|Overseas.|Skọ²ni²³yi.
+1257|Horse.|So²³gwị³li.
+1258|Donkey, mule.|So²³gwị³li dị²gạɂ²le²³nv³hi²da.
+1259|Hickory nut.|Sọ²hi.
+1260|Nine.|Sọ³hne²³la.
+1261|Ninth.|Sọ³hne²li²ne⁴ɂi.
+1262|In the next room.|Sọ²ɂi²³yi.
+1263|One topic, one matter.|Su²dạ²le⁴gi.
+1264|Six.|Su²³dạ³li.
+1265|Sixth.|Su²dạ²li²ne⁴ɂi.
+1266|Period of one year.|Su²de²tị²yv⁴da.
+1267|Dough.|Su¹ge²³da.
+1268|Fishhook.|Suh³di.
+1269|Buzzard.|Su²li.
+1270|Tomorrow.|Sụ²na³le⁴ɂi.
+1271|Tomorrow evening.|Sụ²na³le⁴ɂi sv²hị²ye⁴ye.
+1272|Overnight.|Su²sv²³hị²da.
+1273| barrel . Or,  tub.|Sv²do²ni.
+1274|Onion.|Sv¹gi.
+1275|Yesterday.|Sv²hi.
+1276|Yesterday morning.|Sv²hi sụ²na³le⁴ɂi.
+1277|Yesterday evening.|Sv²hi sv²hị²ye⁴yi.
+1278|Night before last.|Sv²hi ụ²sv¹ɂi.
+1279|In the evening.|Sv²hị²ye⁴yi.
+1280|Apple.|Sv²³kta.
+1281|One week.|Sv²nạ²do²³dạ²gwa¹sdi.
+1282|At midnight.|Sv²no²³yi.
+1283|Two.|Tạɂ³li.
+1284|Second.|Tạɂ²li²ne⁴ɂi.
+1285|Tuesday.|Tạɂ²li²ne⁴ I²ga.
+1286| can  . Or,  metal  . Or,  steel  . Or,  tin.|Tạ²lu²gi¹sgi.
+1287|Welder.|Tạ²lu²gi¹sgi dị²ka²nv²wi⁴sgi.
+1288| solder  . Or,  welding rod.|Tạ²lu²gi¹sgi dị²kạ²nv²³wo¹doh²di.
+1289|Basket.|Tạ²lu²³ja.
+1290|Tomato.|Tạ²ma²hli.
+1291|Hawk.|Tạ²wo²³di.
+1292|Toad.|Teh²ga.
+1293|Louse.|Tị²na.
+1294|Lizard.|Tị²yo²³hạɂ³li.
+1295|Eel.|Tlv²³de³gwa.
+1296|Just fine.|To¹hi⁴gwu.
+1297|Motionless.|To⁴ɂi.
+1298|Redbird.|To¹ju²³hwa.
+1299|Grasshopper.|To²³lạ³tsga.
+1300|Ghost.|Tsgị²li.
+1301|Bug.|Tsgo²³ya.
+1302|Whippoorwill.|Tsgwạ²le³gwạ²la.
+1303|A lot, many.|Tsgwi⁴sdi.
+1304|Tonsils.|Tu²le²³ji.
+1305|Beans.|Tu²³ya.
+1306|Housefly.|Tvh²ga.
+0009|He is praying.|A¹da²do²³li³²sdị²ha., U¹da²do²³li³²sdi.
+1307|He loves.|U¹da²ge²yu³ha.
+1308|Ordained minister.|U²da²hni²³la³ge³ɂi.
+1309|Oldest member of family.|U²da²hni²³lạ³ge³ɂi.
+1310|Reckless.|U²da²³jạ²tdi.
+1311|Bad omen.|U²dạ²lẹ²ɂhi.
+1312|His wife.|U²dạ²lị²ɂi.
+1313|Snobbish.|U²da²lv⁴kwdi.
+1314|Store owner.|U²da²³nạɂ²ni.
+1315|It is wrinkled.|U¹dạ²ne³go²yu³ha.
+1316|Puddle.|U¹dạ²ne²hv⁴ɂi.
+1317|His heart.|U²danh²do.
+1318|He feels.|U¹danh²ta.
+1319| friendly . Or,  gentle . Or,  pleasant.|U²danh⁴ti.
+1320|Tamed.|U²danh²ti²sạ²hnv⁴ɂi.
+1321|Clean.|U²dạ²nv²gạ²lv⁴da.
+1322|A long distance.|U²dạ²nv²hi⁴da.
+1323|Row.|U¹dạ²nv²hnv⁴ɂi.
+1324|Punishment.|U²da²sdv²³di³²sdi.
+1325|In the shade.|U¹da²³wạ³di³²sgv⁴i.
+1326|It is in view.|U¹dạ²yv²la³ta.
+1327|Embarrassment.|U²de²ho²³hi²sdi.
+1328|Bashful.|U²dẹ²ho²³sạ²ti.
+1329|Ditch.|U¹de²li²³sga³lv²hv⁴ɂi.
+1330|He is having a birthday.|U¹de²tị²yị³ha.
+1331|Bolt, screw.|U²di¹gwạ²lv²de³yị²da.
+1332|It is hot.|U¹di²hleh³ga.
+1333|He has a fever.|U¹di²hlẹ³hṿ³sga.
+1334|He is in hiding.|U¹di²sgạ³hla.
+1335|He is getting well.|U¹diw³²sga.
+1336|His navel.|U¹di³yv²dạɂ³dv⁴ɂi.
+1337|There's an opening.|U¹dlạ²nv²da.
+1338|He has time.|U¹dlạ²nv²dạɂdẹ²ha.
+1339|He is disbelieving.|U¹dla³²si²tv³ɂe²ha.
+1340|Nonbeliever.|U²dla¹si²³tṿ³ɂe⁴hi.
+1341|He is taking revenge.|U¹dle³ga.
+1342|Away from.|Ụ²dli.
+1343|He is wearing an earring.|U¹dli³ɂạ²da.
+1344|Hypocrite.|U²dlo²³na¹sdi.
+1345|Dewberries.|U²dlo¹si²nv²³da.
+1346|Splinter.|U²dlv²dạ²lv⁴da.
+1347|He is sick.|U¹dlv³ga.
+1348|Patient, sick person.|U²dlv⁴gi.
+1349|Sophisticated.|U²dlv⁴kwdi.
+1350| his sister  . Or,  her brother.|U²do.
+1351|His father.|U²do²da.
+1352|All day.|U²do²³dạ²gwạ²da.
+0653|Sunday.|Do²³dạ³gwa¹sgv⁴ɂi., U¹do²³dạ³gwa¹sgv⁴ɂi.
+1353|During the day.|U¹do²³dạ³gwi²di³sv⁴ɂi.
+0655|Monday.|Do²³dạ³gwọ²hnvɂi., U²do²³dạ³gwọ²hnv⁴ɂi.
+0656|Really, very.|Do²hị²yu., Do²yu⁴., U²do²hị²yu⁴.
+1354|He is standing in liquid.|U¹dụ³ha.
+1355|His uncle.|U²du²ji.
+1356|He wants it.|U¹du²lị³ha.
+1357|He is willing.|U¹dv²nv³ɂi²sdi.
+1358|Leaf.|U²gạ²lo²³ga.
+1359|Soup.|U²³gạ³ma.
+1360|Sweet.|U²gạ²na⁴sda.
+1361|Warm.|U²ga²³nạ²wa.
+1362|Democrat.|U²ga²³nạ²wa.
+1363| he is becoming warm  . Or,  he is warming himself.|U¹ga²nạ²wo²sga.
+1364|Page.|U¹ganh²dạɂ³dv⁴ɂi.
+1365| he is possessive of her or it  . Or,  he loves her.|U¹ge²yụ³ha.
+1366|Possessive stingy person.|U²ge²yu²³hnạ²ɂi.
+1367|Feather.|U²gi¹dạ³hli.
+1368|Next morning.|U²gị²jv⁴da ị²yv⁴ɂi.
+1369|Dawn.|U²gị²tsde⁴yi.
+1370|More.|U¹go³²di.
+1371|Much, a lot of.|U²³go¹di.
+1372|He is late.|U¹go²hni²³yo³²ga.
+1373| it is decaying  . Or,  it is spoiling.|U¹go²sga.
+1374|Rotten.|U²go²³sị²da.
+1375|Hoot owl.|U²gu¹ku.
+1376|Part.|U²gv²³hạ²hli.
+1377|Instead.|U¹gv²wị²yụ³ha.
+1378|He has a solid object.|U²³ha.
+1379|He is yawning.|U¹hạ²hlo³gẹ²ha.
+1380|Bell.|U²hạ²lv²ni.
+1381|His lip.|U¹hạ²ne³gạɂ²lv⁴ɂi.
+1382|He is smothering, suffocating.|U¹hạ²wo³sdị²ha.
+1383|There's dew.|U¹hi³sạ²ta.
+1384| he is lonesome  . Or,  he is homesick.|U¹hi²soh²da³²nẹ²ha.
+1385|It is lonesome.|U¹hi²soh³di.
+1386|Powerful, strong.|U²hlị²ni²³gị²da.
+1387|Quickly.|Ụ²hli⁴sda.
+1388|His, her aunt.|U²hlọ²gi.
+1389|Same kind of.|U²hlo⁴yi.
+1390|There.|U¹hna⁴.
+1391|Island.|U¹hnạ²lu³dv⁴ɂi.
+1392|He is becoming angry.|U¹hna²³lv³²ga.
+1393|He is angry.|U¹hna²³lṿ³ha.
+1394|Root.|U²hna¹sde²³dla.
+1395|Its root.|U²hna¹sde²³dlv⁴ɂi.
+1396|Stubbing his toe.|U¹hna³²sgwạ²lo³ɂa.
+1397|Possum grape.|U²hna¹su²³ga.
+1398|His toenail.|U¹hna³²suh²gạ²hlv⁴ɂi.
+1399|He has a chill.|U¹hnạ²wa³²sdị²ha.
+1400|His shirt.|U²hnạ²wo.
+1401|His scar.|U¹hne²lv³sv⁴ɂi.
+1402|He is in bed.|U²³hnị³ha.
+1403|Stump.|U¹hnihl²gv⁴ɂi.
+1404|One dollar.|U²hno⁴sda.
+1405|He is wearing a shirt, coat.|U¹hnu³²wa.
+1406|Rainbow.|U¹hnv²kwo²lạ²tv⁴ɂi.
+1407|Corner.|U¹hnv³si²yv⁴ɂi.
+1408|Thick.|U²hwạ²ge⁴da.
+1409|He is buying it.|U¹hwạ²sga.
+0339|Her husband.|Ạ²ni²ne⁴li., U²hye⁴hi.
+1410|He or it is afloat.|U¹hyo²lụ³ha.
+1411|Horn.|U²hyo²³na.
+1412|Cold.|U²hyv²dla.
+1412|Cold.|U²hyv²dla., U²hyv⁴dla.
+1413|Republican.|U²hyv⁴dla.
+1414|He has a cold.|U²hyv²dla u¹ni³yị²ha.
+1415|He is choking on it.|U¹hyvh²jị²nv²tga.
+1416|He is getting drunk.|U¹hyṿ²sde³ɂa.
+1417|Drunk.|U²hyṿ²sde⁴da.
+1418|Drunkard.|U²hyṿ²sde⁴sgi.
+1419|He is inside it.|U¹jạ³a.
+1420|Wheat.|U²jạ²le⁴sdi.
+1421|A lot.|U²³jạ²ti.
+1422|His, her.|U²je²li.
+1423|He is grinning.|U¹je²tsdi.
+1424|Possum.|U²je⁴tsdi.
+1425|His mother.|U²ji.
+1426|Cotton.|U²ji²lv³ɂi.
+1427|Worm.|U²ji²ya.
+1428|It is rattling.|U¹jo²nạ³ta.
+1429|Rattlesnake.|U²jo²nạ²ti.
+1430|Confusing.|U²jo⁴sdi.
+1431|Dry.|U²ka²hyo⁴da.
+1432|Dry place.|U²ka²hyo⁴dv⁴ɂi.
+1433|His face.|U¹kạ²tv⁴ɂhi.
+1434|Valley.|U¹ke²³da³li²yv⁴ɂi.
+1435|It is sticking out.|U¹ksa²ta.
+1436| he is watching him, . Or,  he is being careful.|U¹kse²sdi.
+1437|Goat.|U²kso¹ja²ne⁴da.
+1438|Diamondback rattler.|U²ksu³ti.
+1439| grain, . Or,  seed.|U²kta.
+1440|It is foggy.|U¹kṿ²hạ³da.
+1441|Cute.|U²³kv¹hị²sdi.
+1442|He is not having any luck hunting.|U¹kwo²³le³²ga.
+1443|His foot.|U²la¹sih²de⁴ni.
+1444|His shoe.|U²la¹su²³lo.
+1445|He is losing his way.|U¹le²na²³hi³ha.
+1446|He is making a mistake.|U¹li²³da³²sdi²ha.
+1447|Fall.|U²li²go²³hv²sdi.
+1448|Curly.|U²li²ji¹sgwa²ne⁴da.
+0764|Fat.|Gạ²lị²jo³hị²da., U²li²jo²³hi³da.
+1449|Intestine.|U²li²ksi.
+1450|Weak.|U³li²sdi.
+1451|He is moaning.|U¹li²³ye³²di²ha.
+1452|He is wearing a ring.|U¹li²ye³²su²stga.
+1453|It is cloudy.|U¹lo³²gi²la.
+1454|Cloud.|U²lo¹gi³li.
+1455|It is happening to him.|Ul¹sda³²hnẹ²ha.
+1456|Open.|Ul²sdu²ɂi⁴da.
+1457|He is wearing a cap.|Ul¹sdu³la.
+1458|Important.|Ul²sge⁴da.
+0317|He is sticking his head out.|Al¹sgwạ²lu²³dị³ɂa., Ul¹sgwa²lu³da.
+1459|He is wearing a hat.|Ul¹sgwe³tuh²ga.
+1460|It is dark.|Ul¹sih³ga.
+1461|Dark.|Ul²³sih²gi.
+1462|Colored.|Ul²su²³hwi²da.
+1463|Poinson ivy.|U²lv²³da.
+1464|He likes it, him.|U¹lv²³kwdi.
+1465|Glass.|U²lv²³sạɂ²di.
+1466|He has a flexible object.|U¹nạ³ɂa.
+1467|Chain.|U²nạ²da²de¹sv⁴da.
+1468| ball field, . Or,  field house.|U²nạ²la¹sgahl³di⁴ɂi.
+1469|They are together.|U¹nạ²li³gọ²ha.
+1470|His friend.|U²na²li⁴ɂi.
+1471|His girlfriend or boyfriend.|U²nạ²li⁴kdi.
+1472|Plaid.|U²na²lo³ɂị²da.
+1473|White.|U²ne⁴ga.
+1474|His skin.|U¹ne³gạ²ɂlv⁴ɂi.
+1475|Ugly.|Uɂne³gihl²di.
+1476|He is being mean.|U¹ne²³gu³²ja.
+1477|Cruel, mean.|U²ne²gu³jị²da.
+1478|Blanket.|U²ne²gv²ha⁴ɂi.
+1479|He has liquid.|U¹nẹ³ha.
+1480| creator, . Or,  God.|U²ne²³hlạ³nv⁴hi.
+1481|Ice.|U²ne²³sdạ³la.
+1482|Snow.|Unh²³ji.
+1483|He knows it.|Unh¹ta.
+1484|Sheep.|U²no¹de⁴na.
+1485|It is sounding.|U¹no²hyvh³ga.
+1486|Wind, air, storm, tornado.|U²no²le.
+1487|January.|U²no²lv¹tạ²na.
+1488|Milk.|U²nv²³di.
+1489|Brain.|U²nv²³ji³da.
+1490|Her dress.|U¹sạ²no.
+1491|Cave.|U¹sda³²gạ²lv⁴ɂi.
+1492|Crisp.|U²sdạ²gạ²yv²³hị²da.
+1312|His wife.|U²dạ²lị²ɂi., U²sda¹yṿ²³hv²sgi.
+1493|Baby.|U²sdi⁴.
+1494|Little.|Ụ²sdi⁴.
+1495|Trail.|Ụ²sdi⁴ gạ²nv²hnv⁴ɂi.
+1496|His scalp.|U¹sdị²ne³gạ²ɂlv⁴ɂi.
+1497|He is receiving punishment.|U¹sdv²dị³ɂa.
+1498|Barely.|U²se²ga¹jv⁴ɂi.
+1499|Slow.|U²sgạ²no⁴li.
+1500|Bright.|U²sgo⁴sdi.
+1501|Interesting.|U²³sgwạ²nị²kdi.
+1502|His abdomen, stomach.|U²sgwo²hli⁴ɂi.
+1503|Empty.|U²³sị²hwa.
+1504|He is coughing.|U¹sị²hwạ³sga.
+1505|Head, skull.|Ụ²ska.
+1506|Behind a person.|U¹so²tv⁴ɂi.
+1507|His claw.|U³suh²gạ²hlv⁴ɂi.
+1508|He is wearing pants.|U³su²la.
+1509|His pants.|U¹su²lo.
+1510|Shotgun.|U²sv²de⁴na.
+1511|Conduit, pipe.|U²sv²do⁴ni.
+1512|He is going to bed.|U¹sv²hị³ha.
+1513|Night.|Ụ²sv⁴ɂi.
+1514|He is thirsty.|U¹tạ²de²gi³ɂa.
+1515|He is becoming enraged.|U¹tạ²hlạ²wo²sga.
+1516|Big, large.|U²³tạ²na.
+1517|Too big, large.|U²tạ²ni⁴.
+1518|Steam.|U²tạ²no²³lv⁴da.
+1519|Leftovers.|U²ti²yv²³hnv⁴ɂi.
+1520|His ankle.|U¹tsgwạ²lv²tv⁴ɂi.
+1521|Crooked.|U²³tsgwị²di.
+1421|A lot.|U²³jạ²ti., U²tsgwi⁴sdi.
+1522|Hope.|U²tu¹gi.
+1523|He is listening to him or it.|U¹tv²da³²sdi.
+1524|Old man.|U²tṿ²so²hnv⁴ɂi.
+1525|Bush.|U¹wa³ɂị²hlv⁴ɂi.
+1526|He is forgetting.|U¹wa²kew²sga.
+1527|He is belching, burping.|U¹wa²ku²³le³²ga.
+1528|He is shivering.|U¹wa³na²wị³ɂa.
+1529|Ripe.|Ụ²wan²sv⁴ɂi.
+1530|Wool.|U¹wạɂ³ni.
+1531|He is in a hurry.|U¹wa²nv³ga.
+1532|Alone, only.|Ụ²wa⁴sa.
+1533|Numb.|Ụ²wa¹sv⁴hi.
+1534|He smells it.|U¹waw²sv³²ga.
+1535|He has a long object.|U¹wa³²ya.
+1536|He is aching, hurting.|U¹we²hị²sda³²nẹ²ha.
+1537|He is yelling, howling, meowing, etc.|U¹we²hluh³ga.
+1538|Wealthy.|Ụ²we²³hnạ²ɂi.
+1539|Egg.|Ụ²we²³ji.
+1540|His offspring, child.|Ụ²we²³ji.
+1541|Liver.|Ụ²we²la.
+1542|He is worried, anxious.|U¹we²li²³hị³ɂa.
+1543|Worried.|Ụ²we²li²³hi⁴sdi.
+1544|Creek, river, stream.|U¹we³yv⁴ɂi.
+1545|Damp.|Ụ²wo²de²³hwi⁴da.
+1546|Brown.|Ụ²wo²³dị³ge⁴ɂi.
+1547|Pretty.|Ụ²wo²du⁴hi.
+1548|Foam, beer.|Ụ²wo¹gị³hli.
+1549| he is confident  . Or,  he has faith.|U¹wo²hị²yụ³ha.
+1550| he is sitting  . Or,  he is at home.|U¹wo²³hla.
+1551|Bluff.|U¹wọ²hlạ³ɂv⁴ɂi.
+1552|Funny.|Ụ²wohl⁴di.
+1553|Swollen.|Ụ²wo²³tị²da.
+1554|His hand.|Ụ²wo¹ye⁴ni.
+1555|Furry.|Ụ²wu²³yạ²ti.
+1556|Reason.|U²yehl⁴di.
+1557|Suddenly.|U²ye²lọ³ɂị²sdi.
+1558|Naked.|U²ye²lv²ha⁴ɂi.
+1559|He is laughing.|U¹ye²tsga.
+1560|He is itching.|U¹yo²de³ɂa.
+1561|He is losing it.|U¹yo²hu²³sẹ³ha.
+1562|Bad.|U²yo⁴ɂi.
+1563|He is hungry.|U¹yo³sị²ha.
+1564|Pond, lake.|V²dạ²li.
+1565|Disease.|V²hyu²³gi.
+1566|Locust.|V²le.
+1567|Really?|V¹sgị²gi³.
+1568|Therefore, for that reason.|V¹sgị²hnv³ ị²yu⁴sdi.
+1569|December.|V²³sgị³hyi.
+1570|That.|V¹sgị²na.
+1571|Dragonfly.|Wa²³dạ³du²³ga.
+1572|He is sending a long object.|Wạ²dị³ɂa.
+1573|Thank you.|Wạ²do.
+1574| bee  . Or,  honey, syrup, sorghum.|Wa³du²li³si.
+1575|Blood vessel.|Wạ²du²³na.
+1576|Cow.|Wah²ga.
+1577|Beef, steak.|Wah²ga hạ²wi²ya.
+1578|Owl.|Wa²³hụ³hi.
+1579|He is sending it.|Wạ²hṿ³sga.
+1580|Wolf.|Wạ²hya.
+1581|Clock, watch.|Wa²³ji.
+1582|Saliva.|Wạ²ji¹la.
+1583|He is heading in the direction of.|Wạ²kti.
+1584|Hummingbird.|Wa³le²la.
+1585|Frog.|Wạ²lo³si.
+1586|Hickory tree.|Wạ²ne³ɂi.
+1587|Soft.|Wạ²nị³ge⁴ɂi.
+1588|Moth.|Wa³so²hla.
+1589|Washington.|Wa³sv²dạɂ³na.
+1590|Cat.|We²³sa.
+1591|Pigeon.|Wo²yi.
+1592|He or it is going out of sight.|Wu²³de³li¹ga.
+1593|West.|Wu²³de³li¹gv⁴ɂi.
+1594|Rest of, remnants.|Wụ²wa³kdv⁴ɂi.
+1595|Buffalo.|Yan²sa.
+1596|Anywhere, wherever.|Yị²nị²gal³sdị³hạ²gwu ị²lvh³dlv⁴ɂi.
+1597|Anyone.|Yị²nị²gal³sdị³hạ²gwu kị²lo.
+1598|Bear.|Yo²³na.
+1599|Sometimes.|Yu³da³ha⁴ɂi.
+1600| fork, . Or,  nail, needle.|Yv²gi.
+1601|Cannibal.|Yv²wạ²gi¹sgi.

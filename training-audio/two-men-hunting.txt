@@ -1,0 +1,31 @@
+ID|PSET|VSET|PRONOUN|VERB|GENDER||ANSWER
+||||||ạ²ni²³tạɂ³li|two living things
+||||||ạ²sgạ²ya|a man
+||||||ạ²ni²sgạ²ya|men
+||||||ạ²hwi|deer
+||||||sa¹gwu⁴|one
+||||||sa¹gwu⁴hno|And one
+||||||gạ²lo¹gwe³|a gun
+||||||sọ³ɂị³|another one||||||
+||||||sọ³ɂị³hnv³|and the other one
+||||||hla²|no
+||||||na³|That one. Those.||||||
+||||||na³hnv³|And that one
+||||||ge¹se³|was being
+||||||ạ²le|and, or
+||||||go²hu⁴sdi|something
+||||||yu²³dv³²ne⁴la|when he did it
+||||||a¹dlv²³kwɂsge³|he would be bragging
+||||||ga²ne²he|he had something rod shaped
+||||||ga²ne⁴hi|one who has a rod shaped thing
+||||||du¹ni²hyọ²he|they were hunting them
+||||||u²dlv²³kwɂsạ²ti|one who brags
+||||||a¹ni²no²hạ²li²³do³²he|they were hunting
+||||||ạ²ni²³tạɂ³li ạ²ni²sgạ²ya.|two men
+||||||ạ²ni²sgạ²ya a¹ni²no²hạ²li²³do³²he|men were hunting
+||||||ạ²hwi du¹ni²hyọ²he|they were hunting deer
+||||||gạ²lo¹gwe³ ga²ne²he|he had a gun
+||||||gạ²lo¹gwe³ ga²ne⁴hi|one who has a gun
+||||||ạ²ni²sgạ²ya ạ²hwi du¹ni²hyọ²he|men were hunting deer
+||||||ạ²sgạ²ya gạ²lo¹gwe³ ga²ne²he|a man had a gun
+||||||sa¹gwu⁴hno ạ²sgạ²ya gạ²lo¹gwe³ ga²ne²he|and one man had a gun
