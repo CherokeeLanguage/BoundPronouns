@@ -1,100 +1,20 @@
-0001|Mother.|E:ji.
-0002|He is going.|É:ga.
-0003|Your one self.|Jv̌:sa.
-0004|For them and me to bake things.|Jò:gì:tdi.
-0005|For him to have you one.|Jakóhdi.
-0006|I have rod shaped things.|Dà:gwù:wâ:ya.
-0007|They are eating flexible things.|Dà:ni:hyé:ɂa.
-0008|Let you one see yourself.|Hada:gò:wahta.
-0009|He is being recognized.|À:go:lì:ga.
-0010|For them to recognize you one.|Ge:jo:hlísdi.
-0011|He recently saw them.|Dagò:wahtā.
-0012|Let them and me gather things.|Wijò:jì:hlǐ:sa.
-0013|Let me understand things.|Widigo:lì:gi.
-0014|You both saw yourselves a while ago.|Sdada:go:hv̌:ɂi.
-0015|His things.|Juje:li̋:ɂi.
-0016|Let you one drink alcoholic drinks.|Tatǔ:gi.
-0017|Let you one and me want each other.|Diginadadǔ:la.
-0018|You one recently drank alcoholic drinks.|De:hatǔ:gā.
-0019|They recently wanted all of us Or,  They were recently wanted.|Ge:gadǔ:lā.
-0020|He has solid things.|Du:ha.
-0021|I am going.|Gé:ga.
-0022|For them to bake things.|Jù:nì:tdi.
-0023|Myself.|À:gwv̌:sa.
-0024|You one have rod shaped things.|De:jù:wâ:ya.
-0025|You one and I are eating flexible things.|Dé:ni:hyé:ɂa.
-0026|Let you one and me see ourselves.|Ì:nada:gò:wahta.
-0027|All of us are being recognized.|È:go:lì:ga.
-0028|He recently saw himself.|À:da:gò:wahtā.
-0029|Let them gather things.|Widinì:hlǐ:sa.
-0030|For them and me to be acquainted.|Jò:gada:do:hlísdi.
-0031|All of us saw each other a while ago.|Dé:gada:go:hv̌:ɂi.
-0032|Your things Or,  You all, your things.|Dijaje:li̋:ɂi.
-0033|Let all of us drink alcoholic drinks.|Didatǔ:gi.
-0034|They recently wanted them and me.|Go:gadǔ:lā.
-0035|All of us have something solid.|Ì:gi:ha.
-0036|You one are going.|Hé:ga.
-0037|For all of us to bake things.|Digì:tdi.
-0038|All of us are eating flexible things.|Dé:di:hyé:ɂa.
-0039|For you one to have me.|Sgikóhdi.
-0040|Let all of us see ourselves.|Ì:dada:gò:wahta.
-0041|You one and I recognize him.|È:no:lì:ga.
-0042|I recently saw myself.|Gada:gò:wahtā.
-0043|Let him and me gather things.|Wijò:sdì:hlǐ:sa.
-0044|For them to be acquainted.|Jù:nada:do:hlísdi.
-0045|You all saw each other a while ago.|Dé:jada:go:hv̌:ɂi.
-0046|Let you all drink alcoholic drinks.|Dijatǔ:gi.
-0047|They recently wanted me.|Gv:gwadǔ:lā.
-0048|They and I have something solid.|Ò:gi:ha.
-0049|You both are going.|Sdé:ga.
-0050|They and I are eating flexible things.|Dò:ji:hyé:ɂa.
-0051|For you both to bake things.|Disdì:tdi.
-0052|For someone to have you one.|È:jakóhdi.
-0053|Let you one and me see each other.|Dinada:gò:wahta.
-0054|All of us recognize him.|È:do:lì:ga.
-0055|They and I saw each other a while ago.|Dò:gada:go:hv̌:ɂi.
-0056|They recently saw themselves.|À:nada:gò:wahtā.
-0057|For him and me to be acquainted.|Jò:ginada:do:hlísdi.
-0058|Let you one and me drink alcoholic drinks.|Dínatǔ:gi.
-0059|They recently wanted you one and me.|Ge:ginadǔ:lā.
-0060|They have something solid.|Ù:ni:ha.
-0061|For me to bake things.|Dìgìtdi.
-0062|He and I are eating flexible things.|Dò:sdi:hyé:ɂa.
-0063|For someone to have me.|V̀:gikóhdi.
-0064|Let all of us see each other.|Didada:gò:wahta.
-0065|You all recognize him Or,  You all are being recognized.|È:jo:lì:ga.
-0066|They saw each other a while ago.|Dù:nada:go:hv̌:ɂi.
-0067|They and I recently saw ourselves.|Ò:jada:gò:wahtā.
-0068|Let him drink alcoholic drinks.|Widatǔ:gi.
-0069|They recently wanted him and me.|Go:ginadǔ:lā.
-0070|All of us have solid things.|Dé:gi:ha.
-0071|Let you both see each other.|Disdada:gò:wahta.
-0072|You one and I saw ourselves a while ago.|Ginada:go:hv̌:ɂi.
-0073|You all have solid things.|Dé:ji:ha.
-0074|Let them and me see each other.|Wijò:jada:gò:wahta.
-0075|You one and I recognize them, animate.|Ge:no:lì:ga.
-0076|You both saw each other a while ago.|De:sdada:go:hv̌:ɂi.
-0077|They and I have solid things.|Dò:gi:ha.
-0078|You all are going.|Ì:jé:ga.
-0079|Let him and me see each other.|Wijò:sdada:gò:wahta.
-0080|All of us recognize them, animate.|Ge:do:lì:ga.
-0081|You one and I saw each other a while ago.|De:ginada:go:hv̌:ɂi.
-0082|They have solid things.|Dù:ni:ha.
-0083|For you all to have yourselves.|Dì:jada:kóhdi.
-0084|You all recognize them, animate.|Ge:jo:lì:ga.
-0085|He and I saw each other a while ago.|Dò:ginada:go:hv̌:ɂi.
-0086|You one and I have something solid.|Gini:ha.
-0087|He and I recently saw ourselves.|Ò:sdada:gò:wahtā.
-0088|You both have solid things.|De:sdi:ha.
-0089|He and I have something solid.|Ò:gini:ha.
-0090|For all of us to have each other.|Digada:kóhdi.
-0091|You one and I have solid things.|De:gini:ha.
-0092|For you all to have each other.|Dijada:kóhdi.
-0093|He and I have solid things.|Dò:gini:ha.
-0094|I understand things.|De:go:lì:ga.
-0095|You both recognize him Or,  You both are being recognized.|È:sdo:lì:ga.
-0096|You both recognize them, animate Or,  They recognize you both.|Ge:sdo:lì:ga.
-0097|Let you one go.|Hè:na.
-0098|His mother.|U:ji.
-0099|He usually has something solid.|Ù:hó:ɂi.
-0100|He recently went.|È:nā.
+0001|He has something solid.|Ù:ha.
+0002|Mother.|E:ji.
+0003|He is going.|É:ga.
+0004|Your one self.|Jv̌:sa.
+0005|For them and me to bake things.|Jò:gì:tdi.
+0006|For him to have you one.|Jakóhdi.
+0007|I have rod shaped things.|Dà:gwù:wâ:ya.
+0008|They are eating flexible things.|Dà:ni:hyé:ɂa.
+0009|Let you one see yourself.|Hada:gò:wahta.
+0010|He is being recognized.|À:go:lì:ga.
+0011|For them to recognize you one.|Ge:jo:hlísdi.
+0012|He recently saw them.|Dagò:wahtā.
+0013|Let them and me gather things.|Wijò:jì:hlǐ:sa.
+0014|Let me understand things.|Widigo:lì:gi.
+0015|You both saw yourselves a while ago.|Sdada:go:hv̌:ɂi.
+0016|His things.|Juje:li̋:ɂi.
+0017|Let you one drink alcoholic drinks.|Tatǔ:gi.
+0018|Let you one and me want each other.|Diginadadǔ:la.
+0019|You one recently drank alcoholic drinks.|De:hatǔ:gā.
+0020|They recently wanted all of us, Or,  They were recently wanted.|Ge:gadǔ:lā.

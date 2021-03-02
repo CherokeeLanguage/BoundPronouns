@@ -1449,7 +1449,7 @@ public class BuildDeck {
 			checkSheet.delete();
 		}
 
-		appendText(checkSheet, "ID\tPSET\tVSET\tPRONOUN\tVERB\tCHALLENGE\t\tANSWER\n");
+		appendText(checkSheet, "ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME\n");
 
 		final Set<String> already = new HashSet<>();
 		final StringBuilder tts = new StringBuilder();
@@ -1482,19 +1482,21 @@ public class BuildDeck {
 			}
 			tts.append(syllabary);
 			
-			tts.append("\t");
+			tts.append("|");
 			tts.append(CherokeeUtils.ced2mco_nfd(challenge));
 			
-			tts.append("\t");
+			tts.append("|");
+			
+			tts.append("|");
 			tts.append(challenge);
 			
-			tts.append("\t");
+			tts.append("|");
 			tts.append(answer);
 			
 			final String asFilename;
 			if (!challenge.isEmpty() && !challenge.endsWith("-")) {
 				asFilename = asFilename(challenge);
-				tts.append("\t");
+				tts.append("|");
 				tts.append(asFilename);
 			} else {
 				asFilename = "";
@@ -1502,30 +1504,34 @@ public class BuildDeck {
 			
 			tts.append("\n");
 
-			appendText(forTts, Normalizer.normalize(tts.toString(), Form.NFC));
+			appendText(forTts, Normalizer.normalize(tts.toString(), Form.NFD));
 
 			tts.setLength(0);
 
 			check.append(card.id);
-			check.append("\t");
+			check.append("|");
 			check.append(card.getPset());
-			check.append("\t");
+			check.append("|");
 			check.append(card.getVset());
-			check.append("\t");
+			check.append("|");
 			check.append(card.pgroup);
-			check.append("\t");
+			check.append("|");
 			check.append(card.vgroup);
-			check.append("\t");
+			check.append("|");
+			check.append("|");
 			check.append(syllabary);
-			check.append("\t");
-			check.append(challenge);
+			check.append("|");
+			check.append(CherokeeUtils.ced2mco_nfd(challenge));
 
-			for (int ix = 0; ix < maxAnswers; ix++) {
-				check.append("\t");
-				if (card.answer.size() > ix) {
-					check.append(card.answer.get(ix));
+			check.append("|");
+			for (int ix = 0; ix < card.answer.size(); ix++) {
+				if (ix>0) {
+					check.append("; ");
 				}
+				check.append(card.answer.get(ix));
 			}
+			check.append("|");
+			check.append(asFilename(challenge));
 			check.append("\n");
 			appendText(checkSheet, check.toString());
 			check.setLength(0);

@@ -61,9 +61,13 @@ public class Main {
 	private final String deckSourceText;
 	private static final boolean sortDeckBySize = false;
 	private static final boolean autoSplitCherokee = true;
-	private static final int SYLLABARY_TEXT = 0;
-	private static final int PRONOUNCE_TEXT = 1;
-	private static final int ENGLISH_TEXT = 3;
+	
+	private static final int IX_PRONOUN = 3;
+	private static final int IX_VERB = 4;
+	private static final int IX_GENDER = 5;
+	private static final int IX_SYLLABARY = 6;
+	private static final int IX_PRONOUNCE = 7;
+	private static final int IX_ENGLISH = 8;
 
 	public static void main(final String[] args) throws IOException, UnsupportedAudioFileException {
 		new Main().execute();
@@ -89,7 +93,7 @@ public class Main {
 	public Main() {
 		switch(SET) {
 		case BOUND_PRONOUNS:
-			deckSourceText = "cherokee-tts.txt";
+			deckSourceText = "review-sheet.txt";
 			break;
 		case BRAGGING_HUNTERS:
 			deckSourceText = "two-men-hunting.txt";
@@ -1354,12 +1358,12 @@ public class Main {
 			while (li.hasNext()) {
 				final String line = li.next();
 				final String[] fields = line.split("\\|");
-				if (fields.length < ENGLISH_TEXT + 1) {
+				if (fields.length < IX_ENGLISH + 1) {
 					System.out.println("; " + line);
 					continue;
 				}
-				final String verbStem = "";//fields[VERB_STEM].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
-				String boundPronoun = "";//fields[PRONOUN].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
+				final String verbStem = fields[IX_VERB].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
+				String boundPronoun = fields[IX_PRONOUN].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
 				/*
 				 * tag the boundPronoun with the stem's lead character so that pronunciation
 				 * based counting of sets happens
@@ -1368,7 +1372,7 @@ public class Main {
 //					boundPronoun += verbStem.substring(0, 1);
 //				}
 
-				String cherokeeText = fields[PRONOUNCE_TEXT].trim();
+				String cherokeeText = fields[IX_PRONOUNCE].trim();
 				if (cherokeeText.isEmpty()) {
 					continue;
 				}
@@ -1380,117 +1384,116 @@ public class Main {
 					cherokeeText += ".";
 				}
 
-				String sex = "";//fields[SEX].trim();
+				String sex = fields[IX_GENDER].trim();
 
-				//for (int ix = ENGLISH_TEXT; ix < fields.length; ix++) {
-					String englishText = fields[ENGLISH_TEXT].trim();
-					if (englishText.isEmpty()) {
-						continue;
-					}
-					if (englishText.contains(";")) {
-						englishText = englishText.replace(";", " Or, ");
-					}
-					if (!englishText.matches(".*[,.?!]")) {
-						englishText += ".";
-					}
-					if (englishText.contains("v.t.")||englishText.contains("v.i.")) {
-						englishText=englishText.replaceAll("(?i)v\\.\s*t\\.\s*", "");
-						englishText=englishText.replaceAll("(?i)v\\.\s*i\\.\s*", "");
-					}
-					if (englishText.contains("1.")) {
-						englishText = englishText.replaceAll("\\b1\\.", "");
-						englishText = englishText.replaceAll("\\b2\\.", ". Or, ");
-						englishText = englishText.replaceAll("\\b3\\.", ". Or, ");
-						englishText = englishText.replaceAll("\\b4\\.", ". Or, ");
-					}
-					if (englishText.contains(" (")) {
-						// English text pronunciation adjustments
-						englishText = englishText.replace(" (1)", " one");
-						englishText = englishText.replace(" (animate)", ", animate");
-						englishText = englishText.replace(" (inanimate)", ", inanimate");
-					}
-					if (englishText.contains("/")) {
-						englishText = englishText.replace("/", " or ");
-					}
-					if (englishText.contains(", i")) {
-						englishText = englishText.replace(", it", " or it");
-					}
-					if (englishText.contains("'s")) {
-						englishText = englishText.replace("he's", "he is");
-						englishText = englishText.replace("she's", "she is");
-						englishText = englishText.replace("it's", "it is");
-						englishText = englishText.replace("He's", "He is");
-						englishText = englishText.replace("She's", "She is");
-						englishText = englishText.replace("It's", "It is");
-					}
-					if (englishText.contains("'re")) {
-						englishText = englishText.replace("'re", " are");
-					}
-					englishText = StringUtils.capitalize(englishText);
-					/*
-					 * Each deck gets its own set of cards.
-					 */
-					AudioCard toChrCard;
-					AudioData toChrData;
-					if (cardsForCherokeeAnswers.containsKey(englishText)) {
-						toChrCard = cardsForCherokeeAnswers.get(englishText);
-						toChrData = toChrCard.getData();
-						toChrData.setAnswer(toChrData.getAnswer() + ", " + cherokeeText);
-						cardsForCherokeeAnswers.put(englishText, toChrCard);
-					} else {
-						toChrCard = new AudioCard();
-						toChrData = new AudioData();
-						toChrData.setBoundPronoun(boundPronoun);
-						toChrData.setVerbStem(verbStem);
-						toChrData.setAnswer(cherokeeText);
-						toChrData.setAnswerDuration(0);
-						toChrData.setChallenge(englishText);
-						toChrData.setChallengeDuration(0);
-						toChrData.setId(++idEn2Chr);
-						toChrData.setSex(sex);
-						toChrCard.setData(toChrData);
-						cardsForCherokeeAnswers.put(englishText, toChrCard);
-						en2chrDeck.add(toChrCard);
-					}
-					reviewSheetEn2Chr.append(toChrData.id());
-					reviewSheetEn2Chr.append("|");
-					reviewSheetEn2Chr.append(toChrData.getChallenge());
-					reviewSheetEn2Chr.append("|");
-					reviewSheetEn2Chr.append(toChrData.getAnswer());
-					reviewSheetEn2Chr.append("\n");
+				String englishText = fields[IX_ENGLISH].trim();
+				if (englishText.isEmpty()) {
+					continue;
+				}
+				if (englishText.contains(";")) {
+					englishText = englishText.replace(";", ", Or, ");
+				}
+				if (!englishText.matches(".*[,.?!]")) {
+					englishText += ".";
+				}
+				if (englishText.contains("v.t.") || englishText.contains("v.i.")) {
+					englishText = englishText.replaceAll("(?i)v\\.\s*t\\.\s*", "");
+					englishText = englishText.replaceAll("(?i)v\\.\s*i\\.\s*", "");
+				}
+				if (englishText.contains("1.")) {
+					englishText = englishText.replaceAll("\\b1\\.", "");
+					englishText = englishText.replaceAll("\\b2\\.", ". Or, ");
+					englishText = englishText.replaceAll("\\b3\\.", ". Or, ");
+					englishText = englishText.replaceAll("\\b4\\.", ". Or, ");
+				}
+				if (englishText.contains(" (")) {
+					// English text pronunciation adjustments
+					englishText = englishText.replace(" (1)", " one");
+					englishText = englishText.replace(" (animate)", ", animate");
+					englishText = englishText.replace(" (inanimate)", ", inanimate");
+				}
+				if (englishText.contains("/")) {
+					englishText = englishText.replace("/", " or ");
+				}
+				if (englishText.contains(", i")) {
+					englishText = englishText.replace(", it", " or it");
+				}
+				if (englishText.contains("'s")) {
+					englishText = englishText.replace("he's", "he is");
+					englishText = englishText.replace("she's", "she is");
+					englishText = englishText.replace("it's", "it is");
+					englishText = englishText.replace("He's", "He is");
+					englishText = englishText.replace("She's", "She is");
+					englishText = englishText.replace("It's", "It is");
+				}
+				if (englishText.contains("'re")) {
+					englishText = englishText.replace("'re", " are");
+				}
+				englishText = StringUtils.capitalize(englishText);
+				/*
+				 * Each deck gets its own set of cards.
+				 */
+				AudioCard toChrCard;
+				AudioData toChrData;
+				if (cardsForCherokeeAnswers.containsKey(englishText)) {
+					toChrCard = cardsForCherokeeAnswers.get(englishText);
+					toChrData = toChrCard.getData();
+					toChrData.setAnswer(toChrData.getAnswer() + ", " + cherokeeText);
+					cardsForCherokeeAnswers.put(englishText, toChrCard);
+				} else {
+					toChrCard = new AudioCard();
+					toChrData = new AudioData();
+					toChrData.setBoundPronoun(boundPronoun);
+					toChrData.setVerbStem(verbStem);
+					toChrData.setAnswer(cherokeeText);
+					toChrData.setAnswerDuration(0);
+					toChrData.setChallenge(englishText);
+					toChrData.setChallengeDuration(0);
+					toChrData.setId(++idEn2Chr);
+					toChrData.setSex(sex);
+					toChrCard.setData(toChrData);
+					cardsForCherokeeAnswers.put(englishText, toChrCard);
+					en2chrDeck.add(toChrCard);
+				}
+				reviewSheetEn2Chr.append(toChrData.id());
+				reviewSheetEn2Chr.append("|");
+				reviewSheetEn2Chr.append(toChrData.getChallenge());
+				reviewSheetEn2Chr.append("|");
+				reviewSheetEn2Chr.append(toChrData.getAnswer());
+				reviewSheetEn2Chr.append("\n");
 
-					AudioCard toEnCard;
-					AudioData toEnData;
-					if (cardsForEnglishAnswers.containsKey(cherokeeText)) {
-						toEnCard = cardsForEnglishAnswers.get(cherokeeText);
-						toEnData = toEnCard.getData();
-						toEnData.setAnswer(toEnData.getAnswer() + " Or, " + englishText);
-					} else {
-						toEnCard = new AudioCard();
-						toEnData = new AudioData();
-						toEnData.setBoundPronoun(boundPronoun);
-						toEnData.setVerbStem(verbStem);
-						toEnData.setAnswer(englishText);
-						toEnData.setAnswerDuration(0);
-						toEnData.setChallenge(cherokeeText);
-						toEnData.setChallengeDuration(0);
-						toEnData.setId(++idChr2En);
-						toEnData.setSex(sex);
-						toEnCard.setData(toEnData);
-						cardsForEnglishAnswers.put(cherokeeText, toEnCard);
-						chr2enDeck.add(toEnCard);
-					}
-					reviewSheetChr2En.append(toEnData.id());
-					reviewSheetChr2En.append("|");
-					reviewSheetChr2En.append(toEnData.getBoundPronoun());
-					reviewSheetChr2En.append("|");
-					reviewSheetChr2En.append(toEnData.getVerbStem());
-					reviewSheetChr2En.append("|");
-					reviewSheetChr2En.append(toEnData.getChallenge());
-					reviewSheetChr2En.append("|");
-					reviewSheetChr2En.append(toEnData.getAnswer());
-					reviewSheetChr2En.append("\n");
-				//}
+				AudioCard toEnCard;
+				AudioData toEnData;
+				if (cardsForEnglishAnswers.containsKey(cherokeeText)) {
+					toEnCard = cardsForEnglishAnswers.get(cherokeeText);
+					toEnData = toEnCard.getData();
+					toEnData.setAnswer(toEnData.getAnswer() + " Or, " + englishText);
+				} else {
+					toEnCard = new AudioCard();
+					toEnData = new AudioData();
+					toEnData.setBoundPronoun(boundPronoun);
+					toEnData.setVerbStem(verbStem);
+					toEnData.setAnswer(englishText);
+					toEnData.setAnswerDuration(0);
+					toEnData.setChallenge(cherokeeText);
+					toEnData.setChallengeDuration(0);
+					toEnData.setId(++idChr2En);
+					toEnData.setSex(sex);
+					toEnCard.setData(toEnData);
+					cardsForEnglishAnswers.put(cherokeeText, toEnCard);
+					chr2enDeck.add(toEnCard);
+				}
+				reviewSheetChr2En.append(toEnData.id());
+				reviewSheetChr2En.append("|");
+				reviewSheetChr2En.append(toEnData.getBoundPronoun());
+				reviewSheetChr2En.append("|");
+				reviewSheetChr2En.append(toEnData.getVerbStem());
+				reviewSheetChr2En.append("|");
+				reviewSheetChr2En.append(toEnData.getChallenge());
+				reviewSheetChr2En.append("|");
+				reviewSheetChr2En.append(toEnData.getAnswer());
+				reviewSheetChr2En.append("\n");
+					
 				if (USE_DEBUG_DECK && chr2enDeck.size() >= DEBUG_DECK_SIZE) {
 					break;
 				}
