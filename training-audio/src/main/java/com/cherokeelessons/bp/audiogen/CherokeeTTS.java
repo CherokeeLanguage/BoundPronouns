@@ -68,7 +68,7 @@ public class CherokeeTTS {
 		String _text = Normalizer.normalize(text, Normalizer.Form.NFD);
 		final File cacheDir = new File("CherokeeTTS/cache");
 		cacheDir.mkdirs();
-		String cached_name = _text.replaceAll("(?i)[^a-z0-9]", "")+"_"+DigestUtils.sha512Hex(_text);
+		String cached_name = _text.replaceAll("(?i)[^a-z0-9]", "")+(griffinLim?"_gl":"")+"_"+DigestUtils.sha512Hex(_text);
 		final File cachedFile = new File(cacheDir, (lang==null?"":lang.trim()) +"_" + (voice == null ? "" : voice.trim()) + "_" + cached_name + ".wav");
 
 		wavFile.getParentFile().mkdirs();

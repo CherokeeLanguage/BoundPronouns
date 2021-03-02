@@ -37,7 +37,7 @@ public class Main {
 	
 	private static final ExcerciseSet SET = ExcerciseSet.BOUND_PRONOUNS;
 
-	private static final boolean USE_DEBUG_DECK = true;
+	private static final boolean USE_DEBUG_DECK = false;
 	private static final int DEBUG_DECK_SIZE = 100;
 
 	private static final int SESSIONS_TO_CREATE = 3;
