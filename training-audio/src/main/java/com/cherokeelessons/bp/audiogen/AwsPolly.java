@@ -3,6 +3,7 @@ package com.cherokeelessons.bp.audiogen;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 
 import com.amazonaws.services.polly.AmazonPolly;
@@ -23,7 +24,12 @@ public class AwsPolly {
 	public static File generateEnglishAudio(final VoiceId voice, final String text) throws IOException {
 		final File cacheDir = new File("aws/polly-cache");
 		cacheDir.mkdirs();
-		final String filename = AudioGenUtil.asEnglishFilename("en-us-" + voice.name() + "-" + text) + ".mp3";
+		String filename = AudioGenUtil.asEnglishFilename("en-us-" + voice.name() + "-" + text);
+		String digest_tag = "_" + DigestUtils.sha512Hex(text) + ".mp3";
+		if (filename.length()>254-digest_tag.length()) {
+			filename = filename.substring(0, 254-digest_tag.length());
+		}
+		filename += digest_tag;
 
 		final File outputFile = new File(cacheDir, filename);
 

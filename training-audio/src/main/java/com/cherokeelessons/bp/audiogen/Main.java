@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.sound.sampled.AudioFileFormat;
@@ -35,11 +34,13 @@ import com.cherokeelessons.deck.CardStats;
 import com.cherokeelessons.deck.CardUtils;
 
 public class Main {
+	
+	private static final ExcerciseSet SET = ExcerciseSet.BOUND_PRONOUNS;
 
-	private static final boolean USE_DEBUG_DECK = false;
+	private static final boolean USE_DEBUG_DECK = true;
 	private static final int DEBUG_DECK_SIZE = 100;
 
-	private static final int SESSIONS_TO_CREATE = 10;
+	private static final int SESSIONS_TO_CREATE = 3;
 
 	private static final int MAX_TRIES_PER_REVIEW_CARD = 10;
 	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 0;
@@ -57,16 +58,12 @@ public class Main {
 	private static final NumberFormat NF = NumberFormat.getInstance();
 	private static final File WAVS_DIR = new File("tmp/wavs");
 	private static final File EXCERCISES_DIR = new File("tmp/excercises");
-//	private static final String DECK_TSV = "two-men-hunting.tsv";// "../android/assets/review-sheet.tsv";
-	//private static final String DECK_TSV = "osiyo-tohiju-then-what.tsv";// "../android/assets/review-sheet.tsv";
-	private static final String DECK_TSV = "x1.tsv";
-	private static final boolean sortDeckBySize = true;
+	private final String deckSourceText;
+	private static final boolean sortDeckBySize = false;
 	private static final boolean autoSplitCherokee = true;
-	private static final int PRONOUN = 3;
-	private static final int VERB_STEM = 4;
-	private static final int SEX = 5;
-	private static final int CHEROKEE_TEXT = 6;
-	private static final int ENGLISH_TEXT_START = 7;
+	private static final int SYLLABARY_TEXT = 0;
+	private static final int PRONOUNCE_TEXT = 1;
+	private static final int ENGLISH_TEXT = 3;
 
 	public static void main(final String[] args) throws IOException, UnsupportedAudioFileException {
 		new Main().execute();
@@ -82,16 +79,32 @@ public class Main {
 	private final Map<String, AtomicInteger> vstemCounts;
 	private final Map<String, AtomicInteger> pboundCounts;
 
-	private final Map<String, Integer> chrVoiceSpeekingRates;
-	private final Map<String, Integer> enVoiceSpeekingRates;
-	private final Set<String> voiceVariants;
-	private final List<String> voices = new ArrayList<>();
+	private final Set<TtsVoice> voiceVariants;
+	private final List<TtsVoice> voices = new ArrayList<>();
 
-	private String previousVoice = "";
-	private int voiceShuffleSeed = 0;
+	private TtsVoice previousVoice = null;
+	private int voiceShuffleSeed = 1234;
 	private boolean maxCardsReached = false;
 
 	public Main() {
+		switch(SET) {
+		case BOUND_PRONOUNS:
+			deckSourceText = "cherokee-tts.txt";
+			break;
+		case BRAGGING_HUNTERS:
+			deckSourceText = "two-men-hunting.txt";
+			break;
+		case CED:
+			deckSourceText = "x1.tsv";
+			break;
+		case OSIYO_THEN_WHAT:
+			deckSourceText = "osiyo-tohiju-then-what.txt";
+			break;
+		default:
+			deckSourceText = "x1.tsv";
+			break;
+		
+		}
 		en2chrDeck = new AudioDeck();
 		chr2enDeck = new AudioDeck();
 
@@ -99,41 +112,11 @@ public class Main {
 		discardsDeck = new AudioDeck();
 		finishedDeck = new AudioDeck();
 
-		chrVoiceSpeekingRates = new HashMap<>();
-		enVoiceSpeekingRates = new HashMap<>();
-
-		voiceVariants = new TreeSet<>();
-		// default
-//		voiceVariants.add("");
-		// magali's choices
-//		voiceVariants.add("Diogo");
-		voiceVariants.add("f5");
-//		voiceVariants.add("f5");
-		voiceVariants.add("f2");
-		// craig's choices
-//		voiceVariants.add("antonio");//, "Mr", "robosoft5"));
-		voiceVariants.add("Mr");
-//		voiceVariants.add("robosoft5");
-
-		// tommylee's choices
-//		voiceVariants.add("Diogo");
-
-		// voice speed adjustments (word per minute espeak -s parameter)
-		chrVoiceSpeekingRates.put("", 200);
-		chrVoiceSpeekingRates.put("Diogo", 200);
-		chrVoiceSpeekingRates.put("f5", 200);
-		chrVoiceSpeekingRates.put("f2", 200);
-		chrVoiceSpeekingRates.put("antonio", 100);
-		chrVoiceSpeekingRates.put("Mr", 170);
-		chrVoiceSpeekingRates.put("robosoft5", 90);
-
-		enVoiceSpeekingRates.put("", 90);
-		enVoiceSpeekingRates.put("Diogo", 90);
-		enVoiceSpeekingRates.put("f5", 90);
-		enVoiceSpeekingRates.put("f2", 90);
-		enVoiceSpeekingRates.put("antonio", 90);
-		enVoiceSpeekingRates.put("Mr", 90);
-		enVoiceSpeekingRates.put("robosoft5", 90);
+		voiceVariants = new HashSet<>();
+		voiceVariants.add(new TtsVoice("cno-spk_0", SexualGender.FEMALE));
+		voiceVariants.add(new TtsVoice("cno-spk_1", SexualGender.MALE));
+		voiceVariants.add(new TtsVoice("cno-spk_2", SexualGender.FEMALE));
+		voiceVariants.add(new TtsVoice("cno-spk_3", SexualGender.MALE));
 
 		vstemCounts = new HashMap<String, AtomicInteger>();
 		pboundCounts = new HashMap<String, AtomicInteger>();
@@ -306,7 +289,26 @@ public class Main {
 			/*
 			 * Source notice
 			 */
-			if (false && exerciseSet == 0) {
+			switch(SET) {
+			case BOUND_PRONOUNS:
+				wavFile = new File(EXCERCISES_DIR,
+						"source-is-bound-pronouns-app-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"These sessions closely follow the vocabulary from the Bound Pronouns app.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				wavFile = new File(EXCERCISES_DIR,
+						"bound-pronouns-app-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"By the time you have completed these exercises you should be able to understand the vocabulary in the Bound Pronouns app.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				break;
+			case BRAGGING_HUNTERS:
 				wavFile = new File(EXCERCISES_DIR,
 						"source-is-ced-two-hunters-" + (exerciseSet + 1) + ".wav");
 				tmpData = EnglishAudio.createEnglishAudioFor(
@@ -323,29 +325,8 @@ public class Main {
 				audioEntries.add(tmpData.getAnswerFile());
 				tick += tmpData.getAnswerDuration();
 				tick += addSilence(1f, audioEntries);
-			}
-			
-			if (false && exerciseSet == 0) {
-				/*
-				 * Exercise set title before describing source
-				 */
-				wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
-				tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
-				audioEntries.add(tmpData.getAnswerFile());
-				tick += tmpData.getAnswerDuration();
-				tick += addSilence(1f, audioEntries);
-				
-				wavFile = new File(EXCERCISES_DIR,
-						"source-is-conversation-starters-book-" + (exerciseSet + 1) + ".wav");
-				tmpData = EnglishAudio.createEnglishAudioFor(
-						"These sessions closely follow the book entitled, 'Conversation Starters in Cherokee', by Prentice Robinson. The pronunciations are based on the pronunciation markings as found in the official Cherokee English Dictionary - 1st Edition.",
-						wavFile);
-				audioEntries.add(tmpData.getAnswerFile());
-				tick += tmpData.getAnswerDuration();
-				tick += addSilence(1f, audioEntries);
-			}
-			
-			if (exerciseSet == 0 && DECK_TSV.equalsIgnoreCase("x1.tsv")) {
+				break;
+			case CED:
 				/*
 				 * Exercise set title before describing source
 				 */
@@ -363,6 +344,28 @@ public class Main {
 				audioEntries.add(tmpData.getAnswerFile());
 				tick += tmpData.getAnswerDuration();
 				tick += addSilence(1f, audioEntries);
+				break;
+			case OSIYO_THEN_WHAT:
+				/*
+				 * Exercise set title before describing source
+				 */
+				wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				
+				wavFile = new File(EXCERCISES_DIR,
+						"source-is-conversation-starters-book-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"These sessions closely follow the book entitled, 'Conversation Starters in Cherokee', by Prentice Robinson. The pronunciations are based on the pronunciation markings as found in the official Cherokee English Dictionary - 1st Edition.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				break;
+			default:
+				break;
 			}
 
 			/*
@@ -386,21 +389,34 @@ public class Main {
 			/*
 			 * Exercise set title
 			 */
-			if (DECK_TSV.equalsIgnoreCase("x1.tsv")) {
+			switch(SET) {
+			case BOUND_PRONOUNS:
+				wavFile = new File(EXCERCISES_DIR, "bound-pronouns-session-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor("Bound Pronouns Vocabulary Cram.", wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				break;
+			case BRAGGING_HUNTERS:
+				break;
+			case CED:
 				wavFile = new File(EXCERCISES_DIR, "ced-session-" + (exerciseSet + 1) + ".wav");
 				tmpData = EnglishAudio.createEnglishAudioFor("C.E.D. Vocabulary Cram.", wavFile);
 				audioEntries.add(tmpData.getAnswerFile());
 				tick += tmpData.getAnswerDuration();
 				tick += addSilence(1f, audioEntries);
-			}
-			if (false) {
+				break;
+			case OSIYO_THEN_WHAT:
 				wavFile = new File(EXCERCISES_DIR, "conversation-starters-session-" + (exerciseSet + 1) + ".wav");
 				tmpData = EnglishAudio.createEnglishAudioFor("Conversation Starters in Cherokee.", wavFile);
 				audioEntries.add(tmpData.getAnswerFile());
 				tick += tmpData.getAnswerDuration();
 				tick += addSilence(1f, audioEntries);
-			}
+				break;
+			default:
+				break;
 			
+			}
 			
 			/*
 			 * Indicate which session
@@ -417,7 +433,6 @@ public class Main {
 			audioEntries.add(begin1.getAnswerFile());
 			tick += begin1.getAnswerDuration();
 			tick += addSilence(3f, audioEntries);
-
 
 			/*
 			 * A single audio lesson file.
@@ -767,6 +782,7 @@ public class Main {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void buildEn2ChrExerciseMp3Files() {
 		int exerciseSet = 0;
 		final AudioDeck activeDeck = new AudioDeck();
@@ -953,11 +969,10 @@ public class Main {
 
 	private void generateChr2EnWavFiles() throws UnsupportedAudioFileException, IOException {
 		System.out.println("=== generateChr2EnWavFiles");
+		CherokeeTTS tts = new CherokeeTTS();
 		voiceShuffleSeed = 0;
 		final File wavTmpDir = new File(WAVS_DIR, "chr2en");
 		FileUtils.deleteQuietly(wavTmpDir);
-		final File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
-		final ESpeakNg espeak = new ESpeakNg(espeakNgBin);
 		final Set<String> already = new HashSet<>();
 		for (final AudioCard card : new ArrayList<>(chr2enDeck.getCards())) {
 			final AudioData data = card.getData();
@@ -971,72 +986,46 @@ public class Main {
 			final File answerWavFile = new File(wavTmpDir, "answer-" + answerFilename + ".wav");
 			data.setAnswerFile(answerWavFile);
 			data.setChallengeFile(challengeWavFile);
+			SexualGender sex = SexualGender.NOT_SPECIFIED;
+			if (data.getSex().toLowerCase().startsWith("female")) {
+				sex = SexualGender.FEMALE;
+			}
+			if (data.getSex().toLowerCase().startsWith("male")) {
+				sex = SexualGender.MALE;
+			}
+			TtsVoice voice = nextVoice(challenge, sex);
 			if (!already.contains(challenge)) {
-				SexualGender sex = SexualGender.NOT_SPECIFIED;
-				if (data.getSex().toLowerCase().startsWith("female")) {
-					sex = SexualGender.FEMALE;
-				}
-				if (data.getSex().toLowerCase().startsWith("male")) {
-					sex = SexualGender.MALE;
-				}
-				String voice = nextVoice(challenge, sex);
-				int speed;
-				if (chrVoiceSpeekingRates.containsKey(voice)) {
-					speed = chrVoiceSpeekingRates.get(voice);
-				} else {
-					speed = 0;
-				}
-				if (!voice.trim().isEmpty()) {
-					voice = "chr+" + voice;
-				} else {
-					voice = "chr";
-				}
-				espeak.generateWav(voice, speed, challengeWavFile, challenge);
+				tts.generateWav(voice.id, challengeWavFile, challenge);
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
 			}
 			if (!already.contains(answer)) {
-				SexualGender sex = SexualGender.NOT_SPECIFIED;
-				if (data.getSex().toLowerCase().startsWith("female")) {
-					sex = SexualGender.FEMALE;
-				}
-				if (data.getSex().toLowerCase().startsWith("male")) {
-					sex = SexualGender.MALE;
-				}
-				String voice = nextVoice(challenge, sex);
-				if (!voice.trim().isEmpty()) {
-					voice = "en-us+" + voice;
+				final File tmp;
+				if (voice.sex.equals(SexualGender.FEMALE)) {
+					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
+				} else if (voice.sex.equals(SexualGender.MALE)) {
+					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
 				} else {
-					voice = "en-us";
+					if (new Random(voiceShuffleSeed).nextBoolean()) {
+						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
+					} else {
+						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
+					}
 				}
-				// espeak.generateWav(voice, speed, answerWavFile, answer);
-				if (voice.contains("+f")) {
-					final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
-					final List<String> cmd = new ArrayList<>();
-					cmd.add("ffmpeg");
-					cmd.add("-y");
-					cmd.add("-i");
-					cmd.add(tmp.getAbsolutePath());
-					cmd.add(answerWavFile.getAbsolutePath());
-					executeCmd(cmd);
-					cmd.clear();
-					cmd.add("normalize-audio");
-					cmd.add(answerWavFile.getAbsolutePath());
-					executeCmd(cmd);
-				} else {
-					final File tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
-					final List<String> cmd = new ArrayList<>();
-					cmd.add("ffmpeg");
-					cmd.add("-y");
-					cmd.add("-i");
-					cmd.add(tmp.getAbsolutePath());
-					cmd.add(answerWavFile.getAbsolutePath());
-					executeCmd(cmd);
-					cmd.clear();
-					cmd.add("normalize-audio");
-					cmd.add(answerWavFile.getAbsolutePath());
-					executeCmd(cmd);
-				}
+				
+				final List<String> cmd = new ArrayList<>();
+				cmd.add("ffmpeg");
+				cmd.add("-y");
+				cmd.add("-i");
+				cmd.add(tmp.getAbsolutePath());
+				cmd.add(answerWavFile.getAbsolutePath());
+				executeCmd(cmd);
+				
+				cmd.clear();
+				cmd.add("normalize-audio");
+				cmd.add(answerWavFile.getAbsolutePath());
+				executeCmd(cmd);
+				
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
 				data.setAnswerDuration(durationInSeconds);
@@ -1044,25 +1033,26 @@ public class Main {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void generateDurationsReport() throws IOException {
-		final File reportFile = new File("tmp/durations.tsv");
+		final File reportFile = new File("tmp/durations.txt");
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Challenge Wav");
-		sb.append("\t");
+		sb.append("|");
 		sb.append("Duration");
-		sb.append("\t");
+		sb.append("|");
 		sb.append("Answer Wav");
-		sb.append("\t");
+		sb.append("|");
 		sb.append("Duration");
 		sb.append("\n");
 		for (final AudioCard card : new ArrayList<>(en2chrDeck.getCards())) {
 			final AudioData data = card.getData();
 			sb.append(data.getChallengeFile().getName());
-			sb.append("\t");
+			sb.append("|");
 			sb.append(NF.format(data.getChallengeDuration()));
-			sb.append("\t");
+			sb.append("|");
 			sb.append(data.getAnswerFile().getName());
-			sb.append("\t");
+			sb.append("|");
 			sb.append(NF.format(data.getAnswerDuration()));
 			sb.append("\n");
 		}
@@ -1071,6 +1061,7 @@ public class Main {
 
 	private void generateEn2ChrWavFiles() throws UnsupportedAudioFileException, IOException {
 		voiceShuffleSeed = 0;
+		CherokeeTTS tts = new CherokeeTTS();
 		final File wavTmpDir = new File(WAVS_DIR, "en2chr");
 		FileUtils.deleteQuietly(wavTmpDir);
 		final File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
@@ -1095,17 +1086,19 @@ public class Main {
 				if (data.getSex().toLowerCase().startsWith("male")) {
 					sex = SexualGender.MALE;
 				}
-				String voice = nextVoice(challenge, sex);
-				if (!voice.trim().isEmpty()) {
-					voice = "en-us+" + voice;
-				} else {
-					voice = "en-us";
-				}
+				TtsVoice voice = nextVoice(challenge, sex);
 				System.out.println(" - " + challengeWavFile.getName());
-				if (voice.contains("+f")) {
-					AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, challenge);
+				final File tmp;
+				if (voice.sex.equals(SexualGender.FEMALE)) {
+					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, challenge);
+				} else if (voice.sex.equals(SexualGender.MALE)) {
+					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, challenge);
 				} else {
-					AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, challenge);
+					if (new Random(voiceShuffleSeed).nextBoolean()) {
+						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, challenge);
+					} else {
+						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, challenge);
+					}
 				}
 				final float durationInSeconds = getDuration(challengeWavFile);
 				data.setChallengeDuration(durationInSeconds);
@@ -1118,20 +1111,9 @@ public class Main {
 				if (data.getSex().toLowerCase().startsWith("male")) {
 					sex = SexualGender.MALE;
 				}
-				String voice = nextVoice(challenge, sex);
-				int speed;
-				if (chrVoiceSpeekingRates.containsKey(voice)) {
-					speed = chrVoiceSpeekingRates.get(voice);
-				} else {
-					speed = 0;
-				}
-				if (!voice.trim().isEmpty()) {
-					voice = "chr+" + voice;
-				} else {
-					voice = "chr";
-				}
+				TtsVoice voice = nextVoice(challenge, sex);
 				System.out.println(" - " + answerWavFile.getName() + " [" + voice + "]");
-				espeak.generateWav(voice, speed, answerWavFile, answer);
+				tts.generateWav(voice.id, answerWavFile, answer);
 				already.add(answer);
 				final float durationInSeconds = getDuration(answerWavFile);
 				data.setAnswerDuration(durationInSeconds);
@@ -1361,23 +1343,23 @@ public class Main {
 	private void loadMainDecks() throws IOException {
 		final StringBuilder reviewSheetChr2En = new StringBuilder();
 		final StringBuilder reviewSheetEn2Chr = new StringBuilder();
-		final File jsonFile = new File(DECK_TSV);
-		System.out.println(jsonFile.getAbsolutePath());
+		final File textFile = new File(deckSourceText);
+		System.out.println(textFile.getAbsolutePath());
 		final Map<String, AudioCard> cardsForCherokeeAnswers = new HashMap<>();
 		final Map<String, AudioCard> cardsForEnglishAnswers = new HashMap<>();
-		try (LineIterator li = FileUtils.lineIterator(jsonFile, StandardCharsets.UTF_8.name())) {
+		try (LineIterator li = FileUtils.lineIterator(textFile, StandardCharsets.UTF_8.name())) {
 			li.next();
 			int idEn2Chr = 0;
 			int idChr2En = 0;
 			while (li.hasNext()) {
 				final String line = li.next();
-				final String[] fields = line.split("\t");
-				if (fields.length <= ENGLISH_TEXT_START) {
+				final String[] fields = line.split("\\|");
+				if (fields.length < ENGLISH_TEXT + 1) {
 					System.out.println("; " + line);
 					continue;
 				}
-				final String verbStem = fields[VERB_STEM].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
-				String boundPronoun = fields[PRONOUN].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
+				final String verbStem = "";//fields[VERB_STEM].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
+				String boundPronoun = "";//fields[PRONOUN].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
 				/*
 				 * tag the boundPronoun with the stem's lead character so that pronunciation
 				 * based counting of sets happens
@@ -1386,7 +1368,7 @@ public class Main {
 //					boundPronoun += verbStem.substring(0, 1);
 //				}
 
-				String cherokeeText = fields[CHEROKEE_TEXT].trim();
+				String cherokeeText = fields[PRONOUNCE_TEXT].trim();
 				if (cherokeeText.isEmpty()) {
 					continue;
 				}
@@ -1398,12 +1380,15 @@ public class Main {
 					cherokeeText += ".";
 				}
 
-				String sex = fields[SEX].trim();
+				String sex = "";//fields[SEX].trim();
 
-				for (int ix = ENGLISH_TEXT_START; ix < fields.length; ix++) {
-					String englishText = fields[ix].trim();
+				//for (int ix = ENGLISH_TEXT; ix < fields.length; ix++) {
+					String englishText = fields[ENGLISH_TEXT].trim();
 					if (englishText.isEmpty()) {
 						continue;
+					}
+					if (englishText.contains(";")) {
+						englishText = englishText.replace(";", " Or, ");
 					}
 					if (!englishText.matches(".*[,.?!]")) {
 						englishText += ".";
@@ -1468,9 +1453,9 @@ public class Main {
 						en2chrDeck.add(toChrCard);
 					}
 					reviewSheetEn2Chr.append(toChrData.id());
-					reviewSheetEn2Chr.append("\t");
+					reviewSheetEn2Chr.append("|");
 					reviewSheetEn2Chr.append(toChrData.getChallenge());
-					reviewSheetEn2Chr.append("\t");
+					reviewSheetEn2Chr.append("|");
 					reviewSheetEn2Chr.append(toChrData.getAnswer());
 					reviewSheetEn2Chr.append("\n");
 
@@ -1496,24 +1481,24 @@ public class Main {
 						chr2enDeck.add(toEnCard);
 					}
 					reviewSheetChr2En.append(toEnData.id());
-					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append("|");
 					reviewSheetChr2En.append(toEnData.getBoundPronoun());
-					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append("|");
 					reviewSheetChr2En.append(toEnData.getVerbStem());
-					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append("|");
 					reviewSheetChr2En.append(toEnData.getChallenge());
-					reviewSheetChr2En.append("\t");
+					reviewSheetChr2En.append("|");
 					reviewSheetChr2En.append(toEnData.getAnswer());
 					reviewSheetChr2En.append("\n");
-				}
+				//}
 				if (USE_DEBUG_DECK && chr2enDeck.size() >= DEBUG_DECK_SIZE) {
 					break;
 				}
 			}
 		}
-		FileUtils.writeStringToFile(new File("review-sheet-chr-en.tsv"), reviewSheetChr2En.toString(),
+		FileUtils.writeStringToFile(new File("review-sheet-chr-en.txt"), reviewSheetChr2En.toString(),
 				StandardCharsets.UTF_8);
-		FileUtils.writeStringToFile(new File("review-sheet-en-chr.tsv"), reviewSheetEn2Chr.toString(),
+		FileUtils.writeStringToFile(new File("review-sheet-en-chr.txt"), reviewSheetEn2Chr.toString(),
 				StandardCharsets.UTF_8);
 	}
 
@@ -1521,25 +1506,22 @@ public class Main {
 		FEMALE, MALE, NOT_SPECIFIED;
 	}
 
-	public String nextVoice(final String englishText, final SexualGender sex) {
+	public TtsVoice nextVoice(final String ttsText, final SexualGender sex) {
 		if (voices.isEmpty()) {
 			voices.addAll(voiceVariants);
 			do {
 				Collections.shuffle(voices, new Random(voiceShuffleSeed++));
 			} while (voices.get(0).equals(previousVoice) && voiceVariants.size() > 2);
 		}
-		final String lc = englishText.toLowerCase();
-		if (SexualGender.FEMALE.equals(sex)) {
-			if (!voices.get(0).startsWith("f")) {
-				voices.remove(0);
-				return nextVoice(englishText, sex);
-			}
+		TtsVoice voice = voices.get(0);
+		//final String lc = englishText.toLowerCase();
+		if (SexualGender.FEMALE.equals(sex) && !voice.sex.equals(SexualGender.FEMALE)) {
+			voices.remove(0);
+			return nextVoice(ttsText, sex);
 		}
-		if (SexualGender.MALE.equals(sex)) {
-			if (voices.get(0).startsWith("f")) {
-				voices.remove(0);
-				return nextVoice(englishText, sex);
-			}
+		if (SexualGender.MALE.equals(sex) && !voice.sex.equals(SexualGender.MALE)) {
+			voices.remove(0);
+			return nextVoice(ttsText, sex);
 		}
 		return previousVoice = voices.remove(0);
 	}
@@ -1582,4 +1564,21 @@ public class Main {
 		return data;
 	}
 
+	public static enum ExcerciseSet {
+		BOUND_PRONOUNS, BRAGGING_HUNTERS, CED, OSIYO_THEN_WHAT
+	}
+	
+	public static class TtsVoice {
+		public TtsVoice() {
+		}
+		public TtsVoice(String id) {
+			this(id, SexualGender.NOT_SPECIFIED);
+		}
+		public TtsVoice(String id, SexualGender sex) {
+			this.id = id;
+			this.sex = sex;
+		}
+		String id;
+		SexualGender sex;
+	}
 }

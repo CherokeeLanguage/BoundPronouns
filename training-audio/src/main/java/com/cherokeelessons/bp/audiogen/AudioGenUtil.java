@@ -1,5 +1,7 @@
 package com.cherokeelessons.bp.audiogen;
 
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
@@ -43,33 +45,16 @@ public class AudioGenUtil {
 	}
 
 	public static String asPhoneticFilename(final String challenge) {
-		String tmp = challenge.toLowerCase();
-
+		String tmp = Normalizer.normalize(challenge.toLowerCase(), Form.NFD);
+		
 		tmp = tmp.replace("ɂ", "-");
-
-		tmp = tmp.replace("¹", "1");
-		tmp = tmp.replace("²", "2");
-		tmp = tmp.replace("³", "3");
-		tmp = tmp.replace("⁴", "4");
-
-		tmp = tmp.replace("a", "aa");
-		tmp = tmp.replace("e", "ee");
-		tmp = tmp.replace("i", "ii");
-		tmp = tmp.replace("o", "oo");
-		tmp = tmp.replace("u", "uu");
-		tmp = tmp.replace("v", "vv");
-
-		tmp = tmp.replace("ạ", "a");
-		tmp = tmp.replace("ẹ", "e");
-		tmp = tmp.replace("ị", "i");
-		tmp = tmp.replace("ọ", "o");
-		tmp = tmp.replace("ụ", "u");
-		tmp = tmp.replace("ṿ", "v");
-
-		tmp = tmp.replaceAll("(?i)[^a-z1234\\-]", "");
-
-		tmp = tmp.replaceAll("([cdghjklmnstwy])([aeiouv])([aeiouv])([cdghjklmnstwy\\-])", "$1$2$4");
-		tmp = tmp.replaceAll("^(.*)([aeiouv])([aeiouv])([1234]+)?$", "$1$2$4");
+		tmp = tmp.replaceAll("(?i)[^a-z0-9:\\-]", "");
+		tmp = tmp.replace("a:", "aa");
+		tmp = tmp.replace("e:", "ee");
+		tmp = tmp.replace("i:", "ii");
+		tmp = tmp.replace("o:", "oo");
+		tmp = tmp.replace("u:", "uu");
+		tmp = tmp.replace("v:", "vv");
 
 		return tmp;
 	}
