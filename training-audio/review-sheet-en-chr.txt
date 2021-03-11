@@ -1,20 +1,10 @@
-0001|He has something solid.|Ù:ha.
-0002|Mother.|E:ji.
-0003|He is going.|É:ga.
-0004|Your one self.|Jv̌:sa.
-0005|For them and me to bake things.|Jò:gì:tdi.
-0006|For him to have you one.|Jakóhdi.
-0007|I have rod shaped things.|Dà:gwù:wâ:ya.
-0008|They are eating flexible things.|Dà:ni:hyé:ɂa.
-0009|Let you one see yourself.|Hada:gò:wahta.
-0010|He is being recognized.|À:go:lì:ga.
-0011|For them to recognize you one.|Ge:jo:hlísdi.
-0012|He recently saw them.|Dagò:wahtā.
-0013|Let them and me gather things.|Wijò:jì:hlǐ:sa.
-0014|Let me understand things.|Widigo:lì:gi.
-0015|You both saw yourselves a while ago.|Sdada:go:hv̌:ɂi.
-0016|His things.|Juje:li̋:ɂi.
-0017|Let you one drink alcoholic drinks.|Tatǔ:gi.
-0018|Let you one and me want each other.|Diginadadǔ:la.
-0019|You one recently drank alcoholic drinks.|De:hatǔ:gā.
-0020|They recently wanted all of us, Or,  They were recently wanted.|Ge:gadǔ:lā.
+0001|First lesson.|Igv:yi̋:ɂi à:de:hlohgwà:sdi.
+0002|Second lesson.|Taɂli:ne̋:ɂi à:de:hlohgwà:sdi.
+0003|Listen to them.|Tatv:dà:sda.
+0004|All.|Niga̋:da.
+0005|“A deer. Deer.”.|Ahwi.
+0006|Pine tree.|Nohji.
+0007|Wood.|Ada.
+0008|Young animal.|A̋ɂda.
+0009|Water.|Ama.
+0010|Salt.|Á:ma.

@@ -1,20 +1,10 @@
-0001|Ꭴ-, ᎤᏩ͓-|Ꭽ|Ù:ha.|He has something solid.
-0002||ᎡᏥ|E:ji.|Mother.
-0003|Ꭰ-, Ꭶ-|ᎡᎦ|É:ga.|He is going.
-0004|Ꮳ-|ᎥᏌ|Jv̌:sa.|Your one self.
-0005|ᏦᎩ-|ɂᏘᏗ|Jò:gì:tdi.|For them and me to bake things.
-0006|Ꮳ-, Ꮳ-|ɂᎪᏗ|Jakóhdi.|For him to have you one.
-0007|ᏓᎩ-, ᏓᏆ͓-|ᎥᏯ|Dà:gwù:wâ:ya.|I have rod shaped things.
-0008|ᏓᏂ-|ɂᏰᎠ|Dà:ni:hyé:ɂa.|They are eating flexible things.
-0009|ᎭᏓ[Ꮣ͓]-|ᎪᏩᏔ|Hada:gò:wahta.|Let you one see yourself.
-0010|ᎠᏥ-, ᎠᎦ͓-|ᎣᎵᎦ*|À:go:lì:ga.|He is being recognized.
-0011|ᎨᏣ-, ᎨᏣ-|ᎣᎵᏍᏗ|Ge:jo:hlísdi.|For them to recognize you one.
-0012|Ꮣ-, ᏕᎦ-|ᎪᏩᏔ|Dagò:wahtā.|He recently saw them.
-0013|ᏦᏥ-|ɂᏟᏌ|Wijò:jì:hlǐ:sa.|Let them and me gather things.
-0014|ᏗᏥ-, ᏗᎦ͓-|ᎣᎵᎩ*|Widigo:lì:gi.|Let me understand things.
-0015|ᏍᏓᏓ[Ꮣ͓]-|ᎪᎲᎢ|Sdada:go:hv̌:ɂi.|You both saw yourselves a while ago.
-0016|Ꮷ-, ᏧᏩ͓-|ᎠᏤᎵᎢ|Juje:li̋:ɂi.|His things.
-0017|Ꮨ-|ᎠᏚᎩ|Tatǔ:gi.|Let you one drink alcoholic drinks.
-0018|ᏗᎩᎾᏓ[Ꮣ͓]-|ᎠᏚᎳ|Diginadadǔ:la.|Let you one and me want each other.
-0019|ᏕᎯ-, ᏕᎯ-|ᎠᏚᎦ|De:hatǔ:gā.|You one recently drank alcoholic drinks.
-0020|ᎨᎩ-|ᎠᏚᎳ|Ge:gadǔ:lā.|They recently wanted all of us, Or,  They were recently wanted.
+0001|ᎢᎬᏱᎢ|ᎠᏕᎶᏆᏍᏗ|Igv:yi̋:ɂi à:de:hlohgwà:sdi.|First lesson.
+0002|ᏔᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ|Taɂli:ne̋:ɂi à:de:hlohgwà:sdi.|Second lesson.
+0003|Ꭿ|ᎭᏛᏓᏍᏓ|Tatv:dà:sda.|Listen to them.
+0004||ᏂᎦᏓ|Niga̋:da.|All.
+0005|Ꭰ|ᎠᏫ|Ahwi.|“A deer. Deer.”.
+0006||ᏃᏥ|Nohji.|Pine tree.
+0007||ᎠᏓ|Ada.|Wood.
+0008||ᎠᏓ|A̋ɂda.|Young animal.
+0009||ᎠᎹ|Ama.|Water.
+0010||ᎠᎹ|Á:ma.|Salt.

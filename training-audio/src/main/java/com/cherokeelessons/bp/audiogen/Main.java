@@ -35,12 +35,15 @@ import com.cherokeelessons.deck.CardUtils;
 
 public class Main {
 	
-	private static final ExcerciseSet SET = ExcerciseSet.BOUND_PRONOUNS;
+	private static final boolean GRIFFIN_LIM = false;
+	
+	private static final ExcerciseSet SET = ExcerciseSet.CLL1;
 
-	private static final boolean USE_DEBUG_DECK = false;
-	private static final int DEBUG_DECK_SIZE = 100;
+	private static final boolean USE_DEBUG_DECK = true;
+	private static final int DEBUG_DECK_SIZE = 10;
 
-	private static final int SESSIONS_TO_CREATE = 3;
+	private static final int SESSIONS_TO_CREATE = 4;
+	private static final boolean CREATE_ALL_SESSIONS = true;
 
 	private static final int MAX_TRIES_PER_REVIEW_CARD = 10;
 	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 0;
@@ -48,7 +51,7 @@ public class Main {
 	private static final int MAX_TRIES_PER_NEW_CARD = 10;
 	private static final int TRIES_PER_NEW_CARD_DECREMENT = 0;
 
-	private static final int BASE_NEW_CARDS_PER_SESSION = 10;
+	private static final int BASE_NEW_CARDS_PER_SESSION = 5;
 	private static final int NEW_CARDS_INCREMENT = 2;
 
 	private static final int REVIEW_CARDS_PER_SESSION = 15;
@@ -60,7 +63,7 @@ public class Main {
 	private static final File EXCERCISES_DIR = new File("tmp/excercises");
 	private final String deckSourceText;
 	private static final boolean sortDeckBySize = false;
-	private static final boolean autoSplitCherokee = true;
+	private boolean autoSplitCherokee = true;
 	
 	private static final int IX_PRONOUN = 3;
 	private static final int IX_VERB = 4;
@@ -90,21 +93,33 @@ public class Main {
 	private int voiceShuffleSeed = 1234;
 	private boolean maxCardsReached = false;
 
+	private String chr2enPrefix="chr2en";
+
 	public Main() {
 		switch(SET) {
+		case CLL1:
+			chr2enPrefix = "Cherokee-Language-Lessons-1-v3";
+			deckSourceText = "cll1-v3.txt";
+			autoSplitCherokee=false;
+			break;
 		case BOUND_PRONOUNS:
+			chr2enPrefix = "Bound-Pronouns-App";
 			deckSourceText = "review-sheet.txt";
 			break;
 		case BRAGGING_HUNTERS:
+			chr2enPrefix = "Two-Hunters";
 			deckSourceText = "two-men-hunting.txt";
 			break;
 		case CED:
+			chr2enPrefix = "Cherokee-English-Dictionary";
 			deckSourceText = "x1.tsv";
 			break;
 		case OSIYO_THEN_WHAT:
-			deckSourceText = "osiyo-tohiju-then-what.txt";
+			chr2enPrefix = "Conversation-Starters-In-Cherokee";
+			deckSourceText = "osiyo-tohiju-then-what-mco.txt";
 			break;
 		default:
+			chr2enPrefix = "chr2en";
 			deckSourceText = "x1.tsv";
 			break;
 		
@@ -118,8 +133,8 @@ public class Main {
 
 		voiceVariants = new HashSet<>();
 		voiceVariants.add(new TtsVoice("cno-spk_0", SexualGender.FEMALE));
-		voiceVariants.add(new TtsVoice("cno-spk_1", SexualGender.MALE));
-		voiceVariants.add(new TtsVoice("cno-spk_2", SexualGender.FEMALE));
+		//voiceVariants.add(new TtsVoice("cno-spk_1", SexualGender.MALE));
+		//voiceVariants.add(new TtsVoice("cno-spk_2", SexualGender.FEMALE));
 		voiceVariants.add(new TtsVoice("cno-spk_3", SexualGender.MALE));
 
 		vstemCounts = new HashMap<String, AtomicInteger>();
@@ -158,10 +173,13 @@ public class Main {
 	private boolean skipNew(AudioCard card) {
 		AudioData data = card.getData();
 		String bp = data.getBoundPronoun();
+		String vs = data.getVerbStem();
+		if (bp.equals("*") && vs.equals("*")) {
+			return true;
+		}
 		if (!pboundCounts.containsKey(bp)) {
 			return false;
 		}
-		String vs = data.getVerbStem();
 		if (!vstemCounts.containsKey(vs)) {
 			return false;
 		}
@@ -248,7 +266,9 @@ public class Main {
 		AudioData copy2 = EnglishAudio.createEnglishAudioFor(EnglishAudio.COPY_2,
 				new File(EXCERCISES_DIR, "copyright-2.wav"));
 
-		for (int exerciseSet = 0; exerciseSet < SESSIONS_TO_CREATE; exerciseSet++) {
+		boolean keep_going = CREATE_ALL_SESSIONS;
+		int sessions = SESSIONS_TO_CREATE;
+		for (int exerciseSet = 0; exerciseSet < sessions || keep_going; exerciseSet++) {
 			System.out.println("=== EXERCISE SET: " + (exerciseSet + 1));
 			final List<File> audioEntries = new ArrayList<>();
 			String prevCardId = "";
@@ -294,6 +314,26 @@ public class Main {
 			 * Source notice
 			 */
 			switch(SET) {
+			case CLL1:
+				wavFile = new File(EXCERCISES_DIR,
+						"source-is-cll1-v3-" + (exerciseSet + 1) + ".wav");
+				tmpData = EnglishAudio.createEnglishAudioFor(
+						"Cherokee Language Lessons 1, 3rd edition. Audio excercises.",
+						wavFile);
+				audioEntries.add(tmpData.getAnswerFile());
+				tick += tmpData.getAnswerDuration();
+				tick += addSilence(1f, audioEntries);
+				if (exerciseSet==0) {
+					wavFile = new File(EXCERCISES_DIR,
+							"cll1-v3-" + (exerciseSet + 1) + ".wav");
+					tmpData = EnglishAudio.createEnglishAudioFor(
+							"By the time you have completed these excercises you should be able to understand the core vocabulary in Cherokee Language Lessons 1.",
+							wavFile);
+					audioEntries.add(tmpData.getAnswerFile());
+					tick += tmpData.getAnswerDuration();
+					tick += addSilence(1f, audioEntries);
+				}
+				break;
 			case BOUND_PRONOUNS:
 				wavFile = new File(EXCERCISES_DIR,
 						"source-is-bound-pronouns-app-" + (exerciseSet + 1) + ".wav");
@@ -394,6 +434,13 @@ public class Main {
 			 * Exercise set title
 			 */
 			switch(SET) {
+			case CLL1:
+//				wavFile = new File(EXCERCISES_DIR, "cll1-v3-session-" + (exerciseSet + 1) + ".wav");
+//				tmpData = EnglishAudio.createEnglishAudioFor("Cherokee Language Lessons 1.", wavFile);
+//				audioEntries.add(tmpData.getAnswerFile());
+//				tick += tmpData.getAnswerDuration();
+//				tick += addSilence(1f, audioEntries);
+				break;
 			case BOUND_PRONOUNS:
 				wavFile = new File(EXCERCISES_DIR, "bound-pronouns-session-" + (exerciseSet + 1) + ".wav");
 				tmpData = EnglishAudio.createEnglishAudioFor("Bound Pronouns Vocabulary Cram.", wavFile);
@@ -460,11 +507,20 @@ public class Main {
 
 			while (tick < 60f * 60f) {
 				float deltaTick = 0f;
-
+				
 				AudioCard card = getNextCard(exerciseSet, prevCardId);
 				if (card == null) {
 					break;
 				}
+				
+				if (keep_going) {
+					keep_going=chr2enDeck.hasCards();
+					/**
+					 * Create a final set of review only sessions.
+					 */
+					sessions=exerciseSet+2;
+				}
+				
 				final String cardId = card.id();
 				CardStats cardStats = card.getCardStats();
 				final boolean newCard = cardStats.isNewCard();
@@ -651,8 +707,10 @@ public class Main {
 			audioEntries.add(produced.getAnswerFile());
 			addSilence(3f, audioEntries);
 
-			final File wavOutputFile = new File(tmpDir, "chr2en-gir-" + LocalDate.now().toString() + "-"
-					+ StringUtils.leftPad("" + (1 + exerciseSet), 4, "0") + ".wav");
+			String outputBasename = chr2enPrefix + "_" + LocalDate.now().toString() + "_"
+								+ StringUtils.leftPad("" + (1 + exerciseSet), 4, "0");
+			
+			final File wavOutputFile = new File(tmpDir, outputBasename + ".wav");
 			for (final List<File> audioEntriesSublist : ListUtils.partition(audioEntries, 500)) {
 				final List<String> cmd = new ArrayList<>();
 				cmd.add("sox");
@@ -670,8 +728,7 @@ public class Main {
 				FileUtils.deleteQuietly(tmp1);
 			}
 			System.out.println("Total ticks: " + NF.format(tick) + " secs [" + NF.format(tick / 60f) + " mins]");
-			final File mp3OutputFile = new File(tmpDir, "chr2en-gir-" + LocalDate.now().toString() + "-"
-					+ StringUtils.leftPad("" + (1 + exerciseSet), 4, "0") + ".mp3");
+			final File mp3OutputFile = new File(tmpDir, outputBasename + ".mp3");
 			final List<String> cmd = new ArrayList<>();
 			cmd.add("ffmpeg");
 			cmd.add("-y");
@@ -974,6 +1031,7 @@ public class Main {
 	private void generateChr2EnWavFiles() throws UnsupportedAudioFileException, IOException {
 		System.out.println("=== generateChr2EnWavFiles");
 		CherokeeTTS tts = new CherokeeTTS();
+		tts.setGriffinLim(GRIFFIN_LIM);
 		voiceShuffleSeed = 0;
 		final File wavTmpDir = new File(WAVS_DIR, "chr2en");
 		FileUtils.deleteQuietly(wavTmpDir);
@@ -1009,8 +1067,8 @@ public class Main {
 					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
 				} else if (voice.sex.equals(SexualGender.MALE)) {
 					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
-				} else {
-					if (new Random(voiceShuffleSeed).nextBoolean()) {
+				} else {					
+					if (voiceShuffleSeed%2==0) {
 						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, answer);
 					} else {
 						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, answer);
@@ -1066,6 +1124,7 @@ public class Main {
 	private void generateEn2ChrWavFiles() throws UnsupportedAudioFileException, IOException {
 		voiceShuffleSeed = 0;
 		CherokeeTTS tts = new CherokeeTTS();
+		tts.setGriffinLim(GRIFFIN_LIM);
 		final File wavTmpDir = new File(WAVS_DIR, "en2chr");
 		FileUtils.deleteQuietly(wavTmpDir);
 		final File espeakNgBin = new File(SystemUtils.getUserHome(), "espeak-ng/bin/espeak-ng");
@@ -1098,7 +1157,7 @@ public class Main {
 				} else if (voice.sex.equals(SexualGender.MALE)) {
 					tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, challenge);
 				} else {
-					if (new Random(voiceShuffleSeed).nextBoolean()) {
+					if (voiceShuffleSeed%2==0) {
 						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_FEMALE_1, challenge);
 					} else {
 						tmp = AwsPolly.generateEnglishAudio(AwsPolly.PRESENTER_MALE_1, challenge);
@@ -1345,23 +1404,31 @@ public class Main {
 	}
 
 	private void loadMainDecks() throws IOException {
+		final Set<String> dupePronunciationCheck = new HashSet<>();
 		final StringBuilder reviewSheetChr2En = new StringBuilder();
 		final StringBuilder reviewSheetEn2Chr = new StringBuilder();
 		final File textFile = new File(deckSourceText);
 		System.out.println(textFile.getAbsolutePath());
 		final Map<String, AudioCard> cardsForCherokeeAnswers = new HashMap<>();
 		final Map<String, AudioCard> cardsForEnglishAnswers = new HashMap<>();
+		int lineNo = 0;
 		try (LineIterator li = FileUtils.lineIterator(textFile, StandardCharsets.UTF_8.name())) {
 			li.next();
+			lineNo++;
 			int idEn2Chr = 0;
 			int idChr2En = 0;
 			while (li.hasNext()) {
+				lineNo++;
 				final String line = li.next();
+				if (line.trim().startsWith("#")||line.trim().isEmpty()) {
+					continue;
+				}
 				final String[] fields = line.split("\\|");
 				if (fields.length < IX_ENGLISH + 1) {
 					System.out.println("; " + line);
 					continue;
 				}
+				final boolean skipAsNew = fields[0].equals("*");
 				final String verbStem = fields[IX_VERB].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
 				String boundPronoun = fields[IX_PRONOUN].replaceAll("[¹²³⁴" + UNDERDOT + "]", "").trim();
 				/*
@@ -1376,6 +1443,9 @@ public class Main {
 				if (cherokeeText.isEmpty()) {
 					continue;
 				}
+				if (cherokeeText.trim().startsWith("#")) {
+					continue;
+				}
 				if (cherokeeText.contains(",") && autoSplitCherokee) {
 					cherokeeText = cherokeeText.substring(0, cherokeeText.indexOf(",")).trim();
 				}
@@ -1383,6 +1453,11 @@ public class Main {
 				if (!cherokeeText.matches(".*[,.?!]")) {
 					cherokeeText += ".";
 				}
+				String checkText = cherokeeText.replaceAll("(?i)[.,!?;]", "").trim();
+				if (dupePronunciationCheck.contains(checkText)) {
+					throw new IllegalStateException("DUPLICATE PRONUNCIATION: ("+lineNo+") "+checkText+"\n"+Arrays.toString(fields));
+				}
+				dupePronunciationCheck.add(checkText);
 
 				String sex = fields[IX_GENDER].trim();
 
@@ -1451,6 +1526,10 @@ public class Main {
 					toChrData.setChallengeDuration(0);
 					toChrData.setId(++idEn2Chr);
 					toChrData.setSex(sex);
+					if (skipAsNew) {
+						toChrData.setBoundPronoun("*");
+						toChrData.setVerbStem("*");
+					}
 					toChrCard.setData(toChrData);
 					cardsForCherokeeAnswers.put(englishText, toChrCard);
 					en2chrDeck.add(toChrCard);
@@ -1479,6 +1558,10 @@ public class Main {
 					toEnData.setChallengeDuration(0);
 					toEnData.setId(++idChr2En);
 					toEnData.setSex(sex);
+					if (skipAsNew) {
+						toEnData.setBoundPronoun("*");
+						toEnData.setVerbStem("*");
+					}
 					toEnCard.setData(toEnData);
 					cardsForEnglishAnswers.put(cherokeeText, toEnCard);
 					chr2enDeck.add(toEnCard);
@@ -1568,7 +1651,7 @@ public class Main {
 	}
 
 	public static enum ExcerciseSet {
-		BOUND_PRONOUNS, BRAGGING_HUNTERS, CED, OSIYO_THEN_WHAT
+		BOUND_PRONOUNS, BRAGGING_HUNTERS, CED, OSIYO_THEN_WHAT, CLL1
 	}
 	
 	public static class TtsVoice {
