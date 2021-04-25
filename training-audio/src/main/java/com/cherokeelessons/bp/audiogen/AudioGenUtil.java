@@ -84,10 +84,7 @@ public class AudioGenUtil {
 
 	public static String removeEnglishFixedGenderMarks(final String text) {
 		String tmp = text;
-		tmp = tmp.replace("xHe", "He");
-		tmp = tmp.replace("xShe", "She");
-		tmp = tmp.replace("xhe", "he");
-		tmp = tmp.replace("xshe", "she");
+		tmp = tmp.replaceAll("(?i)x(he|she|him|her|his)", "$1");
 		return tmp;
 	}
 

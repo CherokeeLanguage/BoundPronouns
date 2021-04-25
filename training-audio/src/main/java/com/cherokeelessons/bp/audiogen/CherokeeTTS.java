@@ -14,10 +14,9 @@ import org.apache.commons.io.IOUtils;
  * @author Michael Conrad
  */
 
-public class CherokeeTTS {
+public class CherokeeTTS implements TTS {
 
-//	private String checkpoint = "cherokee5c_loss-140-0.117"; // "cherokee5b_loss-300-0.119";
-	private String checkpoint = "cherokee5b_loss-300-0.119";
+	private String checkpoint = "5h-20210422-epoch_185-loss_0.0981"; //"5h-20210422-epoch_265-loss_0.1014";
 	
 	private final File ttsBin;
 	private boolean griffinLim = true;
@@ -59,21 +58,21 @@ public class CherokeeTTS {
 		}
 	}
 
-	public void generateWav(final String voice, final File wavFile, final String text)
-			throws IOException {
-		generateWav("chr", voice, wavFile, text);
-	}
-	
 	public void generateWav(final String lang, final String voice, final File wavFile, final String text)
 			throws IOException {
 		String _text = Normalizer.normalize(text, Normalizer.Form.NFD);
 		if (isSpaceWrap()) {
 			_text = " "+_text.trim()+" ";
 		}
-		final File cacheDir = new File("CherokeeTTS/cache");
+		final File cacheDir = new File("CherokeeTTS/cache-"+checkpoint);
 		cacheDir.mkdirs();
-		String cached_name = _text.replaceAll("(?i)[^a-z0-9]", "")+(griffinLim?"_gl":"")+"_"+checkpoint+"_"+DigestUtils.sha512Hex(_text);
-		final File cachedFile = new File(cacheDir, (lang==null?"":lang.trim()) +"_" + (voice == null ? "" : voice.trim()) + "_" + cached_name + ".wav");
+		String cached_name = _text.replaceAll("(?i)[^a-z0-9 ]", "").replace(" ", "_") //
+				+ (voice == null ? "" : "_" + voice.trim()) //
+				+ (lang == null ? "" : "_" + lang.trim()) //
+				+ (griffinLim ? "_gl" : "") //
+//				+ "_" + checkpoint //
+				+ "_" + DigestUtils.sha512Hex(_text);
+		final File cachedFile = new File(cacheDir, cached_name + ".wav");
 
 		wavFile.getParentFile().mkdirs();
 

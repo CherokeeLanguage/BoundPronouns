@@ -1,11 +1,28 @@
 ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 
+#First Vocabulary (from various chapters).
+||||||ᎣᏏᏲ|o:síyo|Hello.|
+||||||ᎥᏍᎩᎩ?|v̀:sgigi?|Really?|
+||||||Ꭵ|v̄.|Yes.|
+||||||Ꮭ|hla.|No. Not.|
+||||||ᏩᏙ|wado|Thanks.|
+||||||ᎰᏩ|howa|Okay. Sure. You're welcome.|
+|||ᏙᎾᏓ|ᎤᎪᎲᎢ||ᏙᎾᏓᎪᎲᎢ|donada:go:hv:ɂi|“Later, let us two see each other again.”|
+|||ᏙᏓᏓ|ᎤᎪᎲᎢ||ᏙᏓᏓᎪᎲᎢ|dodada:go:hv:ɂi|“Later, let us all see each other again.”|
+
+#Second Vocabulary (commands from various chapters).
+|||Ꭿ|ᎭᏛᏓᏍᏓ||ᏔᏛᏓᏍᏓ|tatv:dà:sda|let you one listen to them.|
+|||Ꭿ|ᎯᎪᎵᏯ||ᏘᎪᎵᏯ|tigo:lǐ:ya.|let you one read them.|
+|||ᏂᎯ|ᎠᏛᎦ||ᏂᏔᏛᎦ|nitadv̀:ga|let you one do them.|
+
 #Chapter 1
-|||ᎢᎬᏱᎢ|ᎠᏕᎶᏆᏍᏗ||ᎢᎬᏱᎢ ᎠᏕᎶᏆᏍᏗ|igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
+||||||ᎢᎬᏱᎢ|igv:yi̋:ɂi|first|
+||||||ᎠᏕᎶᏆᏍᏗ|à:de:hlohgwà:sdi|a lesson.|
+*||||||ᎢᎬᏱᎢ|igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
 
 #Chapter 2
-|||ᏔᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏔᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|taɂli:ne̋:ɂi à:de:hlohgwà:sdi|second lesson.|
-|||Ꭿ|ᎭᏛᏓᏍᏓ||ᏔᏛᏓᏍᏓ|tatv:dà:sda|listen to them.|
+||||||ᏔᎵᏁᎢ|taɂli:ne̋:ɂi|second.|
+*|||ᏔᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏔᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|taɂli:ne̋:ɂi à:de:hlohgwà:sdi|second lesson.|
 ||||ᏂᎦᏓ||ᏂᎦᏓ|niga̋:da|all.|
 |||Ꭰ|ᎠᏫ||ᎠᏫ|ahwi|“A deer. Deer.”|
 ||||ᏃᏥ||ᏃᏥ|nohji|pine tree.|
@@ -13,36 +30,31 @@ ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 ||||ᎠᏓ||ᎠᏓ|a̋ɂda|young animal.|
 ||||ᎠᎹ||ᎠᎹ|ama|water.|
 ||||ᎠᎹ||ᎠᎹ|á:ma|salt.|
-|||Ꭶ|ᎥᏍᎦᎳᏗᎠ||ᎬᏍᎦᎳᏗᎠ|gv:sgaládíɂa|He is hiding a long object.|
-|||Ꮵ|ᎥᏍᎦᎳᏗᎠ||ᎬᏍᎦᎳᏗᎠ|gv̀:sgaládíɂa|I am hiding a long object.|
+|||Ꭶ|ᎥᏍᎦᎳᏗᎠ||ᎠᏓ ᎬᏍᎦᎳᏗᎠ|ada gv:sgaládíɂa|He is hiding a stick.|
+|||Ꮵ|ᎥᏍᎦᎳᏗᎠ||ᎠᏓ ᎬᏍᎦᎳᏗᎠ|ada gv̀:sgaládíɂa|I am hiding a stick.|
 
 #Chapter 3
-|||ᏦᎢᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏦᎢᏁᎢ ᎠᏕᎶᏆᏍᏗ|joɂi:ne̋:ɂi à:de:hlohgwà:sdi|third lesson.|
+||||||ᏦᎢᏁᎢ|joɂi:ne̋:ɂi|third.|
+*|||ᏦᎢᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏦᎢᏁᎢ ᎠᏕᎶᏆᏍᏗ|joɂi:ne̋:ɂi à:de:hlohgwà:sdi|third lesson.|
 
 #Chapter 4
-|||ᏅᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏅᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|nvhgi:ne̋:ɂi à:de:hlohgwà:sdi|fourth lesson.|
-|||Ꭿ|ᎯᎪᎵᏯ||ᏘᎪᎵᏯ|tigo:lǐ:ya.|read them.|
-|||ᏂᎯ|ᎠᏛᎦ||ᏂᏔᏛᎦ|nitadv̀:ga|do them.|
+||||||ᏅᎩᏁᎢ|nvhgi:ne̋:ɂi|fourth.|
+*|||ᏅᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏅᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|nvhgi:ne̋:ɂi à:de:hlohgwà:sdi|fourth lesson.|
 ||||||ᎠᏲ|ayo!|Ouch!|
 |||Ꭰ|ᎣᏍᏓ||ᎣᏍᏓ|ő:sda|“Good. Well.”|
-||||||ᎣᏏᏲ|o:síyo|Hello.|
 |||Ꭴ|ᎤᏲᎢ||ᎤᏲᎢ|u:yő:ɂi|“Bad.”|
 ||||||ᎥᎥ|v:v|Yes.|
-||||||Ꭵ|v̄|Yes.|
-||||||ᎥᏍᎩᎩ?| v̀:sgigi .|Really?|
 ||||||ᎥᏝ|vtla.|No. Not.|
-||||||Ꮭ|hla.|No. Not.|
-||||||ᎰᏩ|howa|Okay. Sure. You're welcome.|
 ||||||Ꮒ!|ni!|Look at that!|
 ||||||ᏣᎳᎩ|jalagi|Cherokee.|
-||||||ᏩᏙ|wado|Thanks.|
 |||Ꭰ|ᏴᏫ||ᎠᏴᏫ|ayv:wi|“A person.”|
 |||Ꭴ|ᎤᏁᎦ||ᎤᏁᎦ|u:ne̋:ga|“White.”|
 ||||||ᏲᏁᎦ|yó:ne:ga|English.|
 ||||||ᏴᏭᏁᎦ|yv́:wúne:ga|English.|
 
 #Chapter 5
-|||ᎯᏍᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎯᏍᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|hisgi:ne̋:ɂi à:de:hlohgwà:sdi|fifth lesson.|
+||||||ᎯᏍᎩᏁᎢ|hisgi:ne̋:ɂi|fifth.|
+*|||ᎯᏍᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎯᏍᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|hisgi:ne̋:ɂi à:de:hlohgwà:sdi|fifth lesson.|
 ||||||ᎦᏙ ᎤᏍᏗ|gadō ű:sdi|Which one?|
 ||||||ᎯᎳ ᎢᎦ|hila̋ ǐ:ga̋|How many?|
 ||||||ᎯᎳ ᏱᎾᎢ|hila̋ iyáni|How many?|
@@ -55,16 +67,11 @@ ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 ||||||ᎯᏍᎩ|hisgi|Five.|
 ||||||ᏑᏓᎵ|sǔ:dáli|Six.|
 ||||||ᎦᎵᏉᎩ|gahlgwǒ:gi|Seven.|
-||||||ᎢᎬᏱᎢ|igv:yi̋:ɂi|First.|
-||||||ᏔᎵᏁᎢ|táɂli:ne̋:ɂi|Second.|
-||||||ᏦᎢᏁᎢ|joɂi:ne̋:ɂi|Third.|
-||||||ᏅᎩᏁᎢ|nvhgi:ne̋:ɂi|Fourth.|
-||||||ᎯᏍᎩᏁᎢ|hisgi:ne̋:ɂi|Fifth.|
 ||||||ᏑᏓᎵᏁᎢ|sǔ:dáli:ne̋:ɂi|Sixth.|
 ||||||ᎦᎵᏉᎩᏁᎢ|gahlgwǒ:gi:ne̋:ɂi|Seventh.|
 
 #Chapter 6
-|||ᏑᏓᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏑᏓᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|sǔ:dáli:ne̋:ɂi à:de:hlohgwà:sdi|sixth lesson.|
+*|||ᏑᏓᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏑᏓᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|sǔ:dáli:ne̋:ɂi à:de:hlohgwà:sdi|sixth lesson.|
 |||Ꭰ|ᎠᎪᏩᏘᎭ||ᎠᎪᏩᏘᎭ|à:gowhtíha|“He sees him or it.”|
 |||ᎠᏂ|ᎠᎪᏩᏘᎭ||ᎠᏂᎪᏩᏘᎭ|à:nigowhtíha|“They see him or it.”|
 |||Ꮣ|ᎠᎪᏩᏘᎭ||ᏓᎪᏩᏘᎭ|dà:gowhtíha|“He sees them.”|
@@ -83,7 +90,7 @@ ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 ||||ᏪᏌ||ᏪᏌ|wě:sa|“A cat. Cats.”|
 
 #Chapter 7
-|||ᎦᎵᏉᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎦᎵᏉᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|Gahlgwo:gi:ne̋:ɂi à:de:hlohgwà:sdi|seventh lesson.|
+*|||ᎦᎵᏉᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎦᎵᏉᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|Gahlgwo:gi:ne̋:ɂi à:de:hlohgwà:sdi|seventh lesson.|
 |||Ꮵ:|ᎠᎪᏩᏘᎭ||ᏥᎪᏩᏘᎭ|ji:gowhtíha|“I see him.”|
 |||Ꮵ|ᎠᎪᏩᏘᎭ||ᏥᎪᏩᏘᎭ|jigowhtíha|“I see it.”|
 |||ᎦᏥ|ᎠᎪᏩᏘᎭ||ᎦᏥᎪᏩᏘᎭ|ga:ji:gowhtíha|“I see them.”|
@@ -114,7 +121,7 @@ ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 *||||||ᏅᏯ ᏕᏥᎪᏩᏘᎭ.|nv̀:ya de:jigowhtíha|I see rocks.|
 *||||||ᏅᏯ ᎯᎪᏩᏘᎭ.|nv̀:ya higowhtíha|You see a rock.|
 *||||||ᎠᏂᎨᏯ ᎩᏟ ᎠᏂᎪᏩᏘᎭ.|ani:gě:hya gi:hli à:nigowhtíha|The women see a dog.|
-*||||||ᎠᎨᏯ ᏦᎢ ᏄᎾ ᏓᎪᏩᏘᎭ.|ani:gě:hya joɂi nǔ:na dà:gowhtíha|The woman sees three potatoes.|
+*||||||ᎠᏂᎨᏯ ᏦᎢ ᏄᎾ ᏓᎪᏩᏘᎭ.|ani:gě:hya joɂi nǔ:na dà:gowhtíha|The woman sees three potatoes.|
 *||||||ᏅᏯ ᏥᎪᏩᏘᎭ.|nv̀:ya jigowhtíha|I see a rock.|
 *||||||ᎯᏍᎩ ᎠᏂᏍᎦᏯ ᏪᏌ ᎠᏂᎪᏩᏘᎭ.|hisgi ani:sgaya wě:sa à:nigowhtíha|The five men see a cat.|
 *||||||ᎠᏍᎦᏯ ᏄᎾ ᎠᎪᏩᏘᎭ.|asgaya nǔ:na à:gowhtíha|The man sees a potato.|
@@ -132,20 +139,18 @@ ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 *||||||ᎠᏂᏍᎦᏯ ᎦᏥᎪᏩᏘᎭ.|ani:sgaya ga:ji:gowhtíha|I see men.|
 
 #Chapter 8
-|||ᎦᎵᏉᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎦᎵᏉᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|Chaně:li:ne̋:ɂi à:de:hlohgwà:sdi|eighth lesson.|
 |||Ꭰ|ᎠᏴ||ᎠᏴ|ayv|“I. We.”|
 ||||ᎥᏍᎩᎾ||ᎥᏍᎩᎾ|v̀:sgina|“He. She. They. That. Those.”|
-||||ᎥᏍᎩᎾ||ᎥᏍᎩ|v̀:sgi|“He. She. They. That. Those.”|
+*||||ᎥᏍᎩᎾ||ᎥᏍᎩ|v̀:sgi|“He. She. They. That. Those.”|
 ||||ᎥᏍᎩᎾ||ᏍᎩᎾ|sgina|“He. She. They. That. Those.”|
 ||||ᎥᏍᎩᎾ||ᎾᏍᎩ|nà:sgi|“He. She. They. That. Those.”|
 ||||ᎭᏢ||ᎭᏢ|ha:dlv|“Where?”|
 ||||||ᎯᎠ|hiɂa|“He. She. They. This. These.”|
-||||||ᎯᎢ|hiɂi|“He. She. They. This. These.”|
+*||||||ᎯᎢ|hiɂi|“He. She. They. This. These.”|
 ||||||Ꮎ|na|“He. She. They. That. Those.”|
 ||||||ᏂᎯ|nihi|“You. You two. You all.”|
 
 #Chapter 9
-|||ᏐᏁᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏐᏁᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|Sóhne:li:ne̋:ɂi à:de:hlohgwà:sdi|ninth lesson.|
 |||Ꭶ|ᎠᎦᏔᎰᎢ||ᎦᏬᏂᏍᎬᎢ ᎠᎦᏔᎲᎢ|Gawó:ni:sgv́:ɂi à:ktahv́:ɂi|“Grammar. Knowing how to speak.”
 |||Ꭰ|ᎠᏫ||ᎠᎭᏫ|ahawi|“A deer. Deer.”|
 |||Ꭶ|ᎪᏪᎵ||ᎪᏪᎵ|go:hwe:li|“A sheet of paper.”|
@@ -249,8 +254,6 @@ ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
 |||ᏛᏍᎩᏂ|ᎤᎪᎲᎢ||ᏛᏍᎩᏂᎪᎯ|dv:sgini:go:hi|“You one will see us two again.”“You two will see me or us two again.”|
 |||ᏛᎢᏨ|ᎤᎪᎲᎢ||ᏛᎢᏨᎪᎯ|dv:ɂì:jv:go:hi|“I will see you all again.”“We two will see you all again.”“We all will see you one or you two or you all again.”|
 |||ᏛᎢᏍᎩ|ᎤᎪᎲᎢ||ᏛᎢᏍᎩᎪᎯ|dv:ɂì:sgi:go:hi|“You one will see us all again.”“You two will see us all again.”“You all will see me or us two or us all again.”|
-|||ᏙᎾᏓ|ᎤᎪᎲᎢ||ᏙᎾᏓᎪᎲᎢ|donada:go:hv:ɂi|“Later let us two see each other again.”|
-|||ᏙᏓᏓ|ᎤᎪᎲᎢ||ᏙᏓᏓᎪᎲᎢ|dodada:go:hv:ɂi|“Later let us all see each other again.”|
 
 #Chapter 11 ᏌᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
 |||Ꭰ|ᎠᎨᏳᏣ||ᎠᎨᏳᏣ|age:hyű:ja|“A girl.”|
