@@ -16,7 +16,7 @@ import org.apache.commons.io.IOUtils;
 
 public class CherokeeTTS implements TTS {
 
-	private String checkpoint = "5h-20210422-epoch_185-loss_0.0981"; //"5h-20210422-epoch_265-loss_0.1014";
+	private String checkpoint = "2a-2021-05-01-epoch_300-loss_0.0740";
 	
 	private final File ttsBin;
 	private boolean griffinLim = true;

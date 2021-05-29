@@ -10,6 +10,7 @@ import com.cherokeelessons.bp.audiogen.AudioData.AudioDataFile;
 import com.cherokeelessons.deck.ICardData;
 
 public class AudioData implements ICardData {
+	private String sortKey;
 	
 	public static class AudioDataFile {
 		public File file;
@@ -177,6 +178,14 @@ public class AudioData implements ICardData {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getSortKey() {
+		return sortKey == null ? "" : sortKey;
+	}
+
+	public void setSortKey(String sortKey) {
+		this.sortKey = String.format("%03d-%s", sortKey.length(), sortKey);
 	}
 
 }
