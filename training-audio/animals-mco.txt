@@ -33,7 +33,7 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 ||||||ᎪᎦ|kó:ga.|A crow. Crows.|
 ||||||ᎬᎮ|gv:he.|A bobcat. Bobcats.|
 ||||||ᎬᎾ|gv́:na.|A turkey. Turkeys.|
-||||||ᎬᏟ|kv̌:hli.|A raccoon. Raccons.|
+||||||ᎬᏟ|kv̌:hli.|A raccoon. Raccoons.|
 ||||||ᏅᏓ|nv:da.|The sun, or, the moon.|
 ||||||ᏌᎶᎵ|salǒ:li.|A squirrel. Squirrels|
 ||||||ᏌᏌ|sa:sa.|A goose, or, swan. Geese. Swans.|
