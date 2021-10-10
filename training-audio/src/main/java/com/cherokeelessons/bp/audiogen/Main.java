@@ -86,7 +86,7 @@ public class Main {
 	private static final boolean CREATE_ALL_SESSIONS = true;
 
 	private static final int MAX_TRIES_PER_REVIEW_CARD = 7; // 4;
-	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 0;
+	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 1;
 
 	private static final int MAX_TRIES_PER_NEW_CARD = 7; // 6;
 	private static final int TRIES_PER_NEW_CARD_DECREMENT = 0;
