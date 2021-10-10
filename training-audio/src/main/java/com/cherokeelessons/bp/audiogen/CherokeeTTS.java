@@ -15,8 +15,12 @@ import org.apache.commons.io.IOUtils;
  */
 
 public class CherokeeTTS implements TTS {
+	
+	private static final boolean NFC = true;
 
-	private String checkpoint = "2a-2021-05-01-epoch_300-loss_0.0740";
+//	private String checkpoint = "2a-2021-05-01-epoch_300-loss_0.0740";C
+//	private String checkpoint = "5c-2021-09-20-epoch_300-loss_0.1104";
+	private String checkpoint = "7a-2021-10-07-nfc-epoch_400-loss_0.0946";
 	
 	private final File ttsBin;
 	private boolean griffinLim = true;
@@ -60,7 +64,7 @@ public class CherokeeTTS implements TTS {
 
 	public void generateWav(final String lang, final String voice, final File wavFile, final String text)
 			throws IOException {
-		String _text = Normalizer.normalize(text, Normalizer.Form.NFD);
+		String _text = Normalizer.normalize(text, NFC ? Normalizer.Form.NFC : Normalizer.Form.NFD);
 		if (isSpaceWrap()) {
 			_text = " "+_text.trim()+" ";
 		}
@@ -102,6 +106,8 @@ public class CherokeeTTS implements TTS {
 		
 		cmd.add("--checkpoint");
 		cmd.add(checkpoint);
+		
+		// cmd.add("--gpu");
 		
 		executeCmd(cmd);
 
