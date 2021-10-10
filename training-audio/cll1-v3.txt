@@ -264,7 +264,7 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 *|||||female||áhni ő:sda sà:gwű|Here is a good one!|
 *|||||male||nas sà:gwű|Is it that one?!|
 *|||||male||ù:hna̋, ő:sda sà:gwű jigowhtíha|There, I see a good one!|
-*|||||male||hiɂa ő:sda|This is good!|
+*|||||male||hiɂa ő:sda!|This is good!|
 *|||||female||dé:widi! yv:wi áhni!|David! People are here!|
 *|||||male||o:síyo age:hyű:ja. tò:hi̋:ju?|hello girl. Things are well, right?|
 *|||||female||o:síyo yǒ:na. tò:hi̋:gwu.|Girl Oh, hello Bear. Things are just well.|
@@ -444,7 +444,6 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 *|||||||yi̋:gi|Maybe.|
 *|||||||gadō u:sdi hiɂa|What's this!?!?|
 *|||||||o:. si.|Oh! Wait!|
-*|||||||hiɂa ő:sda|This is good!|
 *|||||||na wě:sa à:nő:sda. nà:sgi ga:ji:ya:du:líha|Those cats are good! I want them!|
 *|||||||a:nijo u:niyő wě:sa. ayv gè:sv̌:gi|Three bad cats.. we were.|
 

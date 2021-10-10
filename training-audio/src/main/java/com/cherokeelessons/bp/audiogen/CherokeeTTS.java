@@ -17,6 +17,7 @@ import org.apache.commons.io.IOUtils;
 public class CherokeeTTS implements TTS {
 	
 	private static final boolean NFC = true;
+	private static final boolean GPU = true;
 
 //	private String checkpoint = "2a-2021-05-01-epoch_300-loss_0.0740";C
 //	private String checkpoint = "5c-2021-09-20-epoch_300-loss_0.1104";
@@ -107,7 +108,9 @@ public class CherokeeTTS implements TTS {
 		cmd.add("--checkpoint");
 		cmd.add(checkpoint);
 		
-		// cmd.add("--gpu");
+		if (GPU) {
+			cmd.add("--gpu");
+		}
 		
 		executeCmd(cmd);
 
