@@ -1,597 +1,450 @@
-ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME
-
-#First Vocabulary (from various chapters).
-||||||ᎣᏏᏲ|o:síyo|Hello.|
-||||||ᎥᏍᎩᎩ?|v̀:sgigi?|Really?|
-||||||Ꭵ|v̄.|Yes.|
-||||||Ꮭ|hla.|No. Not.|
-||||||ᏩᏙ|wado|Thanks.|
-||||||ᎰᏩ|howa|Okay. Sure. You're welcome.|
-|||ᏙᎾᏓ|ᎤᎪᎲᎢ||ᏙᎾᏓᎪᎲᎢ|donada:go:hv:ɂi|“Later, let us two see each other again.”|
-|||ᏙᏓᏓ|ᎤᎪᎲᎢ||ᏙᏓᏓᎪᎲᎢ|dodada:go:hv:ɂi|“Later, let us all see each other again.”|
-
-#Second Vocabulary (commands from various chapters).
-|||Ꭿ|ᎭᏛᏓᏍᏓ||ᏔᏛᏓᏍᏓ|tatv:dà:sda|let you one listen to them.|
-|||Ꭿ|ᎯᎪᎵᏯ||ᏘᎪᎵᏯ|tigo:lǐ:ya.|let you one read them.|
-|||ᏂᎯ|ᎠᏛᎦ||ᏂᏔᏛᎦ|nitadv̀:ga|let you one do them.|
+ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 
 #Chapter 1
-||||||ᎢᎬᏱᎢ|igv:yi̋:ɂi|first|
-||||||ᎠᏕᎶᏆᏍᏗ|à:de:hlohgwà:sdi|a lesson.|
-*||||||ᎢᎬᏱᎢ|igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
+|||||||o:síyo|Hello.|
+|||||||v:.|Yes.|
+|||||||igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
+|||||||dide:hlohgwà:sdi|Lessons.|
+|||||||aya:do:hlv̋:ɂi|A share. A chapter.
+|||||||gawò:nǐ:hísdi|Speech or language.
 
 #Chapter 2
-||||||ᏔᎵᏁᎢ|taɂli:ne̋:ɂi|second.|
-*|||ᏔᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏔᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|taɂli:ne̋:ɂi à:de:hlohgwà:sdi|second lesson.|
-||||ᏂᎦᏓ||ᏂᎦᏓ|niga̋:da|all.|
-|||Ꭰ|ᎠᏫ||ᎠᏫ|ahwi|“A deer. Deer.”|
-||||ᏃᏥ||ᏃᏥ|nohji|pine tree.|
-||||ᎠᏓ||ᎠᏓ|ada|wood.|
-||||ᎠᏓ||ᎠᏓ|a̋ɂda|young animal.|
-||||ᎠᎹ||ᎠᎹ|ama|water.|
-||||ᎠᎹ||ᎠᎹ|á:ma|salt.|
-|||Ꭶ|ᎥᏍᎦᎳᏗᎠ||ᎠᏓ ᎬᏍᎦᎳᏗᎠ|ada gv:sgaládíɂa|He is hiding a stick.|
-|||Ꮵ|ᎥᏍᎦᎳᏗᎠ||ᎠᏓ ᎬᏍᎦᎳᏗᎠ|ada gv̀:sgaládíɂa|I am hiding a stick.|
+|||||||tatv:dà:sda|let you one listen to them.|
+|||||||niga̋:da ama|All of the water.|
+|||||||niga̋:da á:ma|All of the salt.|
+|||||||taɂli:ne̋:ɂi ahwi|the second deer.|
+|||||||joɂi:ne̋:ɂi nohji|the third pine tree.|
+
+|||||||vtla.|No. Not.|
+|||||||go:hű:sdi|“Something.”|
+
+|||||||ni! a̋ɂda|Look at that! A young animal.|
 
 #Chapter 3
-||||||ᏦᎢᏁᎢ|joɂi:ne̋:ɂi|third.|
-*|||ᏦᎢᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏦᎢᏁᎢ ᎠᏕᎶᏆᏍᏗ|joɂi:ne̋:ɂi à:de:hlohgwà:sdi|third lesson.|
+|||||||joɂi nǔ:na|Three potatoes.
 
 #Chapter 4
-||||||ᏅᎩᏁᎢ|nvhgi:ne̋:ɂi|fourth.|
-*|||ᏅᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏅᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|nvhgi:ne̋:ɂi à:de:hlohgwà:sdi|fourth lesson.|
-||||||ᎠᏲ|ayo!|Ouch!|
-|||Ꭰ|ᎣᏍᏓ||ᎣᏍᏓ|ő:sda|“Good. Well.”|
-|||Ꭴ|ᎤᏲᎢ||ᎤᏲᎢ|u:yő:ɂi|“Bad.”|
-||||||ᎥᎥ|v:v|Yes.|
-||||||ᎥᏝ|vtla.|No. Not.|
-||||||Ꮒ!|ni!|Look at that!|
-||||||ᏣᎳᎩ|jalagi|Cherokee.|
-|||Ꭰ|ᏴᏫ||ᎠᏴᏫ|ayv:wi|“A person.”|
-|||Ꭴ|ᎤᏁᎦ||ᎤᏁᎦ|u:ne̋:ga|“White.”|
-||||||ᏲᏁᎦ|yó:ne:ga|English.|
-||||||ᏴᏭᏁᎦ|yv́:wúne:ga|English.|
+|||||||tigo:lǐ:ya.|let you one read them.|
+|||||||ayo!|Ouch!|
+|||||||v:, ő:sda|Yes, it is good.|
+|||||||u:yő:ɂi ada|Bad wood|
+|||||||v̀:sgigi?|Really?|
+|||||||howa|Okay.|
+
+|||||||jalagi|Cherokee.|
+|||||||wado|Thanks.|
+|||||||yó:ne:ga|English.|
+
+|||||||nitadv̀:ga|let you one do them.|
+
+|||||||nvhgi:ne̋:ɂi ayv:wi|A fourth person.|
+|||||||ada u:ne̋:ga|“The wood is white.”|
 
 #Chapter 5
-||||||ᎯᏍᎩᏁᎢ|hisgi:ne̋:ɂi|fifth.|
-*|||ᎯᏍᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎯᏍᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|hisgi:ne̋:ɂi à:de:hlohgwà:sdi|fifth lesson.|
-||||||ᎦᏙ ᎤᏍᏗ|gadō ű:sdi|Which one?|
-||||||ᎯᎳ ᎢᎦ|hila̋ ǐ:ga̋|How many?|
-||||||ᎯᎳ ᏱᎾᎢ|hila̋ iyáni|How many?|
-||||||ᏌᏊ|sà:gwű|One.|
-||||||ᏔᎵ|táɂli|Two.|
-||||||ᎠᏂᏔᎵ|a:nitáɂli|Two.|
-||||||ᏦᎢ|joɂi|Three.|
-||||||ᎠᏂᏦᎢ|a:nijoɂi|Three.|
-||||||ᏅᎩ|nvhgi|Four.|
-||||||ᎯᏍᎩ|hisgi|Five.|
-||||||ᏑᏓᎵ|sǔ:dáli|Six.|
-||||||ᎦᎵᏉᎩ|gahlgwǒ:gi|Seven.|
-||||||ᏑᏓᎵᏁᎢ|sǔ:dáli:ne̋:ɂi|Sixth.|
-||||||ᎦᎵᏉᎩᏁᎢ|gahlgwǒ:gi:ne̋:ɂi|Seventh.|
+|||||||hisgi:ne̋:ɂi asgaya|A fifth man.|
+|||||||gadō ű:sdi?|Which one?|
+|||||||hila̋ ǐ:ga̋ nǔ:na?|How many potatoes?|
+|||||||hila̋ iyáni gi:hli?|How many dogs?|
+
+|||||||sà:gwű nǔ:na|One potato.|
+|||||||táɂli nv̀:ya|Two rocks.|
+|||||||a:nitáɂli wě:sa|Two cats.|
+|||||||a:nijoɂi gi:hli|Three dogs.|
+|||||||nvhgi ani:gě:hya|Four women.|
+|||||||hisgi ani:sgaya|Five men.|
+|||||||sǔ:dáli gi:hli|Six dogs.|
+|||||||gahlgwǒ:gi nǔ:na|Seven potatoes.|
+|||||||sǔ:dáli:ne̋:ɂi nv̀:ya|A sixth rock.|
+|||||||gahlgwǒ:gi:ne̋:ɂi wě:sa|A seventh cat.|
 
 #Chapter 6
-*|||ᏑᏓᎵᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᏑᏓᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ|sǔ:dáli:ne̋:ɂi à:de:hlohgwà:sdi|sixth lesson.|
-|||Ꭰ|ᎠᎪᏩᏘᎭ||ᎠᎪᏩᏘᎭ|à:gowhtíha|“He sees him or it.”|
-|||ᎠᏂ|ᎠᎪᏩᏘᎭ||ᎠᏂᎪᏩᏘᎭ|à:nigowhtíha|“They see him or it.”|
-|||Ꮣ|ᎠᎪᏩᏘᎭ||ᏓᎪᏩᏘᎭ|dà:gowhtíha|“He sees them.”|
-|||ᏓᏂ|ᎠᎪᏩᏘᎭ||ᏓᏂᎪᏩᏘᎭ|dà:nigowhtíha|“They see them.”|
-||||ᎠᎴ||ᎠᎴ|ale|“And. Or.”|
-||||ᎠᎴ||ᏃᎴ|nole|“And. Or.”|
-|||Ꭰ|ᎠᎨᏯ||ᎠᎨᏯ|agě:hya|“A woman.”|
-|||ᎠᏂ|ᎠᏂᎨᏯ||ᎠᏂᎨᏯ|ani:gě:hya|“Women.”|
-|||Ꭰ|ᎠᏍᎦᏯ||ᎠᏍᎦᏯ|asgaya|“A man.”|
-|||Ꭰ|ᎠᏍᎦᏯ||ᎠᏂᏍᎦᏯ|ani:sgaya|“Men.”|
-|||ᎦᏙ|ᏧᏍᏗ||ᎦᏙ ᏧᏍᏗ|gadō jű:sdi|“Which ones?”|
-|||ᎦᏙ|ᎤᎾᏍᏗ||ᎦᏙ ᎤᎾᏍᏗ|gadō űnsdi|“Which ones?”|
-||||ᎩᏟ||ᎩᏟ|gi:hli|“A dog. Dogs.”|
-||||ᏄᎾ||ᏄᎾ|nǔ:na|“A potato. Potatoes.”|
-||||ᏅᏯ||ᏅᏯ|nv̀:ya|“A rock. Rocks.”|
-||||ᏪᏌ||ᏪᏌ|wě:sa|“A cat. Cats.”|
+|||||||agě:hya à:gowhtíha|He sees a woman.|
+|||||||asgaya à:nigowhtíha|They see a man.|
+|||||||gi:hli dà:gowhtíha asgaya|A man sees dogs.|
+|||||||ani:sgaya nǔ:na dà:nigowhtíha|The men see potatoes.|
+|||||||ale|“And. Or.”|
+
+||||||ᎦᏙ ᏧᏍᏗ|gadō jű:sdi|“Which ones?”|
+|||||||gadō űnsdi|“Which ones?”|
 
 #Chapter 7
-*|||ᎦᎵᏉᎩᏁᎢ|ᎠᏕᎶᏆᏍᏗ||ᎦᎵᏉᎩᏁᎢ ᎠᏕᎶᏆᏍᏗ|Gahlgwo:gi:ne̋:ɂi à:de:hlohgwà:sdi|seventh lesson.|
-|||Ꮵ:|ᎠᎪᏩᏘᎭ||ᏥᎪᏩᏘᎭ|ji:gowhtíha|“I see him.”|
-|||Ꮵ|ᎠᎪᏩᏘᎭ||ᏥᎪᏩᏘᎭ|jigowhtíha|“I see it.”|
-|||ᎦᏥ|ᎠᎪᏩᏘᎭ||ᎦᏥᎪᏩᏘᎭ|ga:ji:gowhtíha|“I see them.”|
-|||ᏕᏥ|ᎠᎪᏩᏘᎭ||ᏕᏥᎪᏩᏘᎭ|de:jigowhtíha|“I see them.”|
-|||Ꭿ:|ᎯᎪᏩᏘᎭ||ᎯᎪᏩᏘᎭ|hi:gowhtíha|“You see him.”|
-|||Ꭿ|ᎠᎪᏩᏘᎭ||ᎯᎪᏩᏘᎭ|higowhtíha|“You see it.”|
-|||ᎦᎯ|ᎠᎪᏩᏘᎭ||ᎦᎯᎪᏩᏘᎭ|ga:hi:gowhtíha|“You see them.”|
-|||ᏕᎯ|ᎠᎪᏩᏘᎭ||ᏕᎯᎪᏩᏘᎭ|de:higowhtíha|“You see them.”|
-||||ᎠᎭᏂ||ᎠᎭᏂ|áhani|“Here.”|
-||||ᎠᎭᏂ||ᎠᏂ|áhni|“Here.”|
-||||ᎢᎾ||ᎢᎾ|i̋:na|“Far.”|
-||||ᎤᎿ||ᎤᎿ|ù:hna̋|“There.”|
-||||ᎾᎥ||ᎾᎥ|naɂv|“Near. Close by.”|
 
-*||||||ᎯᏍᎩ ᏅᏯ ᏕᏥᎪᏩᏘᎭ.|hisgi nv̀:ya de:jigowhtíha|I see five rocks.|
-*||||||ᎩᏟ ᎠᏂᏍᎦᏯ ᏓᎪᏩᏘᎭ.|gi:hli ani:sgaya dà:gowhtíha|The dog sees men.|
-*||||||ᎠᏍᎦᏯ ᎩᏟ ᏓᎪᏩᏘᎭ.|asgaya gi:hli dà:gowhtíha|The man sees dogs.|
-*||||||ᏑᏓᎵ ᏄᎾ ᏕᎯᎪᏩᏘᎭ.|sǔ:dáli nǔ:na de:higowhtíha|You see six potatoes.|
-*||||||ᎠᎨᏯ ᏄᎾ ᏓᎪᏩᏘᎭ.|agě:hya nǔ:na dà:gowhtíha|The woman sees potatoes.|
-*||||||ᎠᏍᎦᏯ ᏥᎪᏩᏘᎭ.|asgaya ji:gowhtíha|I see a man.|
-*||||||ᏪᏌ ᏑᏓᎵ ᎠᏂᎨᏯ ᏓᎪᏩᏘᎭ.|wě:sa sǔ:dáli ani:gě:hya dà:gowhtíha|The cat sees six women.|
-*||||||ᎠᏂᏍᎦᏯ ᏪᏌ ᏓᏂᎪᏩᏘᎭ.|ani:sgaya wě:sa dà:nigowhtíha|The men see cats.|
-*||||||ᏪᏌ ᎯᎪᏩᏘᎭ.|wě:sa hi:gowhtíha|You see a cat.|
-*||||||ᎦᎵᏉᎩ ᏪᏌ ᎦᏥᎪᏩᏘᎭ.|gahlgwǒ:gi wě:sa ga:ji:gowhtíha|I see seven cats.|
-*||||||ᎠᏂᎨᏯ ᏄᎾ ᎠᏂᎪᏩᏘᎭ.|ani:gě:hya nǔ:na à:nigowhtíha|The women see a potato.|
-*||||||ᎩᏟ ᎠᏂᎨᏯ ᏓᏂᎪᏩᏘᎭ.|gi:hli ani:gě:hya dà:nigowhtíha|The dogs see women.|
-*||||||ᎠᏂᏍᎦᏯ ᏅᏯ ᏓᏂᎪᏩᏘᎭ.|ani:sgaya nv̀:ya dà:nigowhtíha|The men see rocks.|
-*||||||ᏅᏯ ᏕᏥᎪᏩᏘᎭ.|nv̀:ya de:jigowhtíha|I see rocks.|
-*||||||ᏅᏯ ᎯᎪᏩᏘᎭ.|nv̀:ya higowhtíha|You see a rock.|
-*||||||ᎠᏂᎨᏯ ᎩᏟ ᎠᏂᎪᏩᏘᎭ.|ani:gě:hya gi:hli à:nigowhtíha|The women see a dog.|
-*||||||ᎠᏂᎨᏯ ᏦᎢ ᏄᎾ ᏓᎪᏩᏘᎭ.|ani:gě:hya joɂi nǔ:na dà:gowhtíha|The woman sees three potatoes.|
-*||||||ᏅᏯ ᏥᎪᏩᏘᎭ.|nv̀:ya jigowhtíha|I see a rock.|
-*||||||ᎯᏍᎩ ᎠᏂᏍᎦᏯ ᏪᏌ ᎠᏂᎪᏩᏘᎭ.|hisgi ani:sgaya wě:sa à:nigowhtíha|The five men see a cat.|
-*||||||ᎠᏍᎦᏯ ᏄᎾ ᎠᎪᏩᏘᎭ.|asgaya nǔ:na à:gowhtíha|The man sees a potato.|
-*||||||ᏪᏌ ᎦᏥᎪᏩᏘᎭ.|wě:sa ga:ji:gowhtíha|I see cats.|
-*||||||ᎠᏂᏦᎢ ᎩᏟ ᎦᎯᎪᏩᏘᎭ.|a:nijoɂi gi:hli ga:hi:gowhtíha|You see three dogs.|
-*||||||ᎩᏟ ᎦᎯᎪᏩᏘᎭ.|gi:hli ga:hi:gowhtíha|You see dogs.|
-*||||||ᎠᎨᏯ ᎯᎪᏩᏘᎭ.|agě:hya hi:gowhtíha|You see a woman.|
-*||||||ᏅᎩ ᎠᏂᏍᎦᏯ ᎦᎯᎪᏩᏘᎭ.|nvhgi ani:sgaya ga:hi:gowhtíha|You see four men.|
-*||||||ᎠᏂᎨᏯ ᎦᎯᎪᏩᏘᎭ.|ani:gě:hya ga:hi:gowhtíha|You see women.|
-*||||||ᎩᏟ ᎠᎨᏯ ᎠᎪᏩᏘᎭ.|gihli agě:hya à:gowhtíha|The dog sees a woman.|
-*||||||ᏅᏯ ᏕᎯᎪᏩᏘᎭ.|nv̀:ya de:higowhtíha|You see rocks.|
-*||||||ᎠᏂᏔᎵ ᏪᏌ ᎠᏂᏔᎵ ᎠᏂᏍᎦᏯ ᏓᏂᎪᏩᏘᎭ.|a:nitáɂli wě:sa a:nitáɂli ani:sgaya dà:nigowhtíha|The two cats see two men.|
-*||||||ᎠᏂᏦᎢ ᎠᏂᎨᏯ ᎠᏂᏦᎢ ᎩᏟ ᏓᏂᎪᏩᏘᎭ.|a:nijoɂi ani:gě:hya a:nijoɂi gi:hli dà:nigowhtíha|The three women see three dogs.|
-*||||||ᏪᏌ ᎠᏍᎦᏯ ᎠᏂᎪᏩᏘᎭ.|wě:sa asgaya à:nigowhtíha|The cats see a man.|
-*||||||ᎠᏂᏍᎦᏯ ᎦᏥᎪᏩᏘᎭ.|ani:sgaya ga:ji:gowhtíha|I see men.|
+|||||||ji:sdu ji:gowhtíha|I see the rabbit.|
+|||||||go:hwe:li jigowhtíha|I see a sheet of paper.|
+
+|||||||wahaya ga:ji:gowhtíha|I see wolves.|
+|||||||digo:hwe:li de:jigowhtíha|I see papers.
+
+|||||||age:hyű:ja hi:gowhtíha|You see a girl.|
+|||||||sadv́:di higowhtíha|You see a trap.|
+
+|||||||ani:ge:hyű:ja ga:hi:gowhtíha|You see girls.|
+|||||||di:sadv́:di de:higowhtíha|You see traps.|
+
+|||||||áhni ale ù:hna̋|“Here and there.”|
+|||||||i̋:na ale naɂv|“Far and near.”|
+|||||||to:hwe:lv̀:ga|Write them.|
 
 #Chapter 8
-|||Ꭰ|ᎠᏴ||ᎠᏴ|ayv|“I. We.”|
-||||ᎥᏍᎩᎾ||ᎥᏍᎩᎾ|v̀:sgina|“He. She. They. That. Those.”|
-*||||ᎥᏍᎩᎾ||ᎥᏍᎩ|v̀:sgi|“He. She. They. That. Those.”|
-||||ᎥᏍᎩᎾ||ᏍᎩᎾ|sgina|“He. She. They. That. Those.”|
-||||ᎥᏍᎩᎾ||ᎾᏍᎩ|nà:sgi|“He. She. They. That. Those.”|
-||||ᎭᏢ||ᎭᏢ|ha:dlv|“Where?”|
-||||||ᎯᎠ|hiɂa|“He. She. They. This. These.”|
-*||||||ᎯᎢ|hiɂi|“He. She. They. This. These.”|
-||||||Ꮎ|na|“He. She. They. That. Those.”|
-||||||ᏂᎯ|nihi|“You. You two. You all.”|
+|||||||ayv|“I. We.”|
+|||||||v̀:sgina|“He. She. They.”|
+
+|||||||ha:dlv|“Where?”|
+
+|||||||hiɂa|“He. She. They.”|
+|||||||na|“The. That.”|
+|||||||nihi|“You.”|
 
 #Chapter 9
-|||Ꭶ|ᎠᎦᏔᎰᎢ||ᎦᏬᏂᏍᎬᎢ ᎠᎦᏔᎲᎢ|Gawó:ni:sgv́:ɂi à:ktahv́:ɂi|“Grammar. Knowing how to speak.”
-|||Ꭰ|ᎠᏫ||ᎠᎭᏫ|ahawi|“A deer. Deer.”|
-|||Ꭶ|ᎪᏪᎵ||ᎪᏪᎵ|go:hwe:li|“A sheet of paper.”|
-|||ᏗᎦ|ᎪᏪᎵ||ᏗᎪᏪᎵ|digo:hwe:li|“Sheets of paper.”|
-||||ᎫᎴ||ᎫᎴ|gu:le|“An acorn. Acorns.”|
-||||ᏙᏯ||ᏙᏯ|do:ya|“A beaver. Beaver.”|
-||||ᏚᏯ||ᏚᏯ|tǔ:ya|“A bean. Beans.”|
-||||ᏥᏍᏚ||ᏥᏍᏚ|ji:sdu|“A rabbit. Rabbits.”|
-||||ᏩᏯ||ᏩᎭᏯ|wahaya|“A wolf. Wolves.”|
-||||ᏩᏯ||ᏩᏯ|wahya|“A wolf. Wolves.”|
-|||ᎣᏍᏓ|ᏙᏯ||ᎣᏍᏓ ᏙᏯ.|ő:sda do:ya|“A good beaver.”|
+|||||||Gawó:ni:sgv́:ɂi à:ktahv́:ɂi|“Knowing how to speak.”
 
-*||||||Ꮭ ᎣᏍᏓ ᏙᏯ ᏱᎩ.|hla ő:sda do:ya yi̋:gi|“It isn't a good beaver.”|
-*||||||ᎥᏝ, Ꮭ ᎣᏍᏓ ᏙᏯ ᏱᎩ.|vhla, hla ő:sda do:ya yi̋:gi| “No, it isn't a good beaver.”|
-*||||||ᏩᏯ ᎤᏲᎢ.|wahya u:yő:ɂi|“The wolf is bad.”|
-*||||||Ꮭ ᏩᏯ ᎤᏲᎢ ᏱᎩ.|hla wahya u:yő:ɂi yi̋:gi|“The wolf isn't bad.”|
-*||||||ᎥᏝ, Ꮭ ᏩᏯ ᎤᏲᎢ ᏱᎩ.|vhla, hla wahya u:yő:ɂi yi̋:gi|“No, the wolf isn't bad.”|
-*||||||ᏩᏯ ᎠᏂ.|wahya áhni|“The wolf is here.”|
-*||||||Ꮭ ᏩᏯ ᎠᏂ ᏱᎩ.|hla wahya áhni yi̋:gi|“The wolf isn't here.”|
-*||||||ᎥᏝ, Ꮭ ᏩᏯ ᎠᏂ ᏱᎩ.|vhla, hla wahya áhni yi̋:gi|“No, the wolf isn't here.”|
+|||||||ani:sgayagwu ahwi dà:nigowhtíha|Just the men are seeing deer.|
 
-*||||||ᎠᏂᎨᏯ ᎩᏟᏊ ᏓᏂᎪᏩᏘᎭ.|ani:gě:hya gi:hligwu dà:nigowhtíha|The women see only the dogs.|
+|||||||digo:hwe:li dà:nigowhtíha|They see the papers.|
+|||||||gu:le à:nigowhtíha|They see the acorn.|
+|||||||do:ya hla ő:sda yi̋:gi|“It isn't a good beaver.”|
+|||||||hila̋ ǐ:ga̋ tǔ:ya? hisgis?|How many beans? Is it five?|
 
-*||||||ᎠᏍᎦᏯ ᏩᎭᏯ ᏓᎪᏩᏘᎭᏊ.|asgaya wahaya dà:gowhtíhagwu|The man is only seeing the wolves.|
-*||||||ᎠᏂᏍᎦᏯᏍ ᎠᏂᎪᏩᏘᎭ?|ani:sgayas à:nigowhtíha|Do the men see it?|
-*||||||ᎦᏥᎪᏩᏘᎭᏍᎪ?|ga:ji:gowhtíhasgo|Do I see them?|
-*||||||ᎠᎨᏯ ᏩᏯᏊ ᏓᎪᏩᏘᎭ.|agě:hya wahyagwu dà:gowhtíha|The woman sees only wolves.|
-*||||||ᎠᏴᏊ ᎩᏟ ᏥᎪᏩᏘᎭ.|ayvgwu gi:hli ji:gowhtíha|Only I see the dog.|
-*||||||ᎠᏂᎨᏯᏧ ᏩᏯ ᎠᏂᎪᏩᏘᎭ?|ani:gě:hyaju wahya à:nigowhtíha|The women see the wolf, right?
+|||||||ani:gě:hyaju wahya à:nigowhtíha|Don't the women see the wolf?
+|||||||asgaya wahaya dà:gowhtíhagwu|The man just sees the wolves.|
+|||||||ő:sda do:ya|“A good beaver.”|
+|||||||gi:hligwu dà:nigowhtíha na ani:gě:hya|The women see just dogs.|
+|||||||ani:sgayas à:nigowhtíha|Do the men see it?|
+|||||||ga:ji:gowhtíhasgo|Do I see them?|
+|||||||ayvgwu gi:hli ji:gowhtíha|Only I see the dog.|
 
-*||||||ᏕᏥᎪᏩᏘᎭᏍᎪ?|de:jigowhtíhasgo|Do I see them?|
-*||||||ᏕᎯᎪᏩᏘᎭᏍ?|de:higowhtíhas|Do you see them?|
-*||||||ᎠᏍᎦᏯᏧ ᏪᏌ ᏓᎪᏩᏘᎭ?|asgayaju wě:sa dà:gowhtíha|The man sees the cats, right?|
-*||||||ᏪᏌᏊ ᏥᎪᏩᏘᎭ.|wě:sagwu ji:gowhtíha|I see only the cat.|
-*||||||ᎠᎨᏯᏍ ᏅᏯ ᏓᎪᏩᏘᎭ?|agě:hyas nv̀:ya dà:gowhtíha|Does the woman see the rocks?|
-*||||||ᎠᏫᏍᎪ ᏥᎪᏩᏘᎭ?|ahwisgo ji:gowhtíha|Do I see a deer?|
-*||||||ᏣᎳᎩᏧ?|jalagiju|It is Cherokee, right?|
+|||||||jalagiju|Isn't it Cherokee?|
+|||||||u:yő:ɂis|Is it bad?|
 
-*||||||ᏄᎾᏍ ᏥᎪᏩᏘᎭ?|nǔ:nas jigowhtíha|Do I see the potato?|
-*||||||ᎠᏂᏍᎦᏯᏍᎪ ᎠᎭᏫ ᏓᏂᎪᏩᏘᎭᏊ?|ani:sgayasgo ahawi dà:nigowhtíhagwu|Are the men only seeing the deer?|
-*||||||ᎠᏂᏍᎦᏯᏍ ᏄᎾᏊ ᏓᏂᎪᏩᏘᎭ?|ani:sgayas nǔ:nagwu dà:nigowhtíha|Are the men seeing only the potatoes?|
-*||||||ᏗᎪᏪᎵ ᏓᏂᎪᏩᏘᎭ.|digo:hwe:li dà:nigowhtíha|They see the papers.|
-*||||||ᎠᎨᏯ ᏓᎪᏩᏘᎭ.|agě:hya dà:gowhtíha|The woman see them.|
-*||||||ᎠᏍᎦᏯᏊᏍᎪ ᏗᎪᏪᎵ ᏓᎪᏩᏘᎭ?|asgayagwusgo digo:hwe:li dà:gowhtíha|Is only the man seeing the papers?|
+|||||||ani:gě:hyagwusgo gu:le dà:nigowhtíha|Are only the women seeing the acorns?|
 
-*||||||ᏥᏍᏚ ᏥᎪᏩᏘᎭ.|ji:sdu ji:gowhtíha|I see the rabbit.|
-*||||||ᎠᏍᎦᏯᏍᎪ ᏅᏯᏊ ᎠᎪᏩᏘᎭ?|asgayasgo nv̀:yagwu à:gowhtíha|Is the man seeing only the rock?|
-*||||||ᎯᎳ ᎢᎦ ᏚᏯ? ᎯᏍᎩᏍ?|hila̋ ǐ:ga̋ tǔ:ya. hisgis|How many beans? Is it five?|
-*||||||ᎠᎨᏯᏍᎪ ᎠᎪᏩᏘᎭ?|agě:hyasgo à:gowhtíha|Does the woman see it?|
-*||||||ᎤᏲᎢᏊᏍ?|u:yő:ɂis|Is it just bad?|
-*||||||ᎠᏂᎨᏯ ᏓᏂᎪᏩᏘᎭ.|ani:gě:hya dà:nigowhtíha|The women see them.|
-*||||||ᏅᏯᏊ ᏥᎪᏩᏘᎭ.|nv̀:yagwu jigowhtíha|I see only the rock.|
-*||||||ᎠᏂᎨᏯ ᏪᏌᏊ ᎠᏂᎪᏩᏘᎭ.|ani:gě:hya wě:sa à:nigowhtíha|The women see only the cat.|
+|||||||yó:ne:gahv|But for it being English?|
+|||||||nihihv|But for you?|
+|||||||nihina|What about you?|
 
-*||||||ᎠᏂᏍᎦᏯ ᎠᏫ ᏓᏂᎪᏩᏘᎭᏊ.|ani:sgaya ahwi dà:nigowhtíha|The men are only seeing the deer.|
+|||||||yv́:wúne:gagwuju|Isn't it just English?|
+|||||||hla do:ya yigi hi:gowhtíha|It isn't a beaver that you see.|
+|||||||ji:gowhtíhas|Do I see him?|
+|||||||ahawisgo hi:gowhtíha|Is it a deer you see?|
+|||||||vhla tǔ:ya yigi|It isn't beans.|
+|||||||hi:gowhtíhas ji:sdu|Are you seeing the rabbit?|
 
-*||||||ᎠᏂᏍᎦᏯ ᎩᏟ ᎠᏂᎪᏩᏘᎭ.|ani:sgaya gi:hli à:nigowhtíha|The men see the dog.|
-*||||||ᎠᎨᏯᏍᎪ ᏚᏯᏊ ᏓᎪᏩᏘᎭ?|ani:gě:hyasgo tǔ:yagwu dà:gowhtíha|Is the woman seeing only the beans?|
-*||||||ᎠᏂᎨᏯᏍ ᎠᎭᏫ ᎠᏂᎪᏩᏘᎭ?|ani:gě:hyas ahawi à:nigowhtíha|Do the women see the deer?|
-*||||||ᎠᏍᎦᏯ ᏙᏯ ᏓᎪᏩᏘᎭ.|asgaya do:ya dà:gowhtíha|The man sees the beaver.|
-*||||||ᏙᏯᏍ ᎦᎯᎪᏩᏘᎭ?|do:yas ga:hi:gowhtíha|Do you see the beavers?|
-
-*||||||ᎠᏂᏍᎦᏯ ᎠᏂᎪᏩᏘᎭ.|ani:sgaya à:nigowhtíha|The men see it.|
-*||||||ᎠᏂᎨᏯᏊᏍᎪ ᎫᎴ ᏓᏂᎪᏩᏘᎭ?|ani:gě:hyagwusgo gu:le dà:nigowhtíha|Are only the women seeing the acorns?|
-*||||||ᎠᏍᎦᏯ ᏩᎭᏯ ᎠᎪᏩᏘᎭ.|asgaya wahaya à:gowhtíha|The man sees the wolf.|
-*||||||ᎠᎨᏯᏊ ᏥᏍᏚ ᏓᎪᏩᏘᎭ.|agě:hyagwu ji:sdu dà:gowhtíha|Only the woman sees the rabbits.|
-*||||||ᎫᎴ ᏥᎪᏩᏘᎭ.|gu:le jigowhtíha|I see the acorn.|
-*||||||ᎠᏂᏍᎦᏯᏊ ᎫᎴ ᎠᏂᎪᏩᏘᎭ.|ani:sgayagwu gu:le à:nigowhtíha|Only the men see the acorn.|
-*||||||ᎠᏂᎨᏯᏍᎪ ᏚᏯᏊ ᎠᏂᎪᏩᏘᎭ?|ani:gě:hyasgo tǔ:yagwu à:nigowhtíha|Are the women seeing only the bean?|
-*||||||ᏲᏁᎦᎲ?|yó:ne:gahv|But for it being English?|
-
-*||||||ᎠᏂᏍᎦᏯ ᏩᏯ ᏓᏂᎪᏩᏘᎭ.|ani:sgaya wahya dà:nigowhtíha|The men see the wolves.|
-*||||||ᏴᏭᏁᎦᏊᏧ?|yv́:wúne:gagwuju|It is just English, right?|
-*||||||ᏙᏯ ᎯᎪᏩᏘᎭ.|do:ya hi:gowhtíha|You see the beaver.|
-*||||||ᏥᎪᏩᏘᎭᏍ?|ji:gowhtíhas|Do I see him/her?|
-*||||||ᎠᎭᏫᏍᎪ ᎯᎪᏩᏘᎭ?|ahawisgo hi:gowhtíha|Do you see a deer?|
-*||||||ᎠᏍᎦᏯᏍ ᏓᎪᏩᏘᎭ?|asgayas dà:gowhtíha|Does the man see them?|
-*||||||ᎪᏪᎵ ᏥᎪᏩᏘᎭᏊ.|go:hwe:li jigowhtíha|I am only seeing the paper.|
-
-*||||||ᎠᎨᏯ ᎠᏫᏊ ᎠᎪᏩᏘᎭ.|agě:hya ahawigwu à:gowhtíha|The woman sees only the deer.|
-*||||||ᎠᏍᎦᏯᏊ ᏄᎾ ᎠᎪᏩᏘᎭ.|asgayagwu nǔ:na à:gowhtíha|Only the man sees the potato.|
-*||||||ᎣᏍᏓᏊᏧ?|ő:sdagwuju|It is just good, right?|
-*||||||ᎠᏂᎨᏯᏊ ᏚᏯ ᏓᏂᎪᏩᏘᎭ.|ani:gě:hyagwu tǔ:ya dà:nigowhtíha|Only the women see the beans.|
-*||||||ᎦᎯᎪᏩᏘᎭᏍ?|ga:hi:gowhtíhas|Do you see them?|
-*||||||ᎠᏂᏍᎦᏯᏧ ᏗᎪᏪᎵ ᏓᏂᎪᏩᏘᎭ?|ani:sgayaju digo:hwe:li dà:nigowhtíha|The men see the papers, right?|
-*||||||ᎠᎨᏯᏊᏍᎪ ᏥᏍᏚ ᎠᎪᏩᏘᎭ?|agě:hyagwusgo ji:sdu à:gowhtíha|Is only the woman seeing the rabbit?|
-*||||||ᏄᎾᏍ ᏓᏂᎪᏩᏘᎭ?|nǔ:na dà:nigowhtíha|Do they see the potatoes?|
+|||||||ő:sdagwuju|Isn't it just good?|
+|||||||ga:hi:gowhtíhas wahya?|Do you see the wolves?|
 
 #Chapter 10 ᏍᎪᎯᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||ᎠᏂ|ᎠᏫ||ᎠᏂᎠᏫ|à:ni:ɂahwi|“The deer people.”|
-|||ᎠᏂ|ᎩᏟ||ᎠᏂᎩᏟ|à:ni:gi:hli|“The dog people.”|
-|||ᎠᏂ|ᏥᏍᏚ||ᎠᏂᏥᏍᏚ|à:ni:ji:sdu|“The rabbit people.”|
-|||ᎠᏂ|ᏩᏯ||ᎠᏂᏩᎭᏯ|à:ni:wahaya|“The wolf people.”|
-|||ᎠᏂ|ᏪᏌ||ᎠᏂᏪᏌ|à:ni:wě:sa|“The cat people.”|
-||||ᏙᎯ||ᏙᎯ|tò:hi̋|“Peaceful. Well in health.”|
-||||||ᏙᎯᏧ?|tò:hi̋:ju|“It is well, isn't it?”|
-||||ᏙᎯᏊ||ᏙᎯᏊ|tò:hi̋:gwu|“It is just well.”“Things are just well.”|
-|||ᏛᎬ|ᎤᎪᎲᎢ||ᏛᎬᎪᎯ|dv:gv:go:hi|“I will see you one again.”|
-|||ᏛᏍᎩ|ᎤᎪᎲᎢ||ᏛᏍᎩᎪᎯ|dv:sgi:go:hi|“You one will see me again.”|
-|||ᏛᏍᏛ|ᎤᎪᎲᎢ||ᏛᏍᏛᎪᎯ|dv:sdv:go:hi|“I will see you two again.”“We two will see you one again.”“We two will see you two again.”|
-|||ᏛᏍᎩᏂ|ᎤᎪᎲᎢ||ᏛᏍᎩᏂᎪᎯ|dv:sgini:go:hi|“You one will see us two again.”“You two will see me or us two again.”|
-|||ᏛᎢᏨ|ᎤᎪᎲᎢ||ᏛᎢᏨᎪᎯ|dv:ɂì:jv:go:hi|“I will see you all again.”“We two will see you all again.”“We all will see you one or you two or you all again.”|
-|||ᏛᎢᏍᎩ|ᎤᎪᎲᎢ||ᏛᎢᏍᎩᎪᎯ|dv:ɂì:sgi:go:hi|“You one will see us all again.”“You two will see us all again.”“You all will see me or us two or us all again.”|
+|||||||donada:go:hv:ɂi|“Later, let us two see each other again.”|
+|||||||dodada:go:hv:ɂi|“Later, let us all see each other again.”|
+
+|||||||à:ni:ɂahwi|“The deer people.”|
+|||||||à:ni:gi:hli|“The dog people.”|
+|||||||à:ni:ji:sdu|“The rabbit people.”|
+|||||||à:ni:wahaya|“The wolf people.”|
+|||||||à:ni:wě:sa|“The cat people.”|
+|||||||tò:hi̋|“Peaceful. Well in health.”|
+|||||||tò:hi̋:ju?|Isn't it well?|
+|||||||v:ɂv, tò:hi̋:gwu|“Yes, it's just well.”|
+|||||||já:ni, dv:gv:go:hi|“John, I will see you again.”|
+|||||||já:ni, dv:sgi:go:hi|“John, You will see me again.”|
+|||||||lí:nida ale ma:gá:li, dv:sdv:go:hi|“Linda and Michael, I will see you two again.”|
+|||||||dv:sgini:go:hi|“You will see us two again. Or. You two will see me again.”|
+|||||||dv:ɂì:jv:go:hi|“I will see you all again. Or. We will see you again.”|
+|||||||dv:ɂì:sgi:go:hi|“You will see us all again. Or. You all will see me again.”|
 
 #Chapter 11 ᏌᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||Ꭰ|ᎠᎨᏳᏣ||ᎠᎨᏳᏣ|age:hyű:ja|“A girl.”|
-|||ᎠᏂ|ᎠᎨᏳᏣ||ᎠᏂᎨᏳᏣ|ani:ge:hyű:ja|“Girls.”|
-|||Ꭰ|ᎠᏧᏣ||ᎠᏧᏣ|achű:ja|“A boy.”|
-|||ᎠᏂ|ᎠᏧᏣ||ᎠᏂᏧᏣ|ani:chű:ja|“Boys.”|
-||||||ᎦᏙ ᎠᏛᏁᎭ|gadō à:dv́:neha|“What is he doing?”|
-||||||ᎦᏙ ᎠᎾᏛᏁᎭ|gadō à:na:dv́:neha|“What are they doing?”|
-||||ᏌᎶᎵ||ᏌᎶᎵ|salǒ:li|“A squirrel. Squirrels.”|
-||||ᏌᏛᏗ||ᏌᏛᏗ|sadv́:di|“A trap.”|
-|||Ꮧ|ᏌᏛᎢᏗ||ᏗᏌᏛᏗ|di:sadv́:di|“Traps.”|
-||||ᏐᏈᎵ||ᏐᏈᎵ|sǒ:gwíli|“A horse. Horses.”|
-||||ᏡᎬᎢ||ᏡᎬᎢ|hlgv̋:ɂi|“A tree.”|
-|||Ꮧ|ᏡᎬᎢ||ᏕᏡᎬᎢ|dě:hlgv̋:ɂi|“Trees.”|
-||||ᏲᎾ||ᏲᎾ|yǒ:na|“A bear. Bears.”|
-||||ᏃᏘ||ᏃᏘ|nò:t|“Naught. Zero.”|
-||||ᎧᏂᎩᏓ||ᎧᏂᎩᏓ|ka:nǐgîda|“None. Nothing. Zero.” |
-||||||ᏣᏁᎳ|chaně:la|“Eight.”|
-||||||ᏧᏁᎳ|chuně:la|“Eight.”|
-||||ᏐᏁᎳ||ᏐᏁᎳ|sóhně:la|“Nine.”|
-||||ᏍᎪᎯ||ᏍᎪᎯ|sgǒ:hi|“Ten.”|
-||||ᏌᏚ||ᏌᏚ|sa:ɂdu|“Eleven.”|
-||||ᏔᎵᏚ||ᏔᎵᏚ|taɂldu|“Twelve.”|
-||||ᏦᎦᏚ||ᏦᎦᏚ|joɂga:ɂdu|“Thirteen.”|
-||||ᏂᎦᏚ||ᏂᎦᏚ|niga:ɂdu|“Fourteen.”|
-||||ᏍᎩᎦᏚ||ᏍᎩᎦᏚ|sgiga:ɂdu|“Fifteen.”|
-||||ᏓᎳᏚ||ᏓᎳᏚ|da:la:du|“Sixteen.”|
-||||ᎦᎵᏆᏚ||ᎦᎵᏆᏚ|gahlgwǎ:du|“Seventeen.”|
-||||ᏁᎳᏚ||ᏁᎳᏚ|ně:la:du|“Eighteen.”|
-||||ᏐᏁᎳᏚ||ᏐᏁᎳᏚ|sóhněla:du|“Nineteen.”|
-|||ᏔᎵ|ᏍᎪᎯ||ᏔᎵᏍᎪᎯ|táɂlsgǒ:hi|“Twenty.”|
-|||ᏦᎢ|ᏍᎪᎯ||ᏦᏍᎪᎯ|joɂsgǒ:hi|“Thirty.”|
-|||ᏅᎩ|ᏍᎪᎯ||ᏅᎩᏍᎪᎯ|nvksgǒ:hi|“Forty.”|
-|||ᎯᏍᎩ|ᏍᎪᎯ||ᎯᎩᏍᎪᎯ|hiksgǒ:hi|“Fifty.”|
-|||ᏑᏓᎵ|ᏍᎪᎯ||ᏑᏓᎵᏍᎪᎯ|sǔ:dálsgǒ:hi|“Sixty.”|
-|||ᎦᎵᏉᎩ|ᏍᎪᎯ||ᎦᎵᏆᏍᎪᎯ|gahlgwǎ:sgǒ:hi|“Seventy.”|
-|||ᏣᏁᎳ|ᏍᎪᎯ||ᏁᎳᏍᎪᎯ|nélsgǒ:hi|“Eighty.”|
-|||ᏐᏁᎳ|ᏍᎪᎯ||ᏐᏁᎳᏍᎪᎯ|sóhnélsgǒ:hi|“Ninety.”|
-|||ᏍᎪᎯ|ᏘᏍᏆ||ᏍᎪᎯᏥᏆ|sgǒ:hítsgwa|“One hundred.”|
+||||||ᎦᏙ ᎠᏛᏁᎭ|gadō à:dv́:neha age:hyű:ja?|“What is the girl doing?”|
+|||||||joɂga:ɂdu ani:ge:hyű:ja|“Thirteen girls.”|
+||||||ᎦᏙ ᎠᎾᏛᏁᎭ|gadō à:dv́:neha achű:ja?|“What is the boy doing?”|
+||||||ᎦᏙ ᎠᎾᏛᏁᎭ|gadō à:na:dv́:neha ani:chű:ja?|“What are the boys doing?”|
+
+|||||||sadv́:di jigowhtíha|“I see a trap.”|
+|||||||hlgv̋:ɂi à:nigowhtíha|“They see a tree.”|
+
+|||||||sa:ɂdu salǒ:li|“Eleven squirrels.”|
+|||||||chaně:la di:sadv́:di|“Eight traps.”|
+|||||||sóhně:la sǒ:gwíli|“Nine horses.”|
+|||||||sgǒ:hi dě:hlgv̋:ɂi|“Ten trees.”|
+|||||||taɂldu yǒ:na|“Twelve bears.”|
+|||||||nò:t|“Naught. Zero.”|
+|||||||ka:nǐgîda|“Nothing. Zero.” |
+|||||||niga:ɂdu|“Fourteen.”|
+|||||||sgiga:ɂdu|“Fifteen.”|
+|||||||da:la:du|“Sixteen.”|
+|||||||gahlgwǎ:du|“Seventeen.”|
+|||||||ně:la:du|“Eighteen.”|
+|||||||sóhněla:du|“Nineteen.”|
+|||||||táɂlsgǒ:hi|“Twenty.”|
+|||||||joɂsgǒ:hi|“Thirty.”|
+|||||||nvksgǒ:hi|“Forty.”|
+|||||||hiksgǒ:hi|“Fifty.”|
+|||||||sǔ:dálsgǒ:hi|“Sixty.”|
+|||||||gahlgwǎ:sgǒ:hi|“Seventy.”|
+|||||||nélsgǒ:hi|“Eighty.”|
+|||||||sóhnélsgǒ:hi|“Ninety.”|
+|||||||sgǒ:hítsgwa|“One hundred.”|
 
 #Chapter 12 ᏔᎳᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
 
-|||ᎯᎳ|ᎢᏴᎢ||ᎯᎳᏴᎢ|hilâ:yv̋:ɂi|“When?”|
-||||ᎦᎪ||ᎦᎪ|gá:gō|“Who?”|
-||||ᎦᎩ||ᎦᎩ|gâ:gí|“Who again?”|
-||||ᎦᏙ||ᎦᏙ|gadò|“What?”|
-||||||ᎦᏙ ᎤᏍᏗ|gadō u:sdi|“What?” Or, “What thing?”|
+|||||||hilâ:yv̋:ɂi?|“When?”|
+|||||||gá:gō?|“Who?”|
+|||||||gâ:gí?|“Who again?”|
+|||||||gadò?|“What?”|
+|||||||gadògí?|“What again?”|
+||||||ᎦᏙ ᎤᏍᏗ|gadō u:sdi?|“What?” Or. “What thing?”|
 
-|||ᎦᏙ|Ꮂ||ᎦᏙᎲ|gadò:hv̋|“Why?”|
-|||ᏓᎩ|ᏚᏙᎠ||ᏓᏆᏙᎠ|dà:gwadó:a|“… is what I am called.”|
-|||ᏙᎩᎾ|ᏚᏙᎠ||ᏙᎩᎾᏙᎠ|dò:gi:nadó:a|“… is what we two are called.”|
-|||ᏙᎦ|ᏚᏙᎠ||ᏙᎦᏙᎠ|dò:gadó:a|“… is what we all are called.”|
-||||||ᏕᏣᏙᎠ?|dě:jádó:ɂa|“… is what you are called.”|
-||||||ᏕᏍᏓᏙᎠ?|dě:sdádó:ɂa|“… is what you two are called.”|
-||||||ᏕᏣᏙᎠ?|dè:jádó:ɂa|“… is what you all are called.”|
-|||Ꮪ|ᏚᏙᎠ||ᏚᏙᎠ|dù:dó:ɂa|“… is what he is called.”|
-|||ᏚᎾ|ᏚᏙᎠ||ᏚᎾᏙᎠ|dù:nadó:ɂa|“… is what they are called.”|
-|||ᎢᎮ|ᎠᏙᎸᎢ||ᎢᎮᏙᎸᎢ|íhě:dô:lv:ɂi|“You come around again.”|
-|||ᎢᏍᏕ|ᎠᏙᎸᎢ||ᎢᏍᏕᏙᎸᎢ|ísdě:dô:lv:ɂi|“You two come around again.”|
-|||ᎢᎢᏤ|ᎠᏙᎸᎢ||ᎢᎢᏤᏙᎸᎢ|íɂì:jě:dô:lv:ɂi|“You all come around again.”|
-|||ᎠᏂ|ᎠᏃᏍᏓ||ᎠᏃᏍᏓ|à:nő:sda|“Good (them).”|
-|||ᎤᏂ|ᎤᏲᎢ||ᎤᏂᏲᎢ|u:niyő:ɂi|“Bad (them).”|
-||||ᎩᎵᏏ||ᎩᎵᏏ|gili:si|“English.”|
-||||ᏴᏫ||ᏴᏫ|yv:wi|“A person. People.”|
-|||Ꭰ|ᎩᎵᏏ||ᎠᎩᎵᏏ|agili:si|“An English person.”|
-|||ᎠᏂ|ᎩᎵᏏ||ᎠᏂᎩᎵᏏ|ani:gili:si|“English people.”|
-|||Ꭰ|ᏣᎳᎩ||ᎠᏣᎳᎩ|ajalagi|“A Cherokee person.”|
-|||ᎠᏂ|ᏣᎳᎩ||ᎠᏂᏣᎳᎩ|ani:jalagi|“Cherokee people.”|
-|||Ꭰ|ᏲᏁᎦ||ᎠᏲᏁᎦ|ayó:ne:ga|“An English person.”|
-|||ᎠᏂ|ᏲᏁᎦ||ᎠᏂᏲᏁᎦ|ani:yó:ne:ga|“English people.”|
-|||ᎠᏂ|ᏴᏫ||ᎠᏂᏴᏫ|ani:yv:wi|“People.”|
-|||Ꭰ|ᏴᏫᏯᎢ||ᎠᏴᏫᏯᎢ|ayv:wi:ya̋:ɂi|“A Native American.”|
-|||ᎠᏂ|ᏴᏫᏯᎢ||ᎠᏂᏴᏫᏯᎢ|ani:yv:wi:ya̋:ɂi|“Native Americans.”|
-||||ᎠᎵᏌᏇᏘ||ᎠᎵᏌᏇᏘ|a:lí:sa:gwe:ti|“Elizabeth”|
-||||ᎡᏂᏙᏂ||ᎡᏂᏙᏂ|énto:ni|“Anthony.”|
-||||ᎵᏂᏓ||ᎵᏂᏓ|lí:nida|“Linda”|
-||||ᎹᎦᎵ||ᎹᎦᎵ|ma:gá:li|“Michael”|
-||||ᎹᎦᏰᏘ||ᎹᎦᏰᏘ|má:gaye:ti|“Margaret”|
-||||ᎺᎵ||ᎺᎵ|mé:li|“Mary”|
-||||ᏆᏆᎠ||ᏆᏆᎠ|gwa:gwaɂa|“Barbara.”|
-||||ᏑᏌᏃ||ᏑᏌᏃ|sú:sano|“Susan”|
-||||ᏙᎹᏏ||ᏙᎹᏏ|tó:masi|“Thomas”|
-||||ᏕᏫᏗ||ᏕᏫᏗ|dé:widi|“David”|
-||||ᏣᎵ||ᏣᎵ|chá:li|“Charles”|
-||||ᏣᏂ||ᏣᏂ|já:ni|“John”|
+|||||||gadò:hv̋|“Why?”|
+
+|||||||énto:ni dà:gwadó:a|“Anthony is what I am called.”|
+|||||||lí:nida ale ma:gá:li dò:gi:nadó:a|“Linda and Michael are what we two are called.”|
+|||||||má:gaye:ti, mé:li, ale gwa:gwaɂa dò:gadó:a|“Margaret, Mary, and Barbara are what we all are called.”|
+|||||||a:lí:sa:gwe:ti dě:jádó:ɂa|“Elizabeth is what you are called.”|
+|||||||sú:sano ale tó:masi dě:sdádó:ɂa|“Susan and Thomas are what you two are called.”|
+|||||||dé:widi, chá:li, ale já:ni dè:jádó:ɂa|“David, Charles, and John are what you all are called.”|
+
+|||||||wahya dù:dó:ɂa|“Wolf is what he is called.”|
+|||||||salǒ:li, sǒ:gwíli, ale yǒ:na dù:nadó:ɂa|“Squirrel, Horse, and Bear are what they are called.”|
+
+|||||||salǒ:li, íhě:dô:lv:ɂi|“Squirrel, come around again.”|
+|||||||sǒ:gwíli, yǒ:na, ísdě:dô:lv:ɂi|“Horse, Bear, come around again.”|
+|||||||salǒ:li, sǒ:gwíli, yǒ:na íɂì:jě:dô:lv:ɂi|“Squirrel, Horse, Bear, come around again.”|
+|||||||gili:si|“English.”|
+|||||||yv:wi|“A person. People.”|
+|||||||agili:si|“An English person.”|
+|||||||ani:gili:si|“English people.”|
+|||||||ajalagi|“A Cherokee person.”|
+|||||||à:nő:sda ani:jalagi|“Good cherokee people.”|
+|||||||ayó:ne:ga|“An English person.”|
+|||||||u:niyő:ɂi ani:yó:ne:ga|“Bad English people.”|
+|||||||ani:yv:wi|“People.”|
+|||||||ayv:wi:ya̋:ɂi|“A Native American.”|
+|||||||ani:yv:wi:ya̋:ɂi|“Native Americans.”|
 
 #Chapter 13 ᏦᎦᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-||||Ꮟ||Ꮟ|si|“Wait! Or, still all the same. Or, even now it still is.”|
-||||||ᏝᏏ|hlási|“Not all the same. No longer still.”|
-*||||||ᎥᏝᏏ|vhlási|“Not all the same. No longer still.”|
-||||||ᎪᎱᏍᏗ|go:hű:sdi|“Something. A thing. Things.”|
-*||||||ᎪᏍᏗ|gő:sdi|“Something. A thing. Things.”|
-||||||Ꮭ ᎪᎱᏍᏗ|hla go:hű:sdi|“Not anything. Nothing. No things.”|
+|||||||si|“Wait! Yet! All the same.”|
+|||||||vhlási|“Not all the same. No longer still.”|
 
-||||||ᎤᏬᎵᏗ ᎪᏪᎵ|uwőhldi go:hwe:li|Funny paper.|
-||||||ᎤᏬᎵᏗ ᎪᏪᎵ|juwőhldi digo:hwe:li|Funny papers.|
-*||||||ᏕᏫᏗ ᏥᏍᏚ ᎠᎴ Ꮎ ᎠᏂᏦᎢ ᏲᎾ!|dé:widi ji:sdu ale na a:nijoɂi yǒ:na|David Rabbit and Those Three Bears!|
-*||||||ᎯᎠ ᏌᏊ ᎤᏲᎢ ᏥᏍᏚ!|hiɂa sà:gwű u:yő:ɂi ji:sdu.|This is one bad rabbit!|
+||||||Ꮭ ᎪᎱᏍᏗ|hla go:hű:sdi|“Not anything.”|
+
+|||||||uwőhldi go:hwe:li|A funny paper.|
+|||||||juwőhldi digo:hwe:li|Funny papers.|
+*|||||||dé:widi ji:sdu ale na a:nijoɂi yǒ:na|David Rabbit and Those Three Bears!|
+*|||||||hiɂa sà:gwű u:yő ji:sdu.|This is one bad rabbit!|
 *||||||ᏏᏲ ᏕᏫᏗ…|síyo dé:widi|Hello David…|
-*||||||ᎠᎨᏳᏣ ᎠᎴ ᎠᏂᏦᎢ ᏲᎾ|agě:hya ale a:nijoɂi yǒ:na|A Girl and Three Bears|
-*|||||male|Ꭳ! ᎠᏂ ᏥᏍᏚ ᎠᎨᏳᏣ!|o. áhni ji:sdu agě:hya|Oh! Here is a rabbit girl!|
-*|||||female|ᎦᏙ ᏕᏣᏙᎠ?|gadō dě:jádó:ɂa|What are you called?|
-*|||||male|ᎣᏏᏲ, ᏕᏫᏗ ᏥᏍᏚ ᏓᏆᏙᎠ.|o:síyo, dé:widi ji:sdu dà:gwadó:a|Hello, I'm called David Rabbit.|
-*|||||male|ᏂᎯ ᎠᎴ ᎠᏴ! ᏂᎯ ᎠᏂ ᎣᏍᏓ.|nihi ale ayv. nihi áhni ő:sda|You and me! You (being) here is good.|
-*|||||female|ᎭᏢ Ꮎ ᎠᏂᏦᎢ ᏲᎾ?|ha:dlv na a:nijoɂi yǒ:na|Where are those three bears?|
-*|||||male|ᏲᎾᎾ ᎠᏂᏦᎢ?|yǒ:nana a:nijoɂi|What about bears, three of them?|
-*|||||male|ᎤᎿᏍ ᎠᏂᏦᎢ ᏲᎾ? Ꮎ ᎤᏲᎢ!|ù:hna̋s a:nijoɂi yǒ:na. na u:yő:ɂi|Are the three bears there? That's bad!|
-*|||||female|Ꮎ ᎠᏂᏦᎢ ᏲᎾ ᎤᎿ, ᎣᏍᏓ!|na a:nijoɂi yǒ:na ù:hna̋. ő:sda.|Those three bears are there, it's good!|
-*|||||male|Ꮟ! ᏍᏍᏍᏍ… Ꮎ ᎠᏂᏦᎢ ᏲᎾ ᎠᏂ!|Si. s. na a:nijoɂi yǒ:na áhni|Wait! Shhhhh… Those three bears are here!|
-*|||||male|ᎤᎿ ᎦᏥᎪᏩᏘᎭ, ᎠᏂᏔᎵ ᏪᏌ…|ù:hna̋ ga:ji:gowhtíha, a:nitáɂli wě:sa|There, I see them, two cats…|
-*|||||male|ᏪᏌᏍ? ᎥᏝ! ᎥᏝ! ᎥᏝ! Ꮎ ᎠᏂᏔᎵ ᎩᏟ!|wě:sas. vhla. vhla. vhla. na a:nitáɂli gi:hli|Cats? No! No! No! Those are two dogs!|
-*|||||female|ᏲᎾᎾ?|yǒ:nana|What about the bears?|
-*|||||male|Ꭽ! Ꮭ ᏲᎾ ᎠᏂ ᏱᎩ!|ha. hla yǒ:na áhni yi̋:gi|Ha! No bears are here!|
-*|||||male|Ꭳ! ᎣᏍᏓ!|o. ő:sda|Oh! Good!|
-*|||||male|ᎤᎿ. ᏂᎯ ᎠᎴ ᎠᏴ!|ù:hna̋. nihi ale ayv|There. You and me!|
-*|||||female|ᎦᏙ ᎤᏍᏗ ᎠᏂ?|gadō u:sdi áhni|What is here?|
-*|||||male|ᎤᎿ ᏥᎪᏩᏘᎭ!|ù:hna̋ jigowhtíha|I'm looking there!|
-*|||||male|Ꭳ! ᎠᏲ! ᎠᏲ! ᎠᏲ!|o. ayo. ayo. ayo.|Oh! Ouch! Ouch! Ouch!|
-*|||||male|ᎪᎱᏍᏗ ᎣᏍᏓ ᏥᎪᏩᏘᎭ!|go:hű:sdi ő:sda jigowhtíha|I see something good!|
-*|||||female|ᎦᏙ ᎤᏍᏗ ᎯᎪᏩᏘᎭ?|gadō u:sdi higowhtíha|What do you see?|
-*|||||male|ᎰᏩ! ᎪᎱᏍᏗ ᎣᏍᏓ!|howa. go:hű:sdi ő:sda|Alright! Something good!|
-*|||||female|Ꭴ! ᏩᏙ!|u:. wado.|Ooo! Thanks!|
-*|||||male|ᎠᎴ ᎯᎠ ᎪᎱᏍᏗ ᎣᏍᏓ!|ale hiɂa go:hű:sdi ő:sda|And this is something good!|
-*|||||female|ᎣᏍᏓᏍ?|ő:sdas.|Is it good?|
-*|||||male|ᎣᏍᏓᏊ!|ő:sdagwu|Just fine!|
-*|||||female|ᏕᏫᏗ, ᏙᎯᏧ?|dé:widi, tò:hi̋:ju|David, it's well, right?|
-*|||||female|Ꭳ, Ꮒ! ᎠᏂ ᏐᏈᎵ!|o:, ni, áhni sǒ:gwíli|Oh, look! Here is a horse!|
-*|||||male|ᎤᎿ ᏌᏊ ᏐᏈᎵ.|ù:hna̋ sà:gwű sǒ:gwíli.|There is one horse.|
-*|||||male|ᎠᏂ ᏌᏊ ᏐᏈᎵ.|áhni sà:gwű sǒ:gwíli.|Here is one horse.|
-*|||||male|ᎯᎠᏍ ᎣᏍᏓ ᏐᏈᎵ?|hiɂas ő:sda sǒ:gwíli|Is this a good horse?|
-*|||||male|Ꭳ! ᎯᎠ ᎣᏍᏓ ᏐᏈᎵ!|o. ő:sda sǒ:gwíli|Oh! This is a good horse!|
-*|||||female|ᎠᏲᏍ?|ayos|Ouchies?|
-*|||||female|Ꮎ ᎤᏲᎢ ᏐᏈᎵ! ᏙᎯᏍ?|na u:yő:ɂi sǒ:gwíli. tò:hi̋s|That bad horse! Are things well?|
-*|||||female|ᎠᏂ ᎣᏍᏓ ᏌᏊ!|áhni ő:sda sà:gwű|Here is a good one!|
-*|||||male|ᎾᏍ ᏌᏊ?!|nas sà:gwű|That one?!|
-*|||||male|ᎤᎿ, ᎣᏍᏓ ᏌᏊ ᏥᎪᏩᏘᎭ!|ù:hna̋, ő:sda sà:gwű jigowhtíha|There, I see a good one!|
-*|||||male|Ꭰ… ᎯᎠ ᎣᏍᏓ!|a:. hiɂa ő:sda|Ah… This is good!|
-*|||||female|Ꭳ! ᏕᏫᏗ! ᏴᏫ ᎠᏂ!|o:. dé:widi. yv:wi áhni|Oh! David! People are here!|
-*|||||male|Ꭳ, ᎣᏏᏲ ᎠᎨᏳᏣ. ᏙᎯᏧ?|o:. o:síyo age:hyű:ja. tò:hi̋:ju|Oh, hello girl. Things are well, right?|
-*|||||female|Ꭳ, ᎣᏏᏲ ᏲᎾ. ᏙᎯᏊ. ᏂᎯᎾ?|o. o:síyo yǒ:na. tò:hi̋:gwu.|Girl Oh, hello Bear. Things are just well. What about you all?|
-*|||||female|ᎵᏂᏓ ᏓᏆᏙᎠ.|lí:nida dà:gwadó:a|I'm called Linda.|
-*|||||female|Ꭳ, ᏙᎯᏊ. ᎺᎵ ᏓᏆᏙᎠ.|o. tò:hi̋:gwu. mé:li dà:gwadó:a|Oh, Things are just well. I'm called Mary.|
-*|||||female|Ꮎ ᏲᎾ ᎠᏧᏣ ᏣᏂ ᏚᏙᎠ.|na yǒ:na achű:ja já:ni dù:dó:ɂa|The bear boy is called John.|
-*|||||male|ᎦᎪ? ᎦᏙ ᏚᏙᎠ?|gá:gō. gadō dù:dó:ɂa|Who? What's he called?|
-*|||||female|ᎯᎠ ᏕᏫᏗ ᏥᏍᏚ.|hiɂa dé:widi ji:sdu|This is David Rabbit.|
-*|||||male|ᏕᏣᏙᎠᏍ ᏕᏫᏗ ᏥᏍᏚ?|dě:jádó:ɂas dé:widi ji:sdu|You are called David Rabbit?|
-*|||||male|ᎠᎭ! ᏂᎯ Ꮎ ᎤᏲᎢ ᏥᏍᏚ!|a:ha:. nihi na u:yő:ɂi ji:sdu|Aha! You are that bad rabbit!|
-*|||||male|Ꮎ ᏥᏍᏚ ᎠᏧᏣ ᎤᏲᎢ!|na ji:sdu achű:ja u:yő:ɂi|That rabbit boy is bad!|
-*|||||male|Ꭳ… ᎯᎠ ᎤᏲᎢ.|o:. hiɂa u:yő:ɂi|Oh… This is bad.|
-*|||||male|ᎥᏝ ᏥᏍᏚ ᎠᎨᏳᏣ ᎠᏂ ᏱᎩ.|vhla ji:sdu age:hyű:ja áhni yi̋:gi|No girl rabbit is here.|
-*|||||male|ᎠᎴ “ᎠᏲ!”|ale. ayo.|And “Ouch!”|
+*|||||||agě:hya ale a:nijoɂi yǒ:na|A Girl and Three Bears|
+*|||||male||áhni ji:sdu agě:hya|Here is a rabbit girl!|
+*|||||female||gadō dě:jádó:ɂa|What are you called?|
+*|||||male||o:síyo, dé:widi ji:sdu dà:gwadó:a|Hello, I'm called David Rabbit.|
+*|||||male||nihi ale ayv. nihi áhni ő:sda|You and me! You (being) here is good.|
+*|||||female||ha:dlv na a:nijoɂi yǒ:na|Where are those three bears?|
+*|||||male||yǒ:nana a:nijoɂi|What about three bears?|
+*|||||male||ù:hna̋s a:nijoɂi yǒ:na. na u:yő:ɂi!|Are three bears there? That's bad!|
+*|||||female||na a:nijoɂi yǒ:na ù:hna̋. ale ő:sda!|The three bears are there. and it's good!|
+*|||||male||Si. s. na a:nijoɂi yǒ:na áhni|Wait! Shhhhh… The three bears are here!|
+*|||||male||ù:hna̋ ga:ji:gowhtíha, a:nitáɂli wě:sa|There, I see them, two cats…|
+*|||||male||wě:sas? vhla! v̀:sgi a:nitáɂli gi:hli|Cats? No! Those are two dogs!|
+*|||||female||yǒ:nana|What about bears?|
+*|||||male||hla yǒ:na áhni yi̋:gi|No bears are here!|
+*|||||male||o. ő:sda|Oh! Good!|
+*|||||male||ù:hna̋. nihi ale ayv|There. You and me!|
+*|||||female||gadō u:sdi áhni|What is here?|
+*|||||male||ù:hna̋ jigowhtíha|I'm looking there!|
+*|||||male||o! ayo! ayo! ayo!|Oh! Ouch! Ouch! Ouch!|
+*|||||male||go:hű:sdi ő:sda jigowhtíha|I see something good!|
+*|||||female||gadō u:sdi higowhtíha|What do you see?|
+*|||||male||howa. go:hű:sdi ő:sda|Alright! Something good!|
+*|||||male||ale hiɂa go:hű:sdi ő:sda|And this is something good!|
+*|||||female||ő:sdas.|Is it good?|
+*|||||male||ő:sdagwu|Just fine!|
+*|||||female||ni! áhni sǒ:gwíli!|look! Here is a horse!|
+*|||||male||ù:hna̋ sà:gwű sǒ:gwíli.|There is one horse.|
+*|||||male||áhni sà:gwű sǒ:gwíli.|Here is one horse.|
+*|||||male||hiɂas ő:sda sǒ:gwíli|Is this a good horse?|
+*|||||male||ő:sda sǒ:gwíli|This is a good horse!|
+*|||||female||na u:yő:ɂi sǒ:gwíli.|That bad horse!|
+*|||||female||áhni ő:sda sà:gwű|Here is a good one!|
+*|||||male||nas sà:gwű|Is it that one?!|
+*|||||male||ù:hna̋, ő:sda sà:gwű jigowhtíha|There, I see a good one!|
+*|||||male||hiɂa ő:sda|This is good!|
+*|||||female||dé:widi! yv:wi áhni!|David! People are here!|
+*|||||male||o:síyo age:hyű:ja. tò:hi̋:ju?|hello girl. Things are well, right?|
+*|||||female||o:síyo yǒ:na. tò:hi̋:gwu.|Girl Oh, hello Bear. Things are just well.|
+*|||||female||lí:nida dà:gwadó:a|I'm called Linda.|
+*|||||female||tò:hi̋:gwu. mé:li dà:gwadó:a|Things are just well. I'm called Mary.|
+*|||||female||na yǒ:na achű:ja já:ni dù:dó:ɂa|The bear boy is called John.|
+*|||||male||gá:gō? gadō dù:dó:ɂa|Who? What's he called?|
+*|||||female||hiɂa dé:widi ji:sdu|This is David Rabbit.|
+*|||||male||dě:jádó:ɂas dé:widi ji:sdu|You are called David Rabbit?|
+*|||||male||a:ha! nihi na u:yő:ɂi ji:sdu!|Aha! You are that bad rabbit!|
+*|||||male||na ji:sdu achű:ja u:yő:ɂi!|That rabbit boy is bad!|
+*|||||male||o:. hiɂa u:yő:ɂi|Oh… This is bad.|
+*|||||male||vhla ji:sdu age:hyű:ja yi̋:gi áhni|No girl rabbit is here.|
+*|||||male||ale ayo!|And “Ouch!”|
 
 #Chapter 14 ᏂᎦᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||Ꭰ|ᎢᏤᎢ||ᎢᏤᎢ|ìje̋:ɂi|“Green of fruit or vegetable.”|
-|||Ꭰ|ᎢᏤᎢᏳᏍᏗ||ᎢᏤᎢᏳᏍᏗ|ijé:ɂiyű:sdi|“Green colored.”|
-|||Ꭴ|ᎤᏍᎪᎸᎢ||ᎤᏍᎪᎸᎢ|ù:sgǒ:lv̋:ɂi|“Dim. Faded.”|
-|||Ꭴ|ᎤᏬᏗᎨᎢ||ᎤᏬᏗᎨᎢ|uwǒ:díge̋:ɂi|“Brown.”|
-||||||ᎩᎦᎨᎢ|gǐ:gáge̋:ɂi|“Red.”|
-*||||||ᎩᎨᎢ|gǐ:ge̋:ɂi|“Red.”|
-||||||ᎬᎿᎨᎢ|gv̌:hnáge̋:ɂi|“Black.”|
-*||||||ᎬᏂᎨᎢ|gv̌:níge̋:ɂi|“Black.”|
-||||ᏌᎪᏂᎨᎢ||ᏌᎪᏂᎨᎢ|sakǒ:níge̋:ɂi|“Blue.”|
-||||ᏓᎭᎵᎨᎢ||ᏓᎭᎵᎨᎢ|daha:lige̋:ɂi|“Purple.”|
-||||ᏓᎶᏂᎨᎢ||ᏓᎶᏂᎨᎢ|dalǒ:níge̋:ɂi|“Yellow.”|
-||||||ᎠᎩᎦᎨᎢ|agǐ:gáge̋:ɂi|“Red.”|
-*||||||ᎠᎩᎨᎢ|agǐ:ge̋:ɂi|“Red.”|
-||||||ᎠᎬᎿᎨᎢ|agv̌:hnáge̋:ɂi|“Black.”|
-*||||||ᎠᎬᏂᎨᎢ|agv̌:níge̋:ɂi|“Black.”|
-|||Ꭰ|ᎠᏌᎪᏂᎨᎢ||ᎠᏌᎪᏂᎨᎢ|asakǒ:níge̋:ɂi|“Blue.”|
-|||Ꭰ|ᎠᏓᎭᎵᎨᎢ||ᎠᏓᎭᎵᎨᎢ|adaha:lige̋:ɂi|“Purple.”|
-|||Ꭰ|ᎠᏓᎶᏂᎨᎢ||ᎠᏓᎶᏂᎨᎢ|adalǒ:níge̋:ɂi|“Yellow.”|
-*||||||ᎩᎦᎨ ᎤᏍᎪᎸᎢ|gǐ:gáge ù:sgǒ:lv̋:ɂi|“Pink. A faded red.”|
-*||||||ᎬᎿᎨ ᎤᏍᎪᎸᎢ|gv̌:hnáge ù:sgǒ:lv̋:ɂi|“Grey. A faded black.”
-*||||||ᏌᎪᏂᎨ ᎤᏍᎪᎸᎢ|sakǒ:níge̋ ù:sgǒ:lv̋:ɂi|“Grey. A faded blue.”
-*||||||ᏓᎶᏂᎨ ᎤᏍᎪᎸᎢ|dalǒ:níge ù:sgǒ:lv̋:ɂi|“Orange. A dim yellow.”
+|||||||ìje̋:ɂi tǔ:ya|A green bean.|
+|||||||ijé:ɂiyű:sdisgo yǒ:na?|Is it a green bear?|
+|||||||ù:sgǒ:lv̋:ɂi|“Dim. Faded.”|
+|||||||uwǒ:díge̋ nǔ:nagwu|just a brown potato.|
+|||||||gǐ:gáge̋:ɂi gu:le|A red acorn.|
+|||||||gv̌:hnáge̋ sadv́:di|A black trap.|
+|||||||sakǒ:níge̋:ɂi sadv́:di|A blue trap.|
+|||||||daha:lige̋:ɂi nǔ:na|A purple potato.|
+|||||||dalǒ:níge̋:ɂi nv̀:ya|A yellow rock|
+|||||||agǐ:gáge̋:ɂi agě:hya|A red woman.|
+|||||||agv̌:hnáge̋:ɂi gi:hli|A black dog.|
+|||||||asakǒ:níge̋:ɂi wě:sa|A blue cat|
+|||||||adaha:lige̋:ɂi ahawi|A purple deer.|
+|||||||adalǒ:níge̋:ɂi ahwi|A yellow deer.|
+|||||||gǐ:gáge ù:sgǒ:lv̋:ɂi gu:le|A pink acorn.|
+|||||||dalǒ:níge ù:sgǒ:lv̋:ɂi tǔ:ya|An orange bean.|
 
 #Chapter 15 ᏍᎩᎦᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||ᎠᏂ|ᎢᏤᎢ||ᎠᏂᏤᎢ|ani:je̋:ɂi|“Green of fruit or vegetable.”|
-|||ᎠᏂ|ᎢᏤᎢᏳᏍᏗ||ᎠᏂᏤᎢᏳᏍᏗ|ani:jé:ɂiyű:sdi|“Green colored.”|
-|||ᎠᏂ|ᎩᎦᎨᎢ||ᎠᏂᎩᎦᎨᎢ|ani:gǐ:gáge̋:ɂi|“Red.”|
-|||ᎠᏂ|ᏓᎭᎵᎨᎢ||ᎠᏂᏓᎭᎵᎨᎢ|ani:daha:lige̋:ɂi|“Purple.”|
-|||ᎠᏂ|ᎬᎿᎨᎢ||ᎠᏂᎬᎿᎨᎢ|ani:gv̌:hnáge̋:ɂi|“Black.”|
-|||ᎠᏂ|ᏌᎪᏂᎨᎢ||ᎠᏂᏌᎪᏂᎨᎢ|ani:sakǒ:níge̋:ɂi|“Blue.”|
-|||ᎠᏂ|ᏓᎶᏂᎨᎢ||ᎠᏂᏓᎶᏂᎨᎢ|ani:dalǒ:níge̋:ɂi|“Yellow.”|
-|||ᎤᏂ|ᎤᏁᎦ||ᎤᏂᏁᎦ|u:ni:ne̋:ga|“White.”|
-|||ᎤᏂ|ᎤᏍᎪᎸᎢ||ᎤᏂᏍᎪᎸᎢ|ù:nisgǒ:lv̋:ɂi|“Dim. Faded.”|
-|||ᏧᏂ|ᎤᏬᏗᎨᎢ||ᏧᏃᏗᎨᎢ|ju:nǒ:díge̋:ɂi|“Brown.”|
-|||Ꮧ|ᎢᏤᎢ||ᏗᏤᎢ|dije̋:ɂi|“Green of fruit or vegetable.”|
-|||Ꮧ|ᎢᏤᎢᏳᏍᏗ||ᏗᏤᎢᏳᏍᏗ|dijé:ɂiyű:sdi|“Green colored.”|
-|||Ꮷ|ᎤᏁᎦ||ᏧᏁᎦ|ju:ne̋:ga|“White.”|
-|||Ꮷ|ᎤᏍᎪᎸᎢ||ᏧᏍᎪᎸᎢ|ju:sgǒ:lv̋:ɂi|“Dim. Faded.”|
-|||Ꮷ|ᎤᏬᏗᎨᎢ||ᏧᏬᏗᎨᎢ|juwǒ:díge̋:ɂi|“Brown.”|
-|||Ꮧ|ᎩᎦᎨᎢ||ᏗᎩᎦᎨᎢ|digǐ:gáge̋:ɂi|“Red.”|
-|||Ꮧ|ᎬᎿᎨᎢ||ᏗᎬᎿᎨᎢ|digv̌:hnáge̋:ɂi|“Black.”|
-|||Ꮧ|ᏌᎪᏂᎨᎢ||ᏗᏌᎪᏂᎨᎢ|disakǒ:níge̋:ɂi|“Blue.”|
-|||Ꮧ|ᏓᎭᎵᎨᎢ||ᏗᏓᎭᎵᎨᎢ|didaha:lige̋:ɂi|“Purple.”|
-|||Ꮧ|ᏓᎶᏂᎨᎢ||ᏗᏓᎶᏂᎨᎢ|didalǒ:níge̋:ɂi|“Yellow.”|
+|||||||ani:je̋:ɂi tǔ:ya|Green beans.|
+|||||||ani:jé:ɂiyű:sdi do:ya|Green beavers.|
+|||||||ani:gǐ:gáge̋:ɂi ji:sdu|Red rabbits.|
+|||||||ani:daha:lige̋:ɂi wahaya|Purple wolves.|
+|||||||ani:gv̌:hnáge̋:ɂi wahya|Black wolves.|
+|||||||ani:sakǒ:níge̋:ɂi salǒ:li|Blue squirrels.|
+|||||||ani:dalǒ:níge̋ sǒ:gwíli|Yellow horses.|
+|||||||u:ni:ne̋:ga yǒ:na|white bears.|
+|||||||ju:nǒ:díge̋:ɂi|“Brown.”|
+|||||||dije̋:ɂi|“Green of fruit or vegetable.”|
+|||||||dijé:ɂiyű:sdi di:sadv́:di|green traps.|
+|||||||ju:ne̋:ga dě:hlgv̋:ɂi|white trees.|
+|||||||juwǒ:díge̋:ɂi ani:sgaya|“Brown men.”|
+|||||||digǐ:gáge̋ digo:hwe:li|Red papers.|
+|||||||digv̌:hnáge̋:ɂi nv̀:ya|Black rocks.|
+|||||||disakǒ:níge̋ gu:le|blue acorns.|
+|||||||didaha:lige̋:ɂi nǔ:na|“Purple potatoes.”|
+|||||||didalǒ:níge̋:ɂi nv̀:ya|“Yellow rocks.”|
 
 #Chapter 16 ᏓᎳᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-*||||||ᎤᏲ ᏥᏍᏚ ᏥᎪᏩᏘᎭ.|u:yő ji:sdu ji:gowhtíha|I see a bad rabbit.|
-*||||||ᎠᏴᏫᏯᎢ ᎣᏍᏓ ᎠᎭᏫ ᎠᎪᏩᏘᎭ.|ayv:wi:ya̋:ɂi ő:sda ahawi à:gowhtíha|The Native American sees a good deer.|
-*||||||ᏗᎩᎦᎨ ᏗᎪᏪᎵ ᏕᏥᎪᏩᏘᎭ.|digǐ:gáge̋ digo:hwe:li de:jigowhtíha|I see red papers.|
-*||||||ᎠᏧᏣ ᏗᏤᎢᏳᏍᏗ ᏗᏌᏛᏗ ᏓᎪᏩᏘᎭ.|achű:ja dijé:ɂiyű:sdi di:sadv́:di dà:gowhtíha|The boy sees green traps.|
-*||||||ᎠᏂᏴᏫᏯᎢ ᏗᏌᎪᏂᎨ ᎫᎴ ᏓᏂᎪᏩᏘᎭ.|ani:yv:wi:ya̋:ɂi disakǒ:níge̋ gu:le dà:nigowhtíha|The Native Americans see blue acorns.|
-*||||||ᎠᎨᏯᏍ ᏥᎪᏩᏘᎭ?|agě:hyas ji:gowhtíha|Do I see a woman?|
-*||||||ᎣᏍᏓ ᎠᏴᏫ ᎯᎪᏩᏘᎭ.|ő:sda ayv:wi hi:gowhtíha|You see a good person.|
-*||||||ᎬᏂᎨ ᏌᏛᏗ ᎯᎪᏩᏘᎭ.|gv̌:níge̋ sadv́:di hi:gowhtíha|You see a black trap.|
-
-*||||||ᎢᏤᎢᏳᏍᏗᏍᎪ ᏲᎾ ᏥᎪᏩᏘᎭ?|ijé:ɂiyű:sdisgo yǒ:na ji:gowhtíha|Do I see a green bear?|
-*||||||ᎠᏣᎳᎩ ᎯᎪᏩᏘᎭ.|ajalagi hi:gowhtíha|You see a Cherokee person.|
-*||||||ᎠᎨᏳᏣ ᏩᎭᏯ ᎠᎪᏩᏘᎭ.|age:hyű:ja wahaya à:gowhtíha|The girl sees a wolf.|
-*||||||ᎤᏲᏍᎪ ᎩᏟ ᏥᎪᏩᏘᎭ?|u:yősgo gi:hli ji:gowhtíha|Do I see a bad dog?|
-*||||||ᎣᏍᏓ ᏩᏯ ᎯᎪᏩᏘᎭ.|ő:sda wahya hi:gowhtíha|You see a good wolf.|
-*||||||ᎤᏲᏍ ᎠᏍᎦᏯ ᏥᎪᏩᏘᎭ?|u:yős asgaya ji:gowhtíha|Do I see a bad man?|
-*||||||ᎠᏂᏣᎳᎩ ᎠᏂᏓᎶᏂᎨ ᏩᏯ ᏓᏂᎪᏩᏘᎭ.|anijalagi ani:dalǒ:níge̋ wahya dà:nigowhtíha|The Cherokee people see yellow wolves.|
-*||||||ᎤᏂᏁᎦ ᏩᎭᏯ ᎦᎯᎪᏩᏘᎭ.|u:ni:ne̋:ga wahaya ga:hi:gowhtíha|You see white wolves.|
-
-*||||||ᎠᏴᏫᏯᎢ ᏗᎬᎿᎨ ᏅᏯ ᏓᎪᏩᏘᎭ.|ayv:wi:ya̋:ɂi igv̌:hnáge̋:ɂi nv̀:ya dà:gowhtíha|The Native American sees black rocks.|
-*||||||ᎠᏂᏴᏫ ᏧᏁᎦ ᏕᏡᎬ ᏓᏂᎪᏩᏘᎭ.|ani:yv:wi ju:ne̋:ga dě:hlgv̋:ɂi dà:nigowhtíha|The people see white trees.|
-*||||||ᎤᏲ ᎠᎨᏯ ᏥᎪᏩᏘᎭ.|u:yő agě:hya ji:gowhtíha|I see a bad woman.|
-*||||||ᎠᏂᎨᏯ ᎤᏂᏲ ᎠᎭᏫ ᏓᏂᎪᏩᏘᎭ.|ani:gě:hya u:niyő ahawi dà:nigowhtíha|The women see bad deer.|
-*||||||ᎠᏧᏣ ᎠᏃᏍᏓ ᎠᏂᏲᏁᎦ ᏓᎪᏩᏘᎭ.|achű:ja à:nő:sda ani:yó:ne:ga dà:gowhtíha|The boy sees good white people.|
-*||||||ᎤᏬᏗᎨ ᏄᎾᏊ ᎯᎪᏩᏘᎭ.|uwǒ:díge̋ nǔ:nagwu higowhtíha|You see just a brown potato.|
-*||||||ᎤᏬᏗᎨᎾ ᏐᏈᎵ ᏥᎪᏩᏘᎭ?|uwǒ:díge̋na sǒ:gwíli ji:gowhtíha|What about me seeing a brown horse?|
-*||||||ᎠᏴᏫᏍ ᎯᎪᏩᏘᎭ?|ayv:wis hi:gowhtíha|Do you see a person?|
 
 #Chapter 17 ᎦᎵᏆᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||Ꭴ|ᎤᎭ||ᎤᎭ|ǔ:ha|“He has it, something solid.”|
-|||ᎤᏂ|ᎤᎭ||ᎤᏂᎭ|ù:nǐ:ha|“They have it, something solid.”|
-|||ᎠᎩ|ᎤᎭ||ᎠᎩᎭ|à:giha|“I have it, something solid.”|
-|||Ꮳ|ᎤᎭ||ᏣᎭ|jaha|“You have it, something solid.”|
-|||Ꭴ|ᎤᏩᎧᎭ||ᎤᏩᎧᎭ|ù:wa:káha|“He has it, something alive.”|
-|||ᎤᏂ|ᎤᏩᎧᎭ||ᎤᏂᎧᎭ|ù:ni:káha|“They have it, something alive.”|
-|||ᎠᎩ|ᎤᏩᎧᎭ||ᎠᎩᎧᎭ|à:gikáha|“I have it, something alive.”|
-|||Ꮳ|ᎤᏩᎧᎭ||ᏣᎧᎭ|jakáha|“You have it, something alive.”|
+|||||||gu:le ǔ:ha|“He has an acorn.”|
+|||||||tǔ:ya ù:nǐ:ha|“They have a bean.”|
+|||||||sadv́:di à:giha|“I have a trap.”|
+|||||||nǔ:na jaha|“You have a potato.”|
+|||||||gi:hli ù:wa:káha|“He has a dog.”|
+|||||||wě:sa ù:ni:káha|“They have a cat.”|
+|||||||ahawi à:gikáha|“I have a deer.”|
+|||||||do:ya jakáha|“You have a beaver.”|
 
 #Chapter 18 ᏁᎳᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||ᎠᎩ|ᎠᎪᏩᏘᎭ||ᎠᎩᎪᏩᏘᎭ|agigowhtíha|“He sees me.”|
-||||||Ꮭ ᏯᎩᎪᏩᏘᎭ|hla yagigowhtíha|“He doesn't see me.”|
-|||Ꮳ|ᎠᎪᏩᏘᎭ||ᏣᎪᏩᏘᎭ|jagowhtíha|“He sees you.”|
-||||||Ꮭ ᏱᏣᎪᏩᏘᎭ|hla yijagowhtíha|“He doesn't see you.”|
-||||||Ꮭ ᏳᎭ|hla yǔ:ha|“He doesn't have it, something solid.”|
-||||||Ꮭ ᏳᏂᎭ|hla yù:nǐ:ha|“They don't have it, something solid.”|
-||||||Ꮭ ᏯᎩᎭ|hla yà:giha|“I don't have it, something solid.”|
-||||||Ꮭ ᏱᏣᎭ|hla yijaha|“You don't have it, something solid.”|
-||||||Ꮭ ᏳᏩᎧᎭ|hla yù:wa:káha|“He doesn't have it, something alive.”|
-||||||Ꮭ ᏳᏂᎧᎭ|hla yù:ni:káha|“They don't have it, something alive.”|
-||||||Ꮭ ᏯᎩᎧᎭ|hla yà:gikáha|“I don't have it, something alive.”|
-||||||Ꮭ ᏱᏣᎧᎭ|hla yijakáha|“You don't have it, something alive.”|
+|||||||age:hyű:ja agigowhtíha|“A girl sees me.”|
+|||||||achű:ja hla yagigowhtíha|“The boy doesn't see me.”|
+|||||||salǒ:li jagowhtíha|“A squirrel sees you.”|
+|||||||hla yǒ:na yijagowhtíha|“The bear doesn't see you.”|
+|||||||hla gu:le yǔ:ha|“He doesn't have an acorn.”|
+|||||||hla sadv́:di yù:nǐ:ha|“They don't have the trap.”|
+|||||||hla nǔ:na yà:giha|“I don't have the potato.”|
+|||||||hla nv̀:ya yijaha|“You don't have the rock.”|
+|||||||hla gi:hli yù:wa:káha|“He doesn't have a dog.”|
+|||||||hla wě:sa yù:ni:káha|“They don't have a cat.”|
+|||||||hla do:ya yà:gikáha|“I don't have a beaver.”|
+|||||||hla ji:sdu yijakáha|“You don't have a rabbit.”|
 
 #Chapter 19 ᏐᏁᎳᏚᏏᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||ᎬᎩ|ᎠᎪᏩᏘᎭ||ᎬᎩᎪᏩᏘᎭ|gv:gigowhtíha|“They see me.”|Ꮭ ᏱᎬᎩᎪᏩᏘᎭ|hla yigv:gigowhtíha|“They don't see me.”|||ᎨᏣ|ᎠᎪᏩᏘᎭ||ᎨᏣᎪᏩᏘᎭ|ge:jagowhtíha|“They see you.”|Ꮭ ᏱᎨᏣᎪᏩᏘᎭ|hla yige:jagowhtíha|“They don't see you.”|||ᏚᎭ|ᎤᎭ||ᏚᎭ|dǔ:ha|“He has them, some solid things.”||||ᏚᏂ|ᎤᎭ||ᏚᏂᎭ|dù:nǐ:ha|“They have them, some solid things.”||||ᏓᎩ|ᎤᎭ||ᏓᎩᎭ|dà:giha|“I have them, some solid things.”||||ᏕᏣ|ᎤᎭ||ᏕᏣᎭ|de:jaha|“You have them, some solid things.”||||Ꮪ|ᎤᏩᎧᎭ||ᏚᏩᎧᎭ|dù:wa:káha|“He has them, some alive things.”||||ᏚᏂ|ᎤᏩᎧᎭ||ᏚᏂᎧᎭ|dù:ni:káha|“They have them, some alive things.”||||ᏓᎩ|ᎤᏩᎧᎭ||ᏓᎩᎧᎭ|dà:gikáha|“I have them, some alive things.”||||ᏕᏣ|ᎤᏩᎧᎭ||ᏕᏣᎧᎭ|de:jakáha|“You have them, some alive things.”|Ꮭ ᏱᏚᎭ|hla yidǔ:ha|“He doesn't have them, some solid things.”
-||||||Ꮭ ᏱᏚᏂᎭ|hla yidù:nǐ:ha|“They don't have them, some solid things.”
-||||||Ꮭ ᏱᏓᎩᎭ|hla yida:giha|“I don't have them, some solid things.”
-||||||Ꮭ ᏱᏗᏣᎭ|hla yidi:jaha|“You don't have them, some solid things.”
-||||||Ꮭ ᏱᏚᏩᎧᎭ|hla yidù:wa:káha|“He doesn't have them, some alive things.”
-||||||Ꮭ ᏱᏚᏂᎧᎭ|hla yidù:ni:káha|“They don't have them, some alive things.”
-||||||Ꮭ ᏱᏓᎩᎧᎭ|hla yida:gikáha|“I don't have them, some alive things.”
-||||||Ꮭ ᏱᏗᏣᎧᎭ|hla yidi:jakáha|“You don't have them, some alive things.”
+#ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
+|||||||wahya gv:gigowhtíha|“Wolves see me.”
+|||||||hla ani:ge:hyű:ja yigv:gigowhtíha|“Girls don't see me.”
+|||||||ani:chű:ja ge:jagowhtíha|“Boys see you.”
+|||||||hla salǒ:li yige:jagowhtíha|“Squirrels don't see you.”
+|||||||di:sadv́:di dǔ:ha|“He has traps.”
+|||||||nǔ:na dù:nǐ:ha|“They have potatoes.”
+|||||||nv̀:ya dà:giha|“I have rocks.”
+|||||||gu:le de:jaha|“You have acorns.”
+|||||||ahwi dù:wa:káha|“He has deer.”
+|||||||do:ya dù:ni:káha|“They have beavers.”
+|||||||ji:sdu dà:gikáha|“I have rabbits.”
+|||||||wahaya de:jakáha|“You have wolves.”
+
+|||||||hla di:sadv́:di yidǔ:ha|“He doesn't have traps.”
+
+|||||||hla nǔ:na yidù:nǐ:ha|“They don't potatoes.”
+|||||||hla nv̀:ya yida:giha|“I don't have rocks.”
+|||||||hla gu:le yidi:jaha|“You don't have acorns.”
+|||||||hla gi:hli yidù:wa:káha|“He doesn't have dogs.”
+|||||||hla wě:sa yidù:ni:káha|“They don't have cats.”
+|||||||hla ahawi yida:gikáha|“I don't have deer.”
+|||||||hla do:ya yidi:jakáha|“You don't have beavers.”
 
 #Chapter 20 ᏔᎵᏍᎪᎯᏁᎢ ᎠᏕᎶᏆᏍᏗ
-||||||ᎢᎩ|i̋:gi|“Is.” ☞ Is now or was just now.|
-||||||ᎢᎦ|i̋:ga|“Is.” ☞ Now and ongoing.|
-||||||ᎨᏐᎢ|gè:só:ɂi|“Usually is.”|
-||||ᎨᏒᎢ||ᎨᏒᎢ|gè:sv̌:ɂi|“Being.”|
-||||ᎨᏒᎩ||ᎨᏒᎩ|gè:sv̌:gi|“Was being.”|
-||||ᎨᏎᎢ||ᎨᏎᎢ|gè:sé:ɂi|“Reportedly was being.”|
-||||ᎨᎲᎢ||ᎨᎲᎢ|gè:hv̌:ɂi|“Been (a while ago).”|
-||||ᎨᎲᎢ||ᎨᎲᎩ|gè:hv̌:gi|“Was (a while ago).”|
-||||ᎨᎮᎢ||ᎨᎮᎢ|gè:hé:ɂi|“Reportedly was (a while ago).”|
-||||ᎨᏎᏍᏗ||ᎨᏎᏍᏗ|gè:sé:sdi|“Will be being.”|
+|||||||i̋:gi|Is now or was just now.|
+|||||||i̋:ga|Is now.|
+|||||||gè:só:ɂi|“Usually is.”|
+|||||||gè:sv̌:ɂi|“Being.”|
+|||||||gè:sv̌:gi|“Was being.”|
+|||||||gè:sé:ɂi|“Reportedly was being.”|
+|||||||gè:hv̌:ɂi|“Been (a while ago).”|
+|||||||gè:hv̌:gi|“Was (a while ago).”|
+|||||||gè:hé:ɂi|“Reportedly was (a while ago).”|
+|||||||gè:sé:sdi|“Will be being.”|
 
 #Chapter 21 ᏔᎵᏍᎪ ᏌᏊᎯᏁᎢ ᎠᏕᎶᏆᏍᏗ
-|||ᏥᏯ|ᎤᏚᎵᎭ||ᏥᏯᏚᎵᎭ|ji:ya:du:líha|“I want him.”|
-|||ᎠᎩ|ᎤᏚᎵᎭ||ᎠᏆᏚᎵᎭ|à:gwadu:líha|“I want it. Or, He wants me.”|
-|||ᎦᏥ|ᎤᏚᎵᎭ||ᎦᏥᏯᏚᎵᎭ|ga:ji:ya:du:líha|“I want them-animate.”|
-|||ᏓᎩ|ᎤᏚᎵᎭ||ᏓᏆᏚᎵᎭ|dà:gwadu:líha|“I want them-inanimate.”|
-|||ᎬᎩ|ᎤᏚᎵᎭ||ᎬᏆᏚᎵᎭ|gv̀:gwadu:líha|“They want me.”|
-|||Ꭴ|ᎤᏚᎵᎭ||ᎤᏚᎵᎭ|ù:du:líha|“He wants him, it.”|
-|||Ꮪ|ᎤᏚᎵᎭ||ᏚᏚᎵᎭ|dù:du:líha|“He wants them.”|
-|||ᎯᏯ|ᎤᏚᎵᎭ||ᎯᏯᏚᎵᎭ|hi:ya:du:líha|“You want him.”|
-|||Ꮳ|ᎤᏚᎵᎭ||ᏣᏚᎵᎭ|jadu:líha|“You want it. Or, He wants you.”|
-|||ᎦᎯ|ᎤᏚᎵᎭ||ᎦᎯᏯᏚᎵᎭ|ga:hi:ya:du:líha|“You want them-animate.”|
-|||ᏕᏣ|ᎤᏚᎵᎭ||ᏕᏣᏚᎵᎭ|de:jadu:líha|“You want them-inanimate.”|
-|||ᎨᏣ|ᎤᏚᎵᎭ||ᎨᏣᏚᎵᎭ|ge:jadu:líha|“They want you.”|
-|||ᎤᏂ|ᎤᏚᎵᎭ||ᎤᎾᏚᎵᎭ|ù:na:du:líha|“They want him, it.”|
-|||ᏚᏂ|ᎤᏚᎵᎭ||ᏚᎾᏚᎵᎭ|dù:na:du:líha|“They want them.”|
-||||||ᎠᏎᏃ|a:sé:hno|“But.”|
-*||||||ᎠᏎᏅ|a:sé:hnv|“But.”|
-||||ᎦᏍᎩᎶ||ᎦᏍᎩᎶ|ga:sgilo|“A table or a chair.”|
-|||Ꮧ|ᎦᏍᎩᎶ||ᏗᎦᏍᎩᎶ|diga:sgilo|“Tables. Chairs.”|
+|||||||ji:ya:du:líha|“I want him.”|
+|||||||à:gwadu:líha|“I want it. Or, He wants me.”|
+|||||||ga:ji:ya:du:líha|“I want them-animate.”|
+|||||||diga:sgilo dà:gwadu:líha|“I want the tables or chairs.”|
+|||||||gv̀:gwadu:líha|“They want me.”|
+|||||||ù:du:líha|“He wants him, it.”|
+|||||||dù:du:líha|“He wants them.”|
+|||||||hi:ya:du:líha|“You want him.”|
+|||||||jadu:líha|“You want it. Or, He wants you.”|
+|||||||ga:hi:ya:du:líha|“You want them-animate.”|
+|||||||de:jadu:líha|“You want them-inanimate.”|
+|||||||ge:jadu:líha|“They want you.”|
+|||||||ù:na:du:líha|“They want him, it.”|
+|||||||dù:na:du:líha|“They want them.”|
+|||||||a:sé:hno|“But.”|
+|||||||ga:sgilo|“A table or a chair.”|
 
 #Chapter 22 ᏔᎵᏍᎪ ᏔᎵᏁᎢ ᎠᏕᎶᏆᏍᏗ
-||||Ꭷ||Ꭷ|ka|“Hey now! Enough already! Hey! Sometimes hi!”.|
-||||ᏄᎳ||ᏄᎳ|nű:la|“Hurry.”|
-||||ᎢᏯᏂ||ᎢᏯᏂ|iyáni|“Count of animate.”|
-||||ᎢᎦ||ᎢᎦ|ǐ:ga̋|“Count of inanimate.”|
-||||ᎦᏍᎩᎸᎢ||ᎦᏍᎩᎸᎢ|ga:sgilv̋:ɂi|“On a chair or on a table.”|
-*||||||ᏂᎦᏛ|niga̋:dv|“All. Everyone.”|
-|||Ꭴ|ᎤᎵᏑᏫᏓ||ᎤᎵᏑᏫᏓ|ulsǔ:hwida|“Color.”|
-|||ᎤᏂ|ᎤᎵᏑᏫᏓ||ᎤᎾᎵᏑᏫᏓ|u:nalsǔ:hwida|“Their color.”|
-|||Ꮷ|ᎤᎵᏑᏫᏓ||ᏧᎵᏑᏫᏓ|julsǔ:hwida|“Their color.”|
+|||||||ka|“Hey now! Enough already! Hey! Sometimes hi!”.|
+|||||||nű:la|“Hurry.”|
+|||||||iyáni|“Count of animate.”|
+|||||||ǐ:ga̋|“Count of inanimate.”|
+|||||||ga:sgilv̋:ɂi|“On a chair or on a table.”|
+*|||||||niga̋:dv|“All. Everyone.”|
+|||||||ulsǔ:hwida|“Color.”|
+|||||||u:nalsǔ:hwida|“Their color.”|
+|||||||julsǔ:hwida|“Their color.”|
 
-*||||||ᎤᏂᏲ ᏪᏌ|u:niyő wě:sa|Bad cats|
-*||||||Ꮎ ᎤᏲ ᎨᏒᎩ!|na u:yő gè:sv̌:gi|That was bad!|
-*||||||Ꮎ ᎤᏂᏲ ᎠᏂᏴᏫ ᎨᏒᎩ!|na u:niyő ani:yv:wi gè:sv̌:gi|Those were bad people!|
-*||||||ᎰᏩᏍ? ᎰᏩᏍ?|hő:sda. howas|Are you good? Is it ok?|
-*||||||ᎭᏢ ᎠᏃᏍᏓ ᏴᏫ?|ha:dlv à:nő:sda yv:wi|Where are good people?|
-*||||||ᎠᏃᏍᏓ ᏴᏫ Ꮭ ᎠᏂ ᏱᎩ!|à:nő:sda yv:wi hla áhni yi̋:gi|Good people aren't here!|
-*||||||ᎤᎿᎾ?|ù:hnana|What about there?|
-*||||||ᎠᏃᏍᏓ ᎠᏂᏴᏫ ᎤᎿ ᏱᎨᏎᏍᏗ!|à:nő:sda ani:yv:wi ù:hna yigè:sé:sdi|Maybe good people will be there!|
-*||||||ᎠᏍᎦᏯ Ꮭ Ꮎ ᏯᎪᏩᏘᎭ ᎠᏴ ᎠᏂ!|asgaya hla na yà:gowhtíha ayv áhni|The man doesn't see that we are here!|
-*||||||ᎰᏩ! ᎠᏴ ᎠᏂ!|howa ayv áhni|Alright! Here we are!|
-*||||||ᎤᏂᏲ ᎠᏂᏴᏫ ᎠᏂ ᏱᎩ!|u:niyő ani:yv:wi áhni yi̋:gi|Bad people might be here!|
-*||||||Ꮎ ᎤᏲ ᎨᏒᎩ ᏂᎯ!|na u:yő gè:sv̌:gi nihi|That was bad y'all!|
-*||||||ᎭᏢ ᏴᏫ?|ha:dlv yv:wi|Where are the people?|
-*||||||Ꮭ ᎠᏂ ᏱᎩ!|hla áhni yi̋:gi|Not here!|
-*||||||ᎯᎠ ᎤᏲ!|hiɂa u:yő|This is bad!|
-*||||||Ꮭ ᎾᏍᎩ ᏱᏥᎪᏩᏘᎭ!|hla nà:sgi yiji:gowhtíha|I don't see that!|
-*||||||Ꭳ, Ꮭ ᎣᏍᏓ ᏱᎩ!|o:. hla ő:sda yi̋:gi|Oh, not good!|
-*||||||ᏂᎯᏧ ᎤᎿ?|nihiju ù:hna|You're there, aren't you?|
-*||||||Ꮭ ᏱᏥᎪᏩᏘᎭ!|hla yiji:gowhtíha|I don't see him or her!|
-*||||||ᎭᏢ ᏂᎯ? ᏂᎯᏍ ᎤᎿ?|ha:dlv nihi. nihis ù:hna.|Where are you? Are you there?|
-*||||||ᎯᎠ Ꮭ ᎣᏍᏓ ᏱᎩ!|hiɂa hla ő:sda yi̋:gi|This, it isn't good!|
-*||||||ᏩᏙ! ᎤᎿ ᎤᏲ ᎨᏒᎩ!|wado. ù:hna u:yő gè:sv̌:gi|Thanks! It was bad there!|
-*||||||ᎠᎩᏲ ᎠᏆᏚᎵᎭ.|agiyő à:gwadu:líha|I want to be bad.|
-*||||||ᎠᎩᏲ ᎠᏆᏚᎵᎭ. ᏣᏲᏍ ᏣᏚᎵᎭ?|agiyő à:gwadu:líha. jayő jadu:líha|I want to be bad. Are you wanting to be bad?|
-*||||||ᎠᏣᎳᎩ ᏪᏌ ᎨᏎᎢ! ᎠᎩᎵᏏ ᏪᏌ ᎨᏎᎢ!|ajalagi wě:sa gè:sé:ɂi. gili:si wě:sa gè:sé:ɂi|There was a Cherokee cat! There was a English cat!|
-*||||||ᎣᏍᏓ ᏪᏌ ᎨᏎᎢ! ᎤᏲ ᏪᏌ ᎨᏎᎢ!|ő:sda wě:sa gè:sé:ɂi. u:yő wě:sa gè:sé:ɂi.|There was a good cat! There was a bad cat!|
-*||||||Ꭳ Ꮭ! ᏴᏫ!|o hla. yvwi|Oh no! People!|
-*||||||ᎤᏂᏲ ᎠᏂᏴᏫ ᎠᏂ!|u:niyő ani:yv:wi áhni|Bad people are here!|
-*||||||ᏄᎳ! ᏄᎳ!|nű:la. nű:la.|Hurry! Hurry!|
-*||||||ᎾᏍᎩ ᎠᏃᏍᏓ ᎩᏟ ᎠᎭᏂ ᎨᏒᎩ!|nà:sgi à:nő:sda gi:hli áhani gè:sv̌:gi|Those good dogs were here!|
-*||||||Ꮎ ᏅᎩ ᎩᏟ ᎦᎯᏯᏚᎵᎭ.|na nvhgi gi:hli ga:hi:ya:du:líha|You are wanting those four dogs.|
-*||||||ᏱᎩ.|yi̋:gi|Maybe.|
-*||||||ᎦᏙ ᎤᏍᏗ ᎯᎠ!?!?|gadō u:sdi hiɂa|What's this!?!?|
-*||||||Ꭳ! Ꮟ!|o:. si.|Oh! Wait!|
-*||||||ᎯᎠ ᎣᏍᏓ!|hiɂa ő:sda|This is good!|
-*||||||Ꮎ ᏪᏌ ᎠᏃᏍᏓ! ᎾᏍᎩ ᎦᏥᏯᏚᎵᎭ!|na wě:sa à:nő:sda. nà:sgi ga:ji:ya:du:líha|Those cats are good! I want them!|
-*||||||ᎠᏂᏦ ᎤᏂᏲ ᏪᏌ. ᎠᏴ ᎨᏒᎩ.|a:nijo u:niyő wě:sa. ayv gè:sv̌:gi|Three bad cats.. we were.|
+*|||||||u:niyő wě:sa|Bad cats|
+*|||||||na u:yő gè:sv̌:gi|That was bad!|
+*|||||||na u:niyő ani:yv:wi gè:sv̌:gi|Those were bad people!|
+*|||||||hő:sda. howas|Are you good? Is it ok?|
+*|||||||ha:dlv à:nő:sda yv:wi|Where are good people?|
+*|||||||à:nő:sda yv:wi hla áhni yi̋:gi|Good people aren't here!|
+*|||||||ù:hnana|What about there?|
+*|||||||à:nő:sda ani:yv:wi ù:hna yigè:sé:sdi|Maybe good people will be there!|
+*|||||||asgaya hla na yà:gowhtíha ayv áhni|The man doesn't see that we are here!|
+*|||||||howa ayv áhni|Alright! Here we are!|
+*|||||||u:niyő ani:yv:wi áhni yi̋:gi|Bad people might be here!|
+*|||||||na u:yő gè:sv̌:gi nihi|That was bad y'all!|
+*|||||||ha:dlv yv:wi|Where are the people?|
+*|||||||hla áhni yi̋:gi|Not here!|
+*|||||||hiɂa u:yő|This is bad!|
+*|||||||hla nà:sgi yiji:gowhtíha|I don't see that!|
+*|||||||o:. hla ő:sda yi̋:gi|Oh, not good!|
+*|||||||nihiju ù:hna|You're there, aren't you?|
+*|||||||hla yiji:gowhtíha|I don't see him or her!|
+*|||||||ha:dlv nihi. nihis ù:hna.|Where are you? Are you there?|
+*|||||||hiɂa hla ő:sda yi̋:gi|This, it isn't good!|
+*|||||||wado. ù:hna u:yő gè:sv̌:gi|Thanks! It was bad there!|
+*|||||||agiyő à:gwadu:líha|I want to be bad.|
+*|||||||agiyő à:gwadu:líha. jayő jadu:líha|I want to be bad. Are you wanting to be bad?|
+*|||||||ajalagi wě:sa gè:sé:ɂi. gili:si wě:sa gè:sé:ɂi|There was a Cherokee cat! There was a English cat!|
+*|||||||ő:sda wě:sa gè:sé:ɂi. u:yő wě:sa gè:sé:ɂi.|There was a good cat! There was a bad cat!|
+*|||||||o hla. yvwi|Oh no! People!|
+*|||||||u:niyő ani:yv:wi áhni|Bad people are here!|
+*|||||||nű:la. nű:la.|Hurry! Hurry!|
+*|||||||nà:sgi à:nő:sda gi:hli áhani gè:sv̌:gi|Those good dogs were here!|
+*|||||||na nvhgi gi:hli ga:hi:ya:du:líha|You are wanting those four dogs.|
+*|||||||yi̋:gi|Maybe.|
+*|||||||gadō u:sdi hiɂa|What's this!?!?|
+*|||||||o:. si.|Oh! Wait!|
+*|||||||hiɂa ő:sda|This is good!|
+*|||||||na wě:sa à:nő:sda. nà:sgi ga:ji:ya:du:líha|Those cats are good! I want them!|
+*|||||||a:nijo u:niyő wě:sa. ayv gè:sv̌:gi|Three bad cats.. we were.|
 
