@@ -71,12 +71,13 @@ public class CherokeeTTS implements TTS {
 		}
 		final File cacheDir = new File("CherokeeTTS/cache-"+checkpoint);
 		cacheDir.mkdirs();
-		String cached_name = _text.replaceAll("(?i)[^a-z0-9 ]", "").replace(" ", "_") //
+		String cached_name = _text.replace(":", "\u02D0") .replace(" ", "-") .replaceAll("(?i)[^\\p{Script=Latin}\\p{Block=Combining_Diacritical_Marks}-\u02D0]", "_").replace(" ", "_") //
 				+ (voice == null ? "" : "_" + voice.trim()) //
 				+ (lang == null ? "" : "_" + lang.trim()) //
 				+ (griffinLim ? "_gl" : "") //
 //				+ "_" + checkpoint //
-				+ "_" + DigestUtils.sha512Hex(_text);
+				+ "_" + DigestUtils.sha512Hex(_text).replaceAll("_+", "_");
+
 		final File cachedFile = new File(cacheDir, cached_name + ".wav");
 
 		wavFile.getParentFile().mkdirs();
