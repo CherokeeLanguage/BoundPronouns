@@ -76,7 +76,8 @@ public class CherokeeTTS implements TTS {
 				+ (lang == null ? "" : "_" + lang.trim()) //
 				+ (griffinLim ? "_gl" : "") //
 //				+ "_" + checkpoint //
-				+ "_" + DigestUtils.sha512Hex(_text).replaceAll("_+", "_");
+				+ "_" + DigestUtils.sha512Hex(_text);
+		cached_name = cached_name.replaceAll("_+", "_");
 
 		final File cachedFile = new File(cacheDir, cached_name + ".wav");
 

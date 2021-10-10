@@ -3,6 +3,7 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 #Chapter 1
 |||||||o:síyo|Hello.|
 |||||||v:.|Yes.|
+|||||||v:v.|Yes.|
 |||||||igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
 |||||||dide:hlohgwà:sdi|Lessons.|
 |||||||aya:do:hlv̋:ɂi|A share. A chapter.
