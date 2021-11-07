@@ -2,8 +2,8 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 
 #Chapter 1
 |||||||o:síyo|Hello.|
-|||||||v:.|Yes.|
-|||||||v:v.|Yes.|
+#|||||||v.|Yes.|
+|||||||vv.|Yes.|
 |||||||igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
 |||||||dide:hlohgwà:sdi|Lessons.|
 |||||||aya:do:hlv̋:ɂi|A share. A chapter.
@@ -16,10 +16,10 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 |||||||taɂli:ne̋:ɂi ahwi|the second deer.|
 |||||||joɂi:ne̋:ɂi nohji|the third pine tree.|
 
-|||||||vtla.|No. Not.|
+|||||||vhla.|No. Not.|
 |||||||go:hű:sdi|“Something.”|
 
-|||||||ni! a̋ɂda|Look at that! A young animal.|
+|||||||ni! a̋ɂda|Look! A young animal.|
 
 #Chapter 3
 |||||||joɂi nǔ:na|Three potatoes.
@@ -268,7 +268,7 @@ ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 *|||||male||hiɂa ő:sda!|This is good!|
 *|||||female||dé:widi! yv:wi áhni!|David! People are here!|
 *|||||male||o:síyo age:hyű:ja. tò:hi̋:ju?|hello girl. Things are well, right?|
-*|||||female||o:síyo yǒ:na. tò:hi̋:gwu.|Girl Oh, hello Bear. Things are just well.|
+*|||||female||o:síyo yǒ:na. tò:hi̋:gwu.|Hello Bear. Things are just well.|
 *|||||female||lí:nida dà:gwadó:a|I'm called Linda.|
 *|||||female||tò:hi̋:gwu. mé:li dà:gwadó:a|Things are just well. I'm called Mary.|
 *|||||female||na yǒ:na achű:ja já:ni dù:dó:ɂa|The bear boy is called John.|
