@@ -86,7 +86,7 @@ public class Main {
 	private static final boolean CREATE_ALL_SESSIONS = true;
 
 	private static final int MAX_TRIES_PER_REVIEW_CARD = 7; // 4;
-	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 1;
+	private static final int TRIES_PER_REVIEW_CARD_DECREMENT = 0;
 
 	private static final int MAX_TRIES_PER_NEW_CARD = 7; // 6;
 	private static final int TRIES_PER_NEW_CARD_DECREMENT = 0;
@@ -185,15 +185,20 @@ public class Main {
 
 		voiceVariants = new HashSet<>();
 
-//		List<String> en_female = Arrays.asList("299-en-f", "318-en-f", "339-en-f");
-		List<String> en_female = Arrays.asList("299-en-f");
+		List<String> en_female = Arrays.asList("299-en-f", "306-en-f"); //, "318-en-f", "339-en-f");
+//		List<String> en_female = Arrays.asList("299-en-f", "cno-f-chr_2", "cno-m-chr_2", "06-f-walc1", "04-f-walc1");
+		// [7a-500] rejected: "02-f-walc1", "06-f-walc1", "01-f-walc1", "05-f-walc1"
+//		List<String> en_female = Arrays.asList("04-f-walc1", "03-f-walc1", "299-en-f");
+		
 //		List<String> en_female = Arrays.asList("f");
 		for (String v : en_female) {
 			voiceVariants.add(new TtsVoice(v, SexualGender.FEMALE));
 		}
 
-//		List<String> en_male = Arrays.asList("311-en-m", "334-en-m", "345-en-m", "360-en-m");
 		List<String> en_male = Arrays.asList("360-en-m");
+//		List<String> en_male = Arrays.asList("360-en-m", "01-m-walc1", "04-m-walc1", "02-m-walc1", "02-m-df-chr");
+		// [7a-500] rejected: "01-m-walc1", "02-m-df-chr", "04-m-walc1", "01-m-df-chr", "360-en-m"
+//		List<String> en_male = Arrays.asList("02-m-walc1");
 //		List<String> en_male = Arrays.asList("m");
 		for (String v : en_male) {
 			voiceVariants.add(new TtsVoice(v, SexualGender.MALE));

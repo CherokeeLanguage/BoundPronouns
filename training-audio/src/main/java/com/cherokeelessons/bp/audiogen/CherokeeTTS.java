@@ -17,14 +17,13 @@ import org.apache.commons.io.IOUtils;
 public class CherokeeTTS implements TTS {
 	
 	private static final boolean NFC = true;
-	private static final boolean GPU = true;
+	private static final boolean GPU = false;
 
 //	private String checkpoint = "2a-2021-05-01-epoch_300-loss_0.0740";C
-//	private String checkpoint = "5c-2021-09-20-epoch_300-loss_0.1104";
-	private String checkpoint = "7a-2021-10-07-nfc-epoch_400-loss_0.0946";
+	private String checkpoint = "5f-2021-11-04-epoch_300-loss_0.0748";
 	
 	private final File ttsBin;
-	private boolean griffinLim = true;
+	private boolean griffinLim = false;
 	private boolean spaceWrap = false;
 	
 	public CherokeeTTS() {		
