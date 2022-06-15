@@ -411,19 +411,21 @@ public class BoundPronouns extends Game {
 		final String text = Gdx.files.internal("cherokee-tts.txt").readString("UTF-8");
 		final String[] lines = text.split("\n");
 		for (final String line : lines) {
-			if (!line.contains("\t") || line.isEmpty()) {
+			if (!line.contains("|") || line.isEmpty()) {
 				continue;
 			}
-			final String[] columns = line.split("\t");
+			final String[] columns = line.split("\\|");
 			if (columns == null) {
 				continue;
 			}
-			if (columns.length < 5) {
+			if (columns.length < 6) {
 				continue;
 			}
-			final String pronounce = columns[2];
-			final String filename = columns[4];
-			audioFiles.put(pronounce, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
+			final String filename = columns[5];
+			final String pronounce1 = Normalizer.normalize(columns[1], Form.NFC);
+			audioFiles.put(pronounce1, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
+			final String pronounce2 = Normalizer.normalize(columns[3], Form.NFC);
+			audioFiles.put(pronounce2, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
 		}
 	}
 

@@ -1,5 +1,8 @@
 package com.cherokeelessons.bp;
 
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -10,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.cherokeelessons.cards.Card;
 import com.cherokeelessons.cards.Deck;
 import com.cherokeelessons.util.JsonConverter;
 import com.cherokeelessons.util.SlotFolder;
@@ -84,6 +88,14 @@ public class LoadingScreen implements Screen {
 					throw new RuntimeException("CAN'T READ EMBEDDED DECK!");
 				}
 				game.deck.cards.clear();
+				for (Card card: tmpDeck.cards) {
+					for (int ix=0; ix<card.answer.size(); ix++) {
+						card.answer.set(ix, Normalizer.normalize(card.answer.get(ix), Form.NFC));
+					}
+					for (int ix=0; ix<card.challenge.size(); ix++) {
+						card.challenge.set(ix, Normalizer.normalize(card.challenge.get(ix), Form.NFC));
+					}
+				}
 				game.deck.cards.addAll(tmpDeck.cards);
 				game.deck.size = tmpDeck.size;
 				game.deck.version = tmpDeck.version;
