@@ -1,6 +1,6 @@
 Created by Michael Conrad
 
-Speech audio files generated with espeak-ng.
+Speech audio files generated using IMS-Toucan TTS. https://github.com/CherokeeLanguage/IMS-Toucan.
 
 Grammar information from:
 
