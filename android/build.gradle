@@ -3,8 +3,8 @@ plugins {
 }
 
 android {
-    buildToolsVersion "29.0.2"
-    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    compileSdkVersion 31
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -23,7 +23,7 @@ android {
    defaultConfig {
         applicationId "com.cherokeelessons.bp.android"
         minSdkVersion 9
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode Integer.valueOf(version.replace(".","")) // 304
         versionName version
         setProperty("archivesBaseName", appName+"-"+version)
@@ -130,7 +130,7 @@ eclipse {
     project {
         name = appName + "-android"
         natures 'com.android.ide.eclipse.adt.AndroidNature'
-        buildCommands.clear();
+        buildCommands.clear()
         buildCommand "com.android.ide.eclipse.adt.ResourceManagerBuilder"
         buildCommand "com.android.ide.eclipse.adt.PreCompilerBuilder"
         buildCommand "org.eclipse.jdt.core.javabuilder"

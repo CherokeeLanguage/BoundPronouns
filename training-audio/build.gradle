@@ -5,7 +5,6 @@ archivesBaseName = 'bp-TrainingAudio'
 
 repositories {
         mavenCentral()
-        jcenter()
         google()
         maven { url "https://jitpack.io" }
     }
@@ -13,16 +12,16 @@ repositories {
 dependencies {
 	//compile project(":LeitnerCards")
 	//compile "ie.corballis:sox-java:1.0.4"
-	compile 'commons-io:commons-io:2.+'
-	compile 'org.apache.commons:commons-text:1.+'
-	compile 'com.github.CherokeeLanguage:LeitnerCards:20200704.00'
-	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.+'
-	//
+    api 'commons-io:commons-io:2.11.0'
+    api 'org.apache.commons:commons-text:1.9'
+    api 'com.github.CherokeeLanguage:LeitnerCards:20200704.00'
+    api 'org.apache.commons:commons-collections4:4.4'
+
 	// https://mvnrepository.com/artifact/commons-codec/commons-codec
-	implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+	implementation 'commons-codec:commons-codec:1.15'
 	
 	//for English audio
-	compile 'com.amazonaws:aws-java-sdk-polly:1.11.+'
+    api 'com.amazonaws:aws-java-sdk-polly:1.12.237'
 }
 
 eclipse {
