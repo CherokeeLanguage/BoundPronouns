@@ -1,42 +1,45 @@
 ID|PSET|DIALOG|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|AUDIO FILE
 
 #Chapter 1
-|||||||o:síyo|Hello.|
-#|||||||v.|Yes.|
-|||||||vv.|Yes.|
-|||||||igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
+
 |||||||dide:hlohgwà:sdi|Lessons.|
 |||||||aya:do:hlv̋:ɂi|A share. A chapter.
 |||||||gawò:nǐ:hísdi|Speech or language.
 
 #Chapter 2
-|||||||tatv:dà:sda|let you one listen to them.|
-|||||||niga̋:da ama|All of the water.|
-|||||||niga̋:da á:ma|All of the salt.|
+
 |||||||taɂli:ne̋:ɂi ahwi|the second deer.|
 |||||||joɂi:ne̋:ɂi nohji|the third pine tree.|
 
-|||||||vhla.|No. Not.|
 |||||||go:hű:sdi|“Something.”|
 
-|||||||ni! a̋ɂda|Look! A young animal.|
+
 
 #Chapter 3
 |||||||joɂi nǔ:na|Three potatoes.
 
 #Chapter 4
-|||||||tigo:lǐ:ya.|let you one read them.|
-|||||||ayo!|Ouch!|
-|||||||v:, ő:sda|Yes, it is good.|
-|||||||u:yő:ɂi ada|Bad wood|
-|||||||v̀:sgigi?|Really?|
-|||||||howa|Okay.|
+|||||||igv:yi̋:ɂi à:de:hlohgwà:sdi|first lesson.|
+|||||||tatv:dà:sda|let you one listen to them.|
 
+|||||||Niga̋:da ama|All water.|
+|||||||Niga̋:da á:ma|All salt.|
+
+|||||||tigo:lǐ:ya.|let you one read them.|
+|||||||nitadv̀:ga|let you one do them.|
+
+|||||||ayo!|Ouch!|
+|||||||v, ő:sda|Yes, it is good.|
+|||||||o:síyo|Hello.|
+|||||||u:yő:ɂi ada|Bad wood|
+|||||||v:v.|Yes.|
+|||||||v̀:sgigi?|Really?|
+|||||||vhla.|No. Not.|
+|||||||howa|Okay.|
+|||||||ni! a̋ɂda|Look! A young animal.|
 |||||||jalagi|Cherokee.|
 |||||||wado|Thanks.|
 |||||||yó:ne:ga|English.|
-
-|||||||nitadv̀:ga|let you one do them.|
 
 |||||||nvhgi:ne̋:ɂi ayv:wi|A fourth person.|
 |||||||ada u:ne̋:ga|“The wood is white.”|
