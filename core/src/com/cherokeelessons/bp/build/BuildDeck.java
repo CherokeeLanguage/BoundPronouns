@@ -1483,7 +1483,7 @@ public class BuildDeck {
 			tts.append(syllabary);
 			
 			tts.append("|");
-			tts.append(CherokeeUtils.ced2mco_nfd(challenge));
+			tts.append(CherokeeUtils.ced2mco_nfc(challenge));
 			
 			tts.append("|");
 			
@@ -1504,7 +1504,7 @@ public class BuildDeck {
 			
 			tts.append("\n");
 
-			appendText(forTts, Normalizer.normalize(tts.toString(), Form.NFD));
+			appendText(forTts, Normalizer.normalize(tts.toString(), Form.NFC));
 
 			tts.setLength(0);
 
