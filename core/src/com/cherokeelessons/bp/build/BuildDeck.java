@@ -1449,7 +1449,7 @@ public class BuildDeck {
 			checkSheet.delete();
 		}
 
-		appendText(checkSheet, "ID|PSET|ALT_PRONOUNCE|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|INTRO NOTE|END NOTE\n");
+		appendText(checkSheet, "ID|PSET|ALT_PRONOUNCE|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|INTRO NOTE|END NOTE|APP_FILE\n");
 
 		final Set<String> already = new HashSet<>();
 		final StringBuilder tts = new StringBuilder();
@@ -1510,9 +1510,9 @@ public class BuildDeck {
 
 			check.append(card.id);
 			check.append("|");
-			check.append(card.getPset());
+			// check.append(card.getPset());
 			check.append("|");
-			check.append(card.getVset());
+			// check.append(card.getVset());
 			check.append("|");
 			check.append(card.pgroup);
 			check.append("|");
@@ -1530,6 +1530,8 @@ public class BuildDeck {
 				}
 				check.append(card.answer.get(ix));
 			}
+			check.append("|");
+			check.append("|");
 			check.append("|");
 			check.append(asFilename(challenge));
 			check.append("\n");
