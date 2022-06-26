@@ -452,7 +452,7 @@ public class Main {
 				break;
 			case CED:
 				wavFile = new File(EXCERCISES_DIR, "ced-session-" + exerciseSet + ".wav");
-				tmpData = EnglishAudio.createEnglishAudioFor("C.E.D. Vocabulary Cram.", wavFile).getAnswerFile();
+				tmpData = EnglishAudio.createEnglishAudioFor("Cherokee English Dictionary Vocabulary Cram.", wavFile).getAnswerFile();
 				audioEntries.add(tmpData.file);
 				tick += tmpData.duration;
 				tick += addSilence(1f, audioEntries);
@@ -1092,7 +1092,7 @@ public class Main {
 			final CardStats cardStats = card.getCardStats();
 			if (cardStats.getTriesRemaining() < 1) {
 				int leitnerBox = cardStats.getLeitnerBox();
-				long nextSessionInterval_ms = CardUtils.getNextSessionInterval_ms(leitnerBox);
+				long nextSessionInterval_ms = CardUtils.getNextInterval(leitnerBox);
 				cardStats.setShowAgainDelay_ms(nextSessionInterval_ms);
 				finishedDeck.add(card);
 //				System.out.println("   Bumping " + card.getData().getChallenge() + " to box " + (leitnerBox+1));
