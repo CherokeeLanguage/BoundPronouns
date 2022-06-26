@@ -67,7 +67,7 @@ public class BuildDeck {
 	public BuildDeck(final File assetsFolder) {
 		deckFile = new File(assetsFolder, "deck.json");
 		forTts = new File(assetsFolder, "cherokee-tts.txt");
-		checkSheet = new File(assetsFolder, "review-sheet.txt");
+		checkSheet = new File(assetsFolder, "bound-pronouns.txt");
 	}
 
 	private void addConjugatedChallengesToDeck() {
