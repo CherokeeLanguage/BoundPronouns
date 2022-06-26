@@ -909,7 +909,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "He has something solid" ],
+    "answer" : [ "He has something" ],
     "challenge" : [ "Ꭴ¹Ꭽ", "u¹ha" ],
     "id" : 102,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -945,7 +945,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 1
   }, {
-    "answer" : [ "I have rod shaped things" ],
+    "answer" : [ "I have long things" ],
     "challenge" : [ "Ꮣ¹Ꮛ³²Ꮿ", "da¹gwu¹wa³²ya" ],
     "id" : 106,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -1089,7 +1089,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 1
   }, {
-    "answer" : [ "He has solid things" ],
+    "answer" : [ "He has things" ],
     "challenge" : [ "Ꮪ²Ꭽ", "du²ha" ],
     "id" : 122,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -1116,7 +1116,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 2
   }, {
-    "answer" : [ "You have rod shaped things" ],
+    "answer" : [ "You have long things" ],
     "challenge" : [ "Ꮥ²Ꮸ³²Ꮿ", "de²ju¹wa³²ya" ],
     "id" : 125,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -1233,7 +1233,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 2
   }, {
-    "answer" : [ "All of us have something solid" ],
+    "answer" : [ "All of us have something" ],
     "challenge" : [ "Ꭲ¹Ꭹ²Ꭽ", "i¹gi²ha" ],
     "id" : 138,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -1350,7 +1350,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 3
   }, {
-    "answer" : [ "They and I have something solid" ],
+    "answer" : [ "They and I have something" ],
     "challenge" : [ "Ꭳ¹Ꭹ²Ꭽ", "o¹gi²ha" ],
     "id" : 151,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -1449,7 +1449,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 4
   }, {
-    "answer" : [ "They have something solid" ],
+    "answer" : [ "They have something" ],
     "challenge" : [ "Ꭴ¹Ꮒ²Ꭽ", "u¹ni²ha" ],
     "id" : 162,
     "pgroup" : "Ꭴ¹Ꮒ²-",
@@ -1539,7 +1539,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 5
   }, {
-    "answer" : [ "All of us have solid things" ],
+    "answer" : [ "All of us have things" ],
     "challenge" : [ "Ꮥ³Ꭹ²Ꭽ", "de³gi²ha" ],
     "id" : 172,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -1575,7 +1575,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 6
   }, {
-    "answer" : [ "You all have solid things" ],
+    "answer" : [ "You all have things" ],
     "challenge" : [ "Ꮥ³Ꮵ²Ꭽ", "de³ji²ha" ],
     "id" : 176,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -1611,7 +1611,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "They and I have solid things" ],
+    "answer" : [ "They and I have things" ],
     "challenge" : [ "Ꮩ¹Ꭹ²Ꭽ", "do¹gi²ha" ],
     "id" : 180,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -1656,7 +1656,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "They have solid things" ],
+    "answer" : [ "They have things" ],
     "challenge" : [ "Ꮪ¹Ꮒ²Ꭽ", "du¹ni²ha" ],
     "id" : 185,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -1692,7 +1692,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "You and I have something solid" ],
+    "answer" : [ "You and I have something" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭽ", "gị²ni²ha" ],
     "id" : 189,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -1719,7 +1719,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 10
   }, {
-    "answer" : [ "You both have solid things" ],
+    "answer" : [ "You both have things" ],
     "challenge" : [ "Ꮥ²ᏍᏗ²Ꭽ", "de²sdi²ha" ],
     "id" : 192,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -1737,7 +1737,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "He and I have something solid" ],
+    "answer" : [ "He and I have something" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ²Ꭽ", "o¹gị²ni²ha" ],
     "id" : 194,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -1755,7 +1755,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You and I have solid things" ],
+    "answer" : [ "You and I have things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭽ", "de²gị²ni²ha" ],
     "id" : 196,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -1773,7 +1773,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "He and I have solid things" ],
+    "answer" : [ "He and I have things" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ²Ꭽ", "do¹gị²ni²ha" ],
     "id" : 198,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -1863,7 +1863,7 @@
     "vgroup" : "Ꭴ²Ꮵ",
     "vset" : 1
   }, {
-    "answer" : [ "He usually has something solid" ],
+    "answer" : [ "He usually has something" ],
     "challenge" : [ "Ꭴ¹Ꮀ³Ꭲ", "u¹ho³ɂi" ],
     "id" : 208,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -1908,7 +1908,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 1
   }, {
-    "answer" : [ "He recently ate rod shaped things" ],
+    "answer" : [ "He recently ate long things" ],
     "challenge" : [ "Ꮣ̣²ᏍᏗ²³Ꭶ²", "dạ²sdi²³ga²" ],
     "id" : 213,
     "pgroup" : "Ꮣ̣²-, Ꮥ²Ꭶ̣²-",
@@ -1962,7 +1962,7 @@
     "vgroup" : "Ꭱ¹Ꮎ",
     "vset" : 2
   }, {
-    "answer" : [ "He usually has solid things" ],
+    "answer" : [ "He usually has things" ],
     "challenge" : [ "Ꮪ²Ꮀ³Ꭲ", "du²ho³ɂi" ],
     "id" : 219,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -2223,7 +2223,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 5
   }, {
-    "answer" : [ "All of us have rod shaped things" ],
+    "answer" : [ "All of us have long things" ],
     "challenge" : [ "Ꮥ³Ꭼ³²Ꮿ", "de³gu¹wa³²ya" ],
     "id" : 248,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -2295,7 +2295,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 5
   }, {
-    "answer" : [ "You all have rod shaped things" ],
+    "answer" : [ "You all have long things" ],
     "challenge" : [ "Ꮥ³Ꮸ³²Ꮿ", "de³ju¹wa³²ya" ],
     "id" : 256,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -2439,7 +2439,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 8
   }, {
-    "answer" : [ "You both have rod shaped things" ],
+    "answer" : [ "You both have long things" ],
     "challenge" : [ "Ꮥ²ᏍᏛ³²Ꮿ", "de²sdu¹wa³²ya" ],
     "id" : 272,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -2502,7 +2502,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 13
   }, {
-    "answer" : [ "I have solid things" ],
+    "answer" : [ "I have things" ],
     "challenge" : [ "Ꮣ¹Ꭹ̣²Ꭽ", "da¹gị²ha" ],
     "id" : 279,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -2520,7 +2520,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 15
   }, {
-    "answer" : [ "You have solid things" ],
+    "answer" : [ "You have things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꭽ", "de²jạ²ha" ],
     "id" : 281,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -2610,7 +2610,7 @@
     "vgroup" : "Ꭼ²Ꮵ",
     "vset" : 1
   }, {
-    "answer" : [ "He had something solid a while ago" ],
+    "answer" : [ "He had something a while ago" ],
     "challenge" : [ "Ꭴ¹Ꮂ²³Ꭲ", "u¹hv²³ɂi" ],
     "id" : 291,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -2628,7 +2628,7 @@
     "vgroup" : "Ꭰ̣²Ꮣ²",
     "vset" : 1
   }, {
-    "answer" : [ "I usually have rod shaped things" ],
+    "answer" : [ "I usually have long things" ],
     "challenge" : [ "Ꮣ¹Ꮛ²³ᏲᎢ", "da¹gwu¹wa²³yọ³ɂi" ],
     "id" : 293,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -2637,7 +2637,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 1
   }, {
-    "answer" : [ "Let him eat rod shaped things" ],
+    "answer" : [ "Let him eat long things" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²ᏍᏗ²³Ꭶ", "wị²dị²sdi²³ga" ],
     "id" : 294,
     "pgroup" : "Ꮧ̣²-, Ꮧ̣²Ꭶ̣²-",
@@ -2700,7 +2700,7 @@
     "vgroup" : "Ꭵ⁴Ꮜ",
     "vset" : 2
   }, {
-    "answer" : [ "He had solid things a while ago" ],
+    "answer" : [ "He had things a while ago" ],
     "challenge" : [ "Ꮪ²Ꮂ²³Ꭲ", "du²hv²³ɂi" ],
     "id" : 301,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -2709,7 +2709,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You usually have rod shaped things" ],
+    "answer" : [ "You usually have long things" ],
     "challenge" : [ "Ꮥ²Ꮸ²³ᏲᎢ", "de²ju¹wa²³yọ³ɂi" ],
     "id" : 302,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -2754,7 +2754,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 2
   }, {
-    "answer" : [ "All of us usually have solid things" ],
+    "answer" : [ "All of us usually have things" ],
     "challenge" : [ "Ꮥ³Ꭹ²Ꮀ³Ꭲ", "de³gi²ho³ɂi" ],
     "id" : 307,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -2817,7 +2817,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 3
   }, {
-    "answer" : [ "They and I usually have solid things" ],
+    "answer" : [ "They and I usually have things" ],
     "challenge" : [ "Ꮩ¹Ꭹ²Ꮀ³Ꭲ", "do¹gi²ho³ɂi" ],
     "id" : 314,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -2862,7 +2862,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "They usually have solid things" ],
+    "answer" : [ "They usually have things" ],
     "challenge" : [ "Ꮪ¹Ꮒ²Ꮀ³Ꭲ", "du¹ni²ho³ɂi" ],
     "id" : 319,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -2916,7 +2916,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "You and I usually have solid things" ],
+    "answer" : [ "You and I usually have things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮀ³Ꭲ", "de²gị²ni²ho³ɂi" ],
     "id" : 325,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -2970,7 +2970,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭶ²",
     "vset" : 6
   }, {
-    "answer" : [ "He and I usually have solid things" ],
+    "answer" : [ "He and I usually have things" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ²Ꮀ³Ꭲ", "do¹gị²ni²ho³ɂi" ],
     "id" : 331,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -3168,7 +3168,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 11
   }, {
-    "answer" : [ "All of us have something rod shaped" ],
+    "answer" : [ "All of us have something long" ],
     "challenge" : [ "Ꭲ¹Ꭼ³²Ꮿ", "i¹gu¹wa³²ya" ],
     "id" : 353,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -3204,7 +3204,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 12
   }, {
-    "answer" : [ "They and I have something rod shaped" ],
+    "answer" : [ "They and I have something long" ],
     "challenge" : [ "Ꭳ¹Ꭼ³²Ꮿ", "o¹gu¹wa³²ya" ],
     "id" : 357,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -3456,7 +3456,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "Let them and me eat rod shaped things" ],
+    "answer" : [ "Let them and me eat long things" ],
     "challenge" : [ "Ꮻ̣²Ꮶ¹Ꮵ²ᏍᏗ²³Ꭶ", "wị²jo¹ji²sdi²³ga" ],
     "id" : 385,
     "pgroup" : "Ꮶ¹Ꮵ²-",
@@ -3510,7 +3510,7 @@
     "vgroup" : "Ꭰ̣²Ꮣ",
     "vset" : 3
   }, {
-    "answer" : [ "All of us had solid things a while ago" ],
+    "answer" : [ "All of us had things a while ago" ],
     "challenge" : [ "Ꮥ³Ꭹ²Ꮂ²³Ꭲ", "de³gi²hv²³ɂi" ],
     "id" : 391,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -3537,7 +3537,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "Let them eat rod shaped things" ],
+    "answer" : [ "Let them eat long things" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮒ²ᏍᏗ²³Ꭶ", "wị²dị²ni²sdi²³ga" ],
     "id" : 394,
     "pgroup" : "Ꮧ̣²Ꮒ²-",
@@ -3582,7 +3582,7 @@
     "vgroup" : "Ꭵ⁴Ꮜ",
     "vset" : 4
   }, {
-    "answer" : [ "They and I had solid things a while ago" ],
+    "answer" : [ "They and I had things a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ²Ꮂ²³Ꭲ", "do¹gi²hv²³ɂi" ],
     "id" : 399,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -3600,7 +3600,7 @@
     "vgroup" : "Ꭰ̣²Ꮣ²",
     "vset" : 4
   }, {
-    "answer" : [ "Let him and me eat rod shaped things" ],
+    "answer" : [ "Let him and me eat long things" ],
     "challenge" : [ "Ꮻ̣²Ꮶ¹ᏍᏗ²ᏍᏗ²³Ꭶ", "wị²jo¹sdi²sdi²³ga" ],
     "id" : 401,
     "pgroup" : "Ꮶ¹ᏍᏗ²-",
@@ -3645,7 +3645,7 @@
     "vgroup" : "Ꭵ⁴Ꮜ",
     "vset" : 5
   }, {
-    "answer" : [ "They had solid things a while ago" ],
+    "answer" : [ "They had things a while ago" ],
     "challenge" : [ "Ꮪ¹Ꮒ²Ꮂ²³Ꭲ", "du¹ni²hv²³ɂi" ],
     "id" : 406,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -3699,7 +3699,7 @@
     "vgroup" : "Ꭵ⁴Ꮜ",
     "vset" : 6
   }, {
-    "answer" : [ "You and I had solid things a while ago" ],
+    "answer" : [ "You and I had things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮂ²³Ꭲ", "de²gị²ni²hv²³ɂi" ],
     "id" : 412,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -3726,7 +3726,7 @@
     "vgroup" : "Ꭵ⁴Ꮜ",
     "vset" : 7
   }, {
-    "answer" : [ "He and I had solid things a while ago" ],
+    "answer" : [ "He and I had things a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ²Ꮂ²³Ꭲ", "do¹gị²ni²hv²³ɂi" ],
     "id" : 415,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -3744,7 +3744,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭶ²",
     "vset" : 7
   }, {
-    "answer" : [ "You all usually have solid things" ],
+    "answer" : [ "You all usually have things" ],
     "challenge" : [ "Ꮥ³Ꮵ²Ꮀ³Ꭲ", "de³ji²ho³ɂi" ],
     "id" : 417,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -3753,7 +3753,7 @@
     "vgroup" : "Ꮀ³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "You both usually have solid things" ],
+    "answer" : [ "You both usually have things" ],
     "challenge" : [ "Ꮥ²ᏍᏗ²Ꮀ³Ꭲ", "de²sdi²ho³ɂi" ],
     "id" : 418,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -3852,7 +3852,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 16
   }, {
-    "answer" : [ "You both have something solid" ],
+    "answer" : [ "You both have something" ],
     "challenge" : [ "ᏍᏗ²Ꭽ", "sdi²ha" ],
     "id" : 429,
     "pgroup" : "ᏍᏗ²-",
@@ -3861,7 +3861,7 @@
     "vgroup" : "Ꭽ",
     "vset" : 17
   }, {
-    "answer" : [ "He has rod shaped things" ],
+    "answer" : [ "He has long things" ],
     "challenge" : [ "Ꮪ²Ꮾ³²Ꮿ", "du²wu¹wa³²ya" ],
     "id" : 430,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -3888,7 +3888,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 17
   }, {
-    "answer" : [ "You have something solid" ],
+    "answer" : [ "You have something" ],
     "challenge" : [ "Ꮳ̣²Ꭽ", "jạ²ha" ],
     "id" : 433,
     "pgroup" : "Ꮳ̣²-",
@@ -3924,7 +3924,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 18
   }, {
-    "answer" : [ "You all have something solid" ],
+    "answer" : [ "You all have something" ],
     "challenge" : [ "Ꭲ¹Ꮵ²Ꭽ", "i¹ji²ha" ],
     "id" : 437,
     "pgroup" : "Ꭲ¹Ꮵ²-",
@@ -3960,7 +3960,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 19
   }, {
-    "answer" : [ "I have something solid" ],
+    "answer" : [ "I have something" ],
     "challenge" : [ "Ꭰ¹Ꭹ̣²Ꭽ", "a¹gị²ha" ],
     "id" : 441,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -4284,7 +4284,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ",
     "vset" : 2
   }, {
-    "answer" : [ "They recently ate rod shaped things" ],
+    "answer" : [ "They recently ate long things" ],
     "challenge" : [ "Ꮣ¹Ꮒ²ᏍᏗ²³Ꭶ²", "da¹ni²sdi²³ga²" ],
     "id" : 477,
     "pgroup" : "Ꮣ¹Ꮒ²-",
@@ -4311,7 +4311,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You and I recently ate rod shaped things" ],
+    "answer" : [ "You and I recently ate long things" ],
     "challenge" : [ "Ꮥ³Ꮒ²ᏍᏗ²³Ꭶ²", "de³ni²sdi²³ga²" ],
     "id" : 480,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -4347,7 +4347,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 4
   }, {
-    "answer" : [ "All of us recently ate rod shaped things" ],
+    "answer" : [ "All of us recently ate long things" ],
     "challenge" : [ "Ꮥ³Ꮧ²ᏍᏗ²³Ꭶ²", "de³di²sdi²³ga²" ],
     "id" : 484,
     "pgroup" : "Ꮥ³Ꮧ²-",
@@ -4374,7 +4374,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you eat rod shaped things" ],
+    "answer" : [ "Let you eat long things" ],
     "challenge" : [ "Ꮨ̣²ᏍᏗ²³Ꭶ", "tị²sdi²³ga" ],
     "id" : 487,
     "pgroup" : "Ꮨ̣²-",
@@ -4383,7 +4383,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 5
   }, {
-    "answer" : [ "They and I recently ate rod shaped things" ],
+    "answer" : [ "They and I recently ate long things" ],
     "challenge" : [ "Ꮩ¹Ꮵ²ᏍᏗ²³Ꭶ²", "do¹ji²sdi²³ga²" ],
     "id" : 488,
     "pgroup" : "Ꮩ¹Ꮵ²-",
@@ -4401,7 +4401,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "They and I usually have rod shaped things" ],
+    "answer" : [ "They and I usually have long things" ],
     "challenge" : [ "Ꮩ¹Ꭼ²³ᏲᎢ", "do¹gu¹wa²³yọ³ɂi" ],
     "id" : 490,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -4410,7 +4410,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 6
   }, {
-    "answer" : [ "Let all of us eat rod shaped things" ],
+    "answer" : [ "Let all of us eat long things" ],
     "challenge" : [ "Ꮧ̣²Ꮧ̣²ᏍᏗ²³Ꭶ", "dị²di²sdi²³ga" ],
     "id" : 491,
     "pgroup" : "Ꮧ̣²Ꮧ̣²-",
@@ -4428,7 +4428,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "He and I recently ate rod shaped things" ],
+    "answer" : [ "He and I recently ate long things" ],
     "challenge" : [ "Ꮩ¹ᏍᏗ²ᏍᏗ²³Ꭶ²", "do¹sdi²sdi²³ga²" ],
     "id" : 493,
     "pgroup" : "Ꮩ¹ᏍᏗ²-",
@@ -4455,7 +4455,7 @@
     "vgroup" : "Ꭳ²Ꮅ²Ꭺ³Ꭲ*",
     "vset" : 6
   }, {
-    "answer" : [ "They usually have rod shaped things" ],
+    "answer" : [ "They usually have long things" ],
     "challenge" : [ "Ꮪ¹Ꮕ²³ᏲᎢ", "du¹nu¹wa²³yọ³ɂi" ],
     "id" : 496,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -4464,7 +4464,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 7
   }, {
-    "answer" : [ "Let you and me eat rod shaped things" ],
+    "answer" : [ "Let you and me eat long things" ],
     "challenge" : [ "Ꮧ̣³Ꮒ̣²ᏍᏗ²³Ꭶ", "dị³ni²sdi²³ga" ],
     "id" : 497,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -4500,7 +4500,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 8
   }, {
-    "answer" : [ "You all had solid things a while ago" ],
+    "answer" : [ "You all had things a while ago" ],
     "challenge" : [ "Ꮥ³Ꮵ²Ꮂ²³Ꭲ", "de³ji²hv²³ɂi" ],
     "id" : 501,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -4509,7 +4509,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "You and I usually have rod shaped things" ],
+    "answer" : [ "You and I usually have long things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮕ²³ᏲᎢ", "de²gị²nu¹wa²³yọ³ɂi" ],
     "id" : 502,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -4518,7 +4518,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 8
   }, {
-    "answer" : [ "Let me eat rod shaped things" ],
+    "answer" : [ "Let me eat long things" ],
     "challenge" : [ "Ꮻ̣²Ꮧ̣²Ꮵ̣²ᏍᏗ²³Ꭶ", "wị²dị²jị²sdi²³ga" ],
     "id" : 503,
     "pgroup" : "Ꮧ̣²Ꮵ̣²-, Ꮧ̣²Ꭶ͓-",
@@ -4554,7 +4554,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 9
   }, {
-    "answer" : [ "You both had solid things a while ago" ],
+    "answer" : [ "You both had things a while ago" ],
     "challenge" : [ "Ꮥ²ᏍᏗ²Ꮂ²³Ꭲ", "de²sdi²hv²³ɂi" ],
     "id" : 507,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -4563,7 +4563,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "He and I usually have rod shaped things" ],
+    "answer" : [ "He and I usually have long things" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮕ²³ᏲᎢ", "do¹gị²nu¹wa²³yọ³ɂi" ],
     "id" : 508,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -4590,7 +4590,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 9
   }, {
-    "answer" : [ "I usually have solid things" ],
+    "answer" : [ "I usually have things" ],
     "challenge" : [ "Ꮣ¹Ꭹ̣²Ꮀ³Ꭲ", "da¹gị²ho³ɂi" ],
     "id" : 511,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -4608,7 +4608,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 10
   }, {
-    "answer" : [ "You usually have solid things" ],
+    "answer" : [ "You usually have things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮀ³Ꭲ", "de²jạ²ho³ɂi" ],
     "id" : 513,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -4914,7 +4914,7 @@
     "vgroup" : "Ꭰ̣²Ᏼ",
     "vset" : 1
   }, {
-    "answer" : [ "He will be having solid things" ],
+    "answer" : [ "He will be having things" ],
     "challenge" : [ "Ꮪ²Ꭾ³ᏍᏗ", "du²he³sdi" ],
     "id" : 547,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -4977,7 +4977,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 1
   }, {
-    "answer" : [ "For him to eat rod shaped things" ],
+    "answer" : [ "For him to eat long things" ],
     "challenge" : [ "Ꮷ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "ju²sdi²³gi³²sdi" ],
     "id" : 554,
     "pgroup" : "Ꮷ²-, Ꮷ²Ꮹ͓-",
@@ -5130,7 +5130,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 5
   }, {
-    "answer" : [ "They and I had rod shaped things a while ago" ],
+    "answer" : [ "They and I had long things a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭼ²³ᏴᎢ", "do¹gu¹wa²³yv³ɂi" ],
     "id" : 571,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -5256,7 +5256,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "I had solid things a while ago" ],
+    "answer" : [ "I had things a while ago" ],
     "challenge" : [ "Ꮣ¹Ꭹ̣²Ꮂ²³Ꭲ", "da¹gị²hv²³ɂi" ],
     "id" : 585,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -5292,7 +5292,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You had solid things a while ago" ],
+    "answer" : [ "You had things a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮂ²³Ꭲ", "de²jạ²hv²³ɂi" ],
     "id" : 589,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -5319,7 +5319,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "All of us usually have something solid" ],
+    "answer" : [ "All of us usually have something" ],
     "challenge" : [ "Ꭲ¹Ꭹ²Ꮀ³Ꭲ", "i¹gi²ho³ɂi" ],
     "id" : 592,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -5346,7 +5346,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "They and I usually have something solid" ],
+    "answer" : [ "They and I usually have something" ],
     "challenge" : [ "Ꭳ¹Ꭹ²Ꮀ³Ꭲ", "o¹gi²ho³ɂi" ],
     "id" : 595,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -5382,7 +5382,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "They usually have something solid" ],
+    "answer" : [ "They usually have something" ],
     "challenge" : [ "Ꭴ¹Ꮒ²Ꮀ³Ꭲ", "u¹ni²ho³ɂi" ],
     "id" : 599,
     "pgroup" : "Ꭴ¹Ꮒ²-",
@@ -5400,7 +5400,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "You and I usually have something solid" ],
+    "answer" : [ "You and I usually have something" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮀ³Ꭲ", "gị²ni²ho³ɂi" ],
     "id" : 601,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -5418,7 +5418,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 15
   }, {
-    "answer" : [ "He and I usually have something solid" ],
+    "answer" : [ "He and I usually have something" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ²Ꮀ³Ꭲ", "o¹gị²ni²ho³ɂi" ],
     "id" : 603,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -5742,7 +5742,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 6
   }, {
-    "answer" : [ "You recently ate rod shaped things" ],
+    "answer" : [ "You recently ate long things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣²ᏍᏗ²³Ꭶ²", "de²hị²sdi²³ga²" ],
     "id" : 639,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -5859,7 +5859,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 9
   }, {
-    "answer" : [ "You all usually have rod shaped things" ],
+    "answer" : [ "You all usually have long things" ],
     "challenge" : [ "Ꮥ³Ꮸ²³ᏲᎢ", "de³ju¹wa²³yọ³ɂi" ],
     "id" : 652,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -5886,7 +5886,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 10
   }, {
-    "answer" : [ "You both usually have rod shaped things" ],
+    "answer" : [ "You both usually have long things" ],
     "challenge" : [ "Ꮥ²ᏍᏛ²³ᏲᎢ", "de²sdu¹wa²³yọ³ɂi" ],
     "id" : 655,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -5913,7 +5913,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 11
   }, {
-    "answer" : [ "All of us had something solid a while ago" ],
+    "answer" : [ "All of us had something a while ago" ],
     "challenge" : [ "Ꭲ¹Ꭹ²Ꮂ²³Ꭲ", "i¹gi²hv²³ɂi" ],
     "id" : 658,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -5949,7 +5949,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 12
   }, {
-    "answer" : [ "They and I had something solid a while ago" ],
+    "answer" : [ "They and I had something a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ²Ꮂ²³Ꭲ", "o¹gi²hv²³ɂi" ],
     "id" : 662,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -5976,7 +5976,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 13
   }, {
-    "answer" : [ "They had something solid a while ago" ],
+    "answer" : [ "They had something a while ago" ],
     "challenge" : [ "Ꭴ¹Ꮒ²Ꮂ²³Ꭲ", "u¹ni²hv²³ɂi" ],
     "id" : 665,
     "pgroup" : "Ꭴ¹Ꮒ²-",
@@ -5985,7 +5985,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "You and I had something solid a while ago" ],
+    "answer" : [ "You and I had something a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮂ²³Ꭲ", "gị²ni²hv²³ɂi" ],
     "id" : 666,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -6012,7 +6012,7 @@
     "vgroup" : "ɂᎪ³Ꮧ",
     "vset" : 16
   }, {
-    "answer" : [ "He and I had something solid a while ago" ],
+    "answer" : [ "He and I had something a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ²Ꮂ²³Ꭲ", "o¹gị²ni²hv²³ɂi" ],
     "id" : 669,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -6300,7 +6300,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "He will be having something solid" ],
+    "answer" : [ "He will be having something" ],
     "challenge" : [ "Ꭴ¹Ꭾ³ᏍᏗ", "u¹he³sdi" ],
     "id" : 701,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -6579,7 +6579,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "Let you all eat rod shaped things" ],
+    "answer" : [ "Let you all eat long things" ],
     "challenge" : [ "Ꮧ̣²Ꮵ̣²ᏍᏗ²³Ꭶ", "dị²ji²sdi²³ga" ],
     "id" : 732,
     "pgroup" : "Ꮧ̣²Ꮵ̣²-",
@@ -6606,7 +6606,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*",
     "vset" : 9
   }, {
-    "answer" : [ "You all had rod shaped things a while ago" ],
+    "answer" : [ "You all had long things a while ago" ],
     "challenge" : [ "Ꮥ³Ꮸ²³ᏴᎢ", "de³ju¹wa²³yv³ɂi" ],
     "id" : 735,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -6714,7 +6714,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ",
     "vset" : 15
   }, {
-    "answer" : [ "I usually have something solid" ],
+    "answer" : [ "I usually have something" ],
     "challenge" : [ "Ꭰ¹Ꭹ̣²Ꮀ³Ꭲ", "a¹gị²ho³ɂi" ],
     "id" : 747,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -6966,7 +6966,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ",
     "vset" : 8
   }, {
-    "answer" : [ "I recently ate rod shaped things" ],
+    "answer" : [ "I recently ate long things" ],
     "challenge" : [ "Ꮥ²Ꮵ̣²ᏍᏗ²³Ꭶ²", "de²jị²sdi²³ga²" ],
     "id" : 775,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -7029,7 +7029,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 9
   }, {
-    "answer" : [ "Let you both eat rod shaped things" ],
+    "answer" : [ "Let you both eat long things" ],
     "challenge" : [ "Ꮧ̣²ᏍᏗ²ᏍᏗ²³Ꭶ", "dị²sdi²sdi²³ga" ],
     "id" : 782,
     "pgroup" : "Ꮧ̣²ᏍᏗ²-",
@@ -7182,7 +7182,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 16
   }, {
-    "answer" : [ "I had something solid a while ago" ],
+    "answer" : [ "I had something a while ago" ],
     "challenge" : [ "Ꭰ¹Ꭹ̣²Ꮂ²³Ꭲ", "a¹gị²hv²³ɂi" ],
     "id" : 799,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -7209,7 +7209,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 17
   }, {
-    "answer" : [ "You usually have something solid" ],
+    "answer" : [ "You usually have something" ],
     "challenge" : [ "Ꮳ̣²Ꮀ³Ꭲ", "jạ²ho³ɂi" ],
     "id" : 802,
     "pgroup" : "Ꮳ̣²-",
@@ -7461,7 +7461,7 @@
     "vgroup" : "ɂᏰ³Ꭰ*",
     "vset" : 2
   }, {
-    "answer" : [ "For them and me to eat rod shaped things" ],
+    "answer" : [ "For them and me to eat long things" ],
     "challenge" : [ "Ꮶ¹Ꭹ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "jo¹gi²sdi²³gi³²sdi" ],
     "id" : 830,
     "pgroup" : "Ꮶ¹Ꭹ²-",
@@ -7470,7 +7470,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "All of us will be having solid things" ],
+    "answer" : [ "All of us will be having things" ],
     "challenge" : [ "Ꮥ³Ꭹ²Ꭾ³ᏍᏗ", "de³gi²he³sdi" ],
     "id" : 831,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -7488,7 +7488,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "For them to eat rod shaped things" ],
+    "answer" : [ "For them to eat long things" ],
     "challenge" : [ "Ꮷ¹Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "ju¹ni²sdi²³gi³²sdi" ],
     "id" : 833,
     "pgroup" : "Ꮷ¹Ꮒ²-",
@@ -7497,7 +7497,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "They and I will be having solid things" ],
+    "answer" : [ "They and I will be having things" ],
     "challenge" : [ "Ꮩ¹Ꭹ²Ꭾ³ᏍᏗ", "do¹gi²he³sdi" ],
     "id" : 834,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -7506,7 +7506,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 4
   }, {
-    "answer" : [ "For him and me to eat rod shaped things" ],
+    "answer" : [ "For him and me to eat long things" ],
     "challenge" : [ "Ꮶ¹Ꭹ̣²Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "jo¹gị²ni²sdi²³gi³²sdi" ],
     "id" : 835,
     "pgroup" : "Ꮶ¹Ꭹ̣²Ꮒ²-",
@@ -7515,7 +7515,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 4
   }, {
-    "answer" : [ "They will be having solid things" ],
+    "answer" : [ "They will be having things" ],
     "challenge" : [ "Ꮪ¹Ꮒ²Ꭾ³ᏍᏗ", "du¹ni²he³sdi" ],
     "id" : 836,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -7524,7 +7524,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 5
   }, {
-    "answer" : [ "I will be having solid things" ],
+    "answer" : [ "I will be having things" ],
     "challenge" : [ "Ꮣ¹Ꭹ̣²Ꭾ³ᏍᏗ", "da¹gị²he³sdi" ],
     "id" : 837,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -7533,7 +7533,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "You will be having solid things" ],
+    "answer" : [ "You will be having things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꭾ³ᏍᏗ", "de²jạ²he³sdi" ],
     "id" : 838,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -7542,7 +7542,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "You and I will be having solid things" ],
+    "answer" : [ "You and I will be having things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭾ³ᏍᏗ", "de²gị²ni²he³sdi" ],
     "id" : 839,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -7560,7 +7560,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*",
     "vset" : 8
   }, {
-    "answer" : [ "He and I will be having solid things" ],
+    "answer" : [ "He and I will be having things" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ²Ꭾ³ᏍᏗ", "do¹gị²ni²he³sdi" ],
     "id" : 841,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -7650,7 +7650,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 17
   }, {
-    "answer" : [ "You had something solid a while ago" ],
+    "answer" : [ "You had something a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮂ²³Ꭲ", "jạ²hv²³ɂi" ],
     "id" : 851,
     "pgroup" : "Ꮳ̣²-",
@@ -7830,7 +7830,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 5
   }, {
-    "answer" : [ "For all of us to eat rod shaped things" ],
+    "answer" : [ "For all of us to eat long things" ],
     "challenge" : [ "Ꮧ̣²Ꭹ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²gi²sdi²³gi³²sdi" ],
     "id" : 871,
     "pgroup" : "Ꮧ̣²Ꭹ²-",
@@ -7884,7 +7884,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "For you and me to eat rod shaped things" ],
+    "answer" : [ "For you and me to eat long things" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²gị²ni²sdi²³gi³²sdi" ],
     "id" : 877,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -8154,7 +8154,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "For you to eat rod shaped things" ],
+    "answer" : [ "For you to eat long things" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²jạ²sdi²³gi³²sdi" ],
     "id" : 907,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -8181,7 +8181,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 8
   }, {
-    "answer" : [ "For me to eat rod shaped things" ],
+    "answer" : [ "For me to eat long things" ],
     "challenge" : [ "Ꮧ̣¹Ꭹ̣²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị¹gị²sdi²³gi³²sdi" ],
     "id" : 910,
     "pgroup" : "Ꮧ̣¹Ꭹ̣²-, Ꮧ̣¹Ꮖ͓-",
@@ -8262,7 +8262,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 15
   }, {
-    "answer" : [ "You both usually have something solid" ],
+    "answer" : [ "You both usually have something" ],
     "challenge" : [ "ᏍᏗ²Ꮀ³Ꭲ", "sdi²ho³ɂi" ],
     "id" : 919,
     "pgroup" : "ᏍᏗ²-",
@@ -8271,7 +8271,7 @@
     "vgroup" : "Ꮀ³Ꭲ",
     "vset" : 19
   }, {
-    "answer" : [ "You all usually have something solid" ],
+    "answer" : [ "You all usually have something" ],
     "challenge" : [ "Ꭲ¹Ꮵ²Ꮀ³Ꭲ", "i¹ji²ho³ɂi" ],
     "id" : 920,
     "pgroup" : "Ꭲ¹Ꮵ²-",
@@ -8604,7 +8604,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 18
   }, {
-    "answer" : [ "You both had something solid a while ago" ],
+    "answer" : [ "You both had something a while ago" ],
     "challenge" : [ "ᏍᏗ²Ꮂ²³Ꭲ", "sdi²hv²³ɂi" ],
     "id" : 957,
     "pgroup" : "ᏍᏗ²-",
@@ -8622,7 +8622,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 19
   }, {
-    "answer" : [ "You all had something solid a while ago" ],
+    "answer" : [ "You all had something a while ago" ],
     "challenge" : [ "Ꭲ¹Ꮵ²Ꮂ²³Ꭲ", "i¹ji²hv²³ɂi" ],
     "id" : 959,
     "pgroup" : "Ꭲ¹Ꮵ²-",
@@ -8703,7 +8703,7 @@
     "vgroup" : "Ꭶ²Ꭿ²Ꮵ",
     "vset" : 1
   }, {
-    "answer" : [ "He will be having rod shaped things" ],
+    "answer" : [ "He will be having long things" ],
     "challenge" : [ "Ꮪ²Ꭵ²³ᏰᏍᏗ", "du²jv²³ye³²sdi" ],
     "id" : 968,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -8802,7 +8802,7 @@
     "vgroup" : "Ꮑ̣³Ꭽ",
     "vset" : 6
   }, {
-    "answer" : [ "You all will be having solid things" ],
+    "answer" : [ "You all will be having things" ],
     "challenge" : [ "Ꮥ³Ꮵ²Ꭾ³ᏍᏗ", "de³ji²he³sdi" ],
     "id" : 979,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -8811,7 +8811,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "You both will be having solid things" ],
+    "answer" : [ "You both will be having things" ],
     "challenge" : [ "Ꮥ²ᏍᏗ²Ꭾ³ᏍᏗ", "de²sdi²he³sdi" ],
     "id" : 980,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -9126,7 +9126,7 @@
     "vgroup" : "ɂᎷ¹Ꭶ²",
     "vset" : 8
   }, {
-    "answer" : [ "For you all to eat rod shaped things" ],
+    "answer" : [ "For you all to eat long things" ],
     "challenge" : [ "Ꮧ̣²Ꮵ̣²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²ji²sdi²³gi³²sdi" ],
     "id" : 1015,
     "pgroup" : "Ꮧ̣²Ꮵ̣²-",
@@ -9315,7 +9315,7 @@
     "vgroup" : "ɂᏰ³ᏍᎪ³Ꭲ*",
     "vset" : 1
   }, {
-    "answer" : [ "He is eating rod shaped things" ],
+    "answer" : [ "He is eating long things" ],
     "challenge" : [ "Ꮣ̣¹ᏍᏗ²³Ꭹ̣³Ꭰ", "dạ¹sdi²³gị³ɂa" ],
     "id" : 1036,
     "pgroup" : "Ꮣ̣²-, Ꮥ²Ꭶ̣²-",
@@ -9369,7 +9369,7 @@
     "vgroup" : "ɂᏯ³Ꭵ²³Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "They recently ate something rod shaped" ],
+    "answer" : [ "They recently ate something long" ],
     "challenge" : [ "Ꭰ¹Ꮒ²ᏍᏗ²³Ꭶ²", "a¹ni²sdi²³ga²" ],
     "id" : 1042,
     "pgroup" : "Ꭰ¹Ꮒ²-",
@@ -9549,7 +9549,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮤ",
     "vset" : 2
   }, {
-    "answer" : [ "All of us will be having rod shaped things" ],
+    "answer" : [ "All of us will be having long things" ],
     "challenge" : [ "Ꮥ³Ꭹ²Ꭵ²³ᏰᏍᏗ", "de³gi²jv²³ye³²sdi" ],
     "id" : 1062,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -9558,7 +9558,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "They are eating rod shaped things" ],
+    "answer" : [ "They are eating long things" ],
     "challenge" : [ "Ꮣ¹Ꮒ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "da¹ni¹sdi²³gị³ɂa" ],
     "id" : 1063,
     "pgroup" : "Ꮣ¹Ꮒ²-",
@@ -9576,7 +9576,7 @@
     "vgroup" : "Ꭰ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "They and I will be having rod shaped things" ],
+    "answer" : [ "They and I will be having long things" ],
     "challenge" : [ "Ꮩ¹Ꭹ²Ꭵ²³ᏰᏍᏗ", "do¹gi²jv²³ye³²sdi" ],
     "id" : 1065,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -9585,7 +9585,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "You and I are eating rod shaped things" ],
+    "answer" : [ "You and I are eating long things" ],
     "challenge" : [ "Ꮥ³Ꮒ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "de³ni¹sdi²³gị³ɂa" ],
     "id" : 1066,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -9594,7 +9594,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 3
   }, {
-    "answer" : [ "They will be having rod shaped things" ],
+    "answer" : [ "They will be having long things" ],
     "challenge" : [ "Ꮪ¹Ꮒ²Ꭵ²³ᏰᏍᏗ", "du¹ni²jv²³ye³²sdi" ],
     "id" : 1067,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -9603,7 +9603,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 4
   }, {
-    "answer" : [ "All of us are eating rod shaped things" ],
+    "answer" : [ "All of us are eating long things" ],
     "challenge" : [ "Ꮥ³Ꮧ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "de³di¹sdi²³gị³ɂa" ],
     "id" : 1068,
     "pgroup" : "Ꮥ³Ꮧ²-",
@@ -9612,7 +9612,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 4
   }, {
-    "answer" : [ "You and I will be having rod shaped things" ],
+    "answer" : [ "You and I will be having long things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭵ²³ᏰᏍᏗ", "de²gị²ni²jv²³ye³²sdi" ],
     "id" : 1069,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -9621,7 +9621,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 5
   }, {
-    "answer" : [ "They and I are eating rod shaped things" ],
+    "answer" : [ "They and I are eating long things" ],
     "challenge" : [ "Ꮩ¹Ꮵ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "do¹ji¹sdi²³gị³ɂa" ],
     "id" : 1070,
     "pgroup" : "Ꮩ¹Ꮵ²-",
@@ -9630,7 +9630,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 5
   }, {
-    "answer" : [ "He and I will be having rod shaped things" ],
+    "answer" : [ "He and I will be having long things" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ²Ꭵ²³ᏰᏍᏗ", "do¹gị²ni²jv²³ye³²sdi" ],
     "id" : 1071,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -9639,7 +9639,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "He and I are eating rod shaped things" ],
+    "answer" : [ "He and I are eating long things" ],
     "challenge" : [ "Ꮩ¹ᏍᏗ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "do¹sdi¹sdi²³gị³ɂa" ],
     "id" : 1072,
     "pgroup" : "Ꮩ¹ᏍᏗ²-",
@@ -9693,7 +9693,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 10
   }, {
-    "answer" : [ "He recently ate something rod shaped" ],
+    "answer" : [ "He recently ate something long" ],
     "challenge" : [ "Ꭰ̣²ᏍᏗ²³Ꭶ²", "ạ²sdi²³ga²" ],
     "id" : 1078,
     "pgroup" : "Ꭰ̣²-, Ꭶ̣²-",
@@ -9720,7 +9720,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 11
   }, {
-    "answer" : [ "I recently ate something rod shaped" ],
+    "answer" : [ "I recently ate something long" ],
     "challenge" : [ "Ꮵ̣²ᏍᏗ²³Ꭶ²", "jị²sdi²³ga²" ],
     "id" : 1081,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -9837,7 +9837,7 @@
     "vgroup" : "Ꮒ̣²Ꭿ",
     "vset" : 1
   }, {
-    "answer" : [ "He ate rod shaped things a while ago" ],
+    "answer" : [ "He ate long things a while ago" ],
     "challenge" : [ "Ꮪ¹ᏍᏗ³Ꭼ²³Ꭲ", "du¹sdi³gv²³ɂi" ],
     "id" : 1094,
     "pgroup" : "Ꮪ²-, Ꮪ²Ꮹ͓-",
@@ -10026,7 +10026,7 @@
     "vgroup" : "Ꮑ̣³Ꭽ",
     "vset" : 10
   }, {
-    "answer" : [ "For you both to eat rod shaped things" ],
+    "answer" : [ "For you both to eat long things" ],
     "challenge" : [ "Ꮧ̣²ᏍᏗ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²sdi²sdi²³gi³²sdi" ],
     "id" : 1115,
     "pgroup" : "Ꮧ̣²ᏍᏗ²-",
@@ -10035,7 +10035,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "Let you and me eat something rod shaped" ],
+    "answer" : [ "Let you and me eat something long" ],
     "challenge" : [ "Ꭲ¹Ꮒ²ᏍᏗ²³Ꭶ", "i¹ni²sdi²³ga" ],
     "id" : 1116,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -10044,7 +10044,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 11
   }, {
-    "answer" : [ "Let all of us eat something rod shaped" ],
+    "answer" : [ "Let all of us eat something long" ],
     "challenge" : [ "Ꭲ¹Ꮧ²ᏍᏗ²³Ꭶ", "i¹di²sdi²³ga" ],
     "id" : 1117,
     "pgroup" : "Ꭲ¹Ꮧ²-",
@@ -10269,7 +10269,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 11
   }, {
-    "answer" : [ "They will be having something solid" ],
+    "answer" : [ "They will be having something" ],
     "challenge" : [ "Ꭴ¹Ꮒ²Ꭾ³ᏍᏗ", "u¹ni²he³sdi" ],
     "id" : 1142,
     "pgroup" : "Ꭴ¹Ꮒ²-",
@@ -10296,7 +10296,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 13
   }, {
-    "answer" : [ "You all recently ate rod shaped things" ],
+    "answer" : [ "You all recently ate long things" ],
     "challenge" : [ "Ꮥ³Ꮵ²ᏍᏗ²³Ꭶ²", "de³ji²sdi²³ga²" ],
     "id" : 1145,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -10314,7 +10314,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 14
   }, {
-    "answer" : [ "You both recently ate rod shaped things" ],
+    "answer" : [ "You both recently ate long things" ],
     "challenge" : [ "Ꮥ²ᏍᏗ²ᏍᏗ²³Ꭶ²", "de²sdi²sdi²³ga²" ],
     "id" : 1147,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -10575,7 +10575,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 9
   }, {
-    "answer" : [ "They and I will be having something solid" ],
+    "answer" : [ "They and I will be having something" ],
     "challenge" : [ "Ꭳ¹Ꭹ²Ꭾ³ᏍᏗ", "o¹gi²he³sdi" ],
     "id" : 1176,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -10584,7 +10584,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "You and I will be having something solid" ],
+    "answer" : [ "You and I will be having something" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭾ³ᏍᏗ", "gị²ni²he³sdi" ],
     "id" : 1177,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -10593,7 +10593,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 14
   }, {
-    "answer" : [ "He and I will be having something solid" ],
+    "answer" : [ "He and I will be having something" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ²Ꭾ³ᏍᏗ", "o¹gị²ni²he³sdi" ],
     "id" : 1178,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -10818,7 +10818,7 @@
     "vgroup" : "ɂ³Ꮪ²Ꮕ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "I am eating rod shaped things" ],
+    "answer" : [ "I am eating long things" ],
     "challenge" : [ "Ꮥ²Ꮵ̣¹ᏍᏗ²³Ꭹ̣³Ꭰ", "de²jị¹sdi²³gị³ɂa" ],
     "id" : 1203,
     "pgroup" : "Ꮥ²Ꮵ̣²-, Ꮥ²Ꭶ͓-",
@@ -10827,7 +10827,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 8
   }, {
-    "answer" : [ "Let you eat something rod shaped" ],
+    "answer" : [ "Let you eat something long" ],
     "challenge" : [ "Ꭿ̣²ᏍᏗ²³Ꭶ", "hị²sdi²³ga" ],
     "id" : 1204,
     "pgroup" : "Ꭿ̣²-",
@@ -10845,7 +10845,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*",
     "vset" : 14
   }, {
-    "answer" : [ "All of us will be having something solid" ],
+    "answer" : [ "All of us will be having something" ],
     "challenge" : [ "Ꭲ¹Ꭹ²Ꭾ³ᏍᏗ", "i¹gi²he³sdi" ],
     "id" : 1206,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -10854,7 +10854,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 16
   }, {
-    "answer" : [ "They and I recently ate something rod shaped" ],
+    "answer" : [ "They and I recently ate something long" ],
     "challenge" : [ "Ꭳ¹Ꮵ²ᏍᏗ²³Ꭶ²", "o¹ji²sdi²³ga²" ],
     "id" : 1207,
     "pgroup" : "Ꭳ¹Ꮵ²-",
@@ -10863,7 +10863,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ²",
     "vset" : 16
   }, {
-    "answer" : [ "He and I recently ate something rod shaped" ],
+    "answer" : [ "He and I recently ate something long" ],
     "challenge" : [ "Ꭳ¹ᏍᏗ²ᏍᏗ²³Ꭶ²", "o¹sdi²sdi²³ga²" ],
     "id" : 1208,
     "pgroup" : "Ꭳ¹ᏍᏗ²-",
@@ -11070,7 +11070,7 @@
     "vgroup" : "ɂ³Ꮪ²Ꮂ̣³ᏍᎦ",
     "vset" : 8
   }, {
-    "answer" : [ "He will be having something rod shaped" ],
+    "answer" : [ "He will be having something long" ],
     "challenge" : [ "Ꭴ¹Ꭵ²³ᏰᏍᏗ", "u¹jv²³ye³²sdi" ],
     "id" : 1231,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -11178,7 +11178,7 @@
     "vgroup" : "Ꭰ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "All of us ate rod shaped things a while ago" ],
+    "answer" : [ "All of us ate long things a while ago" ],
     "challenge" : [ "Ꮥ³Ꭹ¹ᏍᏗ³Ꭼ²³Ꭲ", "de³gi¹sdi³gv²³ɂi" ],
     "id" : 1243,
     "pgroup" : "Ꮥ³Ꭹ²-",
@@ -11187,7 +11187,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "They and I ate rod shaped things a while ago" ],
+    "answer" : [ "They and I ate long things a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ¹ᏍᏗ³Ꭼ²³Ꭲ", "do¹gi¹sdi³gv²³ɂi" ],
     "id" : 1244,
     "pgroup" : "Ꮩ¹Ꭹ²-",
@@ -11196,7 +11196,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "They ate rod shaped things a while ago" ],
+    "answer" : [ "They ate long things a while ago" ],
     "challenge" : [ "Ꮪ¹Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "du¹ni¹sdi³gv²³ɂi" ],
     "id" : 1245,
     "pgroup" : "Ꮪ¹Ꮒ²-",
@@ -11205,7 +11205,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You and I ate rod shaped things a while ago" ],
+    "answer" : [ "You and I ate long things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "de²gị²ni¹sdi³gv²³ɂi" ],
     "id" : 1246,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -11232,7 +11232,7 @@
     "vgroup" : "Ꮈ¹ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "He and I ate rod shaped things a while ago" ],
+    "answer" : [ "He and I ate long things a while ago" ],
     "challenge" : [ "Ꮩ¹Ꭹ̣²Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "do¹gị²ni¹sdi³gv²³ɂi" ],
     "id" : 1249,
     "pgroup" : "Ꮩ¹Ꭹ̣²Ꮒ²-",
@@ -11295,7 +11295,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 15
   }, {
-    "answer" : [ "You will be having something solid" ],
+    "answer" : [ "You will be having something" ],
     "challenge" : [ "Ꮳ̣²Ꭾ³ᏍᏗ", "jạ²he³sdi" ],
     "id" : 1256,
     "pgroup" : "Ꮳ̣²-",
@@ -11610,7 +11610,7 @@
     "vgroup" : "Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "You and I usually are eating rod shaped things" ],
+    "answer" : [ "You and I usually are eating long things" ],
     "challenge" : [ "Ꮥ³Ꮒ¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "de³ni¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1291,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -11619,7 +11619,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You usually are eating rod shaped things" ],
+    "answer" : [ "You usually are eating long things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "de²hị¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1292,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -11637,7 +11637,7 @@
     "vgroup" : "Ꮈ¹ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "I ate rod shaped things a while ago" ],
+    "answer" : [ "I ate long things a while ago" ],
     "challenge" : [ "Ꮣ¹Ꭹ̣¹ᏍᏗ³Ꭼ²³Ꭲ", "da¹gị¹sdi³gv²³ɂi" ],
     "id" : 1294,
     "pgroup" : "Ꮣ¹Ꭹ̣²-, Ꮣ¹Ꮖ͓-",
@@ -11655,7 +11655,7 @@
     "vgroup" : "ɂ³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "He and I usually are eating rod shaped things" ],
+    "answer" : [ "He and I usually are eating long things" ],
     "challenge" : [ "Ꮩ¹ᏍᏗ¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "do¹sdi¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1296,
     "pgroup" : "Ꮩ¹ᏍᏗ²-",
@@ -11709,7 +11709,7 @@
     "vgroup" : "ɂᏰ³ᏍᎪ³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "He ate something rod shaped a while ago" ],
+    "answer" : [ "He ate something long a while ago" ],
     "challenge" : [ "Ꭴ¹ᏍᏗ³Ꭼ²³Ꭲ", "u¹sdi³gv²³ɂi" ],
     "id" : 1302,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -11736,7 +11736,7 @@
     "vgroup" : "Ꮑ²Ꮂ²³Ꭲ",
     "vset" : 16
   }, {
-    "answer" : [ "I will be having something solid" ],
+    "answer" : [ "I will be having something" ],
     "challenge" : [ "Ꭰ¹Ꭹ̣²Ꭾ³ᏍᏗ", "a¹gị²he³sdi" ],
     "id" : 1305,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -11844,7 +11844,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ²",
     "vset" : 9
   }, {
-    "answer" : [ "You ate rod shaped things a while ago" ],
+    "answer" : [ "You ate long things a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣¹ᏍᏗ³Ꭼ²³Ꭲ", "de²jạ¹sdi³gv²³ɂi" ],
     "id" : 1317,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -12483,7 +12483,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 11
   }, {
-    "answer" : [ "Let them and me eat something rod shaped" ],
+    "answer" : [ "Let them and me eat something long" ],
     "challenge" : [ "Ꮼ¹Ꮵ²ᏍᏗ²³Ꭶ", "wo¹ji²sdi²³ga" ],
     "id" : 1388,
     "pgroup" : "Ꭳ¹Ꮵ²-",
@@ -12492,7 +12492,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 16
   }, {
-    "answer" : [ "Let him and me eat something rod shaped" ],
+    "answer" : [ "Let him and me eat something long" ],
     "challenge" : [ "Ꮼ¹ᏍᏗ²ᏍᏗ²³Ꭶ", "wo¹sdi²sdi²³ga" ],
     "id" : 1389,
     "pgroup" : "Ꭳ¹ᏍᏗ²-",
@@ -12600,7 +12600,7 @@
     "vgroup" : "ɂ³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "You all ate rod shaped things a while ago" ],
+    "answer" : [ "You all ate long things a while ago" ],
     "challenge" : [ "Ꮥ³Ꮵ¹ᏍᏗ³Ꭼ²³Ꭲ", "de³ji¹sdi³gv²³ɂi" ],
     "id" : 1401,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -12609,7 +12609,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You both ate rod shaped things a while ago" ],
+    "answer" : [ "You both ate long things a while ago" ],
     "challenge" : [ "Ꮥ²ᏍᏗ¹ᏍᏗ³Ꭼ²³Ꭲ", "de²sdi¹sdi³gv²³ɂi" ],
     "id" : 1402,
     "pgroup" : "Ꮥ²ᏍᏗ²-",
@@ -12789,7 +12789,7 @@
     "vgroup" : "ɂᎧ̣²Ꮂ²³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You both will be having something solid" ],
+    "answer" : [ "You both will be having something" ],
     "challenge" : [ "ᏍᏗ²Ꭾ³ᏍᏗ", "sdi²he³sdi" ],
     "id" : 1422,
     "pgroup" : "ᏍᏗ²-",
@@ -12861,7 +12861,7 @@
     "vgroup" : "Ꮈ³²Ꮢ²³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "They are eating something rod shaped" ],
+    "answer" : [ "They are eating something long" ],
     "challenge" : [ "Ꭰ¹Ꮒ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "a¹ni¹sdi²³gị³ɂa" ],
     "id" : 1430,
     "pgroup" : "Ꭰ¹Ꮒ²-",
@@ -12879,7 +12879,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "You and I are eating something rod shaped" ],
+    "answer" : [ "You and I are eating something long" ],
     "challenge" : [ "Ꭲ¹Ꮒ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "i¹ni¹sdi²³gị³ɂa" ],
     "id" : 1432,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -12897,7 +12897,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ²",
     "vset" : 11
   }, {
-    "answer" : [ "All of us are eating something rod shaped" ],
+    "answer" : [ "All of us are eating something long" ],
     "challenge" : [ "Ꭲ¹Ꮧ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "i¹di¹sdi²³gị³ɂa" ],
     "id" : 1434,
     "pgroup" : "Ꭲ¹Ꮧ²-",
@@ -12915,7 +12915,7 @@
     "vgroup" : "Ꮎ̣³Ꭳ³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "You all will be having something solid" ],
+    "answer" : [ "You all will be having something" ],
     "challenge" : [ "Ꭲ¹Ꮵ²Ꭾ³ᏍᏗ", "i¹ji²he³sdi" ],
     "id" : 1436,
     "pgroup" : "Ꭲ¹Ꮵ²-",
@@ -13068,7 +13068,7 @@
     "vgroup" : "Ꮈ¹ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "They ate something rod shaped a while ago" ],
+    "answer" : [ "They ate something long a while ago" ],
     "challenge" : [ "Ꭴ¹Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "u¹ni¹sdi³gv²³ɂi" ],
     "id" : 1453,
     "pgroup" : "Ꭴ¹Ꮒ²-",
@@ -13149,7 +13149,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²",
     "vset" : 5
   }, {
-    "answer" : [ "You and I ate something rod shaped a while ago" ],
+    "answer" : [ "You and I ate something long a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "gị²ni¹sdi³gv²³ɂi" ],
     "id" : 1462,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13383,7 +13383,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²",
     "vset" : 6
   }, {
-    "answer" : [ "For him to eat something rod shaped" ],
+    "answer" : [ "For him to eat something long" ],
     "challenge" : [ "Ꭴ¹ᏍᏗ²³Ꭹ³²ᏍᏗ", "u¹sdi²³gi³²sdi" ],
     "id" : 1488,
     "pgroup" : "Ꭴ¹-, Ꭴ¹Ꮹ͓-",
@@ -13401,7 +13401,7 @@
     "vgroup" : "Ꮎ̣³Ꭳ³Ꭲ",
     "vset" : 17
   }, {
-    "answer" : [ "Let you both eat something rod shaped" ],
+    "answer" : [ "Let you both eat something long" ],
     "challenge" : [ "ᏍᏗ²ᏍᏗ²³Ꭶ", "sdi²sdi²³ga" ],
     "id" : 1490,
     "pgroup" : "ᏍᏗ²-",
@@ -13464,7 +13464,7 @@
     "vgroup" : "Ᏺ¹Ꮟ²³Ꮜ²",
     "vset" : 8
   }, {
-    "answer" : [ "They and I ate something rod shaped a while ago" ],
+    "answer" : [ "They and I ate something long a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ¹ᏍᏗ³Ꭼ²³Ꭲ", "o¹gi¹sdi³gv²³ɂi" ],
     "id" : 1497,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -13473,7 +13473,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "He and I ate something rod shaped a while ago" ],
+    "answer" : [ "He and I ate something long a while ago" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "o¹gị²ni¹sdi³gv²³ɂi" ],
     "id" : 1498,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -13491,7 +13491,7 @@
     "vgroup" : "Ꮎ̣³Ꭵ²³Ꭲ",
     "vset" : 17
   }, {
-    "answer" : [ "You both recently ate something rod shaped" ],
+    "answer" : [ "You both recently ate something long" ],
     "challenge" : [ "ᏍᏗ²ᏍᏗ²³Ꭶ²", "sdi²sdi²³ga²" ],
     "id" : 1500,
     "pgroup" : "ᏍᏗ²-",
@@ -13500,7 +13500,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ²",
     "vset" : 19
   }, {
-    "answer" : [ "Let you all eat something rod shaped" ],
+    "answer" : [ "Let you all eat something long" ],
     "challenge" : [ "Ꭲ¹Ꮵ²ᏍᏗ²³Ꭶ", "i¹ji²sdi²³ga" ],
     "id" : 1501,
     "pgroup" : "Ꭲ¹Ꮵ²-",
@@ -13563,7 +13563,7 @@
     "vgroup" : "ᏁᏗ",
     "vset" : 9
   }, {
-    "answer" : [ "You are eating something rod shaped" ],
+    "answer" : [ "You are eating something long" ],
     "challenge" : [ "Ꭿ̣¹ᏍᏗ²³Ꭹ̣³Ꭰ", "hị¹sdi²³gị³ɂa" ],
     "id" : 1508,
     "pgroup" : "Ꭿ̣²-",
@@ -13572,7 +13572,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 14
   }, {
-    "answer" : [ "You all recently ate something rod shaped" ],
+    "answer" : [ "You all recently ate something long" ],
     "challenge" : [ "Ꭲ¹Ꮵ²ᏍᏗ²³Ꭶ²", "i¹ji²sdi²³ga²" ],
     "id" : 1509,
     "pgroup" : "Ꭲ¹Ꮵ²-",
@@ -13599,7 +13599,7 @@
     "vgroup" : "Ꭶ̣²Ꮵ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "All of us ate something rod shaped a while ago" ],
+    "answer" : [ "All of us ate something long a while ago" ],
     "challenge" : [ "Ꭲ¹Ꭹ¹ᏍᏗ³Ꭼ²³Ꭲ", "i¹gi¹sdi³gv²³ɂi" ],
     "id" : 1512,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -13662,7 +13662,7 @@
     "vgroup" : "Ꭹ̣²Ꮒ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "He usually is eating something rod shaped" ],
+    "answer" : [ "He usually is eating something long" ],
     "challenge" : [ "Ꭰ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "ạ¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1519,
     "pgroup" : "Ꭰ̣²-, Ꭶ̣²-",
@@ -13680,7 +13680,7 @@
     "vgroup" : "ɂ³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "You all are eating rod shaped things" ],
+    "answer" : [ "You all are eating long things" ],
     "challenge" : [ "Ꮥ³Ꮵ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "de³ji¹sdi²³gị³ɂa" ],
     "id" : 1521,
     "pgroup" : "Ꮥ³Ꮵ²-",
@@ -13689,7 +13689,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 15
   }, {
-    "answer" : [ "You ate something rod shaped a while ago" ],
+    "answer" : [ "You ate something long a while ago" ],
     "challenge" : [ "Ꮳ̣¹ᏍᏗ³Ꭼ²³Ꭲ", "jạ¹sdi³gv²³ɂi" ],
     "id" : 1522,
     "pgroup" : "Ꮳ̣²-",
@@ -13725,7 +13725,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮤ",
     "vset" : 8
   }, {
-    "answer" : [ "I am usually eating something rod shaped" ],
+    "answer" : [ "I am usually eating something long" ],
     "challenge" : [ "Ꮵ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "jị¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1526,
     "pgroup" : "Ꮵ̣²-, Ꭶ͓-",
@@ -13797,7 +13797,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You usually are eating something rod shaped" ],
+    "answer" : [ "You usually are eating something long" ],
     "challenge" : [ "Ꭿ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "hị¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1534,
     "pgroup" : "Ꭿ̣²-",
@@ -13806,7 +13806,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "I ate something rod shaped a while ago" ],
+    "answer" : [ "I ate something long a while ago" ],
     "challenge" : [ "Ꭰ¹Ꭹ̣¹ᏍᏗ³Ꭼ²³Ꭲ", "a¹gị¹sdi³gv²³ɂi" ],
     "id" : 1535,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -13941,7 +13941,7 @@
     "vgroup" : "Ꮷ¹Ꮎ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "For them to eat something rod shaped" ],
+    "answer" : [ "For them to eat something long" ],
     "challenge" : [ "Ꭴ¹Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "u¹ni²sdi²³gi³²sdi" ],
     "id" : 1550,
     "pgroup" : "Ꭴ¹Ꮒ²-",
@@ -13950,7 +13950,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 12
   }, {
-    "answer" : [ "He and I are eating something rod shaped" ],
+    "answer" : [ "He and I are eating something long" ],
     "challenge" : [ "Ꭳ¹ᏍᏗ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "o¹sdi¹sdi²³gị³ɂa" ],
     "id" : 1551,
     "pgroup" : "Ꭳ¹ᏍᏗ²-",
@@ -14103,7 +14103,7 @@
     "vgroup" : "ɂᎧ̣²Ꭾ³ᏍᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "For you and me to eat something rod shaped" ],
+    "answer" : [ "For you and me to eat something long" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "gị²ni²sdi²³gi³²sdi" ],
     "id" : 1568,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14328,7 +14328,7 @@
     "vgroup" : "Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ",
     "vset" : 3
   }, {
-    "answer" : [ "For them and me to eat something rod shaped" ],
+    "answer" : [ "For them and me to eat something long" ],
     "challenge" : [ "Ꭳ¹Ꭹ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "o¹gi²sdi²³gi³²sdi" ],
     "id" : 1593,
     "pgroup" : "Ꭳ¹Ꭹ²-",
@@ -14337,7 +14337,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 14
   }, {
-    "answer" : [ "For him and me to eat something rod shaped" ],
+    "answer" : [ "For him and me to eat something long" ],
     "challenge" : [ "Ꭳ¹Ꭹ̣²Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "o¹gị²ni²sdi²³gi³²sdi" ],
     "id" : 1594,
     "pgroup" : "Ꭳ¹Ꭹ̣²Ꮒ²-",
@@ -14409,7 +14409,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 15
   }, {
-    "answer" : [ "For all of us to eat something rod shaped" ],
+    "answer" : [ "For all of us to eat something long" ],
     "challenge" : [ "Ꭲ¹Ꭹ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "i¹gi²sdi²³gi³²sdi" ],
     "id" : 1602,
     "pgroup" : "Ꭲ¹Ꭹ²-",
@@ -14454,7 +14454,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 16
   }, {
-    "answer" : [ "For you to eat something rod shaped" ],
+    "answer" : [ "For you to eat something long" ],
     "challenge" : [ "Ꮳ͓ᏍᏗ²³Ꭹ³²ᏍᏗ", "tssdi²³gi³²sdi" ],
     "id" : 1607,
     "pgroup" : "Ꮳ̣²-",
@@ -14589,7 +14589,7 @@
     "vgroup" : "Ᏺ¹Ꮟ²³Ꮠ̣³Ꮧ",
     "vset" : 5
   }, {
-    "answer" : [ "For me to eat something rod shaped" ],
+    "answer" : [ "For me to eat something long" ],
     "challenge" : [ "Ꭰ¹Ꭹ͓ᏍᏗ²³Ꭹ³²ᏍᏗ", "a¹ksdi²³gi³²sdi" ],
     "id" : 1622,
     "pgroup" : "Ꭰ¹Ꭹ̣²-, Ꭰ¹Ꮖ͓-",
@@ -14598,7 +14598,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 18
   }, {
-    "answer" : [ "You both ate something rod shaped a while ago" ],
+    "answer" : [ "You both ate something long a while ago" ],
     "challenge" : [ "ᏍᏗ¹ᏍᏗ³Ꭼ²³Ꭲ", "sdi¹sdi³gv²³ɂi" ],
     "id" : 1623,
     "pgroup" : "ᏍᏗ²-",
@@ -14787,7 +14787,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 72
   }, {
-    "answer" : [ "For you both to eat something rod shaped" ],
+    "answer" : [ "For you both to eat something long" ],
     "challenge" : [ "ᏍᏗ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "sdi²sdi²³gi³²sdi" ],
     "id" : 1644,
     "pgroup" : "ᏍᏗ²-",
@@ -14832,7 +14832,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 18
   }, {
-    "answer" : [ "For you all to eat something rod shaped" ],
+    "answer" : [ "For you all to eat something long" ],
     "challenge" : [ "Ꭲ¹Ꮵ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "i¹ji²sdi²³gi³²sdi" ],
     "id" : 1649,
     "pgroup" : "Ꭲ¹Ꮵ²-",

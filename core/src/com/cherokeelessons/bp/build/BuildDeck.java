@@ -1483,7 +1483,8 @@ public class BuildDeck {
 			tts.append(syllabary);
 			
 			tts.append("|");
-			tts.append(CherokeeUtils.ced2mco_nfc(challenge));
+			final String ced2mco_nfc = CherokeeUtils.ced2mco_nfc(challenge);
+			tts.append(ced2mco_nfc);
 			
 			tts.append("|");
 			
@@ -1512,7 +1513,38 @@ public class BuildDeck {
 			check.append("|");
 			// check.append(card.getPset());
 			check.append("|");
-			// check.append(card.getVset());
+			/**
+			 * Generated some common alternate pronunciations.
+			 */
+			String alt_pronounce = ""; 
+			final int length = ced2mco_nfc.length();
+			if (length > 9) {
+				if (ced2mco_nfc.endsWith(":ha")) {
+					if (!StringUtils.isBlank(alt_pronounce)) alt_pronounce += "; ";
+					alt_pronounce += StringUtils.left(ced2mco_nfc, length-3);				 
+				}
+				if (ced2mco_nfc.endsWith(":ga")) {
+					if (!StringUtils.isBlank(alt_pronounce)) alt_pronounce += "; ";
+					alt_pronounce += StringUtils.left(ced2mco_nfc, length-3);				 
+				}
+				// :ɂa
+				if (ced2mco_nfc.endsWith(":\u0242a")) {
+					if (!StringUtils.isBlank(alt_pronounce)) alt_pronounce += "; ";
+					alt_pronounce += StringUtils.left(ced2mco_nfc, length-3);				 
+				}
+				// :ɂi
+				if (ced2mco_nfc.endsWith(":\u0242i")) {
+					if (!StringUtils.isBlank(alt_pronounce)) alt_pronounce += "; ";
+					alt_pronounce += StringUtils.left(ced2mco_nfc, length-3);				 
+				}
+				// óɂi
+				if (ced2mco_nfc.endsWith("\u00F3\u0242i")) {
+					if (!StringUtils.isBlank(alt_pronounce)) alt_pronounce += "; ";
+					alt_pronounce += StringUtils.left(ced2mco_nfc, length-2);				 
+				}
+			}
+			check.append(alt_pronounce);
+			
 			check.append("|");
 			check.append(card.pgroup);
 			check.append("|");
@@ -1521,7 +1553,17 @@ public class BuildDeck {
 			check.append("|");
 			check.append(syllabary);
 			check.append("|");
-			check.append(CherokeeUtils.ced2mco_nfc(challenge));
+			/**
+			 * Hackish way to deal with ending tone differentiation for "just now happened" forms.
+			 */
+			String tmp = Normalizer.normalize(ced2mco_nfc, Form.NFD);
+			if (tmp.endsWith("\u0304")) {
+				tmp = StringUtils.left(tmp, tmp.length()-1) + "\u0300";
+				tmp = Normalizer.normalize(ced2mco_nfc, Form.NFC);
+				check.append(tmp);
+			} else {
+				check.append(ced2mco_nfc);
+			}
 
 			check.append("|");
 			for (int ix = 0; ix < card.answer.size(); ix++) {

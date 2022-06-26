@@ -38,11 +38,11 @@ vi, imp, a	ᎮᎾ	Ꭱ¹Ꮎ	he¹na	e¹na	Let him go
 vi, a	ᎮᎾ	Ꭱ¹Ꮎ²	he¹na²	e¹na²	he recently went		
 vi, u, inf	ᎤᏪᏅᏍᏗ	Ꭱ²Ꮕ¹ᏍᏗ	ụ²we²nv¹sdi	e²nv¹sdi	For him to go		
 							
-vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		something solid, solid things
-	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		something solid, solid things
-vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		something solid, solid things
-vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He usually has x		something solid, solid things
-vti, u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		something solid, solid things
+vti, u	ᎤᎭ	Ꭽ	u²³ha	ha	He has x		something, things
+	ᎠᎩᎭ	Ꭽ	a¹gị²ha	ha	I have x		something, things
+vti, u	ᎤᎲᎢ	Ꮂ²³Ꭲ	u¹hv²³ɂi	hv²³ɂi	He had x a while ago		something, things
+vti, u	ᎤᎰᎢ	Ꮀ³Ꭲ	u¹ho³ɂi	ho³ɂi	He usually has x		something, things
+vti, u	ᏣᎮᏍᏗ	Ꭾ³ᏍᏗ	jạ²he³sdi	he³sdi	He will be having x		something, things
 							
 vti, u	ᎤᎾᎠ	Ꮎ̣³Ꭰ	u¹nạ³ɂa	nạ³ɂa	He has x		something flexible, flexible things
 	ᎠᎩᎾᎠ	Ꮎ̣³Ꭰ	a¹gị²nạ³a	nạ³a	I have x		something flexible, flexible things
@@ -57,11 +57,11 @@ vti, u	ᎤᏁᎰᎢ	Ꮑ²Ꮀ³Ꭲ	u¹ne²ho³ɂi	ne²ho³ɂi	He usually has x		a
 vti, u	ᏣᏁᎮᏍᏗ	Ꮑ²Ꭾ³ᏍᏗ	jạ²ne²he³sdi	ne²he³sdi	He will be having x		a liquid, liquid things
 vi, xdi, u, inf	ᎤᏁᏗ	ᏁᏗ	u²neh²di	neh²di	For him to have x		a liquid, liquid things
 							
-vti, u	ᎤᏩᏯ	Ꭵ³²Ꮿ	u¹wa³²ya	u¹wa³²ya	He has x		something rod shaped, rod shaped things
-	ᎠᏋᏯ	Ꭵ²³Ꮿ	a¹gwv²³ya	a¹gwv²³ya	I have x		something rod shaped, rod shaped things
-vti, u	ᎤᏩᏴᎢ	Ꭵ²³ᏴᎢ	u¹wa²³yv³ɂi	u¹wa²³yv³ɂi	He had x a while ago		something rod shaped, rod shaped things
-vti, u	ᎤᏩᏲᎢ	Ꭵ²³ᏲᎢ	u¹wa²³yọ³ɂi	u¹wa²³yọ³ɂi	He usually has x		something rod shaped, rod shaped things
-vti, u	ᏨᏰᏍᏗ	Ꭵ²³ᏰᏍᏗ	jv²³ye³²sdi	jv²³ye³²sdi	He will be having x		something rod shaped, rod shaped things
+vti, u	ᎤᏩᏯ	Ꭵ³²Ꮿ	u¹wa³²ya	u¹wa³²ya	He has x		something long, long things
+	ᎠᏋᏯ	Ꭵ²³Ꮿ	a¹gwv²³ya	a¹gwv²³ya	I have x		something long, long things
+vti, u	ᎤᏩᏴᎢ	Ꭵ²³ᏴᎢ	u¹wa²³yv³ɂi	u¹wa²³yv³ɂi	He had x a while ago		something long, long things
+vti, u	ᎤᏩᏲᎢ	Ꭵ²³ᏲᎢ	u¹wa²³yọ³ɂi	u¹wa²³yọ³ɂi	He usually has x		something long, long things
+vti, u	ᏨᏰᏍᏗ	Ꭵ²³ᏰᏍᏗ	jv²³ye³²sdi	jv²³ye³²sdi	He will be having x		something long, long things
 							
 vti, u	ᎤᏩᎧᎭ	ɂᎧ̣³Ꭽ	u¹wa²kạ³ha	ɂkạ³ha	He has x		something alive, living things
 	ᎠᎩᎧᎭ	ɂᎧ̣³Ꭽ	a¹gi²kạ³ha	ɂkạ³ha	I have x		something alive, living things
@@ -220,13 +220,13 @@ vti, imp, g	ᎯᏟᏌ	ɂ¹Ꮯ²³Ꮜ	hi¹hli²³sa	ɂ¹hli²³sa	let him gather 
 vti, g	ᎯᏟᏌ	ɂ¹Ꮯ²³Ꮜ²	hi¹hli²³sa²	ɂ¹hli²³sa²	he recently gathered x		something, things
 vti, u, inf	ᎤᏩᏟᏐᏗ	ɂ¹Ꮯ²³Ꮠ̣³Ꮧ	ụ²wa¹hli²³soh³di	ɂ¹hli²³soh³di	for him to gather x		something, things
 							
-vti, a	ᎠᏍᏗᎩᎠ	¹ᏍᏗ²³Ꭹ̣³Ꭰ	a¹sdi²³gị³ɂa	¹sdi²³gị³ɂa	he is eating x		something rod shaped, rod shaped things
-	ᏥᏍᏗᎩᎠ	¹ᏍᏗ²³Ꭹ̣³Ꭰ	ji¹sdi²³gị³ɂa	¹sdi²³gị³ɂa	I am eating x		something rod shaped, rod shaped things
-vti, u	ᎤᏍᏗᎬᎢ	¹ᏍᏗ³Ꭼ²³Ꭲ	u¹sdi³gv²³ɂi	¹sdi³gv²³ɂi	he ate x a while ago		something rod shaped, rod shaped things
-vti, a	ᎠᏍᏗᎩᏍᎪᎢ	¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ	a¹sdi²³gi³²sgo³ɂi	¹sdi²³gi³²sgo³ɂi	he usually is eating x		something rod shaped, rod shaped things
-vti, imp	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ	hị²sdi²³ga	sdi²³ga	let him eat x		something rod shaped, rod shaped things
-vti, a	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ²	hị²sdi²³ga²	sdi²³ga²	he recently ate x		something rod shaped, rod shaped things
-vti, u, inf	ᎤᏍᏗᎩᏍᏗ	ᏍᏗ²³Ꭹ³²ᏍᏗ	u²sdi²³gi³²sdi	sdi²³gi³²sdi	for him to eat x		something rod shaped, rod shaped things
+vti, a	ᎠᏍᏗᎩᎠ	¹ᏍᏗ²³Ꭹ̣³Ꭰ	a¹sdi²³gị³ɂa	¹sdi²³gị³ɂa	he is eating x		something long, long things
+	ᏥᏍᏗᎩᎠ	¹ᏍᏗ²³Ꭹ̣³Ꭰ	ji¹sdi²³gị³ɂa	¹sdi²³gị³ɂa	I am eating x		something long, long things
+vti, u	ᎤᏍᏗᎬᎢ	¹ᏍᏗ³Ꭼ²³Ꭲ	u¹sdi³gv²³ɂi	¹sdi³gv²³ɂi	he ate x a while ago		something long, long things
+vti, a	ᎠᏍᏗᎩᏍᎪᎢ	¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ	a¹sdi²³gi³²sgo³ɂi	¹sdi²³gi³²sgo³ɂi	he usually is eating x		something long, long things
+vti, imp	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ	hị²sdi²³ga	sdi²³ga	let him eat x		something long, long things
+vti, a	ᎯᏍᏗᎦ	ᏍᏗ²³Ꭶ²	hị²sdi²³ga²	sdi²³ga²	he recently ate x		something long, long things
+vti, u, inf	ᎤᏍᏗᎩᏍᏗ	ᏍᏗ²³Ꭹ³²ᏍᏗ	u²sdi²³gi³²sdi	sdi²³gi³²sdi	for him to eat x		something long, long things
 							
 vti, g	ᎦᏰᎠ	ɂᏰ³Ꭰ	ga²hye³ɂa	ɂhye³ɂa, ɂye³ɂa	he is eating x		something flexible, flexible things
 	ᏥᏯᏰᎠ, ᏥᏰᎠ	ɂᏰ³Ꭰ	ji²ya¹ye³ɂa, ji¹ye³ɂa	ɂhye³ɂa, ɂye³ɂa	I am eating x		something flexible, flexible things
