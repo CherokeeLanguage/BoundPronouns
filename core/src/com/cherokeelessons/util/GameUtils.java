@@ -316,16 +316,14 @@ public class GameUtils {
 		 * sort answers from least known to most known
 		 */
 		Collections.sort(tmp_correct, sortLeastKnownFirst(active));
-		/*
-		 * Add a random count of correct answers. Least known first.
+		
+		/**
+		 * Add exactly one answer. Least known preferred.
 		 */
-		final int r = rand.nextInt(tmp_correct.size()) + 1;
-		for (int i = 0; i < r && i < maxCorrect; i++) {
-			final String answer = tmp_correct.get(i);
-			answers.list.add(new Answer(true, answer, 0));
-		}
+		final String answer = tmp_correct.get(0);
+		answers.list.add(new Answer(true, answer, 0));
 
-		/*
+		/**
 		 * look for "similar" looking challenges
 		 */
 		final Deck tmp = new Deck(deck);
