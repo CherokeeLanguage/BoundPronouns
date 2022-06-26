@@ -351,7 +351,7 @@
     "vgroup" : "",
     "vset" : 0
   }, {
-    "answer" : [ "You one or two + us both" ],
+    "answer" : [ "You one or you two + us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮒ²-", "Sgị²ni²-" ],
     "id" : 40,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -936,7 +936,7 @@
     "vgroup" : "Ꭱ³Ꭶ",
     "vset" : 1
   }, {
-    "answer" : [ "Your one self" ],
+    "answer" : [ "Yourself" ],
     "challenge" : [ "Ꮸ²³Ꮜ", "jv²³sa" ],
     "id" : 105,
     "pgroup" : "Ꮳ̣²-",
@@ -972,7 +972,7 @@
     "vgroup" : "ɂᎪ³Ꮧ",
     "vset" : 1
   }, {
-    "answer" : [ "He recognizes you (1)" ],
+    "answer" : [ "He recognizes you" ],
     "challenge" : [ "ᏦᎵ͓²Ꭶ", "johl²ga" ],
     "id" : 109,
     "pgroup" : "Ꮳ̣²-, Ꮳ̣²-",
@@ -981,7 +981,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) see yourself" ],
+    "answer" : [ "Let you see yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "hạ²da²go¹wah²ta" ],
     "id" : 110,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -999,7 +999,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ*",
     "vset" : 1
   }, {
-    "answer" : [ "For you (1) to be recognized" ],
+    "answer" : [ "For you to be recognized" ],
     "challenge" : [ "Ꭱ¹Ꮶ²Ꮅ³ᏍᏗ", "e¹jo²hlị³sdi" ],
     "id" : 112,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -1053,7 +1053,7 @@
     "vgroup" : "Ꭰ²Ꮴ²Ꮅ⁴Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) drink alcoholic drinks" ],
+    "answer" : [ "Let you drink alcoholic drinks" ],
     "challenge" : [ "Ꮤ̣²Ꮪ²³Ꭹ", "tạ²tu²³gi" ],
     "id" : 118,
     "pgroup" : "Ꮨ̣²-",
@@ -1062,7 +1062,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) want me" ],
+    "answer" : [ "Let you want me" ],
     "challenge" : [ "ᏍᏆ̣²Ꮪ²³Ꮃ", "sgwạ²du²³la" ],
     "id" : 119,
     "pgroup" : "ᏍᎩ̣²-, ᏍᏆ͓-",
@@ -1071,7 +1071,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) recently drank alcoholic drinks" ],
+    "answer" : [ "You recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭽ̣²Ꮪ²³Ꭶ²", "de²hạ²tu²³ga²" ],
     "id" : 120,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -1116,7 +1116,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) have rod shaped things" ],
+    "answer" : [ "You have rod shaped things" ],
     "challenge" : [ "Ꮥ²Ꮸ³²Ꮿ", "de²ju¹wa³²ya" ],
     "id" : 125,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -1125,7 +1125,7 @@
     "vgroup" : "Ꭵ³²Ꮿ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I are eating flexible things" ],
+    "answer" : [ "You and I are eating flexible things" ],
     "challenge" : [ "Ꮥ³Ꮒ²Ᏸ³Ꭰ", "de³ni²hye³ɂa" ],
     "id" : 126,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -1143,7 +1143,7 @@
     "vgroup" : "ɂᎪ³Ꮧ",
     "vset" : 2
   }, {
-    "answer" : [ "Let you (1) and me see ourselves" ],
+    "answer" : [ "Let you and me see ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "i¹nạ²da²go¹wah²ta" ],
     "id" : 128,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -1161,7 +1161,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ*",
     "vset" : 2
   }, {
-    "answer" : [ "For them to recognize you (1)" ],
+    "answer" : [ "For them to recognize you" ],
     "challenge" : [ "Ꭸ²Ꮶ²Ꮅ³ᏍᏗ", "ge²jo²hlị³sdi" ],
     "id" : 130,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -1179,7 +1179,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) saw yourself a while ago" ],
+    "answer" : [ "You saw yourself a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "jạ²da²go²hv²³ɂi" ],
     "id" : 132,
     "pgroup" : "Ꮳ̣²Ꮣ²[Ꮣ͓]-",
@@ -1242,7 +1242,7 @@
     "vgroup" : "Ꭽ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) are going" ],
+    "answer" : [ "You are going" ],
     "challenge" : [ "Ꭾ³Ꭶ", "he³ga" ],
     "id" : 139,
     "pgroup" : "Ꭿ̣²-",
@@ -1278,7 +1278,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I recognize him" ],
+    "answer" : [ "You and I recognize him" ],
     "challenge" : [ "Ꭱ¹Ꮓ²Ꮅ¹Ꭶ", "e¹no²li¹ga" ],
     "id" : 143,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -1332,7 +1332,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 3
   }, {
-    "answer" : [ "Let you (1) and me want each other" ],
+    "answer" : [ "Let you and me want each other" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "dị²gị²nạ²dạ²du²³la" ],
     "id" : 149,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -1386,7 +1386,7 @@
     "vgroup" : "ɂᎪ³Ꮧ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) and me see each other" ],
+    "answer" : [ "Let you and me see each other" ],
     "challenge" : [ "Ꮧ̣²Ꮎ̣²Ꮣ²Ꭺ¹Ꮹ²Ꮤ", "dị²nạ²da²go¹wah²ta" ],
     "id" : 155,
     "pgroup" : "Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -1431,7 +1431,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) and me drink alcoholic drinks" ],
+    "answer" : [ "Let you and me drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣³Ꮎ̣²Ꮪ²³Ꭹ", "dị³nạ²tu²³gi" ],
     "id" : 160,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -1530,7 +1530,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 5
   }, {
-    "answer" : [ "They recently wanted you (1) and me" ],
+    "answer" : [ "They recently wanted you and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²", "ge²gị²nạ²du²³la²" ],
     "id" : 171,
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
@@ -1593,7 +1593,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) and I recognize them (animate)" ],
+    "answer" : [ "You and I recognize them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮓ²Ꮅ¹Ꭶ", "ge²no²li¹ga" ],
     "id" : 178,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -1692,7 +1692,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "You (1) and I have something solid" ],
+    "answer" : [ "You and I have something solid" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭽ", "gị²ni²ha" ],
     "id" : 189,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -1755,7 +1755,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I have solid things" ],
+    "answer" : [ "You and I have solid things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭽ", "de²gị²ni²ha" ],
     "id" : 196,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -1764,7 +1764,7 @@
     "vgroup" : "Ꭽ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) and I saw ourselves a while ago" ],
+    "answer" : [ "You and I saw ourselves a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "gị²nạ²da²go²hv²³ɂi" ],
     "id" : 197,
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -1818,7 +1818,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ*",
     "vset" : 16
   }, {
-    "answer" : [ "You (1) and I saw each other a while ago" ],
+    "answer" : [ "You and I saw each other a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²Ꭺ²Ꮂ²³Ꭲ", "de²gị²nạ²da²go²hv²³ɂi" ],
     "id" : 203,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -1845,7 +1845,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 17
   }, {
-    "answer" : [ "Let you (1) go" ],
+    "answer" : [ "Let you go" ],
     "challenge" : [ "Ꭾ¹Ꮎ", "he¹na" ],
     "id" : 206,
     "pgroup" : "Ꭿ̣²-",
@@ -1890,7 +1890,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) and me be acquainted" ],
+    "answer" : [ "Let you and me be acquainted" ],
     "challenge" : [ "Ꮧ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭹ", "dị²nạ²da²dohl²gi" ],
     "id" : 211,
     "pgroup" : "Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -1899,7 +1899,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 1
   }, {
-    "answer" : [ "He recently recognized you (1)" ],
+    "answer" : [ "He recently recognized you" ],
     "challenge" : [ "ᏦᎵ͓²Ꭶ²", "johl²ga²" ],
     "id" : 212,
     "pgroup" : "Ꮳ̣²-, Ꮳ̣²-",
@@ -1989,7 +1989,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) are being recognized" ],
+    "answer" : [ "You are being recognized" ],
     "challenge" : [ "Ꭱ¹ᏦᎵ͓²Ꭶ", "e¹johl²ga" ],
     "id" : 222,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -2016,7 +2016,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ²*",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I recently gathered things" ],
+    "answer" : [ "You and I recently gathered things" ],
     "challenge" : [ "Ꮥ³Ꮒ¹Ꮯ²³Ꮜ²", "de³ni¹hli²³sa²" ],
     "id" : 225,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -2034,7 +2034,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 2
   }, {
-    "answer" : [ "Let you (1) and me go" ],
+    "answer" : [ "Let you and me go" ],
     "challenge" : [ "Ꭲ¹Ꮑ¹Ꮎ", "i¹ne¹na" ],
     "id" : 227,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -2070,7 +2070,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "They recognize you (1)" ],
+    "answer" : [ "They recognize you" ],
     "challenge" : [ "Ꭸ²ᏦᎵ͓²Ꭶ", "ge²johl²ga" ],
     "id" : 231,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -2088,7 +2088,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I recently recognized him" ],
+    "answer" : [ "You and I recently recognized him" ],
     "challenge" : [ "Ꭱ¹Ꮓ²Ꮅ¹Ꭶ²", "e¹no²li¹ga²" ],
     "id" : 233,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -2169,7 +2169,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) gather things" ],
+    "answer" : [ "Let you gather things" ],
     "challenge" : [ "Ꮨ̣¹Ꮯ²³Ꮜ", "tị¹hli²³sa" ],
     "id" : 242,
     "pgroup" : "Ꮨ̣²-",
@@ -2196,7 +2196,7 @@
     "vgroup" : "ɂ¹Ꮯ²³Ꮜ²",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) want yourself" ],
+    "answer" : [ "Let you want yourself" ],
     "challenge" : [ "Ꮳ̣²Ꮣ̣²Ꮪ²³Ꮃ", "jạ²dạ²du²³la" ],
     "id" : 245,
     "pgroup" : "Ꮳ̣²Ꮣ²[Ꮣ͓]-",
@@ -2250,7 +2250,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I are acquainted" ],
+    "answer" : [ "You and I are acquainted" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "de³nạ²da²dohl²ga" ],
     "id" : 251,
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -2304,7 +2304,7 @@
     "vgroup" : "Ꭵ³²Ꮿ",
     "vset" : 6
   }, {
-    "answer" : [ "Ourselves, you (1) and I" ],
+    "answer" : [ "Ourselves, you and I" ],
     "challenge" : [ "Ꭹ̣²Ꮕ²³Ꮜ", "gị²nv²³sa" ],
     "id" : 257,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -2313,7 +2313,7 @@
     "vgroup" : "Ꭵ²³Ꮜ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) are eating flexible things" ],
+    "answer" : [ "You are eating flexible things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣²Ᏸ³Ꭰ", "de²hị²hye³ɂa" ],
     "id" : 258,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -2340,7 +2340,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "Let you (1) and me gather things" ],
+    "answer" : [ "Let you and me gather things" ],
     "challenge" : [ "Ꮧ̣³Ꮒ̣¹Ꮯ²³Ꮜ", "dị³ni¹hli²³sa" ],
     "id" : 261,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -2358,7 +2358,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 6
   }, {
-    "answer" : [ "Let you (1) and me want ourselves" ],
+    "answer" : [ "Let you and me want ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²³Ꮃ", "gị²nạ²dạ²du²³la" ],
     "id" : 263,
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -2403,7 +2403,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) recently wanted me" ],
+    "answer" : [ "You recently wanted me" ],
     "challenge" : [ "ᏍᏆ̣²Ꮪ²³Ꮃ²", "sgwạ²du²³la²" ],
     "id" : 268,
     "pgroup" : "ᏍᎩ̣²-, ᏍᏆ͓-",
@@ -2448,7 +2448,7 @@
     "vgroup" : "Ꭵ³²Ꮿ",
     "vset" : 9
   }, {
-    "answer" : [ "For you (1) and me to be acquainted" ],
+    "answer" : [ "For you and me to be acquainted" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "dị²gị²nạ²da²do²hlị³sdi" ],
     "id" : 273,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -2520,7 +2520,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 15
   }, {
-    "answer" : [ "You (1) have solid things" ],
+    "answer" : [ "You have solid things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꭽ", "de²jạ²ha" ],
     "id" : 281,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -2565,7 +2565,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 19
   }, {
-    "answer" : [ "They saw you (1) and me a while ago" ],
+    "answer" : [ "They saw you and me a while ago" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ", "ge²gị²ni²go²hv²³ɂi" ],
     "id" : 286,
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
@@ -2583,7 +2583,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 21
   }, {
-    "answer" : [ "You (1) and I were recently recognized" ],
+    "answer" : [ "You and I were recently recognized" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮓ²Ꮅ¹Ꭶ²", "e¹gị²no²li¹ga²" ],
     "id" : 288,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -2592,7 +2592,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭶ²*",
     "vset" : 21
   }, {
-    "answer" : [ "You (1) alone" ],
+    "answer" : [ "You alone" ],
     "challenge" : [ "Ꮸ⁴Ꮜ", "jv⁴sa" ],
     "id" : 289,
     "pgroup" : "Ꮳ̣²-",
@@ -2709,7 +2709,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) usually have rod shaped things" ],
+    "answer" : [ "You usually have rod shaped things" ],
     "challenge" : [ "Ꮥ²Ꮸ²³ᏲᎢ", "de²ju¹wa²³yọ³ɂi" ],
     "id" : 302,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -2763,7 +2763,7 @@
     "vgroup" : "Ꮀ³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "They recently recognized you (1)" ],
+    "answer" : [ "They recently recognized you" ],
     "challenge" : [ "Ꭸ²ᏦᎵ͓²Ꭶ²", "ge²johl²ga²" ],
     "id" : 308,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -2781,7 +2781,7 @@
     "vgroup" : "Ꭰ²Ꮴ²Ꮅ⁴Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I recently drank alcoholic drinks" ],
+    "answer" : [ "You and I recently drank alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮪ²³Ꭶ²", "de³nạ²tu²³ga²" ],
     "id" : 310,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -2853,7 +2853,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭶ²",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I were acquainted a while ago" ],
+    "answer" : [ "You and I were acquainted a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "de²gị²nạ²da²dohl²jv²³ɂi" ],
     "id" : 318,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -2871,7 +2871,7 @@
     "vgroup" : "Ꮀ³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "Let you (1) understand things" ],
+    "answer" : [ "Let you understand things" ],
     "challenge" : [ "ᏙᎵ͓²Ꭹ", "tohl²gi" ],
     "id" : 320,
     "pgroup" : "Ꮨ̣²-",
@@ -2889,7 +2889,7 @@
     "vgroup" : "Ꭰ²Ꮴ²Ꮅ⁴Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "For you (1) and me to see each other" ],
+    "answer" : [ "For you and me to see each other" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "dị²gị²nạ²da²gowh²tvh³di" ],
     "id" : 322,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -2916,7 +2916,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I usually have solid things" ],
+    "answer" : [ "You and I usually have solid things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮀ³Ꭲ", "de²gị²ni²ho³ɂi" ],
     "id" : 325,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -2934,7 +2934,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 6
   }, {
-    "answer" : [ "Let you (1) and me recognize them (animate)" ],
+    "answer" : [ "Let you and me recognize them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮓ²Ꮅ¹Ꭹ", "ge²no²li¹gi" ],
     "id" : 327,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -2943,7 +2943,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭹ*",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) recently gathered things" ],
+    "answer" : [ "You recently gathered things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣¹Ꮯ²³Ꮜ²", "de²hị¹hli²³sa²" ],
     "id" : 328,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -2997,7 +2997,7 @@
     "vgroup" : "ɂᏰ³Ꭰ",
     "vset" : 7
   }, {
-    "answer" : [ "Let you (1) and me understand things" ],
+    "answer" : [ "Let you and me understand things" ],
     "challenge" : [ "Ꮧ̣³ᏃᎵ͓²Ꭹ", "dị³nohl²gi" ],
     "id" : 334,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -3069,7 +3069,7 @@
     "vgroup" : "ɂ¹Ꮯ²³Ꮜ",
     "vset" : 8
   }, {
-    "answer" : [ "Our things, you (1) and I" ],
+    "answer" : [ "Our things, you and I" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ²Ꮴ²Ꮅ⁴Ꭲ", "dị²gị²nạ²je²li⁴ɂi" ],
     "id" : 342,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -3105,7 +3105,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 9
   }, {
-    "answer" : [ "Let you (1) recognize him" ],
+    "answer" : [ "Let you recognize him" ],
     "challenge" : [ "Ꭿ²Ᏺ²Ꮅ¹Ꭹ", "hi²yo²li¹gi" ],
     "id" : 346,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -3132,7 +3132,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 10
   }, {
-    "answer" : [ "For you (1) to recognize me" ],
+    "answer" : [ "For you to recognize me" ],
     "challenge" : [ "ᏍᏉ²Ꮅ³ᏍᏗ", "sgwo²hlị³sdi" ],
     "id" : 349,
     "pgroup" : "ᏍᎩ̣²-, ᏍᏆ͓-",
@@ -3177,7 +3177,7 @@
     "vgroup" : "Ꭵ³²Ꮿ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) recognize yourself" ],
+    "answer" : [ "You recognize yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "hạ²da²dohl²ga" ],
     "id" : 354,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -3222,7 +3222,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 13
   }, {
-    "answer" : [ "Let you (1) and me be recognized" ],
+    "answer" : [ "Let you and me be recognized" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮓ²Ꮅ¹Ꭹ", "e¹gị²no²li¹gi" ],
     "id" : 359,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -3231,7 +3231,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꭹ*",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) and I recognize ourselves" ],
+    "answer" : [ "You and I recognize ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭶ", "i¹nạ²da²dohl²ga" ],
     "id" : 360,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -3348,7 +3348,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 20
   }, {
-    "answer" : [ "They recently saw you (1) and me" ],
+    "answer" : [ "They recently saw you and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ²", "ge²gị²ni²go¹wah²ta²" ],
     "id" : 373,
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
@@ -3393,7 +3393,7 @@
     "vgroup" : "Ꭿ²Ꮵ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) say" ],
+    "answer" : [ "Let you say" ],
     "challenge" : [ "Ꭽ̣²Ꮣ", "hạ²da" ],
     "id" : 378,
     "pgroup" : "Ꭿ̣²-",
@@ -3429,7 +3429,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) and me say" ],
+    "answer" : [ "Let you and me say" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ", "i¹nạ²da" ],
     "id" : 382,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -3546,7 +3546,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I usually are acquainted" ],
+    "answer" : [ "You and I usually are acquainted" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "de³nạ²da²dohl²go³ɂi" ],
     "id" : 395,
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -3618,7 +3618,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I are wanting each other" ],
+    "answer" : [ "You and I are wanting each other" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "de²gị²nạ²dạ²du²lị³ha" ],
     "id" : 403,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -3627,7 +3627,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) and me look at each other" ],
+    "answer" : [ "Let you and me look at each other" ],
     "challenge" : [ "Ꮧ̣²Ꮎ̣²Ꮣ̣²Ꭶ͓Ꮩ²³ᏍᏓ", "dị²nạ²dạ²kto²³sda" ],
     "id" : 404,
     "pgroup" : "Ꮧ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -3672,7 +3672,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "For you (1) and me to want each other" ],
+    "answer" : [ "For you and me to want each other" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ̣²ᏚᎸ͓²Ꮧ", "dị²gị²nạ²dạ²duhl²di" ],
     "id" : 409,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -3690,7 +3690,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I alone" ],
+    "answer" : [ "You and I alone" ],
     "challenge" : [ "Ꭹ̣²Ꮕ⁴Ꮜ", "gị²nv⁴sa" ],
     "id" : 411,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -3699,7 +3699,7 @@
     "vgroup" : "Ꭵ⁴Ꮜ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) and I had solid things a while ago" ],
+    "answer" : [ "You and I had solid things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮂ²³Ꭲ", "de²gị²ni²hv²³ɂi" ],
     "id" : 412,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -3843,7 +3843,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 16
   }, {
-    "answer" : [ "Let you (1) and me want him" ],
+    "answer" : [ "Let you and me want him" ],
     "challenge" : [ "Ꭱ¹Ꮎ̣²Ꮪ²³Ꮃ", "e¹nạ²du²³la" ],
     "id" : 428,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -3888,7 +3888,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 17
   }, {
-    "answer" : [ "You (1) have something solid" ],
+    "answer" : [ "You have something solid" ],
     "challenge" : [ "Ꮳ̣²Ꭽ", "jạ²ha" ],
     "id" : 433,
     "pgroup" : "Ꮳ̣²-",
@@ -3897,7 +3897,7 @@
     "vgroup" : "Ꭽ",
     "vset" : 18
   }, {
-    "answer" : [ "You (1) recognize me" ],
+    "answer" : [ "You recognize me" ],
     "challenge" : [ "ᏍᏉᎵ͓²Ꭶ", "sgwohl²ga" ],
     "id" : 434,
     "pgroup" : "ᏍᎩ̣²-, ᏍᏆ͓-",
@@ -3906,7 +3906,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 18
   }, {
-    "answer" : [ "For them to recognize you (1) and me" ],
+    "answer" : [ "For them to recognize you and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮓ²Ꮅ³ᏍᏗ", "ge²gị²no²hlị³sdi" ],
     "id" : 435,
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
@@ -3915,7 +3915,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 18
   }, {
-    "answer" : [ "Let you all want him", "Let you (1) be wanted", "Let you all be wanted" ],
+    "answer" : [ "Let you all want him", "Let you be wanted", "Let you all be wanted" ],
     "challenge" : [ "Ꭱ¹Ꮳ̣²Ꮪ²³Ꮃ", "e¹jạ²du²³la" ],
     "id" : 436,
     "pgroup" : "Ꭱ¹Ꮵ²-",
@@ -3933,7 +3933,7 @@
     "vgroup" : "Ꭽ",
     "vset" : 19
   }, {
-    "answer" : [ "You (1) understand things" ],
+    "answer" : [ "You understand things" ],
     "challenge" : [ "Ꮥ²ᎰᎵ͓²Ꭶ", "de²hohl²ga" ],
     "id" : 438,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -3951,7 +3951,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 19
   }, {
-    "answer" : [ "Let you (1) and me want them (animate)" ],
+    "answer" : [ "Let you and me want them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮎ̣²Ꮪ²³Ꮃ", "ge²nạ²du²³la" ],
     "id" : 440,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -3969,7 +3969,7 @@
     "vgroup" : "Ꭽ",
     "vset" : 20
   }, {
-    "answer" : [ "For you (1) to recognize yourself" ],
+    "answer" : [ "For you to recognize yourself" ],
     "challenge" : [ "Ꮳ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "jạ²da²do²hlị³sdi" ],
     "id" : 442,
     "pgroup" : "Ꮳ̣²Ꮣ²[Ꮣ͓]-",
@@ -3987,7 +3987,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 20
   }, {
-    "answer" : [ "Let you (1) see them (inanimate)" ],
+    "answer" : [ "Let you see them (inanimate)" ],
     "challenge" : [ "Ꮨ̣²Ꭺ¹Ꮹ²Ꮤ", "tị²go¹wah²ta" ],
     "id" : 444,
     "pgroup" : "Ꮨ̣²-",
@@ -4041,7 +4041,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 22
   }, {
-    "answer" : [ "Let you (1) and me see them (inanimate)" ],
+    "answer" : [ "Let you and me see them (inanimate)" ],
     "challenge" : [ "Ꮧ̣³Ꮒ̣²Ꭺ¹Ꮹ²Ꮤ", "dị³ni²go¹wah²ta" ],
     "id" : 450,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -4086,7 +4086,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 24
   }, {
-    "answer" : [ "For you (1) and me to recognize ourselves" ],
+    "answer" : [ "For you and me to recognize ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²Ꮩ²Ꮅ³ᏍᏗ", "gị²nạ²da²do²hlị³sdi" ],
     "id" : 455,
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -4113,7 +4113,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 26
   }, {
-    "answer" : [ "Let you (1) and me be wanted" ],
+    "answer" : [ "Let you and me be wanted" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ", "e¹gị²nạ²du²³la" ],
     "id" : 458,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -4167,7 +4167,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 29
   }, {
-    "answer" : [ "You (1) and I recently saw them (inanimate)" ],
+    "answer" : [ "You and I recently saw them (inanimate)" ],
     "challenge" : [ "Ꮥ³Ꮒ²Ꭺ¹Ꮹ²Ꮤ²", "de³ni²go¹wah²ta²" ],
     "id" : 464,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -4239,7 +4239,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 1
   }, {
-    "answer" : [ "He is looking at you (1)" ],
+    "answer" : [ "He is looking at you" ],
     "challenge" : [ "Ꮳ¹Ꭶ͓Ꮩ²³ᏍᏗ", "ja¹kto²³sdi" ],
     "id" : 472,
     "pgroup" : "Ꮳ̣²-, Ꮳ̣²-",
@@ -4311,7 +4311,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I recently ate rod shaped things" ],
+    "answer" : [ "You and I recently ate rod shaped things" ],
     "challenge" : [ "Ꮥ³Ꮒ²ᏍᏗ²³Ꭶ²", "de³ni²sdi²³ga²" ],
     "id" : 480,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -4365,7 +4365,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I wanted each other a while ago" ],
+    "answer" : [ "You and I wanted each other a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "de²gị²nạ²dạ²du²lv²hv²³ɂi" ],
     "id" : 486,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -4374,7 +4374,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) eat rod shaped things" ],
+    "answer" : [ "Let you eat rod shaped things" ],
     "challenge" : [ "Ꮨ̣²ᏍᏗ²³Ꭶ", "tị²sdi²³ga" ],
     "id" : 487,
     "pgroup" : "Ꮨ̣²-",
@@ -4419,7 +4419,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 6
   }, {
-    "answer" : [ "For you (1) and me to eat flexible things" ],
+    "answer" : [ "For you and me to eat flexible things" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²Ᏸ¹ᏍᏗ", "dị²gị²ni²hye¹sdi" ],
     "id" : 492,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -4464,7 +4464,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 7
   }, {
-    "answer" : [ "Let you (1) and me eat rod shaped things" ],
+    "answer" : [ "Let you and me eat rod shaped things" ],
     "challenge" : [ "Ꮧ̣³Ꮒ̣²ᏍᏗ²³Ꭶ", "dị³ni²sdi²³ga" ],
     "id" : 497,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -4509,7 +4509,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) and I usually have rod shaped things" ],
+    "answer" : [ "You and I usually have rod shaped things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮕ²³ᏲᎢ", "de²gị²nu¹wa²³yọ³ɂi" ],
     "id" : 502,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -4527,7 +4527,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 8
   }, {
-    "answer" : [ "For you (1) to see yourself" ],
+    "answer" : [ "For you to see yourself" ],
     "challenge" : [ "Ꮳ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "jạ²da²gowh²tvh³di" ],
     "id" : 504,
     "pgroup" : "Ꮳ̣²Ꮣ²[Ꮣ͓]-",
@@ -4608,7 +4608,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) usually have solid things" ],
+    "answer" : [ "You usually have solid things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮀ³Ꭲ", "de²jạ²ho³ɂi" ],
     "id" : 513,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -4662,7 +4662,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 12
   }, {
-    "answer" : [ "For you (1) and me to see ourselves" ],
+    "answer" : [ "For you and me to see ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮫ³Ꮧ", "gị²nạ²da²gowh²tvh³di" ],
     "id" : 519,
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -4698,7 +4698,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 16
   }, {
-    "answer" : [ "Let you (1) or both recognize us both" ],
+    "answer" : [ "Let you or you both recognize us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮓ²Ꮅ¹Ꭹ", "sgị²no²li¹gi" ],
     "id" : 523,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -4716,7 +4716,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭹ",
     "vset" : 19
   }, {
-    "answer" : [ "You (1) recently understood things" ],
+    "answer" : [ "You recently understood things" ],
     "challenge" : [ "Ꮥ²ᎰᎵ͓²Ꭶ²", "de²hohl²ga²" ],
     "id" : 525,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -4725,7 +4725,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ²",
     "vset" : 19
   }, {
-    "answer" : [ "Let you (1) see them (animate)" ],
+    "answer" : [ "Let you see them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꭺ¹Ꮹ²Ꮤ", "gạ²hi²go¹wah²ta" ],
     "id" : 526,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -4761,7 +4761,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 28
   }, {
-    "answer" : [ "You (1) and I recently wanted him" ],
+    "answer" : [ "You and I recently wanted him" ],
     "challenge" : [ "Ꭱ¹Ꮎ̣²Ꮪ²³Ꮃ²", "e¹nạ²du²³la²" ],
     "id" : 530,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -4770,7 +4770,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 28
   }, {
-    "answer" : [ "For you (1) to understand things", "For you all to understand things" ],
+    "answer" : [ "For you to understand things", "For you all to understand things" ],
     "challenge" : [ "Ꮧ̣²Ꮶ²Ꮅ³ᏍᏗ", "dị²jo²hlị³sdi" ],
     "id" : 531,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -4797,7 +4797,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 30
   }, {
-    "answer" : [ "You all recently wanted him", "You (1) were recently wanted", "You all were recently wanted" ],
+    "answer" : [ "You all recently wanted him", "You were recently wanted", "You all were recently wanted" ],
     "challenge" : [ "Ꭱ¹Ꮳ̣²Ꮪ²³Ꮃ²", "e¹jạ²du²³la²" ],
     "id" : 534,
     "pgroup" : "Ꭱ¹Ꮵ²-",
@@ -4806,7 +4806,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 30
   }, {
-    "answer" : [ "You (1) and I recently wanted them (animate)" ],
+    "answer" : [ "You and I recently wanted them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮎ̣²Ꮪ²³Ꮃ²", "ge²nạ²du²³la²" ],
     "id" : 535,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -4824,7 +4824,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 32
   }, {
-    "answer" : [ "You all recently wanted them (animate)", "They recently wanted you (1)" ],
+    "answer" : [ "You all recently wanted them (animate)", "They recently wanted you" ],
     "challenge" : [ "Ꭸ²Ꮳ̣²Ꮪ²³Ꮃ²", "ge²jạ²du²³la²" ],
     "id" : 537,
     "pgroup" : "Ꭸ²Ꮵ²-",
@@ -4896,7 +4896,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ²",
     "vset" : 37
   }, {
-    "answer" : [ "You (1) and I were recently wanted" ],
+    "answer" : [ "You and I were recently wanted" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²", "e¹gị²nạ²du²³la²" ],
     "id" : 545,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -4995,7 +4995,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) are saying" ],
+    "answer" : [ "You are saying" ],
     "challenge" : [ "Ꭽ¹Ꮧ̣²Ꭽ", "hạ²dị²ha" ],
     "id" : 556,
     "pgroup" : "Ꭿ̣²-",
@@ -5013,7 +5013,7 @@
     "vgroup" : "ɂ¹Ꮪ²Ꮂ¹Ꭶ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I are seeing each other" ],
+    "answer" : [ "You and I are seeing each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de³nạ²da²gowh²tị³ha" ],
     "id" : 558,
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -5022,7 +5022,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 2
   }, {
-    "answer" : [ "For me to recognize you (1)" ],
+    "answer" : [ "For me to recognize you" ],
     "challenge" : [ "Ꭼ²Ᏺ²Ꮅ³ᏍᏗ", "gv²yo²li³sdi" ],
     "id" : 559,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -5085,7 +5085,7 @@
     "vgroup" : "ɂ¹Ꮯ²³Ꮠ̣³Ꮧ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) eat flexible things" ],
+    "answer" : [ "Let you eat flexible things" ],
     "challenge" : [ "Ꮨ̣²Ꮿ̣²Ꭶ", "tị²hyạ²ga" ],
     "id" : 566,
     "pgroup" : "Ꮨ̣²-",
@@ -5103,7 +5103,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ²",
     "vset" : 5
   }, {
-    "answer" : [ "For me to recognize you both", "For we two to recognize you (1) or you both" ],
+    "answer" : [ "For me to recognize you both", "For we two to recognize you or you both" ],
     "challenge" : [ "ᏍᏛ²Ᏺ²Ꮅ³ᏍᏗ", "sdv²yo²li³sdi" ],
     "id" : 568,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -5175,7 +5175,7 @@
     "vgroup" : "Ꭰ̣²ᏚᎸ͓²Ꮧ",
     "vset" : 6
   }, {
-    "answer" : [ "For you (1) to eat flexible things" ],
+    "answer" : [ "For you to eat flexible things" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²Ᏸ¹ᏍᏗ", "dị²jạ²hye¹sdi" ],
     "id" : 576,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -5184,7 +5184,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "Let you (1) and me eat flexible things" ],
+    "answer" : [ "Let you and me eat flexible things" ],
     "challenge" : [ "Ꮧ̣³Ꮒ̣²Ꮿ̣²Ꭶ", "dị³ni²hyạ²ga" ],
     "id" : 577,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -5193,7 +5193,7 @@
     "vgroup" : "ɂᏯ̣²Ꭶ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) recognized yourself a while ago" ],
+    "answer" : [ "You recognized yourself a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "jạ²da²dohl²jv²³ɂi" ],
     "id" : 578,
     "pgroup" : "Ꮳ̣²Ꮣ²[Ꮣ͓]-",
@@ -5238,7 +5238,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) usually recognize yourself" ],
+    "answer" : [ "You usually recognize yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "hạ²da²dohl²go³ɂi" ],
     "id" : 583,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -5292,7 +5292,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) had solid things a while ago" ],
+    "answer" : [ "You had solid things a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮂ²³Ꭲ", "de²jạ²hv²³ɂi" ],
     "id" : 589,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -5301,7 +5301,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) and I usually recognize ourselves" ],
+    "answer" : [ "You and I usually recognize ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꭺ³Ꭲ", "i¹nạ²da²dohl²go³ɂi" ],
     "id" : 590,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -5337,7 +5337,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I recognized ourselves a while ago" ],
+    "answer" : [ "You and I recognized ourselves a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ²ᏙᎵ͓²Ꮸ²³Ꭲ", "gị²nạ²da²dohl²jv²³ɂi" ],
     "id" : 594,
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -5400,7 +5400,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "You (1) and I usually have something solid" ],
+    "answer" : [ "You and I usually have something solid" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮀ³Ꭲ", "gị²ni²ho³ɂi" ],
     "id" : 601,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -5463,7 +5463,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 31
   }, {
-    "answer" : [ "For you (1) and me to understand things" ],
+    "answer" : [ "For you and me to understand things" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮓ²Ꮅ³ᏍᏗ", "dị²gị²no²hlị³sdi" ],
     "id" : 608,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -5472,7 +5472,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 33
   }, {
-    "answer" : [ "You (1) recently saw them (inanimate)" ],
+    "answer" : [ "You recently saw them (inanimate)" ],
     "challenge" : [ "Ꮥ²Ꭿ̣²Ꭺ¹Ꮹ²Ꮤ²", "de²hị²go¹wah²ta²" ],
     "id" : 609,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -5499,7 +5499,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 45
   }, {
-    "answer" : [ "You (1) and I were seen a while ago" ],
+    "answer" : [ "You and I were seen a while ago" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ", "e¹gị²ni²go²hv²³ɂi" ],
     "id" : 612,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -5589,7 +5589,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭹ³²ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I recently looked at each other" ],
+    "answer" : [ "You and I recently looked at each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ̣²Ꭶ͓Ꮩ²³ᏍᏓ²", "de³nạ²dạ²kto²³sda²" ],
     "id" : 622,
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -5607,7 +5607,7 @@
     "vgroup" : "ɂᎴ¹Ꭶ",
     "vset" : 3
   }, {
-    "answer" : [ "I recognized you (1) a while ago" ],
+    "answer" : [ "I recognized you a while ago" ],
     "challenge" : [ "Ꭼ²Ᏺ²Ꮅ¹Ꮸ²³Ꭲ", "gv²yo²li²jv²³ɂi" ],
     "id" : 624,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -5625,7 +5625,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*",
     "vset" : 3
   }, {
-    "answer" : [ "For you (1) to drink alcoholic drinks", "For you all to drink alcoholic drinks" ],
+    "answer" : [ "For you to drink alcoholic drinks", "For you all to drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "dị²jạ²tu²³gi³²sdi" ],
     "id" : 626,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -5643,7 +5643,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 3
   }, {
-    "answer" : [ "Let you (1) bake things" ],
+    "answer" : [ "Let you bake things" ],
     "challenge" : [ "Ꮨ̣¹Ꮪ²Ꮂ¹Ꭶ", "tị¹du²hv¹ga" ],
     "id" : 628,
     "pgroup" : "Ꮨ̣²-",
@@ -5679,7 +5679,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 4
   }, {
-    "answer" : [ "I recognized you both a while ago", "We two recognized you (1) or you both a while ago" ],
+    "answer" : [ "I recognized you both a while ago", "We two recognized you or you both a while ago" ],
     "challenge" : [ "ᏍᏛ²Ᏺ²Ꮅ¹Ꮸ²³Ꭲ", "sdv²yo²li²jv²³ɂi" ],
     "id" : 632,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -5724,7 +5724,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*",
     "vset" : 6
   }, {
-    "answer" : [ "For you (1) and me to gather things" ],
+    "answer" : [ "For you and me to gather things" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ¹Ꮯ²³Ꮠ̣³Ꮧ", "dị²gị²ni¹hli²³soh³di" ],
     "id" : 637,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -5742,7 +5742,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) recently ate rod shaped things" ],
+    "answer" : [ "You recently ate rod shaped things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣²ᏍᏗ²³Ꭶ²", "de²hị²sdi²³ga²" ],
     "id" : 639,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -5769,7 +5769,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) are wanting yourself" ],
+    "answer" : [ "You are wanting yourself" ],
     "challenge" : [ "Ꮳ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "jạ²dạ²du²lị³ha" ],
     "id" : 642,
     "pgroup" : "Ꮳ̣²Ꮣ²[Ꮣ͓]-",
@@ -5805,7 +5805,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ*",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) are looking at yourself" ],
+    "answer" : [ "You are looking at yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ¹Ꭶ͓Ꮩ²³ᏍᏗ", "hạ²da¹kto²³sdi" ],
     "id" : 646,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -5868,7 +5868,7 @@
     "vgroup" : "Ꭵ²³ᏲᎢ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) and I are looking at ourselves" ],
+    "answer" : [ "You and I are looking at ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ¹Ꭶ͓Ꮩ²³ᏍᏗ", "i¹nạ²da¹kto²³sdi" ],
     "id" : 653,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -5940,7 +5940,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I are wanting ourselves" ],
+    "answer" : [ "You and I are wanting ourselves" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮣ̣²Ꮪ²Ꮅ̣³Ꭽ", "gị²nạ²dạ²du²lị³ha" ],
     "id" : 661,
     "pgroup" : "Ꭹ̣²Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -5985,7 +5985,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "You (1) and I had something solid a while ago" ],
+    "answer" : [ "You and I had something solid a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮂ²³Ꭲ", "gị²ni²hv²³ɂi" ],
     "id" : 666,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -6048,7 +6048,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 18
   }, {
-    "answer" : [ "They usually recognize you (1) and me" ],
+    "answer" : [ "They usually recognize you and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²ᏃᎵ͓²Ꭺ³Ꭲ", "ge²gị²nohl²go³ɂi" ],
     "id" : 673,
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
@@ -6120,7 +6120,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 30
   }, {
-    "answer" : [ "Let you (1) and me see him" ],
+    "answer" : [ "Let you and me see him" ],
     "challenge" : [ "Ꭱ¹Ꮒ²Ꭺ¹Ꮹ²Ꮤ", "e¹ni²go¹wah²ta" ],
     "id" : 681,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -6147,7 +6147,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 33
   }, {
-    "answer" : [ "Let you (1) and me see them (animate)" ],
+    "answer" : [ "Let you and me see them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮒ²Ꭺ¹Ꮹ²Ꮤ", "ge²ni²go¹wah²ta" ],
     "id" : 684,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -6165,7 +6165,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 35
   }, {
-    "answer" : [ "Let you (1) or both want us both" ],
+    "answer" : [ "Let you or you both want us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ̣²Ꮪ²³Ꮃ", "sgị²nạ²du²³la" ],
     "id" : 686,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -6210,7 +6210,7 @@
     "vgroup" : "Ꭺ¹Ꮹ²Ꮤ",
     "vset" : 39
   }, {
-    "answer" : [ "Let you (1) and me be seen" ],
+    "answer" : [ "Let you and me be seen" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ", "e¹gị²ni²go¹wah²ta" ],
     "id" : 691,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -6228,7 +6228,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ²",
     "vset" : 42
   }, {
-    "answer" : [ "You (1) and I recently wanted them (inanimate)" ],
+    "answer" : [ "You and I recently wanted them (inanimate)" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꮃ²", "de²gị²nạ²du²³la²" ],
     "id" : 693,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -6327,7 +6327,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 2
   }, {
-    "answer" : [ "Let you (1) drink drinks" ],
+    "answer" : [ "Let you drink drinks" ],
     "challenge" : [ "Ꮤ͓Ꭽ̣²Ꮧ²³Ꮤ", "ta²di²³ta" ],
     "id" : 704,
     "pgroup" : "Ꮨ̣²-",
@@ -6336,7 +6336,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I are often seeing each other" ],
+    "answer" : [ "You and I are often seeing each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "de³nạ²da²gowh²ti²³sgọ³ɂi" ],
     "id" : 705,
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -6390,7 +6390,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) and me drink drinks" ],
+    "answer" : [ "Let you and me drink drinks" ],
     "challenge" : [ "Ꮧ̣³Ꮒ͓Ꭽ̣²Ꮧ²³Ꮤ", "dị³na²di²³ta" ],
     "id" : 711,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -6417,7 +6417,7 @@
     "vgroup" : "Ꭰ̣²Ꮣ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) have living things" ],
+    "answer" : [ "You have living things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꭷ̣³Ꭽ", "de²jạ²kạ³ha" ],
     "id" : 714,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -6471,7 +6471,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 6
   }, {
-    "answer" : [ "He recently looked at you (1)" ],
+    "answer" : [ "He recently looked at you" ],
     "challenge" : [ "Ꮳ̣²Ꭶ͓Ꮩ²³ᏍᏓ²", "jạ²kto²³sda²" ],
     "id" : 720,
     "pgroup" : "Ꮳ̣²-, Ꮳ̣²-",
@@ -6516,7 +6516,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) are seeing yourself" ],
+    "answer" : [ "You are seeing yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "hạ²da²gowh²tị³ha" ],
     "id" : 725,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -6534,7 +6534,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*",
     "vset" : 7
   }, {
-    "answer" : [ "For you (1) and me to drink alcoholic drinks" ],
+    "answer" : [ "For you and me to drink alcoholic drinks" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²Ꮪ²³Ꭹ³²ᏍᏗ", "dị²gị²nạ²tu²³gi³²sdi" ],
     "id" : 727,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -6588,7 +6588,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 9
   }, {
-    "answer" : [ "You (1) and I are seeing ourselves" ],
+    "answer" : [ "You and I are seeing ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "i¹nạ²da²gowh²tị³ha" ],
     "id" : 733,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -6615,7 +6615,7 @@
     "vgroup" : "Ꭵ²³ᏴᎢ",
     "vset" : 10
   }, {
-    "answer" : [ "For you (1) to recognize him" ],
+    "answer" : [ "For you to recognize him" ],
     "challenge" : [ "Ꭿ²Ᏺ²Ꮅ³ᏍᏗ", "hi²yo²li³sdi" ],
     "id" : 736,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -6651,7 +6651,7 @@
     "vgroup" : "ɂ¹ᏘᏗ",
     "vset" : 11
   }, {
-    "answer" : [ "For us, me, two, or we all to recognize you all", "For we all to recognize you (1), two" ],
+    "answer" : [ "For us, me, two, or we all to recognize you all", "For we all to recognize you, two" ],
     "challenge" : [ "Ꭲ¹Ꮸ²Ᏺ²Ꮅ³ᏍᏗ", "i¹jv²yo²li³sdi" ],
     "id" : 740,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -6669,7 +6669,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 11
   }, {
-    "answer" : [ "For you (1), two, or all to recognize us all", "For you all to recognize me" ],
+    "answer" : [ "For you, two, or all to recognize us all", "For you all to recognize me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ᏺ²Ꮅ³ᏍᏗ", "i¹sgi²yo²li³sdi" ],
     "id" : 742,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -6687,7 +6687,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 12
   }, {
-    "answer" : [ "For you (1) to recognize them (animate)" ],
+    "answer" : [ "For you to recognize them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ᏺ²Ꮅ³ᏍᏗ", "gạ²hi²yo²li³sdi" ],
     "id" : 744,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -6705,7 +6705,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "They are looking at you (1)" ],
+    "answer" : [ "They are looking at you" ],
     "challenge" : [ "Ꭸ²Ꮳ¹Ꭶ͓Ꮩ²³ᏍᏗ", "ge²ja¹kto²³sdi" ],
     "id" : 746,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -6750,7 +6750,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 29
   }, {
-    "answer" : [ "You (1) and I understand things" ],
+    "answer" : [ "You and I understand things" ],
     "challenge" : [ "Ꮥ³ᏃᎵ͓²Ꭶ", "de³nohl²ga" ],
     "id" : 751,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -6795,7 +6795,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 37
   }, {
-    "answer" : [ "Let you (1) see me" ],
+    "answer" : [ "Let you see me" ],
     "challenge" : [ "ᏍᎩ̣²Ꭺ¹Ꮹ²Ꮤ", "sgị²go¹wah²ta" ],
     "id" : 756,
     "pgroup" : "ᏍᎩ̣²-, ᏍᏆ͓-",
@@ -6876,7 +6876,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I are often looking at each other" ],
+    "answer" : [ "You and I are often looking at each other" ],
     "challenge" : [ "Ꮥ³Ꮎ̣²Ꮣ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ", "de³nạ²da¹kto²³sdi³sgo³ɂi" ],
     "id" : 765,
     "pgroup" : "Ꮥ³Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -6885,7 +6885,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) usually are going" ],
+    "answer" : [ "You usually are going" ],
     "challenge" : [ "Ꭾ³Ꭺ̣³Ꭲ", "he³gọ³ɂi" ],
     "id" : 766,
     "pgroup" : "Ꭿ̣²-",
@@ -6903,7 +6903,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I are climbing it" ],
+    "answer" : [ "You and I are climbing it" ],
     "challenge" : [ "Ꭲ¹ᏂᎴ¹Ꭶ", "i¹ni³le¹ga" ],
     "id" : 768,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -6939,7 +6939,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "For you (1) to gather things" ],
+    "answer" : [ "For you to gather things" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣¹Ꮯ²³Ꮠ̣³Ꮧ", "dị²jạ¹hli²³soh³di" ],
     "id" : 772,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -7011,7 +7011,7 @@
     "vgroup" : "Ꭰ̣²Ꮣ²",
     "vset" : 9
   }, {
-    "answer" : [ "Let you (1) look at them (inanimate)" ],
+    "answer" : [ "Let you look at them (inanimate)" ],
     "challenge" : [ "Ꮤ̣²Ꭶ͓Ꮩ²³ᏍᏓ", "tạ²kto²³sda" ],
     "id" : 780,
     "pgroup" : "Ꮨ̣²-",
@@ -7047,7 +7047,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭶ²",
     "vset" : 10
   }, {
-    "answer" : [ "Let you (1) look at yourself" ],
+    "answer" : [ "Let you look at yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ̣²Ꭶ͓Ꮩ²³ᏍᏓ", "hạ²dạ²kto²³sda" ],
     "id" : 784,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -7074,7 +7074,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꭶ²",
     "vset" : 11
   }, {
-    "answer" : [ "I, we two, or we all recognized you all a while ago", "We all recognized you (1), two a while ago" ],
+    "answer" : [ "I, we two, or we all recognized you all a while ago", "We all recognized you, two a while ago" ],
     "challenge" : [ "Ꭲ¹Ꮸ²Ᏺ²Ꮅ¹Ꮸ²³Ꭲ", "i¹jv²yo²li²jv²³ɂi" ],
     "id" : 787,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -7092,7 +7092,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1), two, or all recognized us all a while ago", "You all recognized me a while ago" ],
+    "answer" : [ "You, two, or all recognized us all a while ago", "You all recognized me a while ago" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ᏺ²Ꮅ¹Ꮸ²³Ꭲ", "i¹sgi²yo²li²jv²³ɂi" ],
     "id" : 789,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -7101,7 +7101,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*",
     "vset" : 12
   }, {
-    "answer" : [ "Let you (1) and me look at them (inanimate)" ],
+    "answer" : [ "Let you and me look at them (inanimate)" ],
     "challenge" : [ "Ꮧ̣³Ꮎ̣²Ꭶ͓Ꮩ²³ᏍᏓ", "dị³nạ²kto²³sda" ],
     "id" : 790,
     "pgroup" : "Ꮧ̣³Ꮒ̣²-",
@@ -7119,7 +7119,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) recognized them (animate) a while ago" ],
+    "answer" : [ "You recognized them (animate) a while ago" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ᏺ²Ꮅ¹Ꮸ²³Ꭲ", "gạ²hi²yo²li²jv²³ɂi" ],
     "id" : 792,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -7191,7 +7191,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 17
   }, {
-    "answer" : [ "For me to see you (1)" ],
+    "answer" : [ "For me to see you" ],
     "challenge" : [ "Ꭼ²ᎪᏩ͓²Ꮫ³Ꮧ", "gv²gowh²tvh³di" ],
     "id" : 800,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -7209,7 +7209,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ",
     "vset" : 17
   }, {
-    "answer" : [ "You (1) usually have something solid" ],
+    "answer" : [ "You usually have something solid" ],
     "challenge" : [ "Ꮳ̣²Ꮀ³Ꭲ", "jạ²ho³ɂi" ],
     "id" : 802,
     "pgroup" : "Ꮳ̣²-",
@@ -7227,7 +7227,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 18
   }, {
-    "answer" : [ "For me to see you both", "For we two to see you (1) or you both" ],
+    "answer" : [ "For me to see you both", "For we two to see you or you both" ],
     "challenge" : [ "ᏍᏛ²ᎪᏩ͓²Ꮫ³Ꮧ", "sdv²gowh²tvh³di" ],
     "id" : 804,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -7254,7 +7254,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 21
   }, {
-    "answer" : [ "For you (1) and me to want them (inanimate)" ],
+    "answer" : [ "For you and me to want them (inanimate)" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮎ̣²ᏚᎸ͓²Ꮧ", "dị²gị²nạ²duhl²di" ],
     "id" : 807,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -7344,7 +7344,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 53
   }, {
-    "answer" : [ "You (1) saw them (inanimate) a while ago" ],
+    "answer" : [ "You saw them (inanimate) a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꭺ²Ꮂ²³Ꭲ", "de²jạ²go²hv²³ɂi" ],
     "id" : 817,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -7353,7 +7353,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 54
   }, {
-    "answer" : [ "You (1) and I saw them (inanimate) a while ago" ],
+    "answer" : [ "You and I saw them (inanimate) a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ", "de²gị²ni²go²hv²³ɂi" ],
     "id" : 818,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -7371,7 +7371,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 56
   }, {
-    "answer" : [ "Let you (1) and me climb it" ],
+    "answer" : [ "Let you and me climb it" ],
     "challenge" : [ "Ꭲ¹ᏂᎷ¹Ꭶ", "i¹ni²lu¹ga" ],
     "id" : 820,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -7479,7 +7479,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "For you (1) to drink drinks", "For you all to drink drinks" ],
+    "answer" : [ "For you to drink drinks", "For you all to drink drinks" ],
     "challenge" : [ "Ꮧ̣²Ꮷ²Ꮧ²Ꮤ̣²ᏍᏗ", "dị²ja²di²tạ²sdi" ],
     "id" : 832,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -7533,7 +7533,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) will be having solid things" ],
+    "answer" : [ "You will be having solid things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꭾ³ᏍᏗ", "de²jạ²he³sdi" ],
     "id" : 838,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -7542,7 +7542,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) and I will be having solid things" ],
+    "answer" : [ "You and I will be having solid things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭾ³ᏍᏗ", "de²gị²ni²he³sdi" ],
     "id" : 839,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -7551,7 +7551,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 8
   }, {
-    "answer" : [ "I am looking at you (1)" ],
+    "answer" : [ "I am looking at you" ],
     "challenge" : [ "Ꭼ²Ꮿ¹Ꭶ¹Ꮩ²³ᏍᏗ", "gv²yạ²ga¹to²³sdi" ],
     "id" : 840,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -7578,7 +7578,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*",
     "vset" : 9
   }, {
-    "answer" : [ "I am looking at you both", "We two are looking at you (1) or you both" ],
+    "answer" : [ "I am looking at you both", "We two are looking at you or you both" ],
     "challenge" : [ "ᏍᏛ²Ꮿ¹Ꭶ¹Ꮩ²³ᏍᏗ", "sdv²yạ²ga¹to²³sdi" ],
     "id" : 843,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -7596,7 +7596,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏗ*",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) and I recently looked at ourselves" ],
+    "answer" : [ "You and I recently looked at ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ̣²Ꭶ͓Ꮩ²³ᏍᏓ²", "i¹nạ²dạ²kto²³sda²" ],
     "id" : 845,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -7605,7 +7605,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 12
   }, {
-    "answer" : [ "He is seeing you (1)" ],
+    "answer" : [ "He is seeing you" ],
     "challenge" : [ "Ꮳ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "jạ²gowh²tị³ha" ],
     "id" : 846,
     "pgroup" : "Ꮳ̣²-, Ꮳ̣²-",
@@ -7650,7 +7650,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 17
   }, {
-    "answer" : [ "You (1) had something solid a while ago" ],
+    "answer" : [ "You had something solid a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮂ²³Ꭲ", "jạ²hv²³ɂi" ],
     "id" : 851,
     "pgroup" : "Ꮳ̣²-",
@@ -7668,7 +7668,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 18
   }, {
-    "answer" : [ "They are wanting you (1) and me" ],
+    "answer" : [ "They are wanting you and me" ],
     "challenge" : [ "Ꭸ²Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ", "ge²gị²nạ²du²lị³ha" ],
     "id" : 853,
     "pgroup" : "Ꭸ²Ꭹ̣²Ꮒ²-",
@@ -7695,7 +7695,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 24
   }, {
-    "answer" : [ "For you (1) and me to see them (inanimate)" ],
+    "answer" : [ "For you and me to see them (inanimate)" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮫ³Ꮧ", "dị²gị²ni²gowh²tvh³di" ],
     "id" : 856,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -7704,7 +7704,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮫ³Ꮧ",
     "vset" : 27
   }, {
-    "answer" : [ "Let you (1) want him" ],
+    "answer" : [ "Let you want him" ],
     "challenge" : [ "Ꭿ²Ꮿ̣²Ꮪ²³Ꮃ", "hi²yạ²du²³la" ],
     "id" : 857,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -7713,7 +7713,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 39
   }, {
-    "answer" : [ "Let you (1), two, or all want us all", "Let you all want me" ],
+    "answer" : [ "Let you, two, or all want us all", "Let you all want me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ꮿ̣²Ꮪ²³Ꮃ", "i¹sgi²yạ²du²³la" ],
     "id" : 858,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -7722,7 +7722,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²³Ꮃ",
     "vset" : 40
   }, {
-    "answer" : [ "Let you (1) want them (animate)" ],
+    "answer" : [ "Let you want them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꮿ̣²Ꮪ²³Ꮃ", "gạ²hi²yạ²du²³la" ],
     "id" : 859,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -7758,7 +7758,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 2
   }, {
-    "answer" : [ "For you (1) to have a liquid" ],
+    "answer" : [ "For you to have a liquid" ],
     "challenge" : [ "Ꮳ̣²ᏁᏗ", "jạ²neh²di" ],
     "id" : 863,
     "pgroup" : "Ꮳ̣²-",
@@ -7884,7 +7884,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 6
   }, {
-    "answer" : [ "For you (1) and me to eat rod shaped things" ],
+    "answer" : [ "For you and me to eat rod shaped things" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²gị²ni²sdi²³gi³²sdi" ],
     "id" : 877,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -7902,7 +7902,7 @@
     "vgroup" : "ᏁᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) have flexible things" ],
+    "answer" : [ "You have flexible things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮎ̣³Ꭰ", "de²jạ²nạ³ɂa" ],
     "id" : 879,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -7965,7 +7965,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 9
   }, {
-    "answer" : [ "They recently looked at you (1)" ],
+    "answer" : [ "They recently looked at you" ],
     "challenge" : [ "Ꭸ²Ꮳ̣²Ꭶ͓Ꮩ²³ᏍᏓ²", "ge²jạ²kto²³sda²" ],
     "id" : 886,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -8010,7 +8010,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 27
   }, {
-    "answer" : [ "For you (1) to see them (inanimate)" ],
+    "answer" : [ "For you to see them (inanimate)" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²ᎪᏩ͓²Ꮫ³Ꮧ", "dị²jạ²gowh²tvh³di" ],
     "id" : 891,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -8082,7 +8082,7 @@
     "vgroup" : "Ꮑ²Ꮀ³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I are saying" ],
+    "answer" : [ "You and I are saying" ],
     "challenge" : [ "Ꭲ¹Ꮎ¹Ꮧ̣²Ꭽ", "i¹nạ²dị²ha" ],
     "id" : 899,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -8136,7 +8136,7 @@
     "vgroup" : "ɂᎴ¹Ꭶ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) usually have liquid things" ],
+    "answer" : [ "You usually have liquid things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮑ²Ꮀ³Ꭲ", "de²jạ²ne²ho³ɂi" ],
     "id" : 905,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -8154,7 +8154,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "For you (1) to eat rod shaped things" ],
+    "answer" : [ "For you to eat rod shaped things" ],
     "challenge" : [ "Ꮧ̣²Ꮳ̣²ᏍᏗ²³Ꭹ³²ᏍᏗ", "dị²jạ²sdi²³gi³²sdi" ],
     "id" : 907,
     "pgroup" : "Ꮧ̣²Ꮳ̣²-",
@@ -8163,7 +8163,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) and I usually have liquid things" ],
+    "answer" : [ "You and I usually have liquid things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮑ²Ꮀ³Ꭲ", "de²gị²ni²ne²ho³ɂi" ],
     "id" : 908,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -8172,7 +8172,7 @@
     "vgroup" : "Ꮑ²Ꮀ³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "For you (1) and me to drink drinks" ],
+    "answer" : [ "For you and me to drink drinks" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮔ²Ꮧ²Ꮤ̣²ᏍᏗ", "dị²gị²na²di²tạ²sdi" ],
     "id" : 909,
     "pgroup" : "Ꮧ̣²Ꭹ̣²Ꮒ²-",
@@ -8190,7 +8190,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) are often looking at yourself" ],
+    "answer" : [ "You are often looking at yourself" ],
     "challenge" : [ "Ꭽ̣²Ꮣ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ", "hạ²da¹kto²³sdi³sgo³ɂi" ],
     "id" : 911,
     "pgroup" : "Ꭽ̣²Ꮣ²[Ꮣ͓]-",
@@ -8235,7 +8235,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "You (1) and I are often looking at ourselves" ],
+    "answer" : [ "You and I are often looking at ourselves" ],
     "challenge" : [ "Ꭲ¹Ꮎ̣²Ꮣ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ", "i¹nạ²da¹kto²³sdi³sgo³ɂi" ],
     "id" : 916,
     "pgroup" : "Ꭲ¹Ꮎ̣²Ꮣ²[Ꮣ͓]-",
@@ -8253,7 +8253,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) were recently looked at" ],
+    "answer" : [ "You were recently looked at" ],
     "challenge" : [ "Ꭱ¹Ꮳ̣²Ꭶ͓Ꮩ²³ᏍᏓ²", "e¹jạ²kto²³sda²" ],
     "id" : 918,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -8343,7 +8343,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 28
   }, {
-    "answer" : [ "You (1) and I usually understand things" ],
+    "answer" : [ "You and I usually understand things" ],
     "challenge" : [ "Ꮥ³ᏃᎵ͓²Ꭺ³Ꭲ", "de³nohl²go³ɂi" ],
     "id" : 928,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -8424,7 +8424,7 @@
     "vgroup" : "Ꭴ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) are drinking alcoholic drinks" ],
+    "answer" : [ "You are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ²Ꭽ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de²hạ¹tu²³gị³a" ],
     "id" : 937,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -8460,7 +8460,7 @@
     "vgroup" : "Ꮑ²Ꮂ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "Let you (1) and me look at him" ],
+    "answer" : [ "Let you and me look at him" ],
     "challenge" : [ "Ꭱ¹Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "e¹nạ²ga¹to²³sda" ],
     "id" : 941,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -8496,7 +8496,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) had liquid things a while ago" ],
+    "answer" : [ "You had liquid things a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮑ²Ꮂ²³Ꭲ", "de²jạ²ne²hv²³ɂi" ],
     "id" : 945,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -8505,7 +8505,7 @@
     "vgroup" : "Ꮑ²Ꮂ²³Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "Let you (1) and me look at them (animate)" ],
+    "answer" : [ "Let you and me look at them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "ge²nạ²ga¹to²³sda" ],
     "id" : 946,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -8523,7 +8523,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) are climbing it" ],
+    "answer" : [ "You are climbing it" ],
     "challenge" : [ "Ꭿ̣Ꮄ¹Ꭶ", "hị³le¹ga" ],
     "id" : 948,
     "pgroup" : "Ꭿ̣²-",
@@ -8559,7 +8559,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 10
   }, {
-    "answer" : [ "Let you (1) and me be looked at" ],
+    "answer" : [ "Let you and me be looked at" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "e¹gị²nạ²ga¹to²³sda" ],
     "id" : 952,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -8568,7 +8568,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 11
   }, {
-    "answer" : [ "He is often seeing you (1)" ],
+    "answer" : [ "He is often seeing you" ],
     "challenge" : [ "Ꮳ̣²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "jạ²gowh²ti²³sgọ³ɂi" ],
     "id" : 953,
     "pgroup" : "Ꮳ̣²-, Ꮳ̣²-",
@@ -8586,7 +8586,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏙᏗ",
     "vset" : 16
   }, {
-    "answer" : [ "I am seeing you (1)" ],
+    "answer" : [ "I am seeing you" ],
     "challenge" : [ "Ꭼ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "gv²gowh²tị³ha" ],
     "id" : 955,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -8613,7 +8613,7 @@
     "vgroup" : "Ꮂ²³Ꭲ",
     "vset" : 19
   }, {
-    "answer" : [ "I am seeing you both", "We two are seeing you (1) or you both" ],
+    "answer" : [ "I am seeing you both", "We two are seeing you or you both" ],
     "challenge" : [ "ᏍᏛ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "sdv²gowh²tị³ha" ],
     "id" : 958,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -8667,7 +8667,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 34
   }, {
-    "answer" : [ "Let you (1) or both see us both" ],
+    "answer" : [ "Let you or you both see us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮒ²Ꭺ¹Ꮹ²Ꮤ", "sgị²ni²go¹wah²ta" ],
     "id" : 964,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -8766,7 +8766,7 @@
     "vgroup" : "Ꭱ³Ꭺ̣³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I went a while ago" ],
+    "answer" : [ "You and I went a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮑ²Ꮕ³Ꮢ²³Ꭲ", "gị²ne²nv³sv²³ɂi" ],
     "id" : 975,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -8784,7 +8784,7 @@
     "vgroup" : "Ꭱ²Ꮕ³Ꮢ²³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "Let you (1) climb it" ],
+    "answer" : [ "Let you climb it" ],
     "challenge" : [ "Ꭿ̣Ꮇ¹Ꭶ", "hị²lu¹ga" ],
     "id" : 977,
     "pgroup" : "Ꭿ̣²-",
@@ -8838,7 +8838,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) are seeing him" ],
+    "answer" : [ "You are seeing him" ],
     "challenge" : [ "Ꭿ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "hi²gowh²tị³ha" ],
     "id" : 983,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -8847,7 +8847,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 21
   }, {
-    "answer" : [ "I, we two, or we all are seeing you all", "We all are seeing you (1), two" ],
+    "answer" : [ "I, we two, or we all are seeing you all", "We all are seeing you, two" ],
     "challenge" : [ "Ꭲ¹Ꮸ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "i¹jv²gowh²tị³ha" ],
     "id" : 984,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -8856,7 +8856,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 22
   }, {
-    "answer" : [ "You (1), two, or all are seeing us all", "You all are seeing me" ],
+    "answer" : [ "You, two, or all are seeing us all", "You all are seeing me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "i¹sgi²gowh²tị³ha" ],
     "id" : 985,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -8865,7 +8865,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 23
   }, {
-    "answer" : [ "You (1) are seeing them (animate)" ],
+    "answer" : [ "You are seeing them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "gạ²hi²gowh²tị³ha" ],
     "id" : 986,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -8910,7 +8910,7 @@
     "vgroup" : "Ꭼ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) know things" ],
+    "answer" : [ "You know things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮕ͓Ꮤ", "de²jạ²nhta" ],
     "id" : 991,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -9000,7 +9000,7 @@
     "vgroup" : "ɂᏯ³Ꭵ²³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I are drinking alcoholic drinks" ],
+    "answer" : [ "You and I are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮎ̣¹Ꮪ²³Ꭹ̣³Ꭰ", "de³nạ¹tu²³gị³a" ],
     "id" : 1001,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -9009,7 +9009,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ",
     "vset" : 3
   }, {
-    "answer" : [ "For you (1) and me to go" ],
+    "answer" : [ "For you and me to go" ],
     "challenge" : [ "Ꭹ̣²Ꮑ²Ꮕ¹ᏍᏗ", "gị²ne²nv¹sdi" ],
     "id" : 1002,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -9036,7 +9036,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I usually are going" ],
+    "answer" : [ "You and I usually are going" ],
     "challenge" : [ "Ꭲ¹Ꮑ³Ꭺ̣³Ꭲ", "i¹ne³gọ³ɂi" ],
     "id" : 1005,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -9081,7 +9081,7 @@
     "vgroup" : "Ꭱ³Ꭺ̣³Ꭲ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) went a while ago" ],
+    "answer" : [ "You went a while ago" ],
     "challenge" : [ "Ꮴ²Ꮕ³Ꮢ²³Ꭲ", "je²nv³sv²³ɂi" ],
     "id" : 1010,
     "pgroup" : "Ꮳ̣²-",
@@ -9117,7 +9117,7 @@
     "vgroup" : "Ꭱ²Ꮕ³Ꮢ²³Ꭲ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) recently climbed it" ],
+    "answer" : [ "You recently climbed it" ],
     "challenge" : [ "Ꭿ̣Ꮇ¹Ꭶ²", "hị²lu¹ga²" ],
     "id" : 1014,
     "pgroup" : "Ꭿ̣²-",
@@ -9162,7 +9162,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 11
   }, {
-    "answer" : [ "Let you (1) look at him" ],
+    "answer" : [ "Let you look at him" ],
     "challenge" : [ "Ꭿ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "hi²yạ²ga¹to²³sda" ],
     "id" : 1019,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -9171,7 +9171,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 14
   }, {
-    "answer" : [ "Let you (1), two, or all look at us all", "Let you all look at me" ],
+    "answer" : [ "Let you, two, or all look at us all", "Let you all look at me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "i¹sgi²yạ²ga¹to²³sda" ],
     "id" : 1020,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -9180,7 +9180,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ*",
     "vset" : 15
   }, {
-    "answer" : [ "Let you (1) look at them (animate)" ],
+    "answer" : [ "Let you look at them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "gạ²hi²yạ²ga¹to²³sda" ],
     "id" : 1021,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -9198,7 +9198,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏓ²*",
     "vset" : 21
   }, {
-    "answer" : [ "You (1) are being seen" ],
+    "answer" : [ "You are being seen" ],
     "challenge" : [ "Ꭱ¹Ꮳ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "e¹jạ²gowh²tị³ha" ],
     "id" : 1023,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -9207,7 +9207,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 25
   }, {
-    "answer" : [ "They are seeing you (1)" ],
+    "answer" : [ "They are seeing you" ],
     "challenge" : [ "Ꭸ²Ꮳ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "ge²jạ²gowh²tị³ha" ],
     "id" : 1024,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -9234,7 +9234,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 29
   }, {
-    "answer" : [ "I am wanting you (1)" ],
+    "answer" : [ "I am wanting you" ],
     "challenge" : [ "Ꭼ²Ꮿ̣²Ꮪ²Ꮅ̣³Ꭽ", "gv²yạ²du²lị³ha" ],
     "id" : 1027,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -9252,7 +9252,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 37
   }, {
-    "answer" : [ "I am wanting you both", "We two are wanting you (1) or you both" ],
+    "answer" : [ "I am wanting you both", "We two are wanting you or you both" ],
     "challenge" : [ "ᏍᏛ²Ꮿ̣²Ꮪ²Ꮅ̣³Ꭽ", "sdv²yạ²du²lị³ha" ],
     "id" : 1029,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -9261,7 +9261,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 39
   }, {
-    "answer" : [ "You (1) and I are wanted" ],
+    "answer" : [ "You and I are wanted" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮎ̣²Ꮪ²Ꮅ̣³Ꭽ", "e¹gị²nạ²du²lị³ha" ],
     "id" : 1030,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -9333,7 +9333,7 @@
     "vgroup" : "ɂ³Ꮪ²Ꮕ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) recently drank drinks" ],
+    "answer" : [ "You recently drank drinks" ],
     "challenge" : [ "Ꮥ²Ꭿ͓Ꭽ̣²Ꮧ²³Ꮤ²", "de²ha²di²³ta²" ],
     "id" : 1038,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -9342,7 +9342,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ²",
     "vset" : 3
   }, {
-    "answer" : [ "For you (1) to go" ],
+    "answer" : [ "For you to go" ],
     "challenge" : [ "Ꮴ²Ꮕ¹ᏍᏗ", "je²nv¹sdi" ],
     "id" : 1039,
     "pgroup" : "Ꮳ̣²-",
@@ -9360,7 +9360,7 @@
     "vgroup" : "Ꭱ²Ꮕ¹ᏍᏗ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) ate flexible things a while ago" ],
+    "answer" : [ "You ate flexible things a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮿ³Ꭵ²³Ꭲ", "de²jạ²hya³ɂv²³ɂi" ],
     "id" : 1041,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -9423,7 +9423,7 @@
     "vgroup" : "ɂᏰ¹ᏍᏗ",
     "vset" : 14
   }, {
-    "answer" : [ "You (1) were looked at a while ago" ],
+    "answer" : [ "You were looked at a while ago" ],
     "challenge" : [ "Ꭱ¹Ꮳ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "e¹ja¹kto²³stạ³nv²³ɂi" ],
     "id" : 1048,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -9432,7 +9432,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ",
     "vset" : 16
   }, {
-    "answer" : [ "They looked at you (1) a while ago" ],
+    "answer" : [ "They looked at you a while ago" ],
     "challenge" : [ "Ꭸ²Ꮳ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "ge²ja¹kto²³stạ³nv²³ɂi" ],
     "id" : 1049,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -9441,7 +9441,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ",
     "vset" : 17
   }, {
-    "answer" : [ "You (1) understand it" ],
+    "answer" : [ "You understand it" ],
     "challenge" : [ "ᎰᎵ͓²Ꭶ", "hohl²ga" ],
     "id" : 1050,
     "pgroup" : "Ꭿ̣²-",
@@ -9459,7 +9459,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 36
   }, {
-    "answer" : [ "I wanted you (1) a while ago" ],
+    "answer" : [ "I wanted you a while ago" ],
     "challenge" : [ "Ꭼ²Ꮿ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "gv²yạ²du²lv²hv²³ɂi" ],
     "id" : 1052,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -9477,7 +9477,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 37
   }, {
-    "answer" : [ "I wanted you both a while ago", "We two wanted you (1) or you both a while ago" ],
+    "answer" : [ "I wanted you both a while ago", "We two wanted you or you both a while ago" ],
     "challenge" : [ "ᏍᏛ²Ꮿ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "sdv²yạ²du²lv²hv²³ɂi" ],
     "id" : 1054,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -9495,7 +9495,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 41
   }, {
-    "answer" : [ "I, we two, or we all are wanting you all", "We all are wanting you (1), two" ],
+    "answer" : [ "I, we two, or we all are wanting you all", "We all are wanting you, two" ],
     "challenge" : [ "Ꭲ¹Ꮸ²Ꮿ̣²Ꮪ²Ꮅ̣³Ꭽ", "i¹jv²yạ²du²lị³ha" ],
     "id" : 1056,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -9504,7 +9504,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ̣³Ꭽ",
     "vset" : 43
   }, {
-    "answer" : [ "Let you (1) and me see it" ],
+    "answer" : [ "Let you and me see it" ],
     "challenge" : [ "Ꭲ¹Ꮒ²Ꭺ¹Ꮹ²Ꮤ", "i¹ni²go¹wah²ta" ],
     "id" : 1057,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -9567,7 +9567,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) usually are drinking drinks" ],
+    "answer" : [ "You usually are drinking drinks" ],
     "challenge" : [ "Ꮥ²Ꭽ¹Ꮧ²Ꮤ̣²ᏍᎪ³Ꭲ", "de²ha¹di²tạ²sgo³ɂi" ],
     "id" : 1064,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -9585,7 +9585,7 @@
     "vgroup" : "Ꭵ²³ᏰᏍᏗ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I are eating rod shaped things" ],
+    "answer" : [ "You and I are eating rod shaped things" ],
     "challenge" : [ "Ꮥ³Ꮒ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "de³ni¹sdi²³gị³ɂa" ],
     "id" : 1066,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -9612,7 +9612,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I will be having rod shaped things" ],
+    "answer" : [ "You and I will be having rod shaped things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭵ²³ᏰᏍᏗ", "de²gị²ni²jv²³ye³²sdi" ],
     "id" : 1069,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -9738,7 +9738,7 @@
     "vgroup" : "Ꮑ²Ꮂ²³Ꭲ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) and I have something alive" ],
+    "answer" : [ "You and I have something alive" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭷ̣³Ꭽ", "gị²ni²kạ³ha" ],
     "id" : 1083,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -9756,7 +9756,7 @@
     "vgroup" : "ɂᎧ̣³Ꭽ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) are often looked at" ],
+    "answer" : [ "You are often looked at" ],
     "challenge" : [ "Ꭱ¹Ꮳ¹Ꭶ͓Ꮩ²³ᏍᏗ³ᏍᎪ³Ꭲ", "e¹ja¹kto²³sdi³sgo³ɂi" ],
     "id" : 1085,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -9774,7 +9774,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ͓Ꮩ²³ᏍᏓ²",
     "vset" : 20
   }, {
-    "answer" : [ "You (1) recently understood it" ],
+    "answer" : [ "You recently understood it" ],
     "challenge" : [ "ᎰᎵ͓²Ꭶ²", "hohl²ga²" ],
     "id" : 1087,
     "pgroup" : "Ꭿ̣²-",
@@ -9792,7 +9792,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭶ",
     "vset" : 36
   }, {
-    "answer" : [ "For you (1) to understand it", "For him to recognize you (1)" ],
+    "answer" : [ "For you to understand it", "For him to recognize you" ],
     "challenge" : [ "Ꮶ²Ꮅ³ᏍᏗ", "jo²hlị³sdi" ],
     "id" : 1089,
     "pgroup" : "Ꮳ̣²-",
@@ -9801,7 +9801,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 37
   }, {
-    "answer" : [ "I, we two, or we all wanted you all a while ago", "We all wanted you (1), two a while ago" ],
+    "answer" : [ "I, we two, or we all wanted you all a while ago", "We all wanted you, two a while ago" ],
     "challenge" : [ "Ꭲ¹Ꮸ²Ꮿ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ", "i¹jv²yạ²du²lv²hv²³ɂi" ],
     "id" : 1090,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -9810,7 +9810,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮈ²Ꮂ²³Ꭲ",
     "vset" : 43
   }, {
-    "answer" : [ "You (1) are wanting them (animate)" ],
+    "answer" : [ "You are wanting them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꮿ̣²Ꮪ²Ꮅ̣³Ꭽ", "gạ²hi²yạ²du²lị³ha" ],
     "id" : 1091,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -9882,7 +9882,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I usually have living things" ],
+    "answer" : [ "You and I usually have living things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭷ̣²Ꮀ³Ꭲ", "de²gị²ni²kạ²ho³ɂi" ],
     "id" : 1099,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -9918,7 +9918,7 @@
     "vgroup" : "ɂᎧ̣²Ꮀ³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I recently drank drinks" ],
+    "answer" : [ "You and I recently drank drinks" ],
     "challenge" : [ "Ꮥ³Ꮒ͓Ꭽ̣²Ꮧ²³Ꮤ²", "de³na²di²³ta²" ],
     "id" : 1103,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -10035,7 +10035,7 @@
     "vgroup" : "ᏍᏗ²³Ꭹ³²ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "Let you (1) and me eat something rod shaped" ],
+    "answer" : [ "Let you and me eat something rod shaped" ],
     "challenge" : [ "Ꭲ¹Ꮒ²ᏍᏗ²³Ꭶ", "i¹ni²sdi²³ga" ],
     "id" : 1116,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -10053,7 +10053,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) are usually seen" ],
+    "answer" : [ "You are usually seen" ],
     "challenge" : [ "Ꭱ¹Ꮳ̣²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "e¹jạ²gowh²ti²³sgọ³ɂi" ],
     "id" : 1118,
     "pgroup" : "Ꭱ¹Ꮳ̣²-, Ꭱ¹Ꮳ̣²-",
@@ -10071,7 +10071,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 27
   }, {
-    "answer" : [ "You (1) understood things a while ago" ],
+    "answer" : [ "You understood things a while ago" ],
     "challenge" : [ "Ꮥ²ᏦᎵ͓²Ꮸ²³Ꭲ", "de²johl²jv²³ɂi" ],
     "id" : 1120,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -10116,7 +10116,7 @@
     "vgroup" : "Ꭺ²Ꮂ²³Ꭲ",
     "vset" : 63
   }, {
-    "answer" : [ "He saw you (1) and me a while ago", "You (1) and I saw it a while ago" ],
+    "answer" : [ "He saw you and me a while ago", "You and I saw it a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭺ²Ꮂ²³Ꭲ", "gị²ni²go²hv²³ɂi" ],
     "id" : 1125,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -10170,7 +10170,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ*",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) be hungry" ],
+    "answer" : [ "Let you be hungry" ],
     "challenge" : [ "Ꮳ̣²Ᏺ¹Ꮟ²³Ꮜ", "jạ²yo¹si²³sa" ],
     "id" : 1131,
     "pgroup" : "Ꮳ̣²-",
@@ -10179,7 +10179,7 @@
     "vgroup" : "Ᏺ¹Ꮟ²³Ꮜ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I had living things a while ago" ],
+    "answer" : [ "You and I had living things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭷ̣²Ꮂ²³Ꭲ", "de²gị²ni²kạ²hv²³ɂi" ],
     "id" : 1132,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -10215,7 +10215,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ",
     "vset" : 7
   }, {
-    "answer" : [ "For you (1) and me to look at him" ],
+    "answer" : [ "For you and me to look at him" ],
     "challenge" : [ "Ꭱ¹Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "e¹nạ²ga¹to²³sdoh³di" ],
     "id" : 1136,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -10251,7 +10251,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 10
   }, {
-    "answer" : [ "For you (1) and me to look at them (animate)" ],
+    "answer" : [ "For you and me to look at them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "ge²nạ²ga¹to²³sdoh³di" ],
     "id" : 1140,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -10287,7 +10287,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 12
   }, {
-    "answer" : [ "For me to look at you (1)" ],
+    "answer" : [ "For me to look at you" ],
     "challenge" : [ "Ꭼ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "gv²yạ²ga¹to²³sdoh³di" ],
     "id" : 1144,
     "pgroup" : "Ꭼ²-, Ꭼ²Ꮿ͓-",
@@ -10332,7 +10332,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 15
   }, {
-    "answer" : [ "For me to look at you both", "For we two to look at you (1) or you both" ],
+    "answer" : [ "For me to look at you both", "For we two to look at you or you both" ],
     "challenge" : [ "ᏍᏛ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "sdv²yạ²ga¹to²³sdoh³di" ],
     "id" : 1149,
     "pgroup" : "ᏍᏛ²-, ᏍᏛ²Ꮿ͓-",
@@ -10341,7 +10341,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 16
   }, {
-    "answer" : [ "For you (1) and me to be looked at" ],
+    "answer" : [ "For you and me to be looked at" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "e¹gị²nạ²ga¹to²³sdoh³di" ],
     "id" : 1150,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -10350,7 +10350,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 17
   }, {
-    "answer" : [ "Let us, me, two, or we all look at you all", "Let us all look at you (1), two" ],
+    "answer" : [ "Let us, me, two, or we all look at you all", "Let us all look at you, two" ],
     "challenge" : [ "Ꮻ¹Ꮸ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏓ", "wi¹jv²yạ²ga¹to²³sda" ],
     "id" : 1151,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -10368,7 +10368,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 18
   }, {
-    "answer" : [ "They are often seeing you (1)" ],
+    "answer" : [ "They are often seeing you" ],
     "challenge" : [ "Ꭸ²Ꮳ̣²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "ge²jạ²gowh²ti²³sgọ³ɂi" ],
     "id" : 1153,
     "pgroup" : "Ꭸ²Ꮳ̣²-, Ꭸ²Ꮳ̣²-",
@@ -10377,7 +10377,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 18
   }, {
-    "answer" : [ "You (1) are seeing me" ],
+    "answer" : [ "You are seeing me" ],
     "challenge" : [ "ᏍᎩ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "sgị²gowh²tị³ha" ],
     "id" : 1154,
     "pgroup" : "ᏍᎩ̣²-, ᏍᏆ͓-",
@@ -10458,7 +10458,7 @@
     "vgroup" : "Ꮎ̣³Ꭳ³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) were recently hungry" ],
+    "answer" : [ "You were recently hungry" ],
     "challenge" : [ "Ꮳ̣²Ᏺ¹Ꮟ²³Ꮜ²", "jạ²yo¹si²³sa²" ],
     "id" : 1163,
     "pgroup" : "Ꮳ̣²-",
@@ -10521,7 +10521,7 @@
     "vgroup" : "Ꮎ̣³Ꭳ³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I usually have flexible things" ],
+    "answer" : [ "You and I usually have flexible things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮎ̣³Ꭳ³Ꭲ", "de²gị²ni²nạ³o³ɂi" ],
     "id" : 1170,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -10584,7 +10584,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) and I will be having something solid" ],
+    "answer" : [ "You and I will be having something solid" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭾ³ᏍᏗ", "gị²ni²he³sdi" ],
     "id" : 1177,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -10602,7 +10602,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 15
   }, {
-    "answer" : [ "For you (1) to look at him" ],
+    "answer" : [ "For you to look at him" ],
     "challenge" : [ "Ꭿ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "hi²yạ²ga¹to²³sdoh³di" ],
     "id" : 1179,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -10611,7 +10611,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 19
   }, {
-    "answer" : [ "For us, me, two, or we all to look at you all", "For we all to look at you (1), two" ],
+    "answer" : [ "For us, me, two, or we all to look at you all", "For we all to look at you, two" ],
     "challenge" : [ "Ꭲ¹Ꮸ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "i¹jv²yạ²ga¹to²³sdoh³di" ],
     "id" : 1180,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -10620,7 +10620,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 20
   }, {
-    "answer" : [ "For you (1), two, or all to look at us all", "For you all to look at me" ],
+    "answer" : [ "For you, two, or all to look at us all", "For you all to look at me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "i¹sgi²yạ²ga¹to²³sdoh³di" ],
     "id" : 1181,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -10629,7 +10629,7 @@
     "vgroup" : "Ꭰ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ*",
     "vset" : 21
   }, {
-    "answer" : [ "For you (1) to look at them (animate)" ],
+    "answer" : [ "For you to look at them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꮿ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "gạ²hi²yạ²ga¹to²³sdoh³di" ],
     "id" : 1182,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -10656,7 +10656,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 39
   }, {
-    "answer" : [ "You (1) and I are being seen" ],
+    "answer" : [ "You and I are being seen" ],
     "challenge" : [ "Ꭱ¹Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "e¹gị²ni²gowh²tị³ha" ],
     "id" : 1185,
     "pgroup" : "Ꭱ¹Ꭹ̣²Ꮒ²-",
@@ -10728,7 +10728,7 @@
     "vgroup" : "Ꮎ̣³Ꭵ²³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I usually are drinking alcoholic drinks" ],
+    "answer" : [ "You and I usually are drinking alcoholic drinks" ],
     "challenge" : [ "Ꮥ³Ꮎ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ", "de³na¹tu²³gi³²sgo³ɂi" ],
     "id" : 1193,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -10755,7 +10755,7 @@
     "vgroup" : "Ꮎ̣³Ꭵ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I climbed it a while ago" ],
+    "answer" : [ "You and I climbed it a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮈ³²Ꮢ²³Ꭲ", "gị²ni²lv³²sv²³ɂi" ],
     "id" : 1196,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -10773,7 +10773,7 @@
     "vgroup" : "Ꮈ³²Ꮢ²³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I had flexible things a while ago" ],
+    "answer" : [ "You and I had flexible things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮎ̣³Ꭵ²³Ꭲ", "de²gị²ni²nạ³v²³ɂi" ],
     "id" : 1198,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -10800,7 +10800,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) and I looked at him a while ago" ],
+    "answer" : [ "You and I looked at him a while ago" ],
     "challenge" : [ "Ꭱ¹Ꮎ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "e¹na¹ga¹to²³stạ³nv²³ɂi" ],
     "id" : 1201,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -10827,7 +10827,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 8
   }, {
-    "answer" : [ "Let you (1) eat something rod shaped" ],
+    "answer" : [ "Let you eat something rod shaped" ],
     "challenge" : [ "Ꭿ̣²ᏍᏗ²³Ꭶ", "hị²sdi²³ga" ],
     "id" : 1204,
     "pgroup" : "Ꭿ̣²-",
@@ -10881,7 +10881,7 @@
     "vgroup" : "Ꭰ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ*",
     "vset" : 18
   }, {
-    "answer" : [ "You (1) are often seeing him" ],
+    "answer" : [ "You are often seeing him" ],
     "challenge" : [ "Ꭿ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "hi²gowh²ti²³sgọ³ɂi" ],
     "id" : 1210,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -10899,7 +10899,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 23
   }, {
-    "answer" : [ "I, we two, or we all are often seeing you all", "We all are often seeing you (1), two" ],
+    "answer" : [ "I, we two, or we all are often seeing you all", "We all are often seeing you, two" ],
     "challenge" : [ "Ꭲ¹Ꮸ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "i¹jv²gowh²ti²³sgọ³ɂi" ],
     "id" : 1212,
     "pgroup" : "Ꭲ¹Ꮸ²-, Ꭲ¹Ꮸ²Ꮿ͓-",
@@ -10917,7 +10917,7 @@
     "vgroup" : "Ꭰ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ",
     "vset" : 24
   }, {
-    "answer" : [ "You (1), two, or all are often seeing us all", "You all are often seeing me" ],
+    "answer" : [ "You, two, or all are often seeing us all", "You all are often seeing me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "i¹sgi²gowh²ti²³sgọ³ɂi" ],
     "id" : 1214,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -10926,7 +10926,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 25
   }, {
-    "answer" : [ "You (1) are often seeing them (animate)" ],
+    "answer" : [ "You are often seeing them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "gạ²hi²gowh²ti²³sgọ³ɂi" ],
     "id" : 1215,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -10980,7 +10980,7 @@
     "vgroup" : "Ᏺ¹Ꮟ²³Ꮜ²",
     "vset" : 3
   }, {
-    "answer" : [ "For you (1) and me to climb it" ],
+    "answer" : [ "For you and me to climb it" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮈ¹ᏍᏗ", "gị²ni²lv¹sdi" ],
     "id" : 1221,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -11007,7 +11007,7 @@
     "vgroup" : "Ꮈ¹ᏍᏗ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I will be having liquid things" ],
+    "answer" : [ "You and I will be having liquid things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮑ²Ꭾ³ᏍᏗ", "de²gị²ni²ne²he³sdi" ],
     "id" : 1224,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -11052,7 +11052,7 @@
     "vgroup" : "ᏁᏗ",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) usually have flexible things" ],
+    "answer" : [ "You usually have flexible things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮎ̣³Ꭳ³Ꭲ", "de²jạ²nạ³o³ɂi" ],
     "id" : 1229,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -11088,7 +11088,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) looked at him a while ago" ],
+    "answer" : [ "You looked at him a while ago" ],
     "challenge" : [ "Ꭿ²Ꮿ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "hi²ya¹ga¹to²³stạ³nv²³ɂi" ],
     "id" : 1233,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -11115,7 +11115,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 49
   }, {
-    "answer" : [ "You (1) and I are seeing them (inanimate)" ],
+    "answer" : [ "You and I are seeing them (inanimate)" ],
     "challenge" : [ "Ꮥ³Ꮒ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de³ni²gowh²tị³ha" ],
     "id" : 1236,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -11142,7 +11142,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 52
   }, {
-    "answer" : [ "You (1) are seeing them (inanimate)" ],
+    "answer" : [ "You are seeing them (inanimate)" ],
     "challenge" : [ "Ꮥ²Ꭿ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "de²hị²gowh²tị³ha" ],
     "id" : 1239,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -11160,7 +11160,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 54
   }, {
-    "answer" : [ "You (1) saw it a while ago", "He saw you (1) a while ago" ],
+    "answer" : [ "You saw it a while ago", "He saw you a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꭺ²Ꮂ²³Ꭲ", "jạ²go²hv²³ɂi" ],
     "id" : 1241,
     "pgroup" : "Ꮳ̣²-",
@@ -11205,7 +11205,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I ate rod shaped things a while ago" ],
+    "answer" : [ "You and I ate rod shaped things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "de²gị²ni¹sdi³gv²³ɂi" ],
     "id" : 1246,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -11214,7 +11214,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) are usually baking things" ],
+    "answer" : [ "You are usually baking things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ", "de²hị³du²hṿ²sgo³ɂi" ],
     "id" : 1247,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -11295,7 +11295,7 @@
     "vgroup" : "Ꮎ̣³Ꭰ",
     "vset" : 15
   }, {
-    "answer" : [ "You (1) will be having something solid" ],
+    "answer" : [ "You will be having something solid" ],
     "challenge" : [ "Ꮳ̣²Ꭾ³ᏍᏗ", "jạ²he³sdi" ],
     "id" : 1256,
     "pgroup" : "Ꮳ̣²-",
@@ -11322,7 +11322,7 @@
     "vgroup" : "Ꭲ¹Ꭹ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) are usually gathering things" ],
+    "answer" : [ "You are usually gathering things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ", "de²hị³hli²si²³sgọ³ɂi" ],
     "id" : 1259,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -11331,7 +11331,7 @@
     "vgroup" : "ɂ³Ꮯ²Ꮟ²³ᏍᎪ̣Ꭲ",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) climbed it a while ago" ],
+    "answer" : [ "You climbed it a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮈ³²Ꮢ²³Ꭲ", "jạ²lv³²sv²³ɂi" ],
     "id" : 1260,
     "pgroup" : "Ꮳ̣²-",
@@ -11439,7 +11439,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 32
   }, {
-    "answer" : [ "You (1) and I understood things a while ago" ],
+    "answer" : [ "You and I understood things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²ᏃᎵ͓²Ꮸ²³Ꭲ", "de²gị²nohl²jv²³ɂi" ],
     "id" : 1272,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -11466,7 +11466,7 @@
     "vgroup" : "ᎣᎵ͓²Ꮸ²³Ꭲ",
     "vset" : 34
   }, {
-    "answer" : [ "You (1) and I are often seeing him" ],
+    "answer" : [ "You and I are often seeing him" ],
     "challenge" : [ "Ꭱ¹Ꮒ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "e¹ni²gowh²ti²³sgọ³ɂi" ],
     "id" : 1275,
     "pgroup" : "Ꭱ¹Ꮒ²-",
@@ -11493,7 +11493,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 36
   }, {
-    "answer" : [ "You (1) and I are often seeing them (animate)" ],
+    "answer" : [ "You and I are often seeing them (animate)" ],
     "challenge" : [ "Ꭸ²Ꮒ²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "ge²ni²gowh²ti²³sgọ³ɂi" ],
     "id" : 1278,
     "pgroup" : "Ꭸ²Ꮒ²-",
@@ -11538,7 +11538,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 39
   }, {
-    "answer" : [ "You (1) usually are wanting him" ],
+    "answer" : [ "You usually are wanting him" ],
     "challenge" : [ "Ꭿ²Ꮿ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "hi²yạ²du²li²³sgọ³ɂi" ],
     "id" : 1283,
     "pgroup" : "Ꭿ²-, Ꭿ²Ꮿ͓-",
@@ -11556,7 +11556,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 43
   }, {
-    "answer" : [ "You (1), two, or all usually are wanting us all", "You all usually are wanting me" ],
+    "answer" : [ "You, two, or all usually are wanting us all", "You all usually are wanting me" ],
     "challenge" : [ "Ꭲ¹ᏍᎩ²Ꮿ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "i¹sgi²yạ²du²li²³sgọ³ɂi" ],
     "id" : 1285,
     "pgroup" : "Ꭲ¹ᏍᎩ²-, Ꭲ¹ᏍᎩ²Ꮿ͓-",
@@ -11574,7 +11574,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 45
   }, {
-    "answer" : [ "You (1) usually are wanting them (animate)" ],
+    "answer" : [ "You usually are wanting them (animate)" ],
     "challenge" : [ "Ꭶ̣²Ꭿ²Ꮿ̣²Ꮪ²Ꮅ²³ᏍᎪ̣³Ꭲ", "gạ²hi²yạ²du²li²³sgọ³ɂi" ],
     "id" : 1287,
     "pgroup" : "Ꭶ̣²Ꭿ²-, Ꭶ̣²Ꭿ²Ꮿ͓-",
@@ -11610,7 +11610,7 @@
     "vgroup" : "Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) and I usually are eating rod shaped things" ],
+    "answer" : [ "You and I usually are eating rod shaped things" ],
     "challenge" : [ "Ꮥ³Ꮒ¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "de³ni¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1291,
     "pgroup" : "Ꮥ³Ꮒ²-",
@@ -11619,7 +11619,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) usually are eating rod shaped things" ],
+    "answer" : [ "You usually are eating rod shaped things" ],
     "challenge" : [ "Ꮥ²Ꭿ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "de²hị¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1292,
     "pgroup" : "Ꮥ²Ꭿ̣²-, Ꮥ²Ꭿ̣²-",
@@ -11628,7 +11628,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 6
   }, {
-    "answer" : [ "For you (1) to climb it" ],
+    "answer" : [ "For you to climb it" ],
     "challenge" : [ "Ꮳ̣²Ꮈ¹ᏍᏗ", "jạ²lv¹sdi" ],
     "id" : 1293,
     "pgroup" : "Ꮳ̣²-",
@@ -11808,7 +11808,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I drank alcoholic drinks a while ago" ],
+    "answer" : [ "You and I drank alcoholic drinks a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ", "de²gị²nạ¹tu²³gi³²sv²³ɂi" ],
     "id" : 1313,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -11844,7 +11844,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ²",
     "vset" : 9
   }, {
-    "answer" : [ "You (1) ate rod shaped things a while ago" ],
+    "answer" : [ "You ate rod shaped things a while ago" ],
     "challenge" : [ "Ꮥ²Ꮳ̣¹ᏍᏗ³Ꭼ²³Ꭲ", "de²jạ¹sdi³gv²³ɂi" ],
     "id" : 1317,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -11862,7 +11862,7 @@
     "vgroup" : "ɂᏯ³Ꭵ²³Ꭲ",
     "vset" : 14
   }, {
-    "answer" : [ "You (1) usually have a liquid" ],
+    "answer" : [ "You usually have a liquid" ],
     "challenge" : [ "Ꮳ̣²Ꮑ²Ꮀ³Ꭲ", "jạ²ne²ho³ɂi" ],
     "id" : 1319,
     "pgroup" : "Ꮳ̣²-",
@@ -11889,7 +11889,7 @@
     "vgroup" : "Ꭳ²Ꮅ¹Ꮸ²³Ꭲ*",
     "vset" : 27
   }, {
-    "answer" : [ "Let you (1) and me understand it" ],
+    "answer" : [ "Let you and me understand it" ],
     "challenge" : [ "Ꭲ¹ᏃᎵ͓²Ꭹ", "i¹nohl²gi" ],
     "id" : 1322,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -11934,7 +11934,7 @@
     "vgroup" : "ɂᏰ³ᏍᎪ³Ꭲ*",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I will be having living things" ],
+    "answer" : [ "You and I will be having living things" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꭷ̣²Ꭾ³ᏍᏗ", "de²gị²ni²kạ²he³sdi" ],
     "id" : 1327,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -12015,7 +12015,7 @@
     "vgroup" : "Ꭰ¹Ꮧ̣²Ꭰ*",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) drank drinks a while ago" ],
+    "answer" : [ "You drank drinks a while ago" ],
     "challenge" : [ "Ꮥ²Ꮷ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ", "de²ju¹di²tạ²hv²³ɂi" ],
     "id" : 1336,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -12096,7 +12096,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 39
   }, {
-    "answer" : [ "For you (1) and me to understand it", "For him to recognize you (1) and me" ],
+    "answer" : [ "For you and me to understand it", "For him to recognize you and me" ],
     "challenge" : [ "Ꭹ̣²Ꮓ²Ꮅ³ᏍᏗ", "gị²no²hlị³sdi" ],
     "id" : 1345,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -12150,7 +12150,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 3
   }, {
-    "answer" : [ "You (1) and I gathered things a while ago" ],
+    "answer" : [ "You and I gathered things a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ³Ꮯ²Ꮜ̣²Ꮕ²³Ꭲ", "de²gị²ni³hli²sạ²hnv²³ɂi" ],
     "id" : 1351,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -12231,7 +12231,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮦ³ᏍᏗ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) said a while ago" ],
+    "answer" : [ "You said a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮫ²Ꮕ²³Ꭲ", "jạ²dv²hnv²³ɂi" ],
     "id" : 1360,
     "pgroup" : "Ꮳ̣²-",
@@ -12258,7 +12258,7 @@
     "vgroup" : "Ꭰ̣²Ꮫ²Ꮕ²³Ꭲ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) are often saying" ],
+    "answer" : [ "You are often saying" ],
     "challenge" : [ "Ꭽ̣²Ꮧ²³ᏍᎪ³Ꭲ", "hạ²di²³sgo³ɂi" ],
     "id" : 1363,
     "pgroup" : "Ꭿ̣²-",
@@ -12294,7 +12294,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) and I drank drinks a while ago" ],
+    "answer" : [ "You and I drank drinks a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮔ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ", "de²gị²nu¹di²tạ²hv²³ɂi" ],
     "id" : 1367,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -12321,7 +12321,7 @@
     "vgroup" : "ᎣᎵ͓²Ꭺ³Ꭲ",
     "vset" : 36
   }, {
-    "answer" : [ "You (1) and I usually understand it" ],
+    "answer" : [ "You and I usually understand it" ],
     "challenge" : [ "Ꭲ¹ᏃᎵ͓²Ꭺ³Ꭲ", "i¹nohl²go³ɂi" ],
     "id" : 1370,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -12375,7 +12375,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮩ³ɂᎢ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) will be knowing things" ],
+    "answer" : [ "You will be knowing things" ],
     "challenge" : [ "Ꮥ²Ꮳ̣²Ꮕ͓Ꮦ³ᏍᏗ", "de²jạ²nhte³sdi" ],
     "id" : 1376,
     "pgroup" : "Ꮥ²Ꮳ̣²-, Ꮥ²Ꮳ̣²-",
@@ -12384,7 +12384,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮦ³ᏍᏗ",
     "vset" : 2
   }, {
-    "answer" : [ "You (1) and I said a while ago" ],
+    "answer" : [ "You and I said a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣²Ꮫ²Ꮕ²³Ꭲ", "gị²nạ²dv²hnv²³ɂi" ],
     "id" : 1377,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -12438,7 +12438,7 @@
     "vgroup" : "Ꭰ̣²Ꮕ͓Ꮫ²³ɂᎢ",
     "vset" : 1
   }, {
-    "answer" : [ "For you (1) and me to say it" ],
+    "answer" : [ "For you and me to say it" ],
     "challenge" : [ "Ꭹ̣²Ꮎ̣Ꮨ͓²Ꮧ", "gị²nạt²di" ],
     "id" : 1383,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -12528,7 +12528,7 @@
     "vgroup" : "Ꭰ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ",
     "vset" : 29
   }, {
-    "answer" : [ "You (1) and I looked at them (inanimate) a while ago" ],
+    "answer" : [ "You and I looked at them (inanimate) a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮎ¹Ꭶ͓Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "de²gị²na¹kto²³stạ³nv²³ɂi" ],
     "id" : 1393,
     "pgroup" : "Ꮥ²Ꭹ̣²Ꮒ²-",
@@ -12564,7 +12564,7 @@
     "vgroup" : "ᏍᏗ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "For you (1) to say it" ],
+    "answer" : [ "For you to say it" ],
     "challenge" : [ "Ꮳ̣Ꮨ͓²Ꮧ", "jạt²di" ],
     "id" : 1397,
     "pgroup" : "Ꮳ̣²-",
@@ -12672,7 +12672,7 @@
     "vgroup" : "ɂᎧ̣²Ꭾ³ᏍᏗ",
     "vset" : 8
   }, {
-    "answer" : [ "You (1) and I usually have something alive" ],
+    "answer" : [ "You and I usually have something alive" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭷ̣²Ꮀ³Ꭲ", "gị²ni²kạ²ho³ɂi" ],
     "id" : 1409,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -12681,7 +12681,7 @@
     "vgroup" : "ɂᎧ̣²Ꮀ³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) understood it a while ago", "He recognized you (1) a while ago" ],
+    "answer" : [ "You understood it a while ago", "He recognized you a while ago" ],
     "challenge" : [ "ᏦᎵ͓²Ꮸ²³Ꭲ", "johl²jv²³ɂi" ],
     "id" : 1410,
     "pgroup" : "Ꮳ̣²-",
@@ -12771,7 +12771,7 @@
     "vgroup" : "Ꮎ̣³Ꭳ³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "Let you (1) drink something" ],
+    "answer" : [ "Let you drink something" ],
     "challenge" : [ "Ꭿ͓Ꭽ̣²Ꮧ²³Ꮤ", "ha²di²³ta" ],
     "id" : 1420,
     "pgroup" : "Ꭿ̣²-",
@@ -12780,7 +12780,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I had something alive a while ago" ],
+    "answer" : [ "You and I had something alive a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꭷ̣²Ꮂ²³Ꭲ", "gị²ni²kạ²hv²³ɂi" ],
     "id" : 1421,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -12879,7 +12879,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) and I are eating something rod shaped" ],
+    "answer" : [ "You and I are eating something rod shaped" ],
     "challenge" : [ "Ꭲ¹Ꮒ¹ᏍᏗ²³Ꭹ̣³Ꭰ", "i¹ni¹sdi²³gị³ɂa" ],
     "id" : 1432,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -12888,7 +12888,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) recently drank something" ],
+    "answer" : [ "You recently drank something" ],
     "challenge" : [ "Ꭿ͓Ꭽ̣²Ꮧ²³Ꮤ²", "ha²di²³ta²" ],
     "id" : 1433,
     "pgroup" : "Ꭿ̣²-",
@@ -12906,7 +12906,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 11
   }, {
-    "answer" : [ "You (1) and I usually have something flexible" ],
+    "answer" : [ "You and I usually have something flexible" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮎ̣³Ꭳ³Ꭲ", "gị²ni²nạ³o³ɂi" ],
     "id" : 1435,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -12924,7 +12924,7 @@
     "vgroup" : "Ꭾ³ᏍᏗ",
     "vset" : 20
   }, {
-    "answer" : [ "For you (1) or both to look at us both" ],
+    "answer" : [ "For you or you both to look at us both" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ̣²Ꭶ¹Ꮩ²³ᏍᏙᏗ", "sgị²nạ²ga¹to²³sdoh³di" ],
     "id" : 1437,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -12987,7 +12987,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ²",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) usually have something alive" ],
+    "answer" : [ "You usually have something alive" ],
     "challenge" : [ "Ꮳ̣²Ꭷ̣²Ꮀ³Ꭲ", "jạ²kạ²ho³ɂi" ],
     "id" : 1444,
     "pgroup" : "Ꮳ̣²-",
@@ -12996,7 +12996,7 @@
     "vgroup" : "ɂᎧ̣²Ꮀ³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "Let you (1) and me drink something" ],
+    "answer" : [ "Let you and me drink something" ],
     "challenge" : [ "Ꭲ¹Ꮒ͓Ꭽ̣²Ꮧ²³Ꮤ", "i¹na²di²³ta" ],
     "id" : 1445,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -13005,7 +13005,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) and I had something flexible a while ago" ],
+    "answer" : [ "You and I had something flexible a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮎ̣³Ꭵ²³Ꭲ", "gị²ni²nạ³v²³ɂi" ],
     "id" : 1446,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13077,7 +13077,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) and I will be having a liquid" ],
+    "answer" : [ "You and I will be having a liquid" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²Ꮑ²Ꭾ³ᏍᏗ", "gị²ni²ne²he³sdi" ],
     "id" : 1454,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13086,7 +13086,7 @@
     "vgroup" : "Ꮑ²Ꭾ³ᏍᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) had something alive a while ago" ],
+    "answer" : [ "You had something alive a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꭷ̣²Ꮂ²³Ꭲ", "jạ²kạ²hv²³ɂi" ],
     "id" : 1455,
     "pgroup" : "Ꮳ̣²-",
@@ -13095,7 +13095,7 @@
     "vgroup" : "ɂᎧ̣²Ꮂ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) and I recently drank something" ],
+    "answer" : [ "You and I recently drank something" ],
     "challenge" : [ "Ꭲ¹Ꮒ͓Ꭽ̣²Ꮧ²³Ꮤ²", "i¹na²di²³ta²" ],
     "id" : 1456,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -13131,7 +13131,7 @@
     "vgroup" : "Ꭲ¹ᏍᎩ²Ꮩ²Ꮣ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) and I were recently thirsty" ],
+    "answer" : [ "You and I were recently thirsty" ],
     "challenge" : [ "Ꮥ³Ꮒ²Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²", "de³ni²tạ²de²gv¹ga²" ],
     "id" : 1460,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -13149,7 +13149,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²",
     "vset" : 5
   }, {
-    "answer" : [ "You (1) and I ate something rod shaped a while ago" ],
+    "answer" : [ "You and I ate something rod shaped a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮒ¹ᏍᏗ³Ꭼ²³Ꭲ", "gị²ni¹sdi³gv²³ɂi" ],
     "id" : 1462,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13158,7 +13158,7 @@
     "vgroup" : "¹ᏍᏗ³Ꭼ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) usually have something flexible" ],
+    "answer" : [ "You usually have something flexible" ],
     "challenge" : [ "Ꮳ̣²Ꮎ̣³Ꭳ³Ꭲ", "jạ²nạ³o³ɂi" ],
     "id" : 1463,
     "pgroup" : "Ꮳ̣²-",
@@ -13203,7 +13203,7 @@
     "vgroup" : "Ꭲ¹Ꮳ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) and me be thirsty" ],
+    "answer" : [ "Let you and me be thirsty" ],
     "challenge" : [ "Ꮧ¹Ꮒ²Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ", "di¹ni²tạ²de²gv¹ga" ],
     "id" : 1468,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -13248,7 +13248,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ³²Ꮢ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) had something flexible a while ago" ],
+    "answer" : [ "You had something flexible a while ago" ],
     "challenge" : [ "Ꮳ̣²Ꮎ̣³Ꭵ²³Ꭲ", "jạ²nạ³v²³ɂi" ],
     "id" : 1473,
     "pgroup" : "Ꮳ̣²-",
@@ -13284,7 +13284,7 @@
     "vgroup" : "Ꮑ²Ꮀ³Ꭲ",
     "vset" : 20
   }, {
-    "answer" : [ "You (1) or both looked at us both a while ago" ],
+    "answer" : [ "You or you both looked at us both a while ago" ],
     "challenge" : [ "ᏍᎩ̣²Ꮎ¹Ꭶ¹Ꮩ²³ᏍᏔ̣³Ꮕ²³Ꭲ", "sgị²na¹ga¹to²³stạ³nv²³ɂi" ],
     "id" : 1477,
     "pgroup" : "ᏍᎩ̣²Ꮒ²-",
@@ -13329,7 +13329,7 @@
     "vgroup" : "Ᏺ³Ꮟ̣²Ꭽ",
     "vset" : 3
   }, {
-    "answer" : [ "Let you (1) be thirsty" ],
+    "answer" : [ "Let you be thirsty" ],
     "challenge" : [ "Ꭿ̣²Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ", "hị²tạ²de²gv¹ga" ],
     "id" : 1482,
     "pgroup" : "Ꭿ̣²-",
@@ -13347,7 +13347,7 @@
     "vgroup" : "Ꭰ̣¹Ꮪ²³Ꭹ̣³Ꭰ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) will be having a liquid" ],
+    "answer" : [ "You will be having a liquid" ],
     "challenge" : [ "Ꮳ̣²Ꮑ²Ꭾ³ᏍᏗ", "jạ²ne²he³sdi" ],
     "id" : 1484,
     "pgroup" : "Ꮳ̣²-",
@@ -13374,7 +13374,7 @@
     "vgroup" : "Ᏺ³Ꮟ̣²Ꭽ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) were recently thirsty" ],
+    "answer" : [ "You were recently thirsty" ],
     "challenge" : [ "Ꭿ̣²Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ²", "hị²tạ²de²gv¹ga²" ],
     "id" : 1487,
     "pgroup" : "Ꭿ̣²-",
@@ -13410,7 +13410,7 @@
     "vgroup" : "ᏍᏗ²³Ꭶ",
     "vset" : 19
   }, {
-    "answer" : [ "You (1) and I understood it a while ago", "He recognized you (1) and me a while ago" ],
+    "answer" : [ "You and I understood it a while ago", "He recognized you and me a while ago" ],
     "challenge" : [ "Ꭹ̣²ᏃᎵ͓²Ꮸ²³Ꭲ", "gị²nohl²jv²³ɂi" ],
     "id" : 1491,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13455,7 +13455,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ",
     "vset" : 4
   }, {
-    "answer" : [ "You (1) and I were recently hungry" ],
+    "answer" : [ "You and I were recently hungry" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ᏺ¹Ꮟ²³Ꮜ²", "de²gị²ni²yo¹si²³sa²" ],
     "id" : 1496,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13554,7 +13554,7 @@
     "vgroup" : "Ꭰ̣²Ꮧ²³ᏍᎪ³Ꭲ",
     "vset" : 8
   }, {
-    "answer" : [ "For you (1) and me to have a liquid" ],
+    "answer" : [ "For you and me to have a liquid" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²ᏁᏗ", "dị²gị²ni²neh²di" ],
     "id" : 1507,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -13563,7 +13563,7 @@
     "vgroup" : "ᏁᏗ",
     "vset" : 9
   }, {
-    "answer" : [ "You (1) are eating something rod shaped" ],
+    "answer" : [ "You are eating something rod shaped" ],
     "challenge" : [ "Ꭿ̣¹ᏍᏗ²³Ꭹ̣³Ꭰ", "hị¹sdi²³gị³ɂa" ],
     "id" : 1508,
     "pgroup" : "Ꭿ̣²-",
@@ -13626,7 +13626,7 @@
     "vgroup" : "ɂ³Ꮪ²Ꮕ²³Ꭲ",
     "vset" : 18
   }, {
-    "answer" : [ "You (1) are seeing it" ],
+    "answer" : [ "You are seeing it" ],
     "challenge" : [ "Ꭿ̣²ᎪᏩ͓²Ꮨ̣³Ꭽ", "hị²gowh²tị³ha" ],
     "id" : 1515,
     "pgroup" : "Ꭿ̣²-",
@@ -13635,7 +13635,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ̣³Ꭽ",
     "vset" : 63
   }, {
-    "answer" : [ "You (1) and I are seeing it" ],
+    "answer" : [ "You and I are seeing it" ],
     "challenge" : [ "Ꭲ¹Ꮒ²ᎪᏩ͓²Ꮨ̣³Ꭽ", "i¹ni²gowh²tị³ha" ],
     "id" : 1516,
     "pgroup" : "Ꭲ¹Ꮒ²-",
@@ -13671,7 +13671,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ",
     "vset" : 9
   }, {
-    "answer" : [ "You (1) are usually baking something" ],
+    "answer" : [ "You are usually baking something" ],
     "challenge" : [ "Ꭿ̣³Ꮪ²Ꮂ̣²ᏍᎪ³Ꭲ", "hị³du²hṿ²sgo³ɂi" ],
     "id" : 1520,
     "pgroup" : "Ꭿ̣²-",
@@ -13689,7 +13689,7 @@
     "vgroup" : "¹ᏍᏗ²³Ꭹ̣³Ꭰ",
     "vset" : 15
   }, {
-    "answer" : [ "You (1) ate something rod shaped a while ago" ],
+    "answer" : [ "You ate something rod shaped a while ago" ],
     "challenge" : [ "Ꮳ̣¹ᏍᏗ³Ꭼ²³Ꭲ", "jạ¹sdi³gv²³ɂi" ],
     "id" : 1522,
     "pgroup" : "Ꮳ̣²-",
@@ -13797,7 +13797,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 10
   }, {
-    "answer" : [ "You (1) usually are eating something rod shaped" ],
+    "answer" : [ "You usually are eating something rod shaped" ],
     "challenge" : [ "Ꭿ̣¹ᏍᏗ²³Ꭹ³²ᏍᎪ³Ꭲ", "hị¹sdi²³gi³²sgo³ɂi" ],
     "id" : 1534,
     "pgroup" : "Ꭿ̣²-",
@@ -13842,7 +13842,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭼ¹Ꭶ",
     "vset" : 5
   }, {
-    "answer" : [ "For you (1) to drink something" ],
+    "answer" : [ "For you to drink something" ],
     "challenge" : [ "Ꮷ²Ꮧ²Ꮤ̣²ᏍᏗ", "ja²di²tạ²sdi" ],
     "id" : 1539,
     "pgroup" : "Ꮳ̣²-",
@@ -13923,7 +13923,7 @@
     "vgroup" : "Ᏺ³Ꮟ̣²Ꭽ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) drank something a while ago" ],
+    "answer" : [ "You drank something a while ago" ],
     "challenge" : [ "Ꮷ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ", "ju¹di²tạ²hv²³ɂi" ],
     "id" : 1548,
     "pgroup" : "Ꮳ̣²-",
@@ -13977,7 +13977,7 @@
     "vgroup" : "ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ",
     "vset" : 60
   }, {
-    "answer" : [ "You (1) are often seeing it" ],
+    "answer" : [ "You are often seeing it" ],
     "challenge" : [ "Ꭿ̣²ᎪᏩ͓²Ꮨ²³ᏍᎪ̣³Ꭲ", "hị²gowh²ti²³sgọ³ɂi" ],
     "id" : 1554,
     "pgroup" : "Ꭿ̣²-",
@@ -14031,7 +14031,7 @@
     "vgroup" : "Ꭳ²Ꮅ³ᏍᏗ",
     "vset" : 45
   }, {
-    "answer" : [ "For him to see you (1) and me", "For you (1) and me to see it" ],
+    "answer" : [ "For him to see you and me", "For you and me to see it" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²ᎪᏩ͓²Ꮫ³Ꮧ", "gị²ni²gowh²tvh³di" ],
     "id" : 1560,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14094,7 +14094,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 12
   }, {
-    "answer" : [ "You (1) will be having something alive" ],
+    "answer" : [ "You will be having something alive" ],
     "challenge" : [ "Ꮳ̣²Ꭷ̣²Ꭾ³ᏍᏗ", "jạ²kạ²he³sdi" ],
     "id" : 1567,
     "pgroup" : "Ꮳ̣²-",
@@ -14103,7 +14103,7 @@
     "vgroup" : "ɂᎧ̣²Ꭾ³ᏍᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "For you (1) and me to eat something rod shaped" ],
+    "answer" : [ "For you and me to eat something rod shaped" ],
     "challenge" : [ "Ꭹ̣²Ꮒ²ᏍᏗ²³Ꭹ³²ᏍᏗ", "gị²ni²sdi²³gi³²sdi" ],
     "id" : 1568,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14157,7 +14157,7 @@
     "vgroup" : "Ꭽ̣²Ꮧ²³Ꮤ",
     "vset" : 18
   }, {
-    "answer" : [ "For you (1) to see it", "For him to see you (1)" ],
+    "answer" : [ "For you to see it", "For him to see you" ],
     "challenge" : [ "Ꮳ̣²ᎪᏩ͓²Ꮫ³Ꮧ", "jạ²gowh²tvh³di" ],
     "id" : 1574,
     "pgroup" : "Ꮳ̣²-",
@@ -14202,7 +14202,7 @@
     "vgroup" : "Ꭴ²Ꮧ²Ꮤ̣²ᏍᏗ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) will be having something flexible" ],
+    "answer" : [ "You will be having something flexible" ],
     "challenge" : [ "Ꮳ̣²Ꮎ̣³Ꭱ³ᏍᏗ", "jạ²nạ³e³sdi" ],
     "id" : 1579,
     "pgroup" : "Ꮳ̣²-",
@@ -14211,7 +14211,7 @@
     "vgroup" : "Ꮎ̣³Ꭱ³ᏍᏗ",
     "vset" : 14
   }, {
-    "answer" : [ "For you (1) and me to drink something" ],
+    "answer" : [ "For you and me to drink something" ],
     "challenge" : [ "Ꭹ̣²Ꮔ²Ꮧ²Ꮤ̣²ᏍᏗ", "gị²na²di²tạ²sdi" ],
     "id" : 1580,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14283,7 +14283,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 13
   }, {
-    "answer" : [ "You (1) and I drank something a while ago" ],
+    "answer" : [ "You and I drank something a while ago" ],
     "challenge" : [ "Ꭹ̣²Ꮔ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ", "gị²nu¹di²tạ²hv²³ɂi" ],
     "id" : 1588,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14391,7 +14391,7 @@
     "vgroup" : "Ꭳ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "Let you (1) and me be hungry" ],
+    "answer" : [ "Let you and me be hungry" ],
     "challenge" : [ "Ꮧ̣²Ꭹ̣²Ꮒ²Ᏺ¹Ꮟ²³Ꮜ", "dị²gị²ni²yo¹si²³sa" ],
     "id" : 1600,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14454,7 +14454,7 @@
     "vgroup" : "Ꭴ¹Ꮧ²Ꮤ̣²Ꮂ²³Ꭲ",
     "vset" : 16
   }, {
-    "answer" : [ "For you (1) to eat something rod shaped" ],
+    "answer" : [ "For you to eat something rod shaped" ],
     "challenge" : [ "Ꮳ͓ᏍᏗ²³Ꭹ³²ᏍᏗ", "tssdi²³gi³²sdi" ],
     "id" : 1607,
     "pgroup" : "Ꮳ̣²-",
@@ -14490,7 +14490,7 @@
     "vgroup" : "Ꮶ¹Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "For you (1) to be thirsty" ],
+    "answer" : [ "For you to be thirsty" ],
     "challenge" : [ "Ꮳ͓Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ", "tstạ²de²³go³²di" ],
     "id" : 1611,
     "pgroup" : "Ꮳ̣²-",
@@ -14535,7 +14535,7 @@
     "vgroup" : "Ꮧ̣²Ꭹ̣²Ꮎ²Ꮅ̣²Ꭲ",
     "vset" : 1
   }, {
-    "answer" : [ "You (1) are thirsty" ],
+    "answer" : [ "You are thirsty" ],
     "challenge" : [ "Ꮳ͓Ꮤ̣²Ꮥ²Ꭹ³Ꭰ", "tstạ²de²gi³ɂa" ],
     "id" : 1616,
     "pgroup" : "Ꮳ̣²-",
@@ -14679,7 +14679,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²³Ꭺ³²Ꮧ",
     "vset" : 7
   }, {
-    "answer" : [ "You (1) and I are thirsty" ],
+    "answer" : [ "You and I are thirsty" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮤ̣²Ꮥ²Ꭹ³Ꭰ", "de²gị²ni²tạ²de²gi³ɂa" ],
     "id" : 1632,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
@@ -14751,7 +14751,7 @@
     "vgroup" : "Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ",
     "vset" : 6
   }, {
-    "answer" : [ "You (1) and I were thirsty a while ago" ],
+    "answer" : [ "You and I were thirsty a while ago" ],
     "challenge" : [ "Ꮥ²Ꭹ̣²Ꮒ²Ꮤ̣²Ꮥ²Ꭶ³²Ꮕ²³Ꭲ", "de²gị²ni²tạ²de²ga³²nv²³ɂi" ],
     "id" : 1640,
     "pgroup" : "Ꭹ̣²Ꮒ²-",
