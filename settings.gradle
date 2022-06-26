@@ -1,4 +1,4 @@
-include 'desktop', 'android', 'ios', 'core' //, 'training-audio'
+include 'desktop', 'android', 'ios', 'core'//, 'training-audio'
 
 //include "LeitnerCards"
 //project(":LeitnerCards").projectDir = new File("../LeitnerCards")

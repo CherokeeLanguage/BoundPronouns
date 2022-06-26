@@ -1,12 +1,14 @@
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath 'com.android.tools.build:gradle:4.0.0'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.12'
     }
 }
@@ -31,7 +33,9 @@ allprojects {
     }
 
     repositories {
+        //mavenLocal()
         mavenCentral()
+        jcenter()
         google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
@@ -121,17 +125,17 @@ project(":ios") {
 
 
   dependencies {
-        implementation project(":core")
-        implementation "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
-      implementation "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
-      implementation "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
-      implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
-      implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
+        compile project(":core")
+        compile "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
+        compile "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
+        compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
     }
     
     robovm {
 		iosSignIdentity = "Apple Distribution: Michael Joyner (43974U4CP4)"
-		iosSkipSigning = false
+		iosSkipSigning = false;
 		archs = "thumbv7:arm64"
 	}
 }
@@ -149,11 +153,11 @@ project(":core") {
 	}
 
     dependencies {
-        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
-        implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-
-        implementation 'org.apache.commons:commons-lang3:3.11'
-        implementation 'com.fasterxml.jackson.core:jackson-databind:2.6.7.4'
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        
+        compile 'org.apache.commons:commons-lang3:3.1'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
     }
     
     compileJava.doLast {
