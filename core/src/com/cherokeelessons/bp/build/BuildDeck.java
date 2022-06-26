@@ -436,7 +436,7 @@ public class BuildDeck {
 					if (d.def.contains("self")) {
 						d.def = d.def.replaceFirst("^[Hh]im", pronoun[3] + "-");
 						d.def = d.def.replace("I-self", "Myself");
-						d.def = d.def.replace("You one-self", "Your one self");
+						d.def = d.def.replace("You one-self", "Yourself");
 						d.def = d.def.replace("He-self", "Himself");
 						d.def = d.def.replace("We-self", "Ourselves");
 						d.def = d.def.replace("we-self", "ourselves");
@@ -858,48 +858,48 @@ public class BuildDeck {
 		d.def = d.def.replace("and I is", "and I are");
 		d.def = d.def.replace("and I usually is", "and I am usually");
 		d.def = d.def.replace("I is", "I am");
-		d.def = d.def.replace("You one is", "You one are");
+		d.def = d.def.replace("You one is", "You are");
 		d.def = d.def.replace("You two is", "You two are");
 		d.def = d.def.replace("You all is", "You all are");
 		d.def = d.def.replace("They is", "They are");
 
 		d.def = d.def.replace("and I was", "and I were");
-		d.def = d.def.replace("You one was", "You one were");
+		d.def = d.def.replace("You one was", "You were");
 		d.def = d.def.replace("You two was", "You two were");
 		d.def = d.def.replace("You all was", "You all were");
 		d.def = d.def.replace("They was", "They were");
 
 		d.def = d.def.replace("and I often is", "and I often are");
 		d.def = d.def.replace("I often is", "I often am");
-		d.def = d.def.replace("You one often is", "You one often are");
+		d.def = d.def.replace("You one often is", "You often are");
 		d.def = d.def.replace("You two often is", "You two often are");
 		d.def = d.def.replace("You all often is", "You all often are");
 		d.def = d.def.replace("They often is", "They often are");
 		
 		d.def = d.def.replace("and I usually is", "and I am usually");
 		d.def = d.def.replace("I usually is", "I am usually");
-		d.def = d.def.replace("You one usually is", "You one usually are");
+		d.def = d.def.replace("You one usually is", "You usually are");
 		d.def = d.def.replace("You two usually is", "You two usually are");
 		d.def = d.def.replace("You all usually is", "You all usually are");
 		d.def = d.def.replace("They usually is", "They usually are");
 
 		d.def = d.def.replace("and I has", "and I have");
 		d.def = d.def.replace("I has", "I have");
-		d.def = d.def.replace("You one has", "You one have");
+		d.def = d.def.replace("You one has", "You have");
 		d.def = d.def.replace("You two has", "You two have");
 		d.def = d.def.replace("You all has", "You all have");
 		d.def = d.def.replace("They has", "They have");
 
 		d.def = d.def.replace("and I often has", "and I often have");
 		d.def = d.def.replace("I often has", "I often have");
-		d.def = d.def.replace("You one often has", "You one often have");
+		d.def = d.def.replace("You one often has", "You often have");
 		d.def = d.def.replace("You two often has", "You two often have");
 		d.def = d.def.replace("You all often has", "You all often have");
 		d.def = d.def.replace("They often has", "They often have");
 		
 		d.def = d.def.replace("and I usually has", "and I usually have");
 		d.def = d.def.replace("I usually has", "I usually have");
-		d.def = d.def.replace("You one usually has", "You one usually have");
+		d.def = d.def.replace("You one usually has", "You usually have");
 		d.def = d.def.replace("You two usually has", "You two usually have");
 		d.def = d.def.replace("You all usually has", "You all usually have");
 		d.def = d.def.replace("They usually has", "They usually have");
@@ -957,7 +957,7 @@ public class BuildDeck {
 		 * Final replacements on the replacements for more succinct English.
 		 */
 		d.def = d.def.replace("You all and I, we", "All of us");
-		d.def = d.def.replace("You one and I, we", "You one and I");
+		d.def = d.def.replace("You one and I, we", "You and I");
 		d.def = d.def.replace("He and I, we", "He and I");
 
 		d.def = d.def.replace("They and I, we", "They and I");
@@ -968,8 +968,8 @@ public class BuildDeck {
 		d.def = d.def.replace("us, them and me,", "them and me");
 		d.def = d.def.replace("us, them and me", "them and me");
 
-		d.def = d.def.replace("us, you one and me,", "you one and me");
-		d.def = d.def.replace("us, you one and me", "you one and me");
+		d.def = d.def.replace("us, you one and me,", "you and me");
+		d.def = d.def.replace("us, you one and me", "you and me");
 
 		d.def = d.def.replace("us, him and me,", "him and me");
 		d.def = d.def.replace("us, him and me", "him and me");
@@ -994,14 +994,14 @@ public class BuildDeck {
 		/**
 		 * Final replacements.
 		 */
-		d.def = d.def.replace("you one or you two", "you one or both");
-		d.def = d.def.replace("You one or you two", "You one or both");
+		d.def = d.def.replace("you one or you two", "you or you both");
+		d.def = d.def.replace("You one or you two", "You or you both");
 
-		d.def = d.def.replace("you one or two", "you one or both");
-		d.def = d.def.replace("You one or two", "You one or both");
+		d.def = d.def.replace("you one or two", "you or you both");
+		d.def = d.def.replace("You one or two", "You or you both");
 
-		d.def = d.def.replace("you one", "you (1)");
-		d.def = d.def.replace("You one", "You (1)");
+		d.def = d.def.replace("you one", "you");
+		d.def = d.def.replace("You one", "You");
 
 		d.def = d.def.replace("you two", "you both");
 		d.def = d.def.replace("You two", "You both");
