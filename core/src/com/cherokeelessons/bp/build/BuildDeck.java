@@ -1449,7 +1449,7 @@ public class BuildDeck {
 			checkSheet.delete();
 		}
 
-		appendText(checkSheet, "ID|PSET|VSET|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ANSWER|FILENAME\n");
+		appendText(checkSheet, "ID|PSET|ALT_PRONOUNCE|PRONOUN|VERB|GENDER|SYLLABARY|PRONOUNCE|ENGLISH|INTRO NOTE|END NOTE\n");
 
 		final Set<String> already = new HashSet<>();
 		final StringBuilder tts = new StringBuilder();
@@ -1521,7 +1521,7 @@ public class BuildDeck {
 			check.append("|");
 			check.append(syllabary);
 			check.append("|");
-			check.append(CherokeeUtils.ced2mco_nfd(challenge));
+			check.append(CherokeeUtils.ced2mco_nfc(challenge));
 
 			check.append("|");
 			for (int ix = 0; ix < card.answer.size(); ix++) {
