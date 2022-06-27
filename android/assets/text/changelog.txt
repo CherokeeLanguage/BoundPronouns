@@ -1,3 +1,7 @@
+3.40
+
+Much improved IMS-Toucan replacement audio. Fixed two card sets with incorrect conjugations.
+
 3.36
 
 Tacotron2 replacement audio. No longer using espeak-ng.
