@@ -7,7 +7,7 @@ import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
 
 public class IOSLauncher extends IOSApplication.Delegate {
-	
+
     @Override
     protected IOSApplication createApplication() {
     	try {
@@ -16,10 +16,6 @@ public class IOSLauncher extends IOSApplication.Delegate {
 			config.allowIpod = true;
 			config.orientationLandscape = true;
 			config.orientationPortrait = false;
-			config.displayScaleLargeScreenIfNonRetina = 1.0f;
-			config.displayScaleLargeScreenIfRetina = 1.0f;
-			config.displayScaleSmallScreenIfNonRetina = 1.0f;
-			config.displayScaleSmallScreenIfRetina = 1.0f;
 			config.preventScreenDimming = true;
 			System.out.println("#IOSApplication");
 			return new IOSApplication(new BoundPronouns(), config);
