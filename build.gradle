@@ -18,11 +18,11 @@ allprojects {
     apply plugin: "eclipse"
     version = '3.39'
 
-	eclipse {
-	    classpath {
-	       downloadSources=true
-	    }
-	}
+    eclipse {
+        classpath {
+            downloadSources = true
+        }
+    }
     ext {
         appName = 'BoundPronouns'
         gdxVersion = "1.11.0" // '1.9.13'
@@ -50,7 +50,7 @@ project(":desktop") {
         }
     }
 
-	archivesBaseName = 'BoundPronouns'
+    archivesBaseName = 'BoundPronouns'
 
     dependencies {
         implementation project(":core")
@@ -62,7 +62,7 @@ project(":desktop") {
         api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-        
+
     }
 }
 
@@ -75,9 +75,9 @@ project(":android") {
             vendor = JvmVendorSpec.ADOPTOPENJDK
         }
     }
-	
-	android {
-    lintOptions {
+
+    android {
+        lintOptions {
             abortOnError false
         }
     }
@@ -87,7 +87,7 @@ project(":android") {
     dependencies {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+        // natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
@@ -96,25 +96,25 @@ project(":android") {
 //        api "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
 //        api "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
+        // natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi"
+        // natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
-        
+
     }
 }
 
 project(":ios") {
     apply plugin: "java"
     apply plugin: "robovm"
-	apply plugin: "eclipse-wtp"
+    apply plugin: "eclipse-wtp"
 
     java {
         toolchain {
@@ -124,20 +124,20 @@ project(":ios") {
     }
 
 
-  dependencies {
-        compile project(":core")
-        compile "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
-        compile "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
-        compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
-        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
+    dependencies {
+        implementation project(":core")
+        implementation "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
+        implementation "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
+        implementation "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+        implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
     }
-    
+
     robovm {
-		iosSignIdentity = "Apple Distribution: Michael Joyner (43974U4CP4)"
-		iosSkipSigning = false;
-		archs = "thumbv7:arm64"
-	}
+        iosSignIdentity = "Apple Distribution: Michael Joyner (43974U4CP4)"
+        iosSkipSigning = false;
+        archs = "thumbv7:arm64"
+    }
 }
 
 project(":core") {
@@ -152,17 +152,17 @@ project(":core") {
     }
 
     dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        
-        compile 'org.apache.commons:commons-lang3:3.1'
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+
+        implementation 'org.apache.commons:commons-lang3:3.1'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
     }
-    
+
     compileJava.doLast {
-    	javaexec {
-    		classpath = sourceSets.main.runtimeClasspath
-    		main = "com.cherokeelessons.bp.build.BuildDeck"
-    	}
+        javaexec {
+            classpath = sourceSets.main.runtimeClasspath
+            main = "com.cherokeelessons.bp.build.BuildDeck"
+        }
     }
 }
