@@ -7,12 +7,15 @@ import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -408,24 +411,32 @@ public class BoundPronouns extends Game {
 	}
 
 	public void loadTtsMap() {
+		Set<String> bad_entries = new HashSet<>();
 		final String text = Gdx.files.internal("cherokee-tts.txt").readString("UTF-8");
 		final String[] lines = text.split("\n");
 		for (final String line : lines) {
-			if (!line.contains("|") || line.isEmpty()) {
+			if (!line.contains("|")) {
 				continue;
 			}
 			final String[] columns = line.split("\\|");
-			if (columns == null) {
-				continue;
-			}
 			if (columns.length < 6) {
 				continue;
 			}
 			final String filename = columns[5];
+			FileHandle internal = Gdx.files.internal("mp3-challenges/" + filename + ".mp3");
+
 			final String pronounce1 = Normalizer.normalize(columns[1], Form.NFC);
-			audioFiles.put(pronounce1, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
+			audioFiles.put(pronounce1, internal);
 			final String pronounce2 = Normalizer.normalize(columns[3], Form.NFC);
-			audioFiles.put(pronounce2, Gdx.files.internal("mp3-challenges/" + filename + ".mp3"));
+			audioFiles.put(pronounce2, internal);
+
+			if (Gdx.app.getType().equals(Application.ApplicationType.Desktop) && !internal.exists()) {
+				bad_entries.add(filename);
+			}
+		}
+		if (!bad_entries.isEmpty()) {
+			System.out.println(bad_entries);
+			throw new RuntimeException("Missing Audio Files!");
 		}
 	}
 

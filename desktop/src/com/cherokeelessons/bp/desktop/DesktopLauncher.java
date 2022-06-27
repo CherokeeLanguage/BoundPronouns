@@ -29,14 +29,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics.GraphicsType;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.cherokeelessons.bp.BoundPronouns;
 import com.cherokeelessons.bp.BoundPronouns.PlatformTextInput;
 
 public class DesktopLauncher implements PlatformTextInput {
-
-	private static LwjglApplicationConfiguration config;
 
 	public static void main(String[] arg) {
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment()
@@ -45,17 +43,11 @@ public class DesktopLauncher implements PlatformTextInput {
 		//int height = (int)(2048/2.5);//75 * gd.getDisplayMode().getHeight() / 100;
 		int width = 1280;//75 * gd.getDisplayMode().getWidth() / 100;
 		int height = 720;//75 * gd.getDisplayMode().getHeight() / 100;
-		config = new LwjglApplicationConfiguration();
-		config.allowSoftwareMode = true;
-		config.forceExit = true;
-		config.height = height;
-		config.width = width;
-		config.addIcon("icons/icon-128.png", FileType.Internal);
-		config.addIcon("icons/icon-32.png", FileType.Internal);
-		config.addIcon("icons/icon-16.png", FileType.Internal);
-		DesktopLauncher desktopLauncher = new DesktopLauncher();
-		BoundPronouns.pInput = desktopLauncher;
-		new LwjglApplication(new BoundPronouns(), config);
+		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setWindowedMode(width, height);
+		config.setWindowIcon(FileType.Internal, "icons/icon-128.png", "icons/icon-32.png", "icons/icon-16.png");
+		BoundPronouns.pInput = new DesktopLauncher();
+		new Lwjgl3Application(new BoundPronouns(), config);
 	}
 
 
