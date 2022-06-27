@@ -372,7 +372,7 @@ public class GameUtils {
 				/*
 				 * if the wrong answer has already been used, skip it and try the next card				 * 
 				 */
-				if (already.contains(wrongAnswer)) {
+				if (already.contains(wrongAnswer) || StringUtils.isBlank(wrongAnswer)) {
 					continue;
 				}
 				/*
