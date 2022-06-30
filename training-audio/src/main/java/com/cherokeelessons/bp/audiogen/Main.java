@@ -1547,8 +1547,8 @@ public class Main {
 					englishText += ".";
 				}
 				if (englishText.contains("v.t.") || englishText.contains("v.i.")) {
-					englishText = englishText.replaceAll("(?i)v\\.\s*t\\.\s*", "");
-					englishText = englishText.replaceAll("(?i)v\\.\s*i\\.\s*", "");
+					englishText = englishText.replaceAll("(?i)v.t.\\s*", "");
+					englishText = englishText.replaceAll("(?i)v.i.\\s*", "");
 				}
 				if (englishText.contains("1.")) {
 					englishText = englishText.replaceAll("\\b1\\.", "");
