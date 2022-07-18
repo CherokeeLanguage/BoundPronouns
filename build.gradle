@@ -21,7 +21,7 @@ allprojects {
     apply plugin: "eclipse-wtp"
     apply plugin: "idea"
 
-    processResources.duplicatesStrategy='include'
+    processResources.duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
     version = '3.40'
 
@@ -49,7 +49,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java"
-
+    processResources.duplicatesStrategy='include'
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(8)
@@ -76,7 +76,7 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
-
+    processResources.duplicatesStrategy='include'
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(8)
@@ -123,7 +123,7 @@ project(":ios") {
     apply plugin: "java"
     apply plugin: "robovm"
     apply plugin: "eclipse-wtp"
-
+    processResources.duplicatesStrategy='include'
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(8)
@@ -151,7 +151,7 @@ project(":ios") {
 project(":core") {
     apply plugin: "java-library"
     apply plugin: "eclipse-wtp"
-
+    processResources.duplicatesStrategy='include'
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(8)

@@ -38,6 +38,7 @@ task dist(type: Jar) {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     with jar
 }
 
