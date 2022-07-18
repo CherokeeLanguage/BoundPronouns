@@ -12,7 +12,9 @@ buildscript {
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.16'
     }
 }
-
+plugins {
+    id "java-library"
+}
 
 allprojects {
     apply plugin: "eclipse"
@@ -45,10 +47,11 @@ project(":desktop") {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(11)
+            languageVersion = JavaLanguageVersion.of(8)
             vendor = JvmVendorSpec.ADOPTOPENJDK
         }
     }
+    
 
     archivesBaseName = 'BoundPronouns'
 
@@ -71,12 +74,16 @@ project(":android") {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(11)
+            languageVersion = JavaLanguageVersion.of(8)
             vendor = JvmVendorSpec.ADOPTOPENJDK
         }
     }
 
     android {
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
         lintOptions {
             abortOnError false
         }
@@ -118,11 +125,11 @@ project(":ios") {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(11)
+            languageVersion = JavaLanguageVersion.of(8)
             vendor = JvmVendorSpec.ADOPTOPENJDK
         }
     }
-
+    
 
     dependencies {
         implementation project(":core")
@@ -146,17 +153,18 @@ project(":core") {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(11)
+            languageVersion = JavaLanguageVersion.of(8)
             vendor = JvmVendorSpec.ADOPTOPENJDK
         }
     }
+    
 
     dependencies {
         implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
 
-        implementation 'org.apache.commons:commons-lang3:3.1'
-        implementation 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+        implementation 'org.apache.commons:commons-text:1.9'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
     }
 
     compileJava.doLast {
@@ -164,5 +172,14 @@ project(":core") {
             classpath = sourceSets.main.runtimeClasspath
             main = "com.cherokeelessons.bp.build.BuildDeck"
         }
+    }
+}
+
+java {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+        vendor = JvmVendorSpec.ADOPTOPENJDK
     }
 }
