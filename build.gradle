@@ -18,6 +18,7 @@ plugins {
 
 allprojects {
     apply plugin: "eclipse"
+
     version = '3.40'
 
     eclipse {
@@ -43,7 +44,7 @@ allprojects {
 }
 
 project(":desktop") {
-    apply plugin: "java-library"
+    apply plugin: "java"
 
     java {
         toolchain {
@@ -57,14 +58,14 @@ project(":desktop") {
 
     dependencies {
         implementation project(":core")
-        api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         //api "de.tomgrill.gdxdialogs:gdx-dialogs-desktop:1.2.5"
         // api "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
         // api "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
 
     }
 }
@@ -93,28 +94,24 @@ project(":android") {
 
     dependencies {
         implementation project(":core")
-        api "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-        // natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
+
+        implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-        //api "de.tomgrill.gdxdialogs:gdx-dialogs-android:1.2.5"
-//        api "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-//        api "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        // natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
+
+        implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
-        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        // natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi"
+
+        implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
-
     }
 }
 
@@ -148,7 +145,7 @@ project(":ios") {
 }
 
 project(":core") {
-    apply plugin: "java"
+    apply plugin: "java-library"
     apply plugin: "eclipse-wtp"
 
     java {
@@ -160,11 +157,16 @@ project(":core") {
     
 
     dependencies {
-        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
-        implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
 
+<<<<<<< HEAD
         implementation 'org.apache.commons:commons-text:1.9'
         implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+=======
+        api 'org.apache.commons:commons-lang3:3.1'
+        api 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
+>>>>>>> c390d7a83a916ea4ab53d88b6aaf852b311d658c
     }
 
     compileJava.doLast {

@@ -1,0 +1,18 @@
+Already running
+
+(java:1363896): Gtk-WARNING **: 20:47:24.026: Theme parsing error: gtk-widgets.css:1214:18: Not using units is deprecated. Assuming 'px'.
+
+(java:1363896): Gtk-WARNING **: 20:47:24.304: Theme parsing error: gtk-widgets.css:153:27: The style property GtkButton:image-spacing is deprecated and shouldn't be used anymore. It will be removed in a future version
+
+(java:1363896): Gtk-WARNING **: 20:47:24.304: Theme parsing error: gtk-widgets.css:154:26: The style property GtkButton:inner-border is deprecated and shouldn't be used anymore. It will be removed in a future version
+
+(java:1363896): Gtk-WARNING **: 20:47:24.304: Theme parsing error: gtk-widgets.css:578:27: The style property GtkButton:image-spacing is deprecated and shouldn't be used anymore. It will be removed in a future version
+
+(java:1363896): Gtk-WARNING **: 20:47:24.305: Theme parsing error: gtk-widgets.css:579:28: The style property GtkWidget:interior-focus is deprecated and shouldn't be used anymore. It will be removed in a future version
+
+(java:1363896): Gtk-WARNING **: 20:47:24.305: Theme parsing error: gtk-widgets.css:580:28: The style property GtkButton:default-border is deprecated and shouldn't be used anymore. It will be removed in a future version
+
+(java:1363896): Gtk-WARNING **: 20:47:24.305: Theme parsing error: gtk-widgets.css:581:26: The style property GtkButton:inner-border is deprecated and shouldn't be used anymore. It will be removed in a future version
+
+(java:1363896): Gtk-WARNING **: 20:47:24.305: Theme parsing error: gtk-widgets.css:1214:18: Not using units is deprecated. Assuming 'px'.
+2022-07-17 20:47:26,202 [   2231]   WARN - #com.intellij.ui.jcef.JBCefApp - JCEF runtime library is not a JBR module (Use JBR bundled with the IDE) 
