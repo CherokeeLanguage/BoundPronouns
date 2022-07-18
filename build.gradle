@@ -18,6 +18,10 @@ plugins {
 
 allprojects {
     apply plugin: "eclipse"
+    apply plugin: "eclipse-wtp"
+    apply plugin: "idea"
+
+    processResources.duplicatesStrategy='include'
 
     version = '3.40'
 
