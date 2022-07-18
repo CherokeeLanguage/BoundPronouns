@@ -59,3 +59,4 @@ gradle-app.setting
 logcat.txt
 /bfg-1.13.0.jar
 /android/assets/text/git-changelog.txt
+nohup.out
