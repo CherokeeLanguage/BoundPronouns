@@ -29,6 +29,12 @@ android {
         setProperty("archivesBaseName", appName + "-" + version)
     }
     signingConfigs {
+        if (findProperty('RELEASE_STORE_FILEA')==null) {
+            RELEASE_STORE_FILEA = ""
+        }
+        if (findProperty('RELEASE_STORE_FILEB')==null) {
+            RELEASE_STORE_FILEB = ""
+        }
         release {
             if (new File(RELEASE_STORE_FILEA).isDirectory()) {
                 storeFile file(RELEASE_STORE_FILEA)
