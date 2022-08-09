@@ -20,7 +20,7 @@ public class SlotInfo implements Serializable {
 			return values()[0];
 		}
 
-		private String english;
+		private final String english;
 
 		private DeckMode(final String english) {
 			this.english = english.intern();
@@ -142,7 +142,7 @@ public class SlotInfo implements Serializable {
 
 	public enum SessionLength {
 		XBrief("XBrief: 2 minutes", 2f), Brief("Brief: 5 minutes", 5f), Standard("Standard: 10 minutes", 10f),
-		Long("Long: 15 minutes", 15f), BrainNumbing("Brain Numbing: very long", 60f);
+		Long("Long: 30 minutes", 30f), BrainNumbing("Brain Numbing: very long", 60f);
 
 		public static SessionLength getNext(final SessionLength mode) {
 			for (int ix = 0; ix < values().length - 1; ix++) {
@@ -271,7 +271,7 @@ public class SlotInfo implements Serializable {
 
 		int boxsum = 0;
 		for (final ActiveCard card : activeDeck.deck) {
-			boxsum += card.box > 0 ? card.box : 0;
+			boxsum += Math.max(card.box, 0);
 		}
 		info.level = LevelName.forLevel((int) Math.ceil((double) boxsum / (double) activeDeck.deck.size()));
 		/*
@@ -322,23 +322,6 @@ public class SlotInfo implements Serializable {
 			}
 			info.proficiency = 100 * correctCount / totalCards;
 		}
-		/*
-		 * What is the total percentange of cards learned out of the master deck?
-		 */
-
-//		int maxBox = 1;
-//		for (ActiveCard card : activeDeck.deck) {
-//			maxBox=Math.max(maxBox, card.box);
-//		}
-//		if (activeDeck.deck.size()>0) {
-//			int boxSum = 0;
-//			for (ActiveCard card : activeDeck.deck) {
-//				boxSum+=Math.min(card.box>0?card.box:0, maxBox);
-//			}
-//			info.proficiency=(100*boxSum/(maxBox*activeDeck.deck.size()));
-//		} else {
-//			info.proficiency=0;
-//		}
 
 		/*
 		 * How many are "fully learned" out of the active deck?
@@ -399,7 +382,6 @@ public class SlotInfo implements Serializable {
 					continue;
 				}
 				break;
-			case Both:
 			default:
 				break;
 			}

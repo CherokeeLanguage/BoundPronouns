@@ -106,7 +106,6 @@ public class LearningSession extends ChildScreen {
 			for (final ActiveCard card : deck.deck) {
 				if (card.box < 0) {
 					card.box = 0;
-					continue;
 				}
 			}
 		}
@@ -122,7 +121,7 @@ public class LearningSession extends ChildScreen {
 			final Iterator<ActiveCard> icard = current_pending.deck.iterator();
 			while (icard.hasNext()) {
 				final ActiveCard card = icard.next();
-				if (card.show_again_ms < ONE_HOUR_ms) {
+				if (card.show_again_ms < 24L * ONE_HOUR_ms) {
 					continue;
 				}
 				current_done.deck.add(card);
@@ -144,7 +143,13 @@ public class LearningSession extends ChildScreen {
 			/*
 			 * time-shift all cards by exactly one day + one extra hour for safety
 			 */
-			updateTime(current_due, ONE_DAY_ms + ONE_HOUR_ms);
+			long delta1 = ONE_DAY_ms + ONE_HOUR_ms;
+			long delta2 = System.currentTimeMillis() - current_due.lastrun;
+			if (delta2 < ONE_MINUTE_ms) {
+				delta2 = ONE_MINUTE_ms;
+			}
+			log.info("Deck delta: "+Math.min(delta1, delta2));
+			updateTime(current_due, Math.min(delta1, delta2));
 			int due = 0;
 			for (final ActiveCard card : current_due.deck) {
 				if (card.show_again_ms < 0) {
@@ -261,7 +266,7 @@ public class LearningSession extends ChildScreen {
 
 		private void truncateToNearestMinute(final List<ActiveCard> deck) {
 			for (final ActiveCard card : deck) {
-				card.show_again_ms = 60l * 1000l * (card.show_again_ms / (1000l * 60l));
+				card.show_again_ms = 60L * 1000L * (card.show_again_ms / (1000L * 60L));
 			}
 		}
 	}
@@ -288,7 +293,7 @@ public class LearningSession extends ChildScreen {
 		public void run() {
 			final JsonConverter json = new JsonConverter();
 
-			params.deck.lastrun = System.currentTimeMillis() - (long) params.elapsed_secs * 1000l;
+			params.deck.lastrun = System.currentTimeMillis() - (long) params.elapsed_secs * 1000L;
 			Collections.sort(params.deck.deck, byShowTime);
 
 			final SlotInfo info;
@@ -311,15 +316,6 @@ public class LearningSession extends ChildScreen {
 
 			final TextButton btn_ok = new TextButton("OK", tbs);
 
-//			Texture img_sync = params.game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
-//			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
-//			final ImageButton syncb = new ImageButton(draw_sync);
-//			syncb.setTransform(true);
-//			syncb.getImage().setScaling(Scaling.fit);
-//			syncb.getImage().setColor(Color.DARK_GRAY);
-
-			// String dtitle = params.isExtraPractice ? "Extra Practice Results"
-			// : "Practice Results";
 			final String dtitle = "Practice Results";
 			final WindowStyle dws = new WindowStyle(params.skin.get(WindowStyle.class));
 			dws.titleFont = params.game.getFont(Font.SerifLarge);
@@ -347,7 +343,7 @@ public class LearningSession extends ChildScreen {
 					sb.append("Score: ");
 					sb.append(nf.format(info.lastScore));
 					sb.append("\n");
-					sb.append(nf.format(info.activeCards) + " cards");
+					sb.append(nf.format(info.activeCards)).append(" cards");
 					if (info.getTotalCards() > 0) {
 						final int pct = info.activeCards * 100 / info.getTotalCards();
 						sb.append(" out of ");
@@ -357,11 +353,11 @@ public class LearningSession extends ChildScreen {
 						sb.append("%)");
 					}
 					sb.append("\n");
-					sb.append("You currently have a " + info.proficiency + "% proficiency level");
+					sb.append("You currently have a ").append(info.proficiency).append("% proficiency level");
 					sb.append("\n");
 					final int minutes = (int) (params.elapsed_secs / 60f);
 					final int seconds = (int) (params.elapsed_secs - minutes * 60f);
-					sb.append("Total actual challenge time: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
+					sb.append("Total actual challenge time: ").append(minutes).append(":").append(seconds < 10 ? "0" : "").append(seconds);
 					final Label label = new Label(sb.toString(), lstyle);
 					text(label);
 					button(btn_ok, btn_ok);
@@ -369,10 +365,6 @@ public class LearningSession extends ChildScreen {
 
 				@Override
 				protected void result(final Object object) {
-//					if (syncb.equals(object)) {
-//						cancel();
-//						return;
-//					}
 					final Screen current = params.game.getScreen();
 					if (params.caller != null && !params.caller.equals(current)) {
 						params.game.setScreen(params.caller);
@@ -431,41 +423,8 @@ public class LearningSession extends ChildScreen {
 			if (elapsed > info.settings.sessionLength.getSeconds()) {
 				elapsed_tick_on = false;
 				log.info("No time remaining...");
-				/**
-				 * scan current discards for cards that need to get "bumped"
-				 */
-				for (final ActiveCard tmp : current_discards.deck) {
-					if (tmp.noErrors && tmp.tries_remaining < 1) {
-						tmp.box++;
-						tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
-						log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
-					}
-				}
-				/**
-				 * scan current discards for cards that need to get "downgraded"
-				 */
-				for (final ActiveCard tmp : current_discards.deck) {
-					if (!tmp.noErrors && tmp.tries_remaining < 1) {
-						tmp.box--;
-						tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
-						log.info("Retired Card: " + tmp.pgroup + " " + tmp.vgroup);
-					}
-				}
-
-				final SaveParams params = new SaveParams();
-				params.caller = LearningSession.this.caller;
-				params.deck = new ActiveDeck();
-				params.deck.deck.addAll(current_active.deck);
-				params.deck.deck.addAll(current_due.deck);
-				params.deck.deck.addAll(current_discards.deck);
-				params.deck.deck.addAll(current_done.deck);
-				params.elapsed_secs = elapsed;
-				params.game = game;
-				params.skin = skin;
-				params.slot = slot;
-				params.stage = stage;
-				saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(params);
-				stage.addAction(Actions.run(saveActiveDeckWithDialog));
+				updateCardLeitnerValues();
+				saveActiveDeck();
 				return;
 			}
 			ActiveCard activeCard;
@@ -495,7 +454,7 @@ public class LearningSession extends ChildScreen {
 					log.info("session time is not up");
 					final long shift_by_ms = getMinShiftTimeOf(current_discards);
 					log.info("shifting discards to zero point: " + shift_by_ms / ONE_SECOND_ms);
-					if (shift_by_ms >= 15l * ONE_SECOND_ms) {
+					if (shift_by_ms >= 15L * ONE_SECOND_ms) {
 						addCards(INCREMENT_DECK_BY_SIZE, current_active);
 					}
 					updateTime(current_discards, shift_by_ms);
@@ -588,66 +547,51 @@ public class LearningSession extends ChildScreen {
 		}
 	}
 
-	private static final Logger log = Log.getLogger(LearningSession.class.getName());
+	private void saveActiveDeck() {
+		final SaveParams params = new SaveParams();
+		params.caller = LearningSession.this.caller;
+		params.deck = new ActiveDeck();
+		params.deck.deck.addAll(current_active.deck);
+		params.deck.deck.addAll(current_due.deck);
+		params.deck.deck.addAll(current_discards.deck);
+		params.deck.deck.addAll(current_done.deck);
+		params.elapsed_secs = elapsed;
+		params.game = game;
+		params.skin = skin;
+		params.slot = slot;
+		params.stage = stage;
+		saveActiveDeckWithDialog = new SaveActiveDeckWithDialog(params);
+		stage.addAction(Actions.run(saveActiveDeckWithDialog));
+	}
 
-	// private class TooSoonDialog implements Runnable {
-	// @Override
-	// public void run() {
-	// Dialog whichMode = new Dialog(
-	// "It's too soon for a regular session.", skin) {
-	// {
-	// String text = "Please select an option:\n\n"
-	// + "Would you like to practice your existing challenges?\n\n"
-	// + "Would you like to jump forward by a full day?\n\n"
-	// + "Would you like to cancel and go back to main menu?";
-	//
-	// LabelStyle lstyle = new LabelStyle(
-	// skin.get(LabelStyle.class));
-	// lstyle.font = game.getFont(Font.SerifMedium);
-	// Label label = new Label(text, lstyle);
-	// label.setAlignment(Align.left, Align.left);
-	// label.setWrap(true);
-	// getContentTable().clearChildren();
-	// getContentTable().add(label).fill().expand().left();
-	// TextButtonStyle tbs = new TextButtonStyle(
-	// skin.get(TextButtonStyle.class));
-	// tbs.font = game.getFont(Font.SerifMedium);
-	// TextButton tb;
-	// tb = new TextButton("DO A PRACTICE", tbs);
-	// button(tb, "A");
-	// tb = new TextButton("JUMP A DAY", tbs);
-	// button(tb, "B");
-	// tb = new TextButton("CANCEL", tbs);
-	// button(tb, "C");
-	// setFillParent(true);
-	// this.getTitleLabel().setAlignment(Align.center);
-	// }
-	//
-	// protected void result(Object object) {
-	// if (object == null) {
-	// return;
-	// }
-	// if (object.toString().equals("A")) {
-	// LearningSession.this.isExtraPractice = true;
-	// }
-	// if (object.toString().equals("B")) {
-	// LearningSession.this.isExtraPractice = false;
-	// }
-	// if (object.toString().equals("C")) {
-	// game.setScreen(caller);
-	// LearningSession.this.dispose();
-	// return;
-	// }
-	// stage.addAction(Actions.run(processActiveCards));
-	// };
-	// };
-	// whichMode.show(stage);
-	// }
-	// }
+	private void updateCardLeitnerValues() {
+		/*
+		 * scan current discards for cards that need to get "bumped"
+		 */
+		for (final ActiveCard tmp : current_discards.deck) {
+			if (tmp.noErrors && tmp.tries_remaining < 1) {
+				tmp.box++;
+				tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
+				log.info("Bumped Card: " + tmp.pgroup + " " + tmp.vgroup);
+			}
+		}
+		/*
+		 * scan current discards for cards that need to get "downgraded"
+		 */
+		for (final ActiveCard tmp : current_discards.deck) {
+			if (!tmp.noErrors && tmp.tries_remaining < 1) {
+				tmp.box--;
+				tmp.show_again_ms = tmp.show_again_ms + Deck.getNextSessionInterval(tmp.box);
+				log.info("Retired Card: " + tmp.pgroup + " " + tmp.vgroup);
+			}
+		}
+	}
+
+	private static final Logger log = Log.getLogger(LearningSession.class.getName());
 
 	public static final String ACTIVE_DECK_JSON = "ActiveDeck.json";
 
-	private static Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
+	private static final Comparator<ActiveCard> byShowTime = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(final ActiveCard o1, final ActiveCard o2) {
 			if (o1.show_again_ms != o2.show_again_ms) {
@@ -657,7 +601,7 @@ public class LearningSession extends ChildScreen {
 		}
 	};
 
-	private static Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
+	private static final Comparator<ActiveCard> byShowTimeChunks = new Comparator<ActiveCard>() {
 		@Override
 		public int compare(final ActiveCard o1, final ActiveCard o2) {
 			long dif = o1.show_again_ms - o2.show_again_ms;
@@ -682,10 +626,10 @@ public class LearningSession extends ChildScreen {
 	private static final long ONE_MINUTE_ms;
 	private static final long ONE_SECOND_ms;
 	static {
-		ONE_SECOND_ms = 1000l;
-		ONE_MINUTE_ms = 60l * ONE_SECOND_ms;
-		ONE_HOUR_ms = 60l * ONE_MINUTE_ms;
-		ONE_DAY_ms = 24l * ONE_HOUR_ms;
+		ONE_SECOND_ms = 1000L;
+		ONE_MINUTE_ms = 60L * ONE_SECOND_ms;
+		ONE_HOUR_ms = 60L * ONE_MINUTE_ms;
+		ONE_DAY_ms = 24L * ONE_HOUR_ms;
 	}
 
 	private final ActiveDeckLoader activeDeckLoader = new ActiveDeckLoader();
@@ -823,22 +767,32 @@ public class LearningSession extends ChildScreen {
 
 			@Override
 			protected void showMainMenu() {
+				class X {
+					Dialog d;
+				}
+				final X x = new X();
 				final Runnable yes = new Runnable() {
 					@Override
 					public void run() {
-						game.setScreen(LearningSession.this.caller);
-						LearningSession.this.dispose();
+						challengeCardDialog.paused = false;
+						x.d.hide(Actions.run(challengeCardDialog::hide));
+						updateCardLeitnerValues();
+						saveActiveDeck();
 					}
 				};
 				final Runnable no = new Runnable() {
 					@Override
 					public void run() {
 						// Do nothing
+						challengeCardDialog.paused = false;
+						x.d.hide();
+
 					}
 				};
-				final Dialog dialog = dialogYN("Please Confirm Exit",
-						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)", yes,
+				Dialog dialog = dialogYN("Please Confirm Exit",
+						"Do you want to save your session?\n(You can resume later.)", yes,
 						no);
+				x.d = dialog;
 				dialog.getTitleLabel().setAlignment(Align.center);
 				dialog.show(stage);
 			}
@@ -849,7 +803,7 @@ public class LearningSession extends ChildScreen {
 			private static final String CONTINUE = "CONTINUE";
 			private static final String CHECK = "CHECK!";
 
-			Runnable hideThisCard = new Runnable() {
+			final Runnable hideThisCard = new Runnable() {
 				@Override
 				public void run() {
 					check.setVisible(false);
@@ -981,23 +935,32 @@ public class LearningSession extends ChildScreen {
 
 			@Override
 			protected void showMainMenu() {
+				class X {
+					Dialog d;
+				}
+				final X x = new X();
 				final boolean wasPaused = challengeCardDialog.paused;
 				final Runnable yes = new Runnable() {
 					@Override
 					public void run() {
-						game.setScreen(LearningSession.this.caller);
-						LearningSession.this.dispose();
+						challengeCardDialog.paused = false;
+						x.d.hide(Actions.run(challengeCardDialog::hide));
+						updateCardLeitnerValues();
+						saveActiveDeck();
 					}
 				};
 				final Runnable no = new Runnable() {
 					@Override
 					public void run() {
+						challengeCardDialog.paused = false;
+						x.d.hide();
 						challengeCardDialog.paused = wasPaused;
 					}
 				};
-				final Dialog dialog = dialogYN("Please Confirm Exit",
-						"Do you want to discard your session?\n(All of your work will be lost if you say yes.)", yes,
+				Dialog dialog = dialogYN("Please Confirm Exit",
+						"Do you want to save your session and exit?\n(You can resume later.)", yes,
 						no);
+				x.d = dialog;
 				dialog.show(stage);
 				challengeCardDialog.paused = true;
 			}
@@ -1017,7 +980,7 @@ public class LearningSession extends ChildScreen {
 	 */
 	public void addCards(int needed, final ActiveDeck active) {
 		int startingSize = active.deck.size();
-		/**
+		/*
 		 * look for previous cards to load first, if their delay time is up
 		 */
 		Iterator<ActiveCard> ipending = current_due.deck.iterator();
@@ -1253,7 +1216,7 @@ public class LearningSession extends ChildScreen {
 			sinceLastNextCard_elapsed = 0;
 			Iterator<ActiveCard> discards;
 			discards = current_discards.deck.iterator();
-			/**
+			/*
 			 * remove from active session any cards with no tries left
 			 */
 			while (discards.hasNext()) {
@@ -1277,7 +1240,7 @@ public class LearningSession extends ChildScreen {
 				return getNextCard();
 			}
 			discards = current_discards.deck.iterator();
-			/**
+			/*
 			 * Find all cards in active session ready for display by time
 			 */
 			while (discards.hasNext()) {
@@ -1415,9 +1378,7 @@ public class LearningSession extends ChildScreen {
 	 * @param ms
 	 */
 	public void updateTime(final ActiveDeck currentDeck, final long ms) {
-		final Iterator<ActiveCard> istat = currentDeck.deck.iterator();
-		while (istat.hasNext()) {
-			final ActiveCard next = istat.next();
+		for (ActiveCard next : currentDeck.deck) {
 			next.show_again_ms -= ms;
 		}
 	}

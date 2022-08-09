@@ -248,7 +248,7 @@ public class MainScreen implements Screen, InputProcessor {
 				blank = info == null;
 				if (info == null) {
 					info = new SlotInfo();
-					info.settings.sessionLength = SessionLength.Brief;
+					info.settings.sessionLength = SessionLength.Long;
 					info.settings.timeLimit = TimeLimit.Novice;
 					info.settings.deck = DeckMode.Conjugations;
 				}
@@ -267,18 +267,18 @@ public class MainScreen implements Screen, InputProcessor {
 					}
 					SlotInfo.calculateStats(info, activeDeck);
 					json.toJson(info, infoFile);
-					// String name = StringUtils.isBlank(info.settings.name) ?
-					// RandomName.getRandomName() : info.settings.name;
-					// String tag = info.level.getEnglish() + "!!!" + name;
 				}
 			}
 			if (info == null || blank) {
 				info = new SlotInfo();
 				info.settings.name = "*** NEW SESSION ***";
-				info.settings.sessionLength = SessionLength.Brief;
 				info.settings.timeLimit = TimeLimit.Novice;
 				info.settings.deck = DeckMode.Conjugations;
 			}
+
+			// Override previously saved session lengths
+			info.settings.sessionLength = SessionLength.Long;
+
 			info.validate();
 			final SlotInfo.Settings settings = info.settings;
 
@@ -347,14 +347,6 @@ public class MainScreen implements Screen, InputProcessor {
 			deleteb.getImage().setColor(Color.DARK_GRAY);
 			editControls.add(deleteb).center();
 
-//			Texture img_sync = game.manager.get(BoundPronouns.IMG_SYNC, Texture.class);
-//			TextureRegionDrawable draw_sync = new TextureRegionDrawable(new TextureRegion(img_sync));
-//			ImageButton syncb = new ImageButton(draw_sync);
-//			syncb.setTransform(true);
-//			syncb.getImage().setScaling(Scaling.fit);
-//			syncb.getImage().setColor(Color.DARK_GRAY);
-//			editControls.add(syncb).center();
-
 			slots.add(editControls);
 			if (blank) {
 				editb.setDisabled(true);
@@ -364,21 +356,6 @@ public class MainScreen implements Screen, InputProcessor {
 				deleteb.setTouchable(Touchable.disabled);
 				deleteb.getImage().setColor(Color.CLEAR);
 			}
-//			syncb.addListener(new ClickListener() {
-//				@Override
-//				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-//					Gdx.app.log("MainScreen", p0.name());
-//					Runnable whenDone = new Runnable() {
-//						@Override
-//						public void run() {
-//							chooseSlot.hide();
-//							doSlotsDialog();
-//						}
-//					};
-//					game.click();
-//					return true;
-//				}
-//			});
 
 			final String slotTxt = txt;
 			editb.addListener(new ClickListener() {
@@ -600,14 +577,6 @@ public class MainScreen implements Screen, InputProcessor {
 		contentTable.row();
 		contentTable.add(new Label("Display: ", ls)).left().fillX();
 		contentTable.add(mode).expand().fillX().left();
-
-		// contentTable.row();
-		// contentTable.add(new Label("Session Length: ", ls)).left().fillX();
-		// contentTable.add(sessionLength).expand().fillX().left();
-
-		// contentTable.row();
-		// contentTable.add(new Label("Card Time Limit: ", ls)).left().fillX();
-		// contentTable.add(timeLimit).expand().fillX().left();
 
 		contentTable.row();
 		contentTable.add(new Label("Mute by default: ", ls)).left().fillX();
