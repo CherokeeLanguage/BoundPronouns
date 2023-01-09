@@ -21,7 +21,7 @@ dependencies {
 	implementation 'commons-codec:commons-codec:1.15'
 	
 	//for English audio
-    api 'com.amazonaws:aws-java-sdk-polly:1.12.311'
+    api 'com.amazonaws:aws-java-sdk-polly:1.12.380'
 }
 
 eclipse {
