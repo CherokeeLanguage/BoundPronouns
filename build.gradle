@@ -131,7 +131,7 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
 
-        implementation 'org.apache.commons:commons-text:1.9'
+        implementation 'org.apache.commons:commons-text:1.10.0'
         implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
     }
 

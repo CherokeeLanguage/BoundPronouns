@@ -13,7 +13,7 @@ dependencies {
 	//compile project(":LeitnerCards")
 	//compile "ie.corballis:sox-java:1.0.4"
     api 'commons-io:commons-io:2.11.0'
-    api 'org.apache.commons:commons-text:1.9'
+    api 'org.apache.commons:commons-text:1.10.0'
     api 'com.github.CherokeeLanguage:LeitnerCards:20200704.00'
     api 'org.apache.commons:commons-collections4:4.4'
 
