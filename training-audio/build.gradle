@@ -15,7 +15,7 @@ dependencies {
     api 'commons-io:commons-io:2.11.0'
     api 'org.apache.commons:commons-text:1.10.0'
     api 'com.github.CherokeeLanguage:LeitnerCards:20200704.00'
-    api 'org.apache.commons:commons-collections4:4.4'
+    api 'org.apache.commons:commons-collections4:4.6.0'
 
 	// https://mvnrepository.com/artifact/commons-codec/commons-codec
 	implementation 'commons-codec:commons-codec:1.15'
