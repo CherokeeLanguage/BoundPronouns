@@ -1,5 +1,5 @@
 title: Publish desktop and Android builds to itch.io via manual butler script
-status: open
+status: closed
 labels:
 - needs-approval
 - spec
