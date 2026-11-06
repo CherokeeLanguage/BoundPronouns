@@ -64,3 +64,5 @@ logcat.txt
 /android/assets/text/git-changelog.txt
 nohup.out
 /.opencode/
+/.tools/jdk/
+/itch.conf

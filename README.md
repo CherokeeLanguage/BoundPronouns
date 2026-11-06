@@ -16,9 +16,9 @@ starts a build. One-time setup:
 1. **Build** the artifacts with the existing gradle tasks
    (`./gradlew desktop:dist`, `./gradlew android:assembleRelease`) or the full
    `./build-release.sh`.
-2. **Configure** `itch.conf` with the real itch.io target (`ITCH_USER`,
-   `ITCH_GAME`). It ships with placeholder values; fill them in locally —
-   never any credentials.
+2. **Configure**: `cp itch.conf.example itch.conf` and fill `ITCH_USER` /
+   `ITCH_GAME` with the real itch.io target — `itch.conf` is gitignored
+   local-only config (never tracked, never any credentials).
 3. **Install butler** (once): it is either on your `PATH`, or vendored at
    `.tools/butler/butler` (gitignored). To vendor, run:
    ```bash

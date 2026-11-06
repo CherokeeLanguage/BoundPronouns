@@ -16,7 +16,8 @@ cd "$(dirname "$0")"
 
 # --- Load the itch.io target ---------------------------------------------
 if [ ! -f itch.conf ]; then
-    echo "ERROR: itch.conf not found — copy/track it and fill ITCH_USER and ITCH_GAME." >&2
+    echo "ERROR: itch.conf not found — run: cp itch.conf.example itch.conf," >&2
+    echo "  then fill ITCH_USER and ITCH_GAME with the real target." >&2
     exit 1
 fi
 

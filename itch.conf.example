@@ -3,5 +3,5 @@
 # passwords or API keys here — butler keeps credentials in its own store
 # (`butler login`).
 
-ITCH_USER=REPLACE_ME
-ITCH_GAME=REPLACE_ME
+ITCH_USER=cherokee-language
+ITCH_GAME=cherokee-bound-pronouns
