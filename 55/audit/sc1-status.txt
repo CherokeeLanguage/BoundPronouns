@@ -1,0 +1,12 @@
+$ butler status cherokee-language/cherokee-bound-pronouns:win-linux-mac
++---------------+-----------+------------+---------+
+|    CHANNEL    |  UPLOAD   |   BUILD    | VERSION |
++---------------+-----------+------------+---------+
+| win-linux-mac | #20316038 | ✓ #2310709 |       1 |
++---------------+-----------+------------+---------+
+$ butler status cherokee-language/cherokee-bound-pronouns:android
++---------+-----------+------------+---------+
+| CHANNEL |  UPLOAD   |   BUILD    | VERSION |
++---------+-----------+------------+---------+
+| android | #20316039 | ✓ #2310710 |       1 |
++---------+-----------+------------+---------+

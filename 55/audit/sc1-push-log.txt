@@ -1,0 +1,24 @@
+==> Pushing desktop: desktop/build/libs/BoundPronouns-3.42.jar
+• Scanning launch targets...
+• For channel `win-linux-mac`: pushing first build
+• Pushing 46.78 MiB (1 files, 0 dirs, 0 symlinks)
+✓ Added 46.78 MiB fresh data
+✓ 45.96 MiB patch (1.75% savings)
+• Build is now processing, should be up in a bit.
+
+Use the `butler status cherokee-language/cherokee-bound-pronouns:win-linux-mac` for more information.
+
+==> Pushing android: android/build/outputs/apk/release/BoundPronouns-3.42-release.apk
+• Scanning launch targets...
+• For channel `android`: pushing first build
+• Pushing 33.63 MiB (1 files, 0 dirs, 0 symlinks)
+✓ Added 33.63 MiB fresh data
+✓ 29.43 MiB patch (12.48% savings)
+• Build is now processing, should be up in a bit.
+
+Use the `butler status cherokee-language/cherokee-bound-pronouns:android` for more information.
+
+==> butler receipt:
+No channel win-linux-mac found for cherokee-language/cherokee-bound-pronouns
+No channel android found for cherokee-language/cherokee-bound-pronouns
+Done.
