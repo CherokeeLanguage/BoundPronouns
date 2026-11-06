@@ -1,0 +1,17 @@
+spec:
+  - round: 1
+    artifact: .issues/55/spec.md
+    verdict: FAIL
+    reviewer: fresh-context dispatch (ses_e50e8d7daffegH46uccYxk5PI9)
+    findings:
+      - class: incapable-instrument
+        classification: finding
+        subject: SC-2 instrument count vs R-3's three fault branches
+        ground: R-3 enumerates three mutually exclusive fault branches (butler absent, unfilled config, missing artifact); instrument counted two executed runs, so the artifact-absence branch had no counting run, and the butler-order prerequisite of that run was undisclosed
+        remediation: SC-2 instrument restated as three executed runs, one per fault branch, each disclosing the non-injected prerequisites it needs in place
+      - class: traceability
+        classification: finding
+        subject: R-4 clause (i) uncovered — script inline prerequisites
+        ground: R-4's first clause (itch-push.sh states its prerequisites inline in header comments) was covered by no success criterion; an implementation omitting it would satisfy every SC
+        remediation: added SC-5 (content) covering the script's inline prerequisite header comments; SC-4 narrowed to the README walkthrough
+    outcome: revised in place (revalidation pending)

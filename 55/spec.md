@@ -53,9 +53,10 @@ One repository (BoundPronouns): one new push script + one tracked target config 
 | ID | Criterion | Class | Instrument |
 |----|-----------|-------|------------|
 | SC-1 | With butler authenticated and `itch.conf` filled, executing `./itch-push.sh` transfers both current artifacts to their channels and both channels report the push | behavioral | executed push log showing both `butler push` receipts + `butler status` on `…:win-linux-mac` and `…:android` reporting the new build (developer-assisted run; butler login is developer-side) |
-| SC-2 | Placeholder `itch.conf` values, butler absent from `PATH`, or missing artifacts each exit non-zero naming the missing piece, before any butler invocation | behavioral | two executed runs with the faults injected, showing exit code and message; artifact-absence fault verified from script output naming the build commands |
+| SC-2 | Butler absent from `PATH`, or placeholder `itch.conf` values, or missing artifacts — each fault exits non-zero naming the missing piece, before any butler invocation | behavioral | three executed runs, one per fault branch, each showing the exit code and guidance message; each run requires its other prerequisites in place (the artifact-absence run needs butler present), disclosed per run |
 | SC-3 | No itch credentials, API keys, or tokens in any tracked file; `itch.conf` carries only non-secret target fields | structural | grep over tracked files for itch/butler token patterns, expecting zero hits |
 | SC-4 | README documents the manual publish walkthrough (build → configure → push), the `butler login` prerequisite, and the player-side Java requirement for the desktop channel | content | README section read |
+| SC-5 | `itch-push.sh`'s header comments state its prerequisites (butler installed + `butler login` once + `itch.conf` filled with the real target) | content | script header comments read |
 
 ## Impact
 
