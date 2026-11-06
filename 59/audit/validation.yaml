@@ -1,0 +1,7 @@
+spec:
+  - round: 1
+    artifact: .issues/59/spec.md
+    verdict: PASS
+    reviewer: fresh-context dispatch (ses_e50d2f21effenSHTnV2IauN77q)
+    findings: []
+    outcome: clean PASS — writer duty-of-care pass applied before dispatch
