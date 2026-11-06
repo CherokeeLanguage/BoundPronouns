@@ -1,6 +1,6 @@
 # Spec — Carry the release version on itch.io butler pushes (follow-up)
 
-BoundPronouns#56 · local-authoritative · filed 2026-11-05
+BoundPronouns#56 · local-authoritative
 
 ## Provenance
 

@@ -1,6 +1,6 @@
 # Spec — Publish desktop and Android builds to itch.io via manual butler script
 
-BoundPronouns#55 · local-authoritative · filed 2026-11-05
+BoundPronouns#55 · local-authoritative
 
 ## Provenance
 
@@ -19,8 +19,8 @@ One repository (BoundPronouns): one new push script + one tracked target config 
 ## Requirements
 
 - **R-1 — Channels and artifacts.** `itch-push.sh` (repo root) pushes:
-  - the newest `desktop/build/libs/BoundPronouns-*.jar` → `"$ITCH_USER/$ITCH_GAME:win-linux-mac"`,
-  - the newest `android/build/outputs/apk/release/*-release.apk` → `"$ITCH_USER/$ITCH_GAME:android"`.
+  - the newest desktop fat jar in `desktop/build/libs/` matching `BoundPronouns-*.jar` (newest = last by file modification time, ties impossible in practice) → `"$ITCH_USER/$ITCH_GAME:win-linux-mac"`,
+  - the newest APK in `android/build/outputs/apk/release/` matching `*-release.apk` (same modification-time rule) → `"$ITCH_USER/$ITCH_GAME:android"`.
 
   Channel names follow the butler manual's tag conventions (multi-platform channel for a Java game; `android` tagged as an Android application).
 - **R-2 — Target config, no secrets.** The itch target is read from tracked `itch.conf` (`ITCH_USER`, `ITCH_GAME`) carrying placeholder values (`REPLACE_ME`) when filed. The script refuses to push while any placeholder stands. The config carries only non-secret target fields; butler's credentials live exclusively in butler's own credential store, written by a one-time developer-run `butler login`. No API key, token, or secret may enter any tracked file.
