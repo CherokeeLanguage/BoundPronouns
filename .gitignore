@@ -6,6 +6,9 @@
 hs_err_pid*
 
 ## GWT
+
+/.tools/butler/
+
 war/
 html/war/gwt_bree/
 html/gwt-unitCache/
