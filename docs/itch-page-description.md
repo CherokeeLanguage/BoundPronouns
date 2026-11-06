@@ -31,7 +31,6 @@ Bound Pronouns is a flashcard challenge trainer for Cherokee bound pronouns. Eve
 **Platforms:** Windows, macOS, Linux, and Android.
 
 > **Desktop users:** the Windows/macOS/Linux download is a plain Java `.jar` file. You need a Java runtime — version 8 or newer — installed to run it. If double-clicking the jar does nothing, that's why: install Java, then run it.
->
 > **Android users:** itch delivers a standard APK; install it directly on your device (Android may ask you to allow installing apps from this source once).
 
 Find an issue with the app or the training data? Please report it at the project's GitHub: https://github.com/CherokeeLanguage/BoundPronouns/issues
