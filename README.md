@@ -2,6 +2,9 @@
 
 Source for the Cherokee Bound Pronouns training flashcard app. Includes synthetic audio for each conjugated challenge.
 
+The itch.io store-page description lives in [docs/itch-page-description.md](docs/itch-page-description.md) — paste it into the itch page's Edit-game → Description field.
+
+
 Available via Google Play, Apple App Store, and direct download: (https://www.cherokeelessons.com/apps/bound-pronouns/)
 
 ## Publishing to itch.io (manual)
