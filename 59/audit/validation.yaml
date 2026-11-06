@@ -5,3 +5,12 @@ spec:
     reviewer: fresh-context dispatch (ses_e50d2f21effenSHTnV2IauN77q)
     findings: []
     outcome: clean PASS — writer duty-of-care pass applied before dispatch
+  - round: 2
+    artifact: .issues/59/spec.md
+    verdict: PASS
+    reviewer: fresh-context dispatch (ses_e50d192e6ffedcl1JjDpFVOzZe)
+    findings: []
+    outcome: |
+      Spec revised between rounds: sibling-repo fact pool added; availability line changed
+      to itch-only per developer statement 2026-11-06; sibling split recorded (CherokeeLessons.com#20).
+      Clean PASS — 5/5 SC instruments, repo-boundary containment holds.
