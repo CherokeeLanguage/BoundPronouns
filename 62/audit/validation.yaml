@@ -1,0 +1,10 @@
+# validation record — BoundPronouns#62 (YAML)
+cycle: 1
+date: 2026-11-09
+reviewer: fresh-context validation dispatch (general subagent)
+rounds:
+- round: 1
+  verdict: PASS
+  findings: []
+  notes: reviewer independently verified README availability line verbatim, zero itch.io URLs in README, conf target values, AGENTS.md publishing section state, description asset, live itch page (title/channels/pricing/description), the 2026-11-06 availability statement in #59's provenance, and the open sibling #56; traceability, criteria classes, analysis families, repo-boundary containment, and remote-body format all judged clean
+issue: 62
