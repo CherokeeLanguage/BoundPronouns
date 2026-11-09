@@ -5,7 +5,7 @@ Source for the Cherokee Bound Pronouns training flashcard app. Includes syntheti
 The itch.io store-page description lives in [docs/itch-page-description.md](docs/itch-page-description.md) — paste it into the itch page's Edit-game → Description field.
 
 
-Available via Google Play, Apple App Store, and direct download: (https://www.cherokeelessons.com/apps/bound-pronouns/)
+Available on itch.io: https://cherokee-language.itch.io/cherokee-bound-pronouns — app listing page: https://www.cherokeelessons.com/apps/bound-pronouns/
 
 ## Publishing to itch.io (manual)
 
